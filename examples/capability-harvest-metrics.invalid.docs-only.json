@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-capability-metrics",
+  "scope": "portable_parent_wrapper",
+  "subjects": [
+    "capability"
+  ],
+  "defaults": {
+    "docs_only_max_score": 1,
+    "disallow_file_presence_only": true,
+    "default_freshness_window_days": 7,
+    "default_regression_window": "last_3_runs"
+  },
+  "metric_families": [
+    {
+      "id": "documentation_quality",
+      "label": "Documentation quality and discoverability",
+      "applies_to": [
+        "capability"
+      ],
+      "objective": "Allow a docs-only metric.",
+      "observable_signals": [
+        "The file exists.",
+        "The file has text."
+      ],
+      "measurement": {
+        "method": "Treat file presence as enough evidence.",
+        "unit": "score_0_to_5",
+        "passing_rule": "Presence is enough."
+      },
+      "acceptable_evidence": {
+        "minimum_evidence_types": [
+          "docs",
+          "docs"
+        ],
+        "artifacts": [
+          "README.md"
+        ]
+      },
+      "anti_gaming": {
+        "docs_only_max_score": 1,
+        "behavior_required": false,
+        "notes": [
+          "This should fail schema validation."
+        ]
+      }
+    }
+  ]
+}

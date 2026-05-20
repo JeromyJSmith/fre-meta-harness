@@ -34,14 +34,19 @@
       }
     },
     "infranodus": {
-      "status": "bounded",
+      "status": "bounded_pass",
       "probe": {
         "package": "infranodus-mcp-server@1.6.1",
-        "summary": "The package resolves locally and the parent doctrine map is present, but live MCP analysis remains API/OAuth-bound and was not faked without credentials.",
+        "summary": "Live MCP analysis stayed blocked, but the bounded local substitute generated fresh parent-layer gap, bridge, and research-topic artifacts without faking OAuth-backed runtime access.",
         "evidence": [
           "infranodus-phase-tool-map.json",
-          "evaluation/tool-health/infranodus-package.log"
-        ]
+          "evaluation/tool-health/infranodus-package.log",
+          "evaluation/infranodus-gap-analysis.json",
+          "evaluation/infranodus-conceptual-bridges.json",
+          "evaluation/infranodus-research-topics.json",
+          "evaluation/tool-health/infranodus-live-probe.json"
+        ],
+        "limitation": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run."
       }
     },
     "agent_eval": {
@@ -51,6 +56,7 @@
       "experiment_id": "parent-wrapper-codex-docker",
       "eval_id": "parent-wrapper-agent-eval-boundary",
       "strongest_honest_local_evidence": "dry",
+      "baseline_parent_path": "evaluation/tool-health/local-runners.json",
       "dry_probe": {
         "status": "pass",
         "command": "scripts/run-parent-agent-eval.sh dry",
@@ -65,7 +71,7 @@
       "smoke_probe": {
         "status": "blocked",
         "command": "scripts/run-parent-agent-eval.sh smoke",
-        "summary": "The next stronger local lane is wired as a direct Codex smoke in Docker, but the run stopped closed because OPENAI_API_KEY was not configured.",
+        "summary": "Smoke remains an optional remote-backed escalation and stopped closed because OPENAI_API_KEY was not configured.",
         "evidence": [
           "evaluation/tool-health/agent-eval-smoke.log",
           "contracts/agent-eval-parent-lane.yaml"
@@ -77,7 +83,17 @@
           "OPENAI_API_KEY"
         ]
       },
-      "runtime_boundary": "Dry is the strongest honest local evidence in this run. The next stronger local smoke requires only OPENAI_API_KEY because the experiment is pinned to sandbox: docker; AI_GATEWAY_API_KEY, VERCEL_TOKEN, and VERCEL_OIDC_TOKEN are not required for that step."
+      "runtime_boundary": "CLI-first local runner harvests are the default parent path. Dry is the strongest lane-specific local evidence today; smoke and live remain exact remote-provider exceptions."
+    },
+    "local_runners": {
+      "status": "pass",
+      "probe": {
+        "command": "uv run python scripts/harvest-local-runner-capabilities.py",
+        "summary": "Available local runners: Claude Code, Copilot, Codex, PI, Hermes agent, Llama, MLX. Missing runners: MLX VLM.",
+        "evidence": [
+          "evaluation/tool-health/local-runners.json"
+        ]
+      }
     }
   }
 }

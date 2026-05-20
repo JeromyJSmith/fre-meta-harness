@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-capability-metrics",
+  "scope": "portable_parent_wrapper",
+  "subjects": [
+    "capability",
+    "improvement_lane"
+  ],
+  "defaults": {
+    "docs_only_max_score": 1,
+    "disallow_file_presence_only": true,
+    "default_freshness_window_days": 7,
+    "default_regression_window": "last_3_runs"
+  },
+  "metric_families": [
+    {
+      "id": "documentation_quality",
+      "label": "Documentation quality and discoverability",
+      "applies_to": [
+        "capability",
+        "improvement_lane"
+      ],
+      "objective": "Make commands and artifacts discoverable without treating doc presence as sufficient proof.",
+      "observable_signals": [
+        "Canonical commands are named.",
+        "Artifact paths are easy to locate."
+      ],
+      "measurement": {
+        "method": "Score a command-path and artifact-path checklist with operator notes.",
+        "unit": "score_0_to_5",
+        "passing_rule": "Reach at least 4/5."
+      },
+      "acceptable_evidence": {
+        "minimum_evidence_types": [
+          "docs",
+          "operator_notes"
+        ],
+        "artifacts": [
+          "README.md",
+          "library.yaml"
+        ]
+      },
+      "anti_gaming": {
+        "docs_only_max_score": 1,
+        "behavior_required": false,
+        "notes": [
+          "File presence alone cannot exceed 1/5."
+        ]
+      }
+    }
+  ]
+}

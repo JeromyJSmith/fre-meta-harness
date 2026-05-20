@@ -3,10 +3,10 @@ window.__META_HARNESS_DASHBOARD__ = {
     "generated_at": "2026-05-18",
     "scope": "portable_parent_wrapper",
     "current_score": {
-      "total_score": 90.62,
-      "outcome_score": 87.5,
+      "total_score": 98.05,
+      "outcome_score": 97.4,
       "instrument_score": 100.0,
-      "weakest_component": "plateau_or_blocker_truth"
+      "weakest_component": "artifact_refresh"
     },
     "score_timeline": [
       {
@@ -56,6 +56,102 @@ window.__META_HARNESS_DASHBOARD__ = {
         "total_score": 90.62,
         "outcome_score": 87.5,
         "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-4-before",
+        "cycle": 4,
+        "phase": "before",
+        "total_score": 90.62,
+        "outcome_score": 87.5,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-4-after",
+        "cycle": 4,
+        "phase": "after",
+        "total_score": 100.0,
+        "outcome_score": 100.0,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-5-before",
+        "cycle": 5,
+        "phase": "before",
+        "total_score": 100.0,
+        "outcome_score": 100.0,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-5-after",
+        "cycle": 5,
+        "phase": "after",
+        "total_score": 100.0,
+        "outcome_score": 100.0,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-6-before",
+        "cycle": 6,
+        "phase": "before",
+        "total_score": 86.09,
+        "outcome_score": 81.45,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-6-after",
+        "cycle": 6,
+        "phase": "after",
+        "total_score": 92.84,
+        "outcome_score": 90.45,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-7-before",
+        "cycle": 7,
+        "phase": "before",
+        "total_score": 92.84,
+        "outcome_score": 90.45,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-7-after",
+        "cycle": 7,
+        "phase": "after",
+        "total_score": 92.84,
+        "outcome_score": 90.45,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-8-before",
+        "cycle": 8,
+        "phase": "before",
+        "total_score": 89.84,
+        "outcome_score": 86.45,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-8-after",
+        "cycle": 8,
+        "phase": "after",
+        "total_score": 91.3,
+        "outcome_score": 88.4,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-9-before",
+        "cycle": 9,
+        "phase": "before",
+        "total_score": 91.3,
+        "outcome_score": 88.4,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-9-after",
+        "cycle": 9,
+        "phase": "after",
+        "total_score": 91.3,
+        "outcome_score": 88.4,
+        "instrument_score": 100.0
       }
     ],
     "component_rows": [
@@ -65,9 +161,9 @@ window.__META_HARNESS_DASHBOARD__ = {
         "score": 30.0,
         "details": {
           "schema_errors": [],
-          "history_rows": 3,
-          "detailed_rows": 3,
-          "ledger_rows": 3,
+          "history_rows": 9,
+          "detailed_rows": 9,
+          "ledger_rows": 9,
           "ledger_aligned": true,
           "parse_errors": []
         }
@@ -92,15 +188,24 @@ window.__META_HARNESS_DASHBOARD__ = {
         }
       },
       {
-        "name": "plateau_or_blocker_truth",
+        "name": "artifact_refresh",
         "family": "outcome",
-        "score": 12.5,
+        "score": 22.4,
         "details": {
-          "kind": "plateau",
-          "stop_reason": "plateau after two consecutive non-improving real proposal cycles under the repaired metric",
-          "cycles": 3,
-          "actual_consecutive_non_improving": 2,
-          "schema_errors": []
+          "report_artifacts_complete": true,
+          "latest_cycle_artifacts_complete": true,
+          "required": 4,
+          "freshness_span_seconds": 8.718257427215576,
+          "tool_statuses": [
+            "bounded_pass",
+            "pass",
+            "bounded_pass",
+            "dry_pass",
+            "pass"
+          ],
+          "tool_health_score": 10.4,
+          "schema_errors": [],
+          "parse_errors": []
         }
       },
       {
@@ -108,12 +213,12 @@ window.__META_HARNESS_DASHBOARD__ = {
         "family": "outcome",
         "score": 25.0,
         "details": {
-          "status": "pass",
+          "status": "blocked",
           "schema_errors": [],
-          "real_rows": 3,
-          "parse_errors": [],
-          "mutable_files": 8,
-          "files_changed": 8
+          "real_rows": 9,
+          "kept_rows": 4,
+          "substantive_kept_rows": 3,
+          "parse_errors": []
         }
       },
       {
@@ -121,31 +226,31 @@ window.__META_HARNESS_DASHBOARD__ = {
         "family": "outcome",
         "score": 25.0,
         "details": {
-          "count": 3,
-          "history_rows": 3,
-          "real_rows": 3,
+          "count": 9,
+          "substantive_kept_rows": 3,
+          "rejected_or_reverted_rows": 5,
+          "history_rows": 9,
+          "real_rows": 9,
           "parse_errors": [],
           "schema_errors": []
         }
       },
       {
-        "name": "artifact_refresh",
+        "name": "plateau_or_blocker_truth",
         "family": "outcome",
         "score": 25.0,
         "details": {
-          "listed": 4,
-          "ledger_listed": 4,
-          "existing": 4,
-          "required": 4,
-          "freshness_span_seconds": 5.679206132888794,
-          "schema_errors": [],
-          "parse_errors": []
+          "kind": "blocker",
+          "stop_reason": "exact blocker: live InfraNodus MCP escalation remains blocked because no local runtime credential or session configuration was present, so the bounded local substitute stayed as the strongest honest parent analysis path",
+          "cycles": 9,
+          "actual_consecutive_non_improving": 1,
+          "schema_errors": []
         }
       }
     ],
     "validation_summary": {
       "overall_status": "pass",
-      "pass_count": 11,
+      "pass_count": 12,
       "fail_count": 0,
       "checks": [
         {
@@ -241,6 +346,10 @@ window.__META_HARNESS_DASHBOARD__ = {
               "status": "pass"
             },
             {
+              "file": "examples/capability-harvest-metrics.valid.json",
+              "status": "pass"
+            },
+            {
               "file": "examples/front-matter.invalid.missing-id.json",
               "status": "pass",
               "reason": "'id' is a required property"
@@ -259,8 +368,34 @@ window.__META_HARNESS_DASHBOARD__ = {
               "file": "examples/iteration-record.invalid.dry-run.json",
               "status": "pass",
               "reason": "Additional properties are not allowed ('after_score', 'before_score' were unexpected) | 'before_total_score' is a required property | 'after_total_score' is a required property | 'before_outcome_score' is a required property | 'after_outcome_score' is a required property | 'before_instrument_score' is a required property | 'after_instrument_score' is a required property | 'validator_status' is a required property | 'changed_files' is a required property | 'artifacts' is a required property | 'dry-run' is not of type 'integer' | 'dry_run' is not one of ['real_non_dry']"
+            },
+            {
+              "file": "examples/capability-harvest-metrics.invalid.docs-only.json",
+              "status": "pass",
+              "reason": "['docs', 'docs'] has non-unique elements | ['docs', 'docs'] does not contain items matching the given schema"
             }
           ]
+        },
+        {
+          "name": "capability_metrics_contract",
+          "status": "pass",
+          "details": {
+            "path": "contracts/parent-capability-metrics.yaml",
+            "metric_family_count": 11,
+            "metric_ids": [
+              "blocker_precision",
+              "cost_local_resource_use",
+              "documentation_quality",
+              "evidence_freshness",
+              "execution_success",
+              "latency_runtime",
+              "operator_usability",
+              "regression_resistance",
+              "reproducibility",
+              "tool_health_availability",
+              "validation_pass_rate"
+            ]
+          }
         },
         {
           "name": "program_markdown_contract",
@@ -277,7 +412,7 @@ window.__META_HARNESS_DASHBOARD__ = {
           "status": "pass",
           "details": {
             "path": "runs/iterations.jsonl",
-            "row_count": 3,
+            "row_count": 9,
             "parse_errors": [],
             "invalid_rows": []
           }
@@ -331,172 +466,518 @@ window.__META_HARNESS_DASHBOARD__ = {
     ],
     "cluster_rows": [
       {
-        "label": "Prompt Governance",
-        "cluster_id": 4,
-        "size_pct": 7,
-        "influence_pct": 20
-      },
-      {
-        "label": "Goal Onboarding",
-        "cluster_id": 0,
-        "size_pct": 11,
-        "influence_pct": 13
-      },
-      {
-        "label": "Graph Analysis",
-        "cluster_id": 10,
-        "size_pct": 10,
-        "influence_pct": 11
-      },
-      {
-        "label": "Reporting Cycle",
-        "cluster_id": 6,
-        "size_pct": 7,
-        "influence_pct": 10
-      },
-      {
-        "label": "Content Generation",
-        "cluster_id": 11,
-        "size_pct": 6,
-        "influence_pct": 10
-      },
-      {
-        "label": "Tool Mapping",
-        "cluster_id": 5,
-        "size_pct": 5,
-        "influence_pct": 10
-      },
-      {
-        "label": "Meta Structure",
+        "label": "evaluation",
         "cluster_id": 1,
-        "size_pct": 7,
-        "influence_pct": 8
+        "size_pct": 10,
+        "influence_pct": 99
       },
       {
-        "label": "Role Metrics",
-        "cluster_id": 7,
-        "size_pct": 19,
-        "influence_pct": 6
-      },
-      {
-        "label": "Operational Substrate",
-        "cluster_id": 3,
-        "size_pct": 13,
-        "influence_pct": 5
-      },
-      {
-        "label": "Active Identification",
+        "label": "meta_loop",
         "cluster_id": 2,
-        "size_pct": 9,
-        "influence_pct": 3
+        "size_pct": 33,
+        "influence_pct": 99
       },
       {
-        "label": "Scoring Validation",
-        "cluster_id": 9,
-        "size_pct": 5,
-        "influence_pct": 3
+        "label": "autoresearch",
+        "cluster_id": 3,
+        "size_pct": 22,
+        "influence_pct": 99
       },
       {
-        "label": "Proof Package",
-        "cluster_id": 8,
-        "size_pct": 1,
-        "influence_pct": 0
+        "label": "meta_harness",
+        "cluster_id": 4,
+        "size_pct": 13,
+        "influence_pct": 99
+      },
+      {
+        "label": "agent_eval",
+        "cluster_id": 5,
+        "size_pct": 6,
+        "influence_pct": 99
+      },
+      {
+        "label": "tool_health",
+        "cluster_id": 6,
+        "size_pct": 17,
+        "influence_pct": 99
       }
     ],
     "infranodus_live_summary": {
-      "generated_at": "2026-05-18",
-      "source": "mcp__infranodus__.generate_knowledge_graph",
+      "generated_at": "2026-05-20",
+      "source": "bounded_local_cli_substitute",
       "scope": "portable_parent_wrapper",
       "statistics": {
-        "modularity": 0.6840293674922019,
-        "clusterCount": 12,
-        "nodeCount": 150,
-        "edgeCount": 256,
-        "diversity_score": "dispersed",
-        "modularity_score": "very_high"
+        "clusterCount": 6,
+        "nodeCount": 502,
+        "edgeCount": 15,
+        "diversity_score": "bounded_local",
+        "modularity_score": "approximate"
       },
       "contentGaps": [
-        "Gap 1: 3. Graph Analysis (knowledge graph exist analyze search text google related) -> 10. Active Identification (child body surface vw active identify standalone itwin)",
-        "Gap 2: 3. Graph Analysis (knowledge graph exist analyze search text google related) -> 9. Operational Substrate (substrate ref operational pixeltable template authority upstream carry)",
-        "Gap 3: 8. Role Metrics (metric current role blocker evidence durable iteration loop) -> 10. Active Identification (child body surface vw active identify standalone itwin)"
+        "Gap 1: meta_harness -> agent_eval",
+        "Gap 2: evaluation -> meta_harness",
+        "Gap 3: autoresearch -> agent_eval"
       ],
       "mainTopicalClusters": [
-        "1. Prompt Governance: prompt schema run govern contract heavy maintain agent (4 | 7% | 20%)",
-        "2. Goal Onboarding: md goal external program onboard domain slice autoresearch (0 | 11% | 13%)",
-        "3. Graph Analysis: knowledge graph exist analyze search text google related (10 | 10% | 11%)",
-        "4. Reporting Cycle: report ratchet real copilot dry cycle evaluator proposer (6 | 7% | 10%)",
-        "5. Content Generation: generate seo topical contextual content cluster hint gap (11 | 6% | 10%)",
-        "6. Tool Mapping: json map tool phase infranodus full required supporting (5 | 5% | 10%)",
-        "7. Meta Structure: parent meta wrapper portable outer harness id slug (1 | 7% | 8%)",
-        "8. Role Metrics: metric current role blocker evidence durable iteration loop (7 | 19% | 6%)",
-        "9. Operational Substrate: substrate ref operational pixeltable template authority upstream carry (3 | 13% | 5%)",
-        "10. Active Identification: child body surface vw active identify standalone itwin (2 | 9% | 3%)",
-        "11. Scoring Validation: score split ledger script instrument runner validate outcome (9 | 5% | 3%)",
-        "12. Proof Package: proof (8 | 1% | 0%)"
+        "1. evaluation: evaluation agent_eval evals parent-wrapper-agent_eval-boundary tool_health readme (1 | 10% | 99%)",
+        "2. meta_loop: evaluation external iterations status evidence jsonl (2 | 33% | 99%)",
+        "3. autoresearch: source external name description status evaluation (3 | 22% | 99%)",
+        "4. meta_harness: status external gate_id notes doctrine green (4 | 13% | 99%)",
+        "5. agent_eval: smoke agent_eval evaluation dry docker tool_health (5 | 6% | 99%)",
+        "6. tool_health: status evaluation summary tool_health command_path duration_ms (6 | 17% | 99%)"
       ],
       "mainConcepts": [
-        "prompt",
-        "schema",
-        "json",
-        "md",
-        "report",
-        "generate",
-        "seo",
-        "parent",
-        "goal",
-        "run",
-        "knowledge",
-        "graph",
-        "meta",
+        "evaluation",
+        "status",
+        "agent_eval",
         "external",
-        "govern",
-        "ratchet"
+        "tool_health",
+        "evidence",
+        "readme",
+        "bounded",
+        "gate_id",
+        "notes",
+        "smoke",
+        "program"
       ],
       "conceptualGateways": [
-        "seo",
-        "schema",
-        "json",
-        "report",
-        "generate",
-        "exist",
-        "knowledge",
-        "external"
+        "evaluation",
+        "status",
+        "agent_eval",
+        "external",
+        "tool_health",
+        "evidence",
+        "readme",
+        "bounded"
       ],
       "topRelations": [
-        "1) meta <-> harness",
-        "2) agent <-> heavy",
-        "3) heavy <-> run",
-        "4) run <-> prompt",
-        "5) goal <-> md",
-        "6) parent <-> meta",
-        "7) search <-> query",
-        "8) program <-> md",
-        "9) prompt <-> schema",
-        "10) required <-> tool",
-        "11) supporting <-> tool",
-        "12) readme <-> md"
+        "1) meta_loop <-> autoresearch",
+        "2) autoresearch <-> meta_harness",
+        "3) evaluation <-> agent_eval",
+        "4) evaluation <-> meta_loop",
+        "5) meta_loop <-> tool_health",
+        "6) evaluation <-> tool_health",
+        "7) agent_eval <-> tool_health",
+        "8) autoresearch <-> tool_health",
+        "9) evaluation <-> autoresearch",
+        "10) meta_loop <-> agent_eval"
       ],
       "topInfluentialNodes": [
         {
-          "node": "prompt",
-          "bc": 0.33992381643388353,
-          "degree": 12
+          "node": "evaluation",
+          "bc": 0.833,
+          "degree": 5
         },
         {
-          "node": "schema",
-          "bc": 0.3012425176854707,
+          "node": "status",
+          "bc": 0.833,
+          "degree": 5
+        },
+        {
+          "node": "agent_eval",
+          "bc": 0.667,
+          "degree": 4
+        },
+        {
+          "node": "external",
+          "bc": 0.5,
           "degree": 3
         },
         {
-          "node": "json",
-          "bc": 0.27566660620351896,
+          "node": "tool_health",
+          "bc": 0.833,
           "degree": 5
+        },
+        {
+          "node": "evidence",
+          "bc": 0.333,
+          "degree": 2
+        },
+        {
+          "node": "readme",
+          "bc": 0.333,
+          "degree": 2
+        },
+        {
+          "node": "bounded",
+          "bc": 0.333,
+          "degree": 2
+        }
+      ],
+      "limitations": [
+        "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+        "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
+      ]
+    },
+    "infranodus_conceptual_bridges": {
+      "analysis_id": "PARENT-META-INFRANODUS-BRIDGES-0001",
+      "created_at": "2026-05-20",
+      "scope": "portable_parent_wrapper",
+      "mode": "bounded_local_cli_substitute",
+      "bridges": [
+        {
+          "bridge_id": "meta_harness-to-agent_eval",
+          "from_layer": "meta_harness",
+          "to_layer": "agent_eval",
+          "through_layer": "tool_health",
+          "bridge_terms": [
+            "evaluation",
+            "status",
+            "agent_eval"
+          ],
+          "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
+          "evidence": [
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/local-runners.json",
+            "contracts/parent-capability-metrics.yaml"
+          ]
+        },
+        {
+          "bridge_id": "evaluation-to-meta_harness",
+          "from_layer": "evaluation",
+          "to_layer": "meta_harness",
+          "through_layer": "tool_health",
+          "bridge_terms": [
+            "status"
+          ],
+          "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
+          "evidence": [
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/local-runners.json",
+            "contracts/parent-capability-metrics.yaml"
+          ]
+        },
+        {
+          "bridge_id": "autoresearch-to-agent_eval",
+          "from_layer": "autoresearch",
+          "to_layer": "agent_eval",
+          "through_layer": "tool_health",
+          "bridge_terms": [
+            "evaluation",
+            "tool_health"
+          ],
+          "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
+          "evidence": [
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/local-runners.json",
+            "contracts/parent-capability-metrics.yaml"
+          ]
+        }
+      ],
+      "limitations": [
+        "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+        "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
+      ]
+    },
+    "infranodus_research_topics": {
+      "analysis_id": "PARENT-META-INFRANODUS-RESEARCH-0001",
+      "created_at": "2026-05-20",
+      "scope": "portable_parent_wrapper",
+      "mode": "bounded_local_cli_substitute",
+      "topics": [
+        {
+          "topic_id": "topic-1",
+          "title": "Bridge meta_harness and agent_eval through observable local evidence",
+          "priority": 1,
+          "driven_by_gaps": [
+            "meta_harness -> agent_eval"
+          ],
+          "bridge_terms": [
+            "evaluation",
+            "status",
+            "agent_eval",
+            "external"
+          ],
+          "questions": [
+            "Which bounded commands connect meta_harness outputs to agent_eval decisions?",
+            "Which artifact should become the canonical bridge between meta_harness and agent_eval?"
+          ],
+          "recommended_artifacts": [
+            "contracts/parent-capability-metrics.yaml",
+            "evaluation/tool-health/status.json",
+            "evaluation/infranodus-gap-analysis.json"
+          ]
+        },
+        {
+          "topic_id": "topic-2",
+          "title": "Bridge evaluation and meta_harness through observable local evidence",
+          "priority": 2,
+          "driven_by_gaps": [
+            "evaluation -> meta_harness"
+          ],
+          "bridge_terms": [
+            "status"
+          ],
+          "questions": [
+            "Which bounded commands connect evaluation outputs to meta_harness decisions?",
+            "Which artifact should become the canonical bridge between evaluation and meta_harness?"
+          ],
+          "recommended_artifacts": [
+            "contracts/parent-capability-metrics.yaml",
+            "evaluation/tool-health/status.json",
+            "evaluation/infranodus-gap-analysis.json"
+          ]
+        },
+        {
+          "topic_id": "topic-3",
+          "title": "Bridge autoresearch and agent_eval through observable local evidence",
+          "priority": 3,
+          "driven_by_gaps": [
+            "autoresearch -> agent_eval"
+          ],
+          "bridge_terms": [
+            "evaluation",
+            "tool_health"
+          ],
+          "questions": [
+            "Which bounded commands connect autoresearch outputs to agent_eval decisions?",
+            "Which artifact should become the canonical bridge between autoresearch and agent_eval?"
+          ],
+          "recommended_artifacts": [
+            "contracts/parent-capability-metrics.yaml",
+            "evaluation/tool-health/status.json",
+            "evaluation/infranodus-gap-analysis.json"
+          ]
+        },
+        {
+          "topic_id": "topic-4",
+          "title": "Bridge meta_loop and meta_harness through observable local evidence",
+          "priority": 4,
+          "driven_by_gaps": [
+            "meta_loop -> meta_harness"
+          ],
+          "bridge_terms": [
+            "external",
+            "status"
+          ],
+          "questions": [
+            "Which bounded commands connect meta_loop outputs to meta_harness decisions?",
+            "Which artifact should become the canonical bridge between meta_loop and meta_harness?"
+          ],
+          "recommended_artifacts": [
+            "contracts/parent-capability-metrics.yaml",
+            "evaluation/tool-health/status.json",
+            "evaluation/infranodus-gap-analysis.json"
+          ]
+        }
+      ],
+      "limitations": [
+        "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+        "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
+      ]
+    },
+    "local_runner_capabilities": {
+      "harvest_id": "PARENT-LOCAL-RUNNERS-0001",
+      "created_at": "2026-05-20",
+      "scope": "portable_parent_wrapper",
+      "doctrine": "cli_first_local_runners",
+      "metrics_contract": "contracts/parent-capability-metrics.yaml",
+      "families": [
+        {
+          "id": "claude_code",
+          "label": "Claude Code",
+          "status": "available",
+          "matched_probe": "claude --version",
+          "command_path": "/Users/ojeromyo/.local/bin/claude",
+          "summary": "2.1.144 (Claude Code)",
+          "duration_ms": 46.56,
+          "probes": [
+            {
+              "command": "claude --version",
+              "command_path": "/Users/ojeromyo/.local/bin/claude",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 46.56,
+              "summary": "2.1.144 (Claude Code)"
+            }
+          ]
+        },
+        {
+          "id": "copilot",
+          "label": "Copilot",
+          "status": "available",
+          "matched_probe": "gh copilot --help",
+          "command_path": "/opt/homebrew/bin/gh",
+          "summary": "gh version 2.92.0 (2026-04-28)",
+          "duration_ms": 26.36,
+          "probes": [
+            {
+              "command": "gh copilot --help",
+              "command_path": "/opt/homebrew/bin/gh",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 26.36,
+              "summary": "Runs the GitHub Copilot CLI."
+            }
+          ]
+        },
+        {
+          "id": "codex",
+          "label": "Codex",
+          "status": "available",
+          "matched_probe": "codex --version",
+          "command_path": "/opt/homebrew/bin/codex",
+          "summary": "codex-cli 0.130.0",
+          "duration_ms": 11.55,
+          "probes": [
+            {
+              "command": "codex --version",
+              "command_path": "/opt/homebrew/bin/codex",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 11.55,
+              "summary": "codex-cli 0.130.0"
+            }
+          ]
+        },
+        {
+          "id": "pi",
+          "label": "PI",
+          "status": "available",
+          "matched_probe": "pi --version",
+          "command_path": "/Users/ojeromyo/.bun/bin/pi",
+          "summary": "0.72.1",
+          "duration_ms": 437.53,
+          "probes": [
+            {
+              "command": "pi --version",
+              "command_path": "/Users/ojeromyo/.bun/bin/pi",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 437.53,
+              "summary": "0.72.1"
+            }
+          ]
+        },
+        {
+          "id": "hermes_agent",
+          "label": "Hermes agent",
+          "status": "available",
+          "matched_probe": "hermes --version",
+          "command_path": "/Users/ojeromyo/.local/bin/hermes",
+          "summary": "Hermes Agent v0.14.0 (2026.5.16)",
+          "duration_ms": 243.38,
+          "probes": [
+            {
+              "command": "hermes --version",
+              "command_path": "/Users/ojeromyo/.local/bin/hermes",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 243.38,
+              "summary": "Hermes Agent v0.14.0 (2026.5.16)"
+            }
+          ]
+        },
+        {
+          "id": "llama",
+          "label": "Llama",
+          "status": "available",
+          "matched_probe": "ollama --version",
+          "command_path": "/usr/local/bin/ollama",
+          "summary": "ollama version is 0.24.0",
+          "duration_ms": 17.17,
+          "probes": [
+            {
+              "command": "llama --version",
+              "command_path": null,
+              "status": "missing",
+              "exit_code": null,
+              "duration_ms": 0,
+              "summary": "llama is not installed"
+            },
+            {
+              "command": "ollama --version",
+              "command_path": "/usr/local/bin/ollama",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 17.17,
+              "summary": "ollama version is 0.24.0"
+            },
+            {
+              "command": "llama-server --version",
+              "command_path": "/opt/homebrew/bin/llama-server",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 8698.67,
+              "summary": "load_backend: loaded BLAS backend from /opt/homebrew/Cellar/ggml/0.12.0/libexec/libggml-blas.so"
+            }
+          ]
+        },
+        {
+          "id": "mlx",
+          "label": "MLX",
+          "status": "available",
+          "matched_probe": "mlx_lm --help",
+          "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
+          "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')",
+          "duration_ms": 1307.72,
+          "probes": [
+            {
+              "command": "mlx_lm --help",
+              "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
+              "status": "pass",
+              "exit_code": 0,
+              "duration_ms": 1307.72,
+              "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')"
+            },
+            {
+              "command": "mlx --help",
+              "command_path": null,
+              "status": "missing",
+              "exit_code": null,
+              "duration_ms": 0,
+              "summary": "mlx is not installed"
+            }
+          ]
+        },
+        {
+          "id": "mlx_vlm",
+          "label": "MLX VLM",
+          "status": "missing",
+          "matched_probe": null,
+          "command_path": null,
+          "summary": "mlx_vlm is not installed",
+          "duration_ms": 0,
+          "probes": [
+            {
+              "command": "mlx_vlm --help",
+              "command_path": null,
+              "status": "missing",
+              "exit_code": null,
+              "duration_ms": 0,
+              "summary": "mlx_vlm is not installed"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "available_count": 7,
+        "missing_count": 1,
+        "available": [
+          "Claude Code",
+          "Copilot",
+          "Codex",
+          "PI",
+          "Hermes agent",
+          "Llama",
+          "MLX"
+        ],
+        "missing": [
+          "MLX VLM"
+        ],
+        "baseline_rule": "CLI-first local runner harvests are the default parent evaluation path. Remote-provider lanes are explicit exceptions."
+      },
+      "remote_exception_lanes": [
+        {
+          "lane": "vercel-agent-eval",
+          "baseline_local_state": "dry plus local runner harvest",
+          "remote_exception_requirement": "OPENAI_API_KEY for smoke/live"
         }
       ]
     },
     "readiness": {
       "readiness_id": "PARENT-META-PROMOTION-0001",
-      "created_at": "2026-05-18",
+      "created_at": "2026-05-20",
       "scope": "portable_parent_wrapper",
       "status": "pass",
       "blockers": [],
@@ -511,39 +992,162 @@ window.__META_HARNESS_DASHBOARD__ = {
       ]
     },
     "gap_analysis": {
-      "analysis_id": "PARENT-META-INFRANODUS-GAP-0001",
-      "created_at": "2026-05-18",
+      "analysis_id": "PARENT-META-INFRANODUS-GAP-0002",
+      "created_at": "2026-05-20",
       "scope": "portable_parent_wrapper",
+      "method": {
+        "mode": "bounded_local_cli_substitute",
+        "summary": "Used the governed parent corpus, layer token overlap, and gateway terms as the strongest honest local substitute while live MCP analysis stayed blocked.",
+        "limitation": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run."
+      },
+      "analyzed_layers": [
+        {
+          "id": "evaluation",
+          "label": "evaluation",
+          "source_files": [
+            "evaluation/README.md",
+            "evaluation/metrics-latest.json",
+            "evaluation/copilot-ratchet-report.json"
+          ],
+          "top_terms": [
+            "evaluation",
+            "agent_eval",
+            "evals",
+            "parent-wrapper-agent_eval-boundary",
+            "tool_health",
+            "readme",
+            "cycle",
+            "true"
+          ]
+        },
+        {
+          "id": "meta_loop",
+          "label": "meta_loop",
+          "source_files": [
+            "GOAL.md",
+            "program.md",
+            "runs/iterations.jsonl"
+          ],
+          "top_terms": [
+            "evaluation",
+            "external",
+            "iterations",
+            "status",
+            "evidence",
+            "jsonl",
+            "tool_health",
+            "agent_eval"
+          ]
+        },
+        {
+          "id": "autoresearch",
+          "label": "autoresearch",
+          "source_files": [
+            "README.md",
+            "program.md",
+            "library.yaml"
+          ],
+          "top_terms": [
+            "source",
+            "external",
+            "name",
+            "description",
+            "status",
+            "evaluation",
+            "bounded",
+            "tool_health"
+          ]
+        },
+        {
+          "id": "meta_harness",
+          "label": "meta_harness",
+          "source_files": [
+            "domain_spec.md",
+            "AGENTS.md",
+            "MEMORY.md"
+          ],
+          "top_terms": [
+            "status",
+            "external",
+            "gate_id",
+            "notes",
+            "doctrine",
+            "green",
+            "memory",
+            "prompt"
+          ]
+        },
+        {
+          "id": "agent_eval",
+          "label": "agent_eval",
+          "source_files": [
+            "contracts/agent-eval-parent-lane.yaml",
+            "evaluation/agent-eval/README.md",
+            "scripts/run-parent-agent-eval.sh"
+          ],
+          "top_terms": [
+            "smoke",
+            "agent_eval",
+            "evaluation",
+            "dry",
+            "docker",
+            "tool_health",
+            "scripts",
+            "run-parent-agent_eval"
+          ]
+        },
+        {
+          "id": "tool_health",
+          "label": "tool_health",
+          "source_files": [
+            "README.md",
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/local-runners.json"
+          ],
+          "top_terms": [
+            "status",
+            "evaluation",
+            "summary",
+            "tool_health",
+            "command_path",
+            "duration_ms",
+            "version",
+            "command"
+          ]
+        }
+      ],
+      "likely_missing_adjacent_layer": {
+        "id": "tool_health",
+        "label": "tool_health",
+        "reason": "This layer is present in parent doctrine and evidence, overlaps multiple named layers, and should stay explicit in the improvement map.",
+        "evidence": [
+          "README.md",
+          "evaluation/tool-health/status.json",
+          "evaluation/tool-health/local-runners.json"
+        ]
+      },
       "topical_clusters": [
-        "Memory Goals",
-        "Active Body",
-        "Reusable Wrapper",
-        "Knowledge Substrate",
-        "Gate Optimization",
-        "Document Scaffold",
-        "Data Bridge",
-        "Skill Verification",
-        "Runtime Events",
-        "Infrastructure Geometry"
+        "evaluation",
+        "meta_loop",
+        "autoresearch",
+        "meta_harness",
+        "agent_eval",
+        "tool_health"
       ],
       "content_gaps": [
-        "Knowledge Substrate -> Gate Optimization",
-        "Document Scaffold -> Data Bridge",
-        "Knowledge Substrate -> Document Scaffold"
+        "meta_harness -> agent_eval",
+        "evaluation -> meta_harness",
+        "autoresearch -> agent_eval"
       ],
       "resolved_by": [
-        "README.md",
-        "library.yaml",
-        "agent-heavy-run-prompt.schema.json",
-        "infranodus-phase-tool-map.json",
-        "pixeltable-operational-substrate.md",
-        "source/",
-        "schemas/",
-        "examples/",
-        "expected-failures/",
-        "tests/",
-        "evaluation/",
-        "promotion/"
+        "contracts/parent-capability-metrics.yaml",
+        "evaluation/tool-health/local-runners.json",
+        "evaluation/tool-health/status.json",
+        "scripts/build-parent-infranodus-artifacts.py"
+      ],
+      "limitations": [
+        "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+        "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
       ]
     },
     "iteration_summary": {
@@ -621,10 +1225,244 @@ window.__META_HARNESS_DASHBOARD__ = {
             "runs/iterations.jsonl"
           ],
           "note": "The prompt-YAML probe was reverted; this is the second consecutive non-improving proposal cycle."
+        },
+        {
+          "iteration": 4,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 90.62,
+          "after_total_score": 100.0,
+          "before_outcome_score": 87.5,
+          "after_outcome_score": 100.0,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "repair the plateau-weight cap and keep the parent tool-health plus agent-eval documentation wave",
+          "result": "kept",
+          "validator_status": "pass",
+          "changed_files": [
+            "AGENTS.md",
+            "CLAUDE.md",
+            "GOAL.md",
+            "GOLDENPATH.md",
+            "MEMORY.md",
+            "README.md",
+            "agentics-library.md",
+            "domain_spec.md",
+            "evaluation/tool-health/status.json",
+            "library.yaml",
+            "program.md",
+            "scripts/score-parent-wrapper.py",
+            "source/README.md"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json"
+          ],
+          "note": "Fixed the plateau_or_blocker_truth cap to its documented weight, removed stale standalone-state drift, and recorded bounded GitNexus, Graphify, InfraNodus, and agent-eval evidence."
+        },
+        {
+          "iteration": 5,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 100.0,
+          "after_total_score": 100.0,
+          "before_outcome_score": 100.0,
+          "after_outcome_score": 100.0,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "test a README-only wording probe and revert it when the repaired metric stays saturated",
+          "result": "rejected",
+          "validator_status": "pass",
+          "changed_files": [
+            "README.md",
+            "runs/iterations.jsonl",
+            "evaluation/copilot-ratchet-report.json"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json"
+          ],
+          "note": "The README-only probe was reverted after the repaired metric stayed at 100.0, proving a bounded saturation blocker for further score-based improvement in this run."
+        },
+        {
+          "iteration": 6,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 86.09,
+          "after_total_score": 92.84,
+          "before_outcome_score": 81.45,
+          "after_outcome_score": 90.45,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "add a parent-scoped agent-eval fixture, direct Codex plus Docker smoke contract, and exact dry plus blocker evidence",
+          "result": "kept",
+          "validator_status": "pass",
+          "changed_files": [
+            "README.md",
+            "GOAL.md",
+            "program.md",
+            "library.yaml",
+            "agentics-library.md",
+            "domain_spec.md",
+            "contracts/agent-eval-parent-lane.yaml",
+            "evaluation/agent-eval/.env.example",
+            "evaluation/agent-eval/.gitignore",
+            "evaluation/agent-eval/README.md",
+            "evaluation/agent-eval/package.json",
+            "evaluation/agent-eval/tsconfig.json",
+            "evaluation/agent-eval/experiments/parent-wrapper-codex-docker.ts",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/PROMPT.md",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/EVAL.ts",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/package.json",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/README.md",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/GOAL.md",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/program.md",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/library.yaml",
+            "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/agentics-library.md",
+            "scripts/run-parent-agent-eval.sh",
+            "evaluation/tool-health/agent-eval-dry.log",
+            "evaluation/tool-health/agent-eval-smoke.log",
+            "evaluation/tool-health/status.json",
+            "evaluation/copilot-ratchet-report.json",
+            "runs/iterations.jsonl"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json"
+          ],
+          "note": "The parent wrapper now carries a real agent-eval project and the next stronger smoke step is blocked only by OPENAI_API_KEY, not by missing Vercel sandbox credentials."
+        },
+        {
+          "iteration": 7,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 92.84,
+          "after_total_score": 92.84,
+          "before_outcome_score": 90.45,
+          "after_outcome_score": 90.45,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "test whether the parent agent-eval lane can honestly rise above dry without OPENAI_API_KEY and reject that promotion when the smoke blocker is real",
+          "result": "rejected",
+          "validator_status": "pass",
+          "changed_files": [
+            "evaluation/tool-health/agent-eval-smoke.log",
+            "evaluation/tool-health/status.json",
+            "evaluation/copilot-ratchet-report.json",
+            "runs/iterations.jsonl"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json"
+          ],
+          "note": "The smoke lane stayed blocked because Docker was present but OPENAI_API_KEY was not configured, so the run kept the stronger claim rejected instead of faking smoke success."
+        },
+        {
+          "iteration": 8,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 89.84,
+          "after_total_score": 91.3,
+          "before_outcome_score": 86.45,
+          "after_outcome_score": 88.4,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "replace paid-key-first doctrine with CLI-first local runner harvests, add the reusable parent metrics contract, and keep a bounded InfraNodus substitute with durable gap, bridge, and research artifacts",
+          "result": "kept",
+          "validator_status": "pass",
+          "changed_files": [
+            "AGENTS.md",
+            "CLAUDE.md",
+            "GOAL.md",
+            "GOLDENPATH.md",
+            "MEMORY.md",
+            "README.md",
+            "agentics-library.md",
+            "contracts/README.md",
+            "contracts/agent-eval-parent-lane.yaml",
+            "contracts/parent-capability-metrics.yaml",
+            "domain_spec.md",
+            "evaluation/README.md",
+            "evaluation/agent-eval/README.md",
+            "evaluation/dashboard-data.js",
+            "evaluation/dashboard-data.json",
+            "evaluation/infranodus-conceptual-bridges.json",
+            "evaluation/infranodus-entity-graph.json",
+            "evaluation/infranodus-gap-analysis.json",
+            "evaluation/infranodus-live-summary.json",
+            "evaluation/infranodus-parent-corpus.txt",
+            "evaluation/infranodus-research-topics.json",
+            "evaluation/metrics-latest.json",
+            "evaluation/tool-health/infranodus-live-probe.json",
+            "evaluation/tool-health/local-runners.json",
+            "evaluation/tool-health/status.json",
+            "evaluation/validation-report.json",
+            "examples/capability-harvest-metrics.invalid.docs-only.json",
+            "examples/capability-harvest-metrics.valid.json",
+            "expected-failures/registry.yaml",
+            "library.yaml",
+            "program.md",
+            "schemas/README.md",
+            "schemas/capability-harvest-metrics.schema.json",
+            "scripts/build-parent-infranodus-artifacts.py",
+            "scripts/build-visualization-artifacts.py",
+            "scripts/harvest-local-runner-capabilities.py",
+            "scripts/refresh-parent-tool-health.py",
+            "scripts/run-parent-agent-eval.sh",
+            "scripts/score-parent-wrapper.py",
+            "tests/validate_parent_wrapper_contract.py"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/local-runners.json",
+            "evaluation/infranodus-gap-analysis.json",
+            "evaluation/infranodus-conceptual-bridges.json",
+            "evaluation/infranodus-research-topics.json"
+          ],
+          "note": "The parent wrapper now defaults to CLI-first local runner evidence, carries a reusable anti-gaming metrics contract, and emits bounded InfraNodus substitute artifacts without claiming live MCP output."
+        },
+        {
+          "iteration": 9,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 91.3,
+          "after_total_score": 91.3,
+          "before_outcome_score": 88.4,
+          "after_outcome_score": 88.4,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "probe live InfraNodus MCP escalation and reject the promotion when runtime credential or session configuration is absent",
+          "result": "rejected",
+          "validator_status": "pass",
+          "changed_files": [
+            "evaluation/tool-health/infranodus-live-probe.json",
+            "evaluation/tool-health/status.json",
+            "evaluation/copilot-ratchet-report.json",
+            "runs/iterations.jsonl"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/infranodus-live-probe.json"
+          ],
+          "note": "The run kept the bounded local substitute and rejected a fake live claim because no InfraNodus MCP runtime credential or session configuration was present."
         }
       ],
       "legacy_rows": [],
-      "real_count": 3,
+      "real_count": 9,
       "legacy_count": 0
     },
     "ratchet_report_present": true,
@@ -707,412 +1545,170 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "cluster_memory_goals",
-        "name": "Memory Goals",
+        "id": "cluster_evaluation",
+        "name": "evaluation",
         "group": "cluster",
         "color": "#f59e0b",
         "val": 10,
         "meta": {}
       },
       {
-        "id": "cluster_active_body",
-        "name": "Active Body",
+        "id": "cluster_meta_loop",
+        "name": "meta_loop",
         "group": "cluster",
         "color": "#f59e0b",
         "val": 10,
         "meta": {}
       },
       {
-        "id": "cluster_reusable_wrapper",
-        "name": "Reusable Wrapper",
+        "id": "cluster_autoresearch",
+        "name": "autoresearch",
         "group": "cluster",
         "color": "#f59e0b",
         "val": 10,
         "meta": {}
       },
       {
-        "id": "cluster_knowledge_substrate",
-        "name": "Knowledge Substrate",
+        "id": "cluster_meta_harness",
+        "name": "meta_harness",
         "group": "cluster",
         "color": "#f59e0b",
         "val": 10,
         "meta": {}
       },
       {
-        "id": "cluster_gate_optimization",
-        "name": "Gate Optimization",
+        "id": "cluster_agent_eval",
+        "name": "agent_eval",
         "group": "cluster",
         "color": "#f59e0b",
         "val": 10,
         "meta": {}
       },
       {
-        "id": "cluster_document_scaffold",
-        "name": "Document Scaffold",
+        "id": "cluster_tool_health",
+        "name": "tool_health",
         "group": "cluster",
         "color": "#f59e0b",
         "val": 10,
         "meta": {}
       },
       {
-        "id": "cluster_data_bridge",
-        "name": "Data Bridge",
-        "group": "cluster",
-        "color": "#f59e0b",
-        "val": 10,
-        "meta": {}
-      },
-      {
-        "id": "cluster_skill_verification",
-        "name": "Skill Verification",
-        "group": "cluster",
-        "color": "#f59e0b",
-        "val": 10,
-        "meta": {}
-      },
-      {
-        "id": "cluster_runtime_events",
-        "name": "Runtime Events",
-        "group": "cluster",
-        "color": "#f59e0b",
-        "val": 10,
-        "meta": {}
-      },
-      {
-        "id": "cluster_infrastructure_geometry",
-        "name": "Infrastructure Geometry",
-        "group": "cluster",
-        "color": "#f59e0b",
-        "val": 10,
-        "meta": {}
-      },
-      {
-        "id": "resolver_readme_md",
-        "name": "README.md",
+        "id": "resolver_contracts_parent_capability_metrics_yaml",
+        "name": "contracts/parent-capability-metrics.yaml",
         "group": "resolver",
         "color": "#16a34a",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "resolver_library_yaml",
-        "name": "library.yaml",
+        "id": "resolver_evaluation_tool_health_local_runners_json",
+        "name": "evaluation/tool-health/local-runners.json",
         "group": "resolver",
         "color": "#16a34a",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "resolver_agent_heavy_run_prompt_schema_json",
-        "name": "agent-heavy-run-prompt.schema.json",
+        "id": "resolver_evaluation_tool_health_status_json",
+        "name": "evaluation/tool-health/status.json",
         "group": "resolver",
         "color": "#16a34a",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "resolver_infranodus_phase_tool_map_json",
-        "name": "infranodus-phase-tool-map.json",
+        "id": "resolver_scripts_build_parent_infranodus_artifacts_py",
+        "name": "scripts/build-parent-infranodus-artifacts.py",
         "group": "resolver",
         "color": "#16a34a",
         "val": 7,
         "meta": {}
-      },
-      {
-        "id": "resolver_pixeltable_operational_substrate_md",
-        "name": "pixeltable-operational-substrate.md",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_source_",
-        "name": "source/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_schemas_",
-        "name": "schemas/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_examples_",
-        "name": "examples/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_expected_failures_",
-        "name": "expected-failures/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_tests_",
-        "name": "tests/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_evaluation_",
-        "name": "evaluation/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "resolver_promotion_",
-        "name": "promotion/",
-        "group": "resolver",
-        "color": "#16a34a",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_cluster_4",
-        "name": "Prompt Governance",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 13.0,
-        "meta": {
-          "size_pct": 7,
-          "influence_pct": 20
-        }
-      },
-      {
-        "id": "live_cluster_0",
-        "name": "Goal Onboarding",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 11.25,
-        "meta": {
-          "size_pct": 11,
-          "influence_pct": 13
-        }
-      },
-      {
-        "id": "live_cluster_10",
-        "name": "Graph Analysis",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 10.75,
-        "meta": {
-          "size_pct": 10,
-          "influence_pct": 11
-        }
-      },
-      {
-        "id": "live_cluster_6",
-        "name": "Reporting Cycle",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 10.5,
-        "meta": {
-          "size_pct": 7,
-          "influence_pct": 10
-        }
-      },
-      {
-        "id": "live_cluster_11",
-        "name": "Content Generation",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 10.5,
-        "meta": {
-          "size_pct": 6,
-          "influence_pct": 10
-        }
-      },
-      {
-        "id": "live_cluster_5",
-        "name": "Tool Mapping",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 10.5,
-        "meta": {
-          "size_pct": 5,
-          "influence_pct": 10
-        }
       },
       {
         "id": "live_cluster_1",
-        "name": "Meta Structure",
+        "name": "evaluation",
         "group": "live_cluster",
         "color": "#f97316",
-        "val": 10.0,
+        "val": 32.75,
         "meta": {
-          "size_pct": 7,
-          "influence_pct": 8
-        }
-      },
-      {
-        "id": "live_cluster_7",
-        "name": "Role Metrics",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 9.5,
-        "meta": {
-          "size_pct": 19,
-          "influence_pct": 6
-        }
-      },
-      {
-        "id": "live_cluster_3",
-        "name": "Operational Substrate",
-        "group": "live_cluster",
-        "color": "#f97316",
-        "val": 9.25,
-        "meta": {
-          "size_pct": 13,
-          "influence_pct": 5
+          "size_pct": 10,
+          "influence_pct": 99
         }
       },
       {
         "id": "live_cluster_2",
-        "name": "Active Identification",
+        "name": "meta_loop",
         "group": "live_cluster",
         "color": "#f97316",
-        "val": 8.75,
+        "val": 32.75,
         "meta": {
-          "size_pct": 9,
-          "influence_pct": 3
+          "size_pct": 33,
+          "influence_pct": 99
         }
       },
       {
-        "id": "live_cluster_9",
-        "name": "Scoring Validation",
+        "id": "live_cluster_3",
+        "name": "autoresearch",
         "group": "live_cluster",
         "color": "#f97316",
-        "val": 8.75,
+        "val": 32.75,
         "meta": {
-          "size_pct": 5,
-          "influence_pct": 3
+          "size_pct": 22,
+          "influence_pct": 99
         }
       },
       {
-        "id": "live_cluster_8",
-        "name": "Proof Package",
+        "id": "live_cluster_4",
+        "name": "meta_harness",
         "group": "live_cluster",
         "color": "#f97316",
-        "val": 12,
+        "val": 32.75,
         "meta": {
-          "size_pct": 1,
-          "influence_pct": 0
+          "size_pct": 13,
+          "influence_pct": 99
         }
       },
       {
-        "id": "live_concept_prompt",
-        "name": "prompt",
+        "id": "live_cluster_5",
+        "name": "agent_eval",
+        "group": "live_cluster",
+        "color": "#f97316",
+        "val": 32.75,
+        "meta": {
+          "size_pct": 6,
+          "influence_pct": 99
+        }
+      },
+      {
+        "id": "live_cluster_6",
+        "name": "tool_health",
+        "group": "live_cluster",
+        "color": "#f97316",
+        "val": 32.75,
+        "meta": {
+          "size_pct": 17,
+          "influence_pct": 99
+        }
+      },
+      {
+        "id": "live_concept_evaluation",
+        "name": "evaluation",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "live_concept_schema",
-        "name": "schema",
+        "id": "live_concept_status",
+        "name": "status",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "live_concept_json",
-        "name": "json",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_md",
-        "name": "md",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_report",
-        "name": "report",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_generate",
-        "name": "generate",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_seo",
-        "name": "seo",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_parent",
-        "name": "parent",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_goal",
-        "name": "goal",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_run",
-        "name": "run",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_knowledge",
-        "name": "knowledge",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_graph",
-        "name": "graph",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
-        "id": "live_concept_meta",
-        "name": "meta",
+        "id": "live_concept_agent_eval",
+        "name": "agent_eval",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
@@ -1127,72 +1723,88 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_concept_govern",
-        "name": "govern",
+        "id": "live_concept_tool_health",
+        "name": "tool_health",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "live_concept_ratchet",
-        "name": "ratchet",
+        "id": "live_concept_evidence",
+        "name": "evidence",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
         "meta": {}
       },
       {
-        "id": "live_gateway_seo",
-        "name": "seo",
+        "id": "live_concept_readme",
+        "name": "readme",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_concept_bounded",
+        "name": "bounded",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_concept_gate_id",
+        "name": "gate_id",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_concept_notes",
+        "name": "notes",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_concept_smoke",
+        "name": "smoke",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_concept_program",
+        "name": "program",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_gateway_evaluation",
+        "name": "evaluation",
         "group": "gateway",
         "color": "#ec4899",
         "val": 8,
         "meta": {}
       },
       {
-        "id": "live_gateway_schema",
-        "name": "schema",
+        "id": "live_gateway_status",
+        "name": "status",
         "group": "gateway",
         "color": "#ec4899",
         "val": 8,
         "meta": {}
       },
       {
-        "id": "live_gateway_json",
-        "name": "json",
-        "group": "gateway",
-        "color": "#ec4899",
-        "val": 8,
-        "meta": {}
-      },
-      {
-        "id": "live_gateway_report",
-        "name": "report",
-        "group": "gateway",
-        "color": "#ec4899",
-        "val": 8,
-        "meta": {}
-      },
-      {
-        "id": "live_gateway_generate",
-        "name": "generate",
-        "group": "gateway",
-        "color": "#ec4899",
-        "val": 8,
-        "meta": {}
-      },
-      {
-        "id": "live_gateway_exist",
-        "name": "exist",
-        "group": "gateway",
-        "color": "#ec4899",
-        "val": 8,
-        "meta": {}
-      },
-      {
-        "id": "live_gateway_knowledge",
-        "name": "knowledge",
+        "id": "live_gateway_agent_eval",
+        "name": "agent_eval",
         "group": "gateway",
         "color": "#ec4899",
         "val": 8,
@@ -1207,36 +1819,123 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "influential_prompt",
-        "name": "prompt",
-        "group": "influential_node",
-        "color": "#ef4444",
-        "val": 16.0,
-        "meta": {
-          "bc": 0.33992381643388353,
-          "degree": 12
-        }
+        "id": "live_gateway_tool_health",
+        "name": "tool_health",
+        "group": "gateway",
+        "color": "#ec4899",
+        "val": 8,
+        "meta": {}
       },
       {
-        "id": "influential_schema",
-        "name": "schema",
-        "group": "influential_node",
-        "color": "#ef4444",
-        "val": 11.5,
-        "meta": {
-          "bc": 0.3012425176854707,
-          "degree": 3
-        }
+        "id": "live_gateway_evidence",
+        "name": "evidence",
+        "group": "gateway",
+        "color": "#ec4899",
+        "val": 8,
+        "meta": {}
       },
       {
-        "id": "influential_json",
-        "name": "json",
+        "id": "live_gateway_readme",
+        "name": "readme",
+        "group": "gateway",
+        "color": "#ec4899",
+        "val": 8,
+        "meta": {}
+      },
+      {
+        "id": "live_gateway_bounded",
+        "name": "bounded",
+        "group": "gateway",
+        "color": "#ec4899",
+        "val": 8,
+        "meta": {}
+      },
+      {
+        "id": "influential_evaluation",
+        "name": "evaluation",
         "group": "influential_node",
         "color": "#ef4444",
         "val": 12.5,
         "meta": {
-          "bc": 0.27566660620351896,
+          "bc": 0.833,
           "degree": 5
+        }
+      },
+      {
+        "id": "influential_status",
+        "name": "status",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 12.5,
+        "meta": {
+          "bc": 0.833,
+          "degree": 5
+        }
+      },
+      {
+        "id": "influential_agent_eval",
+        "name": "agent_eval",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 12.0,
+        "meta": {
+          "bc": 0.667,
+          "degree": 4
+        }
+      },
+      {
+        "id": "influential_external",
+        "name": "external",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 11.5,
+        "meta": {
+          "bc": 0.5,
+          "degree": 3
+        }
+      },
+      {
+        "id": "influential_tool_health",
+        "name": "tool_health",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 12.5,
+        "meta": {
+          "bc": 0.833,
+          "degree": 5
+        }
+      },
+      {
+        "id": "influential_evidence",
+        "name": "evidence",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 11.0,
+        "meta": {
+          "bc": 0.333,
+          "degree": 2
+        }
+      },
+      {
+        "id": "influential_readme",
+        "name": "readme",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 11.0,
+        "meta": {
+          "bc": 0.333,
+          "degree": 2
+        }
+      },
+      {
+        "id": "influential_bounded",
+        "name": "bounded",
+        "group": "influential_node",
+        "color": "#ef4444",
+        "val": 11.0,
+        "meta": {
+          "bc": 0.333,
+          "degree": 2
         }
       },
       {
@@ -1512,8 +2211,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "weakest_plateau_or_blocker_truth",
-        "name": "plateau_or_blocker_truth",
+        "id": "weakest_artifact_refresh",
+        "name": "artifact_refresh",
         "group": "metric",
         "color": "#b91c1c",
         "val": 10,
@@ -1580,6 +2279,14 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "id": "check_schema_and_example_validation",
         "name": "schema_and_example_validation",
+        "group": "validation_check",
+        "color": "#16a34a",
+        "val": 6,
+        "meta": {}
+      },
+      {
+        "id": "check_capability_metrics_contract",
+        "name": "capability_metrics_contract",
         "group": "validation_check",
         "color": "#16a34a",
         "val": 6,
@@ -1669,238 +2376,98 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "cluster_memory_goals",
+        "target": "cluster_evaluation",
         "relation": "cluster",
         "color": "#f59e0b",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "cluster_active_body",
+        "target": "cluster_meta_loop",
         "relation": "cluster",
         "color": "#f59e0b",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "cluster_reusable_wrapper",
+        "target": "cluster_autoresearch",
         "relation": "cluster",
         "color": "#f59e0b",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "cluster_knowledge_substrate",
+        "target": "cluster_meta_harness",
         "relation": "cluster",
         "color": "#f59e0b",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "cluster_gate_optimization",
+        "target": "cluster_agent_eval",
         "relation": "cluster",
         "color": "#f59e0b",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "cluster_document_scaffold",
+        "target": "cluster_tool_health",
         "relation": "cluster",
         "color": "#f59e0b",
         "width": 1.5
       },
       {
-        "source": "parent_meta_wrapper",
-        "target": "cluster_data_bridge",
-        "relation": "cluster",
-        "color": "#f59e0b",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "cluster_skill_verification",
-        "relation": "cluster",
-        "color": "#f59e0b",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "cluster_runtime_events",
-        "relation": "cluster",
-        "color": "#f59e0b",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "cluster_infrastructure_geometry",
-        "relation": "cluster",
-        "color": "#f59e0b",
-        "width": 1.5
-      },
-      {
-        "source": "cluster_knowledge_substrate",
-        "target": "cluster_gate_optimization",
+        "source": "cluster_meta_harness",
+        "target": "cluster_agent_eval",
         "relation": "content_gap",
         "color": "#dc2626",
         "width": 4
       },
       {
-        "source": "cluster_document_scaffold",
-        "target": "cluster_data_bridge",
+        "source": "cluster_evaluation",
+        "target": "cluster_meta_harness",
         "relation": "content_gap",
         "color": "#dc2626",
         "width": 4
       },
       {
-        "source": "cluster_knowledge_substrate",
-        "target": "cluster_document_scaffold",
+        "source": "cluster_autoresearch",
+        "target": "cluster_agent_eval",
         "relation": "content_gap",
         "color": "#dc2626",
         "width": 4
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "resolver_readme_md",
+        "target": "resolver_contracts_parent_capability_metrics_yaml",
         "relation": "resolved_by",
         "color": "#16a34a",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "resolver_library_yaml",
+        "target": "resolver_evaluation_tool_health_local_runners_json",
         "relation": "resolved_by",
         "color": "#16a34a",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "resolver_agent_heavy_run_prompt_schema_json",
+        "target": "resolver_evaluation_tool_health_status_json",
         "relation": "resolved_by",
         "color": "#16a34a",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "resolver_infranodus_phase_tool_map_json",
+        "target": "resolver_scripts_build_parent_infranodus_artifacts_py",
         "relation": "resolved_by",
         "color": "#16a34a",
         "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_pixeltable_operational_substrate_md",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_source_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_schemas_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_examples_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_expected_failures_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_tests_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_evaluation_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "resolver_promotion_",
-        "relation": "resolved_by",
-        "color": "#16a34a",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_4",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_0",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_10",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_6",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_11",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_5",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
         "target": "live_cluster_1",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_7",
-        "relation": "infranodus_cluster",
-        "color": "#f97316",
-        "width": 1.5
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_cluster_3",
         "relation": "infranodus_cluster",
         "color": "#f97316",
         "width": 1.5
@@ -1914,105 +2481,49 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_cluster_9",
+        "target": "live_cluster_3",
         "relation": "infranodus_cluster",
         "color": "#f97316",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_cluster_8",
+        "target": "live_cluster_4",
         "relation": "infranodus_cluster",
         "color": "#f97316",
         "width": 1.5
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_prompt",
+        "target": "live_cluster_5",
+        "relation": "infranodus_cluster",
+        "color": "#f97316",
+        "width": 1.5
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_cluster_6",
+        "relation": "infranodus_cluster",
+        "color": "#f97316",
+        "width": 1.5
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_evaluation",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_schema",
+        "target": "live_concept_status",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_json",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_md",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_report",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_generate",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_seo",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_parent",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_goal",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_run",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_knowledge",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_graph",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_concept_meta",
+        "target": "live_concept_agent_eval",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
@@ -2026,63 +2537,77 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_govern",
+        "target": "live_concept_tool_health",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_ratchet",
+        "target": "live_concept_evidence",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_gateway_seo",
+        "target": "live_concept_readme",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_bounded",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_gate_id",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_notes",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_smoke",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_program",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_gateway_evaluation",
         "relation": "gateway",
         "color": "#ec4899",
         "width": 1.2
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_gateway_schema",
+        "target": "live_gateway_status",
         "relation": "gateway",
         "color": "#ec4899",
         "width": 1.2
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_gateway_json",
-        "relation": "gateway",
-        "color": "#ec4899",
-        "width": 1.2
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_gateway_report",
-        "relation": "gateway",
-        "color": "#ec4899",
-        "width": 1.2
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_gateway_generate",
-        "relation": "gateway",
-        "color": "#ec4899",
-        "width": 1.2
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_gateway_exist",
-        "relation": "gateway",
-        "color": "#ec4899",
-        "width": 1.2
-      },
-      {
-        "source": "parent_meta_wrapper",
-        "target": "live_gateway_knowledge",
+        "target": "live_gateway_agent_eval",
         "relation": "gateway",
         "color": "#ec4899",
         "width": 1.2
@@ -2095,22 +2620,85 @@ window.__META_HARNESS_DASHBOARD__ = {
         "width": 1.2
       },
       {
+        "source": "parent_meta_wrapper",
+        "target": "live_gateway_tool_health",
+        "relation": "gateway",
+        "color": "#ec4899",
+        "width": 1.2
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_gateway_evidence",
+        "relation": "gateway",
+        "color": "#ec4899",
+        "width": 1.2
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_gateway_readme",
+        "relation": "gateway",
+        "color": "#ec4899",
+        "width": 1.2
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_gateway_bounded",
+        "relation": "gateway",
+        "color": "#ec4899",
+        "width": 1.2
+      },
+      {
         "source": "metrics_latest",
-        "target": "influential_prompt",
+        "target": "influential_evaluation",
         "relation": "influential_node",
         "color": "#ef4444",
         "width": 2
       },
       {
         "source": "metrics_latest",
-        "target": "influential_schema",
+        "target": "influential_status",
         "relation": "influential_node",
         "color": "#ef4444",
         "width": 2
       },
       {
         "source": "metrics_latest",
-        "target": "influential_json",
+        "target": "influential_agent_eval",
+        "relation": "influential_node",
+        "color": "#ef4444",
+        "width": 2
+      },
+      {
+        "source": "metrics_latest",
+        "target": "influential_external",
+        "relation": "influential_node",
+        "color": "#ef4444",
+        "width": 2
+      },
+      {
+        "source": "metrics_latest",
+        "target": "influential_tool_health",
+        "relation": "influential_node",
+        "color": "#ef4444",
+        "width": 2
+      },
+      {
+        "source": "metrics_latest",
+        "target": "influential_evidence",
+        "relation": "influential_node",
+        "color": "#ef4444",
+        "width": 2
+      },
+      {
+        "source": "metrics_latest",
+        "target": "influential_readme",
+        "relation": "influential_node",
+        "color": "#ef4444",
+        "width": 2
+      },
+      {
+        "source": "metrics_latest",
+        "target": "influential_bounded",
         "relation": "influential_node",
         "color": "#ef4444",
         "width": 2
@@ -2922,7 +3510,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "metrics_latest",
-        "target": "weakest_plateau_or_blocker_truth",
+        "target": "weakest_artifact_refresh",
         "relation": "weakest_component",
         "color": "#b91c1c",
         "width": 3
@@ -2979,6 +3567,13 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "source": "validation_report",
         "target": "check_schema_and_example_validation",
+        "relation": "pass",
+        "color": "#16a34a",
+        "width": 1
+      },
+      {
+        "source": "validation_report",
+        "target": "check_capability_metrics_contract",
         "relation": "pass",
         "color": "#16a34a",
         "width": 1

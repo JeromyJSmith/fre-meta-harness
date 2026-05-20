@@ -1,0 +1,14 @@
+{
+  "probe_id": "PARENT-INFRANODUS-LIVE-PROBE-0001",
+  "created_at": "2026-05-20",
+  "scope": "portable_parent_wrapper",
+  "status": "blocked",
+  "mode": "live_mcp_runtime",
+  "blocker": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+  "bounded_fallback": "scripts/build-parent-infranodus-artifacts.py",
+  "evidence": [
+    "infranodus-phase-tool-map.json",
+    "evaluation/tool-health/infranodus-package.log",
+    "evaluation/infranodus-gap-analysis.json"
+  ]
+}

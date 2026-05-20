@@ -40,8 +40,11 @@ library:
       description: Architectural graph analysis lane used for bounded parent fixture checks and drift detection.
       source: evaluation/tool-health/status.json
     - name: vercel-agent-eval
-      description: Parent-scoped evaluator with a real dry fixture today and an exact direct-API Docker smoke contract for the next stronger local proof.
+      description: Parent-scoped evaluator with a real dry fixture today; smoke and live are exact remote-provider exceptions after the CLI-first local runner baseline.
       source: evaluation/agent-eval/README.md
+    - name: local-cli-runners
+      description: CLI-first local runner harvest across Claude Code, Copilot, Codex, PI, Hermes agent, Llama, MLX, and MLX VLM with explicit missing-versus-available reporting.
+      source: evaluation/tool-health/local-runners.json
     - name: pixeltable
       description: Durable multimodal substrate for evidence, UDFs, computed columns, and normalization.
       source: pixeltable-operational-substrate.md
@@ -70,6 +73,10 @@ library:
       description: Durable parent-layer evidence for GitNexus, Graphify, InfraNodus, and agent-eval availability.
       kind: evaluation
       source: evaluation/tool-health/status.json
+    - name: parent-capability-metrics
+      description: Reusable metric-family contract for capability harvests and improvement lanes that forbids file-presence-only scoring.
+      kind: contract
+      source: contracts/parent-capability-metrics.yaml
     - name: parent-agent-eval-contract
       description: Exact parent-layer truth contract for dry, smoke, and live agent-eval evidence.
       kind: contract
@@ -94,6 +101,12 @@ library:
     - name: parent-score-cycle
       description: Compute the current parent-wrapper split score and write metrics-latest.json.
       source: scripts/score-parent-wrapper.py
+    - name: parent-tool-health-refresh
+      description: Refresh CLI-first local runner harvests plus bounded parent tool-health status.
+      source: scripts/refresh-parent-tool-health.py
+    - name: parent-infranodus-pass
+      description: Build bounded local InfraNodus substitute artifacts for parent-layer gaps, bridges, and research topics.
+      source: scripts/build-parent-infranodus-artifacts.py
     - name: parent-ratchet-cycle
       description: Run the real Copilot-driven parent ratchet through the local program and append an iteration ledger row.
       source: scripts/run-parent-ratchet.sh

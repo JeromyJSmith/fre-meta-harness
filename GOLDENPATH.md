@@ -102,7 +102,7 @@ promotion_criteria:
   - "Parent-child wrapper replay works without chat reconstruction."
 
 blocked_by:
-  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
+  - "Live InfraNodus MCP analysis remains optional; the bounded local parent-layer substitute is the default until runtime access is intentionally configured."
 
 next_iteration:
   owner: "codex"

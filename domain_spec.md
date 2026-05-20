@@ -70,10 +70,11 @@ Search-set evaluation:
 - parent contract validation pass
 - parent score calculation
 - InfraNodus gap-artifact alignment
+- CLI-first local runner availability harvest
 - local-upstream-authority alignment against the cloned `goal-md`,
   `meta-harness`, and `autoresearch-mlx` surfaces
 - parent-scoped `evaluation/agent-eval/` fixture readiness and truthful dry,
-  smoke, or live boundary reporting
+  smoke, or live exception-boundary reporting
 
 Held-out evaluation:
 
@@ -92,6 +93,7 @@ Secondary metrics:
 - unresolved blockers
 - iteration count without improvement
 - real non-dry cycle count
+- metrics-contract coverage
 
 ## Experience And Logging
 

@@ -5,8 +5,9 @@ standalone `fre-meta-harness` wrapper.
 
 ## Current truthful boundary
 
+- default parent baseline: CLI-first local runner harvest plus dry agent-eval
 - strongest honest local evidence today: `dry`
-- next stronger local lane: `smoke`
+- optional remote-backed escalation: `smoke`
 - why smoke is not yet green in this repo: Docker is available locally, but no
   supported provider credential is configured for the direct Codex experiment
 
@@ -25,7 +26,7 @@ scripts/run-parent-agent-eval.sh smoke
 
 `dry` proves the fixture is discoverable with no API calls.
 
-`smoke` is the next honest local runtime step. It requires only
+`smoke` is an exact exception lane, not the normal parent path. It requires
 `OPENAI_API_KEY`, because the experiment is pinned to `sandbox: 'docker'`.
 
 ## Expected durable artifacts

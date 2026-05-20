@@ -1,0 +1,209 @@
+{
+  "harvest_id": "PARENT-LOCAL-RUNNERS-0001",
+  "created_at": "2026-05-20",
+  "scope": "portable_parent_wrapper",
+  "doctrine": "cli_first_local_runners",
+  "metrics_contract": "contracts/parent-capability-metrics.yaml",
+  "families": [
+    {
+      "id": "claude_code",
+      "label": "Claude Code",
+      "status": "available",
+      "matched_probe": "claude --version",
+      "command_path": "/Users/ojeromyo/.local/bin/claude",
+      "summary": "2.1.144 (Claude Code)",
+      "duration_ms": 46.56,
+      "probes": [
+        {
+          "command": "claude --version",
+          "command_path": "/Users/ojeromyo/.local/bin/claude",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 46.56,
+          "summary": "2.1.144 (Claude Code)"
+        }
+      ]
+    },
+    {
+      "id": "copilot",
+      "label": "Copilot",
+      "status": "available",
+      "matched_probe": "gh copilot --help",
+      "command_path": "/opt/homebrew/bin/gh",
+      "summary": "gh version 2.92.0 (2026-04-28)",
+      "duration_ms": 26.36,
+      "probes": [
+        {
+          "command": "gh copilot --help",
+          "command_path": "/opt/homebrew/bin/gh",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 26.36,
+          "summary": "Runs the GitHub Copilot CLI."
+        }
+      ]
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "status": "available",
+      "matched_probe": "codex --version",
+      "command_path": "/opt/homebrew/bin/codex",
+      "summary": "codex-cli 0.130.0",
+      "duration_ms": 11.55,
+      "probes": [
+        {
+          "command": "codex --version",
+          "command_path": "/opt/homebrew/bin/codex",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 11.55,
+          "summary": "codex-cli 0.130.0"
+        }
+      ]
+    },
+    {
+      "id": "pi",
+      "label": "PI",
+      "status": "available",
+      "matched_probe": "pi --version",
+      "command_path": "/Users/ojeromyo/.bun/bin/pi",
+      "summary": "0.72.1",
+      "duration_ms": 437.53,
+      "probes": [
+        {
+          "command": "pi --version",
+          "command_path": "/Users/ojeromyo/.bun/bin/pi",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 437.53,
+          "summary": "0.72.1"
+        }
+      ]
+    },
+    {
+      "id": "hermes_agent",
+      "label": "Hermes agent",
+      "status": "available",
+      "matched_probe": "hermes --version",
+      "command_path": "/Users/ojeromyo/.local/bin/hermes",
+      "summary": "Hermes Agent v0.14.0 (2026.5.16)",
+      "duration_ms": 243.38,
+      "probes": [
+        {
+          "command": "hermes --version",
+          "command_path": "/Users/ojeromyo/.local/bin/hermes",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 243.38,
+          "summary": "Hermes Agent v0.14.0 (2026.5.16)"
+        }
+      ]
+    },
+    {
+      "id": "llama",
+      "label": "Llama",
+      "status": "available",
+      "matched_probe": "ollama --version",
+      "command_path": "/usr/local/bin/ollama",
+      "summary": "ollama version is 0.24.0",
+      "duration_ms": 17.17,
+      "probes": [
+        {
+          "command": "llama --version",
+          "command_path": null,
+          "status": "missing",
+          "exit_code": null,
+          "duration_ms": 0,
+          "summary": "llama is not installed"
+        },
+        {
+          "command": "ollama --version",
+          "command_path": "/usr/local/bin/ollama",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 17.17,
+          "summary": "ollama version is 0.24.0"
+        },
+        {
+          "command": "llama-server --version",
+          "command_path": "/opt/homebrew/bin/llama-server",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 8698.67,
+          "summary": "load_backend: loaded BLAS backend from /opt/homebrew/Cellar/ggml/0.12.0/libexec/libggml-blas.so"
+        }
+      ]
+    },
+    {
+      "id": "mlx",
+      "label": "MLX",
+      "status": "available",
+      "matched_probe": "mlx_lm --help",
+      "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
+      "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')",
+      "duration_ms": 1307.72,
+      "probes": [
+        {
+          "command": "mlx_lm --help",
+          "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
+          "status": "pass",
+          "exit_code": 0,
+          "duration_ms": 1307.72,
+          "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')"
+        },
+        {
+          "command": "mlx --help",
+          "command_path": null,
+          "status": "missing",
+          "exit_code": null,
+          "duration_ms": 0,
+          "summary": "mlx is not installed"
+        }
+      ]
+    },
+    {
+      "id": "mlx_vlm",
+      "label": "MLX VLM",
+      "status": "missing",
+      "matched_probe": null,
+      "command_path": null,
+      "summary": "mlx_vlm is not installed",
+      "duration_ms": 0,
+      "probes": [
+        {
+          "command": "mlx_vlm --help",
+          "command_path": null,
+          "status": "missing",
+          "exit_code": null,
+          "duration_ms": 0,
+          "summary": "mlx_vlm is not installed"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "available_count": 7,
+    "missing_count": 1,
+    "available": [
+      "Claude Code",
+      "Copilot",
+      "Codex",
+      "PI",
+      "Hermes agent",
+      "Llama",
+      "MLX"
+    ],
+    "missing": [
+      "MLX VLM"
+    ],
+    "baseline_rule": "CLI-first local runner harvests are the default parent evaluation path. Remote-provider lanes are explicit exceptions."
+  },
+  "remote_exception_lanes": [
+    {
+      "lane": "vercel-agent-eval",
+      "baseline_local_state": "dry plus local runner harvest",
+      "remote_exception_requirement": "OPENAI_API_KEY for smoke/live"
+    }
+  ]
+}

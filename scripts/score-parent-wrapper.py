@@ -390,6 +390,7 @@ def artifact_refresh() -> tuple[float, dict]:
         checks.get("graphify", {}).get("status", "missing"),
         checks.get("infranodus", {}).get("status", "missing"),
         checks.get("agent_eval", {}).get("status", "missing"),
+        checks.get("local_runners", {}).get("status", "missing"),
     ]
     tool_health_score = 0.0
     if tracked_statuses:

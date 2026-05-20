@@ -95,12 +95,16 @@ This wrapper:
 - goal contract: `GOAL.md`
 - onboarding/domain boundary: `domain_spec.md`
 - execution protocol: `program.md`
+- reusable metrics contract: `contracts/parent-capability-metrics.yaml`
 - scorer: `scripts/score-parent-wrapper.py`
+- CLI-first local runner harvest: `scripts/harvest-local-runner-capabilities.py`
 - bounded ratchet runner: `scripts/run-parent-ratchet.sh`
+- bounded InfraNodus substitute: `scripts/build-parent-infranodus-artifacts.py`
 - structured report: `evaluation/copilot-ratchet-report.json`
 - iteration ledger: `runs/iterations.jsonl` (one compact JSON object per line)
 - latest metrics: `evaluation/metrics-latest.json`
 - bounded tool-health evidence: `evaluation/tool-health/status.json`
+- local runner availability matrix: `evaluation/tool-health/local-runners.json`
 - parent agent-eval fixture: `evaluation/agent-eval/`
 
 ## Parent Tool-Health Doctrine
@@ -111,13 +115,18 @@ This wrapper:
   parent slice.
 - Graphify: use a bounded parent fixture and `graphify update` for a local
   no-LLM smoke before relying on Graphify output in parent claims.
-- InfraNodus: keep the phase-tool doctrine local, but treat live graph analysis
-  as API/OAuth-bound unless runtime access is actually configured.
+- Local runners: treat CLI-first local harvests as the baseline parent
+  evaluation path and report missing runners explicitly instead of assuming any
+  paid-provider fallback.
+- InfraNodus: keep the phase-tool doctrine local and prefer the bounded local
+  parent-layer substitute when live MCP graph analysis is not actually
+  configured.
 - Vercel agent-eval: use the parent-scoped fixture under `evaluation/agent-eval/`
   and the contract in `contracts/agent-eval-parent-lane.yaml`. In this repo,
-  dry is the strongest honest local evidence today; the next bounded smoke lane
-  is `scripts/run-parent-agent-eval.sh smoke`, which only needs
-  `OPENAI_API_KEY` because the experiment is pinned to Docker.
+  dry is the strongest honest lane-specific local evidence today. Smoke and
+  live remain exact remote-provider exceptions, so the default parent path is
+  the CLI-first local runner harvest plus dry agent-eval, not
+  `OPENAI_API_KEY`.
 
 ## Acknowledgments
 
@@ -164,7 +173,7 @@ promotion_criteria:
   - "README remains aligned after transport into standalone repo."
 
 blocked_by:
-  - "Live InfraNodus analysis remains API/OAuth-bound until local runtime credentials are intentionally configured."
+  - "Live InfraNodus MCP analysis remains optional; the bounded local parent-layer substitute is the default until runtime access is intentionally configured."
 
 next_iteration:
   owner: "codex"

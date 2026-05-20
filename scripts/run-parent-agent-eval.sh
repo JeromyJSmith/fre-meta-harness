@@ -18,7 +18,7 @@ case "$MODE" in
       exit 3
     fi
     if [[ -z "${OPENAI_API_KEY:-}" ]]; then
-      echo "blocked: OPENAI_API_KEY is required for the direct codex smoke experiment; docker is available so no VERCEL_TOKEN is needed." >&2
+      echo "blocked: OPENAI_API_KEY is required only for the optional remote-backed codex smoke experiment; the parent baseline remains CLI-first local runner harvest plus dry agent-eval." >&2
       exit 2
     fi
     exec npx --yes @vercel/agent-eval "$EXPERIMENT_ID" --smoke

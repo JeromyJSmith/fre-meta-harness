@@ -3,30 +3,30 @@
   "created_at": "2026-05-20",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated-substantive",
-  "total_score": 92.84,
-  "outcome_score": 90.45,
+  "total_score": 98.05,
+  "outcome_score": 97.4,
   "instrument_score": 100.0,
-  "weakest_component": "non_dry_cycle_depth",
+  "weakest_component": "artifact_refresh",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
       "details": {
         "status": "blocked",
         "schema_errors": [],
-        "real_rows": 7,
-        "kept_rows": 3,
-        "substantive_kept_rows": 2,
+        "real_rows": 9,
+        "kept_rows": 4,
+        "substantive_kept_rows": 3,
         "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
-      "score": 20.0,
+      "score": 25.0,
       "details": {
-        "count": 7,
-        "substantive_kept_rows": 2,
-        "rejected_or_reverted_rows": 4,
-        "history_rows": 7,
-        "real_rows": 7,
+        "count": 9,
+        "substantive_kept_rows": 3,
+        "rejected_or_reverted_rows": 5,
+        "history_rows": 9,
+        "real_rows": 9,
         "parse_errors": [],
         "schema_errors": []
       }
@@ -35,26 +35,27 @@
       "score": 25.0,
       "details": {
         "kind": "blocker",
-        "stop_reason": "exact blocker: the parent-scoped agent-eval lane now has real dry fixture evidence, but the next stronger local Docker smoke remains blocked because OPENAI_API_KEY is not configured",
-        "cycles": 7,
+        "stop_reason": "exact blocker: live InfraNodus MCP escalation remains blocked because no local runtime credential or session configuration was present, so the bounded local substitute stayed as the strongest honest parent analysis path",
+        "cycles": 9,
         "actual_consecutive_non_improving": 1,
         "schema_errors": []
       }
     },
     "artifact_refresh": {
-      "score": 20.45,
+      "score": 22.4,
       "details": {
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 14.916975736618042,
+        "freshness_span_seconds": 8.718257427215576,
         "tool_statuses": [
           "bounded_pass",
           "pass",
-          "bounded",
-          "dry_pass"
+          "bounded_pass",
+          "dry_pass",
+          "pass"
         ],
-        "tool_health_score": 8.45,
+        "tool_health_score": 10.4,
         "schema_errors": [],
         "parse_errors": []
       }
@@ -71,9 +72,9 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 7,
-        "detailed_rows": 7,
-        "ledger_rows": 7,
+        "history_rows": 9,
+        "detailed_rows": 9,
+        "ledger_rows": 9,
         "ledger_aligned": true,
         "parse_errors": []
       }
@@ -81,13 +82,13 @@
     "metric_decision_truth": {
       "score": 30.0,
       "details": {
-        "decision": "accepted",
+        "decision": "repaired",
         "has_reason": true,
         "schema_errors": [],
         "trustworthy": true
       }
     }
   },
-  "iteration_count": 7,
+  "iteration_count": 9,
   "iteration_parse_errors": []
 }

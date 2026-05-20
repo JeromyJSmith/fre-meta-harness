@@ -11,3 +11,6 @@ invalid_examples:
   - file: "examples/iteration-record.invalid.dry-run.json"
     schema: "schemas/iteration-record.schema.json"
     expected_reason_contains: "'before_total_score' is a required property"
+  - file: "examples/capability-harvest-metrics.invalid.docs-only.json"
+    schema: "schemas/capability-harvest-metrics.schema.json"
+    expected_reason_contains: "['docs', 'docs'] has non-unique elements"

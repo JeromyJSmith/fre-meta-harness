@@ -1,0 +1,97 @@
+{
+  "analysis_id": "PARENT-META-INFRANODUS-RESEARCH-0001",
+  "created_at": "2026-05-20",
+  "scope": "portable_parent_wrapper",
+  "mode": "bounded_local_cli_substitute",
+  "topics": [
+    {
+      "topic_id": "topic-1",
+      "title": "Bridge meta_harness and agent_eval through observable local evidence",
+      "priority": 1,
+      "driven_by_gaps": [
+        "meta_harness -> agent_eval"
+      ],
+      "bridge_terms": [
+        "evaluation",
+        "status",
+        "agent_eval",
+        "external"
+      ],
+      "questions": [
+        "Which bounded commands connect meta_harness outputs to agent_eval decisions?",
+        "Which artifact should become the canonical bridge between meta_harness and agent_eval?"
+      ],
+      "recommended_artifacts": [
+        "contracts/parent-capability-metrics.yaml",
+        "evaluation/tool-health/status.json",
+        "evaluation/infranodus-gap-analysis.json"
+      ]
+    },
+    {
+      "topic_id": "topic-2",
+      "title": "Bridge evaluation and meta_harness through observable local evidence",
+      "priority": 2,
+      "driven_by_gaps": [
+        "evaluation -> meta_harness"
+      ],
+      "bridge_terms": [
+        "status"
+      ],
+      "questions": [
+        "Which bounded commands connect evaluation outputs to meta_harness decisions?",
+        "Which artifact should become the canonical bridge between evaluation and meta_harness?"
+      ],
+      "recommended_artifacts": [
+        "contracts/parent-capability-metrics.yaml",
+        "evaluation/tool-health/status.json",
+        "evaluation/infranodus-gap-analysis.json"
+      ]
+    },
+    {
+      "topic_id": "topic-3",
+      "title": "Bridge autoresearch and agent_eval through observable local evidence",
+      "priority": 3,
+      "driven_by_gaps": [
+        "autoresearch -> agent_eval"
+      ],
+      "bridge_terms": [
+        "evaluation",
+        "tool_health"
+      ],
+      "questions": [
+        "Which bounded commands connect autoresearch outputs to agent_eval decisions?",
+        "Which artifact should become the canonical bridge between autoresearch and agent_eval?"
+      ],
+      "recommended_artifacts": [
+        "contracts/parent-capability-metrics.yaml",
+        "evaluation/tool-health/status.json",
+        "evaluation/infranodus-gap-analysis.json"
+      ]
+    },
+    {
+      "topic_id": "topic-4",
+      "title": "Bridge meta_loop and meta_harness through observable local evidence",
+      "priority": 4,
+      "driven_by_gaps": [
+        "meta_loop -> meta_harness"
+      ],
+      "bridge_terms": [
+        "external",
+        "status"
+      ],
+      "questions": [
+        "Which bounded commands connect meta_loop outputs to meta_harness decisions?",
+        "Which artifact should become the canonical bridge between meta_loop and meta_harness?"
+      ],
+      "recommended_artifacts": [
+        "contracts/parent-capability-metrics.yaml",
+        "evaluation/tool-health/status.json",
+        "evaluation/infranodus-gap-analysis.json"
+      ]
+    }
+  ],
+  "limitations": [
+    "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+    "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
+  ]
+}

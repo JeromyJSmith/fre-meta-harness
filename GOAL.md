@@ -47,10 +47,9 @@ evidence-backed outer loop that can:
 8. run a real proposer-evaluator ratchet where the prompt and loop behavior are
    themselves judged by durable evidence
 9. measure parent improvement tactics such as docs, MCP, and tool-surface
-   changes through an honest agent-eval lane when dry, smoke, or credentialed
-   runs are actually available, with Docker-backed direct-API smoke preferred
-   over fake-green Vercel-token assumptions when local provider credentials are
-   the only missing input
+   changes through CLI-first local runners, truthful tool-health harvests, and
+   exact exception boundaries for remote-backed evaluation lanes when those
+   lanes truly require provider credentials
 
 ## Fitness Function
 
@@ -142,11 +141,13 @@ Stop and report when ANY of:
    uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json
    ```
 8. Run the strongest honest bounded parent-layer checks for GitNexus,
-   Graphify, and InfraNodus, and capture the result in
+   Graphify, InfraNodus, and the CLI-first local runner harvest, and capture
+   the result in
    `evaluation/tool-health/status.json`.
 9. When the slice is about parent self-improvement evaluation, run
-   `scripts/run-parent-agent-eval.sh dry` first, then only promote to smoke or
-   live if the required provider credential is actually configured.
+   `scripts/harvest-local-runner-capabilities.py` first, then
+   `scripts/run-parent-agent-eval.sh dry`, and only promote agent-eval to smoke
+   or live if the exact remote-provider requirement is actually configured.
 
 ## Improvement Loop
 
@@ -156,6 +157,8 @@ The loop follows the imported local authorities directly:
 - `meta-harness`: explicit `domain_spec.md` and harness-bound search surface
 - `autoresearch-mlx`: explicit `program.md`, fixed mutable surface, fixed
   budget, and keep-or-revert discipline
+- metrics contract: reusable observability, evidence, and anti-gaming families
+  for capabilities and improvement lanes
 
 ```text
 repeat:
@@ -247,7 +250,7 @@ One JSON object per line:
 |---|---:|---|
 | Refresh validation, metrics, promotion, and gap artifacts after each kept cycle | +8 | Re-run validator and scorer and write outputs |
 | Keep report and iteration ledger synchronized | +5 | Ensure artifacts reference the same cycle count |
-| Refresh parent tool-health evidence when tool doctrine changes | +4 | Re-run bounded GitNexus, Graphify, InfraNodus, and agent-eval checks honestly |
+| Refresh parent tool-health evidence when tool doctrine changes | +4 | Re-run bounded GitNexus, Graphify, InfraNodus, local runner harvests, and agent-eval checks honestly |
 
 ## Constraints
 
@@ -329,7 +332,7 @@ promotion_criteria:
   - "Parent tool-health evidence remains honest about GitNexus, Graphify, InfraNodus, and agent-eval."
 
 blocked_by:
-  - "Live InfraNodus analysis remains API/OAuth-bound until credentials are supplied for a real runtime check."
+  - "Live InfraNodus MCP analysis remains optional; the bounded local parent-layer substitute is the default until runtime access is intentionally configured."
 
 next_iteration:
   owner: "codex"

@@ -1,0 +1,260 @@
+schema_version: "1.0.0"
+contract_id: parent-capability-metrics
+scope: portable_parent_wrapper
+subjects:
+  - capability
+  - improvement_lane
+defaults:
+  docs_only_max_score: 1
+  disallow_file_presence_only: true
+  default_freshness_window_days: 7
+  default_regression_window: last_3_runs
+metric_families:
+  - id: documentation_quality
+    label: Documentation quality and discoverability
+    applies_to: [capability, improvement_lane]
+    objective: Make commands, boundaries, and artifacts discoverable without treating doc presence as improvement proof.
+    observable_signals:
+      - Operators can find the canonical command and artifact path from parent docs.
+      - Library and README references point to the same runnable surface.
+    measurement:
+      method: Score against a command-path and artifact-path checklist with operator notes for ambiguity.
+      unit: score_0_to_5
+      passing_rule: Score at least 4/5 with no missing canonical command or artifact path.
+    acceptable_evidence:
+      minimum_evidence_types: [docs, operator_notes]
+      artifacts:
+        - README.md
+        - library.yaml
+        - evaluation/README.md
+    anti_gaming:
+      docs_only_max_score: 1
+      behavior_required: false
+      notes:
+        - File presence alone cannot score above 1/5.
+        - Discoverability must be demonstrated through operator navigation notes.
+  - id: execution_success
+    label: Execution success
+    applies_to: [capability, improvement_lane]
+    objective: Reward commands that run successfully on the parent surface.
+    observable_signals:
+      - The command exits cleanly.
+      - Expected output artifacts are produced.
+    measurement:
+      method: Measure exit status and expected artifact creation for the named command.
+      unit: boolean
+      passing_rule: Pass only when the command exits 0 and expected artifacts exist.
+    acceptable_evidence:
+      minimum_evidence_types: [command_output, artifact]
+      artifacts:
+        - evaluation/tool-health/status.json
+        - evaluation/validation-report.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Planned commands do not count.
+        - Empty placeholder artifacts do not count as execution success.
+  - id: validation_pass_rate
+    label: Validation pass rate
+    applies_to: [improvement_lane]
+    objective: Track whether the parent validator and lane-specific checks pass consistently.
+    observable_signals:
+      - Validator status remains pass after kept changes.
+      - Lane-specific checks do not regress across kept cycles.
+    measurement:
+      method: Compute pass ratio across the current run and the referenced regression window.
+      unit: ratio_0_to_1
+      passing_rule: Stay at or above a 1.0 pass ratio for the kept cycle and the previous kept run.
+    acceptable_evidence:
+      minimum_evidence_types: [test_result, artifact]
+      artifacts:
+        - evaluation/validation-report.json
+        - promotion/readiness.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Skipped checks do not count as passes.
+        - A single green artifact cannot replace the full validator report.
+  - id: tool_health_availability
+    label: Tool-health availability
+    applies_to: [capability, improvement_lane]
+    objective: Measure whether the parent can honestly report available, bounded, or blocked tool surfaces.
+    observable_signals:
+      - The probe captures available versus missing local runners.
+      - Tool-health status distinguishes bounded local proof from blocked remote escalation.
+    measurement:
+      method: Score the completed probe matrix and the precision of per-tool status boundaries.
+      unit: structured_assessment
+      passing_rule: All tracked tools have explicit status, summary, and evidence paths.
+    acceptable_evidence:
+      minimum_evidence_types: [command_output, artifact]
+      artifacts:
+        - evaluation/tool-health/status.json
+        - evaluation/tool-health/local-runners.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Missing tools must remain missing instead of being inferred from doctrine.
+        - Bounded local substitutes must be labeled as bounded, not live.
+  - id: latency_runtime
+    label: Latency or runtime
+    applies_to: [capability, improvement_lane]
+    objective: Capture how long the parent needs to execute a probe or lane.
+    observable_signals:
+      - Probe duration is recorded in milliseconds or seconds.
+      - Long-running commands identify the slow step rather than hiding it.
+    measurement:
+      method: Record wall-clock runtime for each probe and summarize the slowest step.
+      unit: milliseconds
+      passing_rule: Runtime is captured for every executed probe in the harvest.
+    acceptable_evidence:
+      minimum_evidence_types: [timing, command_output]
+      artifacts:
+        - evaluation/tool-health/local-runners.json
+        - evaluation/tool-health/status.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Estimated runtimes are not valid evidence.
+        - Hidden timeouts count as failures, not missing data.
+  - id: cost_local_resource_use
+    label: Cost or local resource use
+    applies_to: [capability, improvement_lane]
+    objective: Prefer local CPU, Docker, and CLI evidence over paid-provider assumptions when the lane allows it.
+    observable_signals:
+      - The doctrine identifies whether the lane is local-first or a remote exception.
+      - Remote prerequisites are explicitly separated from normal local operation.
+    measurement:
+      method: Review the lane boundary for local baseline versus remote exception and capture any mandatory paid dependency.
+      unit: structured_assessment
+      passing_rule: Local-first baseline is explicit and remote cost boundaries are documented as exceptions only.
+    acceptable_evidence:
+      minimum_evidence_types: [docs, operator_notes]
+      artifacts:
+        - program.md
+        - contracts/agent-eval-parent-lane.yaml
+        - evaluation/tool-health/status.json
+    anti_gaming:
+      docs_only_max_score: 1
+      behavior_required: false
+      notes:
+        - A remote-provider requirement cannot be described as the default path.
+        - Cost claims must match an actual runtime boundary in tool-health evidence.
+  - id: reproducibility
+    label: Reproducibility
+    applies_to: [capability, improvement_lane]
+    objective: Ensure the same bounded command can be rerun on the parent wrapper and produce the same kind of evidence.
+    observable_signals:
+      - Commands are deterministic enough to reproduce the artifact family.
+      - Inputs and mutable surfaces are named before execution.
+    measurement:
+      method: Re-run the same bounded command and confirm the artifact family and status remain aligned.
+      unit: boolean
+      passing_rule: The rerun reproduces the same artifact family and truth boundary.
+    acceptable_evidence:
+      minimum_evidence_types: [command_output, diff]
+      artifacts:
+        - runs/iterations.jsonl
+        - evaluation/copilot-ratchet-report.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Reproducibility is about rerun behavior, not identical timestamps.
+        - Manual artifact edits without a rerun do not count.
+  - id: blocker_precision
+    label: Blocker precision
+    applies_to: [capability, improvement_lane]
+    objective: Reward exact blocked boundaries that name the missing prerequisite and preserve a truthful lower evidence level.
+    observable_signals:
+      - The blocker names the exact missing command, credential, or runtime.
+      - The lower evidence level stays explicit after the failed escalation.
+    measurement:
+      method: Review blocker logs for exact prerequisite naming and the preserved fallback state.
+      unit: structured_assessment
+      passing_rule: Every blocked escalation names an exact missing prerequisite and the retained lower evidence level.
+    acceptable_evidence:
+      minimum_evidence_types: [blocker_log, artifact]
+      artifacts:
+        - evaluation/tool-health/status.json
+        - evaluation/copilot-ratchet-report.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Generic 'not configured' language is insufficient without naming the exact boundary.
+        - A blocker cannot be used to claim green status.
+  - id: evidence_freshness
+    label: Evidence freshness
+    applies_to: [capability, improvement_lane]
+    objective: Prefer freshly generated artifacts over stale references.
+    observable_signals:
+      - Core artifacts share a tight modification window.
+      - Current dates align with the active run.
+    measurement:
+      method: Measure artifact timestamp span across the kept cycle outputs.
+      unit: seconds
+      passing_rule: Core artifacts are regenerated within the run and stay inside the freshness window.
+    acceptable_evidence:
+      minimum_evidence_types: [artifact, timing]
+      artifacts:
+        - evaluation/metrics-latest.json
+        - evaluation/validation-report.json
+        - promotion/readiness.json
+        - runs/iterations.jsonl
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Touching timestamps without rerunning the commands does not count.
+        - Freshness must include both the ledger and the derived artifacts.
+  - id: operator_usability
+    label: Operator usability
+    applies_to: [capability, improvement_lane]
+    objective: Keep parent commands short, explicit, and bounded enough for a human operator to rerun.
+    observable_signals:
+      - The canonical command is short and names the exact mode.
+      - The output tells the operator what happened without hidden assumptions.
+    measurement:
+      method: Score command clarity and rerun ergonomics with operator notes from the kept cycle.
+      unit: score_0_to_5
+      passing_rule: Score at least 4/5 with no missing mode, artifact path, or blocker explanation.
+    acceptable_evidence:
+      minimum_evidence_types: [command_output, operator_notes]
+      artifacts:
+        - README.md
+        - program.md
+        - scripts/run-parent-agent-eval.sh
+    anti_gaming:
+      docs_only_max_score: 1
+      behavior_required: true
+      notes:
+        - Verbose prose without a runnable command does not count.
+        - Hidden prerequisite assumptions reduce usability even if the command exists.
+  - id: regression_resistance
+    label: Regression resistance
+    applies_to: [improvement_lane]
+    objective: Detect whether a kept change preserves the parent validator, scorer, and boundary contracts over repeated cycles.
+    observable_signals:
+      - The next cycle keeps the previous truth instead of silently loosening it.
+      - Rejected probes are recorded instead of overwritten.
+    measurement:
+      method: Compare the kept cycle against the prior kept cycle and inspect rejected probes for honest retention of lower states.
+      unit: structured_assessment
+      passing_rule: No contract regression appears in the next kept cycle and rejected probes remain visible in the ledger.
+    acceptable_evidence:
+      minimum_evidence_types: [diff, artifact]
+      artifacts:
+        - runs/iterations.jsonl
+        - evaluation/copilot-ratchet-report.json
+        - evaluation/metrics-latest.json
+    anti_gaming:
+      docs_only_max_score: 0
+      behavior_required: true
+      notes:
+        - Rewriting the report without preserving rejected probes is a regression.
+        - Contract drift counts as failure even when the score stays flat.

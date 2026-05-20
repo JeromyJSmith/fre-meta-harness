@@ -97,6 +97,10 @@
           "status": "pass"
         },
         {
+          "file": "examples/capability-harvest-metrics.valid.json",
+          "status": "pass"
+        },
+        {
           "file": "examples/front-matter.invalid.missing-id.json",
           "status": "pass",
           "reason": "'id' is a required property"
@@ -115,8 +119,34 @@
           "file": "examples/iteration-record.invalid.dry-run.json",
           "status": "pass",
           "reason": "Additional properties are not allowed ('after_score', 'before_score' were unexpected) | 'before_total_score' is a required property | 'after_total_score' is a required property | 'before_outcome_score' is a required property | 'after_outcome_score' is a required property | 'before_instrument_score' is a required property | 'after_instrument_score' is a required property | 'validator_status' is a required property | 'changed_files' is a required property | 'artifacts' is a required property | 'dry-run' is not of type 'integer' | 'dry_run' is not one of ['real_non_dry']"
+        },
+        {
+          "file": "examples/capability-harvest-metrics.invalid.docs-only.json",
+          "status": "pass",
+          "reason": "['docs', 'docs'] has non-unique elements | ['docs', 'docs'] does not contain items matching the given schema"
         }
       ]
+    },
+    {
+      "name": "capability_metrics_contract",
+      "status": "pass",
+      "details": {
+        "path": "contracts/parent-capability-metrics.yaml",
+        "metric_family_count": 11,
+        "metric_ids": [
+          "blocker_precision",
+          "cost_local_resource_use",
+          "documentation_quality",
+          "evidence_freshness",
+          "execution_success",
+          "latency_runtime",
+          "operator_usability",
+          "regression_resistance",
+          "reproducibility",
+          "tool_health_availability",
+          "validation_pass_rate"
+        ]
+      }
     },
     {
       "name": "program_markdown_contract",
@@ -133,7 +163,7 @@
       "status": "pass",
       "details": {
         "path": "runs/iterations.jsonl",
-        "row_count": 7,
+        "row_count": 9,
         "parse_errors": [],
         "invalid_rows": []
       }

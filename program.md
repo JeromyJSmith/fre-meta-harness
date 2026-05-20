@@ -60,8 +60,10 @@ that combines:
    - GitNexus
    - Graphify
    - InfraNodus
+   - CLI-first local runner harvests
    - Vercel agent-eval when the run is scoped to improvement evaluation, using
-     `scripts/run-parent-agent-eval.sh dry` before any smoke or live claim
+     `scripts/run-parent-agent-eval.sh dry` only after the local runner
+     harvest, and before any smoke or live exception claim
 
 ## Mutable Surface
 
@@ -137,9 +139,10 @@ Required fields:
 
 - Use `uv` for Python execution.
 - Do not treat a dry run as proof.
+- Treat CLI-first local runner harvests as the default parent evaluation path.
 - Do not promote the parent agent-eval lane above dry unless the configured
-  experiment actually runs; for the current bounded local fixture that means
-  Docker plus `OPENAI_API_KEY`.
+  experiment actually runs; smoke and live are remote-provider exceptions rather
+  than the normal parent path.
 - Do not stop after one real cycle unless an exact blocker is proven.
 - Do not edit the imported upstream local clones under `external/`.
 - Keep `runs/iterations.jsonl` as real JSONL: one compact JSON object per line.
@@ -189,7 +192,7 @@ promotion_criteria:
   - "At least 2 real non-dry cycles executed."
 
 blocked_by:
-  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
+  - "Live InfraNodus MCP analysis remains optional; the bounded local parent-layer substitute is the default until runtime access is intentionally configured."
 
 next_iteration:
   owner: "codex"

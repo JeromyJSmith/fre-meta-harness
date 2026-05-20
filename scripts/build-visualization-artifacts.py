@@ -341,7 +341,10 @@ def main() -> int:
     validation = load_json(EVAL_DIR / "validation-report.json") or {}
     readiness = load_json(ROOT / "promotion/readiness.json") or {}
     gap_analysis = load_json(EVAL_DIR / "infranodus-gap-analysis.json") or {}
+    conceptual_bridges = load_json(EVAL_DIR / "infranodus-conceptual-bridges.json") or {}
+    research_topics = load_json(EVAL_DIR / "infranodus-research-topics.json") or {}
     live_summary = load_json(EVAL_DIR / "infranodus-live-summary.json")
+    local_runners = load_json(EVAL_DIR / "tool-health/local-runners.json") or {}
     phase_tool_map = load_json(ROOT / "infranodus-phase-tool-map.json") or {}
     ratchet_report = load_json(EVAL_DIR / "copilot-ratchet-report.json")
     iteration_rows = load_jsonl(RUNS_DIR / "iterations.jsonl")
@@ -364,6 +367,9 @@ def main() -> int:
         "gate_coverage": build_gate_coverage(phase_tool_map),
         "cluster_rows": build_cluster_rows(live_summary),
         "infranodus_live_summary": live_summary or {},
+        "infranodus_conceptual_bridges": conceptual_bridges,
+        "infranodus_research_topics": research_topics,
+        "local_runner_capabilities": local_runners,
         "readiness": readiness,
         "gap_analysis": gap_analysis,
         "iteration_summary": iteration_summary,

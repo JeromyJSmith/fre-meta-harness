@@ -87,16 +87,19 @@ def validate_examples() -> list[dict]:
     bottom_schema = json.loads((ROOT / "schemas/bottom-matter.schema.json").read_text())
     ratchet_schema = json.loads((ROOT / "schemas/copilot-ratchet-report.schema.json").read_text())
     iteration_schema = json.loads((ROOT / "schemas/iteration-record.schema.json").read_text())
+    capability_metrics_schema = json.loads((ROOT / "schemas/capability-harvest-metrics.schema.json").read_text())
     Draft202012Validator.check_schema(front_schema)
     Draft202012Validator.check_schema(bottom_schema)
     Draft202012Validator.check_schema(ratchet_schema)
     Draft202012Validator.check_schema(iteration_schema)
+    Draft202012Validator.check_schema(capability_metrics_schema)
 
     valid_examples = [
         ("examples/front-matter.valid.json", front_schema),
         ("examples/bottom-matter.valid.json", bottom_schema),
         ("examples/copilot-ratchet-report.valid.json", ratchet_schema),
         ("examples/iteration-record.valid.json", iteration_schema),
+        ("examples/capability-harvest-metrics.valid.json", capability_metrics_schema),
     ]
     for rel, schema in valid_examples:
         instance = json.loads((ROOT / rel).read_text())
@@ -118,6 +121,37 @@ def validate_examples() -> list[dict]:
             )
         results.append({"file": item["file"], "status": "pass", "reason": message_blob})
     return results
+
+
+def validate_capability_metrics_contract() -> dict:
+    schema = json.loads((ROOT / "schemas/capability-harvest-metrics.schema.json").read_text())
+    contract = yaml.safe_load((ROOT / "contracts/parent-capability-metrics.yaml").read_text())
+    Draft202012Validator(schema).validate(contract)
+    expected_ids = {
+        "documentation_quality",
+        "execution_success",
+        "validation_pass_rate",
+        "tool_health_availability",
+        "latency_runtime",
+        "cost_local_resource_use",
+        "reproducibility",
+        "blocker_precision",
+        "evidence_freshness",
+        "operator_usability",
+        "regression_resistance",
+    }
+    actual_ids = {item["id"] for item in contract["metric_families"]}
+    missing = sorted(expected_ids - actual_ids)
+    extra = sorted(actual_ids - expected_ids)
+    if missing or extra:
+        raise AssertionError(
+            f"Capability metrics contract IDs do not match expected set. Missing={missing} Extra={extra}"
+        )
+    return {
+        "path": "contracts/parent-capability-metrics.yaml",
+        "metric_family_count": len(contract["metric_families"]),
+        "metric_ids": sorted(actual_ids),
+    }
 
 
 def main() -> int:
@@ -211,6 +245,14 @@ def main() -> int:
             "name": "schema_and_example_validation",
             "status": "pass",
             "details": example_results,
+        }
+    )
+
+    checks.append(
+        {
+            "name": "capability_metrics_contract",
+            "status": "pass",
+            "details": validate_capability_metrics_contract(),
         }
     )
 

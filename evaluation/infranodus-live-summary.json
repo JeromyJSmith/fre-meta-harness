@@ -1,91 +1,107 @@
 {
-  "generated_at": "2026-05-18",
-  "source": "mcp__infranodus__.generate_knowledge_graph",
+  "generated_at": "2026-05-20",
+  "source": "bounded_local_cli_substitute",
   "scope": "portable_parent_wrapper",
   "statistics": {
-    "modularity": 0.6840293674922019,
-    "clusterCount": 12,
-    "nodeCount": 150,
-    "edgeCount": 256,
-    "diversity_score": "dispersed",
-    "modularity_score": "very_high"
+    "clusterCount": 6,
+    "nodeCount": 502,
+    "edgeCount": 15,
+    "diversity_score": "bounded_local",
+    "modularity_score": "approximate"
   },
   "contentGaps": [
-    "Gap 1: 3. Graph Analysis (knowledge graph exist analyze search text google related) -> 10. Active Identification (child body surface vw active identify standalone itwin)",
-    "Gap 2: 3. Graph Analysis (knowledge graph exist analyze search text google related) -> 9. Operational Substrate (substrate ref operational pixeltable template authority upstream carry)",
-    "Gap 3: 8. Role Metrics (metric current role blocker evidence durable iteration loop) -> 10. Active Identification (child body surface vw active identify standalone itwin)"
+    "Gap 1: meta_harness -> agent_eval",
+    "Gap 2: evaluation -> meta_harness",
+    "Gap 3: autoresearch -> agent_eval"
   ],
   "mainTopicalClusters": [
-    "1. Prompt Governance: prompt schema run govern contract heavy maintain agent (4 | 7% | 20%)",
-    "2. Goal Onboarding: md goal external program onboard domain slice autoresearch (0 | 11% | 13%)",
-    "3. Graph Analysis: knowledge graph exist analyze search text google related (10 | 10% | 11%)",
-    "4. Reporting Cycle: report ratchet real copilot dry cycle evaluator proposer (6 | 7% | 10%)",
-    "5. Content Generation: generate seo topical contextual content cluster hint gap (11 | 6% | 10%)",
-    "6. Tool Mapping: json map tool phase infranodus full required supporting (5 | 5% | 10%)",
-    "7. Meta Structure: parent meta wrapper portable outer harness id slug (1 | 7% | 8%)",
-    "8. Role Metrics: metric current role blocker evidence durable iteration loop (7 | 19% | 6%)",
-    "9. Operational Substrate: substrate ref operational pixeltable template authority upstream carry (3 | 13% | 5%)",
-    "10. Active Identification: child body surface vw active identify standalone itwin (2 | 9% | 3%)",
-    "11. Scoring Validation: score split ledger script instrument runner validate outcome (9 | 5% | 3%)",
-    "12. Proof Package: proof (8 | 1% | 0%)"
+    "1. evaluation: evaluation agent_eval evals parent-wrapper-agent_eval-boundary tool_health readme (1 | 10% | 99%)",
+    "2. meta_loop: evaluation external iterations status evidence jsonl (2 | 33% | 99%)",
+    "3. autoresearch: source external name description status evaluation (3 | 22% | 99%)",
+    "4. meta_harness: status external gate_id notes doctrine green (4 | 13% | 99%)",
+    "5. agent_eval: smoke agent_eval evaluation dry docker tool_health (5 | 6% | 99%)",
+    "6. tool_health: status evaluation summary tool_health command_path duration_ms (6 | 17% | 99%)"
   ],
   "mainConcepts": [
-    "prompt",
-    "schema",
-    "json",
-    "md",
-    "report",
-    "generate",
-    "seo",
-    "parent",
-    "goal",
-    "run",
-    "knowledge",
-    "graph",
-    "meta",
+    "evaluation",
+    "status",
+    "agent_eval",
     "external",
-    "govern",
-    "ratchet"
+    "tool_health",
+    "evidence",
+    "readme",
+    "bounded",
+    "gate_id",
+    "notes",
+    "smoke",
+    "program"
   ],
   "conceptualGateways": [
-    "seo",
-    "schema",
-    "json",
-    "report",
-    "generate",
-    "exist",
-    "knowledge",
-    "external"
+    "evaluation",
+    "status",
+    "agent_eval",
+    "external",
+    "tool_health",
+    "evidence",
+    "readme",
+    "bounded"
   ],
   "topRelations": [
-    "1) meta <-> harness",
-    "2) agent <-> heavy",
-    "3) heavy <-> run",
-    "4) run <-> prompt",
-    "5) goal <-> md",
-    "6) parent <-> meta",
-    "7) search <-> query",
-    "8) program <-> md",
-    "9) prompt <-> schema",
-    "10) required <-> tool",
-    "11) supporting <-> tool",
-    "12) readme <-> md"
+    "1) meta_loop <-> autoresearch",
+    "2) autoresearch <-> meta_harness",
+    "3) evaluation <-> agent_eval",
+    "4) evaluation <-> meta_loop",
+    "5) meta_loop <-> tool_health",
+    "6) evaluation <-> tool_health",
+    "7) agent_eval <-> tool_health",
+    "8) autoresearch <-> tool_health",
+    "9) evaluation <-> autoresearch",
+    "10) meta_loop <-> agent_eval"
   ],
   "topInfluentialNodes": [
     {
-      "node": "prompt",
-      "bc": 0.33992381643388353,
-      "degree": 12
+      "node": "evaluation",
+      "bc": 0.833,
+      "degree": 5
     },
     {
-      "node": "schema",
-      "bc": 0.3012425176854707,
+      "node": "status",
+      "bc": 0.833,
+      "degree": 5
+    },
+    {
+      "node": "agent_eval",
+      "bc": 0.667,
+      "degree": 4
+    },
+    {
+      "node": "external",
+      "bc": 0.5,
       "degree": 3
     },
     {
-      "node": "json",
-      "bc": 0.27566660620351896,
+      "node": "tool_health",
+      "bc": 0.833,
       "degree": 5
+    },
+    {
+      "node": "evidence",
+      "bc": 0.333,
+      "degree": 2
+    },
+    {
+      "node": "readme",
+      "bc": 0.333,
+      "degree": 2
+    },
+    {
+      "node": "bounded",
+      "bc": 0.333,
+      "degree": 2
     }
+  ],
+  "limitations": [
+    "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+    "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
   ]
 }

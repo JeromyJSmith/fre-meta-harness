@@ -75,412 +75,170 @@
       "meta": {}
     },
     {
-      "id": "cluster_memory_goals",
-      "name": "Memory Goals",
+      "id": "cluster_evaluation",
+      "name": "evaluation",
       "group": "cluster",
       "color": "#f59e0b",
       "val": 10,
       "meta": {}
     },
     {
-      "id": "cluster_active_body",
-      "name": "Active Body",
+      "id": "cluster_meta_loop",
+      "name": "meta_loop",
       "group": "cluster",
       "color": "#f59e0b",
       "val": 10,
       "meta": {}
     },
     {
-      "id": "cluster_reusable_wrapper",
-      "name": "Reusable Wrapper",
+      "id": "cluster_autoresearch",
+      "name": "autoresearch",
       "group": "cluster",
       "color": "#f59e0b",
       "val": 10,
       "meta": {}
     },
     {
-      "id": "cluster_knowledge_substrate",
-      "name": "Knowledge Substrate",
+      "id": "cluster_meta_harness",
+      "name": "meta_harness",
       "group": "cluster",
       "color": "#f59e0b",
       "val": 10,
       "meta": {}
     },
     {
-      "id": "cluster_gate_optimization",
-      "name": "Gate Optimization",
+      "id": "cluster_agent_eval",
+      "name": "agent_eval",
       "group": "cluster",
       "color": "#f59e0b",
       "val": 10,
       "meta": {}
     },
     {
-      "id": "cluster_document_scaffold",
-      "name": "Document Scaffold",
+      "id": "cluster_tool_health",
+      "name": "tool_health",
       "group": "cluster",
       "color": "#f59e0b",
       "val": 10,
       "meta": {}
     },
     {
-      "id": "cluster_data_bridge",
-      "name": "Data Bridge",
-      "group": "cluster",
-      "color": "#f59e0b",
-      "val": 10,
-      "meta": {}
-    },
-    {
-      "id": "cluster_skill_verification",
-      "name": "Skill Verification",
-      "group": "cluster",
-      "color": "#f59e0b",
-      "val": 10,
-      "meta": {}
-    },
-    {
-      "id": "cluster_runtime_events",
-      "name": "Runtime Events",
-      "group": "cluster",
-      "color": "#f59e0b",
-      "val": 10,
-      "meta": {}
-    },
-    {
-      "id": "cluster_infrastructure_geometry",
-      "name": "Infrastructure Geometry",
-      "group": "cluster",
-      "color": "#f59e0b",
-      "val": 10,
-      "meta": {}
-    },
-    {
-      "id": "resolver_readme_md",
-      "name": "README.md",
+      "id": "resolver_contracts_parent_capability_metrics_yaml",
+      "name": "contracts/parent-capability-metrics.yaml",
       "group": "resolver",
       "color": "#16a34a",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "resolver_library_yaml",
-      "name": "library.yaml",
+      "id": "resolver_evaluation_tool_health_local_runners_json",
+      "name": "evaluation/tool-health/local-runners.json",
       "group": "resolver",
       "color": "#16a34a",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "resolver_agent_heavy_run_prompt_schema_json",
-      "name": "agent-heavy-run-prompt.schema.json",
+      "id": "resolver_evaluation_tool_health_status_json",
+      "name": "evaluation/tool-health/status.json",
       "group": "resolver",
       "color": "#16a34a",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "resolver_infranodus_phase_tool_map_json",
-      "name": "infranodus-phase-tool-map.json",
+      "id": "resolver_scripts_build_parent_infranodus_artifacts_py",
+      "name": "scripts/build-parent-infranodus-artifacts.py",
       "group": "resolver",
       "color": "#16a34a",
       "val": 7,
       "meta": {}
-    },
-    {
-      "id": "resolver_pixeltable_operational_substrate_md",
-      "name": "pixeltable-operational-substrate.md",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_source_",
-      "name": "source/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_schemas_",
-      "name": "schemas/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_examples_",
-      "name": "examples/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_expected_failures_",
-      "name": "expected-failures/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_tests_",
-      "name": "tests/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_evaluation_",
-      "name": "evaluation/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "resolver_promotion_",
-      "name": "promotion/",
-      "group": "resolver",
-      "color": "#16a34a",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_cluster_4",
-      "name": "Prompt Governance",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 13.0,
-      "meta": {
-        "size_pct": 7,
-        "influence_pct": 20
-      }
-    },
-    {
-      "id": "live_cluster_0",
-      "name": "Goal Onboarding",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 11.25,
-      "meta": {
-        "size_pct": 11,
-        "influence_pct": 13
-      }
-    },
-    {
-      "id": "live_cluster_10",
-      "name": "Graph Analysis",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 10.75,
-      "meta": {
-        "size_pct": 10,
-        "influence_pct": 11
-      }
-    },
-    {
-      "id": "live_cluster_6",
-      "name": "Reporting Cycle",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 10.5,
-      "meta": {
-        "size_pct": 7,
-        "influence_pct": 10
-      }
-    },
-    {
-      "id": "live_cluster_11",
-      "name": "Content Generation",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 10.5,
-      "meta": {
-        "size_pct": 6,
-        "influence_pct": 10
-      }
-    },
-    {
-      "id": "live_cluster_5",
-      "name": "Tool Mapping",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 10.5,
-      "meta": {
-        "size_pct": 5,
-        "influence_pct": 10
-      }
     },
     {
       "id": "live_cluster_1",
-      "name": "Meta Structure",
+      "name": "evaluation",
       "group": "live_cluster",
       "color": "#f97316",
-      "val": 10.0,
+      "val": 32.75,
       "meta": {
-        "size_pct": 7,
-        "influence_pct": 8
-      }
-    },
-    {
-      "id": "live_cluster_7",
-      "name": "Role Metrics",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 9.5,
-      "meta": {
-        "size_pct": 19,
-        "influence_pct": 6
-      }
-    },
-    {
-      "id": "live_cluster_3",
-      "name": "Operational Substrate",
-      "group": "live_cluster",
-      "color": "#f97316",
-      "val": 9.25,
-      "meta": {
-        "size_pct": 13,
-        "influence_pct": 5
+        "size_pct": 10,
+        "influence_pct": 99
       }
     },
     {
       "id": "live_cluster_2",
-      "name": "Active Identification",
+      "name": "meta_loop",
       "group": "live_cluster",
       "color": "#f97316",
-      "val": 8.75,
+      "val": 32.75,
       "meta": {
-        "size_pct": 9,
-        "influence_pct": 3
+        "size_pct": 33,
+        "influence_pct": 99
       }
     },
     {
-      "id": "live_cluster_9",
-      "name": "Scoring Validation",
+      "id": "live_cluster_3",
+      "name": "autoresearch",
       "group": "live_cluster",
       "color": "#f97316",
-      "val": 8.75,
+      "val": 32.75,
       "meta": {
-        "size_pct": 5,
-        "influence_pct": 3
+        "size_pct": 22,
+        "influence_pct": 99
       }
     },
     {
-      "id": "live_cluster_8",
-      "name": "Proof Package",
+      "id": "live_cluster_4",
+      "name": "meta_harness",
       "group": "live_cluster",
       "color": "#f97316",
-      "val": 12,
+      "val": 32.75,
       "meta": {
-        "size_pct": 1,
-        "influence_pct": 0
+        "size_pct": 13,
+        "influence_pct": 99
       }
     },
     {
-      "id": "live_concept_prompt",
-      "name": "prompt",
+      "id": "live_cluster_5",
+      "name": "agent_eval",
+      "group": "live_cluster",
+      "color": "#f97316",
+      "val": 32.75,
+      "meta": {
+        "size_pct": 6,
+        "influence_pct": 99
+      }
+    },
+    {
+      "id": "live_cluster_6",
+      "name": "tool_health",
+      "group": "live_cluster",
+      "color": "#f97316",
+      "val": 32.75,
+      "meta": {
+        "size_pct": 17,
+        "influence_pct": 99
+      }
+    },
+    {
+      "id": "live_concept_evaluation",
+      "name": "evaluation",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "live_concept_schema",
-      "name": "schema",
+      "id": "live_concept_status",
+      "name": "status",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "live_concept_json",
-      "name": "json",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_md",
-      "name": "md",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_report",
-      "name": "report",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_generate",
-      "name": "generate",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_seo",
-      "name": "seo",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_parent",
-      "name": "parent",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_goal",
-      "name": "goal",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_run",
-      "name": "run",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_knowledge",
-      "name": "knowledge",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_graph",
-      "name": "graph",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
-      "id": "live_concept_meta",
-      "name": "meta",
+      "id": "live_concept_agent_eval",
+      "name": "agent_eval",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
@@ -495,72 +253,88 @@
       "meta": {}
     },
     {
-      "id": "live_concept_govern",
-      "name": "govern",
+      "id": "live_concept_tool_health",
+      "name": "tool_health",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "live_concept_ratchet",
-      "name": "ratchet",
+      "id": "live_concept_evidence",
+      "name": "evidence",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
       "meta": {}
     },
     {
-      "id": "live_gateway_seo",
-      "name": "seo",
+      "id": "live_concept_readme",
+      "name": "readme",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_concept_bounded",
+      "name": "bounded",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_concept_gate_id",
+      "name": "gate_id",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_concept_notes",
+      "name": "notes",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_concept_smoke",
+      "name": "smoke",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_concept_program",
+      "name": "program",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_gateway_evaluation",
+      "name": "evaluation",
       "group": "gateway",
       "color": "#ec4899",
       "val": 8,
       "meta": {}
     },
     {
-      "id": "live_gateway_schema",
-      "name": "schema",
+      "id": "live_gateway_status",
+      "name": "status",
       "group": "gateway",
       "color": "#ec4899",
       "val": 8,
       "meta": {}
     },
     {
-      "id": "live_gateway_json",
-      "name": "json",
-      "group": "gateway",
-      "color": "#ec4899",
-      "val": 8,
-      "meta": {}
-    },
-    {
-      "id": "live_gateway_report",
-      "name": "report",
-      "group": "gateway",
-      "color": "#ec4899",
-      "val": 8,
-      "meta": {}
-    },
-    {
-      "id": "live_gateway_generate",
-      "name": "generate",
-      "group": "gateway",
-      "color": "#ec4899",
-      "val": 8,
-      "meta": {}
-    },
-    {
-      "id": "live_gateway_exist",
-      "name": "exist",
-      "group": "gateway",
-      "color": "#ec4899",
-      "val": 8,
-      "meta": {}
-    },
-    {
-      "id": "live_gateway_knowledge",
-      "name": "knowledge",
+      "id": "live_gateway_agent_eval",
+      "name": "agent_eval",
       "group": "gateway",
       "color": "#ec4899",
       "val": 8,
@@ -575,36 +349,123 @@
       "meta": {}
     },
     {
-      "id": "influential_prompt",
-      "name": "prompt",
-      "group": "influential_node",
-      "color": "#ef4444",
-      "val": 16.0,
-      "meta": {
-        "bc": 0.33992381643388353,
-        "degree": 12
-      }
+      "id": "live_gateway_tool_health",
+      "name": "tool_health",
+      "group": "gateway",
+      "color": "#ec4899",
+      "val": 8,
+      "meta": {}
     },
     {
-      "id": "influential_schema",
-      "name": "schema",
-      "group": "influential_node",
-      "color": "#ef4444",
-      "val": 11.5,
-      "meta": {
-        "bc": 0.3012425176854707,
-        "degree": 3
-      }
+      "id": "live_gateway_evidence",
+      "name": "evidence",
+      "group": "gateway",
+      "color": "#ec4899",
+      "val": 8,
+      "meta": {}
     },
     {
-      "id": "influential_json",
-      "name": "json",
+      "id": "live_gateway_readme",
+      "name": "readme",
+      "group": "gateway",
+      "color": "#ec4899",
+      "val": 8,
+      "meta": {}
+    },
+    {
+      "id": "live_gateway_bounded",
+      "name": "bounded",
+      "group": "gateway",
+      "color": "#ec4899",
+      "val": 8,
+      "meta": {}
+    },
+    {
+      "id": "influential_evaluation",
+      "name": "evaluation",
       "group": "influential_node",
       "color": "#ef4444",
       "val": 12.5,
       "meta": {
-        "bc": 0.27566660620351896,
+        "bc": 0.833,
         "degree": 5
+      }
+    },
+    {
+      "id": "influential_status",
+      "name": "status",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 12.5,
+      "meta": {
+        "bc": 0.833,
+        "degree": 5
+      }
+    },
+    {
+      "id": "influential_agent_eval",
+      "name": "agent_eval",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 12.0,
+      "meta": {
+        "bc": 0.667,
+        "degree": 4
+      }
+    },
+    {
+      "id": "influential_external",
+      "name": "external",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 11.5,
+      "meta": {
+        "bc": 0.5,
+        "degree": 3
+      }
+    },
+    {
+      "id": "influential_tool_health",
+      "name": "tool_health",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 12.5,
+      "meta": {
+        "bc": 0.833,
+        "degree": 5
+      }
+    },
+    {
+      "id": "influential_evidence",
+      "name": "evidence",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 11.0,
+      "meta": {
+        "bc": 0.333,
+        "degree": 2
+      }
+    },
+    {
+      "id": "influential_readme",
+      "name": "readme",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 11.0,
+      "meta": {
+        "bc": 0.333,
+        "degree": 2
+      }
+    },
+    {
+      "id": "influential_bounded",
+      "name": "bounded",
+      "group": "influential_node",
+      "color": "#ef4444",
+      "val": 11.0,
+      "meta": {
+        "bc": 0.333,
+        "degree": 2
       }
     },
     {
@@ -880,8 +741,8 @@
       "meta": {}
     },
     {
-      "id": "weakest_plateau_or_blocker_truth",
-      "name": "plateau_or_blocker_truth",
+      "id": "weakest_artifact_refresh",
+      "name": "artifact_refresh",
       "group": "metric",
       "color": "#b91c1c",
       "val": 10,
@@ -948,6 +809,14 @@
     {
       "id": "check_schema_and_example_validation",
       "name": "schema_and_example_validation",
+      "group": "validation_check",
+      "color": "#16a34a",
+      "val": 6,
+      "meta": {}
+    },
+    {
+      "id": "check_capability_metrics_contract",
+      "name": "capability_metrics_contract",
       "group": "validation_check",
       "color": "#16a34a",
       "val": 6,
@@ -1037,238 +906,98 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "cluster_memory_goals",
+      "target": "cluster_evaluation",
       "relation": "cluster",
       "color": "#f59e0b",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "cluster_active_body",
+      "target": "cluster_meta_loop",
       "relation": "cluster",
       "color": "#f59e0b",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "cluster_reusable_wrapper",
+      "target": "cluster_autoresearch",
       "relation": "cluster",
       "color": "#f59e0b",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "cluster_knowledge_substrate",
+      "target": "cluster_meta_harness",
       "relation": "cluster",
       "color": "#f59e0b",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "cluster_gate_optimization",
+      "target": "cluster_agent_eval",
       "relation": "cluster",
       "color": "#f59e0b",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "cluster_document_scaffold",
+      "target": "cluster_tool_health",
       "relation": "cluster",
       "color": "#f59e0b",
       "width": 1.5
     },
     {
-      "source": "parent_meta_wrapper",
-      "target": "cluster_data_bridge",
-      "relation": "cluster",
-      "color": "#f59e0b",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "cluster_skill_verification",
-      "relation": "cluster",
-      "color": "#f59e0b",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "cluster_runtime_events",
-      "relation": "cluster",
-      "color": "#f59e0b",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "cluster_infrastructure_geometry",
-      "relation": "cluster",
-      "color": "#f59e0b",
-      "width": 1.5
-    },
-    {
-      "source": "cluster_knowledge_substrate",
-      "target": "cluster_gate_optimization",
+      "source": "cluster_meta_harness",
+      "target": "cluster_agent_eval",
       "relation": "content_gap",
       "color": "#dc2626",
       "width": 4
     },
     {
-      "source": "cluster_document_scaffold",
-      "target": "cluster_data_bridge",
+      "source": "cluster_evaluation",
+      "target": "cluster_meta_harness",
       "relation": "content_gap",
       "color": "#dc2626",
       "width": 4
     },
     {
-      "source": "cluster_knowledge_substrate",
-      "target": "cluster_document_scaffold",
+      "source": "cluster_autoresearch",
+      "target": "cluster_agent_eval",
       "relation": "content_gap",
       "color": "#dc2626",
       "width": 4
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "resolver_readme_md",
+      "target": "resolver_contracts_parent_capability_metrics_yaml",
       "relation": "resolved_by",
       "color": "#16a34a",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "resolver_library_yaml",
+      "target": "resolver_evaluation_tool_health_local_runners_json",
       "relation": "resolved_by",
       "color": "#16a34a",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "resolver_agent_heavy_run_prompt_schema_json",
+      "target": "resolver_evaluation_tool_health_status_json",
       "relation": "resolved_by",
       "color": "#16a34a",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "resolver_infranodus_phase_tool_map_json",
+      "target": "resolver_scripts_build_parent_infranodus_artifacts_py",
       "relation": "resolved_by",
       "color": "#16a34a",
       "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_pixeltable_operational_substrate_md",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_source_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_schemas_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_examples_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_expected_failures_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_tests_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_evaluation_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "resolver_promotion_",
-      "relation": "resolved_by",
-      "color": "#16a34a",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_4",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_0",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_10",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_6",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_11",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_5",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
       "target": "live_cluster_1",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_7",
-      "relation": "infranodus_cluster",
-      "color": "#f97316",
-      "width": 1.5
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_cluster_3",
       "relation": "infranodus_cluster",
       "color": "#f97316",
       "width": 1.5
@@ -1282,105 +1011,49 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_cluster_9",
+      "target": "live_cluster_3",
       "relation": "infranodus_cluster",
       "color": "#f97316",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_cluster_8",
+      "target": "live_cluster_4",
       "relation": "infranodus_cluster",
       "color": "#f97316",
       "width": 1.5
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_prompt",
+      "target": "live_cluster_5",
+      "relation": "infranodus_cluster",
+      "color": "#f97316",
+      "width": 1.5
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_cluster_6",
+      "relation": "infranodus_cluster",
+      "color": "#f97316",
+      "width": 1.5
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_evaluation",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_schema",
+      "target": "live_concept_status",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_json",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_md",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_report",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_generate",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_seo",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_parent",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_goal",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_run",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_knowledge",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_graph",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_concept_meta",
+      "target": "live_concept_agent_eval",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
@@ -1394,63 +1067,77 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_govern",
+      "target": "live_concept_tool_health",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_ratchet",
+      "target": "live_concept_evidence",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_gateway_seo",
+      "target": "live_concept_readme",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_bounded",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_gate_id",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_notes",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_smoke",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_program",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_gateway_evaluation",
       "relation": "gateway",
       "color": "#ec4899",
       "width": 1.2
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_gateway_schema",
+      "target": "live_gateway_status",
       "relation": "gateway",
       "color": "#ec4899",
       "width": 1.2
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_gateway_json",
-      "relation": "gateway",
-      "color": "#ec4899",
-      "width": 1.2
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_gateway_report",
-      "relation": "gateway",
-      "color": "#ec4899",
-      "width": 1.2
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_gateway_generate",
-      "relation": "gateway",
-      "color": "#ec4899",
-      "width": 1.2
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_gateway_exist",
-      "relation": "gateway",
-      "color": "#ec4899",
-      "width": 1.2
-    },
-    {
-      "source": "parent_meta_wrapper",
-      "target": "live_gateway_knowledge",
+      "target": "live_gateway_agent_eval",
       "relation": "gateway",
       "color": "#ec4899",
       "width": 1.2
@@ -1463,22 +1150,85 @@
       "width": 1.2
     },
     {
+      "source": "parent_meta_wrapper",
+      "target": "live_gateway_tool_health",
+      "relation": "gateway",
+      "color": "#ec4899",
+      "width": 1.2
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_gateway_evidence",
+      "relation": "gateway",
+      "color": "#ec4899",
+      "width": 1.2
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_gateway_readme",
+      "relation": "gateway",
+      "color": "#ec4899",
+      "width": 1.2
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_gateway_bounded",
+      "relation": "gateway",
+      "color": "#ec4899",
+      "width": 1.2
+    },
+    {
       "source": "metrics_latest",
-      "target": "influential_prompt",
+      "target": "influential_evaluation",
       "relation": "influential_node",
       "color": "#ef4444",
       "width": 2
     },
     {
       "source": "metrics_latest",
-      "target": "influential_schema",
+      "target": "influential_status",
       "relation": "influential_node",
       "color": "#ef4444",
       "width": 2
     },
     {
       "source": "metrics_latest",
-      "target": "influential_json",
+      "target": "influential_agent_eval",
+      "relation": "influential_node",
+      "color": "#ef4444",
+      "width": 2
+    },
+    {
+      "source": "metrics_latest",
+      "target": "influential_external",
+      "relation": "influential_node",
+      "color": "#ef4444",
+      "width": 2
+    },
+    {
+      "source": "metrics_latest",
+      "target": "influential_tool_health",
+      "relation": "influential_node",
+      "color": "#ef4444",
+      "width": 2
+    },
+    {
+      "source": "metrics_latest",
+      "target": "influential_evidence",
+      "relation": "influential_node",
+      "color": "#ef4444",
+      "width": 2
+    },
+    {
+      "source": "metrics_latest",
+      "target": "influential_readme",
+      "relation": "influential_node",
+      "color": "#ef4444",
+      "width": 2
+    },
+    {
+      "source": "metrics_latest",
+      "target": "influential_bounded",
       "relation": "influential_node",
       "color": "#ef4444",
       "width": 2
@@ -2290,7 +2040,7 @@
     },
     {
       "source": "metrics_latest",
-      "target": "weakest_plateau_or_blocker_truth",
+      "target": "weakest_artifact_refresh",
       "relation": "weakest_component",
       "color": "#b91c1c",
       "width": 3
@@ -2347,6 +2097,13 @@
     {
       "source": "validation_report",
       "target": "check_schema_and_example_validation",
+      "relation": "pass",
+      "color": "#16a34a",
+      "width": 1
+    },
+    {
+      "source": "validation_report",
+      "target": "check_capability_metrics_contract",
       "relation": "pass",
       "color": "#16a34a",
       "width": 1

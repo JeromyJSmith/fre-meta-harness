@@ -22,6 +22,8 @@ current_state:
   fixture_root: evaluation/agent-eval
   experiment_id: parent-wrapper-codex-docker
   eval_id: parent-wrapper-agent-eval-boundary
+  baseline_parent_path: evaluation/tool-health/local-runners.json
+  remote_provider_modes_are_exceptions: true
 
 commands:
   dry: "scripts/run-parent-agent-eval.sh dry"
@@ -33,7 +35,7 @@ dry_contract:
     - evaluation/tool-health/agent-eval-dry.log
 
 next_smoke_contract:
-  purpose: "Run one direct Codex smoke in a local Docker sandbox against the parent-wrapper boundary fixture."
+  purpose: "Run one optional remote-backed Codex smoke in a local Docker sandbox against the parent-wrapper boundary fixture after the CLI-first local baseline is already established."
   experiment:
     agent: codex
     sandbox: docker
@@ -49,10 +51,10 @@ next_smoke_contract:
   expected_artifacts:
     - evaluation/tool-health/agent-eval-smoke.log
     - evaluation/agent-eval/results/
-  failure_boundary: "If OPENAI_API_KEY is absent, the smoke attempt must stop closed and remain below smoke evidence."
+  failure_boundary: "If OPENAI_API_KEY is absent, the smoke attempt must stop closed, remain below smoke evidence, and preserve the CLI-first local baseline as the default parent path."
 
 future_live_contract:
-  purpose: "Repeatable non-dry evaluation runs with durable results that can compare parent-wrapper changes over time."
+  purpose: "Repeatable non-dry evaluation runs with durable results that can compare parent-wrapper changes over time once the remote-provider exception is intentionally configured."
   expected_artifacts:
     - evaluation/agent-eval/results/**/result.json
     - evaluation/agent-eval/results/**/classification.json

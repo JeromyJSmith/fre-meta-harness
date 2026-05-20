@@ -1,36 +1,159 @@
 {
-  "analysis_id": "PARENT-META-INFRANODUS-GAP-0001",
-  "created_at": "2026-05-18",
+  "analysis_id": "PARENT-META-INFRANODUS-GAP-0002",
+  "created_at": "2026-05-20",
   "scope": "portable_parent_wrapper",
+  "method": {
+    "mode": "bounded_local_cli_substitute",
+    "summary": "Used the governed parent corpus, layer token overlap, and gateway terms as the strongest honest local substitute while live MCP analysis stayed blocked.",
+    "limitation": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run."
+  },
+  "analyzed_layers": [
+    {
+      "id": "evaluation",
+      "label": "evaluation",
+      "source_files": [
+        "evaluation/README.md",
+        "evaluation/metrics-latest.json",
+        "evaluation/copilot-ratchet-report.json"
+      ],
+      "top_terms": [
+        "evaluation",
+        "agent_eval",
+        "evals",
+        "parent-wrapper-agent_eval-boundary",
+        "tool_health",
+        "readme",
+        "cycle",
+        "true"
+      ]
+    },
+    {
+      "id": "meta_loop",
+      "label": "meta_loop",
+      "source_files": [
+        "GOAL.md",
+        "program.md",
+        "runs/iterations.jsonl"
+      ],
+      "top_terms": [
+        "evaluation",
+        "external",
+        "iterations",
+        "status",
+        "evidence",
+        "jsonl",
+        "tool_health",
+        "agent_eval"
+      ]
+    },
+    {
+      "id": "autoresearch",
+      "label": "autoresearch",
+      "source_files": [
+        "README.md",
+        "program.md",
+        "library.yaml"
+      ],
+      "top_terms": [
+        "source",
+        "external",
+        "name",
+        "description",
+        "status",
+        "evaluation",
+        "bounded",
+        "tool_health"
+      ]
+    },
+    {
+      "id": "meta_harness",
+      "label": "meta_harness",
+      "source_files": [
+        "domain_spec.md",
+        "AGENTS.md",
+        "MEMORY.md"
+      ],
+      "top_terms": [
+        "status",
+        "external",
+        "gate_id",
+        "notes",
+        "doctrine",
+        "green",
+        "memory",
+        "prompt"
+      ]
+    },
+    {
+      "id": "agent_eval",
+      "label": "agent_eval",
+      "source_files": [
+        "contracts/agent-eval-parent-lane.yaml",
+        "evaluation/agent-eval/README.md",
+        "scripts/run-parent-agent-eval.sh"
+      ],
+      "top_terms": [
+        "smoke",
+        "agent_eval",
+        "evaluation",
+        "dry",
+        "docker",
+        "tool_health",
+        "scripts",
+        "run-parent-agent_eval"
+      ]
+    },
+    {
+      "id": "tool_health",
+      "label": "tool_health",
+      "source_files": [
+        "README.md",
+        "evaluation/tool-health/status.json",
+        "evaluation/tool-health/local-runners.json"
+      ],
+      "top_terms": [
+        "status",
+        "evaluation",
+        "summary",
+        "tool_health",
+        "command_path",
+        "duration_ms",
+        "version",
+        "command"
+      ]
+    }
+  ],
+  "likely_missing_adjacent_layer": {
+    "id": "tool_health",
+    "label": "tool_health",
+    "reason": "This layer is present in parent doctrine and evidence, overlaps multiple named layers, and should stay explicit in the improvement map.",
+    "evidence": [
+      "README.md",
+      "evaluation/tool-health/status.json",
+      "evaluation/tool-health/local-runners.json"
+    ]
+  },
   "topical_clusters": [
-    "Memory Goals",
-    "Active Body",
-    "Reusable Wrapper",
-    "Knowledge Substrate",
-    "Gate Optimization",
-    "Document Scaffold",
-    "Data Bridge",
-    "Skill Verification",
-    "Runtime Events",
-    "Infrastructure Geometry"
+    "evaluation",
+    "meta_loop",
+    "autoresearch",
+    "meta_harness",
+    "agent_eval",
+    "tool_health"
   ],
   "content_gaps": [
-    "Knowledge Substrate -> Gate Optimization",
-    "Document Scaffold -> Data Bridge",
-    "Knowledge Substrate -> Document Scaffold"
+    "meta_harness -> agent_eval",
+    "evaluation -> meta_harness",
+    "autoresearch -> agent_eval"
   ],
   "resolved_by": [
-    "README.md",
-    "library.yaml",
-    "agent-heavy-run-prompt.schema.json",
-    "infranodus-phase-tool-map.json",
-    "pixeltable-operational-substrate.md",
-    "source/",
-    "schemas/",
-    "examples/",
-    "expected-failures/",
-    "tests/",
-    "evaluation/",
-    "promotion/"
+    "contracts/parent-capability-metrics.yaml",
+    "evaluation/tool-health/local-runners.json",
+    "evaluation/tool-health/status.json",
+    "scripts/build-parent-infranodus-artifacts.py"
+  ],
+  "limitations": [
+    "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+    "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
   ]
 }

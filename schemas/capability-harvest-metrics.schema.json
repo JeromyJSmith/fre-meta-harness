@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/capability-harvest-metrics.schema.json",
+  "title": "Capability Harvest Metrics Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "subjects",
+    "defaults",
+    "metric_families"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "subjects": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "capability",
+          "improvement_lane"
+        ]
+      }
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "docs_only_max_score",
+        "disallow_file_presence_only",
+        "default_freshness_window_days",
+        "default_regression_window"
+      ],
+      "properties": {
+        "docs_only_max_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "disallow_file_presence_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "default_freshness_window_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "default_regression_window": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "metric_families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/metric_family"
+      }
+    }
+  },
+  "$defs": {
+    "metric_family": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "applies_to",
+        "objective",
+        "observable_signals",
+        "measurement",
+        "acceptable_evidence",
+        "anti_gaming"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "documentation_quality",
+            "execution_success",
+            "validation_pass_rate",
+            "tool_health_availability",
+            "latency_runtime",
+            "cost_local_resource_use",
+            "reproducibility",
+            "blocker_precision",
+            "evidence_freshness",
+            "operator_usability",
+            "regression_resistance"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "applies_to": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "capability",
+              "improvement_lane"
+            ]
+          }
+        },
+        "objective": {
+          "type": "string",
+          "minLength": 10
+        },
+        "observable_signals": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "measurement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "unit",
+            "passing_rule"
+          ],
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 10
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "score_0_to_5",
+                "ratio_0_to_1",
+                "percent",
+                "milliseconds",
+                "seconds",
+                "count",
+                "boolean",
+                "structured_assessment"
+              ]
+            },
+            "passing_rule": {
+              "type": "string",
+              "minLength": 10
+            }
+          }
+        },
+        "acceptable_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum_evidence_types",
+            "artifacts"
+          ],
+          "properties": {
+            "minimum_evidence_types": {
+              "type": "array",
+              "minItems": 2,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "docs",
+                  "artifact",
+                  "command_output",
+                  "test_result",
+                  "timing",
+                  "resource_usage",
+                  "operator_notes",
+                  "blocker_log",
+                  "diff"
+                ]
+              },
+              "contains": {
+                "type": "string",
+                "enum": [
+                  "artifact",
+                  "command_output",
+                  "test_result",
+                  "timing",
+                  "resource_usage",
+                  "operator_notes",
+                  "blocker_log",
+                  "diff"
+                ]
+              }
+            },
+            "artifacts": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          }
+        },
+        "anti_gaming": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "docs_only_max_score",
+            "behavior_required",
+            "notes"
+          ],
+          "properties": {
+            "docs_only_max_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "behavior_required": {
+              "type": "boolean"
+            },
+            "notes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 5
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "analysis_id": "PARENT-META-INFRANODUS-BRIDGES-0001",
+  "created_at": "2026-05-20",
+  "scope": "portable_parent_wrapper",
+  "mode": "bounded_local_cli_substitute",
+  "bridges": [
+    {
+      "bridge_id": "meta_harness-to-agent_eval",
+      "from_layer": "meta_harness",
+      "to_layer": "agent_eval",
+      "through_layer": "tool_health",
+      "bridge_terms": [
+        "evaluation",
+        "status",
+        "agent_eval"
+      ],
+      "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
+      "evidence": [
+        "evaluation/tool-health/status.json",
+        "evaluation/tool-health/local-runners.json",
+        "contracts/parent-capability-metrics.yaml"
+      ]
+    },
+    {
+      "bridge_id": "evaluation-to-meta_harness",
+      "from_layer": "evaluation",
+      "to_layer": "meta_harness",
+      "through_layer": "tool_health",
+      "bridge_terms": [
+        "status"
+      ],
+      "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
+      "evidence": [
+        "evaluation/tool-health/status.json",
+        "evaluation/tool-health/local-runners.json",
+        "contracts/parent-capability-metrics.yaml"
+      ]
+    },
+    {
+      "bridge_id": "autoresearch-to-agent_eval",
+      "from_layer": "autoresearch",
+      "to_layer": "agent_eval",
+      "through_layer": "tool_health",
+      "bridge_terms": [
+        "evaluation",
+        "tool_health"
+      ],
+      "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
+      "evidence": [
+        "evaluation/tool-health/status.json",
+        "evaluation/tool-health/local-runners.json",
+        "contracts/parent-capability-metrics.yaml"
+      ]
+    }
+  ],
+  "limitations": [
+    "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+    "This bounded substitute reports graph structure honestly but does not claim live InfraNodus MCP output."
+  ]
+}
