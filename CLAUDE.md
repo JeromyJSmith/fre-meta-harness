@@ -65,19 +65,19 @@ gate_progress:
     notes: "No dangling parent execution references remain."
   - gate_id: promotion_gate
     status: amber
-    notes: "Needs rerun in the standalone parent repo."
+    notes: "Published parent repo exists; promotion now depends on refreshed parent evidence."
 
 open_questions: []
 
 pending_validations:
-  - "Rerun parent contract validator after repo initialization."
+  - "Rerun parent contract validator after tool-health doctrine changes."
 
 promotion_criteria:
   - "Operational rules survive transport into the standalone parent repo."
 
 blocked_by:
-  - "Standalone repo does not yet exist."
+  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
 
 next_iteration:
   owner: "codex"
-  objective: "Reuse this file as the parent repo CLAUDE contract seed."
+  objective: "Keep this parent operational note aligned with the published wrapper and its tool-health evidence."

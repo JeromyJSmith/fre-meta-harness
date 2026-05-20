@@ -55,6 +55,12 @@ that combines:
    ```bash
    uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json
    ```
+4. Establish the parent tool-health baseline with the strongest honest bounded
+   checks available for:
+   - GitNexus
+   - Graphify
+   - InfraNodus
+   - Vercel agent-eval when the run is scoped to improvement evaluation
 
 ## Mutable Surface
 
@@ -94,6 +100,7 @@ LOOP UNTIL plateau or exact blocker:
 5. Validate:
    - parent validator
    - parent scorer
+   - bounded parent tool-health evidence when tool doctrine or invocation paths changed
    - docs sync if shared docs changed
 6. If the score improved without truth regressions, keep
 7. If the score regressed or the stop reason is dishonest, revert or reject
@@ -108,6 +115,8 @@ LOOP UNTIL plateau or exact blocker:
 Every real run must write:
 
 - `evaluation/copilot-ratchet-report.json`
+- `evaluation/tool-health/status.json` when the kept slice changes parent tool
+  invocation doctrine or improvement-evaluation guidance
 
 Required fields:
 
@@ -132,6 +141,8 @@ Required fields:
 - Keep `runs/iterations.jsonl` as real JSONL: one compact JSON object per line.
 - Do not claim improvement without fresh validation, fresh metrics, and a
   structured report.
+- Treat live API-backed tool lanes as blocked until runtime access is actually
+  configured; prefer dry, smoke, or fixture-bound checks over fake-green claims.
 
 ---bottom-matter---
 status_summary:
@@ -160,20 +171,20 @@ gate_progress:
     notes: "No clone is treated as a citation-only source anymore."
   - gate_id: promotion_gate
     status: amber
-    notes: "Needs one real non-dry multi-cycle run."
+    notes: "Needs refreshed multi-cycle evidence tied to current tool-health doctrine."
 
 open_questions: []
 
 pending_validations:
-  - "Execute the first real non-dry copilot ratchet through this program."
+  - "Refresh the current multi-cycle ratchet evidence with the parent tool-health lane."
 
 promotion_criteria:
   - "Structured ratchet report exists."
   - "At least 2 real non-dry cycles executed."
 
 blocked_by:
-  - "No real copilot-ratchet-report.json yet."
+  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
 
 next_iteration:
   owner: "codex"
-  objective: "Run Copilot through this local program and emit a real report."
+  objective: "Run Copilot through this local program, refresh tool-health evidence, and emit a real report."

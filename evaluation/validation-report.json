@@ -133,7 +133,7 @@
       "status": "pass",
       "details": {
         "path": "runs/iterations.jsonl",
-        "row_count": 3,
+        "row_count": 5,
         "parse_errors": [],
         "invalid_rows": []
       }

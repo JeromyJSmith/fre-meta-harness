@@ -1,0 +1,5 @@
+Re-extracting code files in evaluation/tool-health/graphify-parent-fixture (no LLM needed)...
+[graphify watch] Rebuilt (no clustering): 36 nodes, 85 edges
+[graphify watch] graph.json updated in evaluation/tool-health/graphify-parent-fixture/graphify-out
+Code graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.
+Tip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.

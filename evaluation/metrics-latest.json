@@ -1,41 +1,41 @@
 {
   "score_id": "PARENT-META-SCORE-0002",
-  "created_at": "2026-05-18",
+  "created_at": "2026-05-20",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated",
-  "total_score": 90.62,
-  "outcome_score": 87.5,
+  "total_score": 100.0,
+  "outcome_score": 100.0,
   "instrument_score": 100.0,
-  "weakest_component": "plateau_or_blocker_truth",
+  "weakest_component": "ratchet_execution",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
       "details": {
-        "status": "pass",
+        "status": "blocked",
         "schema_errors": [],
-        "real_rows": 3,
+        "real_rows": 5,
         "parse_errors": [],
-        "mutable_files": 8,
-        "files_changed": 8
+        "mutable_files": 24,
+        "files_changed": 24
       }
     },
     "non_dry_cycle_depth": {
       "score": 25.0,
       "details": {
-        "count": 3,
-        "history_rows": 3,
-        "real_rows": 3,
+        "count": 5,
+        "history_rows": 5,
+        "real_rows": 5,
         "parse_errors": [],
         "schema_errors": []
       }
     },
     "plateau_or_blocker_truth": {
-      "score": 12.5,
+      "score": 25.0,
       "details": {
-        "kind": "plateau",
-        "stop_reason": "plateau after two consecutive non-improving real proposal cycles under the repaired metric",
-        "cycles": 3,
-        "actual_consecutive_non_improving": 2,
+        "kind": "blocker",
+        "stop_reason": "exact blocker: the repaired parent score is saturated at 100.0, the README-only probe did not move it further, and live InfraNodus runtime remains intentionally credentials-bound",
+        "cycles": 5,
+        "actual_consecutive_non_improving": 1,
         "schema_errors": []
       }
     },
@@ -46,7 +46,7 @@
         "ledger_listed": 4,
         "existing": 4,
         "required": 4,
-        "freshness_span_seconds": 5.679206132888794,
+        "freshness_span_seconds": 9.108097076416016,
         "schema_errors": [],
         "parse_errors": []
       }
@@ -63,9 +63,9 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 3,
-        "detailed_rows": 3,
-        "ledger_rows": 3,
+        "history_rows": 5,
+        "detailed_rows": 5,
+        "ledger_rows": 5,
         "ledger_aligned": true,
         "parse_errors": []
       }
@@ -80,6 +80,6 @@
       }
     }
   },
-  "iteration_count": 3,
+  "iteration_count": 5,
   "iteration_parse_errors": []
 }

@@ -33,6 +33,15 @@ library:
     - name: infranodus
       description: Graph comparison and gap-analysis engine used across every lifecycle gate.
       source: infranodus-phase-tool-map.json
+    - name: gitnexus
+      description: Knowledge-graph indexer used for bounded parent architecture checks and repo-context verification.
+      source: evaluation/tool-health/status.json
+    - name: graphify
+      description: Architectural graph analysis lane used for bounded parent fixture checks and drift detection.
+      source: evaluation/tool-health/status.json
+    - name: vercel-agent-eval
+      description: Harness-improvement evaluator for measuring docs, MCP, and agent success through dry, smoke, or credentialed experiments.
+      source: evaluation/tool-health/status.json
     - name: pixeltable
       description: Durable multimodal substrate for evidence, UDFs, computed columns, and normalization.
       source: pixeltable-operational-substrate.md
@@ -57,6 +66,10 @@ library:
       description: Parent wrapper doctrine for Pixeltable as the durable substrate.
       kind: doc
       source: pixeltable-operational-substrate.md
+    - name: parent-tool-health-evidence
+      description: Durable parent-layer evidence for GitNexus, Graphify, InfraNodus, and agent-eval availability.
+      kind: evaluation
+      source: evaluation/tool-health/status.json
     - name: active-body-registry
       description: Current active child body registry.
       kind: config

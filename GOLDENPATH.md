@@ -91,19 +91,19 @@ gate_progress:
     notes: "InfraNodus challenge step is embedded in the path."
   - gate_id: promotion_gate
     status: amber
-    notes: "Final promotion depends on the standalone parent repo."
+    notes: "Final promotion depends on refreshed published-parent evidence, not repo creation."
 
 open_questions: []
 
 pending_validations:
-  - "Replay this same golden path inside the standalone parent repo."
+  - "Replay this same golden path inside a fresh clone of the published standalone parent repo."
 
 promotion_criteria:
   - "Parent-child wrapper replay works without chat reconstruction."
 
 blocked_by:
-  - "Standalone repo still pending."
+  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
 
 next_iteration:
   owner: "codex"
-  objective: "Use this golden path as the bootstrap sequence for the standalone parent repo."
+  objective: "Use this golden path as the bootstrap sequence for fresh published-parent clones."

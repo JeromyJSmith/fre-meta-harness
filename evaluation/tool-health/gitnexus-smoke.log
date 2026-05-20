@@ -1,0 +1,33 @@
+
+  GitNexus Analyzer
+
+[2K  Skipped 1 large files (>512KB, likely generated/vendored)
+[2Kscope extraction failed for external/meta-harness/reference_examples/terminal_bench_2/agents/__init__.py: ScopeExtractor: no Module scope found for 'external/meta-harness/reference_examples/terminal_bench_2/agents/__init__.py'. Provider must emit at least one @scope.module capture per file.
+[2Kscope extraction failed for external/meta-harness/reference_examples/terminal_bench_2/meta_harness.py: Invalid argument
+[2Kscope extraction failed for external/meta-harness/reference_examples/terminal_bench_2/agents/baseline_kira.py: Invalid argument
+
+  Repository indexed successfully (2.8s)
+
+  3,906 nodes | 4,794 edges | 50 clusters | 88 flows
+  /Volumes/PixelTable/VW_iTWIN_Bridge/meta
+
+
+--- STATUS ---
+Repository: /Volumes/PixelTable/VW_iTWIN_Bridge/meta
+Indexed: 5/20/2026, 3:33:54 AM
+Indexed commit: 4876db9
+Current commit: 4876db9
+Status: ✅ up-to-date
+
+--- LIST ---
+
+  Indexed Repositories (1)
+
+  fre-meta-harness-parent
+    Path:    /Volumes/PixelTable/VW_iTWIN_Bridge/meta
+    Indexed: 5/20/2026, 3:33:54 AM
+    Commit:  4876db9
+    Stats:   351 files, 3906 symbols, 4794 edges
+    Clusters:   50
+    Processes:  88
+

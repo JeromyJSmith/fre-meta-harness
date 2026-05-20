@@ -1,36 +1,43 @@
 {
-  "status": "pass",
+  "status": "blocked",
   "metric_decision": "repaired",
-  "metric_reason": "The original metric was too binary and too report-centric: it accepted a dry-run ledger row as usable evidence, allowed component weights to exceed their documented maxima, treated the iteration ledger as out of bounds even though the loop must append it, and initially let stop-state credit inflate the final cycle.",
+  "metric_reason": "The original metric was too binary and too report-centric: it accepted a dry-run ledger row as usable evidence, allowed component weights to exceed their documented maxima, treated the iteration ledger as out of bounds even though the loop must append it, let stop-state credit inflate the final cycle, and capped plateau_or_blocker_truth at half of its documented weight.",
   "metric_review": {
     "baseline_total_score": 10.0,
     "baseline_outcome_score": 0.0,
     "baseline_instrument_score": 40.0,
     "trustworthy": true,
     "trust_signals": [
-      "The scorer now validates each iteration ledger row against an explicit schema.",
+      "The scorer validates each iteration ledger row against an explicit schema.",
       "Outcome components are capped at their documented weights and cross-check ledger rows against the running report.",
-      "Plateau proof is tied to two consecutive rejected or reverted proposal cycles instead of a prose-only stop claim."
+      "Plateau and blocker proof are tied to ledger-backed evidence instead of a prose-only stop claim.",
+      "Parent tool-health evidence is grounded in bounded local GitNexus, Graphify, InfraNodus, and agent-eval probes."
     ],
     "problems_found": [
       "The old dry-run ledger row was not structurally trustworthy evidence for real cycle depth.",
       "The scorer could over-award ratchet execution and artifact refresh beyond their stated weights.",
       "The scorer initially treated runs/iterations.jsonl as outside the bounded mutable surface.",
-      "The stop-state component could cosmetically improve the final cycle even when the proposal itself was rejected."
+      "The stop-state component could cosmetically improve the final cycle even when the proposal itself was rejected.",
+      "plateau_or_blocker_truth was capped at 12.5 despite a documented target weight of 25."
     ],
     "repair_actions": [
       "Added a dedicated iteration-record schema and example coverage.",
       "Made the validator fail on non-conforming ledger rows.",
       "Shifted the scorer toward ledger-validated evidence and capped outcome components at their documented maxima.",
       "Included runs/ as an explicit bounded mutable surface for append-only iteration evidence.",
-      "Changed plateau detection to count consecutive rejected or reverted proposal cycles so plateau proof is evidence-backed."
+      "Changed plateau detection to count consecutive rejected or reverted proposal cycles so plateau proof is evidence-backed.",
+      "Restored plateau_or_blocker_truth to its documented full 25-point weight when continuing, plateau, or blocker evidence is valid."
     ]
   },
-  "real_non_dry_cycles_executed": 3,
-  "stop_reason": "plateau after two consecutive non-improving real proposal cycles under the repaired metric",
+  "real_non_dry_cycles_executed": 5,
+  "stop_reason": "exact blocker: the repaired parent score is saturated at 100.0, the README-only probe did not move it further, and live InfraNodus runtime remains intentionally credentials-bound",
   "stop_evidence": {
-    "kind": "plateau",
-    "consecutive_non_improving_cycles": 2
+    "kind": "blocker",
+    "blocker_details": [
+      "The repaired scorer now awards the documented full weight, leaving the current run saturated at 100.0.",
+      "A second real non-dry README-only probe was rejected after the score stayed flat at 100.0.",
+      "Live InfraNodus runtime access was not configured, so further runtime-based improvement claims would be dishonest."
+    ]
   },
   "score_history": [
     {
@@ -79,34 +86,82 @@
       ],
       "kept": false,
       "summary": "Tried a prompt-YAML wording probe, reverted it, and used it to confirm a second consecutive non-improving proposal cycle."
+    },
+    {
+      "cycle": 4,
+      "before_total_score": 90.62,
+      "after_total_score": 100.0,
+      "before_outcome_score": 87.5,
+      "after_outcome_score": 100.0,
+      "before_instrument_score": 100.0,
+      "after_instrument_score": 100.0,
+      "changed_files": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GOAL.md",
+        "GOLDENPATH.md",
+        "MEMORY.md",
+        "README.md",
+        "agentics-library.md",
+        "domain_spec.md",
+        "evaluation/tool-health/status.json",
+        "library.yaml",
+        "program.md",
+        "scripts/score-parent-wrapper.py",
+        "source/README.md"
+      ],
+      "kept": true,
+      "summary": "Repaired the plateau-weight cap, removed stale standalone-state drift, and added bounded GitNexus, Graphify, InfraNodus, and agent-eval evidence."
+    },
+    {
+      "cycle": 5,
+      "before_total_score": 100.0,
+      "after_total_score": 100.0,
+      "before_outcome_score": 100.0,
+      "after_outcome_score": 100.0,
+      "before_instrument_score": 100.0,
+      "after_instrument_score": 100.0,
+      "changed_files": [
+        "README.md",
+        "runs/iterations.jsonl",
+        "evaluation/copilot-ratchet-report.json"
+      ],
+      "kept": false,
+      "summary": "Tried a README-only wording probe, reverted it, and stopped because the repaired metric was already saturated at 100.0."
     }
   ],
   "files_changed": [
+    "AGENTS.md",
+    "CLAUDE.md",
     "GOAL.md",
+    "GOLDENPATH.md",
+    "MEMORY.md",
     "README.md",
-    "expected-failures/registry.yaml",
-    "examples/copilot-ratchet-report.valid.json",
-    "examples/iteration-record.invalid.dry-run.json",
-    "examples/iteration-record.valid.json",
-    "program.md",
-    "prompts/parent-wrapper-copilot-ratchet.prompt.md",
-    "prompts/parent-wrapper-copilot-ratchet.prompt.yaml",
-    "schemas/copilot-ratchet-report.schema.json",
-    "schemas/iteration-record.schema.json",
-    "scripts/score-parent-wrapper.py",
-    "scripts/run-parent-ratchet.sh",
-    "tests/validate_parent_wrapper_contract.py",
-    "runs/iterations.jsonl",
+    "agentics-library.md",
+    "domain_spec.md",
     "evaluation/copilot-ratchet-report.json",
-    "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
-    "promotion/readiness.json"
+    "evaluation/tool-health/agent-eval-dry.log",
+    "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log",
+    "evaluation/tool-health/gitnexus-smoke.log",
+    "evaluation/tool-health/graphify-parent-fixture/graphify-out/graph.json",
+    "evaluation/tool-health/graphify-smoke.log",
+    "evaluation/tool-health/infranodus-package.log",
+    "evaluation/tool-health/status.json",
+    "evaluation/validation-report.json",
+    "library.yaml",
+    "program.md",
+    "promotion/readiness.json",
+    "runs/iterations.jsonl",
+    "scripts/score-parent-wrapper.py",
+    "source/README.md"
   ],
   "artifacts": [
     "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
     "promotion/readiness.json",
-    "runs/iterations.jsonl"
+    "runs/iterations.jsonl",
+    "evaluation/tool-health/status.json"
   ],
-  "iteration_ledger_entries_appended": 3
+  "iteration_ledger_entries_appended": 5
 }

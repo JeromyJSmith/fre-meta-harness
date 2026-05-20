@@ -1,0 +1,25 @@
+
+  GitNexus Analyzer
+
+  Warning: no .git directory found — commit-tracking and incremental updates disabled.
+
+
+  Repository indexed successfully (1.3s)
+
+  299 nodes | 391 edges | 5 clusters | 19 flows
+  /Volumes/PixelTable/VW_iTWIN_Bridge/meta/evaluation/tool-health/gitnexus-parent-fixture/workdir
+
+
+--- STATUS ---
+error: unknown option '-r'
+
+  Indexed Repositories (1)
+
+  fre-meta-harness-parent-fixture
+    Path:    /Volumes/PixelTable/VW_iTWIN_Bridge/meta/evaluation/tool-health/gitnexus-parent-fixture/workdir
+    Indexed: 5/20/2026, 3:34:54 AM
+    Commit:  unknown
+    Stats:   28 files, 299 symbols, 391 edges
+    Clusters:   5
+    Processes:  19
+

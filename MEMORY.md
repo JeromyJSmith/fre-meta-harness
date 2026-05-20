@@ -55,8 +55,8 @@ upstream_local_refs:
 ## Open Decisions
 
 - Exact bridge artifact format between parent and child wrappers.
-- Canonical rollout order for future gate directories once the standalone repo
-  exists.
+- Canonical rollout order for future gate directories across published parent
+  wrapper clones.
 - Schema parity strategy across JSON Schema, Pydantic, Zod, and TypeScript.
 
 ---bottom-matter---
@@ -86,20 +86,20 @@ gate_progress:
     notes: "No missing doctrine joins remain in memory."
   - gate_id: promotion_gate
     status: amber
-    notes: "Promotion still depends on standalone parent repo creation."
+    notes: "Promotion now depends on refreshed published-parent evidence."
 
 open_questions:
-  - "Should future standalone repo memory include rollout summaries or only canonical doctrine?"
+  - "Should published parent-repo memory include rollout summaries or only canonical doctrine?"
 
 pending_validations:
-  - "Revalidate this memory surface in the standalone repo."
+  - "Revalidate this memory surface in a fresh clone of the published standalone repo."
 
 promotion_criteria:
   - "Parent memory remains transportable and validator-backed."
 
 blocked_by:
-  - "Standalone repo not yet initialized."
+  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
 
 next_iteration:
   owner: "codex"
-  objective: "Promote this memory contract into the standalone parent repo."
+  objective: "Promote this memory contract across published parent-wrapper clones."

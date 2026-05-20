@@ -45,14 +45,13 @@ gate_progress:
     notes: "No missing source package joins remain."
   - gate_id: promotion_gate
     status: amber
-    notes: "Standalone repo transport still pending."
+    notes: "Source transport now targets fresh clones of the published parent repo."
 
 open_questions: []
 pending_validations: []
 promotion_criteria:
   - "Source package survives standalone repo transport."
-blocked_by:
-  - "Standalone repo not yet initialized."
+blocked_by: []
 next_iteration:
   owner: "codex"
-  objective: "Reuse source package in the standalone parent repo."
+  objective: "Reuse source package in fresh clones of the published standalone parent repo."

@@ -46,6 +46,9 @@ evidence-backed outer loop that can:
 7. emit measurable improvement artifacts over repeated iterations
 8. run a real proposer-evaluator ratchet where the prompt and loop behavior are
    themselves judged by durable evidence
+9. measure parent improvement tactics such as docs, MCP, and tool-surface
+   changes through an honest agent-eval lane when dry, smoke, or credentialed
+   runs are actually available
 
 ## Fitness Function
 
@@ -133,6 +136,9 @@ Stop and report when ANY of:
    ```bash
    uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json
    ```
+8. Run the strongest honest bounded parent-layer checks for GitNexus,
+   Graphify, and InfraNodus, and capture the result in
+   `evaluation/tool-health/status.json`.
 
 ## Improvement Loop
 
@@ -233,6 +239,7 @@ One JSON object per line:
 |---|---:|---|
 | Refresh validation, metrics, promotion, and gap artifacts after each kept cycle | +8 | Re-run validator and scorer and write outputs |
 | Keep report and iteration ledger synchronized | +5 | Ensure artifacts reference the same cycle count |
+| Refresh parent tool-health evidence when tool doctrine changes | +4 | Re-run bounded GitNexus, Graphify, InfraNodus, and agent-eval checks honestly |
 
 ## Constraints
 
@@ -300,23 +307,22 @@ gate_progress:
     notes: "Improvement layer is no longer missing from the parent wrapper contract."
   - gate_id: promotion_gate
     status: amber
-    notes: "Standalone parent repo still pending even though the parent seed now has a real goal loop."
+    notes: "Published parent repo exists; promotion now depends on refreshed tool-health and ratchet evidence."
 
 open_questions:
   - "Which fixed proposer should be default for the first standalone parent repo ratchet: MLX Bonsai, Claude CLI, or Codex?"
 
 pending_validations:
-  - "Run the parent scorer and ratchet runner."
-  - "Emit a real structured copilot-ratchet-report.json from a non-dry run."
+  - "Refresh the bounded tool-health evidence after parent-wrapper tool-surface changes."
 
 promotion_criteria:
   - "Parent scorer runs and emits a baseline metrics artifact."
   - "Parent ratchet runner appends iteration evidence."
+  - "Parent tool-health evidence remains honest about GitNexus, Graphify, InfraNodus, and agent-eval."
 
 blocked_by:
-  - "Standalone meta-harness repo not yet initialized."
-  - "A real non-dry copilot-ratchet-report.json has not yet been emitted."
+  - "Live InfraNodus analysis remains API/OAuth-bound until credentials are supplied for a real runtime check."
 
 next_iteration:
   owner: "codex"
-  objective: "Execute the new parent score loop using the local cloned upstream authorities and append the first real iteration evidence."
+  objective: "Execute the published parent score loop with refreshed tool-health evidence and honest evaluator boundaries."

@@ -1,0 +1,59 @@
+{
+  "report_id": "PARENT-TOOL-HEALTH-0001",
+  "created_at": "2026-05-20",
+  "scope": "portable_parent_wrapper",
+  "checks": {
+    "gitnexus": {
+      "status": "bounded_pass",
+      "full_repo_probe": {
+        "status": "warn",
+        "command": "HOME=$PWD/evaluation/tool-health/gitnexus-home gitnexus analyze . --skip-agents-md --name fre-meta-harness-parent",
+        "summary": "Indexed the parent repo, but scope-extraction warnings came from read-only files under external/.",
+        "evidence": [
+          "evaluation/tool-health/gitnexus-smoke.log"
+        ]
+      },
+      "fixture_probe": {
+        "status": "pass",
+        "command": "HOME=$PWD/evaluation/tool-health/gitnexus-parent-fixture/home gitnexus analyze evaluation/tool-health/gitnexus-parent-fixture/workdir --skip-agents-md --skip-git --name fre-meta-harness-parent-fixture",
+        "summary": "Indexed an isolated parent-layer fixture cleanly without traversing read-only external authorities.",
+        "evidence": [
+          "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log"
+        ]
+      }
+    },
+    "graphify": {
+      "status": "pass",
+      "probe": {
+        "command": "graphify update evaluation/tool-health/graphify-parent-fixture --no-cluster",
+        "summary": "Bounded parent fixture updated cleanly with no LLM requirement and produced graphify-out/graph.json.",
+        "evidence": [
+          "evaluation/tool-health/graphify-smoke.log",
+          "evaluation/tool-health/graphify-parent-fixture/graphify-out/graph.json"
+        ]
+      }
+    },
+    "infranodus": {
+      "status": "bounded",
+      "probe": {
+        "package": "infranodus-mcp-server@1.6.1",
+        "summary": "The package resolves locally and the parent doctrine map is present, but live MCP analysis remains API/OAuth-bound and was not faked without credentials.",
+        "evidence": [
+          "infranodus-phase-tool-map.json",
+          "evaluation/tool-health/infranodus-package.log"
+        ]
+      }
+    },
+    "agent_eval": {
+      "status": "dry_pass",
+      "probe": {
+        "command": "cd evaluation/tool-health/agent-eval/smoke && npx @vercel/agent-eval --dry",
+        "summary": "The Vercel agent-eval scaffold initialized and a dry run discovered experiments locally without requiring API calls.",
+        "evidence": [
+          "evaluation/tool-health/agent-eval-dry.log"
+        ],
+        "runtime_boundary": "Live experiment execution still requires eval fixtures plus AI_GATEWAY_API_KEY and VERCEL_TOKEN or direct provider credentials."
+      }
+    }
+  }
+}

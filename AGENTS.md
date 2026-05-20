@@ -88,21 +88,20 @@ gate_progress:
     notes: "Parent scaffold now points at library, prompts, comparison, and substrate."
   - gate_id: promotion_gate
     status: amber
-    notes: "Parent wrapper is stronger, but standalone repo creation remains outside this directory."
+    notes: "Parent wrapper is published; promotion now depends on keeping doctrine and evidence aligned."
 
-open_questions:
-  - "When the standalone fre-meta-harness repo is initialized, should these root files move unchanged or be regenerated from templates?"
+open_questions: []
 
 pending_validations:
-  - "Rerun the same contract validator inside the standalone parent repo after initialization."
+  - "Refresh the validator after parent tool-health doctrine changes."
 
 promotion_criteria:
   - "Parent scaffold validates cleanly."
   - "Standalone parent repo carries the same scaffold and proof package."
 
 blocked_by:
-  - "Standalone fre-meta-harness repository not yet initialized."
+  - "Live InfraNodus analysis remains API/OAuth-bound until runtime credentials are intentionally configured."
 
 next_iteration:
   owner: "codex"
-  objective: "Carry this validated parent wrapper contract into the standalone fre-meta-harness repo."
+  objective: "Keep the published parent wrapper contract aligned with current tool-health evidence."

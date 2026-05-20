@@ -28,9 +28,9 @@ upstream_local_refs:
 
 # FRE Meta Harness
 
-This directory is the portable outer wrapper for the `VW_iTwin_Bridge` body
-cell. It is the working seed surface for the standalone `fre-meta-harness`
-repo.
+This directory is the published portable outer wrapper for the
+`VW_iTwin_Bridge` body cell. It is the standalone `fre-meta-harness` parent
+repository root.
 
 ## What Lives Here
 
@@ -100,6 +100,20 @@ This wrapper:
 - structured report: `evaluation/copilot-ratchet-report.json`
 - iteration ledger: `runs/iterations.jsonl` (one compact JSON object per line)
 - latest metrics: `evaluation/metrics-latest.json`
+- bounded tool-health evidence: `evaluation/tool-health/status.json`
+
+## Parent Tool-Health Doctrine
+
+- GitNexus: use an isolated fixture smoke when validating the mutable parent
+  surface; indexing the full repo currently reaches read-only `external/`
+  authorities and can surface upstream parse warnings that are outside the kept
+  parent slice.
+- Graphify: use a bounded parent fixture and `graphify update` for a local
+  no-LLM smoke before relying on Graphify output in parent claims.
+- InfraNodus: keep the phase-tool doctrine local, but treat live graph analysis
+  as API/OAuth-bound unless runtime access is actually configured.
+- Vercel agent-eval: use dry or smoke runs as the honest local lane when API
+  credentials or full framework fixtures are not available.
 
 ## Acknowledgments
 
@@ -140,15 +154,14 @@ gate_progress:
 open_questions: []
 
 pending_validations:
-  - "Run the real Copilot ratchet through program.md and emit a structured report."
+  - "Refresh the parent tool-health evidence after changes to GitNexus, Graphify, InfraNodus, or agent-eval lanes."
 
 promotion_criteria:
   - "README remains aligned after transport into standalone repo."
 
 blocked_by:
-  - "Standalone meta-harness repo not yet initialized."
-  - "No real copilot-ratchet-report.json emitted yet."
+  - "Live InfraNodus analysis remains API/OAuth-bound until local runtime credentials are intentionally configured."
 
 next_iteration:
   owner: "codex"
-  objective: "Use this README as the entrypoint for the standalone repo seed."
+  objective: "Keep the published parent wrapper and its tool-health evidence aligned."

@@ -75,7 +75,8 @@ Search-set evaluation:
 
 Held-out evaluation:
 
-- replay inside the future standalone `fre-meta-harness` repo
+- replay inside a fresh clone of the published standalone `fre-meta-harness`
+  repo
 
 Primary metric:
 

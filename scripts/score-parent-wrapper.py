@@ -274,7 +274,7 @@ def plateau_or_blocker_truth() -> tuple[float, dict]:
     score = 0.0
     if kind == "continuing":
         valid = report.get("status") == "running" and actual_consecutive < 2
-        score = 12.5 if valid else 0.0
+        score = 25.0 if valid else 0.0
     elif kind == "plateau":
         valid = (
             report.get("status") == "pass"
@@ -283,10 +283,10 @@ def plateau_or_blocker_truth() -> tuple[float, dict]:
             and int(stop_evidence.get("consecutive_non_improving_cycles", 0)) >= 2
             and actual_consecutive >= 2
         )
-        score = 12.5 if valid else 0.0
+        score = 25.0 if valid else 0.0
     elif kind == "blocker":
         valid = report.get("status") == "blocked" and bool(stop_evidence.get("blocker_details"))
-        score = 12.5 if valid else 0.0
+        score = 25.0 if valid else 0.0
     return round(min(score, 25.0), 2), {
         "kind": kind,
         "stop_reason": stop_reason,
