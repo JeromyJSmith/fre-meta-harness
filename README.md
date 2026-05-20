@@ -29,7 +29,8 @@ upstream_local_refs:
 # FRE Meta Harness
 
 This directory is the portable outer wrapper for the `VW_iTwin_Bridge` body
-cell. It is the seed surface for the future standalone `fre-meta-harness` repo.
+cell. It is the working seed surface for the standalone `fre-meta-harness`
+repo.
 
 ## What Lives Here
 
@@ -100,6 +101,13 @@ This wrapper:
 - iteration ledger: `runs/iterations.jsonl` (one compact JSON object per line)
 - latest metrics: `evaluation/metrics-latest.json`
 
+## Acknowledgments
+
+This harness was shaped in part by the examples, teaching, and inspiration from:
+
+- Disler — https://github.com/disler
+- IndyDevDan — https://www.youtube.com/@IndyDevDan
+
 ---bottom-matter---
 status_summary:
   completeness: 1.0
@@ -126,13 +134,12 @@ gate_progress:
     status: green
     notes: "README now points at missing formerly-unwired surfaces."
   - gate_id: promotion_gate
-    status: amber
-    notes: "Standalone parent repo still not initialized."
+    status: green
+    notes: "Standalone fre-meta-harness repo is initialized and published."
 
 open_questions: []
 
 pending_validations:
-  - "Re-run parent validator after standalone repo creation."
   - "Run the real Copilot ratchet through program.md and emit a structured report."
 
 promotion_criteria:
