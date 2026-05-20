@@ -1,0 +1,9 @@
+[submodule "external/goal-md"]
+	path = external/goal-md
+	url = https://github.com/jmilinovich/goal-md.git
+[submodule "external/meta-harness"]
+	path = external/meta-harness
+	url = https://github.com/stanford-iris-lab/meta-harness.git
+[submodule "external/autoresearch-mlx"]
+	path = external/autoresearch-mlx
+	url = https://github.com/trevin-creator/autoresearch-mlx.git

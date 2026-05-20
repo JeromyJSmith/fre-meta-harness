@@ -67,6 +67,14 @@ cell. It is the seed surface for the future standalone `fre-meta-harness` repo.
   - `evaluation/`
   - `promotion/`
 
+## Clone And Bootstrap
+
+Clone with submodules so the imported upstream authorities are present locally:
+
+```bash
+git clone --recurse-submodules git@github.com:JeromyJSmith/fre-meta-harness.git
+```
+
 ## Current Role
 
 This wrapper:
