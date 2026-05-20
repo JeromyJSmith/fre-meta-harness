@@ -1,6 +1,6 @@
 {
   "report_id": "PARENT-META-VALIDATION-0001",
-  "created_at": "2026-05-18",
+  "created_at": "2026-05-20",
   "scope": "portable_parent_wrapper",
   "overall_status": "pass",
   "checks": [
