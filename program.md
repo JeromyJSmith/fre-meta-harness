@@ -60,7 +60,8 @@ that combines:
    - GitNexus
    - Graphify
    - InfraNodus
-   - Vercel agent-eval when the run is scoped to improvement evaluation
+   - Vercel agent-eval when the run is scoped to improvement evaluation, using
+     `scripts/run-parent-agent-eval.sh dry` before any smoke or live claim
 
 ## Mutable Surface
 
@@ -136,6 +137,9 @@ Required fields:
 
 - Use `uv` for Python execution.
 - Do not treat a dry run as proof.
+- Do not promote the parent agent-eval lane above dry unless the configured
+  experiment actually runs; for the current bounded local fixture that means
+  Docker plus `OPENAI_API_KEY`.
 - Do not stop after one real cycle unless an exact blocker is proven.
 - Do not edit the imported upstream local clones under `external/`.
 - Keep `runs/iterations.jsonl` as real JSONL: one compact JSON object per line.

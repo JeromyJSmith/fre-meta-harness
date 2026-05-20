@@ -1,0 +1,4 @@
+node_modules/
+.env.local
+results/
+evals/**/__agent_eval__/

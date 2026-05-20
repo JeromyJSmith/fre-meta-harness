@@ -18,5 +18,6 @@ clones under `external/` are part of that spine, not optional footnotes.
 
 Current improvement-layer capabilities include GitNexus and Graphify for
 bounded parent graph analysis, InfraNodus for doctrine-backed gap analysis, and
-Vercel agent-eval for dry, smoke, or credentialed parent improvement
-experiments.
+Vercel agent-eval as a parent-scoped evaluation lane with a kept dry fixture
+today and an exact direct-API Docker smoke contract for the next stronger local
+proof.

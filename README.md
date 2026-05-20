@@ -101,6 +101,7 @@ This wrapper:
 - iteration ledger: `runs/iterations.jsonl` (one compact JSON object per line)
 - latest metrics: `evaluation/metrics-latest.json`
 - bounded tool-health evidence: `evaluation/tool-health/status.json`
+- parent agent-eval fixture: `evaluation/agent-eval/`
 
 ## Parent Tool-Health Doctrine
 
@@ -112,8 +113,11 @@ This wrapper:
   no-LLM smoke before relying on Graphify output in parent claims.
 - InfraNodus: keep the phase-tool doctrine local, but treat live graph analysis
   as API/OAuth-bound unless runtime access is actually configured.
-- Vercel agent-eval: use dry or smoke runs as the honest local lane when API
-  credentials or full framework fixtures are not available.
+- Vercel agent-eval: use the parent-scoped fixture under `evaluation/agent-eval/`
+  and the contract in `contracts/agent-eval-parent-lane.yaml`. In this repo,
+  dry is the strongest honest local evidence today; the next bounded smoke lane
+  is `scripts/run-parent-agent-eval.sh smoke`, which only needs
+  `OPENAI_API_KEY` because the experiment is pinned to Docker.
 
 ## Acknowledgments
 

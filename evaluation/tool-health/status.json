@@ -46,14 +46,38 @@
     },
     "agent_eval": {
       "status": "dry_pass",
-      "probe": {
-        "command": "cd evaluation/tool-health/agent-eval/smoke && npx @vercel/agent-eval --dry",
-        "summary": "The Vercel agent-eval scaffold initialized and a dry run discovered experiments locally without requiring API calls.",
+      "project_root": "evaluation/agent-eval",
+      "contract": "contracts/agent-eval-parent-lane.yaml",
+      "experiment_id": "parent-wrapper-codex-docker",
+      "eval_id": "parent-wrapper-agent-eval-boundary",
+      "strongest_honest_local_evidence": "dry",
+      "dry_probe": {
+        "status": "pass",
+        "command": "scripts/run-parent-agent-eval.sh dry",
+        "summary": "The parent-scoped fixture resolved locally, discovered the codex/docker experiment, and found the single parent-wrapper eval without making API calls.",
         "evidence": [
-          "evaluation/tool-health/agent-eval-dry.log"
+          "evaluation/tool-health/agent-eval-dry.log",
+          "evaluation/agent-eval/README.md",
+          "evaluation/agent-eval/experiments/parent-wrapper-codex-docker.ts",
+          "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/PROMPT.md"
+        ]
+      },
+      "smoke_probe": {
+        "status": "blocked",
+        "command": "scripts/run-parent-agent-eval.sh smoke",
+        "summary": "The next stronger local lane is wired as a direct Codex smoke in Docker, but the run stopped closed because OPENAI_API_KEY was not configured.",
+        "evidence": [
+          "evaluation/tool-health/agent-eval-smoke.log",
+          "contracts/agent-eval-parent-lane.yaml"
         ],
-        "runtime_boundary": "Live experiment execution still requires eval fixtures plus AI_GATEWAY_API_KEY and VERCEL_TOKEN or direct provider credentials."
-      }
+        "satisfied_prerequisites": [
+          "docker"
+        ],
+        "missing_prerequisites": [
+          "OPENAI_API_KEY"
+        ]
+      },
+      "runtime_boundary": "Dry is the strongest honest local evidence in this run. The next stronger local smoke requires only OPENAI_API_KEY because the experiment is pinned to sandbox: docker; AI_GATEWAY_API_KEY, VERCEL_TOKEN, and VERCEL_OIDC_TOKEN are not required for that step."
     }
   }
 }

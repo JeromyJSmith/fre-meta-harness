@@ -1,0 +1,62 @@
+version: 1
+contract_id: parent-agent-eval-lane
+scope: portable_parent_wrapper
+subject: vercel-agent-eval parent self-improvement lane
+owner: fre-meta-harness
+
+truth_boundaries:
+  docs_updates:
+    description: "Narrative updates that explain the lane."
+    counts_as_evaluation_evidence: false
+  tool_health:
+    description: "Command-level proof that the lane scaffolds, resolves, and reports its current runtime boundary."
+    counts_as_evaluation_evidence: true
+  improvement_proof:
+    description: "A completed agent-eval run with durable result artifacts and a task that measures parent-wrapper usability truthfully."
+    counts_as_evaluation_evidence: true
+    requires_non_dry_execution: true
+
+current_state:
+  strongest_honest_local_evidence: dry
+  stronger_local_evidence_available_without_credentials: false
+  fixture_root: evaluation/agent-eval
+  experiment_id: parent-wrapper-codex-docker
+  eval_id: parent-wrapper-agent-eval-boundary
+
+commands:
+  dry: "scripts/run-parent-agent-eval.sh dry"
+  smoke: "scripts/run-parent-agent-eval.sh smoke"
+
+dry_contract:
+  purpose: "Discover the parent-scoped experiment and eval fixture without API calls."
+  expected_artifacts:
+    - evaluation/tool-health/agent-eval-dry.log
+
+next_smoke_contract:
+  purpose: "Run one direct Codex smoke in a local Docker sandbox against the parent-wrapper boundary fixture."
+  experiment:
+    agent: codex
+    sandbox: docker
+    validation: vitest
+    copy_files: all
+  required_runtime:
+    docker: present
+    OPENAI_API_KEY: required
+  not_required:
+    - AI_GATEWAY_API_KEY
+    - VERCEL_TOKEN
+    - VERCEL_OIDC_TOKEN
+  expected_artifacts:
+    - evaluation/tool-health/agent-eval-smoke.log
+    - evaluation/agent-eval/results/
+  failure_boundary: "If OPENAI_API_KEY is absent, the smoke attempt must stop closed and remain below smoke evidence."
+
+future_live_contract:
+  purpose: "Repeatable non-dry evaluation runs with durable results that can compare parent-wrapper changes over time."
+  expected_artifacts:
+    - evaluation/agent-eval/results/**/result.json
+    - evaluation/agent-eval/results/**/classification.json
+  prerequisites:
+    - OPENAI_API_KEY
+    - docker
+    - a kept parent-wrapper change whose effect should be measured by the eval

@@ -72,6 +72,8 @@ Search-set evaluation:
 - InfraNodus gap-artifact alignment
 - local-upstream-authority alignment against the cloned `goal-md`,
   `meta-harness`, and `autoresearch-mlx` surfaces
+- parent-scoped `evaluation/agent-eval/` fixture readiness and truthful dry,
+  smoke, or live boundary reporting
 
 Held-out evaluation:
 

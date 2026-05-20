@@ -48,7 +48,9 @@ evidence-backed outer loop that can:
    themselves judged by durable evidence
 9. measure parent improvement tactics such as docs, MCP, and tool-surface
    changes through an honest agent-eval lane when dry, smoke, or credentialed
-   runs are actually available
+   runs are actually available, with Docker-backed direct-API smoke preferred
+   over fake-green Vercel-token assumptions when local provider credentials are
+   the only missing input
 
 ## Fitness Function
 
@@ -142,6 +144,9 @@ Stop and report when ANY of:
 8. Run the strongest honest bounded parent-layer checks for GitNexus,
    Graphify, and InfraNodus, and capture the result in
    `evaluation/tool-health/status.json`.
+9. When the slice is about parent self-improvement evaluation, run
+   `scripts/run-parent-agent-eval.sh dry` first, then only promote to smoke or
+   live if the required provider credential is actually configured.
 
 ## Improvement Loop
 

@@ -1,0 +1,11 @@
+Loading config from experiments/parent-wrapper-codex-docker.ts...
+Discovering evals in /Volumes/PixelTable/VW_iTWIN_Bridge/meta/evaluation/agent-eval/evals...
+
+Found 1 valid fixture(s), will run 1:
+  - parent-wrapper-agent-eval-boundary
+
+Running 1 eval(s) x 1 run(s) = 1 total runs
+Agent: codex, Model: openai/gpt-5.2-codex, Timeout: 300s, Early Exit: true
+Sandbox: docker (explicit)
+
+[DRY RUN] Would execute evals here

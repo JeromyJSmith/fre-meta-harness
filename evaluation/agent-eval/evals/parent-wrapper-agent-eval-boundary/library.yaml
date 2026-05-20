@@ -1,0 +1,5 @@
+library:
+  capabilities:
+    - name: vercel-agent-eval
+      description: Parent improvement evaluator with dry, smoke, and live boundaries.
+      source: evaluation/tool-health/status.json

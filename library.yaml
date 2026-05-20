@@ -40,8 +40,8 @@ library:
       description: Architectural graph analysis lane used for bounded parent fixture checks and drift detection.
       source: evaluation/tool-health/status.json
     - name: vercel-agent-eval
-      description: Harness-improvement evaluator for measuring docs, MCP, and agent success through dry, smoke, or credentialed experiments.
-      source: evaluation/tool-health/status.json
+      description: Parent-scoped evaluator with a real dry fixture today and an exact direct-API Docker smoke contract for the next stronger local proof.
+      source: evaluation/agent-eval/README.md
     - name: pixeltable
       description: Durable multimodal substrate for evidence, UDFs, computed columns, and normalization.
       source: pixeltable-operational-substrate.md
@@ -70,6 +70,10 @@ library:
       description: Durable parent-layer evidence for GitNexus, Graphify, InfraNodus, and agent-eval availability.
       kind: evaluation
       source: evaluation/tool-health/status.json
+    - name: parent-agent-eval-contract
+      description: Exact parent-layer truth contract for dry, smoke, and live agent-eval evidence.
+      kind: contract
+      source: contracts/agent-eval-parent-lane.yaml
     - name: active-body-registry
       description: Current active child body registry.
       kind: config
@@ -93,3 +97,6 @@ library:
     - name: parent-ratchet-cycle
       description: Run the real Copilot-driven parent ratchet through the local program and append an iteration ledger row.
       source: scripts/run-parent-ratchet.sh
+    - name: parent-agent-eval-cycle
+      description: Run the bounded parent agent-eval dry or smoke lane against the parent-scoped fixture.
+      source: scripts/run-parent-agent-eval.sh

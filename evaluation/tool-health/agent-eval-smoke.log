@@ -1,0 +1,1 @@
+blocked: OPENAI_API_KEY is required for the direct codex smoke experiment; docker is available so no VERCEL_TOKEN is needed.

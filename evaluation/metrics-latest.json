@@ -3,8 +3,8 @@
   "created_at": "2026-05-20",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated-substantive",
-  "total_score": 86.09,
-  "outcome_score": 81.45,
+  "total_score": 92.84,
+  "outcome_score": 90.45,
   "instrument_score": 100.0,
   "weakest_component": "non_dry_cycle_depth",
   "outcome_components": {
@@ -13,20 +13,20 @@
       "details": {
         "status": "blocked",
         "schema_errors": [],
-        "real_rows": 5,
-        "kept_rows": 2,
-        "substantive_kept_rows": 1,
+        "real_rows": 7,
+        "kept_rows": 3,
+        "substantive_kept_rows": 2,
         "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
-      "score": 15.0,
+      "score": 20.0,
       "details": {
-        "count": 5,
-        "substantive_kept_rows": 1,
-        "rejected_or_reverted_rows": 3,
-        "history_rows": 5,
-        "real_rows": 5,
+        "count": 7,
+        "substantive_kept_rows": 2,
+        "rejected_or_reverted_rows": 4,
+        "history_rows": 7,
+        "real_rows": 7,
         "parse_errors": [],
         "schema_errors": []
       }
@@ -35,19 +35,19 @@
       "score": 25.0,
       "details": {
         "kind": "blocker",
-        "stop_reason": "exact blocker: the repaired parent score is saturated at 100.0, the README-only probe did not move it further, and live InfraNodus runtime remains intentionally credentials-bound",
-        "cycles": 5,
+        "stop_reason": "exact blocker: the parent-scoped agent-eval lane now has real dry fixture evidence, but the next stronger local Docker smoke remains blocked because OPENAI_API_KEY is not configured",
+        "cycles": 7,
         "actual_consecutive_non_improving": 1,
         "schema_errors": []
       }
     },
     "artifact_refresh": {
-      "score": 16.45,
+      "score": 20.45,
       "details": {
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 6188.516026496887,
+        "freshness_span_seconds": 14.916975736618042,
         "tool_statuses": [
           "bounded_pass",
           "pass",
@@ -71,9 +71,9 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 5,
-        "detailed_rows": 5,
-        "ledger_rows": 5,
+        "history_rows": 7,
+        "detailed_rows": 7,
+        "ledger_rows": 7,
         "ledger_aligned": true,
         "parse_errors": []
       }
@@ -81,13 +81,13 @@
     "metric_decision_truth": {
       "score": 30.0,
       "details": {
-        "decision": "repaired",
+        "decision": "accepted",
         "has_reason": true,
         "schema_errors": [],
         "trustworthy": true
       }
     }
   },
-  "iteration_count": 5,
+  "iteration_count": 7,
   "iteration_parse_errors": []
 }
