@@ -1,0 +1,9 @@
+body:
+  cells:
+    - id: body.vw_itwin_bridge
+      name: VW_iTwin_Bridge
+      path: /Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge
+      kind: tanstack_runtime_app
+      status: active
+      role: "browser control surface and runtime shell for MetaHarness MVP"
+      local_harness: /Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/meta

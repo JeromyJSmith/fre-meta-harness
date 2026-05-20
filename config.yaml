@@ -1,0 +1,16 @@
+harness:
+  id: meta.root
+  name: VW iTwin Bridge MetaHarness
+  kind: enclosing_harness
+body:
+  active:
+    - id: body.vw_itwin_bridge
+      path: /Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge
+      role: runtime_mvp
+relationships:
+  bridge_context:
+    - vectorworks
+    - itwin
+current_phase:
+  id: runtime_mvp
+  goal: "Prove browser -> router -> agent runtime -> event ledger -> replay."

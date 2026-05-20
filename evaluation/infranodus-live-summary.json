@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-05-18",
+  "source": "mcp__infranodus__.generate_knowledge_graph",
+  "scope": "portable_parent_wrapper",
+  "statistics": {
+    "modularity": 0.6840293674922019,
+    "clusterCount": 12,
+    "nodeCount": 150,
+    "edgeCount": 256,
+    "diversity_score": "dispersed",
+    "modularity_score": "very_high"
+  },
+  "contentGaps": [
+    "Gap 1: 3. Graph Analysis (knowledge graph exist analyze search text google related) -> 10. Active Identification (child body surface vw active identify standalone itwin)",
+    "Gap 2: 3. Graph Analysis (knowledge graph exist analyze search text google related) -> 9. Operational Substrate (substrate ref operational pixeltable template authority upstream carry)",
+    "Gap 3: 8. Role Metrics (metric current role blocker evidence durable iteration loop) -> 10. Active Identification (child body surface vw active identify standalone itwin)"
+  ],
+  "mainTopicalClusters": [
+    "1. Prompt Governance: prompt schema run govern contract heavy maintain agent (4 | 7% | 20%)",
+    "2. Goal Onboarding: md goal external program onboard domain slice autoresearch (0 | 11% | 13%)",
+    "3. Graph Analysis: knowledge graph exist analyze search text google related (10 | 10% | 11%)",
+    "4. Reporting Cycle: report ratchet real copilot dry cycle evaluator proposer (6 | 7% | 10%)",
+    "5. Content Generation: generate seo topical contextual content cluster hint gap (11 | 6% | 10%)",
+    "6. Tool Mapping: json map tool phase infranodus full required supporting (5 | 5% | 10%)",
+    "7. Meta Structure: parent meta wrapper portable outer harness id slug (1 | 7% | 8%)",
+    "8. Role Metrics: metric current role blocker evidence durable iteration loop (7 | 19% | 6%)",
+    "9. Operational Substrate: substrate ref operational pixeltable template authority upstream carry (3 | 13% | 5%)",
+    "10. Active Identification: child body surface vw active identify standalone itwin (2 | 9% | 3%)",
+    "11. Scoring Validation: score split ledger script instrument runner validate outcome (9 | 5% | 3%)",
+    "12. Proof Package: proof (8 | 1% | 0%)"
+  ],
+  "mainConcepts": [
+    "prompt",
+    "schema",
+    "json",
+    "md",
+    "report",
+    "generate",
+    "seo",
+    "parent",
+    "goal",
+    "run",
+    "knowledge",
+    "graph",
+    "meta",
+    "external",
+    "govern",
+    "ratchet"
+  ],
+  "conceptualGateways": [
+    "seo",
+    "schema",
+    "json",
+    "report",
+    "generate",
+    "exist",
+    "knowledge",
+    "external"
+  ],
+  "topRelations": [
+    "1) meta <-> harness",
+    "2) agent <-> heavy",
+    "3) heavy <-> run",
+    "4) run <-> prompt",
+    "5) goal <-> md",
+    "6) parent <-> meta",
+    "7) search <-> query",
+    "8) program <-> md",
+    "9) prompt <-> schema",
+    "10) required <-> tool",
+    "11) supporting <-> tool",
+    "12) readme <-> md"
+  ],
+  "topInfluentialNodes": [
+    {
+      "node": "prompt",
+      "bc": 0.33992381643388353,
+      "degree": 12
+    },
+    {
+      "node": "schema",
+      "bc": 0.3012425176854707,
+      "degree": 3
+    },
+    {
+      "node": "json",
+      "bc": 0.27566660620351896,
+      "degree": 5
+    }
+  ]
+}

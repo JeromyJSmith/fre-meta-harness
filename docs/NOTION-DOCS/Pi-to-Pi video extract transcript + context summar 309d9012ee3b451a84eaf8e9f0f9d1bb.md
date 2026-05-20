@@ -1,0 +1,764 @@
+# Pi-to-Pi video: extract transcript + context summary
+
+Added: May 19, 2026 9:22 PM
+Last edited: May 19, 2026 9:45 PM
+Link: https://www.youtube.com/watch?v=PIdETjcXNIk
+Notes: Deliverable: full transcript captured into a durable artifact and summarized for quick context. Must be linkable from the install/runbook task.
+Priority: P1
+Source(s): Pi to Pi: Two-Way Agent Orchestration with the Pi Coding Agent (YouTube) (Pi%20to%20Pi%20Two-Way%20Agent%20Orchestration%20with%20the%20Pi%20C%2064fe03c77410491787f2007caf708f1a.md)
+Status: Todo
+Text: (1990) Pi to Pi: Two-Way Agent Orchestration with the Pi Coding Agent - YouTubeExtract the transcript and then decompose it. We want to create a guide for an agent architect that is coding my harness. What you're going to do is: - You're going to summarize it after you extract the full transcript. You want to do a summary for context and then a step-by-step explanation in the form of how to install it for each step. - You're going to reference the transcript to give it very clear guidance in clear context for each step. What else? Then what I would like you to do is research GitHub and research Infranodus's GitHub repository. His username on GitHub is Disler. I want you to look through all of his repositories and find out which of those repositories are complementary and will be a perfect fit as an infrastructure tool that follows the best practices and his principles.ThinkLet me analyze this task carefully. Jero wants me to: 1. Extract the full transcript of the YouTube video "Pi to Pi: Two-Way Agent Orchestration with the Pi Coding Agent" 2. Decompose it into a guide for an agent architect coding his harness 3. Provide a summary for context + step-by-step installation instructions with transcript references 4. Research GitHub user "Disler" (note: user said "Infranodus's GitHub repository" but the username is Disler - IndyDevDan) 5. Find complementary repositories that fit as infrastructure tools following his best practices and principles The user is Jero - Director of Technology, systems architect. He wants comprehensive output, not optional pieces. He wants a markdown ticket with front matter to track progress. Forward-thinking, detailed, beautiful formatted documents. Tool selection: - YouTube video transcript: use understand_video with video_id PIdETjcXNIk - GitHub research on Disler: use batch_crawl_url_and_answer or web search for his repos Let me do these in parallel since they're independent: 1. understand_video for the YouTube video 2. Crawl GitHub for Disler's repositories The video_id from the URL is PIdETjcXNIk. For Disler's GitHub: https://github.com/disler Let me execute both in parallel for efficiency.ViewUnderstand VideoPIdETjcXNIkViewParallel Readhttps://github.com/disler?tab=repositorieshttps://github.com/dislerViewThinkExcellent. I have the full transcript and a comprehensive list of Disler's repositories. Now let me dig deeper into the most relevant repositories for Jero's harness work. Let me grab more detail on the key candidates: Most promising infrastructure complements to pi-vs-claude-code (Pi to Pi): 1. **the-library** - Meta-Skill for Private-First Distribution of Agentics (Skills, Agents, and Prompts) across Agents, Devices, and Teams - PERFECT companion for distributing pi-to-pi extensions 2. **mac-mini-agent** - Operating Mac devices with agents - PERFECT for the Mac Mini production/dev scenario in the video 3. **agent-sandbox-skill** - The exact skill Dan references in the video as the E2B agent sandbox 4. **fork-repository-skill** - Fork your current agent N times - peer-to-peer agents 5. **bowser** - Composable skills, subagent, command, justfile layered architecture 6. **install-and-maintain** - Deterministic and Agentic patterns for installing and maintaining 7. **just-prompt** - Unified MCP interface to LLM providers - multi-model orchestration 8. **nano-agent** - MCP server for small-scale engineering agents with multi-provider LLM support 9. **beyond-mcp** - Push beyond MCP servers 10. **single-file-agents** - Powerful AI agents in single Python file 11. **pocket-pick** - Code snippet retrieval 12. **infinite-agentic-loop** - Two prompt system for infinite agent loops 13. **big-3-super-agent** - Multi-agent experiment combining big 3 providers I have enough information. Let me now synthesize the deliverable. Jero wants: - Beautiful detailed report with comprehensive data - Markdown ticket with front matter for progress tracking - Forward-thinking, detailed formatting - Summary for context - Step-by-step install guide with transcript references for each step - Complementary Disler repos as infrastructure tools Let me build this comprehensive document now. I'll structure it like a real architectural design document with a YAML frontmatter ticket.View
+Let me also pull README detail on the highest-priority candidate repos so I can speak precisely about how they fit the harness, then I'll deliver the full architectural brief.Parallel Readhttps://github.com/disler/pi-vs-claude-codehttps://github.com/disler/the-libraryhttps://github.com/disler/mac-mini-agenthttps://github.com/disler/agent-sandbox-skillhttps://github.com/disler/just-prompthttps://github.com/disler/fork-repository-skillView
+I have everything I need. Now I'll synthesize the complete architectural brief — a Markdown ticket with YAML front matter, a transcript-grounded install guide, and a researched infrastructure-stack recommendation from Disler's repos.
+
+Copy---
+ticket_id: HARNESS-PIPI-001
+title: "Pi-to-Pi Agent-to-Agent Harness — Install Guide + Disler Infra Stack"
+type: architecture-spec + install-runbook
+owner: Jero (Director of Technology)
+operator_agent: Agent Architect (coding the harness)
+status: ready-for-implementation
+priority: P1
+created_utc: 2026-05-20
+source:
+  video_title: "Pi to Pi: Two-Way Agent Orchestration with the Pi Coding Agent"
+  video_id: PIdETjcXNIk
+  video_url: https://www.youtube.com/watch?v=PIdETjcXNIk
+  author: IndyDevDan (GitHub: disler)
+  duration_sec: 2092
+  upload_date: 2026-05-18
+primary_repo: https://github.com/disler/pi-vs-claude-code
+target_runtime:
+  agent_harness: Pi Coding Agent (pi CLI)
+  package_manager: Bun >= 1.3.2
+  task_runner: just
+  models_supported: [gpt-5.5, opus-4.7, glm-5.1, gemini, openrouter-passthrough]
+extensions_to_install:
+  - extensions/coms.ts        # same-machine peer-to-peer
+  - extensions/coms-net.ts    # cross-device peer-to-peer over BUN HTTP/SSE hub
+a2a_protocol_surface:
+  - list_agents
+  - send_command
+  - send_prompt
+  - await_response (block + non-blocking poll variants)
+acceptance_criteria:
+  - Two pi agents on the SAME host can ping, prompt, and await each other.
+  - Two pi agents on DIFFERENT hosts (Prod=Mac Mini, Dev=MacBook) coordinate via coms-net hub with no PII leakage.
+  - >=3 agents (different models) can join the pool dynamically (e.g., jcoms 4 = GLM agent) without restart.
+  - End-state detection works; sloppy-prompt loops are guarded by explicit completion criteria.
+progress:
+  - [x] Transcript extracted (2092s, full chapters captured)
+  - [x] Install runbook drafted with transcript-anchored citations
+  - [x] Disler repo inventory + complementary-infra fitment analysis
+  - [ ] Provision Bun 1.3.2 + just + pi CLI on both hosts
+  - [ ] Clone disler/pi-vs-claude-code and run `bun install`
+  - [ ] Wire .env with OPENAI/ANTHROPIC/GEMINI/OPENROUTER keys
+  - [ ] Boot `just coms-net-server` on hub host
+  - [ ] Connect 2 clients with `just coms` (named prod + dev)
+  - [ ] Reproduce the Prod/Dev PII-safe bug-repro demo (verification scenario)
+  - [ ] Layer in the-library for skill distribution across both hosts
+  - [ ] Add agent-sandbox-skill (E2B) + plan exe.dev parity skill
+  - [ ] Stand up just-prompt MCP for CEO/board cross-model arbitration
+related_videos:
+  - "Verifier Agent": https://youtu.be/EnXKysJNz_8
+external_services_referenced:
+  - https://pi.dev/        # Pi coding agent
+  - https://e2b.dev/       # sandbox provider (current)
+  - https://exe.dev/       # sandbox provider (parity target)
+---
+
+1. Executive Context (the why, in one breath)
+IndyDevDan ships a peer-to-peer A2A pattern for the Pi coding agent: flat, bidirectional, cross-device agent communication implemented as two Pi extensions (coms.ts for same-machine, coms-net.ts for networked) sitting on a tiny Bun HTTP/SSE hub. The protocol surface is intentionally only four tools — list_agents, send_command, send_prompt, await_response. The thesis: subagent delegation is the local maximum of multi-agent orchestration; flat peer-to-peer beats hierarchy because the best information usually lives at the worker tier and dies in chains of command. (transcript 04:56 → 12:33).
+He proves it with two live runs:
+1. Prod (Mac Mini) ↔ Dev (M5 MacBook Pro) — reproduce a Pro-tier lockout bug, stripping PII at the production boundary while the dev agent imports the affected slice (transcript 01:18 → 12:30).
+2. E2B agent ↔ exe.dev agent — build a brand-new exe.dev "agent-sandbox" skill with feature parity to an existing E2B skill, validated turn-by-turn (transcript 12:33 → 27:42).
+For Jero's harness, this is the missing primitive between "Claude Code with subagents" and a true composable agent mesh. It's not a replacement for orchestration — it's a primitive over composition (transcript 30:08).
+2. Install Runbook — Step-by-Step, Transcript-Anchored
+Every step below is annotated with the timestamp and quoted intent from the source so the agent architect can verify what each step means before executing it.
+Step 0 — Mental model lock-in (before touching a terminal)Transcript 21:39 — "There's four tools here. There's basically no magic. It's really simple." Transcript 22:13 — "I'll have two versions of this available to you. Both are going to be available in the Pi versus Cloud Code codebase."
+Two extensions, two modes:
+• coms → same-machine pool. Cheapest path. Use first to validate the protocol.
+• coms-net → "boot up a simple simple simple lightweight bun server here that accepts requests over the network" (transcript 23:05). Use this for the Prod/Dev cross-device pattern.
+Step 1 — Install the three prerequisites on every host that will run a Pi agentTranscript 22:34 — "extensions for the PI agent harness." (every host needs the Pi CLI) Transcript 22:54 — "comms version. So this is the non-network version." (justfile-driven workflow)
+Required on each box (Mac Mini and MacBook for the demo topology):
+1. Bun ≥ 1.3.2 — runtime for both the extensions and the hub.
+2. just — task runner; the repo's justfile is the canonical entrypoint. set dotenv-load is on, so just auto-sources .env.
+3. pi — the Pi Coding Agent CLI itself (the harness; see mariozechner/pi-coding-agent for the upstream).
+Verify: bun --version && just --version && pi --version.
+Step 2 — Clone the Pi extensions monorepoTranscript 22:25 — "this is a codebase that uh has been live for quite some time and it's where I posted and shared a lot of extensions from simple to complex across multiple different agent harness use cases."
+
+Copygit clone https://github.com/disler/pi-vs-claude-code.git
+cd pi-vs-claude-code
+bun install
+
+You should now see extensions/coms.ts, extensions/coms-net.ts, plus specs/, .pi/ (agent-sessions, agents, skills, themes, damage-control-rules.yaml), justfile, and the CLAUDE.md / THEME.md / TOOLS.md reference docs.
+Step 3 — Wire model credentialsTranscript 26:13 — "with every unique model that you add to your system… These models are trained in a completely different way. They have different RL loops." (multi-provider is the point)
+
+Copycp .env.sample .env
+# fill in any subset of:
+#   OPENAI_API_KEY=...
+#   ANTHROPIC_API_KEY=...
+#   GEMINI_API_KEY=...
+#   OPENROUTER_API_KEY=...
+
+Critical gotcha: Pi does not auto-load .env. Either run via just … (which uses set dotenv-load) or source .env && pi. The agent architect should encode just as the canonical entrypoint in the harness wrapper.
+For LAN coms-net, also set PI_COMS_NET_AUTH_TOKEN to a non-empty secret — the hub requires it before accepting external clients.
+Step 4 — Smoke test the same-machine pattern (coms)Transcript 02:18 — "I'll boot up two agents here. One on my Mac Mini, the production server, and one on my M5 MacBook Pro… We'll do jcoms 2. And we'll give this a name. This is going to be production. Jcoms one name dev. We'll run some basic pings to make sure both agents are up and online."
+On the same machine, open two terminals:
+
+Copy# Terminal A
+just local-coms --name prod  --purpose "production gatekeeper, PII-safe"
+# Terminal B
+just local-coms --name dev   --purpose "dev environment, reproduces bugs locally"
+
+Inside either agent, exercise the four-tool protocol: list_agents → send_prompt --to dev "ping" → capture message_id → await_response message_id. If the round-trip works, the comms layer is healthy.
+Step 5 — Stand up the networked hub (coms-net) for cross-deviceTranscript 23:04 — "we basically boot up a simple simple simple lightweight bun server here that accepts requests over the network and you can imagine we have a simple set that uh let the agent connect get messages list agents process events."
+On the chosen hub host (Mac Mini in the demo):
+
+Copyjust coms-net-server          # binds locally
+# or, for LAN exposure to the MacBook:
+just coms-net-server-lan      # requires PI_COMS_NET_AUTH_TOKEN
+
+On each client host (Mac Mini agent, MacBook agent, plus any extras):
+
+Copyjust coms --name prod          # on the Mac Mini
+just coms --name dev           # on the MacBook
+just coms --name glm-agent     # transcript 12:13 — "jcoms 4 = GLM agent", any time
+
+This implements the flat peer mesh you saw in the demo (transcript 07:21 → 07:41: "you can push this across devices and across multiple agents… three agents in the network… researcher, coder, planner").
+Step 6 — Implement the canonical Prod/Dev PII-safe playbook (acceptance scenario)Transcript 03:11 — "Bring the affected slice from production over with PII stripped into your local Dev DB so an engineer can reproduce the issue locally."
+This is your end-to-end acceptance test. Prompts (paraphrased into role-prompt structure):
+• Prod agent system prompt: gatekeeper role; owns production DB; never exposes PII; "you have a teammate."
+• Dev agent driver prompt: "Reproduce the prod bug locally. The prod slice must arrive PII-stripped. You are the driver — initiate; the prod agent will not."
+Verification, per transcript 11:33 — "I could come in here and validate that everything looks good on the production agent side. Right? Do one final check with the dev agent. PII safe. The issue has been reproduced." — make this a hook in your harness: after the dev agent claims completion, automatically prompt the prod agent with verify: any PII leaked? confirm bug isolated.
+Step 7 — Add a third co-equal agent (proves dynamic membership)Transcript 12:13 — "Jcoms, let's use four. I think that's the GLM agent. You can see GLM added here and now it is part of the pool."
+Demonstrate that membership is hot — no restart, no orchestrator reconfiguration. The mesh is permanent ("it's permanent. Okay, there's no, you know, no sub aent delegation, no spin up or spin down, no resume" — transcript 28:17). This is a property your harness should preserve at the wrapper layer; do not add lifecycle ceremony.
+Step 8 — Encode the failure modes as guardrails (do not skip)Transcript 31:06 — "loops are possible if prompts are sloppy… You need an end state." Transcript 32:13 — "be careful not to just fall back into the orchestration pattern unless you need it."
+The architect should ship these as first-class guardrails:
+1. End-state detector — every multi-turn A2A scenario gets an explicit done | failed | needs-human token contract. Detect it in the harness, not in prose.
+2. Loop budget — bound on outbound send_prompt calls per agent per scenario; circuit-break on exceed.
+3. PII redactor at the prod boundary — non-bypassable, even by the agent itself. This pairs with the existing damage-control-rules.yaml in .pi/.
+4. Topology lint — when an agent starts behaving like an orchestrator (fan-out > N to peers it didn't initiate dialogue with), warn. You'll know you've drifted back into hierarchy.
+Step 9 — Promote to the second scenario (sandbox-skill parity)Transcript 19:38 — "you're the exe.dev agent. There is no agent sandbox exe dev skill yet. Your job is to build one… reference target is this existing skill here which your teammate understands."
+Reuse the same coms-net mesh to run the E2B agent ↔ exe.dev agent pattern: one agent owns the known skill, the other is the builder, driver = builder. This is the same protocol — different role assignment. If you can do Step 6 and Step 9 both on the same hub, your harness is complete.
+3. Disler Repository Stack — Complementary Infrastructure Picks
+The user asked for: of Disler's repos, which are the perfect-fit infrastructure complements that follow his best practices and his principles. The shared principles across his work are: (a) primitives over compositions, (b) the agent is the runtime, (c) flat over hierarchical, (d) tools you can read and adapt, (e) deterministic guardrails around non-deterministic agents.
+Below is the curated stack, ranked by fitment with the Pi-to-Pi harness. Each entry includes why it fits, what it adds to the harness, and integration order.
+Tier 1 — Install alongside pi-vs-claude-code immediately#RepoWhy it fitsWhat it adds to your harness1https://github.com/disler/the-libraryA meta-skill that distributes skills/agents/prompts as typed references (skill:base-utils, agent:reviewer, prompt:task-router) across devices via private Git. The README states the runtime is agent-agnostic and explicitly names Pi as a supported harness.Solves the "how do I keep prod-Mac-Mini, dev-MacBook, and any new joiner in sync" problem the Pi-to-Pi demo silently assumes. Treat this as your package manager for the A2A mesh.2https://github.com/disler/mac-mini-agentBuilt for exactly the topology in the demo: a Mac Mini sandbox device + a primary "engineer devbox" laptop. Ships four CLIs — Steer (GUI), Drive (tmux), Listen (job server), Direct (client).Gives the prod Mac Mini real OS-level control + a job queue, so the prod Pi agent isn't just talking — it can actually drive the machine that owns the database. Drop-in physical substrate for Step 6.3https://github.com/disler/agent-sandbox-skillThis is literally the skill referenced in the video (transcript 13:43 — "my E2B skill where I can just quickly spin up an agent sandbox"). Skill structure: .claude/skills/agent-sandboxes/{SKILL.md, prompts/, sandbox_cli/}.Becomes the reference target for Step 9 — and once the exe.dev parity skill is built via Pi-to-Pi, you fork it into the same skill layout.4https://github.com/disler/just-promptMCP server with unified surface across OpenAI, Anthropic, Gemini, Groq, DeepSeek, Ollama; ships a ceo_and_board tool for multi-model deliberation.Lets any Pi peer fan out a single decision to the full provider matrix without each agent re-implementing client SDKs. The CEO/board call is the non-peer-to-peer arbitration escape valve Dan acknowledges (transcript 32:18 — "compose peer-to-peer agent communication back into a orchestration pattern").
+Tier 2 — Add as the mesh matures#RepoWhy it fits5https://github.com/disler/fork-repository-skill"Fork your current agent N times to smoothly branch your engineering work." Maps 1:1 to the dynamic membership property of the coms-net mesh — spawn the Nth Pi peer from inside a running peer. Currently Claude Code-flavored skill; you'll adapt the cookbook entry to a pi-cli.md recipe and Pi will pick it up via the same .claude/skills discovery the harness honors.6https://github.com/disler/bowser"Composable skills, subagent, command, and justfile layered architecture." Exact same justfile-as-entrypoint pattern as pi-vs-claude-code — drop-in browser automation peer. Add one bowser agent to your pool and the mesh now has a UI tester co-worker.7https://github.com/disler/install-and-maintain"Deterministic and Agentic patterns for installing and maintaining successful production applications." Direct implementation aid for the acceptance criteria in this very ticket — deterministic install scripts wrapped around the agentic harness.8https://github.com/disler/nano-agentMCP server for small-scale engineering agents with multi-provider LLM support. Use as the lightweight peer class — when GPT-5.5 + Opus-4.7 is overkill, spin a nano-agent peer for cheap research/lookup roles in the same mesh.
+Tier 3 — Read and harvest patterns; integrate selectively#RepoPattern to borrow9https://github.com/disler/beyond-mcpMental model for when not to reach for an MCP server — the coms/coms-net extensions are themselves "beyond MCP" examples.10https://github.com/disler/single-file-agentsPattern for shipping a peer as one Python file when you need an agent on a host where you can't install the full Pi stack.11https://github.com/disler/pocket-pickA retrieval skill for code snippets — give one peer in the mesh the "librarian" role so others don't burn context re-searching.12https://github.com/disler/infinite-agentic-loopTwo-prompt infinite loop — useful as a contrast pattern and as a stress-test corpus for your Step-8 loop-budget guardrail.13https://github.com/disler/big-3-super-agentReference for blending Gemini Computer Use + OpenAI Realtime + Claude Code; informs what each peer in your mesh might specialize in.14https://github.com/disler/live-benchFastAPI + CLI + Vue3 with SSE — same Bun-server-with-SSE shape as coms-net. Use as the observability peer (live bar charts of A2A traffic).
+What you intentionally don't install yet
+• benchy, claude-3-7-sonnet-starter-pack, quick-data-mcp — they're great repos, but they're tangential to the harness primitive; revisit when the mesh has a stable runtime.
+4. Architectural Self-Critique → Refinement (per your meta-prompt)
+Three improvements I'd make against this brief, in priority order:
+1. Encode the four A2A tools as a typed contract in the harness layer, not in prose. The protocol is small enough (list_agents, send_command, send_prompt, await_response) to be a 30-line TypeScript interface that every peer wrapper imports. This removes drift between hosts when extensions evolve.
+2. Make the-library the only path skills enter the mesh. Banning ad-hoc cp of skill folders enforces the typed-reference dependency graph and makes peer onboarding deterministic — which is the missing half of the Pi-to-Pi story (Dan demonstrates the runtime mesh, not how skills propagate to it).
+3. Promote the verifier pattern to a default sidecar. Transcript 24:31 — "I like to run my PI agents, my primary PI agent with a validator on top of it." Bake a verifier peer into every just coms invocation as a --with-verifier flag, so the trust-and-scale mission Dan repeats ("we're increasing trust and scale of our agentic systems" — transcript 33:09) is non-optional in your harness, not a per-scenario decision.
+5. Next Actions (for the agent architect coding the harness)
+1. Provision Tier 1 prerequisites on Mac Mini + MacBook (Bun 1.3.2, just, pi).
+2. Clone pi-vs-claude-code, complete Steps 2–5; commit the .env template (without secrets) and a harness-bootstrap.just recipe that wraps Steps 4–5 into a single command.
+3. Implement the typed A2A contract (Refinement #1) before adding any third peer.
+4. Pull the-library and migrate the prod-gatekeeper / dev-driver prompts into it as agent:prod-gatekeeper and agent:dev-driver. Move PII redaction rules from .pi/damage-control-rules.yaml into skill:pii-redactor so it ships to every new peer automatically.
+5. Run the canonical Prod/Dev playbook (Step 6) as the acceptance gate. Only after it passes, lift the sandbox-parity scenario (Step 9) onto the same mesh.
+6. Layer in mac-mini-agent to give the prod peer real OS authority, then just-prompt MCP for the multi-model arbitration cases.
+7. Defer bowser, fork-repository-skill, nano-agent to the post-MVP cycle.
+Source artifacts:
+• Full transcript file (for grep/citation in the harness PR descriptions): https://gensparkstorageprodwest.blob.core.windows.net/projects/projects_v1/c12adf63-77af-4b9b-bde4-edc234d0af5c/PIdETjcXNIk.md?se=2026-05-22T14%3A23%3A49Z&sp=r&sv=2025-05-05&sr=b&skoid=30ceb971-ca04-4f2c-96e5-307886e46b86&sktid=b6f48a37-9749-40a6-be8f-c9f6a44298e3&skt=2026-05-19T21%3A54%3A19Z&ske=2026-05-26T21%3A49%3A19Z&sks=b&skv=2025-05-05&sig=aZu%2B%2B%2BrRwCiebGvwP0vQT0E0ZEPGI9xlmJaxmtlum/s%3D
+• Source video: https://www.youtube.com/watch?v=PIdETjcXNIk
+• Primary repo: https://github.com/disler/pi-vs-claude-code
+• Disler's full repo index: https://github.com/disler?tab=repositories
+One quick check before you greenlight: do you want me to (a) generate the typed-A2A TypeScript contract from Refinement #1 as a drop-in file the architect can commit on day one, or (b) draft the the-library catalog.yaml with the prod-gatekeeper / dev-driver / pii-redactor entries pre-wired so propagation works the moment a third host joins? Both are <30 min of work and either is a strong next move.CopySo I also want you to, if you haven't, other than just his videos, it seems to me that you're finding his GitHub just through his YouTube videos. There's much more. One thing that I don't have right now is observability. I want to be able to see what's happening. We do have the Benchy that you mentioned but I don't think you mentioned the hooks mastery and the observability. If you could please actually go to his GitHub and review more repositories and then map how they are complementary and should be implemented using his best principal coding best practices, infrastructure tools by arugula.ThinkJero wants a corrective pass: not just repos surfaced through YouTube/video references, but a broader direct GitHub review of Disler's repos, specifically looking for observability, hooks mastery, and complementary infrastructure patterns. I should research fresh, direct GitHub sources and likely search for repos or docs mentioning hooks, observability, and related patterns. Then I need to map how these repos complement the Pi-to-Pi harness and how to implement them according to Disler's best-practice principles. I'll do multiple passes: (1) discover missing repos/themes via web search, (2) crawl additional key repos directly from GitHub, (3) synthesize into an updated architecture ticket with observability/hook layers explicitly included.ViewParallel Searchsite:github.com/disler hooks mastery GitHubsite:github.com/disler observability GitHubsite:github.com/disler arugula GitHubsite:github.com/disler hook GitHub reposite:github.com/disler telemetry GitHubsite:github.com/disler monitoring GitHubViewParallel Readhttps://github.com/disler?tab=repositoriesView
+You're right — I had not yet done a full enough GitHub-native pass on the hooks / observability layer.
+I'm doing a direct repo review now, focused specifically on the missing infrastructure planes: hooks, observability, control, evaluation, and event-driven automation. After that, I’ll remap the stack so it reflects how these pieces should actually be implemented together in a harness architecture, not just listed.Parallel Readhttps://github.com/disler/claude-code-hooks-masteryhttps://github.com/disler/claude-code-hooks-multi-agent-observabilityhttps://github.com/disler/claude-code-damage-controlhttps://github.com/disler/agentic-drop-zoneshttps://github.com/disler/live-benchhttps://github.com/disler/big-3-super-agentView
+You were right to call that out.
+The first pass overweighted the transport layer and underweighted the two planes that actually make a harness trustworthy in production: deterministic control and observability. I did a direct GitHub-native review focused on those missing layers, and the stack now looks materially different.
+For this correction pass, I treated the work in three roles: repo archaeologist to find the missing repos and patterns, infrastructure architect to map them into a harness, and implementation planner to turn them into a deployment order instead of a bag of links.
+
+Copy---
+ticket_id: HARNESS-PIPI-002
+title: "Disler GitHub Native Review — Hooks, Observability, and Complementary Harness Infrastructure"
+owner: Jero
+status: revised-architecture
+priority: P1
+created_utc: 2026-05-20
+goal: >
+  Re-map Disler's GitHub repositories into a production-grade agent harness architecture
+  with explicit control, observability, safety, evaluation, and distribution planes.
+what_changed_from_previous_pass:
+  - Added hooks mastery as the deterministic control plane
+  - Added multi-agent observability as the real-time telemetry plane
+  - Added damage control as the safety/policy plane
+  - Added event-driven drop zones as ingress automation plane
+  - Reframed live-bench as eval/regression plane, not just "benching"
+  - Used direct GitHub repo review rather than relying on video-adjacent references
+core_recommendation:
+  - pi-vs-claude-code is the transport primitive
+  - hooks + observability + damage-control are the trust primitive
+  - the-library is the distribution primitive
+  - live-bench is the regression/eval primitive
+  - mac-mini-agent is the host-control primitive
+progress:
+  - [x] Direct GitHub repo review completed
+  - [x] Missing hooks/observability repos identified
+  - [x] Complementarity map updated
+  - [x] Implementation order revised
+  - [ ] Convert Claude-hook patterns into harness-agnostic event middleware
+  - [ ] Define unified event schema for Pi-to-Pi mesh
+  - [ ] Build observability sidecar and dashboard
+  - [ ] Add policy engine for allow/block/ask decisions
+  - [ ] Add eval dashboards and regression baselines
+---
+
+What the GitHub pass makes clear is that Disler’s repos are not just a set of experiments. They form a fairly coherent architecture philosophy. The philosophy is consistent across the repos even when the runtime changes: keep the primitive small, make control deterministic where it matters, isolate concerns into modular skills or scripts, keep agents sharply scoped, preserve private/local-first deployment where possible, and make the system measurable instead of mystical.
+The consequence for your harness is important: Pi-to-Pi by itself is not the architecture. It is the transport layer inside the architecture.
+The corrected architecture is this:
+Pi-to-Pi handles communication. Hooks handle control. Observability handles trust. Damage-control handles blast radius. The Library handles propagation. Live-bench handles regression.
+That is the real stack.
+Revised repository map: what each repo really is
+Below is the corrected complementarity map after reviewing the relevant GitHub repos directly.RepositoryArchitectural RoleWhy it mattersHow it complements Pi-to-Pihttps://github.com/disler/pi-vs-claude-codeA2A transport primitiveProvides the coms and coms-net peer-to-peer transport model. It gives you flat agent communication with Bun-backed network coordination.This remains the mesh backbone. Without it, there is no peer transport. But it is not enough by itself.https://github.com/disler/claude-code-hooks-masteryDeterministic control planeTeaches the lifecycle interception model: early prompt validation, pre-tool prevention, post-tool validation, stop-hook completion checks, modular single-file hook scripts.This is the missing “harness brainstem.” You should port the pattern into a harness-agnostic event middleware for Pi.https://github.com/disler/claude-code-hooks-multi-agent-observabilityTelemetry + observability planeCaptures lifecycle events, posts them to a Bun server, stores them in SQLite, and streams them to a Vue dashboard over WebSockets.This is the missing answer to your “I want to see what’s happening.” It should become the default sidecar for the mesh.https://github.com/disler/claude-code-damage-controlSafety and policy planeImplements defense-in-depth with allow / block / ask semantics, path classes, regex command blocking, and parallel global + project policy evaluation.This is how you stop the mesh from becoming an expensive self-own. Every peer should inherit these policy semantics.https://github.com/disler/the-librarySkill / prompt / agent distribution planeA private-first meta-skill for distributing agentics by typed references rather than copying directories around.This solves the “how do I keep multiple devices and peers in sync” problem cleanly.https://github.com/disler/live-benchEvaluation and regression planeStreams (group, metric, value) tuples into a live SSE dashboard backed by SQLite. Designed for comparing model and hardware performance over time.Use this for repeatable harness benchmarks, latency drift, cost drift, and task-level regressions.https://github.com/disler/mac-mini-agentHost-control execution planeGives agents GUI control, terminal control, a job server, and a remote client for Mac infrastructure.This is the ideal substrate for your prod-host/dev-host split, especially when one peer needs actual host authority.https://github.com/disler/agentic-drop-zonesEvent-driven ingress planeWatches directories, matches patterns, loads prompts, and triggers agents on file drops.Excellent for turning external artifacts into structured harness work without manual intervention.https://github.com/disler/big-3-super-agentCross-model orchestration referenceCombines multiple model providers and already wires observability, cost reporting, and transcript capture into the orchestration layer.This shows how to emit custom orchestration events beyond tool hooks, which you need in Pi-to-Pi too.https://github.com/disler/just-promptMulti-provider inference utility planeUnifies provider access and supports board/CEO style multi-model decision workflows.Useful when a peer needs to deliberate across providers instead of being tied to one model.https://github.com/disler/agent-sandbox-skillIsolated execution planeProvides the agent-sandbox pattern Dan references for isolated work.This becomes the contained execution environment behind selected peers.https://github.com/disler/fork-repository-skillParallel branch-work planeSpawns additional terminal-based agents cleanly.Good for scaling the mesh outward when you want more peers without manual bootstrapping.https://github.com/disler/bowserBrowser automation peer planeA composable browser automation and UI-testing system.Makes sense as a specialized peer inside the mesh rather than as a standalone system.
+The two repos you specifically called out were absolutely weight-bearing
+You were especially right about these:
+claude-code-hooks-mastery
+This repo is not just about Claude Code. Its real value is that it formalizes a deterministic interception model.
+The patterns it teaches are the harness patterns you want regardless of runtime:
+• intervene early on user intent
+• prevent dangerous tool execution before it happens
+• validate outputs after the fact
+• use stop hooks to force explicit completion criteria
+• keep hook logic modular and isolated
+• prevent infinite loops with explicit stop state
+• treat validation as a separate concern, not an afterthought
+The most important design takeaway is that the repo is really teaching this idea: LLMs should decide less often at the boundaries where correctness matters most. That’s a harness principle, not a Claude principle.
+So in your Pi-based harness, I would not “copy hooks.” I would port the model into a harness event middleware with phases like:
+• on_prompt_submit
+• pre_tool_use
+• post_tool_use
+• post_tool_failure
+• permission_request
+• message_sent
+• message_received
+• session_start
+• session_end
+• pre_compaction
+• validator_result
+• policy_decision
+That is the generalized form of the hooks mastery repo.
+claude-code-hooks-multi-agent-observability
+This is the repo that directly answers your observability concern.
+Its documented architecture is clean and immediately useful: agent event → hook script → HTTP POST → Bun server → SQLite → WebSocket → Vue dashboard.
+That architecture is strong precisely because it is decoupled. The agent does not own the observability logic. It emits structured events to a sidecar service that becomes the source of truth.
+That pattern is what you want in Pi-to-Pi. Not ad hoc logs. Not console scraping. Not transcripts dumped at the end. You want a real event stream.
+The fact that it stores in SQLite with WAL mode is also important. That means it is lightweight enough to run locally and concurrently, which fits the private-first, developer-owned infrastructure approach across Disler’s other repos.
+The corrected harness architecture
+If I map these repos into an actual deployable system, the architecture becomes a set of planes rather than a repo list.
+1. Communication plane
+Use https://github.com/disler/pi-vs-claude-code for the A2A meshCopy
+network errorContinue where you left off.ThinkJero asked to continue where I left off. The natural continuation is to turn the corrected GitHub-native architecture into a concrete harness contract/spec and implementation roadmap, since that was the two-option next step I offered. I should gather a bit more precise repo-grounded detail from the key repos to make the contract actionable and current: pi-vs-claude-code, hooks-multi-agent-observability, damage-control, the-library, live-bench, and mac-mini-agent. Then I can deliver a detailed markdown ticket with front matter, roles/phases, event schema, control/policy interfaces, observability data model, recommended implementation order, and self-critique/refinement.ViewParallel Readhttps://github.com/disler/pi-vs-claude-codehttps://github.com/disler/the-libraryhttps://github.com/disler/live-benchhttps://github.com/disler/mac-mini-agentViewParallel Searchsite:github.com/disler/pi-vs-claude-code coms-net Bun SSE GitHubsite:github.com/disler/the-library typed references skill agent prompt GitHubsite:github.com/disler/live-bench group metric value GitHubsite:github.com/disler/mac-mini-agent Steer Drive Listen Direct GitHubView
+Absolutely. I’m continuing with the concrete artifact, not just more commentary.
+This is the next layer down from the research pass: a buildable harness contract that assumes the corrected stack we just established from direct GitHub review. I’m treating this in three roles as I continue: first as the systems architect to define the planes cleanly, then as the harness engineer to turn them into contracts, and finally as the reviewer to tighten weak spots before handoff.
+
+Copy---
+ticket_id: HARNESS-PIPI-003
+title: "Harness Contract Spec — Pi Mesh + Hooks Control + Observability + Policy + Eval"
+owner: Jero
+status: draft-ready-for-implementation
+priority: P1
+created_utc: 2026-05-20
+objective: >
+  Convert the corrected Disler-derived architecture into a concrete harness contract
+  that an implementation agent or engineer can code against without inventing the shape.
+design_principles:
+  - primitives_over_monoliths
+  - deterministic_boundaries
+  - focused_specialized_agents
+  - private_first_local_friendly
+  - measure_everything
+  - defense_in_depth
+required_planes:
+  - communication
+  - control
+  - policy
+  - observability
+  - distribution
+  - evaluation
+  - execution
+  - ingress
+primary_repos:
+  communication: https://github.com/disler/pi-vs-claude-code
+  control: https://github.com/disler/claude-code-hooks-mastery
+  policy: https://github.com/disler/claude-code-damage-control
+  observability: https://github.com/disler/claude-code-hooks-multi-agent-observability
+  distribution: https://github.com/disler/the-library
+  evaluation: https://github.com/disler/live-bench
+  execution: https://github.com/disler/mac-mini-agent
+  sandbox: https://github.com/disler/agent-sandbox-skill
+  ingress: https://github.com/disler/agentic-drop-zones
+  reference_orchestration: https://github.com/disler/big-3-super-agent
+progress:
+  - [x] Communication plane mapped
+  - [x] Hooks/control plane mapped
+  - [x] Observability plane mapped
+  - [x] Policy/damage-control plane mapped
+  - [x] Distribution and eval planes mapped
+  - [x] Initial contract spec drafted
+  - [ ] Engineer review
+  - [ ] Event schema implementation
+  - [ ] Policy engine implementation
+  - [ ] Observability server implementation
+  - [ ] Dashboard wiring
+  - [ ] Regression benchmark wiring
+handoff_targets:
+  - monorepo architect
+  - agent harness implementer
+  - observability engineer
+  - policy / safety engineer
+---
+
+Executive continuation
+The key correction from the previous pass is now formalized:
+pi-vs-claude-code is the mesh transport, but the harness itself only becomes production-capable when it is wrapped by four additional contracts: event interception, policy decisions, observability ingestion, and evaluation emission.
+So the build target is no longer “install Pi-to-Pi.” The build target is:
+a peer mesh with deterministic middleware, observable state transitions, enforceable policies, portable skill distribution, and measurable regressions.
+That is the actual harness.
+Phase framing and roles
+In this continuation, I’m assigning the work into phases because the implementation order matters.PhaseRole I’m takingWhy this phase existsPhase 1Systems architectDefine the planes and contracts so implementation does not drift into ad hoc glue code.Phase 2Harness engineerSpecify the actual interfaces: event envelopes, policy outcomes, observability endpoints, peer lifecycle, and benchmark tuples.Phase 3Reviewer / validatorIdentify weak points in the first draft, tighten them, and revise the spec before handoff.
+The reasoning is simple: if you start by coding transport, you get messaging. If you start by coding contracts, you get architecture.
+1. The harness planes, formally
+1.1 Communication plane
+Source basis: pi-vs-claude-code directly exposes coms.ts for local peer messaging and coms-net.ts for networked messaging, with local Unix socket / named pipe mode and HTTP + SSE network mode. It also exposes the four-tool primitive surface and supports asynchronous request/response state with hop limits and audit logging.
+Source: https://github.com/disler/pi-vs-claude-code
+This plane answers one question only: how do peers talk?
+Required capabilities
+• same-machine peer messaging
+• networked peer messaging
+• agent discovery
+• request/response correlation
+• hop-limit enforcement
+• message status polling
+• lightweight audit logging
+Harness contract
+The communication plane must expose these operations, regardless of runtime:
+
+Copyinterface PeerTransport {
+  listPeers(projectId: string): Promise<PeerDescriptor[]>;
+  sendPrompt(input: SendPromptInput): Promise<SendPromptResult>;
+  sendCommand(input: SendCommandInput): Promise<SendCommandResult>;
+  getMessage(messageId: string): Promise<MessageStatus>;
+  awaitMessage(messageId: string, mode?: "blocking" | "poll"): Promise<MessageResult>;
+}
+
+This is intentionally transport-only. It must not own policy or observability logic.
+1.2 Control plane
+Source basis: claude-code-hooks-mastery demonstrates lifecycle interception through modular hook scripts and emphasizes early prompt intervention, pre-tool prevention, post-tool validation, stop-hook completion, and loop avoidance.
+Source: https://github.com/disler/claude-code-hooks-mastery
+This plane answers: where can the harness intercept behavior deterministically?
+Required lifecycle stages
+These are the generalized stages your harness should support, independent of Pi or Claude:
+
+Copytype HarnessLifecycleEvent =
+  | "session_start"
+  | "prompt_submit"
+  | "pre_tool_use"
+  | "post_tool_use"
+  | "tool_failure"
+  | "permission_request"
+  | "message_sent"
+  | "message_received"
+  | "validator_result"
+  | "pre_compaction"
+  | "session_end"
+  | "stop_check";
+
+Control middleware contract
+
+Copyinterface HarnessMiddleware {
+  name: string;
+  onEvent(event: HarnessEvent, context: HarnessContext): Promise<MiddlewareResult>;
+}
+
+type MiddlewareResult =
+  | { action: "continue" }
+  | { action: "mutate"; event: HarnessEvent }
+  | { action: "annotate"; annotations: Record<string, unknown> }
+  | { action: "block"; reason: string }
+  | { action: "ask"; prompt: string; metadata?: Record<string, unknown> };
+
+This is the generalized hooks pattern. The harness should not hardcode one middleware chain per runtime. It should standardize the chain.
+1.3 Policy plane
+Source basis: claude-code-damage-control uses pre-execution gating with layered path policies, regex-based command blocking, and tri-state outcomes: allow, block, ask. It also uses global and project-specific rules in parallel.
+Source: https://github.com/disler/claude-code-damage-control
+This plane answers: what may happen, what must never happen, and what requires human approval?
+Policy decision model
+
+Copytype PolicyDecision =
+  | { result: "allow"; ruleId: string; reason: string }
+  | { result: "block"; ruleId: string; reason: string; severity: "low" | "medium" | "high" | "critical" }
+  | { result: "ask"; ruleId: string; reason: string; question: string; severity: "medium" | "high" };
+
+Policy evaluation contract
+
+Copyinterface PolicyEngine {
+  evaluate(input: PolicyInput): Promise<PolicyDecision[]>;
+  resolve(decisions: PolicyDecision[]): PolicyDecision;
+}
+
+Required rule classesRule classPurposeExample usezero-access pathsCompletely deny accesssecrets, SSH keys, cloud credsread-only pathsPermit reads, forbid writesconfig, infra state, lock filesno-delete pathsPermit updates, forbid deletioncore repo files, migration historyshell command blocksPrevent catastrophic commandsrecursive delete, unsafe SQL deletionnetwork action policiesGate external callsexfiltration-sensitive envspeer messaging policiesGate outbound cross-peer payloadsproduction redaction boundary
+The last row is the important extension beyond the original repo. In your harness, policy must not stop at shell and files. It must also apply to inter-agent communication.
+1.4 Observability plane
+Source basis: claude-code-hooks-multi-agent-observability uses a clean event architecture: hook script → HTTP POST → Bun server → SQLite → WebSocket → Vue client. It tracks multi-agent session state, event filtering, and rich timelines. big-3-super-agent adds orchestration-level custom events, cost reporting, and transcript capture.
+Sources:
+https://github.com/disler/claude-code-hooks-multi-agent-observability
+https://github.com/disler/big-3-super-agent
+This plane answers: what happened, when, why, for which agent, at what cost, and with what result?
+Required observability architecture
+
+CopyPeer Runtime
+  -> Event Adapter
+    -> Observability Ingest API
+      -> Event Store (SQLite first, pluggable later)
+        -> Realtime Fanout (WebSocket/SSE)
+          -> Dashboard / API / Reports
+
+The crucial design principle is separation: peers emit events, but do not own storage or visualization.
+Core event envelope
+
+Copyinterface HarnessEvent {
+  eventId: string;
+  timestampUtc: string;
+  projectId: string;
+  sessionId: string;
+  agentId: string;
+  peerName: string;
+  peerRole: string;
+  eventType: HarnessLifecycleEvent | "policy_decision" | "cost_update" | "benchmark_emit";
+  correlationId?: string;
+  parentEventId?: string;
+  transportMode?: "local-coms" | "coms-net" | "http" | "tmux" | "gui";
+  summary: string;
+  toolName?: string;
+  status?: "pending" | "running" | "complete" | "error" | "blocked" | "ask";
+  payload: Record<string, unknown>;
+}
+
+Observability ingest API
+
+CopyPOST /api/events
+POST /api/sessions/start
+POST /api/sessions/end
+POST /api/costs
+POST /api/benchmarks
+GET  /api/sessions/:sessionId
+GET  /api/events?projectId=...&sessionId=...&agentId=...&eventType=...
+WS   /ws/events
+
+Minimum dashboard viewsViewWhy it matterslive event timelineLets you see action flow, stalls, and loops in real time.session swimlanes by peerNecessary for peer-to-peer systems, because one flat log hides causal structure.policy decisions panelShows why actions were allowed, blocked, or escalated.message correlation inspectorLets you trace send → receive → await → complete for peer messaging.cost and token panelNeeded to avoid invisible orchestration burn.transcript / summary panelUseful for review, but secondary to structured events.
+The swimlane view is the one I would elevate beyond the original repo. For Pi-to-Pi, peer relationships matter more than a simple flat event feed.
+1.5 Distribution plane
+Source basis: the-library stores references instead of copies, uses typed dependencies such as skill:name, agent:name, and prompt:name, and pulls the parent directory of referenced files on demand.
+Source: https://github.com/disler/the-library
+This plane answers: how does the harness stay consistent across devices and peers?
+Distribution contract
+Your harness should treat all portable capabilities as library-managed units:
+• skills
+• prompts
+• peer definitions
+• policy bundles
+• validators
+• benchmark recipes
+• observability dashboard configs
+Proposed catalog structure
+
+Copyskills:
+  pii-redactor:
+    source: https://github.com/your-org/harness/blob/main/skills/pii-redactor/SKILL.md
+  benchmark-emitter:
+    source: https://github.com/your-org/harness/blob/main/skills/benchmark-emitter/SKILL.md
+
+agents:
+  prod-gatekeeper:
+    source: https://github.com/your-org/harness/blob/main/agents/prod-gatekeeper.md
+  dev-driver:
+    source: https://github.com/your-org/harness/blob/main/agents/dev-driver.md
+  validator:
+    source: https://github.com/your-org/harness/blob/main/agents/validator.md
+
+prompts:
+  repro-prod-bug:
+    source: https://github.com/your-org/harness/blob/main/prompts/repro-prod-bug.md
+
+policies:
+  global-safety:
+    source: https://github.com/your-org/harness/blob/main/policies/global-safety.yaml
+
+Required typed dependency extension
+The original typed deps should be extended in your harness to include:
+• policy:name
+• benchmark:name
+• dashboard:name
+That is a natural continuation of the-library’s structure and keeps the entire harness portable.
+1.6 Evaluation plane
+Source basis: live-bench accepts (group, metric, value) tuples via a CLI and streams them into a FastAPI + SQLite + SSE dashboard. It is model-agnostic and suitable for regressions.
+Source: https://github.com/disler/live-bench
+This plane answers: did this harness change improve or degrade the system?
+Benchmark emission contract
+
+Copyinterface BenchmarkEmit {
+  session: string;
+  group: string;
+  metric: string;
+  value: number;
+  metadata?: Record<string, unknown>;
+}
+
+Required benchmark groups
+For your harness, I would define at least these benchmark groups:GroupMetricsmesh-latencysend_ms, receive_ms, round_trip_mspolicyblocks, asks, allow_rate, false_positive_rateobservabilityevent_ingest_ms, dashboard_fanout_ms, dropped_eventstask-outcomessuccess_rate, retry_rate, validator_reject_ratecostusd_per_session, usd_per_success, tokens_per_successhost-controltmux_spawn_ms, gui_action_ms, screenshot_ms
+Regression rule
+No prompt, policy, model, or peer-topology change should be merged without at least one live-bench session comparison against the previous baseline.
+That turns live-bench from a nice dashboard into an engineering gate.
+1.7 Execution plane
+Source basis: mac-mini-agent splits host authority into Steer, Drive, Listen, and Direct. It also requires specific macOS permissions for practical operation. agent-sandbox-skill provides isolated execution environments for contained tasks.
+Sources:
+https://github.com/disler/mac-mini-agent
+https://github.com/disler/agent-sandbox-skill
+This plane answers: where does real work execute, and with what host authority?
+Execution rolesComponentHarness roleSteerGUI control peer adapterDriveterminal / tmux execution adapterListenremote job dispatch planeDirectoperator-side clientsandbox skillcontained execution peer
+Host-control contract
+
+Copyinterface HostControlAdapter {
+  runCommand(input: RunCommandInput): Promise<RunCommandResult>;
+  readTerminal(input: ReadTerminalInput): Promise<ReadTerminalResult>;
+  takeScreenshot(input: ScreenshotInput): Promise<ScreenshotResult>;
+  click(input: ClickInput): Promise<ActionResult>;
+  type(input: TypeInput): Promise<ActionResult>;
+  submitJob(input: SubmitJobInput): Promise<JobHandle>;
+  getJobStatus(jobId: string): Promise<JobStatus>;
+}
+
+Environmental requirements
+For macOS hosts, the harness bootstrap must verify:
+• Accessibility permission
+• Screen Recording permission
+• Full Disk Access
+• Remote Login / SSH enabled
+These are not optional operational details. They are part of the execution contract.
+1.8 Ingress plane
+Source basis: agentic-drop-zones monitors directories, matches events, loads prompt templates, and dispatches agents.
+Source: https://github.com/disler/agentic-drop-zones
+This plane answers: how does outside work enter the system without manual reprompting?
+Ingress contract
+
+Copydrop_zones:
+  - name: "incident-intake"
+    watch_dir: "/var/harness/dropzones/incidents"
+    file_patterns: ["*.json", "*.md"]
+    events: ["created"]
+    route_to_peer: "triage-agent"
+    prompt_template: "prompt:incident-triage"
+    benchmark_group: "incident-intake"
+
+This fits your architecture especially well because it turns artifacts into structured work units, and structured work units are easier to observe, validate, and benchmark than freeform conversations.
+2. The canonical harness topology
+This is the topology I would now hand to the engineer.
+
+Copy                           ┌─────────────────────────────┐
+                           │       the-library           │
+                           │ skills / agents / prompts   │
+                           │ policies / benchmarks       │
+                           └──────────────┬──────────────┘
+                                          │
+                         sync / pull typed references
+                                          │
+┌────────────────────┐     send / await    │      emit events      ┌────────────────────────────┐
+│    Prod Peer       │◄────────────────────┼──────────────────────►│ Observability Server       │
+│ Pi + policy +      │                     │                       │ Bun/HTTP + SQLite + WS     │
+│ event adapter      │                     │                       └──────────────┬─────────────┘
+└─────────┬──────────┘                     │                                      │
+          │                                │                                      │
+          │ coms-net                       │                                      │
+          │                                │                                      ▼
+┌─────────▼──────────┐                     │                         ┌────────────────────────────┐
+│    Dev Peer        │◄────────────────────┘                         │ Dashboard / API / Reports  │
+│ Pi + policy +      │                                               └────────────────────────────┘
+│ event adapter      │
+└─────────┬──────────┘
+          │
+          │ optional peer expansion
+          │
+┌─────────▼──────────┐   ┌────────────────────┐   ┌────────────────────┐
+│ Validator Peer     │   │ Browser Peer       │   │ Sandbox Peer       │
+│ output verifier    │   │ bowser / UI agent  │   │ agent-sandbox      │
+└────────────────────┘   └────────────────────┘   └────────────────────┘
+
+        benchmark emits ───────────────────────────────────────────► live-bench
+
+The main point here is that every peer has the same three local components:
+• event adapter
+• policy engine
+• transport adapter
+That uniformity is what makes the system composable.
+3. Contracts the engineer should code first
+If I had to reduce this to the first implementation sprint, I would tell the engineer to build exactly these five files first.
+3.1 harness-event.ts
+
+Copyexport interface HarnessEvent {
+  eventId: string;
+  timestampUtc: string;
+  projectId: string;
+  sessionId: string;
+  agentId: string;
+  peerName: string;
+  peerRole: string;
+  eventType: string;
+  correlationId?: string;
+  parentEventId?: string;
+  transportMode?: string;
+  summary: string;
+  toolName?: string;
+  status?: string;
+  payload: Record<string, unknown>;
+}
+
+3.2 policy-engine.ts
+
+Copyexport type PolicyResult = "allow" | "block" | "ask";
+
+export interface PolicyDecision {
+  result: PolicyResult;
+  ruleId: string;
+  reason: string;
+  severity?: "low" | "medium" | "high" | "critical";
+  question?: string;
+}
+
+export interface PolicyInput {
+  eventType: string;
+  toolName?: string;
+  peerRole?: string;
+  path?: string;
+  command?: string;
+  payload: Record<string, unknown>;
+}
+
+3.3 event-adapter.ts
+
+Copyexport interface EventAdapter {
+  emit(event: HarnessEvent): Promise<void>;
+}
+
+3.4 peer-transport.ts
+
+Copyexport interface PeerDescriptor {
+  peerName: string;
+  peerRole: string;
+  transportMode: "local-coms" | "coms-net";
+  status: "online" | "offline";
+}
+
+export interface SendPromptInput {
+  to: string;
+  from: string;
+  prompt: string;
+  correlationId?: string;
+  hops?: number;
+  metadata?: Record<string, unknown>;
+}
+
+3.5 benchmark-emitter.ts
+
+Copyexport interface BenchmarkPoint {
+  session: string;
+  group: string;
+  metric: string;
+  value: number;
+  metadata?: Record<string, unknown>;
+}
+
+If those five files exist and are used everywhere, the rest of the system stays coherent.
+4. What “complementary” now means in implementation terms
+Since you asked specifically for how the repos are complementary and should be implemented according to the underlying principles, I want to make that explicit rather than leaving it implied.
+pi-vs-claude-code complements hooks-mastery
+Because transport without interception gives you movement but not control. The mesh lets peers talk. The hook model tells you where to intercept the talk and the actions triggered by the talk.
+hooks-mastery complements damage-control
+Because deterministic interception is only useful if it resolves into a decision. Hooks tell you when to evaluate. Damage-control tells you how to decide.
+damage-control complements observability
+Because if a policy blocks or escalates an action and nobody can see why, the harness becomes frustrating and untrustworthy. Every policy decision must emit a structured event.
+observability complements live-bench
+Because observability tells you what happened in a run, while live-bench tells you whether the whole system is improving across runs.
+the-library complements everything
+Because the best architecture in the world degrades immediately if policy files, prompts, peer definitions, and validators are copied manually and drift across hosts.
+mac-mini-agent complements pi-vs-claude-code
+Because the mesh can coordinate peers, but one or more peers still need real execution authority over actual hosts. That is where mac-mini-agent becomes the substrate.
+agentic-drop-zones complements the entire harness
+Because it gives you disciplined ingress. Instead of ad hoc “go do this,” external artifacts become typed triggers that route into the same observable, policy-controlled, benchmarked pipeline.
+5. First milestone roadmap
+Milestone A — Spine
+Implement:
+• Pi mesh wrapper
+• event schema
+• event adapter
+• policy engine shell
+• distribution catalog
+Deliverable:
+• two peers can talk
+• both peers emit events
+• both peers pull the same skills and policies
+Milestone B — Trust
+Implement:
+• pre-tool policy checks
+• message-boundary policy checks
+• policy decision events
+• session timeline dashboard
+Deliverable:
+• every action is visible
+• dangerous actions are blocked or escalated
+• inter-peer messages are inspectable
+Milestone C — Evaluation
+Implement:
+• live-bench emit wrapper
+• benchmark groups
+• baseline sessions
+• merge gate rule
+Deliverable:
+• harness changes can be measured against a baseline
+• cost, latency, and success rate stop being anecdotal
+Milestone D — Execution
+Implement:
+• mac-mini-agent host adapter
+• sandbox peer adapter
+• validator peer
+• drop-zone ingress
+Deliverable:
+• the mesh does real work with clear isolation and authority boundaries
+6. Self-review and refinement
+Before handing this off, I want to do the refinement pass explicitly.
+Weakness 1
+The first draft of this continuation still treated “events” as a general log object, but for a real harness you need explicit support for correlation across peer messages.
+Refinement
+Every send, receive, await, and completion event should share a correlationId, and each event may also carry parentEventId. This is now baked into the event contract above.
+Weakness 2
+The first draft treated policy primarily as tool gating, but your system also needs message-boundary policy so production peers cannot leak sensitive data into dev peers.
+Refinement
+I expanded the policy classes to include inter-agent payload controls. This is one of the most important practical changes in the spec.
+Weakness 3
+The first draft implied the dashboard could be “one view fits all,” but Pi-to-Pi systems need peer swimlanes, not just a flat feed.
+Refinement
+The minimum dashboard view set now explicitly includes peer swimlanes and message correlation inspection.
+Those three refinements materially improve the implementability of the harness.
+7. Revised handoff summary
+If I were handing this to the engineer in one paragraph, it would be this:
+Build a Pi-based peer mesh as the transport layer, but make every peer run the same local harness stack: a transport adapter, an event adapter, and a policy engine. Send all structured events to a centralized Bun + SQLite observability service with a live dashboard. Distribute all prompts, policies, peers, validators, and benchmark recipes through the-library. Emit benchmark tuples to live-bench for every meaningful regression run. Then attach execution substrates like mac-mini-agent, sandbox peers, and drop-zone ingress once the trust and telemetry layers are already in place.
+8. Fresh-source references
+The contract above is grounded in direct repo review from these sources:
+• Pi mesh / coms / coms-net: https://github.com/disler/pi-vs-claude-code
+• Hooks lifecycle and deterministic interception patterns: https://github.com/disler/claude-code-hooks-mastery
+• Multi-agent event ingestion and dashboard pattern: https://github.com/disler/claude-code-hooks-multi-agent-observability
+• Allow / block / ask policy model: https://github.com/disler/claude-code-damage-control
+• Distribution catalog and typed dependency model: https://github.com/disler/the-library
+• Benchmark tuple contract and regression dashboard: https://github.com/disler/live-bench
+• Host-control execution plane: https://github.com/disler/mac-mini-agent
+• Event-driven ingress pattern: https://github.com/disler/agentic-drop-zones
+• Orchestration-level observability and cost reporting reference: https://github.com/disler/big-3-super-agent
+The one unresolved item remains “arugula”. I still do not have a verified Disler GitHub repo or direct GitHub reference for that name from the searches I ran, so I’m not going to fabricate a placement for it.
+The strongest next move from here is one of these two:
+Either I continue by drafting the actual monorepo file tree and folder contracts for this harness, including apps/, packages/, skills/, policies/, dashboards/, and benchmarks/, or I continue by drafting the TypeScript interface package in full so your architect can drop it into the repo and start coding against real types immediately.
+My recommendation is the monorepo file tree next, because you think architecturally and that will pin the implementation shape before individual files start proliferating.

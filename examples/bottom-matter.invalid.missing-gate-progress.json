@@ -1,0 +1,17 @@
+{
+  "status_summary": {
+    "completeness": 1.0,
+    "confidence": "high",
+    "doc_state": "active"
+  },
+  "promotion_criteria": [
+    "validator passes"
+  ],
+  "blocked_by": [
+    "standalone repo not yet initialized"
+  ],
+  "next_iteration": {
+    "owner": "codex",
+    "objective": "promote to standalone repo"
+  }
+}

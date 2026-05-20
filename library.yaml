@@ -1,0 +1,82 @@
+# spec-verified: disler/the-library 47f455c 2026-05-18
+default_dirs:
+  prompts:
+    - default: prompts/
+  references:
+    - default: docs/
+  jobs:
+    - default: runs/
+  external:
+    - default: external/
+
+library:
+  prompts:
+    - name: parent-meta-entrypoint
+      description: Root orientation for the portable parent wrapper scaffold and proof package.
+      source: README.md
+    - name: parent-meta-program
+      description: Local autoresearch-style execution protocol for the parent wrapper.
+      source: program.md
+    - name: parent-governed-prompt-contract-index
+      description: Canonical entrypoint for the governed heavy-run prompt contract at the parent wrapper layer.
+      source: agent-heavy-run-prompt-index.md
+    - name: parent-governed-prompt-contract-spec
+      description: Human-readable portable heavy-run prompt schema used across child and parent wrappers.
+      source: agent-heavy-run-prompt-schema.md
+    - name: parent-copilot-prompting-playbook
+      description: Copilot-facing operational playbook bound to the same prompt contract.
+      source: copilot-prompting-playbook.md
+    - name: parent-goal-contract
+      description: Goal-md style ruler and ratchet for improving the parent wrapper itself.
+      source: GOAL.md
+  capabilities:
+    - name: infranodus
+      description: Graph comparison and gap-analysis engine used across every lifecycle gate.
+      source: infranodus-phase-tool-map.json
+    - name: pixeltable
+      description: Durable multimodal substrate for evidence, UDFs, computed columns, and normalization.
+      source: pixeltable-operational-substrate.md
+    - name: parent-meta-wrapper
+      description: Portable parent wrapper scaffold with governed prompt, comparison, and proof-package surfaces.
+      source: GOAL.md
+    - name: goal-md-local-authority
+      description: Local imported goal-md authority that defines the ruler-and-ratchet pattern.
+      source: external/goal-md/README.md
+    - name: meta-harness-local-authority
+      description: Local imported Stanford meta-harness authority that defines the onboarding and domain-spec boundary.
+      source: external/meta-harness/ONBOARDING.md
+    - name: autoresearch-mlx-local-authority
+      description: Local imported MLX autoresearch authority that defines the fixed-budget keep-or-revert experiment loop.
+      source: external/autoresearch-mlx/program.md
+  references:
+    - name: parent-agentics-library
+      description: Parent wrapper explanation of the library catalog pattern.
+      kind: doc
+      source: agentics-library.md
+    - name: parent-pixeltable-substrate
+      description: Parent wrapper doctrine for Pixeltable as the durable substrate.
+      kind: doc
+      source: pixeltable-operational-substrate.md
+    - name: active-body-registry
+      description: Current active child body registry.
+      kind: config
+      source: body-registry.yaml
+    - name: local-goal-md-clone
+      description: Local clone of goal-md used as the parent wrapper ruler authority.
+      kind: external_repo
+      source: external/goal-md
+    - name: local-meta-harness-clone
+      description: Local clone of Stanford meta-harness used as the parent wrapper onboarding authority.
+      kind: external_repo
+      source: external/meta-harness
+    - name: local-autoresearch-mlx-clone
+      description: Local clone of autoresearch-mlx used as the parent wrapper experiment protocol authority.
+      kind: external_repo
+      source: external/autoresearch-mlx
+  jobs:
+    - name: parent-score-cycle
+      description: Compute the current parent-wrapper split score and write metrics-latest.json.
+      source: scripts/score-parent-wrapper.py
+    - name: parent-ratchet-cycle
+      description: Run the real Copilot-driven parent ratchet through the local program and append an iteration ledger row.
+      source: scripts/run-parent-ratchet.sh

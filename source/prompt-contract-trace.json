@@ -1,0 +1,15 @@
+{
+  "trace_id": "PARENT-META-PROMPT-TRACE-0001",
+  "created_at": "2026-05-18",
+  "prompt_schema_authority": "agent-heavy-run-prompt.schema.json",
+  "prompt_method_authority": "agent-heavy-run-prompt-schema.md",
+  "prompt_template_authority": "agent-heavy-run-prompt.template.yaml",
+  "playbook_authority": "copilot-prompting-playbook.md",
+  "program_authority": "program.md",
+  "upstream_local_authorities": [
+    "external/goal-md/template/GOAL.md",
+    "external/meta-harness/ONBOARDING.md",
+    "external/autoresearch-mlx/program.md"
+  ],
+  "rule": "Every heavy or bounded parent-wrapper prompt must trace back to this governed contract set and the local imported authority triad."
+}

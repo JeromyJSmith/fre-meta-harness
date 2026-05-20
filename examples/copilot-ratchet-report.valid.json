@@ -1,0 +1,75 @@
+{
+  "status": "pass",
+  "metric_decision": "repaired",
+  "metric_reason": "The prior structural score was too binary and was replaced with a process score tied to a real ratchet report.",
+  "metric_review": {
+    "baseline_total_score": 10.0,
+    "baseline_outcome_score": 0.0,
+    "baseline_instrument_score": 40.0,
+    "trustworthy": true,
+    "trust_signals": [
+      "Score history now carries per-cycle before and after totals plus split sub-scores.",
+      "Artifacts are checked for freshness and ledger alignment instead of field presence alone."
+    ],
+    "problems_found": [
+      "The old score treated field presence as proof and could not distinguish running from plateau states.",
+      "The ledger artifact was not valid JSONL, so cycle counting was untrustworthy."
+    ],
+    "repair_actions": [
+      "Tightened the report schema with metric review and stop evidence structures.",
+      "Made the scorer validate freshness, mutable-surface boundaries, and iteration alignment."
+    ]
+  },
+  "real_non_dry_cycles_executed": 2,
+  "stop_reason": "plateau after two consecutive non-improving cycles",
+  "stop_evidence": {
+    "kind": "plateau",
+    "consecutive_non_improving_cycles": 2
+  },
+  "score_history": [
+    {
+      "cycle": 1,
+      "before_total_score": 32.5,
+      "after_total_score": 72.5,
+      "before_outcome_score": 20.0,
+      "after_outcome_score": 80.0,
+      "before_instrument_score": 70.0,
+      "after_instrument_score": 80.0,
+      "changed_files": [
+        "scripts/score-parent-wrapper.py",
+        "schemas/copilot-ratchet-report.schema.json"
+      ],
+      "kept": true,
+      "summary": "Repaired the scorer and schema so real cycle evidence, freshness, and boundary checks influence the metric."
+    },
+    {
+      "cycle": 2,
+      "before_total_score": 72.5,
+      "after_total_score": 72.5,
+      "before_outcome_score": 80.0,
+      "after_outcome_score": 80.0,
+      "before_instrument_score": 80.0,
+      "after_instrument_score": 80.0,
+      "changed_files": [
+        "program.md",
+        "prompts/parent-wrapper-copilot-ratchet.prompt.md"
+      ],
+      "kept": false,
+      "summary": "A bounded prompt-only proposal did not improve the score and was reverted."
+    }
+  ],
+  "files_changed": [
+    "GOAL.md",
+    "program.md",
+    "prompts/parent-wrapper-copilot-ratchet.prompt.md",
+    "schemas/copilot-ratchet-report.schema.json",
+    "scripts/score-parent-wrapper.py"
+  ],
+  "artifacts": [
+    "evaluation/validation-report.json",
+    "evaluation/metrics-latest.json",
+    "promotion/readiness.json",
+    "runs/iterations.jsonl"
+  ],
+  "iteration_ledger_entries_appended": 2
+}

@@ -1,0 +1,41 @@
+{
+  "record_id": "PARENT-META-PROVENANCE-0001",
+  "created_at": "2026-05-18",
+  "scope": "portable_parent_wrapper",
+  "source_roots": [
+    "/Volumes/PixelTable/VW_iTwin_Bridge/meta",
+    "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/meta/harness",
+    "/Volumes/PixelTable/VW_iTWIN_Bridge/lattice-worktrees/feat-fre-meta-harness-eval/meta/harness/fre",
+    "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/goal-md",
+    "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/meta-harness",
+    "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/autoresearch-mlx"
+  ],
+  "upstream_local_authorities": [
+    {
+      "name": "goal-md",
+      "path": "external/goal-md",
+      "commit": "8f39b8ab5afa6b017d36f871d3057a5155aad678"
+    },
+    {
+      "name": "meta-harness",
+      "path": "external/meta-harness",
+      "commit": "95175f70c758dd1145b395edfe8b67e6f9d80fbd"
+    },
+    {
+      "name": "autoresearch-mlx",
+      "path": "external/autoresearch-mlx",
+      "commit": "ba6ebf6d3594c0f33dbf753fafa8cad96f41c6d8"
+    }
+  ],
+  "library_contract": "library.yaml",
+  "program_contract": "program.md",
+  "prompt_contract": [
+    "agent-heavy-run-prompt-index.md",
+    "agent-heavy-run-prompt-schema.md",
+    "agent-heavy-run-prompt.schema.json",
+    "agent-heavy-run-prompt.template.yaml",
+    "copilot-prompting-playbook.md"
+  ],
+  "comparison_contract": "infranodus-phase-tool-map.json",
+  "substrate_contract": "pixeltable-operational-substrate.md"
+}

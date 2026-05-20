@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/bottom-matter.schema.json",
+  "title": "Parent Wrapper Bottom Matter",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "status_summary",
+    "gate_progress",
+    "promotion_criteria",
+    "blocked_by",
+    "next_iteration"
+  ],
+  "properties": {
+    "status_summary": {
+      "type": "object",
+      "required": ["completeness", "confidence", "doc_state"],
+      "properties": {
+        "completeness": { "type": "number" },
+        "confidence": { "type": "string" },
+        "doc_state": { "type": "string" }
+      }
+    },
+    "gate_progress": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["gate_id", "status", "notes"],
+        "properties": {
+          "gate_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["red", "amber", "green"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "promotion_criteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blocked_by": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_iteration": {
+      "type": "object",
+      "required": ["owner", "objective"],
+      "properties": {
+        "owner": { "type": "string" },
+        "objective": { "type": "string" }
+      }
+    }
+  }
+}

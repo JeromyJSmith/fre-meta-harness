@@ -1,0 +1,9 @@
+{
+  "iteration": "dry-run",
+  "cycle_kind": "dry_run",
+  "before_score": 100.0,
+  "after_score": 100.0,
+  "action": "dry-run baseline",
+  "result": "kept",
+  "note": "no proposal executed"
+}

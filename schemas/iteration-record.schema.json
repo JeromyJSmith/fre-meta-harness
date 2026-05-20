@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/iteration-record.schema.json",
+  "title": "Parent Ratchet Iteration Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "iteration",
+    "cycle_kind",
+    "before_total_score",
+    "after_total_score",
+    "before_outcome_score",
+    "after_outcome_score",
+    "before_instrument_score",
+    "after_instrument_score",
+    "action",
+    "result",
+    "validator_status",
+    "changed_files",
+    "artifacts",
+    "note"
+  ],
+  "properties": {
+    "iteration": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cycle_kind": {
+      "type": "string",
+      "enum": ["real_non_dry"]
+    },
+    "before_total_score": {
+      "type": "number"
+    },
+    "after_total_score": {
+      "type": "number"
+    },
+    "before_outcome_score": {
+      "type": "number"
+    },
+    "after_outcome_score": {
+      "type": "number"
+    },
+    "before_instrument_score": {
+      "type": "number"
+    },
+    "after_instrument_score": {
+      "type": "number"
+    },
+    "action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "result": {
+      "type": "string",
+      "enum": ["kept", "reverted", "rejected"]
+    },
+    "validator_status": {
+      "type": "string",
+      "enum": ["pass", "fail"]
+    },
+    "changed_files": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

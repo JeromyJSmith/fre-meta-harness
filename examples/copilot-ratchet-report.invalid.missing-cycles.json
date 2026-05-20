@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "metric_decision": "accepted",
+  "metric_reason": "Fields exist but real cycle count is missing.",
+  "stop_reason": "plateau after one cycle",
+  "score_history": [],
+  "files_changed": [],
+  "artifacts": []
+}

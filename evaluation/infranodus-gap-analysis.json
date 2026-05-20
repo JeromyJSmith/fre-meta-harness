@@ -1,0 +1,36 @@
+{
+  "analysis_id": "PARENT-META-INFRANODUS-GAP-0001",
+  "created_at": "2026-05-18",
+  "scope": "portable_parent_wrapper",
+  "topical_clusters": [
+    "Memory Goals",
+    "Active Body",
+    "Reusable Wrapper",
+    "Knowledge Substrate",
+    "Gate Optimization",
+    "Document Scaffold",
+    "Data Bridge",
+    "Skill Verification",
+    "Runtime Events",
+    "Infrastructure Geometry"
+  ],
+  "content_gaps": [
+    "Knowledge Substrate -> Gate Optimization",
+    "Document Scaffold -> Data Bridge",
+    "Knowledge Substrate -> Document Scaffold"
+  ],
+  "resolved_by": [
+    "README.md",
+    "library.yaml",
+    "agent-heavy-run-prompt.schema.json",
+    "infranodus-phase-tool-map.json",
+    "pixeltable-operational-substrate.md",
+    "source/",
+    "schemas/",
+    "examples/",
+    "expected-failures/",
+    "tests/",
+    "evaluation/",
+    "promotion/"
+  ]
+}

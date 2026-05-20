@@ -1,0 +1,24 @@
+{
+  "iteration": 1,
+  "cycle_kind": "real_non_dry",
+  "before_total_score": 10.0,
+  "after_total_score": 52.5,
+  "before_outcome_score": 0.0,
+  "after_outcome_score": 40.0,
+  "before_instrument_score": 40.0,
+  "after_instrument_score": 90.0,
+  "action": "emit real multi-artifact ratchet evidence",
+  "result": "kept",
+  "validator_status": "pass",
+  "changed_files": [
+    "scripts/score-parent-wrapper.py",
+    "tests/validate_parent_wrapper_contract.py"
+  ],
+  "artifacts": [
+    "evaluation/validation-report.json",
+    "evaluation/metrics-latest.json",
+    "promotion/readiness.json",
+    "runs/iterations.jsonl"
+  ],
+  "note": "The first trustworthy cycle converted the loop from dry-run evidence to real non-dry evidence."
+}

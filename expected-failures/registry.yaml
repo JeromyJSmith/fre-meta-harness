@@ -1,0 +1,13 @@
+invalid_examples:
+  - file: "examples/front-matter.invalid.missing-id.json"
+    schema: "schemas/front-matter.schema.json"
+    expected_reason_contains: "'id' is a required property"
+  - file: "examples/bottom-matter.invalid.missing-gate-progress.json"
+    schema: "schemas/bottom-matter.schema.json"
+    expected_reason_contains: "'gate_progress' is a required property"
+  - file: "examples/copilot-ratchet-report.invalid.missing-cycles.json"
+    schema: "schemas/copilot-ratchet-report.schema.json"
+    expected_reason_contains: "'real_non_dry_cycles_executed' is a required property"
+  - file: "examples/iteration-record.invalid.dry-run.json"
+    schema: "schemas/iteration-record.schema.json"
+    expected_reason_contains: "'before_total_score' is a required property"

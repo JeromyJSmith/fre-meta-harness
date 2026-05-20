@@ -1,0 +1,76 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260518-PARENT-RATCHET"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Run a real parent-wrapper ratchet that validates, challenges the metric if saturated, and loops until genuine plateau or exact blocker."
+  repo_scope: "/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+  task_scope: "Parent wrapper scaffold, goal loop, score loop, validation loop, evaluation artifacts, promotion artifacts, and iteration ledger only."
+current_verified_state:
+  facts:
+    - "Parent wrapper scaffold exists with README.md, AGENTS.md, CLAUDE.md, GOAL.md, GOLDENPATH.md, and MEMORY.md."
+    - "Governed prompt-contract artifacts exist at the parent root."
+    - "InfraNodus phase-tool map exists at the parent root."
+    - "Parent validator currently passes."
+    - "The previous scorer was a false structural-completeness score and must not be trusted as the real optimization target."
+    - "A dry-run iteration row exists, but no real non-dry improvement loop has been proven yet."
+    - "The local imported upstream authority clones now exist under /Volumes/PixelTable/VW_iTwin_Bridge/meta/external."
+hard_rules:
+  environment:
+    - "Use uv for all Python environment, dependency, script, and test execution."
+    - "Do not use pip or create ad hoc venv or virtualenv environments unless uv is first proven insufficient."
+  safety:
+    - "Do not broaden beyond /Volumes/PixelTable/VW_iTwin_Bridge/meta."
+    - "Do not edit the child repo implementation except for repo-wide docs checks if they are required to validate the parent wrapper."
+    - "Do not use a dry run as proof of the ratchet."
+    - "Do not stop after one real cycle unless an exact blocker is proven."
+    - "Do not edit the imported local authority clones under /Volumes/PixelTable/VW_iTwin_Bridge/meta/external."
+  truthfulness:
+    - "No fake green path."
+    - "If the score is saturated or obviously gameable, treat that as an instrument problem and improve the metric before claiming convergence."
+    - "Keep blocked states honest with exact evidence."
+allowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+disallowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/src"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/pixeltable"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/vw-plugin"
+tasks:
+  ordered_steps:
+    - "Read GOAL.md, program.md, domain_spec.md, library.yaml, agent-heavy-run-prompt-schema.md, infranodus-phase-tool-map.json, external/goal-md/README.md, external/goal-md/template/GOAL.md, external/meta-harness/README.md, external/meta-harness/ONBOARDING.md, external/autoresearch-mlx/README.md, external/autoresearch-mlx/program.md, tests/validate_parent_wrapper_contract.py, and scripts/score-parent-wrapper.py."
+    - "Challenge the current metric and determine whether it is trustworthy. If it is saturated or too binary, strengthen the scoring instrument first."
+    - "Run the parent validator and scorer before changes to capture a true baseline."
+    - "Run at least 2 real non-dry ratchet cycles once the metric is trustworthy."
+    - "Use the local imported goal-md as the ruler pattern, local imported meta-harness as the search-boundary pattern, and local imported autoresearch-mlx as the keep-or-revert program pattern."
+    - "Loop until there are 2 consecutive non-improving real cycles after the metric is trustworthy, or until an exact blocker is proven."
+    - "Write evaluation/copilot-ratchet-report.json with status, metric review, stop evidence, cycle count, score history, files changed, artifact paths, and iteration-ledger append count."
+    - "Refresh validation, metrics, iteration log, evaluation artifacts, and promotion artifacts after each kept change."
+validation_loop:
+  checks:
+    - "Run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/validate_parent_wrapper_contract.py"
+    - "Run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json"
+    - "Run bash scripts/pre-commit-docs-check.sh from /Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge if repo docs changed or shared checks are needed."
+    - "Append non-dry iteration evidence to /Volumes/PixelTable/VW_iTwin_Bridge/meta/runs/iterations.jsonl as one compact JSON object per line"
+    - "Treat the iteration ledger and refreshed artifacts as primary evidence; the final report must agree with them."
+  rerun_policy: "Repeat the fix, validate, score, and non-dry ratchet loop until 2 consecutive non-improving real cycles occur after the metric is trustworthy, or until an exact blocker is proven."
+success_criteria:
+  best_case: "The metric becomes trustworthy, at least 2 real ratchet cycles run, copilot-ratchet-report.json is written, artifacts refresh cleanly, and the loop stops only after genuine plateau."
+  acceptable_fallback: "An exact blocker is proven with fresh validation, metrics, and iteration evidence showing why the loop cannot continue honestly."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "whether the original metric was accepted or had to be repaired"
+    - "number of real non-dry cycles executed"
+    - "before and after total, outcome, and instrument scores"
+    - "files changed"
+    - "fresh validation, metrics, and promotion artifact paths"
+    - "iteration ledger entries appended"
+    - "structured report path: evaluation/copilot-ratchet-report.json"

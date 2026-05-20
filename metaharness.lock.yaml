@@ -1,0 +1,4 @@
+version: 1
+harness: meta.root
+body_cell: body.vw_itwin_bridge
+app_path: /Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge

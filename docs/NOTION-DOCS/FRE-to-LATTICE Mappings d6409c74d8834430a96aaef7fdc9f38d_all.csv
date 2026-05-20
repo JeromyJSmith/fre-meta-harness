@@ -1,0 +1,7 @@
+﻿Name,FRE field,ID,LATTICE equivalent,Last updated,Notes,Promotion impact,Transfer status
+source_record → provenance evidence,source_record,MAP-FRE-LATTICE-005,provenance evidence,"May 16, 2026 6:11 AM",Needs richer source typing for LATTICE proof evidence.,Needs evidence,partial
+repair_task → proposal / bounded task,repair_task,MAP-FRE-LATTICE-001,proposal / bounded implementation task,"May 16, 2026 6:11 AM",Requires owner and acceptance criteria.,Supports promotion,clean
+scorecard → benchmark / evidence artifact,scorecard,MAP-FRE-LATTICE-003,benchmark / evidence artifact,"May 16, 2026 6:11 AM",Should include command output hashes.,Supports promotion,clean
+promotion_decision → ratchet / capability gate,promotion_decision,MAP-FRE-LATTICE-002,ratchet decision / capability promotion gate,"May 16, 2026 6:11 AM",Needs stronger evidence fields before adoption.,Needs evidence,partial
+validation_pass_criteria → ratchet acceptance rule,validation_pass_criteria,MAP-FRE-LATTICE-004,ratchet acceptance rule,"May 16, 2026 6:11 AM",Accepted replacement for rejected green terminology.,Supports promotion,clean
+artifact → capability / proof artifact,artifact,MAP-FRE-LATTICE-006,capability / proof artifact,"May 16, 2026 6:11 AM",Needs artifact lineage for LATTICE usage.,Needs evidence,partial

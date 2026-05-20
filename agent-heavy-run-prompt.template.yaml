@@ -1,0 +1,55 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-YYYYMMDD-XXXX"
+target_agent:
+  name: "codex"
+  surface: "codex_p"
+  invocation: "codex -p"
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: ""
+  repo_scope: ""
+  task_scope: ""
+current_verified_state:
+  facts:
+    - ""
+    - ""
+hard_rules:
+  environment:
+    - "Use uv for all Python environment, dependency, script, and test execution."
+    - "Do not use pip or create ad hoc venv or virtualenv environments unless uv is first proven insufficient."
+  safety:
+    - "Do not broaden into unrelated capability work."
+    - "Keep changes bounded to the declared contract surfaces."
+  truthfulness:
+    - "No fake green path."
+    - "If validation fails, keep the blocked state honest with exact evidence."
+allowed_paths:
+  paths:
+    - ""
+disallowed_paths:
+  paths:
+    - ""
+tasks:
+  ordered_steps:
+    - ""
+    - ""
+    - ""
+validation_loop:
+  checks:
+    - "Run targeted validators."
+    - "Refresh proof artifacts."
+    - "Repeat until bounded pass or exact blocker."
+  rerun_policy: "Repeat the fix and validate loop until the bounded task passes or the blocker is proven real."
+success_criteria:
+  best_case: ""
+  acceptable_fallback: ""
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "proof artifact path and verification status"
+    - "exact evidence used in the conclusion"
+    - "files changed"
+    - "targeted validation results"

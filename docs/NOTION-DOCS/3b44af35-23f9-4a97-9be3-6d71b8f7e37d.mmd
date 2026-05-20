@@ -1,0 +1,52 @@
+---
+title: META-HARNESS Artifact Promotion State Machine
+---
+stateDiagram-v2
+    [*] --> Draft: create artifact
+
+    Draft --> Research: attach RDD linkage\nadd sources and hypotheses
+    Draft --> Deprecated: abandon before review
+
+    Research --> Draft: insufficient evidence\nor scope reset
+    Research --> Validated: pass schema checks\npass research sufficiency gate
+    Research --> Deprecated: research invalidated
+
+    Validated --> Research: validation defect\nrequires additional evidence
+    Validated --> Canonical: reviewer approval\nimplementation traceability confirmed
+    Validated --> Deprecated: superseded before canonicalization
+
+    Canonical --> Validated: regression review\ncanonical status challenged
+    Canonical --> Superseded: replacement canonical artifact approved
+    Canonical --> Deprecated: domain retired
+
+    Superseded --> [*]
+    Deprecated --> [*]
+
+    state Draft {
+        [*] --> Drafting
+        Drafting --> LocalReview: author self-check
+        LocalReview --> Drafting: revisions required
+        LocalReview --> [*]: ready for research gate
+    }
+
+    state Research {
+        [*] --> SourceCapture
+        SourceCapture --> EvidenceSynthesis
+        EvidenceSynthesis --> RDDTraceability
+        RDDTraceability --> [*]: research gate passed
+    }
+
+    state Validated {
+        [*] --> SchemaValidation
+        SchemaValidation --> SemanticValidation
+        SemanticValidation --> SpatialValidation
+        SpatialValidation --> ImplementationValidation
+        ImplementationValidation --> [*]: validation gate passed
+    }
+
+    state Canonical {
+        [*] --> CanonicalRegistry
+        CanonicalRegistry --> ChangeMonitoring
+        ChangeMonitoring --> [*]: remains canonical
+    }
+
