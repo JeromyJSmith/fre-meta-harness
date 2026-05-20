@@ -1,12 +1,12 @@
 {
-  "score_id": "PARENT-META-SCORE-0002",
+  "score_id": "PARENT-META-SCORE-0003",
   "created_at": "2026-05-20",
   "scope": "portable_parent_wrapper",
-  "metric_mode": "split-ledger-validated",
-  "total_score": 100.0,
-  "outcome_score": 100.0,
+  "metric_mode": "split-ledger-validated-substantive",
+  "total_score": 86.09,
+  "outcome_score": 81.45,
   "instrument_score": 100.0,
-  "weakest_component": "ratchet_execution",
+  "weakest_component": "non_dry_cycle_depth",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
@@ -14,15 +14,17 @@
         "status": "blocked",
         "schema_errors": [],
         "real_rows": 5,
-        "parse_errors": [],
-        "mutable_files": 24,
-        "files_changed": 24
+        "kept_rows": 2,
+        "substantive_kept_rows": 1,
+        "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
-      "score": 25.0,
+      "score": 15.0,
       "details": {
         "count": 5,
+        "substantive_kept_rows": 1,
+        "rejected_or_reverted_rows": 3,
         "history_rows": 5,
         "real_rows": 5,
         "parse_errors": [],
@@ -40,13 +42,19 @@
       }
     },
     "artifact_refresh": {
-      "score": 25.0,
+      "score": 16.45,
       "details": {
-        "listed": 4,
-        "ledger_listed": 4,
-        "existing": 4,
+        "report_artifacts_complete": true,
+        "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 9.108097076416016,
+        "freshness_span_seconds": 6188.516026496887,
+        "tool_statuses": [
+          "bounded_pass",
+          "pass",
+          "bounded",
+          "dry_pass"
+        ],
+        "tool_health_score": 8.45,
         "schema_errors": [],
         "parse_errors": []
       }

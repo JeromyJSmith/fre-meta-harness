@@ -64,6 +64,9 @@ This is a **split** process score. It does not ask "are files present?" It asks
 "did the parent wrapper behave like a real local `goal-md` plus `meta-harness`
 plus `autoresearch-mlx` loop, with trustworthy ledger and artifact evidence?"
 
+Living documentation is still required, but doc presence or doc-only edits do
+not count as improvement evidence by themselves.
+
 ```text
 outcome_score =
   ratchet_execution
@@ -81,10 +84,10 @@ total_score = 0.75 * outcome_score + 0.25 * instrument_score
 
 | Component | Weight | What it measures |
 |---|---:|---|
-| `ratchet_execution` | 25 | Real non-dry cycles exist in the iteration ledger and agree with the structured report |
-| `non_dry_cycle_depth` | 25 | The run executed multiple real non-dry cycles with partial credit before convergence |
+| `ratchet_execution` | 25 | Real non-dry cycles exist, validate cleanly, and include at least one kept substantive change rather than report-only bookkeeping |
+| `non_dry_cycle_depth` | 25 | Depth comes from substantive kept cycles plus challenge cycles, not from accumulating rejected doc-only probes |
 | `plateau_or_blocker_truth` | 25 | The run reports an honest continuing, plateau, or blocker state without fake-green stop logic |
-| `artifact_refresh` | 25 | Validation, metrics, promotion, and ledger artifacts were refreshed and cross-referenced |
+| `artifact_refresh` | 25 | Core artifacts were refreshed and aligned, and tool-health evidence reflects real operational status instead of file presence alone |
 | `validator_health` | 40 | Parent validator passes end-to-end |
 | `report_completeness` | 30 | Copilot ratchet report satisfies the schema and carries per-cycle score evidence |
 | `metric_decision_truth` | 30 | The run explicitly accepted or repaired the metric with a trustworthy review of the instrument |

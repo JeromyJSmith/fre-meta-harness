@@ -141,6 +141,8 @@ Required fields:
 - Keep `runs/iterations.jsonl` as real JSONL: one compact JSON object per line.
 - Do not claim improvement without fresh validation, fresh metrics, and a
   structured report.
+- Living docs must be refreshed when truth changes, but doc-only edits do not
+  count as improvement evidence in the scorer.
 - Treat live API-backed tool lanes as blocked until runtime access is actually
   configured; prefer dry, smoke, or fixture-bound checks over fake-green claims.
 

@@ -33,12 +33,45 @@ EDITABLE_PREFIXES = (
     "runs/",
     "scripts/",
 )
+DOC_ONLY_FILES = {
+    "GOAL.md",
+    "domain_spec.md",
+    "program.md",
+    "library.yaml",
+    "agentics-library.md",
+    "README.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "MEMORY.md",
+    "GOLDENPATH.md",
+    "source/README.md",
+}
+DOC_ONLY_PREFIXES = ("docs/",)
+SUBSTANTIVE_PREFIXES = (
+    "contracts/",
+    "schemas/",
+    "examples/",
+    "expected-failures/",
+    "tests/",
+    "scripts/",
+    "evaluation/tool-health/",
+)
 REQUIRED_ARTIFACTS = [
     "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
     "promotion/readiness.json",
     "runs/iterations.jsonl",
 ]
+TOOL_HEALTH_PATH = "evaluation/tool-health/status.json"
+TOOL_STATUS_WEIGHTS = {
+    "pass": 1.0,
+    "bounded_pass": 0.75,
+    "dry_pass": 0.5,
+    "bounded": 0.35,
+    "warn": 0.25,
+    "fail": 0.0,
+    "missing": 0.0,
+}
 
 
 def load_json(path: Path) -> dict | None:
@@ -90,6 +123,32 @@ def validate_report() -> tuple[dict | None, list[str]]:
 def is_mutable_path(path: str) -> bool:
     normalized = path.lstrip("./")
     return normalized in EDITABLE_FILES or any(normalized.startswith(prefix) for prefix in EDITABLE_PREFIXES)
+
+
+def is_doc_only_path(path: str) -> bool:
+    normalized = path.lstrip("./")
+    return normalized in DOC_ONLY_FILES or any(normalized.startswith(prefix) for prefix in DOC_ONLY_PREFIXES)
+
+
+def is_substantive_path(path: str) -> bool:
+    normalized = path.lstrip("./")
+    if is_doc_only_path(normalized):
+        return False
+    if normalized.startswith(("evaluation/", "promotion/", "runs/")) and not normalized.startswith("evaluation/tool-health/"):
+        return False
+    if normalized.startswith(SUBSTANTIVE_PREFIXES):
+        return True
+    if normalized.startswith("source/") and normalized != "source/README.md":
+        return True
+    return False
+
+
+def row_has_substantive_change(row: dict) -> bool:
+    return any(is_substantive_path(path) for path in row.get("changed_files", []))
+
+
+def load_tool_health() -> dict | None:
+    return load_json(ROOT / TOOL_HEALTH_PATH)
 
 
 def real_iterations(rows: list[dict]) -> list[dict]:
@@ -212,31 +271,26 @@ def ratchet_execution() -> tuple[float, dict]:
     real_rows = real_iterations(rows)
     if not real_rows:
         return 0.0, {"status": "missing", "parse_errors": parse_errors}
+    kept_rows = [row for row in real_rows if row.get("result") == "kept"]
+    substantive_kept_rows = [row for row in kept_rows if row_has_substantive_change(row)]
     score = 0.0
     if real_rows:
         score += 10.0
     if all(row.get("validator_status") == "pass" for row in real_rows):
         score += 5.0
-    mutable_files = [
-        path
-        for row in real_rows
-        for path in row.get("changed_files", [])
-        if is_mutable_path(path)
-    ]
-    total_changed = sum(len(row.get("changed_files", [])) for row in real_rows)
-    if total_changed and len(mutable_files) == total_changed:
+    if substantive_kept_rows:
         score += 5.0
     if report and not schema_errors and len(report.get("score_history", [])) == len(real_rows):
-        score += 8.0
+        score += 5.0
     elif report and report.get("score_history"):
         score += 3.0
     return round(min(score, 25.0), 2), {
         "status": None if not report else report.get("status"),
         "schema_errors": schema_errors,
         "real_rows": len(real_rows),
+        "kept_rows": len(kept_rows),
+        "substantive_kept_rows": len(substantive_kept_rows),
         "parse_errors": parse_errors,
-        "mutable_files": len(mutable_files),
-        "files_changed": total_changed,
     }
 
 
@@ -244,15 +298,24 @@ def non_dry_cycle_depth() -> tuple[float, dict]:
     report, schema_errors = validate_report()
     rows, parse_errors = load_iterations()
     real_rows = real_iterations(rows)
-    count = len(real_rows)
-    if count == 0:
+    if not real_rows:
         return 0.0, {"status": "missing", "parse_errors": parse_errors}
+    substantive_kept_rows = [row for row in real_rows if row.get("result") == "kept" and row_has_substantive_change(row)]
+    rejected_rows = [row for row in real_rows if row.get("result") in {"rejected", "reverted"}]
     history = [] if not report else report.get("score_history", [])
-    score = 10.0 if count == 1 else (20.0 if count == 2 else 25.0)
-    if report and len(history) == count:
+    score = 0.0
+    if substantive_kept_rows:
+        score += 10.0
+    if len(substantive_kept_rows) >= 2:
+        score += 5.0
+    if len(substantive_kept_rows) >= 3:
+        score += 5.0
+    if substantive_kept_rows and rejected_rows:
         score += 5.0
     return round(min(score, 25.0), 2), {
-        "count": count,
+        "count": len(real_rows),
+        "substantive_kept_rows": len(substantive_kept_rows),
+        "rejected_or_reverted_rows": len(rejected_rows),
         "history_rows": len(history),
         "real_rows": len(real_rows),
         "parse_errors": parse_errors,
@@ -301,14 +364,15 @@ def artifact_refresh() -> tuple[float, dict]:
     rows, parse_errors = load_iterations()
     if not report and not rows:
         return 0.0, {"status": "missing"}
-    artifacts = [] if not report else report.get("artifacts", [])
-    listed = [artifact for artifact in REQUIRED_ARTIFACTS if artifact in artifacts]
-    existing = [artifact for artifact in REQUIRED_ARTIFACTS if (ROOT / artifact).exists()]
-    ledger_artifacts = sorted({artifact for row in rows for artifact in row.get("artifacts", [])})
-    ledger_listed = [artifact for artifact in REQUIRED_ARTIFACTS if artifact in ledger_artifacts]
-    score = round(7.5 * len(listed) / len(REQUIRED_ARTIFACTS), 2)
-    score += round(7.5 * len(ledger_listed) / len(REQUIRED_ARTIFACTS), 2)
-    score += round(10.0 * len(existing) / len(REQUIRED_ARTIFACTS), 2)
+    history = real_iterations(rows)
+    latest_row = history[-1] if history else None
+    report_artifacts = set([] if not report else report.get("artifacts", []))
+    latest_artifacts = set([] if not latest_row else latest_row.get("artifacts", []))
+    score = 0.0
+    if set(REQUIRED_ARTIFACTS).issubset(report_artifacts):
+        score += 4.0
+    if latest_row and set(REQUIRED_ARTIFACTS).issubset(latest_artifacts):
+        score += 4.0
     span_seconds = artifact_span_seconds(
         [
             "evaluation/copilot-ratchet-report.json",
@@ -318,13 +382,33 @@ def artifact_refresh() -> tuple[float, dict]:
         ]
     )
     if span_seconds is not None and span_seconds <= 600:
-        score += 5.0
+        score += 4.0
+    tool_health = load_tool_health() or {}
+    checks = tool_health.get("checks", {})
+    tracked_statuses = [
+        checks.get("gitnexus", {}).get("status", "missing"),
+        checks.get("graphify", {}).get("status", "missing"),
+        checks.get("infranodus", {}).get("status", "missing"),
+        checks.get("agent_eval", {}).get("status", "missing"),
+    ]
+    tool_health_score = 0.0
+    if tracked_statuses:
+        tool_health_score = round(
+            13.0
+            * (
+                sum(TOOL_STATUS_WEIGHTS.get(status, 0.0) for status in tracked_statuses)
+                / len(tracked_statuses)
+            ),
+            2,
+        )
+        score += tool_health_score
     return round(min(score, 25.0), 2), {
-        "listed": len(listed),
-        "ledger_listed": len(ledger_listed),
-        "existing": len(existing),
+        "report_artifacts_complete": set(REQUIRED_ARTIFACTS).issubset(report_artifacts),
+        "latest_cycle_artifacts_complete": bool(latest_row) and set(REQUIRED_ARTIFACTS).issubset(latest_artifacts),
         "required": len(REQUIRED_ARTIFACTS),
         "freshness_span_seconds": span_seconds,
+        "tool_statuses": tracked_statuses,
+        "tool_health_score": tool_health_score,
         "schema_errors": schema_errors,
         "parse_errors": parse_errors,
     }
@@ -361,10 +445,10 @@ def build_score() -> dict:
     )[0]
 
     payload = {
-        "score_id": "PARENT-META-SCORE-0002",
+        "score_id": "PARENT-META-SCORE-0003",
         "created_at": date.today().isoformat(),
         "scope": "portable_parent_wrapper",
-        "metric_mode": "split-ledger-validated",
+        "metric_mode": "split-ledger-validated-substantive",
         "total_score": total_score,
         "outcome_score": outcome_score,
         "instrument_score": instrument_score,
