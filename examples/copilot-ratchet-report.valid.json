@@ -6,6 +6,9 @@
     "baseline_total_score": 10.0,
     "baseline_outcome_score": 0.0,
     "baseline_instrument_score": 40.0,
+    "final_total_score": 72.5,
+    "final_outcome_score": 80.0,
+    "final_instrument_score": 80.0,
     "trustworthy": true,
     "trust_signals": [
       "Score history now carries per-cycle before and after totals plus split sub-scores.",
@@ -58,6 +61,113 @@
       "summary": "A bounded prompt-only proposal did not improve the score and was reverted."
     }
   ],
+  "runtime_truth": {
+    "truth_level": "contract_only",
+    "runtime_modes_blocked": [
+      {
+        "mode_id": "same_host",
+        "status": "blocked",
+        "blocker_dependency": "Runtime activation was out of scope for this scoring repair example.",
+        "missing_prerequisites": [
+          "runtime implementation"
+        ],
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json"
+        ],
+        "exactness_reason": "This example only demonstrates report repair structure and does not claim executable runtime proof."
+      }
+    ],
+    "activation_artifacts": [],
+    "observability_artifacts": [],
+    "tool_health_evidence": [
+      "evaluation/validation-report.json"
+    ],
+    "completion_tokens_required": [],
+    "completion_tokens_observed": [],
+    "policy_outcomes_observed": [],
+    "mismatch_list": [
+      {
+        "mismatch_id": "missing_runtime_proof_structure",
+        "classification": "schema_gap",
+        "baseline_gap": "The report lacked an explicit runtime-proof block.",
+        "kept_resolution": "The report schema now carries a governed runtime_truth object.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json"
+        ]
+      }
+    ],
+    "blocked_lanes": [
+      {
+        "lane_id": "same_host",
+        "classification": "bounded_out_of_scope",
+        "status": "blocked",
+        "blocker_dependency": "No runtime slice was activated in this example.",
+        "missing_prerequisites": [
+          "activation runner"
+        ],
+        "evidence_refs": [
+          "examples/copilot-ratchet-report.valid.json"
+        ],
+        "exactness_reason": "The example intentionally stays at contract_only truth."
+      }
+    ],
+    "command_evidence": {
+      "activation_commands": [],
+      "validation_commands": [
+        {
+          "command": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/metrics-latest.json"
+          ],
+          "bounded_scope_note": "This example demonstrates schema and scorer structure only."
+        }
+      ],
+      "tool_health_commands": [
+        {
+          "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/validation-report.json"
+          ],
+          "bounded_scope_note": "The contract-only example still proves validator wiring."
+        }
+      ]
+    },
+    "freshness": {
+      "artifact_records": [
+        {
+          "path": "evaluation/copilot-ratchet-report.json",
+          "observed_at": "2026-05-21T00:00:00Z"
+        },
+        {
+          "path": "evaluation/validation-report.json",
+          "observed_at": "2026-05-21T00:00:00Z"
+        },
+        {
+          "path": "evaluation/metrics-latest.json",
+          "observed_at": "2026-05-21T00:00:00Z"
+        },
+        {
+          "path": "runs/iterations.jsonl",
+          "observed_at": "2026-05-21T00:00:00Z"
+        }
+      ],
+      "max_artifact_span_seconds": 120.0
+    }
+  },
+  "score_saturation": {
+    "baseline_total_score": 72.5,
+    "final_total_score": 72.5,
+    "baseline_outcome_score": 80.0,
+    "final_outcome_score": 80.0,
+    "baseline_instrument_score": 80.0,
+    "final_instrument_score": 80.0,
+    "score_changed": false,
+    "new_truth_added": "The report now carries explicit runtime-truth and score-saturation structure even when the example remains contract_only.",
+    "why_this_slice_counts": "It hardens the governed reporting contract without pretending a runtime activation occurred.",
+    "flat_score_explanation": "The score stayed flat because the example demonstrates schema shape, not a new runtime slice."
+  },
   "files_changed": [
     "GOAL.md",
     "program.md",

@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "compiled_capability_harvest",
+  "status": "refreshed",
+  "repo_packets": [
+    "evaluation/research/repos/pi-vs-claude-code.json",
+    "evaluation/research/repos/the-library.json",
+    "evaluation/research/repos/claude-code-hooks-mastery.json",
+    "evaluation/research/repos/claude-code-hooks-multi-agent-observability.json",
+    "evaluation/research/repos/just-prompt.json",
+    "evaluation/research/repos/agent-sandbox-skill.json",
+    "evaluation/research/repos/bowser.json",
+    "evaluation/research/repos/mac-mini-agent.json",
+    "evaluation/research/repos/fork-repository-skill.json",
+    "evaluation/research/repos/infinite-agentic-loop.json"
+  ],
+  "topic_packets": [
+    "evaluation/research/topics/peer-mesh.json",
+    "evaluation/research/topics/capability-distribution.json",
+    "evaluation/research/topics/hook-policy.json",
+    "evaluation/research/topics/multi-agent-observability.json",
+    "evaluation/research/topics/tutorial-video-context.json",
+    "evaluation/research/topics/execution-substrates.json"
+  ],
+  "capabilities": [
+    {
+      "capability_id": "pi-vs-claude-code",
+      "upstream_repo": "https://github.com/disler/pi-vs-claude-code",
+      "upstream_feature_name": "coms/coms-net peer mesh",
+      "parent_surface_type": "communication_plane",
+      "target_contract_surface": "contracts/peer-mesh-runtime.yaml",
+      "runtime_trigger": "mesh_bootstrap",
+      "runtime_actor": "peer_mesh_host",
+      "validation_method": "Validate same-host and networked peer registration, ack-bearing message dispatch, await semantics, hop limits, and stale-peer cleanup against the peer-mesh runtime and lifecycle contracts.",
+      "evidence_artifact": "examples/peer-mesh.valid.json",
+      "blocker_or_dependency": "Requires Bun >= 1.3.2, Pi Coding Agent CLI, and just; cross-device mode additionally requires `PI_COMS_NET_AUTH_TOKEN` and a declared hub URL.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+        "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "the-library",
+      "upstream_repo": "https://github.com/disler/the-library",
+      "upstream_feature_name": "typed reference catalog for skills, agents, and prompts",
+      "parent_surface_type": "distribution_plane",
+      "target_contract_surface": "contracts/library-distribution.yaml",
+      "runtime_trigger": "peer_join",
+      "runtime_actor": "peer_mesh_host",
+      "validation_method": "Validate that parent library entries resolve to typed references, preserve source-of-truth locations, and distribute on demand without repo-tree mirroring.",
+      "evidence_artifact": "examples/library-distribution.valid.json",
+      "blocker_or_dependency": "Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "claude-code-hooks-mastery",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-mastery",
+      "upstream_feature_name": "deterministic hook lifecycle and validator control",
+      "parent_surface_type": "policy_plane",
+      "target_contract_surface": "contracts/policy-decision.yaml",
+      "runtime_trigger": "before_send_prompt",
+      "runtime_actor": "prod_gatekeeper",
+      "validation_method": "Validate prompt gating, tool-use blocking, post-tool validation feedback, and stop/subagent-stop continuation rules as explicit allow/block/ask decisions with fail-loud outcomes.",
+      "evidence_artifact": "examples/hook-manifest.valid.json",
+      "blocker_or_dependency": "Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+        "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "claude-code-hooks-multi-agent-observability",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-multi-agent-observability",
+      "upstream_feature_name": "hook event ingest with session-correlated telemetry",
+      "parent_surface_type": "observability_plane",
+      "target_contract_surface": "contracts/observability-ingest.yaml",
+      "runtime_trigger": "peer_event_emit",
+      "runtime_actor": "mesh_verifier",
+      "validation_method": "Validate event emission, session start/end markers, correlation fields, durable ingest, and queryable swimlane views before observability claims are promoted.",
+      "evidence_artifact": "examples/observability-ingest.valid.json",
+      "blocker_or_dependency": "Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "just-prompt",
+      "upstream_repo": "https://github.com/disler/just-prompt",
+      "upstream_feature_name": "multi-provider prompt arbitration via `ceo_and_board`",
+      "parent_surface_type": "arbitration_lane",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "runtime_trigger": "challenge_review",
+      "runtime_actor": "prod_gatekeeper",
+      "validation_method": "Validate that escalation prompts record board-member outputs, CEO decision output, provider provenance, and explicit reasons for any final override.",
+      "evidence_artifact": "promotion/readiness.json",
+      "blocker_or_dependency": "Requires a running just-prompt MCP server plus provider credentials or a local-model equivalent; without those, the lane remains gated and must not be treated as default.",
+      "source_refs": [
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml"
+      ],
+      "parent_lane_classification": "gated"
+    },
+    {
+      "capability_id": "agent-sandbox-skill",
+      "upstream_repo": "https://github.com/disler/agent-sandbox-skill",
+      "upstream_feature_name": "isolated sandbox execution for delegated engineering work",
+      "parent_surface_type": "sandbox_execution",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "runtime_trigger": "delegated_build",
+      "runtime_actor": "dev_driver",
+      "validation_method": "Validate sandbox handoff, explicit completion status, isolated filesystem/network boundary, and any browser proof generated inside the sandbox before treating delegated execution as truthful.",
+      "evidence_artifact": "examples/agent-role-contract.valid.json",
+      "blocker_or_dependency": "Blocked until a real sandbox provider is configured; exact dependencies are an E2B account/API key today or a parity implementation such as exe.dev.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md"
+      ],
+      "parent_lane_classification": "blocked_with_exact_dependency"
+    },
+    {
+      "capability_id": "bowser",
+      "upstream_repo": "https://github.com/disler/bowser",
+      "upstream_feature_name": "browser automation and UI validation lane",
+      "parent_surface_type": "browser_validation",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "promotion_browser_check",
+      "runtime_actor": "mesh_verifier",
+      "validation_method": "Validate that browser runs emit reproducible evidence (screenshots, DOM/output captures, or step logs) and that the promotion decision names why browser proof was required.",
+      "evidence_artifact": "promotion/readiness.json",
+      "blocker_or_dependency": "Gated on a real browser-validation requirement plus Playwright CLI or an equivalent browser control surface; otherwise the parent should not pretend this lane is active.",
+      "source_refs": [
+        "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md"
+      ],
+      "parent_lane_classification": "gated"
+    },
+    {
+      "capability_id": "mac-mini-agent",
+      "upstream_repo": "https://github.com/disler/mac-mini-agent",
+      "upstream_feature_name": "Mac device sidecar for GUI, terminal, and remote job orchestration",
+      "parent_surface_type": "device_sidecar",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "deployment_sidecar_boot",
+      "runtime_actor": "peer_mesh_host",
+      "validation_method": "Validate host OS prerequisites, permission grants, remote job connectivity, and deterministic completion markers before treating a device sidecar as available.",
+      "evidence_artifact": "evaluation/tool-health/status.json",
+      "blocker_or_dependency": "Deployment-specific: requires macOS, Accessibility + Screen Recording + Full Disk Access permissions, tmux, SSH/remote connectivity, and the paired host topology.",
+      "source_refs": [
+        "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md"
+      ],
+      "parent_lane_classification": "deployment_specific"
+    },
+    {
+      "capability_id": "fork-repository-skill",
+      "upstream_repo": "https://github.com/disler/fork-repository-skill",
+      "upstream_feature_name": "terminal branching and context handoff skill",
+      "parent_surface_type": "parallel_branching_reference",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "manual_parallel_branch",
+      "runtime_actor": "dev_driver",
+      "validation_method": "Validate whether any later implementation adds capabilities that are not already covered by peer mesh or built-in task delegation before promoting this beyond reference.",
+      "evidence_artifact": "evaluation/research/compiled/gap-placement-map.json",
+      "blocker_or_dependency": "Reference only because it overlaps with existing delegation and peer-mesh lanes and depends on a Claude-style skill runtime.",
+      "source_refs": [
+        "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md"
+      ],
+      "parent_lane_classification": "reference"
+    },
+    {
+      "capability_id": "infinite-agentic-loop",
+      "upstream_repo": "https://github.com/disler/infinite-agentic-loop",
+      "upstream_feature_name": "parallel wave generation command",
+      "parent_surface_type": "loop_pattern_reference",
+      "target_contract_surface": "program.md",
+      "runtime_trigger": "bounded_generation_wave",
+      "runtime_actor": "dev_driver",
+      "validation_method": "Validate that any future reuse remains finite, explicitly bounded, and stop-reason-aware; reject infinite mode for the parent wrapper.",
+      "evidence_artifact": "evaluation/research/compiled/gap-placement-map.json",
+      "blocker_or_dependency": "Reference only because the upstream infinite mode conflicts with bounded stop, plateau, and exact-blocker doctrine.",
+      "source_refs": [
+        "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md"
+      ],
+      "parent_lane_classification": "reference"
+    }
+  ],
+  "topic_summaries": [
+    {
+      "topic_id": "peer-mesh",
+      "lane_classification": "core",
+      "synthesized_findings": [
+        "Peer mesh is the center of the parent-native orchestration model: flat peers, dynamic membership, same-host plus cross-device runtime modes, and explicit completion exchange.",
+        "The durable parent operations are list, send, get/poll, and await; upstream naming differs slightly (`coms_*`), but the semantic surface is stable across the local research and GitHub README.",
+        "Cross-device mode is a runtime expansion of the same primitive, not a separate orchestration paradigm."
+      ],
+      "unresolved_ambiguities": [
+        "The local video-context docs cite transcript timestamps but do not store raw terminal frames, so the exact on-screen demo sequence remains transcript/context-summary evidence rather than frame-backed proof.",
+        "The parent normalization from `coms_send`/`coms_await` to `send_prompt`/`await_response` is doctrine-aligned but still an interpretation layer the implementation will need to preserve explicitly."
+      ],
+      "source_refs": [
+        "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+        "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile"
+      ]
+    },
+    {
+      "topic_id": "capability-distribution",
+      "lane_classification": "core",
+      "synthesized_findings": [
+        "The parent should distribute capabilities by typed reference and compile-time normalization, not by copying upstream repo trees or collapsing packet boundaries early.",
+        "The-library supplies the right upstream mental model because it is catalog-first and agent-agnostic.",
+        "The compiled harvest should act like a governed derivative of the packet set, not a replacement for it."
+      ],
+      "unresolved_ambiguities": [
+        "The upstream `library.yaml` is empty by default, so the exact parent admission and sync workflow still needs later implementation."
+      ],
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
+      ]
+    },
+    {
+      "topic_id": "hook-policy",
+      "lane_classification": "core",
+      "synthesized_findings": [
+        "Hook policy is the parent control surface that decides when prompts, commands, and stop conditions are allowed to proceed.",
+        "The reusable doctrine is the lifecycle taxonomy and decision semantics, not the raw `.claude` folder structure.",
+        "Stop/subagent-stop hooks matter because they turn incomplete work into explicit continuation rather than silent pass-shaped output."
+      ],
+      "unresolved_ambiguities": [
+        "The local Production Safety Constraints doc is only a title, so detailed policy behavior is currently grounded more strongly in upstream repo evidence than in local prose.",
+        "Concrete hook adapters still vary by host harness even when the doctrine is stable."
+      ],
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+        "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
+      ]
+    },
+    {
+      "topic_id": "multi-agent-observability",
+      "lane_classification": "core",
+      "synthesized_findings": [
+        "Multi-agent observability requires a governed event vocabulary, durable ingest, session boundaries, and queryable correlation fields.",
+        "The parent should care primarily about event schema, durability, and promotion-time review, not about the exact dashboard technology.",
+        "A blocked or fixture-only lane is more truthful than a report that implies live telemetry without a running sink."
+      ],
+      "unresolved_ambiguities": [
+        "The local Notion docs define report classes but do not preserve detailed event schemas; those details currently come from the upstream repo."
+      ],
+      "source_refs": [
+        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
+      ]
+    },
+    {
+      "topic_id": "tutorial-video-context",
+      "lane_classification": "core",
+      "synthesized_findings": [
+        "The local Pi-to-Pi tutorial materials are useful as transcript/context summaries and task captures, but this repo does not store durable raw terminal-frame evidence for the demo.",
+        "Video-derived claims are strongest when repo docs independently corroborate them; otherwise they must remain marked as transcript/context-summary only.",
+        "The parent harvest should preserve these uncertainty boundaries in packet and compiled outputs rather than sanding them off during synthesis."
+      ],
+      "unresolved_ambiguities": [
+        "No durable raw transcript file or screenshot set for the Pi-to-Pi video was found under `docs/NOTION-DOCS/`; the stored materials are task captures and transcript/context summaries.",
+        "The local docs quote timestamps, but there is no committed frame-by-frame record tying those timestamps to terminal output."
+      ],
+      "source_refs": [
+        "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
+        "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md"
+      ]
+    },
+    {
+      "topic_id": "execution-substrates",
+      "lane_classification": "gated",
+      "synthesized_findings": [
+        "The lane taxonomy that survives review is: core (peer mesh, distribution, hook policy, observability), gated (browser validation, model arbitration), deployment_specific (Mac device sidecar), blocked_with_exact_dependency (sandbox execution), and reference (fork skill, infinite loop).",
+        "The local Risks and Controls and Evaluation Boundary pages do not preserve detailed content beyond titles, so exact substrate boundaries had to be grounded in repo evidence and the parent capability matrix.",
+        "Useful infrastructure should be classified by exact dependency and blast radius, not by vague non-governed framing."
+      ],
+      "unresolved_ambiguities": [
+        "The local risk/evaluation docs are placeholders, so a future pass should replace them with detailed doctrine if this topic becomes implementation-facing."
+      ],
+      "source_refs": [
+        "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
+        "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
+        "contracts/capability-matrix.yaml",
+        "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md",
+        "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md",
+        "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md",
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md"
+      ]
+    }
+  ],
+  "exact_blockers": [
+    {
+      "capability_id": "agent-sandbox-skill",
+      "classification": "blocked_with_exact_dependency",
+      "blocker_or_dependency": "Blocked until a real sandbox provider is configured; exact dependencies are an E2B account/API key today or a parity implementation such as exe.dev."
+    }
+  ],
+  "compiler_notes": [
+    "pi-vs-claude-code remains the first-class core communication source in this compile.",
+    "Packet boundaries are preserved in repo_packets and topic_packets; compiled rows are derivative views, not replacements.",
+    "Video-derived claims preserve transcript/context uncertainty instead of claiming raw frame certainty.",
+    "GitHub source refs are pinned to the verified upstream commit snapshots used during this research pass."
+  ]
+}

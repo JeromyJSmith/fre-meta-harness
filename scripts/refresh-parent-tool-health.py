@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from datetime import date
 from pathlib import Path
 
@@ -16,9 +17,30 @@ def load_json(path: Path) -> dict | None:
     return json.loads(path.read_text())
 
 
+def run_peer_mesh_local() -> dict:
+    command = ["bash", "scripts/run-parent-peer-mesh-local.sh"]
+    completed = subprocess.run(
+        command,
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    summary = load_json(TOOL_HEALTH_DIR / "peer-mesh-local.json") or {}
+    return {
+        "command": " ".join(command),
+        "exit_code": completed.returncode,
+        "stdout_tail": completed.stdout.strip().splitlines()[-1:] if completed.stdout.strip() else [],
+        "stderr_tail": completed.stderr.strip().splitlines()[-5:] if completed.stderr.strip() else [],
+        "summary": summary,
+    }
+
+
 def main() -> int:
     local_runners = load_json(TOOL_HEALTH_DIR / "local-runners.json") or {}
     infranodus_probe = load_json(TOOL_HEALTH_DIR / "infranodus-live-probe.json") or {}
+    peer_mesh_probe = run_peer_mesh_local()
+    peer_mesh_summary = peer_mesh_probe.get("summary", {})
 
     runner_summary = local_runners.get("summary", {})
     available = runner_summary.get("available", [])
@@ -31,6 +53,14 @@ def main() -> int:
         "checks": {
             "gitnexus": {
                 "status": "bounded_pass",
+                "strongest_honest_scope": "fixture_probe",
+                "truth_boundary": {
+                    "strongest_honest_status": "bounded_pass",
+                    "bounded_scope": "isolated_parent_fixture",
+                    "bounded_evidence": "fixture_probe",
+                    "unbounded_repo_status": "warn",
+                    "limitation": "Full-repo indexing still traverses read-only external authorities and can emit upstream scope-extraction warnings outside the kept parent slice.",
+                },
                 "full_repo_probe": {
                     "status": "warn",
                     "command": "HOME=$PWD/evaluation/tool-health/gitnexus-home gitnexus analyze . --skip-agents-md --name fre-meta-harness-parent",
@@ -49,7 +79,14 @@ def main() -> int:
                 },
             },
             "graphify": {
-                "status": "pass",
+                "status": "bounded_pass",
+                "strongest_honest_scope": "probe",
+                "truth_boundary": {
+                    "strongest_honest_status": "bounded_pass",
+                    "bounded_scope": "graphify_parent_fixture",
+                    "bounded_evidence": "evaluation/tool-health/graphify-parent-fixture/graphify-out/graph.json",
+                    "limitation": "This probe only proves bounded parent-fixture graph extraction and does not claim full parent-repo Graphify coverage.",
+                },
                 "probe": {
                     "command": "graphify update evaluation/tool-health/graphify-parent-fixture --no-cluster",
                     "summary": "Bounded parent fixture updated cleanly with no LLM requirement and produced graphify-out/graph.json.",
@@ -61,6 +98,15 @@ def main() -> int:
             },
             "infranodus": {
                 "status": "bounded_pass",
+                "strongest_honest_scope": "bounded_local_cli_substitute",
+                "truth_boundary": {
+                    "strongest_honest_status": "bounded_pass",
+                    "bounded_scope": "governed_parent_corpus",
+                    "bounded_evidence": "evaluation/infranodus-gap-analysis.json",
+                    "live_status": infranodus_probe.get("status", "blocked"),
+                    "live_mode": infranodus_probe.get("mode", "live_mcp_runtime"),
+                    "live_blocker": infranodus_probe.get("blocker"),
+                },
                 "probe": {
                     "package": "infranodus-mcp-server@1.6.1",
                     "summary": "Live MCP analysis stayed blocked, but the bounded local substitute generated fresh parent-layer gap, bridge, and research-topic artifacts without faking OAuth-backed runtime access.",
@@ -119,6 +165,30 @@ def main() -> int:
                     "evidence": [
                         "evaluation/tool-health/local-runners.json"
                     ],
+                },
+            },
+            "peer_mesh_local": {
+                "status": peer_mesh_summary.get("status", "missing"),
+                "strongest_honest_scope": "same_host_runtime",
+                "truth_boundary": {
+                    "strongest_honest_status": peer_mesh_summary.get("status", "missing"),
+                    "active_runtime_modes": peer_mesh_summary.get("truth_boundary", {}).get("active_runtime_modes", []),
+                    "blocked_runtime_modes": peer_mesh_summary.get("truth_boundary", {}).get("blocked_runtime_modes", []),
+                    "bounded_evidence": "evaluation/tool-health/peer-mesh-local.json",
+                    "limitation": peer_mesh_summary.get("truth_boundary", {}).get("limitation"),
+                },
+                "activation_probe": {
+                    "command": peer_mesh_probe["command"],
+                    "summary": "Executed the bounded same-host peer-mesh runtime slice and refreshed its tool-health evidence.",
+                    "exit_code": peer_mesh_probe["exit_code"],
+                    "evidence": [
+                        "evaluation/tool-health/peer-mesh-local.json",
+                        "evaluation/tool-health/peer-mesh-local.log",
+                        "evaluation/tool-health/peer-mesh-local-events.jsonl",
+                        "evaluation/tool-health/peer-mesh-local-benchmarks.json",
+                    ],
+                    "stdout_tail": peer_mesh_probe["stdout_tail"],
+                    "stderr_tail": peer_mesh_probe["stderr_tail"],
                 },
             },
         },

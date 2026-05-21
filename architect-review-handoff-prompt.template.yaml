@@ -1,0 +1,63 @@
+prompt_schema_version: "1.0.0"
+handoff_id: "HANDOFF-YYYYMMDD-XXXX"
+artifact_type: "architect_review_handoff_prompt"
+producer_run:
+  source_prompt_id: ""
+  source_report_path: ""
+  source_commit_hash: ""
+  kept_or_blocked: "kept"
+  repo_root: ""
+consumer_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+handoff_goal:
+  objective: ""
+  why_now: ""
+  best_next_slice: ""
+review_scope:
+  repo_root: ""
+  allowed_paths:
+    - ""
+  disallowed_paths:
+    - ""
+  primary_focus:
+    - ""
+  anti_goals:
+    - ""
+required_inputs:
+  report_artifacts:
+    - ""
+  runtime_proof_artifacts:
+    - ""
+  contract_artifacts:
+    - ""
+  research_artifacts:
+    - ""
+review_protocol:
+  ordered_steps:
+    - ""
+  runtime_truth_expectations:
+    - ""
+  blocker_expectations:
+    - ""
+  freshness_expectations:
+    - ""
+  command_evidence_expectations:
+    - ""
+validation_loop:
+  checks:
+    - ""
+  rerun_policy: ""
+expected_outputs:
+  review_report_fields:
+    - ""
+  follow_up_prompt_artifact:
+    artifact_path: ""
+    target_schema_ref: "agent-heavy-run-prompt.schema.json"
+    target_template_ref: "agent-heavy-run-prompt.template.yaml"
+    must_be_inline_ready: true
+    must_preserve_runtime_truth_fields: true
+    must_preserve_blocker_fields: true
+    must_preserve_freshness_fields: true
+    must_preserve_command_evidence_fields: true

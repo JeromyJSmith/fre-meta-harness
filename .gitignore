@@ -2,3 +2,8 @@
 **/.DS_Store
 **/__pycache__/
 **/.pytest_cache/
+.gitnexus
+evaluation/tool-health/gitnexus-home/
+evaluation/tool-health/gitnexus-parent-fixture/home/
+evaluation/tool-health/gitnexus-parent-fixture/workdir/
+evaluation/tool-health/graphify-parent-fixture/graphify-out/.rebuild.lock

@@ -1,0 +1,87 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260520-UNDERSTAND05"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Install or verify Understand-Anything for this environment, run a bounded structural graph pass against the parent wrapper repo, and harvest only the useful graph outputs into governed parent evidence surfaces."
+  repo_scope: "/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+  task_scope: "Parent wrapper intake graph generation, bounded structural artifact capture, minimal doc or evidence updates, and zero broad contract adoption from the plugin itself."
+current_verified_state:
+  facts:
+    - "Parent wrapper root is /Volumes/PixelTable/VW_iTwin_Bridge/meta and this is the standalone fre-meta-harness repo."
+    - "Governed prompt artifacts already exist under /Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts and this run must stay inside that contract system."
+    - "Phase 1 and Phase 2 peer-mesh prompts already exist and are intended to remain the canonical adoption path for communication, observability, distribution, and evaluation."
+    - "The user wants Understand-Anything treated as a powerful first-step intake surface for repository understanding, not as a replacement for governed capability harvest or parent contract truth."
+    - "The parent worktree is already dirty, so this run must keep scope narrow and avoid unrelated churn."
+hard_rules:
+  environment:
+    - "Use the upstream Understand-Anything installation path appropriate for Copilot or Codex if installation is required."
+    - "Use uv for all Python environment, dependency, script, and test execution inside the parent wrapper repo."
+    - "Do not introduce pip-based local environment drift unless upstream installation absolutely requires it and no bounded alternative exists."
+  safety:
+    - "Do not broaden beyond /Volumes/PixelTable/VW_iTwin_Bridge/meta except for the plugin install location required by Understand-Anything."
+    - "Do not let the plugin mutate the child runtime repo or imported authority clones under /Volumes/PixelTable/VW_iTwin_Bridge/meta/external."
+    - "Do not treat the generated graph as canonical truth by itself."
+    - "Do not rewrite the parent contract family during this run except for minimal evidence or registry touchpoints needed to register the graph artifact."
+  truthfulness:
+    - "No fake green path."
+    - "If Understand-Anything cannot be installed or run truthfully in this environment, stop with exact installer or runtime evidence."
+    - "The graph artifact may inform later harvest and placement, but governed contracts, schemas, validators, and ledgers remain the canonical parent truth surfaces."
+allowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/README.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/GOAL.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/program.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/library.yaml"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agentics-library.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/evaluation/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/promotion/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/runs/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/docs/NOTION-DOCS/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/examples/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/contracts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/schemas/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/.understand-anything/**"
+disallowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/**"
+tasks:
+  ordered_steps:
+    - "Read README.md, GOAL.md, program.md, library.yaml, agentics-library.md, prompts/parent-wrapper-peer-mesh-phase1.prompt.yaml, prompts/parent-wrapper-peer-mesh-phase2.prompt.yaml, tests/validate_parent_wrapper_contract.py, and scripts/score-parent-wrapper.py."
+    - "Read only the parent-relevant Notion sources for this intake step: Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md, Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md, Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md, and Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md."
+    - "Verify whether Understand-Anything is already installed for the current Copilot or Codex surface. If not, install it using the upstream supported method for this environment without broadening into unrelated platform setup."
+    - "Run a bounded Understand-Anything graph generation pass against /Volumes/PixelTable/VW_iTwin_Bridge/meta and produce the local graph artifact under .understand-anything/."
+    - "If the plugin supports additional bounded useful outputs such as dashboard launch, onboarding, explain, diff, or domain extraction, use only the minimum subset that materially improves parent-wrapper intake understanding. Do not drift into broad exploratory output generation."
+    - "Harvest the useful results into governed parent evidence only. Prefer minimal updates such as an evaluation note, registry entry, artifact reference, or intake summary artifact that points at the generated graph and states what it is and is not authoritative for."
+    - "Do not translate the graph directly into new canonical contracts in this run. The purpose here is intake, structural reconnaissance, and durable graph evidence for later governed harvest."
+    - "Run validator, scorer, and diff hygiene if any parent wrapper files changed. If the run is kept, refresh only the minimum durable artifacts needed to register the intake graph step and append exactly one compact iteration row. If blocked, preserve exact install or runtime evidence."
+validation_loop:
+  checks:
+    - "Verify the Understand-Anything install or command surface actually works in this environment."
+    - "Confirm the graph artifact exists under /Volumes/PixelTable/VW_iTwin_Bridge/meta/.understand-anything/."
+    - "If parent wrapper files changed, run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/validate_parent_wrapper_contract.py"
+    - "If parent wrapper files changed, run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json"
+    - "Run git --no-pager diff --check from /Volumes/PixelTable/VW_iTwin_Bridge/meta"
+  rerun_policy: "Repeat only the bounded install or verify, graph generation, and artifact-registration loop until the repo-intake graph step passes honestly or the blocker is exact and proven."
+success_criteria:
+  best_case: "Understand-Anything runs successfully against the parent wrapper, a local graph artifact is created, and the parent repo records a minimal truthful intake artifact explaining how that graph feeds later governed harvest without replacing canonical contracts."
+  acceptable_fallback: "An exact installer or runtime blocker is proven with fresh command evidence showing why Understand-Anything cannot yet serve as a truthful intake step in this environment."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "whether Understand-Anything was already installed or had to be installed"
+    - "graph artifact path"
+    - "commands or surfaces used to generate the graph"
+    - "parent files changed, if any"
+    - "proof artifact paths refreshed"
+    - "iteration ledger entry appended or exact blocker"

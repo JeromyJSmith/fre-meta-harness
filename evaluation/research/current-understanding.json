@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "current-understanding-20260521",
+  "status": "refreshed",
+  "scope": "meta_only",
+  "sources": [
+    {
+      "kind": "parent_contract",
+      "ref": "contracts/capability-matrix.yaml"
+    },
+    {
+      "kind": "research_manifest",
+      "ref": "evaluation/research/harvest-manifest.json"
+    },
+    {
+      "kind": "compiled_output",
+      "ref": "evaluation/research/compiled/capability-harvest.json"
+    },
+    {
+      "kind": "compiled_output",
+      "ref": "evaluation/research/compiled/feature-matrix.json"
+    },
+    {
+      "kind": "compiled_output",
+      "ref": "evaluation/research/compiled/gap-placement-map.json"
+    },
+    {
+      "kind": "compiled_output",
+      "ref": "evaluation/research/compiled/source-index.json"
+    }
+  ],
+  "stable_findings": [
+    "pi-vs-claude-code is the first-class core source for the parent communication plane and stays centered in the compiled harvest.",
+    "The strongest core adoption set is pi-vs-claude-code, the-library, claude-code-hooks-mastery, and claude-code-hooks-multi-agent-observability.",
+    "Useful non-core lanes now use governed classifications: gated, deployment_specific, reference, or blocked_with_exact_dependency.",
+    "Packet boundaries are preserved in per-repo and per-topic JSON artifacts and only merged in compiled outputs."
+  ],
+  "doctrine_corrections": [
+    "Helpful infrastructure is never labeled optional in the compiled outputs.",
+    "Tutorial/video claims now distinguish transcript/context-summary evidence from any stronger repo-doc evidence.",
+    "Redundant or conflicting lanes are preserved as reference packets with explicit reasons instead of being deleted."
+  ],
+  "remaining_exact_gaps": [
+    "No durable raw frame or terminal-capture artifact for the Pi-to-Pi video exists under docs/NOTION-DOCS, so video-backed certainty remains limited.",
+    "Sandbox execution remains blocked until a concrete provider is configured and evidenced.",
+    "Live observability remains dependent on a real ingest sink; fixture/schema evidence is the truthful fallback."
+  ],
+  "compiler_targets": [
+    "evaluation/research/compiled/capability-harvest.json",
+    "evaluation/research/compiled/feature-matrix.json",
+    "evaluation/research/compiled/gap-placement-map.json",
+    "evaluation/research/compiled/source-index.json"
+  ]
+}

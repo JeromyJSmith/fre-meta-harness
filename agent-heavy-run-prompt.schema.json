@@ -248,10 +248,33 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "required_fields"
+        "required_fields",
+        "runtime_truth_fields",
+        "blocker_fields",
+        "freshness_fields",
+        "score_saturation_fields",
+        "command_evidence_fields"
       ],
       "properties": {
         "required_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "runtime_truth_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "blocker_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "freshness_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "score_saturation_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "command_evidence_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "follow_up_prompt_fields": {
           "$ref": "#/$defs/string_list"
         }
       }

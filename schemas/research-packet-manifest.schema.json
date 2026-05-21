@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/research-packet-manifest.schema.json",
+  "title": "Research Packet Manifest Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "authority",
+    "alignment",
+    "classification_governance",
+    "evidence_governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-research-packet-manifest"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "harvest_root",
+        "current_understanding",
+        "harvest_manifest",
+        "compiled_outputs"
+      ],
+      "properties": {
+        "harvest_root": {
+          "type": "string",
+          "const": "evaluation/research"
+        },
+        "current_understanding": {
+          "type": "string",
+          "const": "evaluation/research/current-understanding.json"
+        },
+        "harvest_manifest": {
+          "type": "string",
+          "const": "evaluation/research/harvest-manifest.json"
+        },
+        "compiled_outputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "capability_harvest",
+            "feature_matrix",
+            "gap_placement_map",
+            "source_index"
+          ],
+          "properties": {
+            "capability_harvest": {
+              "type": "string",
+              "const": "evaluation/research/compiled/capability-harvest.json"
+            },
+            "feature_matrix": {
+              "type": "string",
+              "const": "evaluation/research/compiled/feature-matrix.json"
+            },
+            "gap_placement_map": {
+              "type": "string",
+              "const": "evaluation/research/compiled/gap-placement-map.json"
+            },
+            "source_index": {
+              "type": "string",
+              "const": "evaluation/research/compiled/source-index.json"
+            }
+          }
+        }
+      }
+    },
+    "alignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_matrix_contract",
+        "compiled_views_are_derivative",
+        "packet_boundaries_preserved_until_compile",
+        "required_feature_fields"
+      ],
+      "properties": {
+        "capability_matrix_contract": {
+          "type": "string",
+          "const": "contracts/capability-matrix.yaml"
+        },
+        "compiled_views_are_derivative": {
+          "type": "boolean",
+          "const": true
+        },
+        "packet_boundaries_preserved_until_compile": {
+          "type": "boolean",
+          "const": true
+        },
+        "required_feature_fields": {
+          "type": "array",
+          "minItems": 12,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "capability_id",
+              "upstream_repo",
+              "upstream_feature_name",
+              "parent_surface_type",
+              "target_contract_surface",
+              "runtime_trigger",
+              "runtime_actor",
+              "validation_method",
+              "evidence_artifact",
+              "blocker_or_dependency",
+              "source_refs",
+              "parent_lane_classification"
+            ]
+          }
+        }
+      }
+    },
+    "classification_governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_values",
+        "forbidden_values",
+        "required_core_capability_ids"
+      ],
+      "properties": {
+        "allowed_values": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "core",
+              "gated",
+              "deployment_specific",
+              "reference",
+              "blocked_with_exact_dependency"
+            ]
+          }
+        },
+        "forbidden_values": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "const": "optional"
+          }
+        },
+        "required_core_capability_ids": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "pi-vs-claude-code",
+              "the-library",
+              "claude-code-hooks-mastery",
+              "claude-code-hooks-multi-agent-observability"
+            ]
+          }
+        }
+      }
+    },
+    "evidence_governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_refs_must_be_commit_pinned",
+        "source_index_path",
+        "video_evidence_strength_terms",
+        "terminal_or_frame_claim_requires_artifact",
+        "non_terminal_video_terms_must_stay_explicit"
+      ],
+      "properties": {
+        "source_refs_must_be_commit_pinned": {
+          "type": "boolean",
+          "const": true
+        },
+        "source_index_path": {
+          "type": "string",
+          "const": "evaluation/research/compiled/source-index.json"
+        },
+        "video_evidence_strength_terms": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "transcript_only",
+              "transcript_plus_context_summary",
+              "task_capture_without_terminal_frames",
+              "task_stub_without_terminal_frames",
+              "terminal_or_frame_verified"
+            ]
+          }
+        },
+        "terminal_or_frame_claim_requires_artifact": {
+          "type": "boolean",
+          "const": true
+        },
+        "non_terminal_video_terms_must_stay_explicit": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  }
+}

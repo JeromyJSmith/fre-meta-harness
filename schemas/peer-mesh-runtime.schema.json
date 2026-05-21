@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/peer-mesh-runtime.schema.json",
+  "title": "Parent Peer Mesh Runtime Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "runtime_modes",
+    "actors",
+    "completion_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-peer-mesh-runtime"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "runtime_modes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/$defs/runtimeMode"
+      }
+    },
+    "actors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_roles",
+        "required_role_classes",
+        "prod_boundary_role",
+        "verification_role"
+      ],
+      "properties": {
+        "required_roles": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          }
+        },
+        "required_role_classes": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "prod_boundary_role": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "verification_role": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        }
+      }
+    },
+    "completion_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "await_response_required",
+        "required_completion_tokens",
+        "max_loop_budget_per_scenario",
+        "max_retries_per_message",
+        "benchmark_contract",
+        "benchmark_emission_required",
+        "lifecycle_contract"
+      ],
+      "properties": {
+        "await_response_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "required_completion_tokens": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "done" } },
+            { "contains": { "const": "failed" } },
+            { "contains": { "const": "needs-human" } }
+          ]
+        },
+        "max_loop_budget_per_scenario": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_retries_per_message": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "benchmark_contract": {
+          "type": "string",
+          "const": "contracts/benchmark-emission.yaml"
+        },
+        "benchmark_emission_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "lifecycle_contract": {
+          "type": "string",
+          "const": "contracts/peer-lifecycle.yaml"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "runtimeMode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode_id",
+        "transport_extension",
+        "host_topology",
+        "supports_operations",
+        "actor_roles",
+        "actor_role_classes"
+      ],
+      "properties": {
+        "mode_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "transport_extension": {
+          "type": "string",
+          "minLength": 3
+        },
+        "host_topology": {
+          "type": "string",
+          "enum": ["same_machine", "network_reachable"]
+        },
+        "hub_runtime": {
+          "type": "string",
+          "minLength": 3
+        },
+        "auth_token_env": {
+          "type": "string",
+          "minLength": 3
+        },
+        "supports_operations": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "list_agents" } },
+            { "contains": { "const": "send_command" } },
+            { "contains": { "const": "send_prompt" } },
+            { "contains": { "const": "await_response" } }
+          ]
+        },
+        "actor_roles": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          }
+        },
+        "actor_role_classes": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode_id": {
+                "const": "cross_device"
+              }
+            }
+          },
+          "then": {
+            "required": ["hub_runtime", "auth_token_env"]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-capability-matrix",
+  "scope": "portable_parent_wrapper",
+  "doctrine": {
+    "peer_mesh_is_core": true,
+    "governed_roles_are_core": true,
+    "hook_policy_is_core": true,
+    "observability_is_core": true,
+    "policy_decisions_are_core": true
+  },
+  "research_authority": {
+    "manifest_contract_surface": "contracts/research-packet-manifest.yaml",
+    "current_understanding": "evaluation/research/current-understanding.json",
+    "compiled_capability_harvest": "evaluation/research/compiled/capability-harvest.json",
+    "compiled_feature_matrix": "evaluation/research/compiled/feature-matrix.json",
+    "compiled_gap_placement_map": "evaluation/research/compiled/gap-placement-map.json",
+    "compiled_source_index": "evaluation/research/compiled/source-index.json",
+    "allowed_parent_lane_classifications": [
+      "core",
+      "gated",
+      "deployment_specific",
+      "reference",
+      "blocked_with_exact_dependency"
+    ],
+    "required_core_capability_ids": [
+      "pi-vs-claude-code",
+      "the-library",
+      "claude-code-hooks-mastery",
+      "claude-code-hooks-multi-agent-observability"
+    ],
+    "video_evidence_strength_terms": [
+      "transcript_only",
+      "transcript_plus_context_summary",
+      "task_capture_without_terminal_frames",
+      "task_stub_without_terminal_frames",
+      "terminal_or_frame_verified"
+    ]
+  },
+  "capabilities": [
+    {
+      "capability_id": "pi-vs-claude-code",
+      "upstream_repo": "https://github.com/disler/pi-vs-claude-code",
+      "upstream_feature_name": "coms/coms-net peer mesh",
+      "parent_surface_type": "communication_plane",
+      "target_contract_surface": "contracts/peer-mesh-runtime.yaml",
+      "runtime_trigger": "mesh_bootstrap",
+      "runtime_actor": "peer_mesh_host",
+      "governed_operations": [
+        "list_agents",
+        "send_command",
+        "send_prompt",
+        "await_response"
+      ],
+      "validation_method": "Validate same-host and networked peer registration, ack-bearing message dispatch, await semantics, hop limits, and stale-peer cleanup against the peer-mesh runtime and lifecycle contracts.",
+      "evidence_artifact": "examples/peer-mesh.valid.json",
+      "blocker_or_dependency": "Requires Bun >= 1.3.2, Pi Coding Agent CLI, and just; cross-device mode additionally requires `PI_COMS_NET_AUTH_TOKEN` and a declared hub URL.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+        "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
+        "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "the-library",
+      "upstream_repo": "https://github.com/disler/the-library",
+      "upstream_feature_name": "typed reference catalog for skills, agents, and prompts",
+      "parent_surface_type": "distribution_plane",
+      "target_contract_surface": "contracts/library-distribution.yaml",
+      "runtime_trigger": "peer_join",
+      "runtime_actor": "peer_mesh_host",
+      "governed_operations": [
+        "list_agents"
+      ],
+      "validation_method": "Validate that parent library entries resolve to typed references, preserve source-of-truth locations, and distribute on demand without repo-tree mirroring.",
+      "evidence_artifact": "examples/library-distribution.valid.json",
+      "blocker_or_dependency": "Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "claude-code-hooks-mastery",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-mastery",
+      "upstream_feature_name": "deterministic hook lifecycle and validator control",
+      "parent_surface_type": "policy_plane",
+      "target_contract_surface": "contracts/policy-decision.yaml",
+      "runtime_trigger": "before_send_prompt",
+      "runtime_actor": "prod_gatekeeper",
+      "governed_operations": [
+        "send_prompt",
+        "send_command"
+      ],
+      "validation_method": "Validate prompt gating, tool-use blocking, post-tool validation feedback, and stop/subagent-stop continuation rules as explicit allow/block/ask decisions with fail-loud outcomes.",
+      "evidence_artifact": "examples/hook-manifest.valid.json",
+      "blocker_or_dependency": "Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+        "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "claude-code-hooks-multi-agent-observability",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-multi-agent-observability",
+      "upstream_feature_name": "hook event ingest with session-correlated telemetry",
+      "parent_surface_type": "observability_plane",
+      "target_contract_surface": "contracts/observability-ingest.yaml",
+      "runtime_trigger": "peer_event_emit",
+      "runtime_actor": "mesh_verifier",
+      "governed_operations": [
+        "list_agents",
+        "send_command",
+        "send_prompt",
+        "await_response"
+      ],
+      "validation_method": "Validate event emission, session start/end markers, correlation fields, durable ingest, and queryable swimlane views before observability claims are promoted.",
+      "evidence_artifact": "examples/observability-ingest.valid.json",
+      "blocker_or_dependency": "Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
+      ],
+      "parent_lane_classification": "core"
+    },
+    {
+      "capability_id": "just-prompt",
+      "upstream_repo": "https://github.com/disler/just-prompt",
+      "upstream_feature_name": "multi-provider prompt arbitration via `ceo_and_board`",
+      "parent_surface_type": "arbitration_lane",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "runtime_trigger": "challenge_review",
+      "runtime_actor": "prod_gatekeeper",
+      "governed_operations": [
+        "send_prompt",
+        "await_response"
+      ],
+      "validation_method": "Validate that escalation prompts record board-member outputs, CEO decision output, provider provenance, and explicit reasons for any final override.",
+      "evidence_artifact": "promotion/readiness.json",
+      "blocker_or_dependency": "Requires a running just-prompt MCP server plus provider credentials or a local-model equivalent; without those, the lane remains gated and must not be treated as default.",
+      "source_refs": [
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml"
+      ],
+      "parent_lane_classification": "gated"
+    },
+    {
+      "capability_id": "agent-sandbox-skill",
+      "upstream_repo": "https://github.com/disler/agent-sandbox-skill",
+      "upstream_feature_name": "isolated sandbox execution for delegated engineering work",
+      "parent_surface_type": "sandbox_execution",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "runtime_trigger": "delegated_build",
+      "runtime_actor": "dev_driver",
+      "governed_operations": [
+        "send_command",
+        "await_response"
+      ],
+      "validation_method": "Validate sandbox handoff, explicit completion status, isolated filesystem/network boundary, and any browser proof generated inside the sandbox before treating delegated execution as truthful.",
+      "evidence_artifact": "examples/agent-role-contract.valid.json",
+      "blocker_or_dependency": "Blocked until a real sandbox provider is configured; exact dependencies are an E2B account/API key today or a parity implementation such as exe.dev.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md"
+      ],
+      "parent_lane_classification": "blocked_with_exact_dependency"
+    },
+    {
+      "capability_id": "bowser",
+      "upstream_repo": "https://github.com/disler/bowser",
+      "upstream_feature_name": "browser automation and UI validation lane",
+      "parent_surface_type": "browser_validation",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "promotion_browser_check",
+      "runtime_actor": "mesh_verifier",
+      "governed_operations": [
+        "send_command",
+        "await_response"
+      ],
+      "validation_method": "Validate that browser runs emit reproducible evidence (screenshots, DOM/output captures, or step logs) and that the promotion decision names why browser proof was required.",
+      "evidence_artifact": "promotion/readiness.json",
+      "blocker_or_dependency": "Gated on a real browser-validation requirement plus Playwright CLI or an equivalent browser control surface; otherwise the parent should not pretend this lane is active.",
+      "source_refs": [
+        "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md"
+      ],
+      "parent_lane_classification": "gated"
+    },
+    {
+      "capability_id": "mac-mini-agent",
+      "upstream_repo": "https://github.com/disler/mac-mini-agent",
+      "upstream_feature_name": "Mac device sidecar for GUI, terminal, and remote job orchestration",
+      "parent_surface_type": "device_sidecar",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "deployment_sidecar_boot",
+      "runtime_actor": "peer_mesh_host",
+      "governed_operations": [
+        "list_agents",
+        "send_command",
+        "await_response"
+      ],
+      "validation_method": "Validate host OS prerequisites, permission grants, remote job connectivity, and deterministic completion markers before treating a device sidecar as available.",
+      "evidence_artifact": "evaluation/tool-health/status.json",
+      "blocker_or_dependency": "Deployment-specific: requires macOS, Accessibility + Screen Recording + Full Disk Access permissions, tmux, SSH/remote connectivity, and the paired host topology.",
+      "source_refs": [
+        "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md"
+      ],
+      "parent_lane_classification": "deployment_specific"
+    },
+    {
+      "capability_id": "fork-repository-skill",
+      "upstream_repo": "https://github.com/disler/fork-repository-skill",
+      "upstream_feature_name": "terminal branching and context handoff skill",
+      "parent_surface_type": "parallel_branching_reference",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "manual_parallel_branch",
+      "runtime_actor": "dev_driver",
+      "governed_operations": [
+        "send_command",
+        "await_response"
+      ],
+      "validation_method": "Validate whether any later implementation adds capabilities that are not already covered by peer mesh or built-in task delegation before promoting this beyond reference.",
+      "evidence_artifact": "evaluation/research/compiled/gap-placement-map.json",
+      "blocker_or_dependency": "Reference only because it overlaps with existing delegation and peer-mesh lanes and depends on a Claude-style skill runtime.",
+      "source_refs": [
+        "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md"
+      ],
+      "parent_lane_classification": "reference"
+    }
+  ]
+}

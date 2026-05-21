@@ -1,0 +1,27 @@
+*
+!.understand-anything/
+.understand-anything/intermediate/
+.understand-anything/tmp/
+!README.md
+!GOAL.md
+!program.md
+!library.yaml
+!agentics-library.md
+!prompts/
+prompts/*
+!prompts/parent-wrapper-peer-mesh-phase1.prompt.yaml
+!prompts/parent-wrapper-peer-mesh-phase2.prompt.yaml
+!tests/
+tests/*
+!tests/validate_parent_wrapper_contract.py
+!scripts/
+scripts/*
+!scripts/score-parent-wrapper.py
+!docs/
+docs/*
+!docs/NOTION-DOCS/
+docs/NOTION-DOCS/*
+!docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md
+!docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md
+!docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md
+!docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md

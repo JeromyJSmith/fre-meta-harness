@@ -10,6 +10,81 @@
   "action": "emit real multi-artifact ratchet evidence",
   "result": "kept",
   "validator_status": "pass",
+  "runtime_truth_level": "bounded_runtime",
+  "runtime_evidence": {
+    "runtime_mode_activated": "same_host",
+    "runtime_modes_blocked": [
+      {
+        "lane_id": "cross_device",
+        "status": "blocked",
+        "blocker_dependency": "Authenticated transport was not configured.",
+        "missing_prerequisites": [
+          "PI_COMS_NET_AUTH_TOKEN",
+          "hub URL"
+        ],
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      }
+    ],
+    "activation_artifacts": [
+      "evaluation/tool-health/peer-mesh-local.json"
+    ],
+    "observability_artifacts": [
+      "evaluation/tool-health/peer-mesh-local-events.jsonl"
+    ],
+    "tool_health_evidence": [
+      "evaluation/tool-health/status.json"
+    ],
+    "completion_tokens_observed": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "policy_outcomes_observed": [
+      "allow",
+      "ask"
+    ],
+    "mismatch_ids": [
+      "missing_runtime_proof_structure",
+      "missing_command_evidence_pairing"
+    ],
+    "command_evidence": {
+      "activation_commands": [
+        {
+          "command": "bash scripts/run-parent-peer-mesh-local.sh",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/tool-health/peer-mesh-local.json"
+          ],
+          "bounded_scope_note": "Bounded same-host activation only."
+        }
+      ],
+      "validation_commands": [
+        {
+          "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/validation-report.json"
+          ],
+          "bounded_scope_note": "Validator rerun after the kept slice."
+        }
+      ]
+    }
+  },
+  "freshness_evidence": {
+    "artifact_paths": [
+      "evaluation/copilot-ratchet-report.json",
+      "evaluation/validation-report.json",
+      "evaluation/metrics-latest.json",
+      "runs/iterations.jsonl"
+    ],
+    "max_artifact_span_seconds": 120.0
+  },
+  "score_saturation": {
+    "score_changed": true,
+    "why_kept": "This example shows how a kept runtime slice records its audit trail."
+  },
   "changed_files": [
     "scripts/score-parent-wrapper.py",
     "tests/validate_parent_wrapper_contract.py"

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "topic_research",
+  "topic_id": "capability-distribution",
+  "lane_classification": "core",
+  "status": "completed",
+  "related_repo_ids": [
+    "the-library"
+  ],
+  "synthesized_findings": [
+    "The parent should distribute capabilities by typed reference and compile-time normalization, not by copying upstream repo trees or collapsing packet boundaries early.",
+    "The-library supplies the right upstream mental model because it is catalog-first and agent-agnostic.",
+    "The compiled harvest should act like a governed derivative of the packet set, not a replacement for it."
+  ],
+  "doctrine_implications": [
+    "Keep per-repo and per-topic packets as the durable intake boundary.",
+    "Use the compiled feature matrix and gap map as downstream views driven by those packets.",
+    "Preserve source provenance in every compiled row so a later implementation can rehydrate the upstream authority."
+  ],
+  "unresolved_ambiguities": [
+    "The upstream `library.yaml` is empty by default, so the exact parent admission and sync workflow still needs later implementation."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "evidence_type": "local_authority",
+      "note": "Defines capability harvest as intake, parse, classify, normalize, validate, and promote."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
+      "evidence_type": "local_registry",
+      "note": "Shows the artifact-governance emphasis behind typed outputs."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents the private-first typed-reference catalog model."
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
+      "evidence_type": "repo_manifest",
+      "note": "Shows the source-of-truth catalog format that later implementation can populate."
+    }
+  ]
+}

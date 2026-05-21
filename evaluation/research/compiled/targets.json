@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "compiled_output_targets",
+  "status": "refreshed",
+  "outputs": [
+    {
+      "path": "evaluation/research/compiled/capability-harvest.json",
+      "purpose": "Merged per-repo and per-topic research into normalized capability records."
+    },
+    {
+      "path": "evaluation/research/compiled/feature-matrix.json",
+      "purpose": "Feature-level mapping from upstream source to parent trigger, actor, surface, validation, and evidence."
+    },
+    {
+      "path": "evaluation/research/compiled/gap-placement-map.json",
+      "purpose": "Placement map for gaps, overlaps, blockers, and governed lane classification."
+    },
+    {
+      "path": "evaluation/research/compiled/source-index.json",
+      "purpose": "Traceable index of repo docs, local Notion docs, and tutorial-context packets used in the compile."
+    }
+  ]
+}

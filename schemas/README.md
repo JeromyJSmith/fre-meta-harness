@@ -9,3 +9,26 @@ Current families:
 - `copilot-ratchet-report.schema.json`
 - `iteration-record.schema.json`
 - `capability-harvest-metrics.schema.json`
+- `peer-mesh.schema.json`
+- `peer-message.schema.json`
+- `peer-lifecycle.schema.json`
+- `observability-event.schema.json`
+- `observability-ingest.schema.json`
+- `policy-decision.schema.json`
+- `library-distribution.schema.json`
+- `benchmark-emission.schema.json`
+- `peer-mesh-runtime.schema.json`
+- `agent-role-contract.schema.json`
+- `hook-manifest.schema.json`
+- `capability-matrix.schema.json`
+- `research-packet-manifest.schema.json`
+- `compiled-capability-harvest.schema.json`
+- `compiled-feature-matrix.schema.json`
+- `gap-placement-map.schema.json`
+- `source-index.schema.json`
+
+These schemas now validate communication coverage by runtime primitives,
+role classes, governed operations, observability plus policy boundaries, typed
+distribution references, benchmark-emission regression surfaces, compiled
+research alignment, commit-pinned source refs, and explicit video-evidence
+strength boundaries.

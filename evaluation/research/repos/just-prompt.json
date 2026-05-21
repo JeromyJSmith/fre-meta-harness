@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "just-prompt",
+  "upstream_repo": "https://github.com/disler/just-prompt",
+  "lane_classification": "gated",
+  "status": "completed",
+  "repository_purpose": "Unified MCP server for multi-provider model prompting and CEO-and-board style arbitration across LLM vendors.",
+  "upstream_architecture": {
+    "runtime": [
+      "Python MCP server",
+      "provider SDK/API access or local Ollama"
+    ],
+    "layout": [
+      "src/",
+      "prompts/",
+      "specs/",
+      "example_outputs/"
+    ],
+    "notable_files": [
+      "README.md",
+      "pyproject.toml",
+      ".mcp.json",
+      ".env.sample"
+    ]
+  },
+  "findings": [
+    "This is a useful escalation or challenge lane, not a parent core primitive.",
+    "The `ceo_and_board` pattern is the strongest parent-relevant feature because it creates a governed arbitration step when peer consensus is insufficient.",
+    "Provider prefixes and output-file paths make the repo suitable for traceable review artifacts if the parent ever promotes a challenger lane."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "just-prompt",
+      "upstream_repo": "https://github.com/disler/just-prompt",
+      "upstream_feature_name": "multi-provider prompt arbitration via `ceo_and_board`",
+      "parent_surface_type": "arbitration_lane",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "runtime_trigger": "challenge_review",
+      "runtime_actor": "prod_gatekeeper",
+      "validation_method": "Validate that escalation prompts record board-member outputs, CEO decision output, provider provenance, and explicit reasons for any final override.",
+      "evidence_artifact": "promotion/readiness.json",
+      "blocker_or_dependency": "Requires a running just-prompt MCP server plus provider credentials or a local-model equivalent; without those, the lane remains gated and must not be treated as default.",
+      "source_refs": [
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+        "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml"
+      ],
+      "parent_lane_classification": "gated"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/agent-role-contract.yaml",
+      "contracts/capability-matrix.yaml",
+      "promotion/"
+    ],
+    "trigger_logic": [
+      "Invoke only when a peer-mesh or validator lane needs an explicit challenge, arbitration, or board-style decision.",
+      "Do not promote just-prompt into the default parent path because peer mesh and hook policy remain the first-line control surfaces."
+    ],
+    "actor_logic": [
+      "The production gatekeeper or challenge arbiter owns invocation and evidence review."
+    ],
+    "validation_summary": [
+      "Require saved decision artifacts and provider provenance.",
+      "Reject hidden escalation that leaves no machine-readable board or CEO outputs."
+    ],
+    "evidence_artifacts": [
+      "promotion/readiness.json"
+    ]
+  },
+  "overlaps": [
+    "Can complement peer mesh when flat peers reach an explicit escalation point.",
+    "Shares model-provider boundaries with pi-vs-claude-code `.env` usage but is not required for mesh operation."
+  ],
+  "blockers": [
+    "Gated on credentials or local-model configuration for the chosen providers."
+  ],
+  "source_refs": [
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents the MCP tools, provider prefixes, parallel prompting, and CEO-and-board workflow."
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml",
+      "evidence_type": "repo_manifest",
+      "note": "Pins the Python MCP server runtime for later implementation work."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "8e6e188b21df939d890f05237fd7c20133b659b2",
+    "verified_paths": [
+      "/",
+      "README.md",
+      "pyproject.toml"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

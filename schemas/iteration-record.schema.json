@@ -59,6 +59,19 @@
       "type": "string",
       "enum": ["pass", "fail"]
     },
+    "runtime_truth_level": {
+      "type": "string",
+      "enum": ["contract_only", "bounded_runtime", "active_runtime"]
+    },
+    "runtime_evidence": {
+      "$ref": "#/$defs/runtime_evidence"
+    },
+    "freshness_evidence": {
+      "$ref": "#/$defs/freshness_evidence"
+    },
+    "score_saturation": {
+      "$ref": "#/$defs/score_saturation"
+    },
     "changed_files": {
       "type": "array",
       "minItems": 1,
@@ -80,6 +93,202 @@
     "note": {
       "type": "string",
       "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": ["runtime_truth_level"],
+        "properties": {
+          "runtime_truth_level": {
+            "enum": ["bounded_runtime", "active_runtime"]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "runtime_evidence",
+          "freshness_evidence",
+          "score_saturation"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "string_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "non_empty_string_array": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "command_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "exit_code",
+        "evidence_refs",
+        "bounded_scope_note"
+      ],
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exit_code": {
+          "type": "integer"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "bounded_scope_note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "runtime_blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lane_id",
+        "status",
+        "blocker_dependency",
+        "missing_prerequisites",
+        "evidence_refs"
+      ],
+      "properties": {
+        "lane_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocker_dependency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "missing_prerequisites": {
+          "$ref": "#/$defs/string_array"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/non_empty_string_array"
+        }
+      }
+    },
+    "runtime_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_mode_activated",
+        "runtime_modes_blocked",
+        "activation_artifacts",
+        "observability_artifacts",
+        "tool_health_evidence",
+        "completion_tokens_observed",
+        "policy_outcomes_observed",
+        "mismatch_ids",
+        "command_evidence"
+      ],
+      "properties": {
+        "runtime_mode_activated": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runtime_modes_blocked": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/runtime_blocker"
+          }
+        },
+        "activation_artifacts": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "observability_artifacts": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "tool_health_evidence": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "completion_tokens_observed": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "policy_outcomes_observed": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "mismatch_ids": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "command_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "activation_commands",
+            "validation_commands"
+          ],
+          "properties": {
+            "activation_commands": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/command_record"
+              }
+            },
+            "validation_commands": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/command_record"
+              }
+            }
+          }
+        }
+      }
+    },
+    "freshness_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_paths",
+        "max_artifact_span_seconds"
+      ],
+      "properties": {
+        "artifact_paths": {
+          "$ref": "#/$defs/non_empty_string_array"
+        },
+        "max_artifact_span_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "score_saturation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score_changed",
+        "why_kept"
+      ],
+      "properties": {
+        "score_changed": {
+          "type": "boolean"
+        },
+        "why_kept": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
     }
   }
 }

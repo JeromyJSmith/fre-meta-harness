@@ -1,0 +1,54 @@
+schema_version: "1.0.0"
+contract_id: parent-research-packet-manifest
+scope: portable_parent_wrapper
+authority:
+  harvest_root: evaluation/research
+  current_understanding: evaluation/research/current-understanding.json
+  harvest_manifest: evaluation/research/harvest-manifest.json
+  compiled_outputs:
+    capability_harvest: evaluation/research/compiled/capability-harvest.json
+    feature_matrix: evaluation/research/compiled/feature-matrix.json
+    gap_placement_map: evaluation/research/compiled/gap-placement-map.json
+    source_index: evaluation/research/compiled/source-index.json
+alignment:
+  capability_matrix_contract: contracts/capability-matrix.yaml
+  compiled_views_are_derivative: true
+  packet_boundaries_preserved_until_compile: true
+  required_feature_fields:
+    - capability_id
+    - upstream_repo
+    - upstream_feature_name
+    - parent_surface_type
+    - target_contract_surface
+    - runtime_trigger
+    - runtime_actor
+    - validation_method
+    - evidence_artifact
+    - blocker_or_dependency
+    - source_refs
+    - parent_lane_classification
+classification_governance:
+  allowed_values:
+    - core
+    - gated
+    - deployment_specific
+    - reference
+    - blocked_with_exact_dependency
+  forbidden_values:
+    - optional
+  required_core_capability_ids:
+    - pi-vs-claude-code
+    - the-library
+    - claude-code-hooks-mastery
+    - claude-code-hooks-multi-agent-observability
+evidence_governance:
+  source_refs_must_be_commit_pinned: true
+  source_index_path: evaluation/research/compiled/source-index.json
+  video_evidence_strength_terms:
+    - transcript_only
+    - transcript_plus_context_summary
+    - task_capture_without_terminal_frames
+    - task_stub_without_terminal_frames
+    - terminal_or_frame_verified
+  terminal_or_frame_claim_requires_artifact: true
+  non_terminal_video_terms_must_stay_explicit: true

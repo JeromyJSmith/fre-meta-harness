@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/capability-matrix.schema.json",
+  "title": "Parent Capability Matrix",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "doctrine",
+    "research_authority",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-capability-matrix"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "doctrine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "peer_mesh_is_core",
+        "governed_roles_are_core",
+        "hook_policy_is_core"
+        ,
+        "observability_is_core",
+        "policy_decisions_are_core"
+      ],
+      "properties": {
+        "peer_mesh_is_core": {
+          "type": "boolean",
+          "const": true
+        },
+        "governed_roles_are_core": {
+          "type": "boolean",
+          "const": true
+        },
+        "hook_policy_is_core": {
+          "type": "boolean",
+          "const": true
+        },
+        "observability_is_core": {
+          "type": "boolean",
+          "const": true
+        },
+        "policy_decisions_are_core": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "research_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_contract_surface",
+        "current_understanding",
+        "compiled_capability_harvest",
+        "compiled_feature_matrix",
+        "compiled_gap_placement_map",
+        "compiled_source_index",
+        "allowed_parent_lane_classifications",
+        "required_core_capability_ids",
+        "video_evidence_strength_terms"
+      ],
+      "properties": {
+        "manifest_contract_surface": {
+          "type": "string",
+          "const": "contracts/research-packet-manifest.yaml"
+        },
+        "current_understanding": {
+          "type": "string",
+          "const": "evaluation/research/current-understanding.json"
+        },
+        "compiled_capability_harvest": {
+          "type": "string",
+          "const": "evaluation/research/compiled/capability-harvest.json"
+        },
+        "compiled_feature_matrix": {
+          "type": "string",
+          "const": "evaluation/research/compiled/feature-matrix.json"
+        },
+        "compiled_gap_placement_map": {
+          "type": "string",
+          "const": "evaluation/research/compiled/gap-placement-map.json"
+        },
+        "compiled_source_index": {
+          "type": "string",
+          "const": "evaluation/research/compiled/source-index.json"
+        },
+        "allowed_parent_lane_classifications": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/classification"
+          }
+        },
+        "required_core_capability_ids": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "pi-vs-claude-code",
+              "the-library",
+              "claude-code-hooks-mastery",
+              "claude-code-hooks-multi-agent-observability"
+            ]
+          }
+        },
+        "video_evidence_strength_terms": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "transcript_only",
+              "transcript_plus_context_summary",
+              "task_capture_without_terminal_frames",
+              "task_stub_without_terminal_frames",
+              "terminal_or_frame_verified"
+            ]
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    }
+  },
+  "$defs": {
+    "classification": {
+      "type": "string",
+      "enum": [
+        "core",
+        "gated",
+        "deployment_specific",
+        "reference",
+        "blocked_with_exact_dependency"
+      ]
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "upstream_repo",
+        "upstream_feature_name",
+        "parent_surface_type",
+        "target_contract_surface",
+        "runtime_trigger",
+        "runtime_actor",
+        "governed_operations",
+        "validation_method",
+        "evidence_artifact",
+        "blocker_or_dependency",
+        "source_refs",
+        "parent_lane_classification"
+      ],
+      "properties": {
+        "capability_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "upstream_repo": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github.com/disler/"
+        },
+        "upstream_feature_name": {
+          "type": "string",
+          "minLength": 3
+        },
+        "parent_surface_type": {
+          "type": "string",
+          "enum": [
+            "communication_plane",
+            "distribution_plane",
+            "policy_plane",
+            "observability_plane",
+            "arbitration_lane",
+            "sandbox_execution",
+            "browser_validation",
+            "device_sidecar",
+            "parallel_branching_reference",
+            "loop_pattern_reference"
+          ]
+        },
+        "target_contract_surface": {
+          "type": "string",
+          "minLength": 3
+        },
+        "runtime_trigger": {
+          "type": "string",
+          "minLength": 3
+        },
+        "runtime_actor": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "governed_operations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          }
+        },
+        "validation_method": {
+          "type": "string",
+          "minLength": 20
+        },
+        "evidence_artifact": {
+          "type": "string",
+          "minLength": 3
+        },
+        "blocker_or_dependency": {
+          "type": "string",
+          "minLength": 20
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "parent_lane_classification": {
+          "$ref": "#/$defs/classification"
+        }
+      }
+    }
+  }
+}

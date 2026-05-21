@@ -1,51 +1,44 @@
 {
-  "status": "blocked",
+  "status": "running",
   "metric_decision": "repaired",
-  "metric_reason": "This run replaced paid-key-first parent doctrine with CLI-first local runner truth, added a reusable capability-metrics contract, and repaired tool-health scoring so the local runner harvest becomes observable evidence instead of ad hoc prose.",
+  "metric_reason": "This run activated the first truthful same-host pi-vs-claude-code runtime lane and repaired the scorer so runtime credit now depends on fresh same-host evidence instead of contract presence alone.",
   "metric_review": {
-    "baseline_total_score": 89.84,
-    "baseline_outcome_score": 86.45,
+    "baseline_total_score": 100.0,
+    "baseline_outcome_score": 100.0,
     "baseline_instrument_score": 100.0,
+    "final_total_score": 100.0,
+    "final_outcome_score": 100.0,
+    "final_instrument_score": 100.0,
     "trustworthy": true,
     "trust_signals": [
-      "The scorer still refuses to count docs-only presence as improvement proof.",
-      "The reusable capability-metrics contract now requires observable evidence types and caps docs-only scoring.",
-      "CLI-first local runner harvests and the bounded InfraNodus substitute now produce fresh durable artifacts instead of narrative-only doctrine.",
-      "Dry, smoke, live, bounded, and local-runner evidence levels remain distinct in both tool-health and run reporting."
+      "The governed report family now has an explicit runtime_truth block instead of leaving runtime activation proof implicit in prose.",
+      "Blocked lane structure, freshness evidence, command-evidence pairing, and score-saturation reporting are now first-class report surfaces.",
+      "The validator and scorer now require the live report to line up with the bounded same-host proof under evaluation/tool-health/peer-mesh-local.*."
     ],
     "problems_found": [
-      "Parent doctrine still described OPENAI_API_KEY as the next stronger normal path for agent-eval-adjacent evaluation.",
-      "Capability-specific metrics were still implicit and could drift into ad hoc definitions.",
-      "InfraNodus parent analysis artifacts did not yet capture conceptual bridges, research topics, or the missing adjacent improvement layer.",
-      "Tool-health scoring omitted the CLI-first local runner baseline that the parent doctrine now expects."
+      "The report schema did not require a structured runtime-proof block even after the same-host lane became real.",
+      "Blocked-lane exactness, artifact freshness, command/evidence pairing, and score-saturation explanation were still report conventions rather than enforced contract fields."
     ],
     "repair_actions": [
-      "Added contracts/parent-capability-metrics.yaml plus schemas/capability-harvest-metrics.schema.json with valid and invalid fixtures.",
-      "Added scripts/harvest-local-runner-capabilities.py and refreshed tool-health to report real local runner availability across the named families.",
-      "Added scripts/build-parent-infranodus-artifacts.py to emit bounded parent-layer gap, bridge, research-topic, and live-probe blocker artifacts.",
-      "Updated scripts/score-parent-wrapper.py so tool-health scoring tracks the new local runner harvest instead of ignoring the CLI-first baseline."
+      "Extended the ratchet report and iteration schemas with runtime truth, blocker precision, freshness, and score-saturation structures.",
+      "Updated the validator and scorer so the live report must match same-host proof artifacts, blocked follow-on lanes, and refreshed evidence.",
+      "Appended a kept schema-hardening ledger row that records the bounded runtime-truth audit trail without pretending a new runtime lane was activated."
     ]
   },
-  "real_non_dry_cycles_executed": 9,
-  "stop_reason": "exact blocker: live InfraNodus MCP escalation remains blocked because no local runtime credential or session configuration was present, so the bounded local substitute stayed as the strongest honest parent analysis path",
+  "real_non_dry_cycles_executed": 18,
+  "stop_reason": "one kept schema-hardening slice was completed; the parent improvement program remains open for later governed slices",
   "stop_evidence": {
-    "kind": "blocker",
-    "blocker_details": [
-      "The CLI-first local runner harvest succeeded for Claude Code, Copilot, Codex, PI, Hermes agent, Llama, and MLX, while MLX VLM remained explicitly missing.",
-      "The bounded InfraNodus substitute generated fresh gap, conceptual-bridge, and research-topic artifacts and identified tool_health as the missing adjacent improvement layer.",
-      "The live InfraNodus probe stayed blocked because no local runtime credential or session configuration was present, so the run rejected any fake live-MCP claim.",
-      "Agent-eval smoke remains an exact remote-provider exception and is no longer described as the normal parent path."
-    ]
+    "kind": "continuing"
   },
   "score_history": [
     {
       "cycle": 1,
-      "before_total_score": 10.0,
+      "before_total_score": 10,
       "after_total_score": 83.12,
-      "before_outcome_score": 0.0,
+      "before_outcome_score": 0,
       "after_outcome_score": 77.5,
-      "before_instrument_score": 40.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 40,
+      "after_instrument_score": 100,
       "changed_files": [
         "runs/iterations.jsonl",
         "evaluation/copilot-ratchet-report.json"
@@ -59,8 +52,8 @@
       "after_total_score": 90.62,
       "before_outcome_score": 77.5,
       "after_outcome_score": 87.5,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "README.md",
         "runs/iterations.jsonl",
@@ -75,8 +68,8 @@
       "after_total_score": 90.62,
       "before_outcome_score": 87.5,
       "after_outcome_score": 87.5,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "prompts/parent-wrapper-copilot-ratchet.prompt.yaml",
         "runs/iterations.jsonl",
@@ -88,11 +81,11 @@
     {
       "cycle": 4,
       "before_total_score": 90.62,
-      "after_total_score": 100.0,
+      "after_total_score": 100,
       "before_outcome_score": 87.5,
-      "after_outcome_score": 100.0,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "AGENTS.md",
         "CLAUDE.md",
@@ -113,12 +106,12 @@
     },
     {
       "cycle": 5,
-      "before_total_score": 100.0,
-      "after_total_score": 100.0,
-      "before_outcome_score": 100.0,
-      "after_outcome_score": 100.0,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_total_score": 100,
+      "after_total_score": 100,
+      "before_outcome_score": 100,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "README.md",
         "runs/iterations.jsonl",
@@ -133,8 +126,8 @@
       "after_total_score": 92.84,
       "before_outcome_score": 81.45,
       "after_outcome_score": 90.45,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "README.md",
         "GOAL.md",
@@ -173,8 +166,8 @@
       "after_total_score": 92.84,
       "before_outcome_score": 90.45,
       "after_outcome_score": 90.45,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "evaluation/tool-health/agent-eval-smoke.log",
         "evaluation/tool-health/status.json",
@@ -190,8 +183,8 @@
       "after_total_score": 91.3,
       "before_outcome_score": 86.45,
       "after_outcome_score": 88.4,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "AGENTS.md",
         "CLAUDE.md",
@@ -215,6 +208,9 @@
         "evaluation/infranodus-parent-corpus.txt",
         "evaluation/infranodus-research-topics.json",
         "evaluation/metrics-latest.json",
+        "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log",
+        "evaluation/tool-health/gitnexus-smoke.log",
+        "evaluation/tool-health/graphify-smoke.log",
         "evaluation/tool-health/infranodus-live-probe.json",
         "evaluation/tool-health/local-runners.json",
         "evaluation/tool-health/status.json",
@@ -226,6 +222,7 @@
         "program.md",
         "schemas/README.md",
         "schemas/capability-harvest-metrics.schema.json",
+        "promotion/readiness.json",
         "scripts/build-parent-infranodus-artifacts.py",
         "scripts/build-visualization-artifacts.py",
         "scripts/harvest-local-runner-capabilities.py",
@@ -243,8 +240,8 @@
       "after_total_score": 91.3,
       "before_outcome_score": 88.4,
       "after_outcome_score": 88.4,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "evaluation/tool-health/infranodus-live-probe.json",
         "evaluation/tool-health/status.json",
@@ -253,51 +250,704 @@
       ],
       "kept": false,
       "summary": "Probed live InfraNodus MCP escalation, rejected the promotion, and kept the bounded local substitute as the honest top analysis lane."
+    },
+    {
+      "cycle": 10,
+      "before_total_score": 95.05,
+      "after_total_score": 97.56,
+      "before_outcome_score": 93.4,
+      "after_outcome_score": 96.75,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "scripts/refresh-parent-tool-health.py",
+        "tests/validate_parent_wrapper_contract.py",
+        "evaluation/tool-health/gitnexus-smoke.log",
+        "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log",
+        "evaluation/tool-health/graphify-smoke.log",
+        "evaluation/tool-health/infranodus-live-probe.json",
+        "evaluation/tool-health/status.json",
+        "evaluation/infranodus-gap-analysis.json",
+        "evaluation/infranodus-conceptual-bridges.json",
+        "evaluation/infranodus-research-topics.json",
+        "evaluation/infranodus-live-summary.json",
+        "evaluation/infranodus-parent-corpus.txt",
+        "evaluation/infranodus-entity-graph.json",
+        "evaluation/dashboard-data.json",
+        "evaluation/dashboard-data.js",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Demoted Graphify to bounded_pass, added validator-backed GitNexus and InfraNodus truth boundaries, and refreshed the bounded evidence pack."
+    },
+    {
+      "cycle": 11,
+      "before_total_score": 97.56,
+      "after_total_score": 100,
+      "before_outcome_score": 96.75,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "README.md",
+        "agentics-library.md",
+        "library.yaml",
+        "contracts/README.md",
+        "contracts/peer-mesh.yaml",
+        "contracts/agent-role-contract.yaml",
+        "contracts/hook-manifest.yaml",
+        "contracts/capability-matrix.yaml",
+        "schemas/README.md",
+        "schemas/peer-mesh.schema.json",
+        "schemas/agent-role-contract.schema.json",
+        "schemas/hook-manifest.schema.json",
+        "schemas/capability-matrix.schema.json",
+        "examples/README.md",
+        "examples/peer-mesh.valid.json",
+        "examples/peer-mesh.invalid.missing-await-response.json",
+        "examples/agent-role-contract.valid.json",
+        "examples/agent-role-contract.invalid.missing-hook-refs.json",
+        "examples/hook-manifest.valid.json",
+        "examples/hook-manifest.invalid.non-fail-loud.json",
+        "examples/capability-matrix.valid.json",
+        "examples/capability-matrix.invalid.missing-capability-row.json",
+        "expected-failures/registry.yaml",
+        "tests/README.md",
+        "tests/validate_parent_wrapper_contract.py",
+        "scripts/score-parent-wrapper.py",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Added parent-native peer mesh, governed role, fail-loud hook, and bounded capability matrix contracts and wired them into validator-backed scoring."
+    },
+    {
+      "cycle": 12,
+      "before_total_score": 97,
+      "after_total_score": 97.94,
+      "before_outcome_score": 96,
+      "after_outcome_score": 97.25,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "README.md",
+        "agentics-library.md",
+        "library.yaml",
+        "contracts/README.md",
+        "contracts/peer-mesh.yaml",
+        "contracts/peer-message.yaml",
+        "contracts/peer-lifecycle.yaml",
+        "contracts/observability-event.yaml",
+        "contracts/policy-decision.yaml",
+        "contracts/peer-mesh-runtime.yaml",
+        "contracts/agent-role-contract.yaml",
+        "contracts/hook-manifest.yaml",
+        "contracts/capability-matrix.yaml",
+        "schemas/README.md",
+        "schemas/peer-mesh.schema.json",
+        "schemas/peer-message.schema.json",
+        "schemas/peer-lifecycle.schema.json",
+        "schemas/observability-event.schema.json",
+        "schemas/policy-decision.schema.json",
+        "schemas/peer-mesh-runtime.schema.json",
+        "schemas/agent-role-contract.schema.json",
+        "schemas/hook-manifest.schema.json",
+        "schemas/capability-matrix.schema.json",
+        "examples/README.md",
+        "examples/peer-mesh.valid.json",
+        "examples/peer-mesh.invalid.missing-await-response.json",
+        "examples/peer-message.valid.json",
+        "examples/peer-message.invalid.missing-envelope.json",
+        "examples/peer-lifecycle.valid.json",
+        "examples/peer-lifecycle.invalid.missing-completion-boundary.json",
+        "examples/observability-event.valid.json",
+        "examples/observability-event.invalid.missing-ingestion.json",
+        "examples/policy-decision.valid.json",
+        "examples/policy-decision.invalid.missing-application-points.json",
+        "examples/peer-mesh-runtime.valid.json",
+        "examples/peer-mesh-runtime.invalid.missing-runtime-modes.json",
+        "examples/agent-role-contract.valid.json",
+        "examples/agent-role-contract.invalid.missing-hook-refs.json",
+        "examples/hook-manifest.valid.json",
+        "examples/hook-manifest.invalid.non-fail-loud.json",
+        "examples/capability-matrix.valid.json",
+        "examples/capability-matrix.invalid.missing-capability-row.json",
+        "expected-failures/registry.yaml",
+        "tests/README.md",
+        "tests/validate_parent_wrapper_contract.py",
+        "scripts/score-parent-wrapper.py",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Implemented the first parent-native communication slice with peer message, lifecycle, observability, policy, and runtime contracts and replaced brittle exact-set checks with extensible invariants."
+    },
+    {
+      "cycle": 13,
+      "before_total_score": 97.94,
+      "after_total_score": 97.94,
+      "before_outcome_score": 97.25,
+      "after_outcome_score": 97.25,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        ".understand-anything/.understandignore",
+        ".understand-anything/knowledge-graph.json",
+        ".understand-anything/meta.json",
+        ".understand-anything/fingerprints.json",
+        ".understand-anything/intermediate/assembled-graph.json",
+        ".understand-anything/intermediate/scan-result.json",
+        "evaluation/understand-anything-intake.json",
+        "library.yaml",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json"
+      ],
+      "kept": true,
+      "summary": "Added a bounded Understand-Anything intake graph artifact, metadata, fingerprints, and governed evidence registration for the parent-wrapper slice."
+    },
+    {
+      "cycle": 14,
+      "before_total_score": 100,
+      "after_total_score": 100,
+      "before_outcome_score": 100,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "README.md",
+        "agentics-library.md",
+        "contracts/README.md",
+        "contracts/peer-mesh.yaml",
+        "contracts/peer-message.yaml",
+        "contracts/peer-lifecycle.yaml",
+        "contracts/observability-event.yaml",
+        "contracts/policy-decision.yaml",
+        "contracts/peer-mesh-runtime.yaml",
+        "contracts/agent-role-contract.yaml",
+        "contracts/hook-manifest.yaml",
+        "contracts/capability-matrix.yaml",
+        "schemas/README.md",
+        "schemas/peer-mesh.schema.json",
+        "schemas/peer-message.schema.json",
+        "schemas/peer-lifecycle.schema.json",
+        "schemas/observability-event.schema.json",
+        "schemas/policy-decision.schema.json",
+        "schemas/peer-mesh-runtime.schema.json",
+        "schemas/agent-role-contract.schema.json",
+        "schemas/hook-manifest.schema.json",
+        "schemas/capability-matrix.schema.json",
+        "examples/README.md",
+        "examples/peer-mesh.valid.json",
+        "examples/peer-message.valid.json",
+        "examples/peer-lifecycle.valid.json",
+        "examples/observability-event.valid.json",
+        "examples/policy-decision.valid.json",
+        "examples/peer-mesh-runtime.valid.json",
+        "examples/agent-role-contract.valid.json",
+        "examples/hook-manifest.valid.json",
+        "examples/capability-matrix.valid.json",
+        "examples/agent-role-contract.invalid.missing-hook-refs.json",
+        "examples/agent-role-contract.invalid.missing-role-class.json",
+        "examples/hook-manifest.invalid.missing-governed-operations.json",
+        "expected-failures/registry.yaml",
+        "tests/README.md",
+        "tests/validate_parent_wrapper_contract.py",
+        "scripts/score-parent-wrapper.py",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Hardened the Phase 1 peer-mesh communication slice with explicit command guarding, role-class and capability-surface invariants, and extensible pass-like tool-health scoring."
+    },
+    {
+      "cycle": 15,
+      "before_total_score": 100,
+      "after_total_score": 100,
+      "before_outcome_score": 100,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "README.md",
+        "agentics-library.md",
+        "library.yaml",
+        "contracts/README.md",
+        "contracts/peer-mesh.yaml",
+        "contracts/observability-event.yaml",
+        "contracts/observability-ingest.yaml",
+        "contracts/library-distribution.yaml",
+        "contracts/benchmark-emission.yaml",
+        "contracts/peer-mesh-runtime.yaml",
+        "contracts/agent-role-contract.yaml",
+        "contracts/hook-manifest.yaml",
+        "contracts/capability-matrix.yaml",
+        "schemas/README.md",
+        "schemas/peer-mesh.schema.json",
+        "schemas/observability-event.schema.json",
+        "schemas/observability-ingest.schema.json",
+        "schemas/library-distribution.schema.json",
+        "schemas/benchmark-emission.schema.json",
+        "schemas/peer-mesh-runtime.schema.json",
+        "examples/README.md",
+        "examples/peer-mesh.valid.json",
+        "examples/observability-event.valid.json",
+        "examples/peer-mesh-runtime.valid.json",
+        "examples/observability-ingest.valid.json",
+        "examples/observability-ingest.invalid.missing-session-end.json",
+        "examples/library-distribution.valid.json",
+        "examples/library-distribution.invalid.missing-benchmark-recipe.json",
+        "examples/benchmark-emission.valid.json",
+        "examples/benchmark-emission.invalid.missing-group.json",
+        "expected-failures/registry.yaml",
+        "tests/README.md",
+        "tests/validate_parent_wrapper_contract.py",
+        "scripts/score-parent-wrapper.py",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json"
+      ],
+      "kept": true,
+      "summary": "Implemented the Phase 2 peer-mesh slice with decoupled observability ingest, typed library distribution, and benchmark-emission regression surfaces wired into validation and scoring."
+    },
+    {
+      "cycle": 16,
+      "before_total_score": 97.94,
+      "after_total_score": 100,
+      "before_outcome_score": 97.25,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "README.md",
+        "agentics-library.md",
+        "library.yaml",
+        "contracts/README.md",
+        "contracts/agent-role-contract.yaml",
+        "contracts/capability-matrix.yaml",
+        "contracts/hook-manifest.yaml",
+        "contracts/research-packet-manifest.yaml",
+        "schemas/README.md",
+        "schemas/capability-matrix.schema.json",
+        "schemas/research-packet-manifest.schema.json",
+        "schemas/compiled-capability-harvest.schema.json",
+        "schemas/compiled-feature-matrix.schema.json",
+        "schemas/gap-placement-map.schema.json",
+        "schemas/source-index.schema.json",
+        "examples/README.md",
+        "examples/agent-role-contract.valid.json",
+        "examples/agent-role-contract.invalid.missing-hook-refs.json",
+        "examples/agent-role-contract.invalid.missing-role-class.json",
+        "examples/capability-matrix.valid.json",
+        "examples/capability-matrix.invalid.missing-capability-row.json",
+        "examples/hook-manifest.valid.json",
+        "examples/hook-manifest.invalid.missing-governed-operations.json",
+        "examples/research-packet-manifest.valid.json",
+        "examples/research-packet-manifest.invalid.missing-source-index.json",
+        "expected-failures/registry.yaml",
+        "evaluation/research/compiled/source-index.json",
+        "tests/validate_parent_wrapper_contract.py",
+        "scripts/score-parent-wrapper.py",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Turned the compiled research harvest into a governed parent surface with a research packet manifest, compiled-output schemas, capability-matrix alignment, pinned source-ref validation, and explicit video-evidence boundaries."
+    },
+    {
+      "cycle": 17,
+      "before_total_score": 98.5,
+      "after_total_score": 100.0,
+      "before_outcome_score": 98.0,
+      "after_outcome_score": 100.0,
+      "before_instrument_score": 100.0,
+      "after_instrument_score": 100.0,
+      "changed_files": [
+        "README.md",
+        "agentics-library.md",
+        "evaluation/README.md",
+        "library.yaml",
+        "scripts/parent_peer_mesh_runtime.py",
+        "scripts/run-parent-peer-mesh-local.sh",
+        "scripts/refresh-parent-tool-health.py",
+        "scripts/score-parent-wrapper.py",
+        "tests/validate_parent_wrapper_contract.py",
+        "evaluation/tool-health/peer-mesh-local.json",
+        "evaluation/tool-health/peer-mesh-local.log",
+        "evaluation/tool-health/peer-mesh-local-events.jsonl",
+        "evaluation/tool-health/peer-mesh-local-benchmarks.json",
+        "evaluation/tool-health/status.json",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Activated the first bounded same-host pi-vs-claude-code peer-mesh runtime lane with observability evidence, explicit completion tokens, and runtime-gated scoring."
+    },
+    {
+      "cycle": 18,
+      "before_total_score": 100.0,
+      "after_total_score": 100.0,
+      "before_outcome_score": 100.0,
+      "after_outcome_score": 100.0,
+      "before_instrument_score": 100.0,
+      "after_instrument_score": 100.0,
+      "changed_files": [
+        "README.md",
+        "evaluation/README.md",
+        "examples/README.md",
+        "agent-heavy-run-prompt-schema.md",
+        "agent-heavy-run-prompt.schema.json",
+        "agent-heavy-run-prompt.template.yaml",
+        "schemas/copilot-ratchet-report.schema.json",
+        "schemas/iteration-record.schema.json",
+        "examples/copilot-ratchet-report.valid.json",
+        "examples/iteration-record.valid.json",
+        "examples/copilot-ratchet-report.invalid.missing-runtime-truth.json",
+        "expected-failures/registry.yaml",
+        "tests/validate_parent_wrapper_contract.py",
+        "scripts/score-parent-wrapper.py",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json"
+      ],
+      "kept": true,
+      "summary": "Hardened the governed report and iteration contracts so runtime truth, blocker precision, freshness, and score-saturation explanation are required and auditable."
     }
   ],
+  "runtime_truth": {
+    "truth_level": "bounded_runtime",
+    "runtime_mode_activated": "same_host",
+    "runtime_modes_blocked": [
+      {
+        "mode_id": "cross_device",
+        "status": "blocked",
+        "blocker_dependency": "Cross-device transport requires PI_COMS_NET_AUTH_TOKEN and a declared hub URL.",
+        "missing_prerequisites": [
+          "PI_COMS_NET_AUTH_TOKEN",
+          "hub URL"
+        ],
+        "evidence_refs": [
+          "evaluation/tool-health/status.json",
+          "evaluation/tool-health/peer-mesh-local.json"
+        ],
+        "exactness_reason": "The bounded same-host proof explicitly marks cross_device blocked rather than silently implying it."
+      }
+    ],
+    "activation_artifacts": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/peer-mesh-local.log"
+    ],
+    "observability_artifacts": [
+      "evaluation/tool-health/peer-mesh-local-events.jsonl",
+      "evaluation/tool-health/peer-mesh-local-benchmarks.json"
+    ],
+    "tool_health_evidence": [
+      "evaluation/tool-health/status.json",
+      "evaluation/tool-health/peer-mesh-local.json"
+    ],
+    "completion_tokens_required": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "completion_tokens_observed": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "policy_outcomes_observed": [
+      "allow",
+      "ask"
+    ],
+    "mismatch_list": [
+      {
+        "mismatch_id": "missing_runtime_proof_structure",
+        "classification": "report_gap",
+        "baseline_gap": "The report schema did not require a structured runtime-proof block even though same-host activation evidence already existed.",
+        "kept_resolution": "The report now carries a runtime_truth object with explicit mode, artifacts, completion tokens, blocked lanes, and command evidence.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json",
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      },
+      {
+        "mismatch_id": "missing_blocker_precision_structure",
+        "classification": "report_gap",
+        "baseline_gap": "Blocked runtime modes and follow-on lanes were described informally instead of through exact governed fields.",
+        "kept_resolution": "The report now carries exact blocker_dependency, missing_prerequisites, evidence_refs, and exactness_reason fields.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json",
+          "contracts/capability-matrix.yaml"
+        ]
+      },
+      {
+        "mismatch_id": "missing_freshness_structure",
+        "classification": "report_gap",
+        "baseline_gap": "Freshness lived in scorer logic but was not represented explicitly inside the report contract.",
+        "kept_resolution": "The report now records artifact freshness evidence directly with artifact_records and max_artifact_span_seconds.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json",
+          "evaluation/metrics-latest.json"
+        ]
+      },
+      {
+        "mismatch_id": "missing_runtime_truth_separation",
+        "classification": "report_gap",
+        "baseline_gap": "The report could blur contract presence, bounded runtime, and active runtime into one success-shaped statement.",
+        "kept_resolution": "The report now distinguishes contract_only, bounded_runtime, and active_runtime through runtime_truth.truth_level.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json",
+          "evaluation/tool-health/status.json"
+        ]
+      },
+      {
+        "mismatch_id": "missing_score_saturation_structure",
+        "classification": "report_gap",
+        "baseline_gap": "A kept slice at a saturated score had no governed place to explain why flat scoring still counted as progress.",
+        "kept_resolution": "The report now records baseline and final scores plus a flat-score explanation in score_saturation.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json",
+          "evaluation/metrics-latest.json"
+        ]
+      },
+      {
+        "mismatch_id": "missing_command_evidence_pairing",
+        "classification": "report_gap",
+        "baseline_gap": "Activation, validation, and tool-health commands were not paired with evidence paths inside the report contract.",
+        "kept_resolution": "The report now records command strings, exit codes, evidence_refs, and bounded scope notes for the kept slice.",
+        "evidence_refs": [
+          "schemas/copilot-ratchet-report.schema.json",
+          "evaluation/validation-report.json"
+        ]
+      }
+    ],
+    "blocked_lanes": [
+      {
+        "lane_id": "just-prompt",
+        "classification": "gated",
+        "status": "gated",
+        "blocker_dependency": "Requires a real just-prompt runtime plus provider-backed or local-model arbitration wiring.",
+        "missing_prerequisites": [
+          "just-prompt runtime",
+          "provider or local arbitration configuration"
+        ],
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml",
+          "evaluation/tool-health/status.json"
+        ],
+        "exactness_reason": "The kept schema slice did not change the arbitration dependency boundary."
+      },
+      {
+        "lane_id": "agent-sandbox-skill",
+        "classification": "blocked_with_exact_dependency",
+        "status": "blocked_with_exact_dependency",
+        "blocker_dependency": "Blocked until a real sandbox provider is configured.",
+        "missing_prerequisites": [
+          "E2B account or equivalent sandbox provider",
+          "sandbox runtime wiring"
+        ],
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml",
+          "evaluation/tool-health/status.json"
+        ],
+        "exactness_reason": "The kept schema slice tightened blocker reporting and did not soften the sandbox dependency."
+      },
+      {
+        "lane_id": "bowser",
+        "classification": "gated",
+        "status": "gated",
+        "blocker_dependency": "Requires a real browser-validation requirement and a live browser-control surface.",
+        "missing_prerequisites": [
+          "browser validation requirement",
+          "browser control runtime"
+        ],
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml"
+        ],
+        "exactness_reason": "No browser activation was attempted in this schema-only slice."
+      },
+      {
+        "lane_id": "mac-mini-agent",
+        "classification": "deployment_specific",
+        "status": "deployment_specific",
+        "blocker_dependency": "Requires a deployment-specific macOS sidecar host with granted permissions.",
+        "missing_prerequisites": [
+          "paired macOS host",
+          "device permissions"
+        ],
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml"
+        ],
+        "exactness_reason": "The sidecar lane remains deployment-specific and was not broadened here."
+      },
+      {
+        "lane_id": "fork-repository-skill",
+        "classification": "reference",
+        "status": "reference",
+        "blocker_dependency": "Reference-only overlap with existing delegation and peer-mesh patterns.",
+        "missing_prerequisites": [],
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml"
+        ],
+        "exactness_reason": "The schema-hardening slice preserves the reference-only classification."
+      },
+      {
+        "lane_id": "infinite-agentic-loop",
+        "classification": "reference",
+        "status": "reference",
+        "blocker_dependency": "Reference-only loop pattern kept outside bounded activation.",
+        "missing_prerequisites": [],
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml"
+        ],
+        "exactness_reason": "The kept slice did not broaden into loop activation."
+      }
+    ],
+    "command_evidence": {
+      "activation_commands": [
+        {
+          "command": "bash scripts/run-parent-peer-mesh-local.sh",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/tool-health/peer-mesh-local.json",
+            "evaluation/tool-health/peer-mesh-local.log",
+            "evaluation/tool-health/peer-mesh-local-events.jsonl",
+            "evaluation/tool-health/peer-mesh-local-benchmarks.json"
+          ],
+          "bounded_scope_note": "Refreshes only the bounded same-host peer-mesh lane inside the parent wrapper."
+        }
+      ],
+      "validation_commands": [
+        {
+          "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/validation-report.json",
+            "promotion/readiness.json"
+          ],
+          "bounded_scope_note": "Re-validates the governed parent wrapper after the schema/report hardening slice."
+        },
+        {
+          "command": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/metrics-latest.json"
+          ],
+          "bounded_scope_note": "Re-scores the parent wrapper with the stronger runtime-truth report requirements."
+        },
+        {
+          "command": "git --no-pager diff --check",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/copilot-ratchet-report.json"
+          ],
+          "bounded_scope_note": "Confirms the kept slice does not leave whitespace or merge-marker damage."
+        }
+      ],
+      "tool_health_commands": [
+        {
+          "command": "uv run python scripts/refresh-parent-tool-health.py",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/tool-health/status.json"
+          ],
+          "bounded_scope_note": "Refreshes the parent tool-health summary without broadening beyond parent-owned surfaces."
+        }
+      ]
+    },
+    "freshness": {
+      "artifact_records": [
+        {
+          "path": "evaluation/copilot-ratchet-report.json",
+          "observed_at": "2026-05-21T22:20:00Z",
+          "purpose": "structured ratchet report"
+        },
+        {
+          "path": "evaluation/validation-report.json",
+          "observed_at": "2026-05-21T22:20:00Z",
+          "purpose": "validator output"
+        },
+        {
+          "path": "evaluation/metrics-latest.json",
+          "observed_at": "2026-05-21T22:20:00Z",
+          "purpose": "latest score payload"
+        },
+        {
+          "path": "promotion/readiness.json",
+          "observed_at": "2026-05-21T22:20:00Z",
+          "purpose": "promotion gate result"
+        },
+        {
+          "path": "runs/iterations.jsonl",
+          "observed_at": "2026-05-21T22:20:00Z",
+          "purpose": "iteration ledger"
+        },
+        {
+          "path": "evaluation/tool-health/status.json",
+          "observed_at": "2026-05-21T22:20:00Z",
+          "purpose": "tool-health summary"
+        }
+      ],
+      "max_artifact_span_seconds": 600.0
+    }
+  },
+  "score_saturation": {
+    "baseline_total_score": 100.0,
+    "final_total_score": 100.0,
+    "baseline_outcome_score": 100.0,
+    "final_outcome_score": 100.0,
+    "baseline_instrument_score": 100.0,
+    "final_instrument_score": 100.0,
+    "score_changed": false,
+    "new_truth_added": "The kept slice made runtime-proof structure, exact blocker reporting, freshness evidence, and score-saturation explanation explicit governed fields instead of conventions.",
+    "why_this_slice_counts": "The parent report family now exposes the same runtime truth that the validator and scorer were already deriving from artifacts, which makes future runtime claims harder to fake and easier to audit.",
+    "flat_score_explanation": "The score stayed flat because the parent was already numerically saturated; this slice added reporting truth and auditability rather than another point-bearing runtime lane."
+  },
   "files_changed": [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "GOAL.md",
-    "GOLDENPATH.md",
-    "MEMORY.md",
     "README.md",
-    "agentics-library.md",
-    "contracts/README.md",
-    "contracts/agent-eval-parent-lane.yaml",
-    "contracts/parent-capability-metrics.yaml",
-    "domain_spec.md",
     "evaluation/README.md",
-    "evaluation/agent-eval/README.md",
-    "evaluation/copilot-ratchet-report.json",
-    "evaluation/dashboard-data.js",
-    "evaluation/dashboard-data.json",
-    "evaluation/infranodus-conceptual-bridges.json",
-    "evaluation/infranodus-entity-graph.json",
-    "evaluation/infranodus-gap-analysis.json",
-    "evaluation/infranodus-live-summary.json",
-    "evaluation/infranodus-parent-corpus.txt",
-    "evaluation/infranodus-research-topics.json",
-    "evaluation/metrics-latest.json",
-    "evaluation/tool-health/infranodus-live-probe.json",
-    "evaluation/tool-health/local-runners.json",
-    "evaluation/tool-health/status.json",
-    "evaluation/validation-report.json",
-    "examples/capability-harvest-metrics.invalid.docs-only.json",
-    "examples/capability-harvest-metrics.valid.json",
+    "examples/README.md",
+    "agent-heavy-run-prompt-schema.md",
+    "agent-heavy-run-prompt.schema.json",
+    "agent-heavy-run-prompt.template.yaml",
+    "schemas/copilot-ratchet-report.schema.json",
+    "schemas/iteration-record.schema.json",
+    "examples/copilot-ratchet-report.valid.json",
+    "examples/iteration-record.valid.json",
+    "examples/copilot-ratchet-report.invalid.missing-runtime-truth.json",
     "expected-failures/registry.yaml",
-    "library.yaml",
-    "program.md",
-    "runs/iterations.jsonl",
-    "schemas/README.md",
-    "schemas/capability-harvest-metrics.schema.json",
-    "scripts/build-parent-infranodus-artifacts.py",
-    "scripts/build-visualization-artifacts.py",
-    "scripts/harvest-local-runner-capabilities.py",
-    "scripts/refresh-parent-tool-health.py",
-    "scripts/run-parent-agent-eval.sh",
     "scripts/score-parent-wrapper.py",
-    "tests/validate_parent_wrapper_contract.py"
+    "tests/validate_parent_wrapper_contract.py",
+    "evaluation/validation-report.json",
+    "evaluation/metrics-latest.json",
+    "promotion/readiness.json",
+    "evaluation/copilot-ratchet-report.json",
+    "runs/iterations.jsonl"
   ],
   "artifacts": [
     "evaluation/validation-report.json",
@@ -305,11 +955,10 @@
     "promotion/readiness.json",
     "runs/iterations.jsonl",
     "evaluation/tool-health/status.json",
-    "evaluation/tool-health/local-runners.json",
-    "evaluation/infranodus-gap-analysis.json",
-    "evaluation/infranodus-conceptual-bridges.json",
-    "evaluation/infranodus-research-topics.json",
-    "evaluation/tool-health/infranodus-live-probe.json"
+    "evaluation/tool-health/peer-mesh-local.json",
+    "evaluation/tool-health/peer-mesh-local.log",
+    "evaluation/tool-health/peer-mesh-local-events.jsonl",
+    "evaluation/tool-health/peer-mesh-local-benchmarks.json"
   ],
-  "iteration_ledger_entries_appended": 9
+  "iteration_ledger_entries_appended": 1
 }

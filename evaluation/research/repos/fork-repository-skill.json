@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "fork-repository-skill",
+  "upstream_repo": "https://github.com/disler/fork-repository-skill",
+  "lane_classification": "reference",
+  "status": "completed",
+  "repository_purpose": "Claude skill for forking terminal work into new windows so other agents or commands can run in parallel.",
+  "upstream_architecture": {
+    "runtime": [
+      "Claude Code skill runtime",
+      "local terminal session",
+      "Codex/Gemini CLI availability when those tools are installed"
+    ],
+    "layout": [
+      ".claude/",
+      "README.md",
+      "images/"
+    ],
+    "notable_files": [
+      "README.md",
+      ".env.sample"
+    ]
+  },
+  "findings": [
+    "The skill is useful as a concrete reference for manual branching, but it does not add a distinct parent-core capability beyond existing task delegation and peer-mesh composition.",
+    "Its strongest transferable idea is summary-based context handoff into a new terminal session.",
+    "Because the upstream artifact is Claude-oriented and local-terminal-specific, it should stay as reference material unless a later parent lane proves a unique need."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "fork-repository-skill",
+      "upstream_repo": "https://github.com/disler/fork-repository-skill",
+      "upstream_feature_name": "terminal branching and context handoff skill",
+      "parent_surface_type": "parallel_branching_reference",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "manual_parallel_branch",
+      "runtime_actor": "dev_driver",
+      "validation_method": "Validate whether any later implementation adds capabilities that are not already covered by peer mesh or built-in task delegation before promoting this beyond reference.",
+      "evidence_artifact": "evaluation/research/compiled/gap-placement-map.json",
+      "blocker_or_dependency": "Reference only because it overlaps with existing delegation and peer-mesh lanes and depends on a Claude-style skill runtime.",
+      "source_refs": [
+        "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md"
+      ],
+      "parent_lane_classification": "reference"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/capability-matrix.yaml",
+      "evaluation/research/compiled/gap-placement-map.json"
+    ],
+    "trigger_logic": [
+      "Keep as reference for future handoff ergonomics or human-driven terminal branching."
+    ],
+    "actor_logic": [
+      "If revisited, the dev driver would own the lane as a local branching helper rather than a core orchestrator."
+    ],
+    "validation_summary": [
+      "Do not promote unless a missing capability survives overlap review."
+    ],
+    "evidence_artifacts": [
+      "evaluation/research/compiled/gap-placement-map.json"
+    ]
+  },
+  "overlaps": [
+    "Overlaps with peer mesh for multi-agent branching and with built-in task/delegation surfaces for parallel work."
+  ],
+  "blockers": [
+    "No exact blocker; retained as a non-core reference because overlap is the main issue."
+  ],
+  "source_refs": [
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents the skill runtime, supported tools, and context-summary branch behavior."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "ba196f646bc99416fa3669de5255487c3e22e089",
+    "verified_paths": [
+      "/",
+      "README.md"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/observability-ingest.schema.json",
+  "title": "Parent Observability Ingest Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "ingest_plane",
+    "session_visibility",
+    "correlation_visibility",
+    "swimlane_visibility",
+    "durable_store_assumptions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-observability-ingest"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "ingest_plane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "endpoint_protocol",
+        "endpoint_path",
+        "delivery_mode",
+        "accepted_event_contract",
+        "auth_expectation",
+        "decoupled_from_runtime_logs"
+      ],
+      "properties": {
+        "endpoint_protocol": {
+          "type": "string",
+          "minLength": 3
+        },
+        "endpoint_path": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "delivery_mode": {
+          "type": "string",
+          "minLength": 3
+        },
+        "accepted_event_contract": {
+          "type": "string",
+          "const": "contracts/observability-event.yaml"
+        },
+        "auth_expectation": {
+          "type": "string",
+          "minLength": 3
+        },
+        "decoupled_from_runtime_logs": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "session_visibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_session_markers",
+        "source_contracts",
+        "emit_on_session_start",
+        "emit_on_session_end"
+      ],
+      "properties": {
+        "required_session_markers": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "session_start" } },
+            { "contains": { "const": "session_end" } }
+          ]
+        },
+        "source_contracts": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "emit_on_session_start": {
+          "type": "boolean",
+          "const": true
+        },
+        "emit_on_session_end": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "correlation_visibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_correlation_fields",
+        "cross_event_join_key",
+        "message_to_policy_join_required",
+        "message_to_completion_join_required"
+      ],
+      "properties": {
+        "required_correlation_fields": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "message_id" } },
+            { "contains": { "const": "correlation_id" } },
+            { "contains": { "const": "scenario_id" } },
+            { "contains": { "const": "policy_decision_id" } },
+            { "contains": { "const": "completion_token" } }
+          ]
+        },
+        "cross_event_join_key": {
+          "type": "string",
+          "minLength": 3
+        },
+        "message_to_policy_join_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "message_to_completion_join_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "swimlane_visibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_roles",
+        "required_dimensions",
+        "peer_swimlane_view_required"
+      ],
+      "properties": {
+        "required_roles": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          }
+        },
+        "required_dimensions": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "runtime_actor" } },
+            { "contains": { "const": "sender_role" } },
+            { "contains": { "const": "recipient_role" } },
+            { "contains": { "const": "runtime_mode" } }
+          ]
+        },
+        "peer_swimlane_view_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "durable_store_assumptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "store_system",
+        "append_only",
+        "replayable",
+        "cross_run_queryable",
+        "retention_scope"
+      ],
+      "properties": {
+        "store_system": {
+          "type": "string",
+          "const": "pixeltable"
+        },
+        "append_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "replayable": {
+          "type": "boolean",
+          "const": true
+        },
+        "cross_run_queryable": {
+          "type": "boolean",
+          "const": true
+        },
+        "retention_scope": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    }
+  }
+}

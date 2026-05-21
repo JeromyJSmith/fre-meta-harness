@@ -1,0 +1,80 @@
+{
+  "artifact_id": "understand-anything-parent-intake-graph",
+  "created_at": "2026-05-21T06:39:20.019Z",
+  "status": "pass",
+  "install": {
+    "surface": "copilot-cli",
+    "already_installed": false,
+    "install_command": "copilot plugin install Lum1104/Understand-Anything:understand-anything-plugin",
+    "plugin_name": "understand-anything",
+    "plugin_version": "2.7.3"
+  },
+  "generation": {
+    "primary_surface": "copilot /understand --full",
+    "bounded_scope": "parent-wrapper intake slice only",
+    "prompt_confirmed_ignore": ".understand-anything/.understandignore",
+    "analyzed_files": 11,
+    "file_categories": {
+      "docs": 8,
+      "config": 1,
+      "code": 2
+    },
+    "kept_sources": [
+      "agentics-library.md",
+      "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "GOAL.md",
+      "library.yaml",
+      "program.md",
+      "README.md",
+      "scripts/score-parent-wrapper.py",
+      "tests/validate_parent_wrapper_contract.py"
+    ]
+  },
+  "graph_artifacts": {
+    "knowledge_graph": ".understand-anything/knowledge-graph.json",
+    "metadata": ".understand-anything/meta.json",
+    "fingerprints": ".understand-anything/fingerprints.json",
+    "assembled_graph": ".understand-anything/intermediate/assembled-graph.json",
+    "scan_result": ".understand-anything/intermediate/scan-result.json"
+  },
+  "graph_summary": {
+    "node_count": 31,
+    "edge_count": 50,
+    "layer_count": 4,
+    "tour_step_count": 3,
+    "node_types": {
+      "document": 8,
+      "config": 1,
+      "file": 2,
+      "function": 20
+    },
+    "edge_types": {
+      "contains": 20,
+      "documents": 14,
+      "related": 7,
+      "configures": 5,
+      "depends_on": 4
+    }
+  },
+  "authority_boundary": {
+    "authoritative_for": [
+      "bounded structural intake",
+      "file and relationship reconnaissance",
+      "later governed harvest input"
+    ],
+    "not_authoritative_for": [
+      "canonical parent contracts",
+      "schema truth",
+      "validator truth",
+      "promotion truth"
+    ]
+  },
+  "notes": [
+    "The final kept graph is a bounded intake artifact for the exact parent-wrapper slice named in the intake prompt, not a broad whole-repo graph.",
+    "External authority clones and child runtime paths were excluded from analysis.",
+    "The assembled graph produced by the Understand-Anything pass was finalized into a knowledge-graph artifact with lightweight layers and tour steps for local exploration."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-lifecycle",
+  "scope": "portable_parent_wrapper",
+  "states": [
+    {
+      "state_id": "bootstrapping",
+      "purpose": "Establish the peer mesh mode, role registry, and runtime contract before traffic is accepted."
+    },
+    {
+      "state_id": "ready",
+      "purpose": "Peer is admitted to the mesh and can list peers or initiate governed work."
+    },
+    {
+      "state_id": "awaiting_response",
+      "purpose": "A request was sent and the caller is waiting on await_response with a live correlation ID."
+    },
+    {
+      "state_id": "verifying_completion",
+      "purpose": "A response arrived and the verifier is checking completion tokens, policy outcome, and evidence."
+    },
+    {
+      "state_id": "completed",
+      "purpose": "The scenario ended with an explicit terminal completion token and verification pass."
+    },
+    {
+      "state_id": "blocked",
+      "purpose": "The scenario stopped closed because policy, verification, or runtime boundaries were not satisfied."
+    }
+  ],
+  "transitions": [
+    {
+      "from_state": "bootstrapping",
+      "on_event": "session_start",
+      "to_state": "ready"
+    }
+  ]
+}

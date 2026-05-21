@@ -73,6 +73,10 @@ library:
       description: Durable parent-layer evidence for GitNexus, Graphify, InfraNodus, and agent-eval availability.
       kind: evaluation
       source: evaluation/tool-health/status.json
+    - name: parent-peer-mesh-local-runtime
+      description: Bounded same-host runtime proof for the kept pi-vs-claude-code activation slice, with same_host active and cross_device blocked.
+      kind: evaluation
+      source: evaluation/tool-health/peer-mesh-local.json
     - name: parent-capability-metrics
       description: Reusable metric-family contract for capability harvests and improvement lanes that forbids file-presence-only scoring.
       kind: contract
@@ -81,10 +85,82 @@ library:
       description: Exact parent-layer truth contract for dry, smoke, and live agent-eval evidence.
       kind: contract
       source: contracts/agent-eval-parent-lane.yaml
+    - name: parent-peer-mesh-contract
+      description: Parent-native contract for the Pi-to-Pi communication plane, required operations, and fail-loud completion boundary.
+      kind: contract
+      source: contracts/peer-mesh.yaml
+    - name: parent-peer-message-contract
+      description: Governed parent message-envelope contract for correlation IDs, redaction boundaries, completion tokens, and escalation edges.
+      kind: contract
+      source: contracts/peer-message.yaml
+    - name: parent-peer-lifecycle-contract
+      description: Parent-native lifecycle contract for peer startup, dispatch, await-response, verification, retry, and terminal stop states.
+      kind: contract
+      source: contracts/peer-lifecycle.yaml
+    - name: parent-observability-event-contract
+      description: Governed parent observability contract for lifecycle, message, and policy events across peer swimlanes.
+      kind: contract
+      source: contracts/observability-event.yaml
+    - name: parent-observability-ingest-contract
+      description: Decoupled parent observability ingest contract for endpoint expectations, session visibility, correlation joins, swimlane views, and durable event-store assumptions.
+      kind: contract
+      source: contracts/observability-ingest.yaml
+    - name: parent-policy-decision-contract
+      description: Governed parent allow-block-ask policy boundary for prompt, command, cross-device, and prod-slice decisions.
+      kind: contract
+      source: contracts/policy-decision.yaml
+    - name: parent-library-distribution-contract
+      description: Portable typed-reference distribution contract for propagating skills, prompts, agents, policies, validators, and benchmark recipes across peers.
+      kind: contract
+      source: contracts/library-distribution.yaml
+    - name: parent-benchmark-emission-contract
+      description: Explicit benchmark tuple and regression-emission contract for measuring peer-mesh changes across runs.
+      kind: contract
+      source: contracts/benchmark-emission.yaml
+    - name: parent-peer-mesh-runtime-contract
+      description: Parent-native same-host and cross-device runtime contract for coms/coms-net operation and actor mode expectations.
+      kind: contract
+      source: contracts/peer-mesh-runtime.yaml
+    - name: parent-agent-role-contract
+      description: Governed parent role registry for peer mesh host, production gatekeeper, dev driver, and mesh verifier lanes.
+      kind: contract
+      source: contracts/agent-role-contract.yaml
+    - name: parent-hook-manifest
+      description: Fail-loud hook policy and trigger manifest for peer bootstrap, prompt guards, and completion verification.
+      kind: contract
+      source: contracts/hook-manifest.yaml
+    - name: parent-capability-matrix
+      description: Governed parent capability matrix aligned to the compiled research feature matrix, source refs, lane classifications, and exact blocker language.
+      kind: contract
+      source: contracts/capability-matrix.yaml
+    - name: parent-research-packet-manifest
+      description: Parent contract that makes the packetized research harvest and compiled research outputs first-class governed surfaces.
+      kind: contract
+      source: contracts/research-packet-manifest.yaml
+    - name: compiled-capability-harvest
+      description: Authoritative compiled capability harvest derived from packetized repo and topic research under governed validation.
+      kind: evaluation
+      source: evaluation/research/compiled/capability-harvest.json
+    - name: compiled-feature-matrix
+      description: Feature-to-surface compiled matrix that drives the governed capability system.
+      kind: evaluation
+      source: evaluation/research/compiled/feature-matrix.json
+    - name: compiled-gap-placement-map
+      description: Governed classification and placement map for core, gated, deployment-specific, reference, and exact-blocked lanes.
+      kind: evaluation
+      source: evaluation/research/compiled/gap-placement-map.json
+    - name: compiled-source-index
+      description: Traceable source index with commit-pinned refs and explicit video-evidence strength boundaries.
+      kind: evaluation
+      source: evaluation/research/compiled/source-index.json
     - name: active-body-registry
       description: Current active child body registry.
       kind: config
       source: body-registry.yaml
+    - name: understand-anything-intake-graph
+      description: Bounded Understand-Anything intake record that points at the parent-wrapper graph artifact and states its non-authoritative evidence role.
+      kind: evaluation
+      source: evaluation/understand-anything-intake.json
     - name: local-goal-md-clone
       description: Local clone of goal-md used as the parent wrapper ruler authority.
       kind: external_repo
@@ -113,3 +189,50 @@ library:
     - name: parent-agent-eval-cycle
       description: Run the bounded parent agent-eval dry or smoke lane against the parent-scoped fixture.
       source: scripts/run-parent-agent-eval.sh
+    - name: parent-peer-mesh-local-cycle
+      description: Execute the bounded same-host peer-mesh runtime slice and refresh its tool-health evidence.
+      source: scripts/run-parent-peer-mesh-local.sh
+distribution_units:
+  - ref: prompt:parent-meta-program
+    unit_type: prompt
+    name: parent-meta-program
+    source: program.md
+    used_by_roles:
+      - peer_mesh_host
+      - mesh_verifier
+  - ref: skill:the-library
+    unit_type: skill
+    name: the-library
+    source: agentics-library.md
+    used_by_roles:
+      - peer_mesh_host
+      - prod_gatekeeper
+      - dev_driver
+      - mesh_verifier
+  - ref: agent:peer_mesh_host
+    unit_type: agent
+    name: peer_mesh_host
+    source: contracts/agent-role-contract.yaml
+    used_by_roles:
+      - peer_mesh_host
+  - ref: policy:parent-same-host-message-guard
+    unit_type: policy
+    name: parent-same-host-message-guard
+    source: contracts/policy-decision.yaml
+    used_by_roles:
+      - prod_gatekeeper
+      - dev_driver
+      - mesh_verifier
+  - ref: validator:parent-wrapper-contract
+    unit_type: validator
+    name: parent-wrapper-contract
+    source: tests/validate_parent_wrapper_contract.py
+    used_by_roles:
+      - mesh_verifier
+  - ref: benchmark_recipe:parent-peer-mesh-local-smoke
+    unit_type: benchmark_recipe
+    name: parent-peer-mesh-local-smoke
+    source: scripts/run-parent-peer-mesh-local.sh
+    used_by_roles:
+      - peer_mesh_host
+      - mesh_verifier

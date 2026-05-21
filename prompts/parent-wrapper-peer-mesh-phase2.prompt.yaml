@@ -1,0 +1,98 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260520-PEERMESH2"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Implement the second bounded parent-native peer-mesh slice so the harness gains governed observability ingestion, portable distribution, and measurable regression surfaces on top of the communication contracts."
+  repo_scope: "/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+  task_scope: "Parent wrapper contracts, schemas, examples, validator/scorer wiring, minimal supporting docs, and refreshed proof artifacts for the Phase 2 observability-distribution-evaluation slice only."
+current_verified_state:
+  facts:
+    - "Parent wrapper root is /Volumes/PixelTable/VW_iTwin_Bridge/meta and prompt artifacts belong under /Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts."
+    - "Phase 1 communication work is expected to define or update governed peer-message, peer-lifecycle, observability-event, policy-decision, and peer-mesh-runtime surfaces."
+    - "The parent already carries parent-native peer-mesh, agent-role-contract, hook-manifest, and capability-matrix surfaces that may need extension instead of duplication."
+    - "The user wants Phase 1 run first and then Phase 2 run second, with explicit file-reading order and bounded adoption."
+    - "The Notion packet contains direct parent guidance for hooks mastery, multi-agent observability, the-library distribution, live-bench evaluation, and the corrected layer map tying them together."
+    - "The parent worktree is already dirty, so this run must only touch files needed to make observability, distribution, and evaluation materially real at the parent layer."
+hard_rules:
+  environment:
+    - "Use uv for all Python environment, dependency, script, and test execution."
+    - "Do not use pip or create ad hoc venv or virtualenv environments unless uv is first proven insufficient."
+  safety:
+    - "Do not broaden beyond /Volumes/PixelTable/VW_iTwin_Bridge/meta."
+    - "Do not edit imported authority clones under /Volumes/PixelTable/VW_iTwin_Bridge/meta/external."
+    - "Do not rewrite the child runtime repo, frontend code, or sidecar code in this run."
+    - "Do not create parallel observability or library systems outside the existing governed parent wrapper surfaces."
+    - "If Phase 1 surfaces are missing or malformed, repair only the minimum prerequisite truth needed for this Phase 2 slice instead of broadening into a full Phase 1 redo."
+  truthfulness:
+    - "No fake green path."
+    - "Do not model observability, distribution, or evaluation as vague prose; represent them as explicit governed parent surfaces."
+    - "Do not hardcode a frozen exact list of future capabilities, benchmark groups, or dashboard states when extensible invariant checks can express the contract honestly."
+    - "If the slice cannot be kept honestly, stop with an exact blocker and fresh evidence."
+allowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/README.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/GOAL.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/program.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/domain_spec.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/library.yaml"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agentics-library.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/AGENTS.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/CLAUDE.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/contracts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/schemas/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/examples/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/expected-failures/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/evaluation/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/promotion/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/runs/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/docs/NOTION-DOCS/**"
+disallowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/src/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/pixeltable/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/vw-plugin/**"
+tasks:
+  ordered_steps:
+    - "Read README.md, GOAL.md, program.md, domain_spec.md, library.yaml, agentics-library.md, prompts/parent-wrapper-peer-mesh-phase1.prompt.yaml, tests/validate_parent_wrapper_contract.py, and scripts/score-parent-wrapper.py."
+    - "Read the Phase 2 Notion authorities only: Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md, Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md, Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md, Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md, Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv, Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md, and Risks and Controls 2076482f2a684403be44ca68377d24c1.md."
+    - "Capture the true baseline by running the parent validator and scorer before changes and by checking which Phase 1 communication surfaces are already present and valid."
+    - "Implement the second bounded contract family as parent-native governed surfaces. Add or update only the truthful minimum set needed for this slice: contracts/observability-ingest.yaml, schemas/observability-ingest.schema.json, contracts/library-distribution.yaml, schemas/library-distribution.schema.json, contracts/benchmark-emission.yaml, schemas/benchmark-emission.schema.json, and any necessary extensions to capability-matrix, hook-manifest, peer-mesh-runtime, or agent-role-contract."
+    - "Represent observability as a decoupled ingest plane, not just logs. The governed surface must cover event ingest endpoint expectations, session start or end expectations, message correlation visibility, peer swimlane visibility, and durable event-store assumptions."
+    - "Represent distribution as a portable the-library-style parent surface, not a copy-based workflow. The governed surface must cover typed units such as skills, prompts, agents, policies, validators, and benchmark recipes, and how they are referenced or propagated."
+    - "Represent evaluation as explicit benchmark emission and regression surfaces, not summary prose. The governed surface must cover benchmark tuples, required benchmark groups, and the expectation that peer-mesh changes are measured across runs."
+    - "Update tests/validate_parent_wrapper_contract.py and scripts/score-parent-wrapper.py so they require truthful observability, distribution, and evaluation invariants without hardcoding future-closed exact sets."
+    - "Add truthful valid and invalid examples for the new Phase 2 surfaces and register any expected failures needed for the validator."
+    - "Refresh only the minimum supporting docs so the parent wrapper can discover the new observability, distribution, and evaluation surfaces from its normal library and prompt spine."
+    - "Run validation, scorer, and git diff hygiene. If the slice is kept, refresh evaluation and promotion artifacts and append exactly one compact iteration row describing this kept Phase 2 slice. If it is blocked, preserve the blocked state honestly with exact evidence."
+validation_loop:
+  checks:
+    - "Run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/validate_parent_wrapper_contract.py"
+    - "Run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json"
+    - "Validate any new examples against their new schemas."
+    - "Run git --no-pager diff --check from /Volumes/PixelTable/VW_iTwin_Bridge/meta"
+    - "Treat evaluation/validation-report.json, evaluation/metrics-latest.json, promotion/readiness.json, and runs/iterations.jsonl as the primary durable proof surfaces if the slice is kept."
+  rerun_policy: "Repeat the bounded fix and validate loop until the Phase 2 slice passes honestly or the blocker is exact and proven. Do not broaden into host-control, sandbox, or full execution-plane adoption during this run."
+success_criteria:
+  best_case: "The parent wrapper gains explicit governed observability-ingest, portable distribution, and benchmark-emission surfaces on top of Phase 1 communication; validator and scorer enforce extensible truthful invariants; examples and proof artifacts validate cleanly; and one kept iteration records the second peer-mesh slice."
+  acceptable_fallback: "An exact blocker is proven with fresh validator, scorer, and diff evidence showing why truthful Phase 2 adoption cannot proceed yet without violating the parent wrapper doctrine."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "baseline score and final score"
+    - "Phase 1 prerequisites found or minimally repaired"
+    - "observability, distribution, and evaluation surfaces added or updated"
+    - "new schemas and example artifacts added"
+    - "validator and scorer changes"
+    - "proof artifact paths refreshed"
+    - "iteration ledger entry appended or exact blocker"

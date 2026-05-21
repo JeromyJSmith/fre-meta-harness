@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-policy-decision",
+  "scope": "portable_parent_wrapper",
+  "decision_outcomes": {
+    "required_outcomes": [
+      "allow",
+      "block",
+      "ask"
+    ],
+    "default_uncertain_outcome": "ask",
+    "reason_required": true
+  },
+  "redaction_boundary": {
+    "prod_to_dev_requires_redaction": true,
+    "blocked_data_classes": [
+      "pii",
+      "secrets"
+    ],
+    "ask_on_redaction_uncertainty": true
+  },
+  "escalation": {
+    "ask_routes_to": "mesh_verifier",
+    "block_is_terminal": true,
+    "allow_requires_observability_event": true
+  },
+  "observability_contract": "contracts/observability-event.yaml"
+}

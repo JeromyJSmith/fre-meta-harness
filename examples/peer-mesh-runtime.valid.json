@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-mesh-runtime",
+  "scope": "portable_parent_wrapper",
+  "runtime_modes": [
+    {
+      "mode_id": "same_host",
+      "transport_extension": "coms",
+      "host_topology": "same_machine",
+      "supports_operations": [
+        "list_agents",
+        "send_command",
+        "send_prompt",
+        "await_response"
+      ],
+      "actor_roles": [
+        "peer_mesh_host",
+        "prod_gatekeeper",
+        "dev_driver",
+        "mesh_verifier"
+      ],
+      "actor_role_classes": [
+        "mesh_bootstrap",
+        "prod_boundary",
+        "execution_driver",
+        "verification_guard"
+      ]
+    },
+    {
+      "mode_id": "cross_device",
+      "transport_extension": "coms-net",
+      "host_topology": "network_reachable",
+      "hub_runtime": "bun_http_sse",
+      "auth_token_env": "PI_COMS_NET_AUTH_TOKEN",
+      "supports_operations": [
+        "list_agents",
+        "send_command",
+        "send_prompt",
+        "await_response"
+      ],
+      "actor_roles": [
+        "peer_mesh_host",
+        "prod_gatekeeper",
+        "dev_driver",
+        "mesh_verifier"
+      ],
+      "actor_role_classes": [
+        "mesh_bootstrap",
+        "prod_boundary",
+        "execution_driver",
+        "verification_guard"
+      ]
+    }
+  ],
+  "actors": {
+    "required_roles": [
+      "peer_mesh_host",
+      "prod_gatekeeper",
+      "dev_driver",
+      "mesh_verifier"
+    ],
+    "required_role_classes": [
+      "mesh_bootstrap",
+      "prod_boundary",
+      "execution_driver",
+      "verification_guard"
+    ],
+    "prod_boundary_role": "prod_gatekeeper",
+    "verification_role": "mesh_verifier"
+  },
+  "completion_boundary": {
+    "await_response_required": true,
+    "required_completion_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "max_loop_budget_per_scenario": 8,
+    "max_retries_per_message": 2,
+    "benchmark_contract": "contracts/benchmark-emission.yaml",
+    "benchmark_emission_required": true,
+    "lifecycle_contract": "contracts/peer-lifecycle.yaml"
+  }
+}

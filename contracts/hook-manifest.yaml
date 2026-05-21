@@ -1,0 +1,136 @@
+schema_version: "1.0.0"
+contract_id: parent-hook-manifest
+scope: portable_parent_wrapper
+policy:
+  fail_mode: fail_loud
+  require_evidence_artifact: true
+  require_verification_boundary: true
+policy_contracts:
+  - contracts/policy-decision.yaml
+  - contracts/observability-event.yaml
+hooks:
+  - hook_id: peer-session-start
+    hook_class: session_bootstrap
+    event: session_start
+    description: Validate the peer mesh transport selection and governed role payload before a peer session starts.
+    runtime_trigger: mesh_bootstrap
+    runtime_actor: peer_mesh_host
+    required_capabilities:
+      - pi-vs-claude-code
+      - the-library
+    target_contract_surfaces:
+      - contracts/peer-mesh.yaml
+      - contracts/peer-lifecycle.yaml
+      - contracts/observability-ingest.yaml
+      - contracts/library-distribution.yaml
+      - contracts/peer-mesh-runtime.yaml
+      - contracts/agent-role-contract.yaml
+    governed_operations:
+      - list_agents
+    policy_outcomes:
+      - allow
+      - block
+    validation_method: Validate mesh transports, role registry distribution, and bootstrap evidence before the first peer joins.
+    evidence_artifact: examples/peer-mesh.valid.json
+    on_failure: fail_loud
+  - hook_id: peer-membership-refresh
+    hook_class: membership_refresh
+    event: peer_join
+    description: Re-evaluate distributed role and capability payloads whenever a peer joins the flat mesh.
+    runtime_trigger: peer_join
+    runtime_actor: peer_mesh_host
+    required_capabilities:
+      - pi-vs-claude-code
+      - the-library
+    target_contract_surfaces:
+      - contracts/agent-role-contract.yaml
+      - contracts/library-distribution.yaml
+      - contracts/capability-matrix.yaml
+      - contracts/peer-lifecycle.yaml
+    governed_operations:
+      - list_agents
+    policy_outcomes:
+      - allow
+      - block
+    validation_method: Reject new peers that do not carry the governed role package and bounded capability mapping.
+    evidence_artifact: examples/capability-matrix.valid.json
+    on_failure: fail_loud
+  - hook_id: peer-prompt-guard
+    hook_class: message_guard
+    event: before_send_prompt
+    description: Enforce prompt guardrails, policy checks, and telemetry emission before a peer message leaves its actor boundary.
+    runtime_trigger: before_send_prompt
+    runtime_actor: prod_gatekeeper
+    required_capabilities:
+      - claude-code-hooks-mastery
+      - claude-code-hooks-multi-agent-observability
+    target_contract_surfaces:
+      - contracts/peer-message.yaml
+      - contracts/agent-role-contract.yaml
+      - contracts/hook-manifest.yaml
+      - contracts/policy-decision.yaml
+      - contracts/observability-event.yaml
+      - contracts/observability-ingest.yaml
+    governed_operations:
+      - send_prompt
+    policy_outcomes:
+      - allow
+      - block
+      - ask
+    validation_method: Require prompt policy enforcement plus observability event emission before outbound peer traffic is allowed.
+    evidence_artifact: examples/hook-manifest.valid.json
+    on_failure: fail_loud
+  - hook_id: peer-command-guard
+    hook_class: message_guard
+    event: before_send_command
+    description: Enforce command guardrails, sandbox boundaries, and telemetry emission before a peer command leaves its actor boundary.
+    runtime_trigger: before_send_command
+    runtime_actor: dev_driver
+    required_capabilities:
+      - claude-code-hooks-mastery
+      - agent-sandbox-skill
+    target_contract_surfaces:
+      - contracts/peer-message.yaml
+      - contracts/agent-role-contract.yaml
+      - contracts/hook-manifest.yaml
+      - contracts/policy-decision.yaml
+      - contracts/observability-event.yaml
+      - contracts/observability-ingest.yaml
+    governed_operations:
+      - send_command
+    policy_outcomes:
+      - allow
+      - block
+      - ask
+    validation_method: Require command policy enforcement, sandbox boundary checks, and observability emission before delegated execution is allowed.
+    evidence_artifact: examples/hook-manifest.valid.json
+    on_failure: fail_loud
+  - hook_id: completion-verification
+    hook_class: completion_guard
+    event: response_complete
+    description: Verify explicit completion tokens, loop-budget boundaries, and PII-safe task closure before a scenario is marked done.
+    runtime_trigger: response_complete
+    runtime_actor: mesh_verifier
+    required_capabilities:
+      - claude-code-hooks-mastery
+      - claude-code-hooks-multi-agent-observability
+      - agent-sandbox-skill
+    target_contract_surfaces:
+      - contracts/peer-mesh.yaml
+      - contracts/peer-message.yaml
+      - contracts/peer-lifecycle.yaml
+      - contracts/observability-ingest.yaml
+      - contracts/benchmark-emission.yaml
+      - contracts/agent-role-contract.yaml
+      - contracts/hook-manifest.yaml
+      - contracts/policy-decision.yaml
+      - contracts/observability-event.yaml
+    governed_operations:
+      - await_response
+    policy_outcomes:
+      - allow
+      - block
+      - ask
+    validation_method: Reject ambiguous completion, missing verification evidence, or loop-budget overruns and stop the scenario closed.
+    evidence_artifact: examples/benchmark-emission.valid.json
+    on_failure: fail_loud

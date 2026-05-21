@@ -1,0 +1,62 @@
+{
+  "status": "pass",
+  "metric_decision": "repaired",
+  "metric_reason": "The report claims a bounded runtime slice but omits the structured runtime proof.",
+  "metric_review": {
+    "baseline_total_score": 100.0,
+    "baseline_outcome_score": 100.0,
+    "baseline_instrument_score": 100.0,
+    "final_total_score": 100.0,
+    "final_outcome_score": 100.0,
+    "final_instrument_score": 100.0,
+    "trustworthy": true,
+    "trust_signals": [
+      "Validation passed."
+    ],
+    "problems_found": [],
+    "repair_actions": []
+  },
+  "real_non_dry_cycles_executed": 1,
+  "stop_reason": "kept schema slice completed",
+  "stop_evidence": {
+    "kind": "continuing"
+  },
+  "score_history": [
+    {
+      "cycle": 1,
+      "before_total_score": 100.0,
+      "after_total_score": 100.0,
+      "before_outcome_score": 100.0,
+      "after_outcome_score": 100.0,
+      "before_instrument_score": 100.0,
+      "after_instrument_score": 100.0,
+      "changed_files": [
+        "schemas/copilot-ratchet-report.schema.json"
+      ],
+      "kept": true,
+      "summary": "Changed the report schema without adding the required runtime-proof block."
+    }
+  ],
+  "score_saturation": {
+    "baseline_total_score": 100.0,
+    "final_total_score": 100.0,
+    "baseline_outcome_score": 100.0,
+    "final_outcome_score": 100.0,
+    "baseline_instrument_score": 100.0,
+    "final_instrument_score": 100.0,
+    "score_changed": false,
+    "new_truth_added": "Schema wording changed.",
+    "why_this_slice_counts": "The author claims it matters.",
+    "flat_score_explanation": "The score stayed flat."
+  },
+  "files_changed": [
+    "schemas/copilot-ratchet-report.schema.json"
+  ],
+  "artifacts": [
+    "evaluation/validation-report.json",
+    "evaluation/metrics-latest.json",
+    "promotion/readiness.json",
+    "runs/iterations.jsonl"
+  ],
+  "iteration_ledger_entries_appended": 1
+}

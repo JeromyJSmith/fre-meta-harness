@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-policy-decision",
+  "scope": "portable_parent_wrapper",
+  "decision_outcomes": {
+    "required_outcomes": [
+      "allow",
+      "block",
+      "ask"
+    ],
+    "default_uncertain_outcome": "ask",
+    "reason_required": true
+  },
+  "application_points": [
+    "before_send_prompt",
+    "before_send_command",
+    "before_cross_device_delivery",
+    "before_prod_slice_release"
+  ],
+  "decision_records": {
+    "required_fields": [
+      "decision_id",
+      "message_id",
+      "correlation_id",
+      "scenario_id",
+      "outcome",
+      "reason",
+      "actor_role"
+    ],
+    "governed_operations": [
+      "send_prompt",
+      "send_command"
+    ],
+    "prod_boundary_application_points": [
+      "before_cross_device_delivery",
+      "before_prod_slice_release"
+    ]
+  },
+  "redaction_boundary": {
+    "prod_to_dev_requires_redaction": true,
+    "blocked_data_classes": [
+      "pii",
+      "secrets"
+    ],
+    "ask_on_redaction_uncertainty": true
+  },
+  "escalation": {
+    "ask_routes_to": "mesh_verifier",
+    "block_is_terminal": true,
+    "allow_requires_observability_event": true
+  },
+  "observability_contract": "contracts/observability-event.yaml"
+}

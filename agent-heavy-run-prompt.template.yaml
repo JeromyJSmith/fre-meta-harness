@@ -53,3 +53,35 @@ report_contract:
     - "exact evidence used in the conclusion"
     - "files changed"
     - "targeted validation results"
+  runtime_truth_fields:
+    - "runtime_truth_level"
+    - "runtime_mode_activated"
+    - "runtime_modes_blocked"
+    - "activation_artifacts"
+    - "observability_artifacts"
+    - "completion_tokens_observed"
+    - "policy_outcomes_observed"
+  blocker_fields:
+    - "lane_id"
+    - "classification"
+    - "blocker_dependency"
+    - "missing_prerequisites"
+    - "evidence_refs"
+  freshness_fields:
+    - "artifact_records"
+    - "max_artifact_span_seconds"
+    - "tool_health_artifacts"
+  score_saturation_fields:
+    - "baseline_total_score"
+    - "final_total_score"
+    - "score_changed"
+    - "why_this_slice_counts"
+  command_evidence_fields:
+    - "activation_commands"
+    - "validation_commands"
+    - "tool_health_commands"
+  follow_up_prompt_fields:
+    - "artifact_path"
+    - "target_schema_ref"
+    - "target_template_ref"
+    - "must_be_inline_ready"

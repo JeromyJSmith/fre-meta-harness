@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-observability-ingest",
+  "scope": "portable_parent_wrapper",
+  "ingest_plane": {
+    "endpoint_protocol": "http_sse",
+    "endpoint_path": "/observability/events",
+    "delivery_mode": "append_only",
+    "accepted_event_contract": "contracts/observability-event.yaml",
+    "auth_expectation": "governed_parent_session",
+    "decoupled_from_runtime_logs": true
+  },
+  "session_visibility": {
+    "required_session_markers": [
+      "session_start",
+      "session_end"
+    ],
+    "source_contracts": [
+      "contracts/peer-lifecycle.yaml",
+      "contracts/observability-event.yaml"
+    ],
+    "emit_on_session_start": true,
+    "emit_on_session_end": true
+  },
+  "correlation_visibility": {
+    "required_correlation_fields": [
+      "message_id",
+      "correlation_id",
+      "scenario_id",
+      "policy_decision_id",
+      "completion_token"
+    ],
+    "cross_event_join_key": "correlation_id",
+    "message_to_policy_join_required": true,
+    "message_to_completion_join_required": true
+  },
+  "swimlane_visibility": {
+    "required_roles": [
+      "peer_mesh_host",
+      "prod_gatekeeper",
+      "dev_driver",
+      "mesh_verifier"
+    ],
+    "required_dimensions": [
+      "runtime_actor",
+      "sender_role",
+      "recipient_role",
+      "runtime_mode"
+    ],
+    "peer_swimlane_view_required": true
+  },
+  "durable_store_assumptions": {
+    "store_system": "pixeltable",
+    "append_only": true,
+    "replayable": true,
+    "cross_run_queryable": true,
+    "retention_scope": "parent_wrapper_runs"
+  }
+}

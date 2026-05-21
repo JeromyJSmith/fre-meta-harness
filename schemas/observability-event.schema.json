@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/observability-event.schema.json",
+  "title": "Parent Observability Event Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "event_taxonomy",
+    "operation_event_requirements",
+    "ingestion",
+    "boundary",
+    "swimlanes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-observability-event"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "event_taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_event_types",
+        "optional_event_types",
+        "categories"
+      ],
+      "properties": {
+        "required_event_types": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "optional_event_types": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "categories": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "ingestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durable_sink",
+        "event_sink_contract",
+        "ingest_contract",
+        "correlation_keys",
+        "emit_before_send",
+        "emit_on_receive",
+        "emit_on_policy_decision",
+        "emit_on_session_end"
+      ],
+      "properties": {
+        "durable_sink": {
+          "type": "string",
+          "const": "pixeltable"
+        },
+        "event_sink_contract": {
+          "type": "string",
+          "const": "pixeltable-operational-substrate.md"
+        },
+        "ingest_contract": {
+          "type": "string",
+          "const": "contracts/observability-ingest.yaml"
+        },
+        "correlation_keys": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "emit_before_send": {
+          "type": "boolean",
+          "const": true
+        },
+        "emit_on_receive": {
+          "type": "boolean",
+          "const": true
+        },
+        "emit_on_policy_decision": {
+          "type": "boolean",
+          "const": true
+        },
+        "emit_on_session_end": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "operation_event_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_operations",
+        "send_event_types",
+        "receive_event_types",
+        "completion_event_types",
+        "policy_event_types"
+      ],
+      "properties": {
+        "required_operations": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "list_agents" } },
+            { "contains": { "const": "send_command" } },
+            { "contains": { "const": "send_prompt" } },
+            { "contains": { "const": "await_response" } }
+          ]
+        },
+        "send_event_types": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "receive_event_types": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "completion_event_types": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "policy_event_types": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prod_to_dev_redaction_boundary",
+        "missing_event_mode",
+        "evidence_required"
+      ],
+      "properties": {
+        "prod_to_dev_redaction_boundary": {
+          "type": "boolean",
+          "const": true
+        },
+        "missing_event_mode": {
+          "type": "string",
+          "const": "fail_loud"
+        },
+        "evidence_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "swimlanes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_roles",
+        "required_role_classes",
+        "peer_swimlane_observability_required",
+        "policy_contract"
+      ],
+      "properties": {
+        "required_roles": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "required_role_classes": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "peer_swimlane_observability_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "policy_contract": {
+          "type": "string",
+          "const": "contracts/policy-decision.yaml"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    }
+  }
+}

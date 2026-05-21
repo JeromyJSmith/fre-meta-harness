@@ -1,0 +1,945 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "FRE Meta Harness",
+    "languages": [
+      "markdown",
+      "python",
+      "yaml"
+    ],
+    "frameworks": [],
+    "description": "FRE Meta Harness is the published portable parent wrapper for the VW_iTwin_Bridge body cell and serves as the standalone fre-meta-harness repository root. It packages scaffold, prompt-contract, library/configuration, and proof-package assets for the parent wrapper.",
+    "analyzedAt": "2026-05-21T06:38:35.141Z",
+    "gitCommitHash": "823009c41b98b6706d32e2cf4ab9530fc13eee47"
+  },
+  "nodes": [
+    {
+      "id": "document:agentics-library.md",
+      "type": "document",
+      "name": "agentics-library.md",
+      "filePath": "agentics-library.md",
+      "summary": "Explains how the parent wrapper uses the library pattern as its catalog spine for prompts, capabilities, references, tool-health evidence, and parent-native orchestration surfaces. It positions library.yaml as the durable authority behind the portable wrapper catalog.",
+      "tags": [
+        "documentation",
+        "library-catalog",
+        "capability-registry",
+        "wrapper-governance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "type": "document",
+      "name": "Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "filePath": "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "summary": "Defines a canonical artifact registry template and a seed inventory for docs, schemas, capabilities, reports, and portable proof-kernel outputs. It serves as planning documentation for the harness artifact surface.",
+      "tags": [
+        "documentation",
+        "artifact-registry",
+        "governance",
+        "schema-planning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "type": "document",
+      "name": "Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "filePath": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "summary": "A detailed reboot plan for adding governed tool, skill, hook, agent, and capability substrate layers to the FRE harness. It lays out the ontology, required package additions, schemas, and InfraNodus graph-gate expectations.",
+      "tags": [
+        "documentation",
+        "capability-registry",
+        "hooks",
+        "tooling",
+        "infranodus"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "type": "document",
+      "name": "Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "filePath": "docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "summary": "Research notes combining a Pi agent workflow analysis with a ranked audit of Disler repositories for harness infrastructure fit. The document turns external research into an architect-facing implementation brief for peer-to-peer agent workflows.",
+      "tags": [
+        "documentation",
+        "research-notes",
+        "agent-orchestration",
+        "repo-audit",
+        "runbook"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "type": "document",
+      "name": "Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "filePath": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "summary": "Captures a transcript-grounded runbook for Pi-to-Pi peer mesh orchestration, including install steps, protocol expectations, guardrails, and complementary infrastructure picks. It translates external video research into a harness-oriented architecture guide.",
+      "tags": [
+        "documentation",
+        "install-runbook",
+        "agent-orchestration",
+        "peer-mesh",
+        "research-notes"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:GOAL.md",
+      "type": "document",
+      "name": "GOAL.md",
+      "filePath": "GOAL.md",
+      "summary": "Defines the parent wrapper fitness function, stopping conditions, bootstrap sequence, and bounded improvement loop for the portable parent wrapper. It is the governing goal contract for evidence-backed self-improvement of the harness root.",
+      "tags": [
+        "documentation",
+        "goal-contract",
+        "fitness-function",
+        "improvement-loop",
+        "governance"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:library.yaml",
+      "type": "config",
+      "name": "library.yaml",
+      "filePath": "library.yaml",
+      "summary": "Registry configuration for the parent wrapper catalog, organizing prompts, capabilities, references, and jobs into a portable library spine. It binds key documentation and operational scripts to named catalog entries.",
+      "tags": [
+        "configuration",
+        "library-catalog",
+        "capability-registry",
+        "job-catalog"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "The YAML is structured as grouped catalog records for prompts, capabilities, references, and jobs rather than runtime settings alone."
+    },
+    {
+      "id": "document:program.md",
+      "type": "document",
+      "name": "program.md",
+      "filePath": "program.md",
+      "summary": "Specifies the local execution protocol for parent-wrapper ratchet runs, including setup, mutable surface boundaries, validation loop, report contract, and hard rules. It operationalizes how the parent wrapper should run and prove bounded improvement cycles.",
+      "tags": [
+        "documentation",
+        "execution-protocol",
+        "ratchet-loop",
+        "governance",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Top-level overview of the FRE Meta Harness parent wrapper, enumerating its scaffold, contract surfaces, proof package, tool-health doctrine, and current role. It is the main orientation document for the standalone parent repository root.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "project-overview",
+        "parent-wrapper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:scripts/score-parent-wrapper.py",
+      "type": "file",
+      "name": "score-parent-wrapper.py",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "summary": "Computes the parent-wrapper process score by combining outcome and instrument metrics from iteration logs, validation artifacts, tool-health evidence, and contract coverage. It is the scoring CLI that writes evaluation/metrics-latest.json for the parent improvement loop.",
+      "tags": [
+        "scoring",
+        "metrics",
+        "validation",
+        "cli",
+        "parent-wrapper"
+      ],
+      "complexity": "complex",
+      "languageNotes": "The script uses pathlib-rooted repository traversal with jsonschema and YAML validation to score filesystem evidence rather than in-memory application state."
+    },
+    {
+      "id": "file:tests/validate_parent_wrapper_contract.py",
+      "type": "file",
+      "name": "validate_parent_wrapper_contract.py",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "summary": "Runs the parent-wrapper contract validation suite across scaffold markdown contracts, schemas, examples, tool-health truth boundaries, orchestration contracts, iteration logs, and promotion readiness. It writes validation and readiness artifacts that gate parent-wrapper progress.",
+      "tags": [
+        "validation",
+        "contract-test",
+        "schema-validation",
+        "cli",
+        "parent-wrapper"
+      ],
+      "complexity": "complex",
+      "languageNotes": "The validator mixes markdown front-matter parsing with jsonschema and YAML checks, then emits report and readiness artifacts directly from repository state."
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:load_iterations",
+      "type": "function",
+      "name": "load_iterations",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        130,
+        150
+      ],
+      "summary": "Loads runs/iterations.jsonl and filters rows through the iteration-record schema while collecting parse and validation errors.",
+      "tags": [
+        "jsonl-loading",
+        "schema-validation",
+        "iteration-ledger"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:is_substantive_path",
+      "type": "function",
+      "name": "is_substantive_path",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        180,
+        190
+      ],
+      "summary": "Classifies whether a changed file counts as substantive improvement evidence instead of documentation-only or bookkeeping output.",
+      "tags": [
+        "path-filtering",
+        "scoring",
+        "change-classification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:parent_native_surface_refresh",
+      "type": "function",
+      "name": "parent_native_surface_refresh",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        201,
+        274
+      ],
+      "summary": "Validates parent-native orchestration contracts and example artifacts, then computes the contract-coverage portion of the parent-native surface score.",
+      "tags": [
+        "schema-validation",
+        "orchestration-contracts",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:consecutive_non_improving_cycles",
+      "type": "function",
+      "name": "consecutive_non_improving_cycles",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        281,
+        290
+      ],
+      "summary": "Counts trailing rejected or reverted iterations to detect a real plateau in recent score history.",
+      "tags": [
+        "plateau-detection",
+        "iteration-ledger",
+        "scoring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:artifact_span_seconds",
+      "type": "function",
+      "name": "artifact_span_seconds",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        293,
+        302
+      ],
+      "summary": "Measures timestamp spread across required artifact files to estimate whether the evidence set was refreshed together.",
+      "tags": [
+        "artifact-freshness",
+        "filesystem-metrics",
+        "scoring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:report_completeness",
+      "type": "function",
+      "name": "report_completeness",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        313,
+        362
+      ],
+      "summary": "Scores copilot-ratchet report completeness by checking schema validity, required fields, per-cycle history detail, and ledger alignment.",
+      "tags": [
+        "report-validation",
+        "schema-validation",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:metric_decision_truth",
+      "type": "function",
+      "name": "metric_decision_truth",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        365,
+        388
+      ],
+      "summary": "Evaluates whether the report's metric decision and review fields support an honest accepted or repaired outcome.",
+      "tags": [
+        "metric-review",
+        "truth-check",
+        "scoring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:ratchet_execution",
+      "type": "function",
+      "name": "ratchet_execution",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        391,
+        417
+      ],
+      "summary": "Scores whether real non-dry ratchet cycles exist, validate cleanly, and include kept substantive changes with aligned reporting.",
+      "tags": [
+        "ratchet-loop",
+        "iteration-ledger",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:non_dry_cycle_depth",
+      "type": "function",
+      "name": "non_dry_cycle_depth",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        420,
+        446
+      ],
+      "summary": "Measures depth of the improvement loop by counting substantive kept cycles and rejected challenge cycles in the real ledger.",
+      "tags": [
+        "cycle-depth",
+        "iteration-ledger",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:plateau_or_blocker_truth",
+      "type": "function",
+      "name": "plateau_or_blocker_truth",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        449,
+        482
+      ],
+      "summary": "Checks whether continuing, plateau, or blocker status claims are consistent with cycle history and stop evidence.",
+      "tags": [
+        "stop-logic",
+        "truth-check",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:artifact_refresh",
+      "type": "function",
+      "name": "artifact_refresh",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        485,
+        542
+      ],
+      "summary": "Scores artifact completeness and freshness together with tool-health evidence and parent-native contract coverage.",
+      "tags": [
+        "artifact-freshness",
+        "tool-health",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:build_score",
+      "type": "function",
+      "name": "build_score",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        545,
+        589
+      ],
+      "summary": "Aggregates outcome and instrument component scores into the final parent-wrapper metrics payload and weakest-component summary.",
+      "tags": [
+        "score-aggregation",
+        "metrics-payload",
+        "scoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/score-parent-wrapper.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/score-parent-wrapper.py",
+      "lineRange": [
+        592,
+        603
+      ],
+      "summary": "CLI entrypoint that builds the score, writes metrics-latest.json, and optionally prints the JSON payload.",
+      "tags": [
+        "cli-entrypoint",
+        "metrics-output",
+        "scoring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:parse_markdown_contract",
+      "type": "function",
+      "name": "parse_markdown_contract",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        141,
+        152
+      ],
+      "summary": "Parses scaffold markdown files into front matter and bottom matter sections so each contract surface can be schema-validated.",
+      "tags": [
+        "markdown-parsing",
+        "contract-validation",
+        "front-matter"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:load_jsonl",
+      "type": "function",
+      "name": "load_jsonl",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        155,
+        167
+      ],
+      "summary": "Loads JSONL rows from a file while preserving per-line parse errors for later reporting.",
+      "tags": [
+        "jsonl-loading",
+        "validation-support",
+        "error-collection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:validate_examples",
+      "type": "function",
+      "name": "validate_examples",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        186,
+        243
+      ],
+      "summary": "Validates the repository's positive examples and expected-failure fixtures against the relevant schemas.",
+      "tags": [
+        "example-validation",
+        "schema-validation",
+        "expected-failures"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:validate_capability_metrics_contract",
+      "type": "function",
+      "name": "validate_capability_metrics_contract",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        246,
+        274
+      ],
+      "summary": "Checks that the parent capability metrics contract matches its schema and expected metric-family IDs.",
+      "tags": [
+        "capability-metrics",
+        "schema-validation",
+        "contract-test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:validate_tool_health_truth",
+      "type": "function",
+      "name": "validate_tool_health_truth",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        277,
+        358
+      ],
+      "summary": "Enforces honest bounded-status rules and evidence requirements for GitNexus, Graphify, and InfraNodus tool-health reporting.",
+      "tags": [
+        "tool-health",
+        "truth-boundaries",
+        "contract-test"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:validate_parent_native_contracts",
+      "type": "function",
+      "name": "validate_parent_native_contracts",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        361,
+        537
+      ],
+      "summary": "Cross-validates the parent-native peer mesh, message, lifecycle, observability, policy, runtime, hook, role, and capability contracts for internal consistency and evidence coverage.",
+      "tags": [
+        "orchestration-contracts",
+        "schema-validation",
+        "cross-contract-checks"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/validate_parent_wrapper_contract.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "lineRange": [
+        540,
+        760
+      ],
+      "summary": "Runs the full validation suite, assembles check results, writes validation and readiness artifacts, and returns the overall pass or fail status.",
+      "tags": [
+        "cli-entrypoint",
+        "validation-suite",
+        "promotion-gating"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:load_iterations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:is_substantive_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:parent_native_surface_refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:consecutive_non_improving_cycles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:artifact_span_seconds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:report_completeness",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:metric_decision_truth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:ratchet_execution",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:non_dry_cycle_depth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:plateau_or_blocker_truth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:artifact_refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:build_score",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:scripts/score-parent-wrapper.py",
+      "target": "function:scripts/score-parent-wrapper.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:parse_markdown_contract",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:load_jsonl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:validate_examples",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:validate_capability_metrics_contract",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:validate_tool_health_truth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:validate_parent_native_contracts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "function:tests/validate_parent_wrapper_contract.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "document:agentics-library.md",
+      "target": "config:library.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "target": "config:library.yaml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "target": "config:library.yaml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "target": "document:agentics-library.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "target": "document:GOAL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "target": "document:agentics-library.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "target": "document:GOAL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "target": "document:agentics-library.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:GOAL.md",
+      "target": "document:program.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:GOAL.md",
+      "target": "config:library.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:GOAL.md",
+      "target": "file:scripts/score-parent-wrapper.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:GOAL.md",
+      "target": "file:tests/validate_parent_wrapper_contract.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:program.md",
+      "target": "document:GOAL.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:program.md",
+      "target": "config:library.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:program.md",
+      "target": "document:README.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:program.md",
+      "target": "file:scripts/score-parent-wrapper.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:program.md",
+      "target": "file:tests/validate_parent_wrapper_contract.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "document:GOAL.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "document:program.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:library.yaml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:scripts/score-parent-wrapper.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:library.yaml",
+      "target": "document:README.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:library.yaml",
+      "target": "document:program.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:library.yaml",
+      "target": "document:GOAL.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:library.yaml",
+      "target": "document:agentics-library.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:library.yaml",
+      "target": "file:scripts/score-parent-wrapper.py",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "document:README.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "document:GOAL.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "document:program.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:tests/validate_parent_wrapper_contract.py",
+      "target": "config:library.yaml",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ],
+  "layers": [
+    {
+      "id": "orientation-governance",
+      "name": "Orientation and governance",
+      "description": "Entry-point documents that define the parent wrapper role, goal contract, and execution protocol.",
+      "nodeIds": [
+        "document:README.md",
+        "document:GOAL.md",
+        "document:program.md",
+        "document:agentics-library.md"
+      ]
+    },
+    {
+      "id": "catalog-and-prompts",
+      "name": "Catalog and prompts",
+      "description": "Registry and governed prompt artifacts that frame later parent-wrapper adoption work.",
+      "nodeIds": [
+        "config:library.yaml"
+      ]
+    },
+    {
+      "id": "source-intake-notes",
+      "name": "Source intake notes",
+      "description": "Bounded external research notes kept for intake and later governed harvest.",
+      "nodeIds": [
+        "document:docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+        "document:docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+        "document:docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "document:docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md"
+      ]
+    },
+    {
+      "id": "verification-automation",
+      "name": "Verification and scoring",
+      "description": "Automation that validates the parent contract and computes parent-wrapper fitness metrics.",
+      "nodeIds": [
+        "file:tests/validate_parent_wrapper_contract.py",
+        "file:scripts/score-parent-wrapper.py"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Orient to the parent wrapper",
+      "description": "Start with the readme, goal contract, and execution protocol to understand what the parent wrapper governs.",
+      "nodeIds": [
+        "document:README.md",
+        "document:GOAL.md",
+        "document:program.md"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Trace the adoption spine",
+      "description": "Follow the library registry and phase prompts, then read the selected Notion intake notes that motivate later governed harvest.",
+      "nodeIds": [
+        "config:library.yaml",
+        "document:docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "document:docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Verify the proof surfaces",
+      "description": "Finish with the validator and scorer that keep the parent wrapper honest as new intake evidence is harvested.",
+      "nodeIds": [
+        "file:tests/validate_parent_wrapper_contract.py",
+        "file:scripts/score-parent-wrapper.py"
+      ]
+    }
+  ]
+}

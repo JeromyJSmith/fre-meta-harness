@@ -1,0 +1,120 @@
+{
+  "prompt_schema_version": "1.0.0",
+  "handoff_id": "HANDOFF-20260521-PEERMESH",
+  "artifact_type": "architect_review_handoff_prompt",
+  "producer_run": {
+    "source_prompt_id": "PROMPT-20260521-RUNTIME-ACTIVATION",
+    "source_report_path": "evaluation/copilot-ratchet-report.json",
+    "source_commit_hash": "823009c41b98b6706d32e2cf4ab9530fc13eee47",
+    "kept_or_blocked": "kept",
+    "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+  },
+  "consumer_agent": {
+    "name": "copilot",
+    "surface": "gh_copilot_p",
+    "invocation": "gh copilot -p"
+  },
+  "handoff_goal": {
+    "objective": "Review the kept same-host peer-mesh runtime slice and generate the next bounded implementation prompt.",
+    "why_now": "The prior run landed runtime proof and the next agent should consume exact evidence instead of reconstructing the slice from scratch.",
+    "best_next_slice": "Schema-hardening or next-lane activation driven by exact runtime truth."
+  },
+  "review_scope": {
+    "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
+    "allowed_paths": [
+      "contracts/**",
+      "schemas/**",
+      "examples/**",
+      "tests/**",
+      "scripts/**",
+      "evaluation/**",
+      "runs/**"
+    ],
+    "disallowed_paths": [
+      "external/**",
+      "../VW_iTwin_Bridge/src/**",
+      "../VW_iTwin_Bridge/pixeltable/**"
+    ],
+    "primary_focus": [
+      "runtime truth",
+      "blocker precision",
+      "freshness evidence",
+      "follow-up prompt generation"
+    ],
+    "anti_goals": [
+      "broad new research wave",
+      "editing child repo code",
+      "pretending blocked lanes are active"
+    ]
+  },
+  "required_inputs": {
+    "report_artifacts": [
+      "evaluation/copilot-ratchet-report.json",
+      "runs/iterations.jsonl"
+    ],
+    "runtime_proof_artifacts": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/peer-mesh-local-events.jsonl"
+    ],
+    "contract_artifacts": [
+      "contracts/capability-matrix.yaml",
+      "contracts/peer-mesh-runtime.yaml",
+      "schemas/copilot-ratchet-report.schema.json"
+    ],
+    "research_artifacts": [
+      "evaluation/research/compiled/feature-matrix.json",
+      "evaluation/research/compiled/source-index.json"
+    ]
+  },
+  "review_protocol": {
+    "ordered_steps": [
+      "Read the kept report and iteration row first.",
+      "Read the runtime proof artifacts next.",
+      "Compare runtime truth against governed contracts.",
+      "Generate the next prompt using the parent heavy-run prompt schema."
+    ],
+    "runtime_truth_expectations": [
+      "Distinguish bounded_runtime from contract_only claims.",
+      "Keep cross-device blocked unless exact dependencies changed."
+    ],
+    "blocker_expectations": [
+      "Use explicit blocker_dependency and evidence_refs.",
+      "Do not soften blocked lanes into optional prose."
+    ],
+    "freshness_expectations": [
+      "Require artifact timestamps or observed_at evidence.",
+      "Treat stale proof as non-authoritative."
+    ],
+    "command_evidence_expectations": [
+      "Require activation and validation commands.",
+      "Require evidence path pairing for each command class."
+    ]
+  },
+  "validation_loop": {
+    "checks": [
+      "Validate the prior runtime evidence.",
+      "Confirm report schema compliance.",
+      "Confirm the follow-up prompt preserves runtime-truth fields."
+    ],
+    "rerun_policy": "Repeat the bounded review until the next prompt is evidence-anchored or the exact blocker is proven."
+  },
+  "expected_outputs": {
+    "review_report_fields": [
+      "status",
+      "runtime_mismatch_list",
+      "validator_and_scorer_changes",
+      "proof_artifacts_refreshed",
+      "files_changed"
+    ],
+    "follow_up_prompt_artifact": {
+      "artifact_path": "prompts/next-bounded-slice.prompt.yaml",
+      "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+      "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+      "must_be_inline_ready": true,
+      "must_preserve_runtime_truth_fields": true,
+      "must_preserve_blocker_fields": true,
+      "must_preserve_freshness_fields": true,
+      "must_preserve_command_evidence_fields": true
+    }
+  }
+}

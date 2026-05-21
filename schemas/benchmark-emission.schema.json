@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/benchmark-emission.schema.json",
+  "title": "Parent Benchmark Emission Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "emission_plane",
+    "benchmark_tuple",
+    "required_groups",
+    "regression_policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-benchmark-emission"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "emission_plane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "emitted_artifacts",
+        "compare_across_runs",
+        "peer_mesh_change_measurement_required",
+        "emission_mode"
+      ],
+      "properties": {
+        "emitted_artifacts": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "compare_across_runs": {
+          "type": "boolean",
+          "const": true
+        },
+        "peer_mesh_change_measurement_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "emission_mode": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "benchmark_tuple": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "comparison_fields"
+      ],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "minItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "benchmark_id" } },
+            { "contains": { "const": "benchmark_group" } },
+            { "contains": { "const": "contract_surface" } },
+            { "contains": { "const": "scenario_id" } },
+            { "contains": { "const": "run_ref" } },
+            { "contains": { "const": "status" } },
+            { "contains": { "const": "measurement_ref" } }
+          ]
+        },
+        "comparison_fields": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "baseline_run_ref" } },
+            { "contains": { "const": "candidate_run_ref" } },
+            { "contains": { "const": "delta_summary" } },
+            { "contains": { "const": "regression_detected" } }
+          ]
+        }
+      }
+    },
+    "required_groups": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_groups",
+        "additional_groups_allowed"
+      ],
+      "properties": {
+        "minimum_groups": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "peer_mesh_regression" } },
+            { "contains": { "const": "observability_ingest" } },
+            { "contains": { "const": "library_distribution" } }
+          ]
+        },
+        "additional_groups_allowed": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "regression_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compare_against_previous_run",
+        "blocker_on_missing_required_group",
+        "regression_signal_fields",
+        "peer_mesh_changes_must_emit_benchmarks"
+      ],
+      "properties": {
+        "compare_against_previous_run": {
+          "type": "boolean",
+          "const": true
+        },
+        "blocker_on_missing_required_group": {
+          "type": "boolean",
+          "const": true
+        },
+        "regression_signal_fields": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "baseline_run_ref" } },
+            { "contains": { "const": "candidate_run_ref" } },
+            { "contains": { "const": "delta_summary" } },
+            { "contains": { "const": "regression_detected" } }
+          ]
+        },
+        "peer_mesh_changes_must_emit_benchmarks": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  }
+}

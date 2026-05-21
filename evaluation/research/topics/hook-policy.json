@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "topic_research",
+  "topic_id": "hook-policy",
+  "lane_classification": "core",
+  "status": "completed",
+  "related_repo_ids": [
+    "claude-code-hooks-mastery",
+    "claude-code-hooks-multi-agent-observability"
+  ],
+  "synthesized_findings": [
+    "Hook policy is the parent control surface that decides when prompts, commands, and stop conditions are allowed to proceed.",
+    "The reusable doctrine is the lifecycle taxonomy and decision semantics, not the raw `.claude` folder structure.",
+    "Stop/subagent-stop hooks matter because they turn incomplete work into explicit continuation rather than silent pass-shaped output."
+  ],
+  "doctrine_implications": [
+    "Represent hook classes and decisions in `contracts/hook-manifest.yaml` and `contracts/policy-decision.yaml`.",
+    "Keep allow/block/ask outcomes machine-readable so later implementations cannot hide unsafe work behind prose.",
+    "Tie hook outcomes to evaluation and promotion gates when they certify completion or deny risky behavior."
+  ],
+  "unresolved_ambiguities": [
+    "The local Production Safety Constraints doc is only a title, so detailed policy behavior is currently grounded more strongly in upstream repo evidence than in local prose.",
+    "Concrete hook adapters still vary by host harness even when the doctrine is stable."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "evidence_type": "local_authority",
+      "note": "States that hooks must become explicit governed artifacts."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+      "evidence_type": "local_gap_placeholder",
+      "note": "Signals the policy topic but does not preserve detailed guidance locally."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents lifecycle hooks, decision control, and validation behavior."
+    }
+  ]
+}

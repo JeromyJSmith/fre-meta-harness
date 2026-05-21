@@ -1,0 +1,94 @@
+{
+  "name": "FRE Meta Harness",
+  "description": "FRE Meta Harness is the published portable parent wrapper for the VW_iTwin_Bridge body cell and serves as the standalone fre-meta-harness repository root. It packages scaffold, prompt-contract, library/configuration, and proof-package assets for the parent wrapper.",
+  "languages": [
+    "markdown",
+    "python",
+    "yaml"
+  ],
+  "frameworks": [],
+  "files": [
+    {
+      "path": "agentics-library.md",
+      "language": "markdown",
+      "sizeLines": 31,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "language": "markdown",
+      "sizeLines": 66,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "language": "markdown",
+      "sizeLines": 389,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "language": "markdown",
+      "sizeLines": 765,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "language": "markdown",
+      "sizeLines": 764,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "GOAL.md",
+      "language": "markdown",
+      "sizeLines": 339,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "library.yaml",
+      "language": "yaml",
+      "sizeLines": 151,
+      "fileCategory": "config"
+    },
+    {
+      "path": "program.md",
+      "language": "markdown",
+      "sizeLines": 199,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 190,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/score-parent-wrapper.py",
+      "language": "python",
+      "sizeLines": 607,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/validate_parent_wrapper_contract.py",
+      "language": "python",
+      "sizeLines": 764,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 11,
+  "filteredByIgnore": 300,
+  "estimatedComplexity": "small",
+  "importMap": {
+    "agentics-library.md": [],
+    "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md": [],
+    "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md": [],
+    "docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md": [],
+    "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md": [],
+    "GOAL.md": [],
+    "library.yaml": [],
+    "program.md": [],
+    "README.md": [],
+    "scripts/score-parent-wrapper.py": [],
+    "tests/validate_parent_wrapper_contract.py": []
+  }
+}

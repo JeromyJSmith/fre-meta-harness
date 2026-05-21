@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "topic_research",
+  "topic_id": "tutorial-video-context",
+  "lane_classification": "core",
+  "status": "completed",
+  "related_repo_ids": [
+    "pi-vs-claude-code",
+    "agent-sandbox-skill",
+    "mac-mini-agent"
+  ],
+  "synthesized_findings": [
+    "The local Pi-to-Pi tutorial materials are useful as transcript/context summaries and task captures, but this repo does not store durable raw terminal-frame evidence for the demo.",
+    "Video-derived claims are strongest when repo docs independently corroborate them; otherwise they must remain marked as transcript/context-summary only.",
+    "The parent harvest should preserve these uncertainty boundaries in packet and compiled outputs rather than sanding them off during synthesis."
+  ],
+  "doctrine_implications": [
+    "Every video-derived source ref should identify whether it is raw transcript, transcript summary, or frame/terminal evidence.",
+    "Do not treat generated architect runbooks as direct proof of runtime behavior when the visible terminal state is unavailable."
+  ],
+  "unresolved_ambiguities": [
+    "No durable raw transcript file or screenshot set for the Pi-to-Pi video was found under `docs/NOTION-DOCS/`; the stored materials are task captures and transcript/context summaries.",
+    "The local docs quote timestamps, but there is no committed frame-by-frame record tying those timestamps to terminal output."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+      "evidence_type": "transcript_context_summary",
+      "note": "Summary document with timestamped claims and architect recommendations; no frame captures stored locally."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
+      "evidence_type": "task_stub",
+      "note": "Runbook task record only; it does not preserve the actual terminal/video frames."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "evidence_type": "task_capture",
+      "note": "High-level task capture that embeds prior generated output rather than raw transcript storage."
+    }
+  ]
+}

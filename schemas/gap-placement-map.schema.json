@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/gap-placement-map.schema.json",
+  "title": "Gap Placement Map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_type",
+    "status",
+    "lanes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "packet_type": {
+      "type": "string",
+      "const": "compiled_gap_placement_map"
+    },
+    "status": {
+      "type": "string",
+      "const": "refreshed"
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lane_id",
+          "classification",
+          "driver_repos",
+          "target_surfaces",
+          "why",
+          "blocker_or_dependency",
+          "source_refs"
+        ],
+        "properties": {
+          "lane_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "core",
+              "gated",
+              "deployment_specific",
+              "reference",
+              "blocked_with_exact_dependency"
+            ]
+          },
+          "driver_repos": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_\\-]+$"
+            }
+          },
+          "target_surfaces": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "why": {
+            "type": "string",
+            "minLength": 10
+          },
+          "blocker_or_dependency": {
+            "type": "string",
+            "minLength": 10
+          },
+          "source_refs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        }
+      }
+    }
+  }
+}

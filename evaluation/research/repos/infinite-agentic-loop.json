@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "infinite-agentic-loop",
+  "upstream_repo": "https://github.com/disler/infinite-agentic-loop",
+  "lane_classification": "reference",
+  "status": "completed",
+  "repository_purpose": "Experimental parallel-generation system that can run finite batches or unbounded waves through a Claude slash command.",
+  "upstream_architecture": {
+    "runtime": [
+      "Claude Code slash command runtime"
+    ],
+    "layout": [
+      ".claude/",
+      "specs/",
+      "src/",
+      "src_group/",
+      "src_infinite/"
+    ],
+    "notable_files": [
+      "README.md",
+      "CLAUDE.md"
+    ]
+  },
+  "findings": [
+    "The project is valuable as a batch-coordination reference, but its infinite mode conflicts directly with the parent wrapper stop doctrine.",
+    "The only reusable parent idea is bounded wave management for finite iteration counts.",
+    "Keeping it as a reference packet is better than deleting it because the conflict is exact and source-backed."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "infinite-agentic-loop",
+      "upstream_repo": "https://github.com/disler/infinite-agentic-loop",
+      "upstream_feature_name": "parallel wave generation command",
+      "parent_surface_type": "loop_pattern_reference",
+      "target_contract_surface": "program.md",
+      "runtime_trigger": "bounded_generation_wave",
+      "runtime_actor": "dev_driver",
+      "validation_method": "Validate that any future reuse remains finite, explicitly bounded, and stop-reason-aware; reject infinite mode for the parent wrapper.",
+      "evidence_artifact": "evaluation/research/compiled/gap-placement-map.json",
+      "blocker_or_dependency": "Reference only because the upstream infinite mode conflicts with bounded stop, plateau, and exact-blocker doctrine.",
+      "source_refs": [
+        "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md"
+      ],
+      "parent_lane_classification": "reference"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "program.md",
+      "contracts/capability-matrix.yaml",
+      "evaluation/research/compiled/gap-placement-map.json"
+    ],
+    "trigger_logic": [
+      "Only finite batch orchestration ideas are eligible for later reuse."
+    ],
+    "actor_logic": [
+      "A dev driver or experiment owner would own any bounded-wave adaptation."
+    ],
+    "validation_summary": [
+      "Reject any implementation that silently restores infinite mode."
+    ],
+    "evidence_artifacts": [
+      "evaluation/research/compiled/gap-placement-map.json"
+    ]
+  },
+  "overlaps": [
+    "Overlaps with the parent program only as a cautionary foil for stop conditions and bounded budgets."
+  ],
+  "blockers": [
+    "Exact conflict with parent bounded-stop doctrine; that conflict is why the packet is retained as reference rather than promoted."
+  ],
+  "source_refs": [
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents single, batch, large-batch, and infinite command variants that the parent must classify carefully."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "6e9a012f81ef2291faf174d67176f7e69832cc0a",
+    "verified_paths": [
+      "/",
+      "README.md"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

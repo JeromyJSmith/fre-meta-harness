@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/peer-message.schema.json",
+  "title": "Parent Peer Message Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "envelope",
+    "correlation",
+    "operations",
+    "completion",
+    "retry_boundary",
+    "redaction_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-peer-message"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "id_format",
+        "sender_role_contract",
+        "correlation_id_required",
+        "response_link_required_for_replies"
+      ],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "message_id" } },
+            { "contains": { "const": "correlation_id" } },
+            { "contains": { "const": "scenario_id" } },
+            { "contains": { "const": "sender_role" } },
+            { "contains": { "const": "recipient_role" } },
+            { "contains": { "const": "operation" } },
+            { "contains": { "const": "payload" } },
+            { "contains": { "const": "response_to_message_id" } }
+          ]
+        },
+        "id_format": {
+          "type": "string",
+          "enum": ["uuid_or_ulid"]
+        },
+        "sender_role_contract": {
+          "type": "string",
+          "const": "contracts/agent-role-contract.yaml"
+        },
+        "correlation_id_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "response_link_required_for_replies": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "discovery_operations",
+        "command_operations",
+        "prompt_operations",
+        "await_operations"
+      ],
+      "properties": {
+        "discovery_operations": {
+          "$ref": "#/$defs/operationArray"
+        },
+        "command_operations": {
+          "$ref": "#/$defs/operationArray"
+        },
+        "prompt_operations": {
+          "$ref": "#/$defs/operationArray"
+        },
+        "await_operations": {
+          "$ref": "#/$defs/operationArray"
+        }
+      }
+    },
+    "correlation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_keys",
+        "response_to_message_id_required",
+        "policy_decision_field",
+        "completion_token_field"
+      ],
+      "properties": {
+        "required_keys": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "message_id" } },
+            { "contains": { "const": "correlation_id" } },
+            { "contains": { "const": "scenario_id" } }
+          ]
+        },
+        "response_to_message_id_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "policy_decision_field": {
+          "type": "string",
+          "const": "policy_decision_id"
+        },
+        "completion_token_field": {
+          "type": "string",
+          "const": "completion_token"
+        }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_tokens",
+        "explicit_token_required",
+        "terminal_tokens",
+        "terminal_response_required_fields"
+      ],
+      "properties": {
+        "required_tokens": {
+          "$ref": "#/$defs/completionArray"
+        },
+        "explicit_token_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "terminal_tokens": {
+          "$ref": "#/$defs/completionArray"
+        },
+        "terminal_response_required_fields": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "completion_token" } },
+            { "contains": { "const": "policy_decision_id" } },
+            { "contains": { "const": "evidence_refs" } }
+          ]
+        }
+      }
+    },
+    "retry_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_retries_per_message",
+        "escalation_role",
+        "escalation_outcome",
+        "retryable_operations"
+      ],
+      "properties": {
+        "max_retries_per_message": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "escalation_role": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "escalation_outcome": {
+          "type": "string",
+          "enum": ["ask"]
+        },
+        "retryable_operations": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "send_command" } },
+            { "contains": { "const": "send_prompt" } },
+            { "contains": { "const": "await_response" } }
+          ]
+        }
+      }
+    },
+    "redaction_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prod_to_dev_requires_redaction",
+        "blocked_payload_classes",
+        "uncertain_redaction_outcome"
+      ],
+      "properties": {
+        "prod_to_dev_requires_redaction": {
+          "type": "boolean",
+          "const": true
+        },
+        "blocked_payload_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "uncertain_redaction_outcome": {
+          "type": "string",
+          "enum": ["ask"]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "operationArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_\\-]+$"
+      }
+    },
+    "completionArray": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_\\-]+$"
+      },
+      "allOf": [
+        { "contains": { "const": "done" } },
+        { "contains": { "const": "failed" } },
+        { "contains": { "const": "needs-human" } }
+      ]
+    }
+  }
+}

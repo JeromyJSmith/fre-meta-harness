@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-message",
+  "scope": "portable_parent_wrapper",
+  "envelope": {
+    "required_fields": [
+      "message_id",
+      "correlation_id",
+      "scenario_id",
+      "sender_role",
+      "recipient_role",
+      "operation",
+      "payload",
+      "response_to_message_id"
+    ],
+    "id_format": "uuid_or_ulid",
+    "sender_role_contract": "contracts/agent-role-contract.yaml",
+    "correlation_id_required": true,
+    "response_link_required_for_replies": true
+  },
+  "correlation": {
+    "required_keys": [
+      "message_id",
+      "correlation_id",
+      "scenario_id"
+    ],
+    "response_to_message_id_required": true,
+    "policy_decision_field": "policy_decision_id",
+    "completion_token_field": "completion_token"
+  },
+  "operations": {
+    "discovery_operations": [
+      "list_agents"
+    ],
+    "command_operations": [
+      "send_command"
+    ],
+    "prompt_operations": [
+      "send_prompt"
+    ],
+    "await_operations": [
+      "await_response"
+    ]
+  },
+  "completion": {
+    "required_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "explicit_token_required": true,
+    "terminal_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "terminal_response_required_fields": [
+      "completion_token",
+      "policy_decision_id",
+      "evidence_refs"
+    ]
+  },
+  "retry_boundary": {
+    "max_retries_per_message": 2,
+    "escalation_role": "mesh_verifier",
+    "escalation_outcome": "ask",
+    "retryable_operations": [
+      "send_command",
+      "send_prompt",
+      "await_response"
+    ]
+  },
+  "redaction_boundary": {
+    "prod_to_dev_requires_redaction": true,
+    "blocked_payload_classes": [
+      "pii",
+      "secrets"
+    ],
+    "uncertain_redaction_outcome": "ask"
+  }
+}

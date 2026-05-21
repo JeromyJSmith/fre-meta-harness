@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "capability-harvest-research-manifest",
+  "status": "refreshed",
+  "root": "evaluation/research",
+  "packet_strategy": {
+    "repo_packets_are_separate": true,
+    "topic_packets_are_separate": true,
+    "compile_after_packets_complete": true,
+    "preserve_overlap_until_compile": true
+  },
+  "repo_packets": [
+    "evaluation/research/repos/pi-vs-claude-code.json",
+    "evaluation/research/repos/the-library.json",
+    "evaluation/research/repos/claude-code-hooks-mastery.json",
+    "evaluation/research/repos/claude-code-hooks-multi-agent-observability.json",
+    "evaluation/research/repos/just-prompt.json",
+    "evaluation/research/repos/agent-sandbox-skill.json",
+    "evaluation/research/repos/bowser.json",
+    "evaluation/research/repos/mac-mini-agent.json",
+    "evaluation/research/repos/fork-repository-skill.json",
+    "evaluation/research/repos/infinite-agentic-loop.json"
+  ],
+  "topic_packets": [
+    "evaluation/research/topics/peer-mesh.json",
+    "evaluation/research/topics/capability-distribution.json",
+    "evaluation/research/topics/hook-policy.json",
+    "evaluation/research/topics/multi-agent-observability.json",
+    "evaluation/research/topics/tutorial-video-context.json",
+    "evaluation/research/topics/execution-substrates.json"
+  ],
+  "compiled_outputs": [
+    "evaluation/research/compiled/capability-harvest.json",
+    "evaluation/research/compiled/feature-matrix.json",
+    "evaluation/research/compiled/gap-placement-map.json",
+    "evaluation/research/compiled/source-index.json"
+  ],
+  "required_compiler_fields": [
+    "capability_id",
+    "upstream_repo",
+    "upstream_feature_name",
+    "parent_surface_type",
+    "target_contract_surface",
+    "runtime_trigger",
+    "runtime_actor",
+    "validation_method",
+    "evidence_artifact",
+    "blocker_or_dependency",
+    "source_refs"
+  ],
+  "merge_rules": [
+    "Do not discard overlapping evidence simply because the same capability appears in more than one repo or topic packet.",
+    "Prefer explicit parent-native placement language over upstream folder mirroring.",
+    "When a claim depends on video context, preserve whether the evidence came from transcript summary, local context summary, repo docs, or visible terminal behavior.",
+    "Retain redundant or conflicting packets with explicit reason fields instead of deleting them."
+  ]
+}

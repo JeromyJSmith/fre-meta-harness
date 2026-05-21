@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "bowser",
+  "upstream_repo": "https://github.com/disler/bowser",
+  "lane_classification": "gated",
+  "status": "completed",
+  "repository_purpose": "Composable browser automation and UI testing stack that layers skills, subagents, commands, and just recipes for repeatable browser-driven validation.",
+  "upstream_architecture": {
+    "runtime": [
+      "Claude Code",
+      "playwright-cli",
+      "just"
+    ],
+    "layout": [
+      ".claude/skills/",
+      ".claude/agents/",
+      ".claude/commands/",
+      "justfile",
+      "specs/"
+    ],
+    "notable_files": [
+      "README.md",
+      "TOOLS.md",
+      "justfile"
+    ]
+  },
+  "findings": [
+    "Bowser is not parent core by itself, but it is a strong browser-validation lane when promotion requires UI or browser evidence.",
+    "The four-layer stack is useful as a pattern for decomposing browser work, yet the parent only needs the governed lane and resulting evidence types, not the upstream folder mirror.",
+    "The upstream runtime is Claude-oriented and Playwright-dependent, so this lane should remain gated until the parent truly needs browser proof."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "bowser",
+      "upstream_repo": "https://github.com/disler/bowser",
+      "upstream_feature_name": "browser automation and UI validation lane",
+      "parent_surface_type": "browser_validation",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "promotion_browser_check",
+      "runtime_actor": "mesh_verifier",
+      "validation_method": "Validate that browser runs emit reproducible evidence (screenshots, DOM/output captures, or step logs) and that the promotion decision names why browser proof was required.",
+      "evidence_artifact": "promotion/readiness.json",
+      "blocker_or_dependency": "Gated on a real browser-validation requirement plus Playwright CLI or an equivalent browser control surface; otherwise the parent should not pretend this lane is active.",
+      "source_refs": [
+        "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md"
+      ],
+      "parent_lane_classification": "gated"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/capability-matrix.yaml",
+      "evaluation/",
+      "promotion/"
+    ],
+    "trigger_logic": [
+      "Use only when a promotion or evaluation slice explicitly depends on browser-observed behavior."
+    ],
+    "actor_logic": [
+      "The mesh verifier or QA browser worker owns the lane and the attached proof artifact."
+    ],
+    "validation_summary": [
+      "Require machine-readable evidence of what the browser lane actually observed."
+    ],
+    "evidence_artifacts": [
+      "promotion/readiness.json"
+    ]
+  },
+  "overlaps": [
+    "Agent-sandbox-skill can host browser work inside an isolated environment, but Bowser itself does not provide isolation.",
+    "Mac Mini Agent covers GUI/device control at the OS layer rather than browser-specific validation."
+  ],
+  "blockers": [
+    "No exact blocker if the lane is intentionally enabled, but there is no current parent requirement that makes it core."
+  ],
+  "source_refs": [
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents the four-layer architecture, Claude/Playwright dependencies, and browser-test workflows."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "26541acddc0626e97e8f4398e47b288e97f97ebd",
+    "verified_paths": [
+      "/",
+      "README.md"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

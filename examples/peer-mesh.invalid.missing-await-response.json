@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-mesh",
+  "scope": "portable_parent_wrapper",
+  "doctrine": {
+    "peer_mesh_is_core": true,
+    "topology": "flat_peer_mesh",
+    "orchestration_style": "peer_to_peer",
+    "dynamic_membership": true,
+    "same_host_mode": "same_host",
+    "cross_device_mode": "cross_device"
+  },
+  "contract_surfaces": [
+    "contracts/peer-message.yaml",
+    "contracts/peer-lifecycle.yaml",
+    "contracts/observability-event.yaml",
+    "contracts/policy-decision.yaml",
+    "contracts/peer-mesh-runtime.yaml",
+    "contracts/agent-role-contract.yaml",
+    "contracts/hook-manifest.yaml",
+    "contracts/capability-matrix.yaml"
+  ],
+  "protocol": {
+    "required_operations": [
+      "list_agents",
+      "send_command",
+      "send_prompt"
+    ],
+    "optional_operations": [],
+    "required_completion_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "message_contract": "contracts/peer-message.yaml",
+    "correlation_id_required": true,
+    "explicit_completion_required": true
+  },
+  "runtime_boundary": {
+    "auth_token_env": "PI_COMS_NET_AUTH_TOKEN",
+    "pii_redaction_required": true,
+    "loop_budget_per_scenario": 8,
+    "retry_budget_per_message": 2,
+    "mode_refs": [
+      "same_host",
+      "cross_device"
+    ],
+    "failure_mode": "fail_loud"
+  },
+  "verification": {
+    "verification_actor": "mesh_verifier",
+    "verification_hook": "completion-verification",
+    "lifecycle_contract": "contracts/peer-lifecycle.yaml",
+    "observability_contract": "contracts/observability-event.yaml",
+    "policy_contract": "contracts/policy-decision.yaml",
+    "runtime_contract": "contracts/peer-mesh-runtime.yaml",
+    "evidence_artifacts": [
+      "contracts/peer-mesh.yaml",
+      "contracts/peer-message.yaml",
+      "contracts/peer-lifecycle.yaml",
+      "contracts/observability-event.yaml",
+      "contracts/policy-decision.yaml",
+      "contracts/peer-mesh-runtime.yaml",
+      "examples/peer-mesh.valid.json",
+      "tests/validate_parent_wrapper_contract.py"
+    ]
+  }
+}

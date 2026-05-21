@@ -1,0 +1,11 @@
+session_id=peer-mesh-local-20260521T221842Z
+scenario_id=pi-vs-claude-code-same-host-local
+runtime_mode=same_host
+list_agents=corr-c7f00bb6-595a-4f54-a0dc-3a186c30468a
+send_prompt=corr-c61e5cbb-df50-453e-9606-13dd95f5b9fa
+send_command=corr-bff07204-684c-4e56-9826-c9b764384576
+failed_command=corr-a78abac6-9d3b-441d-90de-b61672f3251c
+needs_human=corr-ebe76465-949a-43bf-a98e-e8337315eaf9
+observed_completion_tokens=done,failed,needs-human
+observed_policy_outcomes=allow,ask
+required_event_types=peer_joined,peer_message_received,peer_message_sent,peer_response_completed,peer_session_ended,peer_session_started,policy_decision_emitted

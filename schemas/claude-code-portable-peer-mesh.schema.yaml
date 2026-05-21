@@ -1,0 +1,398 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "https://fre-meta-harness/schemas/claude-code-portable-peer-mesh.schema.yaml"
+title: "Portable Claude Code Peer Mesh Schema"
+description: >
+  A YAML-native portable schema for Claude Code agent meshes, executable loops,
+  agent roles, hooks, capability mapping, and validation boundaries. This schema
+  is intended for projects that do not have FRE installed and need a standalone
+  contract that can still express Pi-to-Pi style peer communication and fail-loud
+  orchestration rules.
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - schema_id
+  - portability
+  - metadata
+  - doctrine
+  - runtime
+  - protocol
+  - roles
+  - hooks
+  - capability_matrix
+  - validation
+properties:
+  schema_version:
+    type: string
+    const: "1.0.0"
+  schema_id:
+    type: string
+    const: "claude-code-portable-peer-mesh"
+  portability:
+    type: object
+    additionalProperties: false
+    required:
+      - target_runtime
+      - fre_required
+      - repo_specific_paths_required
+    properties:
+      target_runtime:
+        type: string
+        const: "claude_code"
+      fre_required:
+        type: boolean
+        const: false
+      repo_specific_paths_required:
+        type: boolean
+        const: false
+      notes:
+        type: array
+        items:
+          type: string
+          minLength: 3
+  metadata:
+    type: object
+    additionalProperties: false
+    required:
+      - name
+      - version
+      - intent
+      - owners
+    properties:
+      name:
+        type: string
+        minLength: 3
+      version:
+        type: string
+        minLength: 1
+      intent:
+        type: string
+        enum:
+          - peer_mesh
+          - executable_loop
+          - tutorial_derived_runtime
+          - multi_agent_validation
+      owners:
+        type: array
+        minItems: 1
+        items:
+          type: string
+          minLength: 2
+      source_refs:
+        type: array
+        items:
+          type: string
+          minLength: 3
+  doctrine:
+    type: object
+    additionalProperties: false
+    required:
+      - topology
+      - orchestration_style
+      - dynamic_membership
+      - explicit_completion_required
+      - failure_mode
+    properties:
+      topology:
+        type: string
+        enum:
+          - flat_peer_mesh
+          - bounded_hybrid
+      orchestration_style:
+        type: string
+        enum:
+          - peer_to_peer
+          - peer_with_verifier
+      dynamic_membership:
+        type: boolean
+      explicit_completion_required:
+        type: boolean
+        const: true
+      failure_mode:
+        type: string
+        const: "fail_loud"
+      pii_redaction_required:
+        type: boolean
+      terminal_context_required_for_video_guides:
+        type: boolean
+  runtime:
+    type: object
+    additionalProperties: false
+    required:
+      - modes
+      - auth
+      - budgets
+    properties:
+      modes:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        items:
+          type: string
+          enum:
+            - same_host
+            - cross_device
+      auth:
+        type: object
+        additionalProperties: false
+        required:
+          - token_envs
+          - optional_envs
+        properties:
+          token_envs:
+            type: array
+            items:
+              type: string
+              minLength: 3
+          optional_envs:
+            type: array
+            items:
+              type: string
+              minLength: 3
+      budgets:
+        type: object
+        additionalProperties: false
+        required:
+          - loop_budget_per_scenario
+          - retry_budget_per_message
+        properties:
+          loop_budget_per_scenario:
+            type: integer
+            minimum: 1
+          retry_budget_per_message:
+            type: integer
+            minimum: 0
+  protocol:
+    type: object
+    additionalProperties: false
+    required:
+      - required_operations
+      - completion_tokens
+      - correlation_id_required
+    properties:
+      required_operations:
+        type: array
+        minItems: 4
+        uniqueItems: true
+        items:
+          type: string
+          enum:
+            - list_agents
+            - send_command
+            - send_prompt
+            - await_response
+      completion_tokens:
+        type: array
+        minItems: 3
+        uniqueItems: true
+        items:
+          type: string
+          enum:
+            - done
+            - failed
+            - needs-human
+      correlation_id_required:
+        type: boolean
+        const: true
+      operation_notes:
+        type: array
+        items:
+          type: string
+          minLength: 3
+  roles:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - role_id
+        - role_class
+        - purpose
+        - runtime_modes
+        - message_operations
+        - handoff_targets
+        - verification_boundary
+      properties:
+        role_id:
+          type: string
+          pattern: "^[a-z][a-z0-9_\\-]+$"
+        role_class:
+          type: string
+          minLength: 3
+        purpose:
+          type: string
+          minLength: 12
+        runtime_modes:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - same_host
+              - cross_device
+        message_operations:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - list_agents
+              - send_command
+              - send_prompt
+              - await_response
+        handoff_targets:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            pattern: "^[a-z][a-z0-9_\\-]+$"
+        verification_boundary:
+          type: object
+          additionalProperties: false
+          required:
+            - completion_token_required
+            - failure_mode
+            - observability_event_required
+          properties:
+            completion_token_required:
+              type: boolean
+              const: true
+            failure_mode:
+              type: string
+              const: "fail_loud"
+            observability_event_required:
+              type: boolean
+              const: true
+  hooks:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - hook_id
+        - event
+        - runtime_trigger
+        - runtime_actor
+        - governed_operations
+        - policy_outcomes
+        - evidence_artifact
+      properties:
+        hook_id:
+          type: string
+          pattern: "^[a-z][a-z0-9_\\-]+$"
+        event:
+          type: string
+          minLength: 3
+        runtime_trigger:
+          type: string
+          minLength: 3
+        runtime_actor:
+          type: string
+          pattern: "^[a-z][a-z0-9_\\-]+$"
+        governed_operations:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - list_agents
+              - send_command
+              - send_prompt
+              - await_response
+        policy_outcomes:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - allow
+              - block
+              - ask
+        evidence_artifact:
+          type: string
+          minLength: 3
+  capability_matrix:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required:
+        - capability_id
+        - feature_name
+        - parent_layer
+        - runtime_trigger
+        - runtime_actor
+        - target_surface
+        - validation_method
+        - evidence_artifact
+      properties:
+        capability_id:
+          type: string
+          pattern: "^[a-z][a-z0-9_\\-]+$"
+        upstream_repo:
+          type: string
+          minLength: 3
+        feature_name:
+          type: string
+          minLength: 3
+        parent_layer:
+          type: string
+          minLength: 3
+        parent_surface_type:
+          type: string
+          enum:
+            - contract
+            - schema
+            - script
+            - prompt
+            - evaluation_artifact
+            - execution_lane
+            - role
+            - hook
+        runtime_trigger:
+          type: string
+          minLength: 3
+        runtime_actor:
+          type: string
+          pattern: "^[a-z][a-z0-9_\\-]+$"
+        target_surface:
+          type: string
+          minLength: 3
+        validation_method:
+          type: string
+          minLength: 8
+        evidence_artifact:
+          type: string
+          minLength: 3
+        blocker_or_dependency:
+          type: string
+  validation:
+    type: object
+    additionalProperties: false
+    required:
+      - validator_entrypoint
+      - examples_required
+      - invalid_examples_required
+    properties:
+      validator_entrypoint:
+        type: string
+        minLength: 3
+      examples_required:
+        type: boolean
+        const: true
+      invalid_examples_required:
+        type: boolean
+        const: true
+      notes:
+        type: array
+        items:
+          type: string
+          minLength: 3

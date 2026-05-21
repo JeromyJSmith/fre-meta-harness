@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-agent-role-contract",
+  "scope": "portable_parent_wrapper",
+  "governing_contracts": [
+    "contracts/peer-mesh.yaml",
+    "contracts/peer-message.yaml",
+    "contracts/policy-decision.yaml",
+    "contracts/hook-manifest.yaml"
+  ],
+  "roles": [
+    {
+      "role_id": "peer_mesh_host",
+      "role_class": "mesh_bootstrap",
+      "purpose": "Bootstrap the same-host or network mesh and publish membership without reverting to hierarchical orchestration.",
+      "owned_lane": "mesh_bootstrap",
+      "inputs": [
+        "mesh topology choice",
+        "runtime transport settings",
+        "distributed role catalog"
+      ],
+      "outputs": [
+        "reachable peer registry",
+        "synchronized role payloads"
+      ],
+      "permissions": {
+        "can_send_prompt": false,
+        "can_send_command": false,
+        "can_access_prod": false,
+        "requires_pii_redaction": false
+      },
+      "tool_refs": [
+        "pi-vs-claude-code",
+        "the-library"
+      ],
+      "skill_refs": [
+        "the-library"
+      ],
+      "runtime_modes": [
+        "same_host",
+        "cross_device"
+      ],
+      "message_operations": [
+        "list_agents"
+      ],
+      "handoff_targets": [
+        "prod_gatekeeper",
+        "dev_driver",
+        "mesh_verifier"
+      ],
+      "escalation": {
+        "on_loop_budget_exceeded": "mesh_verifier",
+        "on_completion_ambiguity": "mesh_verifier"
+      },
+      "verification_boundary": {
+        "completion_token_required": true,
+        "failure_mode": "fail_loud",
+        "policy_decision_required": true,
+        "observability_event_required": true
+      }
+    }
+  ]
+}

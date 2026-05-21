@@ -1,0 +1,62 @@
+schema_version: "1.0.0"
+contract_id: parent-observability-event
+scope: portable_parent_wrapper
+event_taxonomy:
+  required_event_types:
+    - peer_session_started
+    - peer_session_ended
+    - peer_joined
+    - peer_message_sent
+    - peer_message_received
+    - peer_response_completed
+    - policy_decision_emitted
+  optional_event_types:
+    - peer_retry_requested
+    - peer_escalated
+  categories:
+    - lifecycle
+    - messaging
+    - policy
+operation_event_requirements:
+  required_operations:
+    - list_agents
+    - send_command
+    - send_prompt
+    - await_response
+  send_event_types:
+    - peer_message_sent
+  receive_event_types:
+    - peer_message_received
+  completion_event_types:
+    - peer_response_completed
+  policy_event_types:
+    - policy_decision_emitted
+ingestion:
+  durable_sink: pixeltable
+  event_sink_contract: pixeltable-operational-substrate.md
+  ingest_contract: contracts/observability-ingest.yaml
+  correlation_keys:
+    - message_id
+    - correlation_id
+    - scenario_id
+  emit_before_send: true
+  emit_on_receive: true
+  emit_on_policy_decision: true
+  emit_on_session_end: true
+boundary:
+  prod_to_dev_redaction_boundary: true
+  missing_event_mode: fail_loud
+  evidence_required: true
+swimlanes:
+  required_roles:
+    - peer_mesh_host
+    - prod_gatekeeper
+    - dev_driver
+    - mesh_verifier
+  required_role_classes:
+    - mesh_bootstrap
+    - prod_boundary
+    - execution_driver
+    - verification_guard
+  peer_swimlane_observability_required: true
+  policy_contract: contracts/policy-decision.yaml

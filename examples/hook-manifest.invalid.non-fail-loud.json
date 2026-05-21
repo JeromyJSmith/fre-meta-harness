@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-hook-manifest",
+  "scope": "portable_parent_wrapper",
+  "policy": {
+    "fail_mode": "warn",
+    "require_evidence_artifact": true,
+    "require_verification_boundary": true
+  },
+  "policy_contracts": [
+    "contracts/policy-decision.yaml",
+    "contracts/observability-event.yaml"
+  ],
+  "hooks": [
+    {
+      "hook_id": "peer-session-start",
+      "event": "session_start",
+      "description": "Validate the peer mesh transport selection and governed role payload before a peer session starts.",
+      "runtime_trigger": "mesh_bootstrap",
+      "runtime_actor": "peer_mesh_host",
+      "required_capabilities": [
+        "pi-vs-claude-code",
+        "the-library"
+      ],
+      "target_contract_surfaces": [
+        "contracts/peer-mesh.yaml",
+        "contracts/peer-lifecycle.yaml",
+        "contracts/peer-mesh-runtime.yaml",
+        "contracts/agent-role-contract.yaml"
+      ],
+      "policy_outcomes": [
+        "allow",
+        "block"
+      ],
+      "validation_method": "Validate mesh transports, role registry distribution, and bootstrap evidence before the first peer joins.",
+      "evidence_artifact": "examples/peer-mesh.valid.json",
+      "on_failure": "warn"
+    }
+  ]
+}

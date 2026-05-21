@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "compiled_gap_placement_map",
+  "status": "refreshed",
+  "lanes": [
+    {
+      "lane_id": "peer-mesh-core",
+      "classification": "core",
+      "driver_repos": [
+        "pi-vs-claude-code"
+      ],
+      "target_surfaces": [
+        "contracts/peer-mesh.yaml",
+        "contracts/peer-message.yaml",
+        "contracts/peer-lifecycle.yaml",
+        "contracts/peer-mesh-runtime.yaml"
+      ],
+      "why": "Communication-plane primitive for flat same-host and cross-device peer orchestration.",
+      "blocker_or_dependency": "Requires Bun, Pi CLI, just, and auth token only for LAN/remote mode.",
+      "source_refs": [
+        "evaluation/research/repos/pi-vs-claude-code.json",
+        "evaluation/research/topics/peer-mesh.json"
+      ]
+    },
+    {
+      "lane_id": "distribution-core",
+      "classification": "core",
+      "driver_repos": [
+        "the-library"
+      ],
+      "target_surfaces": [
+        "contracts/library-distribution.yaml",
+        "library.yaml",
+        "agentics-library.md"
+      ],
+      "why": "Private-first typed-reference distribution is required to keep packets and capabilities governed across peers.",
+      "blocker_or_dependency": "Requires accessible local/private source paths for distributed entries.",
+      "source_refs": [
+        "evaluation/research/repos/the-library.json",
+        "evaluation/research/topics/capability-distribution.json"
+      ]
+    },
+    {
+      "lane_id": "hook-policy-core",
+      "classification": "core",
+      "driver_repos": [
+        "claude-code-hooks-mastery"
+      ],
+      "target_surfaces": [
+        "contracts/hook-manifest.yaml",
+        "contracts/policy-decision.yaml"
+      ],
+      "why": "Prompt, tool, and stop boundaries need fail-loud policy decisions before promotion claims are trustworthy.",
+      "blocker_or_dependency": "Concrete adapters vary by runtime, but the doctrine itself is core.",
+      "source_refs": [
+        "evaluation/research/repos/claude-code-hooks-mastery.json",
+        "evaluation/research/topics/hook-policy.json"
+      ]
+    },
+    {
+      "lane_id": "observability-core",
+      "classification": "core",
+      "driver_repos": [
+        "claude-code-hooks-multi-agent-observability"
+      ],
+      "target_surfaces": [
+        "contracts/observability-event.yaml",
+        "contracts/observability-ingest.yaml"
+      ],
+      "why": "Durable, correlated event evidence is required for truthful multi-agent evaluation and promotion.",
+      "blocker_or_dependency": "Requires a running ingest sink or must stay fixture-only/blocked.",
+      "source_refs": [
+        "evaluation/research/repos/claude-code-hooks-multi-agent-observability.json",
+        "evaluation/research/topics/multi-agent-observability.json"
+      ]
+    },
+    {
+      "lane_id": "model-arbitration-gated",
+      "classification": "gated",
+      "driver_repos": [
+        "just-prompt"
+      ],
+      "target_surfaces": [
+        "contracts/agent-role-contract.yaml",
+        "promotion/readiness.json"
+      ],
+      "why": "Useful escalation lane for challenge review, but not part of the default parent path.",
+      "blocker_or_dependency": "Needs just-prompt server plus provider or local-model access.",
+      "source_refs": [
+        "evaluation/research/repos/just-prompt.json"
+      ]
+    },
+    {
+      "lane_id": "browser-validation-gated",
+      "classification": "gated",
+      "driver_repos": [
+        "bowser"
+      ],
+      "target_surfaces": [
+        "contracts/capability-matrix.yaml",
+        "promotion/readiness.json"
+      ],
+      "why": "Browser evidence is only needed for slices whose acceptance criteria depend on observed UI behavior.",
+      "blocker_or_dependency": "Requires a browser-control surface such as Playwright CLI and a declared browser-proof need.",
+      "source_refs": [
+        "evaluation/research/repos/bowser.json",
+        "evaluation/research/topics/execution-substrates.json"
+      ]
+    },
+    {
+      "lane_id": "mac-sidecar-deployment",
+      "classification": "deployment_specific",
+      "driver_repos": [
+        "mac-mini-agent"
+      ],
+      "target_surfaces": [
+        "contracts/capability-matrix.yaml",
+        "evaluation/tool-health/status.json"
+      ],
+      "why": "Strong substrate for Mac Mini + devbox topologies, but not portable parent core.",
+      "blocker_or_dependency": "Requires macOS, permissions, tmux, and remote host topology.",
+      "source_refs": [
+        "evaluation/research/repos/mac-mini-agent.json",
+        "evaluation/research/topics/execution-substrates.json"
+      ]
+    },
+    {
+      "lane_id": "sandbox-execution-blocked",
+      "classification": "blocked_with_exact_dependency",
+      "driver_repos": [
+        "agent-sandbox-skill"
+      ],
+      "target_surfaces": [
+        "contracts/agent-role-contract.yaml",
+        "evaluation/tool-health/status.json"
+      ],
+      "why": "Useful delegated-isolation lane, but only when a real sandbox provider is configured.",
+      "blocker_or_dependency": "Exact blocker: E2B account/API key today or a parity sandbox substrate such as exe.dev.",
+      "source_refs": [
+        "evaluation/research/repos/agent-sandbox-skill.json",
+        "evaluation/research/topics/execution-substrates.json"
+      ]
+    },
+    {
+      "lane_id": "terminal-fork-reference",
+      "classification": "reference",
+      "driver_repos": [
+        "fork-repository-skill"
+      ],
+      "target_surfaces": [
+        "contracts/capability-matrix.yaml",
+        "evaluation/research/compiled/gap-placement-map.json"
+      ],
+      "why": "Informative local branching pattern, but overlaps with existing task delegation and peer mesh.",
+      "blocker_or_dependency": "Retained as reference because overlap is the exact reason it is non-core.",
+      "source_refs": [
+        "evaluation/research/repos/fork-repository-skill.json"
+      ]
+    },
+    {
+      "lane_id": "infinite-loop-reference",
+      "classification": "reference",
+      "driver_repos": [
+        "infinite-agentic-loop"
+      ],
+      "target_surfaces": [
+        "program.md",
+        "evaluation/research/compiled/gap-placement-map.json"
+      ],
+      "why": "Useful foil for bounded-wave ideas, but the infinite mode conflicts with parent stop doctrine.",
+      "blocker_or_dependency": "Exact conflict: the parent cannot honestly adopt unbounded infinite mode.",
+      "source_refs": [
+        "evaluation/research/repos/infinite-agentic-loop.json"
+      ]
+    }
+  ]
+}

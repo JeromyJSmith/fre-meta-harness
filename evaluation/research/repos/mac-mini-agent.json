@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "mac-mini-agent",
+  "upstream_repo": "https://github.com/disler/mac-mini-agent",
+  "lane_classification": "deployment_specific",
+  "status": "completed",
+  "repository_purpose": "macOS device-control substrate for agents, combining GUI automation, tmux control, job serving, and remote job submission.",
+  "upstream_architecture": {
+    "runtime": [
+      "macOS",
+      "Swift CLI",
+      "Python CLIs",
+      "FastAPI",
+      "tmux",
+      "SSH",
+      "system permissions"
+    ],
+    "layout": [
+      "apps/steer",
+      "apps/drive",
+      "apps/listen",
+      "apps/direct",
+      "assets/",
+      "specs/"
+    ],
+    "notable_files": [
+      "README.md",
+      ".env.sample",
+      "justfile"
+    ]
+  },
+  "findings": [
+    "The repo is a deployment substrate for a Mac-centered topology, not a universal parent primitive.",
+    "Steer/Drive/Listen/Direct form a strong sidecar pattern for prod-device operation, but they require macOS permissions and machine topology the parent wrapper cannot assume globally.",
+    "The sentinel token pattern in Drive is a useful exact completion primitive for device-side terminal orchestration."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "mac-mini-agent",
+      "upstream_repo": "https://github.com/disler/mac-mini-agent",
+      "upstream_feature_name": "Mac device sidecar for GUI, terminal, and remote job orchestration",
+      "parent_surface_type": "device_sidecar",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "deployment_sidecar_boot",
+      "runtime_actor": "peer_mesh_host",
+      "validation_method": "Validate host OS prerequisites, permission grants, remote job connectivity, and deterministic completion markers before treating a device sidecar as available.",
+      "evidence_artifact": "evaluation/tool-health/status.json",
+      "blocker_or_dependency": "Deployment-specific: requires macOS, Accessibility + Screen Recording + Full Disk Access permissions, tmux, SSH/remote connectivity, and the paired host topology.",
+      "source_refs": [
+        "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md"
+      ],
+      "parent_lane_classification": "deployment_specific"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/capability-matrix.yaml",
+      "evaluation/tool-health/status.json",
+      "promotion/"
+    ],
+    "trigger_logic": [
+      "Only activate when a deployment explicitly names a Mac device sidecar."
+    ],
+    "actor_logic": [
+      "The peer mesh host or deployment operator owns device admission and health checks."
+    ],
+    "validation_summary": [
+      "Require permission and connectivity checks before any automation claim.",
+      "Keep the lane deployment-specific instead of quietly upgrading it to core."
+    ],
+    "evidence_artifacts": [
+      "evaluation/tool-health/status.json"
+    ]
+  },
+  "overlaps": [
+    "Pi-to-Pi tutorial context uses a Mac Mini + MacBook topology, but the peer mesh concept survives without this exact substrate.",
+    "Bowser covers browser use cases inside a broader validation workflow, while mac-mini-agent covers OS-level automation."
+  ],
+  "blockers": [
+    "No blocker beyond deployment specificity; the lane simply should not be generalized to every parent installation."
+  ],
+  "source_refs": [
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents Steer/Drive/Listen/Direct, sentinel markers, Mac permissions, and two-machine setup."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459",
+    "verified_paths": [
+      "/",
+      "README.md"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

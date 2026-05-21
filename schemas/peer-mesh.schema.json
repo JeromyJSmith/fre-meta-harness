@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/peer-mesh.schema.json",
+  "title": "Parent Peer Mesh Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "doctrine",
+    "contract_surfaces",
+    "protocol",
+    "runtime_boundary",
+    "verification"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-peer-mesh"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "doctrine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "peer_mesh_is_core",
+        "topology",
+        "orchestration_style",
+        "dynamic_membership"
+      ],
+      "properties": {
+        "peer_mesh_is_core": {
+          "type": "boolean",
+          "const": true
+        },
+        "topology": {
+          "type": "string",
+          "const": "flat_peer_mesh"
+        },
+        "orchestration_style": {
+          "type": "string",
+          "const": "peer_to_peer"
+        },
+        "dynamic_membership": {
+          "type": "boolean",
+          "const": true
+        },
+        "same_host_mode": {
+          "type": "string",
+          "const": "same_host"
+        },
+        "cross_device_mode": {
+          "type": "string",
+          "const": "cross_device"
+        }
+      }
+    },
+    "contract_surfaces": {
+      "type": "array",
+      "minItems": 11,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_operations",
+        "optional_operations",
+        "required_completion_tokens",
+        "message_contract",
+        "correlation_id_required",
+        "explicit_completion_required",
+        "operation_contracts"
+      ],
+      "properties": {
+        "required_operations": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "list_agents"
+              }
+            },
+            {
+              "contains": {
+                "const": "send_command"
+              }
+            },
+            {
+              "contains": {
+                "const": "send_prompt"
+              }
+            },
+            {
+              "contains": {
+                "const": "await_response"
+              }
+            }
+          ]
+        },
+        "optional_operations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          }
+        },
+        "required_completion_tokens": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "done"
+              }
+            },
+            {
+              "contains": {
+                "const": "failed"
+              }
+            },
+            {
+              "contains": {
+                "const": "needs-human"
+              }
+            }
+          ]
+        },
+        "message_contract": {
+          "type": "string",
+          "const": "contracts/peer-message.yaml"
+        },
+        "correlation_id_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "explicit_completion_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "operation_contracts": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "operation",
+              "message_flow",
+              "requires_response",
+              "runtime_modes"
+            ],
+            "properties": {
+              "operation": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_\\-]+$"
+              },
+              "message_flow": {
+                "type": "string",
+                "minLength": 3
+              },
+              "requires_response": {
+                "type": "boolean"
+              },
+              "runtime_modes": {
+                "type": "array",
+                "minItems": 2,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": ["same_host", "cross_device"]
+                }
+              }
+            }
+          },
+          "allOf": [
+            { "contains": { "properties": { "operation": { "const": "list_agents" } }, "required": ["operation"] } },
+            { "contains": { "properties": { "operation": { "const": "send_command" } }, "required": ["operation"] } },
+            { "contains": { "properties": { "operation": { "const": "send_prompt" } }, "required": ["operation"] } },
+            { "contains": { "properties": { "operation": { "const": "await_response" } }, "required": ["operation"] } }
+          ]
+        }
+      }
+    },
+    "runtime_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "auth_token_env",
+        "pii_redaction_required",
+        "loop_budget_per_scenario",
+        "retry_budget_per_message",
+        "mode_refs",
+        "failure_mode"
+      ],
+      "properties": {
+        "auth_token_env": {
+          "type": "string",
+          "const": "PI_COMS_NET_AUTH_TOKEN"
+        },
+        "pii_redaction_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "loop_budget_per_scenario": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "retry_budget_per_message": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mode_refs": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["same_host", "cross_device"]
+          }
+        },
+        "failure_mode": {
+          "type": "string",
+          "const": "fail_loud"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verification_actor",
+        "verification_hook",
+        "lifecycle_contract",
+        "observability_contract",
+        "observability_ingest_contract",
+        "policy_contract",
+        "library_distribution_contract",
+        "benchmark_contract",
+        "runtime_contract",
+        "actor_contract",
+        "evidence_artifacts"
+      ],
+      "properties": {
+        "verification_actor": {
+          "type": "string",
+          "const": "mesh_verifier"
+        },
+        "verification_hook": {
+          "type": "string",
+          "const": "completion-verification"
+        },
+        "lifecycle_contract": {
+          "type": "string",
+          "const": "contracts/peer-lifecycle.yaml"
+        },
+        "observability_contract": {
+          "type": "string",
+          "const": "contracts/observability-event.yaml"
+        },
+        "observability_ingest_contract": {
+          "type": "string",
+          "const": "contracts/observability-ingest.yaml"
+        },
+        "policy_contract": {
+          "type": "string",
+          "const": "contracts/policy-decision.yaml"
+        },
+        "library_distribution_contract": {
+          "type": "string",
+          "const": "contracts/library-distribution.yaml"
+        },
+        "benchmark_contract": {
+          "type": "string",
+          "const": "contracts/benchmark-emission.yaml"
+        },
+        "runtime_contract": {
+          "type": "string",
+          "const": "contracts/peer-mesh-runtime.yaml"
+        },
+        "actor_contract": {
+          "type": "string",
+          "const": "contracts/agent-role-contract.yaml"
+        },
+        "evidence_artifacts": {
+          "type": "array",
+          "minItems": 6,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    }
+  }
+}

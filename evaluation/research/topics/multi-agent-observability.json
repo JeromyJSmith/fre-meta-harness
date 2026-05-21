@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "topic_research",
+  "topic_id": "multi-agent-observability",
+  "lane_classification": "core",
+  "status": "completed",
+  "related_repo_ids": [
+    "claude-code-hooks-multi-agent-observability",
+    "claude-code-hooks-mastery"
+  ],
+  "synthesized_findings": [
+    "Multi-agent observability requires a governed event vocabulary, durable ingest, session boundaries, and queryable correlation fields.",
+    "The parent should care primarily about event schema, durability, and promotion-time review, not about the exact dashboard technology.",
+    "A blocked or fixture-only lane is more truthful than a report that implies live telemetry without a running sink."
+  ],
+  "doctrine_implications": [
+    "Keep event and ingest contracts separate so emitters and sinks can evolve independently.",
+    "Require session start/end and stop evidence whenever observability is used as promotion proof.",
+    "Allow local fixture or dry evidence, but label it clearly instead of implying live visibility."
+  ],
+  "unresolved_ambiguities": [
+    "The local Notion docs define report classes but do not preserve detailed event schemas; those details currently come from the upstream repo."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+      "evidence_type": "local_authority",
+      "note": "Describes run report, scorecard, and summary artifact families."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "evidence_type": "local_authority",
+      "note": "Anchors observability outputs inside the artifact registry model."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Provides the event pipeline architecture, field forwarding, and sink behavior."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-library-distribution",
+  "scope": "portable_parent_wrapper",
+  "distribution_plane": {
+    "distribution_model": "private_first_typed_references",
+    "private_first": true,
+    "source_catalog": "library.yaml",
+    "reference_contract": "contracts/capability-matrix.yaml"
+  },
+  "typed_units": {
+    "required_unit_types": [
+      "skill",
+      "prompt",
+      "agent",
+      "policy",
+      "validator"
+    ],
+    "reference_prefixes": [
+      {
+        "unit_type": "skill",
+        "reference_prefix": "skill:"
+      },
+      {
+        "unit_type": "prompt",
+        "reference_prefix": "prompt:"
+      },
+      {
+        "unit_type": "agent",
+        "reference_prefix": "agent:"
+      },
+      {
+        "unit_type": "policy",
+        "reference_prefix": "policy:"
+      },
+      {
+        "unit_type": "validator",
+        "reference_prefix": "validator:"
+      }
+    ],
+    "source_contracts": [
+      "contracts/agent-role-contract.yaml",
+      "contracts/hook-manifest.yaml",
+      "contracts/benchmark-emission.yaml"
+    ]
+  },
+  "propagation": {
+    "propagation_triggers": [
+      "session_start",
+      "peer_join"
+    ],
+    "runtime_modes": [
+      "same_host",
+      "cross_device"
+    ],
+    "propagation_strategy": "reference_only_sync",
+    "copy_free_distribution_required": true,
+    "benchmark_recipe_distribution_required": true
+  },
+  "governance": {
+    "required_contract_surfaces": [
+      "contracts/agent-role-contract.yaml",
+      "contracts/hook-manifest.yaml",
+      "contracts/benchmark-emission.yaml"
+    ],
+    "missing_reference_mode": "fail_loud",
+    "promotion_requires_versioned_refs": true
+  }
+}

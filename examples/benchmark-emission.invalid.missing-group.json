@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-benchmark-emission",
+  "scope": "portable_parent_wrapper",
+  "emission_plane": {
+    "emitted_artifacts": [
+      "evaluation/metrics-latest.json",
+      "evaluation/validation-report.json",
+      "promotion/readiness.json",
+      "runs/iterations.jsonl"
+    ],
+    "compare_across_runs": true,
+    "peer_mesh_change_measurement_required": true,
+    "emission_mode": "append_and_compare"
+  },
+  "benchmark_tuple": {
+    "required_fields": [
+      "benchmark_id",
+      "benchmark_group",
+      "contract_surface",
+      "scenario_id",
+      "run_ref",
+      "status",
+      "measurement_ref"
+    ],
+    "comparison_fields": [
+      "baseline_run_ref",
+      "candidate_run_ref",
+      "delta_summary",
+      "regression_detected"
+    ]
+  },
+  "required_groups": {
+    "minimum_groups": [
+      "peer_mesh_regression",
+      "observability_ingest"
+    ],
+    "additional_groups_allowed": true
+  },
+  "regression_policy": {
+    "compare_against_previous_run": true,
+    "blocker_on_missing_required_group": true,
+    "regression_signal_fields": [
+      "baseline_run_ref",
+      "candidate_run_ref",
+      "delta_summary",
+      "regression_detected"
+    ],
+    "peer_mesh_changes_must_emit_benchmarks": true
+  }
+}

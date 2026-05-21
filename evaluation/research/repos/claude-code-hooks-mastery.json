@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "claude-code-hooks-mastery",
+  "upstream_repo": "https://github.com/disler/claude-code-hooks-mastery",
+  "lane_classification": "core",
+  "status": "completed",
+  "repository_purpose": "Reference implementation for deterministic hook control, validator feedback loops, and subagent lifecycle enforcement around Claude Code.",
+  "upstream_architecture": {
+    "runtime": [
+      "Claude Code hook lifecycle",
+      "Astral uv"
+    ],
+    "layout": [
+      ".claude/hooks/",
+      ".claude/agents/",
+      "apps/",
+      "specs/"
+    ],
+    "notable_files": [
+      "README.md",
+      ".env.sample",
+      ".mcp.json.sample",
+      "ruff.toml",
+      "ty.toml"
+    ]
+  },
+  "findings": [
+    "The repo treats UserPromptSubmit, PreToolUse, PostToolUse, Stop, and SubagentStop as distinct control points with different block/continue semantics; that taxonomy should survive translation into parent contracts.",
+    "Validator hooks and exit-code behavior are the important reusable primitive, not the raw `.claude` directory layout.",
+    "The upstream design is harness-specific at runtime, so the parent should absorb the doctrine as adapter-neutral policy and lifecycle contracts instead of copying Claude configuration verbatim."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "claude-code-hooks-mastery",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-mastery",
+      "upstream_feature_name": "deterministic hook lifecycle and validator control",
+      "parent_surface_type": "policy_plane",
+      "target_contract_surface": "contracts/policy-decision.yaml",
+      "runtime_trigger": "before_send_prompt",
+      "runtime_actor": "prod_gatekeeper",
+      "validation_method": "Validate prompt gating, tool-use blocking, post-tool validation feedback, and stop/subagent-stop continuation rules as explicit allow/block/ask decisions with fail-loud outcomes.",
+      "evidence_artifact": "examples/hook-manifest.valid.json",
+      "blocker_or_dependency": "Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+        "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
+      ],
+      "parent_lane_classification": "core"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/hook-manifest.yaml",
+      "contracts/policy-decision.yaml",
+      "contracts/agent-role-contract.yaml",
+      "prompts/"
+    ],
+    "trigger_logic": [
+      "Treat user-prompt submission and pre-tool execution as the two proactive policy gates.",
+      "Treat post-tool and stop hooks as fail-loud validators that can require continued work when the result is incomplete."
+    ],
+    "actor_logic": [
+      "The production gatekeeper owns allow/block/ask decisions before risky peer traffic or commands leave an actor.",
+      "Validation roles remain separate from builder roles even when the upstream repo demonstrates both in one Claude-oriented tree."
+    ],
+    "validation_summary": [
+      "Require decision objects with explicit reasons and remediation.",
+      "Require no silent success fallback when a validator or stop hook finds missing work."
+    ],
+    "evidence_artifacts": [
+      "examples/hook-manifest.valid.json",
+      "examples/agent-role-contract.valid.json"
+    ]
+  },
+  "overlaps": [
+    "Observability repo shares the same hook event taxonomy and turns it into durable telemetry.",
+    "Pi-to-Pi packet needs these gates to keep peer prompts and prod boundaries fail-loud."
+  ],
+  "blockers": [
+    "Concrete runtime implementation is adapter-dependent, but the doctrine itself is not blocked."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "evidence_type": "local_authority",
+      "note": "Requires hooks to be explicit governed artifacts rather than attached prose."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+      "evidence_type": "local_gap_placeholder",
+      "note": "Only a title is stored locally, so it signals intent but not detailed runtime doctrine."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents 13 hook lifecycle events, hook semantics, validator scripts, and stop-hook continuation patterns."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "052ad1cbd5aeb1ec4a1def22012d1293c6225625",
+    "verified_paths": [
+      "/",
+      "README.md"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

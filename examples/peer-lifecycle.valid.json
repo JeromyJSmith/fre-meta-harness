@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-lifecycle",
+  "scope": "portable_parent_wrapper",
+  "states": [
+    {
+      "state_id": "bootstrapping",
+      "purpose": "Establish the peer mesh mode, role registry, and runtime contract before traffic is accepted."
+    },
+    {
+      "state_id": "ready",
+      "purpose": "Peer is admitted to the mesh and can list peers or initiate governed work."
+    },
+    {
+      "state_id": "awaiting_response",
+      "purpose": "A request was sent and the caller is waiting on await_response with a live correlation ID."
+    },
+    {
+      "state_id": "verifying_completion",
+      "purpose": "A response arrived and the verifier is checking completion tokens, policy outcome, and evidence."
+    },
+    {
+      "state_id": "completed",
+      "purpose": "The scenario ended with an explicit terminal completion token and verification pass."
+    },
+    {
+      "state_id": "blocked",
+      "purpose": "The scenario stopped closed because policy, verification, or runtime boundaries were not satisfied."
+    }
+  ],
+  "transitions": [
+    {
+      "from_state": "bootstrapping",
+      "on_event": "session_start",
+      "to_state": "ready"
+    },
+    {
+      "from_state": "ready",
+      "on_event": "peer_join",
+      "to_state": "ready"
+    },
+    {
+      "from_state": "ready",
+      "on_event": "message_dispatch",
+      "to_state": "awaiting_response"
+    },
+    {
+      "from_state": "awaiting_response",
+      "on_event": "response_received",
+      "to_state": "verifying_completion"
+    },
+    {
+      "from_state": "awaiting_response",
+      "on_event": "retry_requested",
+      "to_state": "ready"
+    },
+    {
+      "from_state": "awaiting_response",
+      "on_event": "needs_human",
+      "to_state": "blocked"
+    },
+    {
+      "from_state": "verifying_completion",
+      "on_event": "verification_passed",
+      "to_state": "completed"
+    },
+    {
+      "from_state": "verifying_completion",
+      "on_event": "verification_failed",
+      "to_state": "blocked"
+    }
+  ],
+  "event_contracts": {
+    "dispatch_event": "message_dispatch",
+    "response_event": "response_received",
+    "retry_event": "retry_requested",
+    "escalation_event": "needs_human"
+  },
+  "completion_boundary": {
+    "required_event_types": [
+      "session_start",
+      "peer_join",
+      "message_dispatch",
+      "response_received",
+      "verification_passed",
+      "verification_failed",
+      "retry_requested",
+      "needs_human"
+    ],
+    "terminal_states": [
+      "completed",
+      "blocked"
+    ],
+    "retryable_states": [
+      "ready",
+      "awaiting_response"
+    ],
+    "verification_role_classes": [
+      "verification_guard"
+    ],
+    "runtime_contract": "contracts/peer-mesh-runtime.yaml"
+  }
+}

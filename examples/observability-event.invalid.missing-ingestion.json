@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-observability-event",
+  "scope": "portable_parent_wrapper",
+  "event_taxonomy": {
+    "required_event_types": [
+      "peer_session_started",
+      "peer_joined",
+      "peer_message_sent",
+      "peer_message_received",
+      "peer_response_completed",
+      "policy_decision_emitted"
+    ],
+    "optional_event_types": [
+      "peer_retry_requested",
+      "peer_escalated"
+    ],
+    "categories": [
+      "lifecycle",
+      "messaging",
+      "policy"
+    ]
+  },
+  "boundary": {
+    "prod_to_dev_redaction_boundary": true,
+    "missing_event_mode": "fail_loud",
+    "evidence_required": true
+  },
+  "swimlanes": {
+    "required_roles": [
+      "peer_mesh_host",
+      "prod_gatekeeper",
+      "dev_driver",
+      "mesh_verifier"
+    ],
+    "peer_swimlane_observability_required": true,
+    "policy_contract": "contracts/policy-decision.yaml"
+  }
+}

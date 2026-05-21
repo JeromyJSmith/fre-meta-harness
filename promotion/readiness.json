@@ -1,6 +1,6 @@
 {
   "readiness_id": "PARENT-META-PROMOTION-0001",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-21",
   "scope": "portable_parent_wrapper",
   "status": "pass",
   "blockers": [],
@@ -11,6 +11,24 @@
     "library.yaml",
     "agent-heavy-run-prompt.schema.json",
     "program.md",
-    "runs/iterations.jsonl"
+    "runs/iterations.jsonl",
+    "contracts/research-packet-manifest.yaml",
+    "contracts/peer-mesh.yaml",
+    "contracts/peer-message.yaml",
+    "contracts/peer-lifecycle.yaml",
+    "contracts/observability-event.yaml",
+    "contracts/policy-decision.yaml",
+    "contracts/peer-mesh-runtime.yaml",
+    "contracts/agent-role-contract.yaml",
+    "contracts/hook-manifest.yaml",
+    "contracts/capability-matrix.yaml",
+    "evaluation/tool-health/peer-mesh-local.json",
+    "evaluation/tool-health/peer-mesh-local.log",
+    "evaluation/tool-health/peer-mesh-local-events.jsonl",
+    "evaluation/tool-health/peer-mesh-local-benchmarks.json",
+    "evaluation/research/compiled/capability-harvest.json",
+    "evaluation/research/compiled/feature-matrix.json",
+    "evaluation/research/compiled/gap-placement-map.json",
+    "evaluation/research/compiled/source-index.json"
   ]
 }

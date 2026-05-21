@@ -1,6 +1,6 @@
 {
   "report_id": "PARENT-META-VALIDATION-0001",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-21",
   "scope": "portable_parent_wrapper",
   "overall_status": "pass",
   "checks": [
@@ -101,6 +101,62 @@
           "status": "pass"
         },
         {
+          "file": "examples/research-packet-manifest.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/architect-review-handoff-prompt.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/peer-mesh.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/peer-message.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/peer-lifecycle.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/observability-event.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/observability-ingest.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/policy-decision.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/library-distribution.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/benchmark-emission.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/peer-mesh-runtime.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/agent-role-contract.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/hook-manifest.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/capability-matrix.valid.json",
+          "status": "pass"
+        },
+        {
           "file": "examples/front-matter.invalid.missing-id.json",
           "status": "pass",
           "reason": "'id' is a required property"
@@ -113,7 +169,12 @@
         {
           "file": "examples/copilot-ratchet-report.invalid.missing-cycles.json",
           "status": "pass",
-          "reason": "'metric_review' is a required property | 'real_non_dry_cycles_executed' is a required property | 'stop_evidence' is a required property | 'iteration_ledger_entries_appended' is a required property | [] should be non-empty | [] should be non-empty | [] is too short"
+          "reason": "'metric_review' is a required property | 'real_non_dry_cycles_executed' is a required property | 'stop_evidence' is a required property | 'runtime_truth' is a required property | 'score_saturation' is a required property | 'iteration_ledger_entries_appended' is a required property | [] should be non-empty | [] should be non-empty | [] is too short"
+        },
+        {
+          "file": "examples/copilot-ratchet-report.invalid.missing-runtime-truth.json",
+          "status": "pass",
+          "reason": "'runtime_truth' is a required property"
         },
         {
           "file": "examples/iteration-record.invalid.dry-run.json",
@@ -124,6 +185,86 @@
           "file": "examples/capability-harvest-metrics.invalid.docs-only.json",
           "status": "pass",
           "reason": "['docs', 'docs'] has non-unique elements | ['docs', 'docs'] does not contain items matching the given schema"
+        },
+        {
+          "file": "examples/research-packet-manifest.invalid.missing-source-index.json",
+          "status": "pass",
+          "reason": "'source_index' is a required property"
+        },
+        {
+          "file": "examples/peer-mesh.invalid.missing-await-response.json",
+          "status": "pass",
+          "reason": "['contracts/peer-message.yaml', 'contracts/peer-lifecycle.yaml', 'contracts/observability-event.yaml', 'contracts/policy-decision.yaml', 'contracts/peer-mesh-runtime.yaml', 'contracts/agent-role-contract.yaml', 'contracts/hook-manifest.yaml', 'contracts/capability-matrix.yaml'] is too short | 'operation_contracts' is a required property | ['list_agents', 'send_command', 'send_prompt'] is too short | ['list_agents', 'send_command', 'send_prompt'] does not contain items matching the given schema | 'observability_ingest_contract' is a required property | 'library_distribution_contract' is a required property | 'benchmark_contract' is a required property | 'actor_contract' is a required property"
+        },
+        {
+          "file": "examples/peer-message.invalid.missing-envelope.json",
+          "status": "pass",
+          "reason": "'envelope' is a required property | 'correlation' is a required property | 'terminal_response_required_fields' is a required property | 'retryable_operations' is a required property"
+        },
+        {
+          "file": "examples/peer-lifecycle.invalid.missing-completion-boundary.json",
+          "status": "pass",
+          "reason": "'event_contracts' is a required property | 'completion_boundary' is a required property | [{'from_state': 'bootstrapping', 'on_event': 'session_start', 'to_state': 'ready'}] is too short"
+        },
+        {
+          "file": "examples/observability-event.invalid.missing-ingestion.json",
+          "status": "pass",
+          "reason": "'operation_event_requirements' is a required property | 'ingestion' is a required property | 'required_role_classes' is a required property"
+        },
+        {
+          "file": "examples/observability-ingest.invalid.missing-session-end.json",
+          "status": "pass",
+          "reason": "['session_start'] is too short | ['session_start'] does not contain items matching the given schema"
+        },
+        {
+          "file": "examples/policy-decision.invalid.missing-application-points.json",
+          "status": "pass",
+          "reason": "'application_points' is a required property | 'decision_records' is a required property"
+        },
+        {
+          "file": "examples/library-distribution.invalid.missing-benchmark-recipe.json",
+          "status": "pass",
+          "reason": "['skill', 'prompt', 'agent', 'policy', 'validator'] is too short | ['skill', 'prompt', 'agent', 'policy', 'validator'] does not contain items matching the given schema | [{'unit_type': 'skill', 'reference_prefix': 'skill:'}, {'unit_type': 'prompt', 'reference_prefix': 'prompt:'}, {'unit_type': 'agent', 'reference_prefix': 'agent:'}, {'unit_type': 'policy', 'reference_prefix': 'policy:'}, {'unit_type': 'validator', 'reference_prefix': 'validator:'}] is too short"
+        },
+        {
+          "file": "examples/benchmark-emission.invalid.missing-group.json",
+          "status": "pass",
+          "reason": "['peer_mesh_regression', 'observability_ingest'] is too short | ['peer_mesh_regression', 'observability_ingest'] does not contain items matching the given schema"
+        },
+        {
+          "file": "examples/peer-mesh-runtime.invalid.missing-runtime-modes.json",
+          "status": "pass",
+          "reason": "'runtime_modes' is a required property | 'required_role_classes' is a required property | 'benchmark_contract' is a required property | 'benchmark_emission_required' is a required property"
+        },
+        {
+          "file": "examples/agent-role-contract.invalid.missing-hook-refs.json",
+          "status": "pass",
+          "reason": "[{'role_id': 'peer_mesh_host', 'role_class': 'mesh_bootstrap', 'purpose': 'Bootstrap the same-host or network mesh and publish membership without reverting to hierarchical orchestration.', 'owned_lane': 'mesh_bootstrap', 'inputs': ['mesh topology choice', 'runtime transport settings', 'distributed role catalog'], 'outputs': ['reachable peer registry', 'synchronized role payloads'], 'permissions': {'can_send_prompt': False, 'can_send_command': False, 'can_access_prod': False, 'requires_pii_redaction': False}, 'tool_refs': ['pi-vs-claude-code', 'the-library'], 'skill_refs': ['the-library'], 'runtime_modes': ['same_host', 'cross_device'], 'message_operations': ['list_agents'], 'handoff_targets': ['prod_gatekeeper', 'dev_driver', 'mesh_verifier'], 'escalation': {'on_loop_budget_exceeded': 'mesh_verifier', 'on_completion_ambiguity': 'mesh_verifier'}, 'verification_boundary': {'completion_token_required': True, 'failure_mode': 'fail_loud', 'policy_decision_required': True, 'observability_event_required': True}}] is too short | 'hook_refs' is a required property"
+        },
+        {
+          "file": "examples/agent-role-contract.invalid.missing-role-class.json",
+          "status": "pass",
+          "reason": "'role_class' is a required property"
+        },
+        {
+          "file": "examples/hook-manifest.invalid.non-fail-loud.json",
+          "status": "pass",
+          "reason": "'fail_loud' was expected | [{'hook_id': 'peer-session-start', 'event': 'session_start', 'description': 'Validate the peer mesh transport selection and governed role payload before a peer session starts.', 'runtime_trigger': 'mesh_bootstrap', 'runtime_actor': 'peer_mesh_host', 'required_capabilities': ['pi-vs-claude-code', 'the-library'], 'target_contract_surfaces': ['contracts/peer-mesh.yaml', 'contracts/peer-lifecycle.yaml', 'contracts/peer-mesh-runtime.yaml', 'contracts/agent-role-contract.yaml'], 'policy_outcomes': ['allow', 'block'], 'validation_method': 'Validate mesh transports, role registry distribution, and bootstrap evidence before the first peer joins.', 'evidence_artifact': 'examples/peer-mesh.valid.json', 'on_failure': 'warn'}] is too short | 'hook_class' is a required property | 'governed_operations' is a required property | 'fail_loud' was expected"
+        },
+        {
+          "file": "examples/hook-manifest.invalid.missing-governed-operations.json",
+          "status": "pass",
+          "reason": "'governed_operations' is a required property"
+        },
+        {
+          "file": "examples/capability-matrix.invalid.missing-capability-row.json",
+          "status": "pass",
+          "reason": "[{'capability_id': 'pi-vs-claude-code', 'upstream_repo': 'https://github.com/disler/pi-vs-claude-code', 'upstream_feature_name': 'coms/coms-net peer mesh', 'parent_surface_type': 'communication_plane', 'target_contract_surface': 'contracts/peer-mesh-runtime.yaml', 'runtime_trigger': 'mesh_bootstrap', 'runtime_actor': 'peer_mesh_host', 'governed_operations': ['list_agents', 'send_command', 'send_prompt', 'await_response'], 'validation_method': 'Validate same-host and networked peer registration, ack-bearing message dispatch, await semantics, hop limits, and stale-peer cleanup against the peer-mesh runtime and lifecycle contracts.', 'evidence_artifact': 'examples/peer-mesh.valid.json', 'blocker_or_dependency': 'Requires Bun >= 1.3.2, Pi Coding Agent CLI, and just; cross-device mode additionally requires `PI_COMS_NET_AUTH_TOKEN` and a declared hub URL.', 'source_refs': ['docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md', 'docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md', 'https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md', 'https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile', 'https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json'], 'parent_lane_classification': 'core'}, {'capability_id': 'the-library', 'upstream_repo': 'https://github.com/disler/the-library', 'upstream_feature_name': 'typed reference catalog for skills, agents, and prompts', 'parent_surface_type': 'distribution_plane', 'target_contract_surface': 'contracts/library-distribution.yaml', 'runtime_trigger': 'peer_join', 'runtime_actor': 'peer_mesh_host', 'governed_operations': ['list_agents'], 'validation_method': 'Validate that parent library entries resolve to typed references, preserve source-of-truth locations, and distribute on demand without repo-tree mirroring.', 'evidence_artifact': 'examples/library-distribution.valid.json', 'blocker_or_dependency': 'Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.', 'source_refs': ['docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md', 'https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md', 'https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md', 'https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml'], 'parent_lane_classification': 'core'}, {'capability_id': 'claude-code-hooks-mastery', 'upstream_repo': 'https://github.com/disler/claude-code-hooks-mastery', 'upstream_feature_name': 'deterministic hook lifecycle and validator control', 'parent_surface_type': 'policy_plane', 'target_contract_surface': 'contracts/policy-decision.yaml', 'runtime_trigger': 'before_send_prompt', 'runtime_actor': 'prod_gatekeeper', 'governed_operations': ['send_prompt', 'send_command'], 'validation_method': 'Validate prompt gating, tool-use blocking, post-tool validation feedback, and stop/subagent-stop continuation rules as explicit allow/block/ask decisions with fail-loud outcomes.', 'evidence_artifact': 'examples/hook-manifest.valid.json', 'blocker_or_dependency': 'Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.', 'source_refs': ['docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md', 'docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md', 'https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md'], 'parent_lane_classification': 'core'}, {'capability_id': 'claude-code-hooks-multi-agent-observability', 'upstream_repo': 'https://github.com/disler/claude-code-hooks-multi-agent-observability', 'upstream_feature_name': 'hook event ingest with session-correlated telemetry', 'parent_surface_type': 'observability_plane', 'target_contract_surface': 'contracts/observability-ingest.yaml', 'runtime_trigger': 'peer_event_emit', 'runtime_actor': 'mesh_verifier', 'governed_operations': ['list_agents', 'send_command', 'send_prompt', 'await_response'], 'validation_method': 'Validate event emission, session start/end markers, correlation fields, durable ingest, and queryable swimlane views before observability claims are promoted.', 'evidence_artifact': 'examples/observability-ingest.valid.json', 'blocker_or_dependency': 'Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.', 'source_refs': ['docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md', 'docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md', 'https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md'], 'parent_lane_classification': 'core'}, {'capability_id': 'just-prompt', 'upstream_repo': 'https://github.com/disler/just-prompt', 'upstream_feature_name': 'multi-provider prompt arbitration via `ceo_and_board`', 'parent_surface_type': 'arbitration_lane', 'target_contract_surface': 'contracts/agent-role-contract.yaml', 'runtime_trigger': 'challenge_review', 'runtime_actor': 'prod_gatekeeper', 'governed_operations': ['send_prompt', 'await_response'], 'validation_method': 'Validate that escalation prompts record board-member outputs, CEO decision output, provider provenance, and explicit reasons for any final override.', 'evidence_artifact': 'promotion/readiness.json', 'blocker_or_dependency': 'Requires a running just-prompt MCP server plus provider credentials or a local-model equivalent; without those, the lane remains gated and must not be treated as default.', 'source_refs': ['https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md', 'https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml'], 'parent_lane_classification': 'gated'}, {'capability_id': 'agent-sandbox-skill', 'upstream_repo': 'https://github.com/disler/agent-sandbox-skill', 'upstream_feature_name': 'isolated sandbox execution for delegated engineering work', 'parent_surface_type': 'sandbox_execution', 'target_contract_surface': 'contracts/agent-role-contract.yaml', 'runtime_trigger': 'delegated_build', 'runtime_actor': 'dev_driver', 'governed_operations': ['send_command', 'await_response'], 'validation_method': 'Validate sandbox handoff, explicit completion status, isolated filesystem/network boundary, and any browser proof generated inside the sandbox before treating delegated execution as truthful.', 'evidence_artifact': 'examples/agent-role-contract.valid.json', 'blocker_or_dependency': 'Blocked until a real sandbox provider is configured; exact dependencies are an E2B account/API key today or a parity implementation such as exe.dev.', 'source_refs': ['docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md', 'https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md'], 'parent_lane_classification': 'blocked_with_exact_dependency'}, {'capability_id': 'bowser', 'upstream_repo': 'https://github.com/disler/bowser', 'upstream_feature_name': 'browser automation and UI validation lane', 'parent_surface_type': 'browser_validation', 'target_contract_surface': 'contracts/capability-matrix.yaml', 'runtime_trigger': 'promotion_browser_check', 'runtime_actor': 'mesh_verifier', 'governed_operations': ['send_command', 'await_response'], 'validation_method': 'Validate that browser runs emit reproducible evidence (screenshots, DOM/output captures, or step logs) and that the promotion decision names why browser proof was required.', 'evidence_artifact': 'promotion/readiness.json', 'blocker_or_dependency': 'Gated on a real browser-validation requirement plus Playwright CLI or an equivalent browser control surface; otherwise the parent should not pretend this lane is active.', 'source_refs': ['https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md'], 'parent_lane_classification': 'gated'}, {'capability_id': 'mac-mini-agent', 'upstream_repo': 'https://github.com/disler/mac-mini-agent', 'upstream_feature_name': 'Mac device sidecar for GUI, terminal, and remote job orchestration', 'parent_surface_type': 'device_sidecar', 'target_contract_surface': 'contracts/capability-matrix.yaml', 'runtime_trigger': 'deployment_sidecar_boot', 'runtime_actor': 'peer_mesh_host', 'governed_operations': ['list_agents', 'send_command', 'await_response'], 'validation_method': 'Validate host OS prerequisites, permission grants, remote job connectivity, and deterministic completion markers before treating a device sidecar as available.', 'evidence_artifact': 'evaluation/tool-health/status.json', 'blocker_or_dependency': 'Deployment-specific: requires macOS, Accessibility + Screen Recording + Full Disk Access permissions, tmux, SSH/remote connectivity, and the paired host topology.', 'source_refs': ['https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md'], 'parent_lane_classification': 'deployment_specific'}, {'capability_id': 'fork-repository-skill', 'upstream_repo': 'https://github.com/disler/fork-repository-skill', 'upstream_feature_name': 'terminal branching and context handoff skill', 'parent_surface_type': 'parallel_branching_reference', 'target_contract_surface': 'contracts/capability-matrix.yaml', 'runtime_trigger': 'manual_parallel_branch', 'runtime_actor': 'dev_driver', 'governed_operations': ['send_command', 'await_response'], 'validation_method': 'Validate whether any later implementation adds capabilities that are not already covered by peer mesh or built-in task delegation before promoting this beyond reference.', 'evidence_artifact': 'evaluation/research/compiled/gap-placement-map.json', 'blocker_or_dependency': 'Reference only because it overlaps with existing delegation and peer-mesh lanes and depends on a Claude-style skill runtime.', 'source_refs': ['https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md'], 'parent_lane_classification': 'reference'}] is too short"
+        },
+        {
+          "file": "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
+          "status": "pass",
+          "reason": "'follow_up_prompt_artifact' is a required property"
         }
       ]
     },
@@ -149,6 +290,163 @@
       }
     },
     {
+      "name": "research_governance_alignment",
+      "status": "pass",
+      "details": {
+        "manifest_path": "contracts/research-packet-manifest.yaml",
+        "repo_packet_count": 10,
+        "topic_packet_count": 6,
+        "compiled_output_count": 4,
+        "capability_count": 10,
+        "core_capabilities": [
+          "claude-code-hooks-mastery",
+          "claude-code-hooks-multi-agent-observability",
+          "pi-vs-claude-code",
+          "the-library"
+        ],
+        "blocked_capabilities": [
+          "agent-sandbox-skill"
+        ],
+        "video_sources": [
+          {
+            "ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+            "strength": "transcript_plus_context_summary"
+          },
+          {
+            "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+            "strength": "task_capture_without_terminal_frames"
+          },
+          {
+            "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
+            "strength": "task_stub_without_terminal_frames"
+          }
+        ]
+      }
+    },
+    {
+      "name": "tool_health_truth_boundaries",
+      "status": "pass",
+      "details": {
+        "path": "evaluation/tool-health/status.json",
+        "gitnexus_status": "bounded_pass",
+        "graphify_status": "bounded_pass",
+        "infranodus_status": "bounded_pass",
+        "live_infranodus_status": "blocked",
+        "peer_mesh_local_status": "bounded_pass"
+      }
+    },
+    {
+      "name": "same_host_runtime_activation",
+      "status": "pass",
+      "details": {
+        "summary_path": "evaluation/tool-health/peer-mesh-local.json",
+        "events_path": "evaluation/tool-health/peer-mesh-local-events.jsonl",
+        "benchmarks_path": "evaluation/tool-health/peer-mesh-local-benchmarks.json",
+        "log_path": "evaluation/tool-health/peer-mesh-local.log",
+        "event_count": 24,
+        "benchmark_groups": [
+          "library_distribution",
+          "observability_ingest",
+          "peer_mesh_regression"
+        ],
+        "observed_completion_tokens": [
+          "done",
+          "failed",
+          "needs-human"
+        ]
+      }
+    },
+    {
+      "name": "parent_native_orchestration_contracts",
+      "status": "pass",
+      "details": {
+        "contracts": [
+          "contracts/peer-mesh.yaml",
+          "contracts/peer-message.yaml",
+          "contracts/peer-lifecycle.yaml",
+          "contracts/observability-event.yaml",
+          "contracts/observability-ingest.yaml",
+          "contracts/policy-decision.yaml",
+          "contracts/library-distribution.yaml",
+          "contracts/benchmark-emission.yaml",
+          "contracts/peer-mesh-runtime.yaml",
+          "contracts/agent-role-contract.yaml",
+          "contracts/hook-manifest.yaml",
+          "contracts/capability-matrix.yaml"
+        ],
+        "role_ids": [
+          "dev_driver",
+          "mesh_verifier",
+          "peer_mesh_host",
+          "prod_gatekeeper"
+        ],
+        "role_classes": [
+          "execution_driver",
+          "mesh_bootstrap",
+          "prod_boundary",
+          "verification_guard"
+        ],
+        "hook_ids": [
+          "completion-verification",
+          "peer-command-guard",
+          "peer-membership-refresh",
+          "peer-prompt-guard",
+          "peer-session-start"
+        ],
+        "hook_classes": [
+          "completion_guard",
+          "membership_refresh",
+          "message_guard",
+          "session_bootstrap"
+        ],
+        "capability_ids": [
+          "agent-sandbox-skill",
+          "bowser",
+          "claude-code-hooks-mastery",
+          "claude-code-hooks-multi-agent-observability",
+          "fork-repository-skill",
+          "infinite-agentic-loop",
+          "just-prompt",
+          "mac-mini-agent",
+          "pi-vs-claude-code",
+          "the-library"
+        ],
+        "capability_surface_types": [
+          "arbitration_lane",
+          "browser_validation",
+          "communication_plane",
+          "device_sidecar",
+          "distribution_plane",
+          "loop_pattern_reference",
+          "observability_plane",
+          "parallel_branching_reference",
+          "policy_plane",
+          "sandbox_execution"
+        ],
+        "distribution_unit_types": [
+          "agent",
+          "benchmark_recipe",
+          "policy",
+          "prompt",
+          "skill",
+          "validator"
+        ],
+        "benchmark_groups": [
+          "library_distribution",
+          "observability_ingest",
+          "peer_mesh_regression"
+        ],
+        "ingest_session_markers": [
+          "session_end",
+          "session_start"
+        ],
+        "runtime_modes": [
+          "cross_device",
+          "same_host"
+        ]
+      }
+    },
+    {
       "name": "program_markdown_contract",
       "status": "pass",
       "details": [
@@ -163,7 +461,7 @@
       "status": "pass",
       "details": {
         "path": "runs/iterations.jsonl",
-        "row_count": 9,
+        "row_count": 18,
         "parse_errors": [],
         "invalid_rows": []
       }
@@ -173,6 +471,16 @@
       "status": "pass",
       "details": {
         "path": "evaluation/copilot-ratchet-report.json",
+        "errors": []
+      }
+    },
+    {
+      "name": "runtime_truth_reporting_contract",
+      "status": "pass",
+      "details": {
+        "truth_level": "bounded_runtime",
+        "runtime_mode_activated": "same_host",
+        "latest_iteration": 18,
         "errors": []
       }
     }

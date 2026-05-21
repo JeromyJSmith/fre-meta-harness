@@ -1,0 +1,89 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260521-CAPABILITY-HARVEST-RESEARCH"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Create a packetized research harvest for the parent wrapper by producing one JSON research file per repository and one JSON research file per topic, then compile them into a governed capability-harvest output that can drive later implementation."
+  repo_scope: "/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+  task_scope: "Research artifacts and prompt-aligned compiled outputs under evaluation/research plus any minimal prompt spine updates needed to keep the packetized harvest discoverable."
+current_verified_state:
+  facts:
+    - "The parent wrapper root is /Volumes/PixelTable/VW_iTwin_Bridge/meta and the heavy prompt contract already exists."
+    - "A seeded research area already exists under evaluation/research with current-understanding, a harvest manifest, per-repo packet stubs, per-topic packet stubs, and compiled output targets."
+    - "The strongest current parent-native adoption set is pi-vs-claude-code, the-library, claude-code-hooks-mastery, and claude-code-hooks-multi-agent-observability."
+    - "A prior research pass was useful but incomplete because it failed to center pi-vs-claude-code and used optional framing that conflicts with current doctrine."
+    - "The user wants YouTube and GitHub due diligence, but tutorial extraction must preserve terminal or frame context whenever transcript-only evidence would be misleading."
+hard_rules:
+  environment:
+    - "Use only the parent wrapper working surface under /Volumes/PixelTable/VW_iTwin_Bridge/meta."
+    - "Do not edit imported upstream clones under /Volumes/PixelTable/VW_iTwin_Bridge/meta/external."
+  safety:
+    - "Do not broaden into implementation of runtime, frontend, sidecar, or plugin code."
+    - "Do not copy upstream repo trees into the parent wrapper."
+    - "Do not collapse all overlap into one prose blob; preserve packet boundaries until compile time."
+  truthfulness:
+    - "pi-vs-claude-code is a first-class core primitive and must be treated as such."
+    - "Do not use optional as a classification for useful infrastructure. Use classifications such as core, gated, deployment_specific, reference, or blocked_with_exact_dependency."
+    - "Do not claim video-derived certainty when the evidence is transcript-only and visible terminal or frame context is missing."
+    - "No fake green path."
+allowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/README.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/GOAL.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/program.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/domain_spec.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/library.yaml"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agentics-library.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/contracts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/schemas/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/evaluation/research/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/evaluation/README.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/docs/NOTION-DOCS/**"
+disallowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/src/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/pixeltable/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/vw-plugin/**"
+tasks:
+  ordered_steps:
+    - "Read README.md, GOAL.md, program.md, domain_spec.md, library.yaml, agentics-library.md, contracts/capability-matrix.yaml, evaluation/research/current-understanding.json, evaluation/research/harvest-manifest.json, and evaluation/research/compiled/targets.json first."
+    - "Read every seeded repo packet under evaluation/research/repos and every seeded topic packet under evaluation/research/topics before starting new external research."
+    - "Use local Notion docs as the first authority packet for Pi-to-Pi, peer mesh, capability registry, hooks, evaluation, risks, and tutorial context."
+    - "Do GitHub due diligence for each repo packet one at a time. Confirm repo purpose, architecture, notable capabilities, and any exact dependency or deployment boundaries."
+    - "Do tutorial due diligence for each topic packet one at a time using the local transcript and context docs as the minimum authority. If direct video or frame evidence is unavailable, record the uncertainty explicitly instead of guessing."
+    - "Update each repo packet into a real research JSON artifact with concrete findings, parent placement, trigger logic, actor logic, validation method, evidence artifacts, overlaps, blockers, and source refs."
+    - "Update each topic packet into a real research JSON artifact with synthesized findings, doctrine implications, unresolved ambiguities, and source refs."
+    - "After all packet files are updated, compile them into the targets listed in evaluation/research/compiled/targets.json."
+    - "The compiled feature matrix must preserve at least these fields for each capability row: capability_id, upstream_repo, upstream_feature_name, parent_surface_type, target_contract_surface, runtime_trigger, runtime_actor, validation_method, evidence_artifact, blocker_or_dependency, source_refs."
+    - "The compiled gap placement map must explicitly classify each lane as core, gated, deployment_specific, reference, or blocked_with_exact_dependency."
+    - "If the research proves a packet is redundant or conflicting, record the exact reason and preserve the source refs instead of deleting the packet."
+validation_loop:
+  checks:
+    - "Confirm that every path listed in evaluation/research/harvest-manifest.json exists by the end of the run."
+    - "Confirm that every repo packet and every topic packet is valid JSON and contains concrete source_refs."
+    - "Confirm that pi-vs-claude-code is represented in the compiled outputs as a first-class core capability source."
+    - "Confirm that no useful lane is labeled optional."
+    - "Confirm that tutorial/video-derived claims distinguish transcript-only evidence from terminal or frame-context evidence."
+    - "Run git --no-pager diff --check from /Volumes/PixelTable/VW_iTwin_Bridge/meta."
+  rerun_policy: "Repeat the bounded research-and-compile loop until the packet set and compiled outputs are internally consistent or the blocker is exact and documented."
+success_criteria:
+  best_case: "The parent wrapper gains a packetized research harvest with one JSON artifact per repo, one JSON artifact per topic, and compiled capability-harvest outputs that accurately map features into parent placement, runtime triggers, runtime actors, validation methods, and evidence artifacts."
+  acceptable_fallback: "An exact blocker is documented showing why the packetized harvest cannot be completed truthfully, with all partial packet files preserved and source gaps made explicit."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "repo packets completed"
+    - "topic packets completed"
+    - "compiled outputs created or refreshed"
+    - "core repos centered in the final compile"
+    - "classification language used for gated or blocked lanes"
+    - "video-context uncertainties preserved"
+    - "files changed"

@@ -15,6 +15,9 @@ prompt_contract_refs:
   - "agent-heavy-run-prompt-schema.md"
   - "agent-heavy-run-prompt.schema.json"
   - "agent-heavy-run-prompt.template.yaml"
+  - "architect-review-handoff-prompt-schema.md"
+  - "architect-review-handoff-prompt.schema.json"
+  - "architect-review-handoff-prompt.template.yaml"
   - "copilot-prompting-playbook.md"
 comparison_refs:
   - "infranodus-phase-tool-map.json"
@@ -54,6 +57,9 @@ repository root.
   - `agent-heavy-run-prompt-schema.md`
   - `agent-heavy-run-prompt.schema.json`
   - `agent-heavy-run-prompt.template.yaml`
+  - `architect-review-handoff-prompt-schema.md`
+  - `architect-review-handoff-prompt.schema.json`
+  - `architect-review-handoff-prompt.template.yaml`
   - `copilot-prompting-playbook.md`
 - ratchet execution protocol:
   - `program.md`
@@ -96,14 +102,56 @@ This wrapper:
 - onboarding/domain boundary: `domain_spec.md`
 - execution protocol: `program.md`
 - reusable metrics contract: `contracts/parent-capability-metrics.yaml`
+- parent-native orchestration contracts:
+  - `contracts/research-packet-manifest.yaml`
+  - `contracts/peer-mesh.yaml`
+  - `contracts/peer-message.yaml`
+  - `contracts/peer-lifecycle.yaml`
+  - `contracts/observability-event.yaml`
+  - `contracts/observability-ingest.yaml`
+  - `contracts/policy-decision.yaml`
+  - `contracts/library-distribution.yaml`
+  - `contracts/benchmark-emission.yaml`
+  - `contracts/peer-mesh-runtime.yaml`
+  - `contracts/agent-role-contract.yaml`
+  - `contracts/hook-manifest.yaml`
+  - `contracts/capability-matrix.yaml`
+- Phase 1 communication slice truth:
+  - peer-mesh primitives are explicit at the contract layer (`list_agents`,
+    `send_command`, `send_prompt`, `await_response`)
+  - runtime roles are validated by role classes and coverage invariants instead of
+    a closed-world fixed ID list
+  - prompt and command delivery both require policy plus observability guards
+- Phase 2 observability-distribution-evaluation slice truth:
+  - observability is routed through a decoupled ingest plane with explicit session
+    start or end, correlation, swimlane, and durable-store expectations
+  - typed library units propagate by reference across same-host and cross-device
+    peers instead of copy-first workflow assumptions
+  - peer-mesh changes are measured through emitted benchmark tuples and required
+    regression groups across runs
+- Research governance slice truth:
+  - the packetized harvest under `evaluation/research/` is now governed through
+    `contracts/research-packet-manifest.yaml`
+  - `contracts/capability-matrix.yaml` now aligns to the compiled feature matrix
+    instead of a narrower hand-curated subset
+  - compiled capability harvest, feature matrix, gap placement map, and source
+    index are validator-backed authoritative views rather than loose artifacts
 - scorer: `scripts/score-parent-wrapper.py`
 - CLI-first local runner harvest: `scripts/harvest-local-runner-capabilities.py`
 - bounded ratchet runner: `scripts/run-parent-ratchet.sh`
 - bounded InfraNodus substitute: `scripts/build-parent-infranodus-artifacts.py`
 - structured report: `evaluation/copilot-ratchet-report.json`
+  - now required to carry structured runtime truth, blocked lanes, freshness,
+    command evidence, and score-saturation explanation for runtime-facing kept
+    slices
 - iteration ledger: `runs/iterations.jsonl` (one compact JSON object per line)
 - latest metrics: `evaluation/metrics-latest.json`
 - bounded tool-health evidence: `evaluation/tool-health/status.json`
+- bounded same-host peer-mesh runtime proof: `scripts/run-parent-peer-mesh-local.sh`
+- same-host peer-mesh evidence:
+  - `evaluation/tool-health/peer-mesh-local.json`
+  - `evaluation/tool-health/peer-mesh-local.log`
+  - `evaluation/tool-health/peer-mesh-local-events.jsonl`
 - local runner availability matrix: `evaluation/tool-health/local-runners.json`
 - parent agent-eval fixture: `evaluation/agent-eval/`
 
@@ -118,6 +166,9 @@ This wrapper:
 - Local runners: treat CLI-first local harvests as the baseline parent
   evaluation path and report missing runners explicitly instead of assuming any
   paid-provider fallback.
+- Peer mesh runtime: same-host is the first active runtime lane and must be
+  proven through the bounded local peer-mesh runner plus observability evidence;
+  cross-device remains blocked until authenticated transport is really present.
 - InfraNodus: keep the phase-tool doctrine local and prefer the bounded local
   parent-layer substitute when live MCP graph analysis is not actually
   configured.

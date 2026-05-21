@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/policy-decision.schema.json",
+  "title": "Parent Policy Decision Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "decision_outcomes",
+    "application_points",
+    "decision_records",
+    "redaction_boundary",
+    "escalation",
+    "observability_contract"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-policy-decision"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "decision_outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_outcomes",
+        "default_uncertain_outcome",
+        "reason_required"
+      ],
+      "properties": {
+        "required_outcomes": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["allow", "block", "ask"]
+          },
+          "allOf": [
+            { "contains": { "const": "allow" } },
+            { "contains": { "const": "block" } },
+            { "contains": { "const": "ask" } }
+          ]
+        },
+        "default_uncertain_outcome": {
+          "type": "string",
+          "const": "ask"
+        },
+        "reason_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "application_points": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_\\-]+$"
+      }
+    },
+    "decision_records": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "governed_operations",
+        "prod_boundary_application_points"
+      ],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "minItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "allOf": [
+            { "contains": { "const": "decision_id" } },
+            { "contains": { "const": "message_id" } },
+            { "contains": { "const": "correlation_id" } },
+            { "contains": { "const": "scenario_id" } },
+            { "contains": { "const": "outcome" } },
+            { "contains": { "const": "reason" } },
+            { "contains": { "const": "actor_role" } }
+          ]
+        },
+        "governed_operations": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "send_prompt" } },
+            { "contains": { "const": "send_command" } }
+          ]
+        },
+        "prod_boundary_application_points": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "before_cross_device_delivery" } },
+            { "contains": { "const": "before_prod_slice_release" } }
+          ]
+        }
+      }
+    },
+    "redaction_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prod_to_dev_requires_redaction",
+        "blocked_data_classes",
+        "ask_on_redaction_uncertainty"
+      ],
+      "properties": {
+        "prod_to_dev_requires_redaction": {
+          "type": "boolean",
+          "const": true
+        },
+        "blocked_data_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "ask_on_redaction_uncertainty": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ask_routes_to",
+        "block_is_terminal",
+        "allow_requires_observability_event"
+      ],
+      "properties": {
+        "ask_routes_to": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "block_is_terminal": {
+          "type": "boolean",
+          "const": true
+        },
+        "allow_requires_observability_event": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "observability_contract": {
+      "type": "string",
+      "const": "contracts/observability-event.yaml"
+    }
+  }
+}

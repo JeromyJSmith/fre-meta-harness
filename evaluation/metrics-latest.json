@@ -1,32 +1,32 @@
 {
   "score_id": "PARENT-META-SCORE-0003",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-21",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated-substantive",
-  "total_score": 98.05,
-  "outcome_score": 97.4,
+  "total_score": 98.5,
+  "outcome_score": 98.0,
   "instrument_score": 100.0,
   "weakest_component": "artifact_refresh",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
       "details": {
-        "status": "blocked",
+        "status": "running",
         "schema_errors": [],
-        "real_rows": 9,
-        "kept_rows": 4,
-        "substantive_kept_rows": 3,
+        "real_rows": 18,
+        "kept_rows": 13,
+        "substantive_kept_rows": 11,
         "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
       "score": 25.0,
       "details": {
-        "count": 9,
-        "substantive_kept_rows": 3,
+        "count": 18,
+        "substantive_kept_rows": 11,
         "rejected_or_reverted_rows": 5,
-        "history_rows": 9,
-        "real_rows": 9,
+        "history_rows": 18,
+        "real_rows": 18,
         "parse_errors": [],
         "schema_errors": []
       }
@@ -34,28 +34,126 @@
     "plateau_or_blocker_truth": {
       "score": 25.0,
       "details": {
-        "kind": "blocker",
-        "stop_reason": "exact blocker: live InfraNodus MCP escalation remains blocked because no local runtime credential or session configuration was present, so the bounded local substitute stayed as the strongest honest parent analysis path",
-        "cycles": 9,
-        "actual_consecutive_non_improving": 1,
+        "kind": "continuing",
+        "stop_reason": "one kept schema-hardening slice was completed; the parent improvement program remains open for later governed slices",
+        "cycles": 18,
+        "actual_consecutive_non_improving": 0,
         "schema_errors": []
       }
     },
     "artifact_refresh": {
-      "score": 22.4,
+      "score": 23.0,
       "details": {
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 8.718257427215576,
+        "freshness_span_seconds": 1737.0327434539795,
         "tool_statuses": [
           "bounded_pass",
-          "pass",
+          "bounded_pass",
           "bounded_pass",
           "dry_pass",
-          "pass"
+          "pass",
+          "bounded_pass"
         ],
-        "tool_health_score": 10.4,
+        "tool_health_score": 6.0,
+        "parent_native_surface_score": 4.0,
+        "parent_native_surface_details": {
+          "contracts_validated": 12,
+          "examples_validated": 12,
+          "role_classes": [
+            "execution_driver",
+            "mesh_bootstrap",
+            "prod_boundary",
+            "verification_guard"
+          ],
+          "hook_ids": [
+            "completion-verification",
+            "peer-command-guard",
+            "peer-membership-refresh",
+            "peer-prompt-guard",
+            "peer-session-start"
+          ],
+          "hook_classes": [
+            "completion_guard",
+            "membership_refresh",
+            "message_guard",
+            "session_bootstrap"
+          ],
+          "capability_surface_types": [
+            "arbitration_lane",
+            "browser_validation",
+            "communication_plane",
+            "device_sidecar",
+            "distribution_plane",
+            "loop_pattern_reference",
+            "observability_plane",
+            "parallel_branching_reference",
+            "policy_plane",
+            "sandbox_execution"
+          ],
+          "capability_operation_ids": [
+            "await_response",
+            "list_agents",
+            "send_command",
+            "send_prompt"
+          ],
+          "runtime_modes": [
+            "cross_device",
+            "same_host"
+          ],
+          "operation_ids": [
+            "await_response",
+            "list_agents",
+            "send_command",
+            "send_prompt"
+          ],
+          "ingest_session_markers": [
+            "session_end",
+            "session_start"
+          ],
+          "distribution_unit_types": [
+            "agent",
+            "benchmark_recipe",
+            "policy",
+            "prompt",
+            "skill",
+            "validator"
+          ],
+          "benchmark_groups": [
+            "library_distribution",
+            "observability_ingest",
+            "peer_mesh_regression"
+          ],
+          "errors": []
+        },
+        "research_governance_score": 2.0,
+        "research_governance_details": {
+          "errors": [],
+          "aligned_capability_count": 10,
+          "compiled_outputs": [
+            "evaluation/research/compiled/capability-harvest.json",
+            "evaluation/research/compiled/feature-matrix.json",
+            "evaluation/research/compiled/gap-placement-map.json",
+            "evaluation/research/compiled/source-index.json"
+          ]
+        },
+        "same_host_runtime_score": 5.0,
+        "same_host_runtime_details": {
+          "status": "bounded_pass",
+          "errors": [],
+          "event_count": 24,
+          "benchmark_groups": [
+            "library_distribution",
+            "observability_ingest",
+            "peer_mesh_regression"
+          ],
+          "observed_completion_tokens": [
+            "done",
+            "failed",
+            "needs-human"
+          ]
+        },
         "schema_errors": [],
         "parse_errors": []
       }
@@ -72,10 +170,12 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 9,
-        "detailed_rows": 9,
-        "ledger_rows": 9,
+        "history_rows": 18,
+        "detailed_rows": 18,
+        "ledger_rows": 18,
         "ledger_aligned": true,
+        "runtime_truth_score": 6.0,
+        "score_saturation_score": 4.0,
         "parse_errors": []
       }
     },
@@ -89,6 +189,6 @@
       }
     }
   },
-  "iteration_count": 9,
+  "iteration_count": 18,
   "iteration_parse_errors": []
 }

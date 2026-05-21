@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/compiled-capability-harvest.schema.json",
+  "title": "Compiled Capability Harvest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_type",
+    "status",
+    "repo_packets",
+    "topic_packets",
+    "capabilities",
+    "topic_summaries",
+    "exact_blockers",
+    "compiler_notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "packet_type": {
+      "type": "string",
+      "const": "compiled_capability_harvest"
+    },
+    "status": {
+      "type": "string",
+      "const": "refreshed"
+    },
+    "repo_packets": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^evaluation/research/repos/.+\\.json$"
+      }
+    },
+    "topic_packets": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^evaluation/research/topics/.+\\.json$"
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "$ref": "#/$defs/capabilityRow"
+      }
+    },
+    "topic_summaries": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "topic_id",
+          "lane_classification",
+          "synthesized_findings",
+          "unresolved_ambiguities",
+          "source_refs"
+        ],
+        "properties": {
+          "topic_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "lane_classification": {
+            "$ref": "#/$defs/classification"
+          },
+          "synthesized_findings": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 10
+            }
+          },
+          "unresolved_ambiguities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 5
+            }
+          },
+          "source_refs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        }
+      }
+    },
+    "exact_blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability_id",
+          "classification",
+          "blocker_or_dependency"
+        ],
+        "properties": {
+          "capability_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "classification": {
+            "type": "string",
+            "const": "blocked_with_exact_dependency"
+          },
+          "blocker_or_dependency": {
+            "type": "string",
+            "minLength": 20
+          }
+        }
+      }
+    },
+    "compiler_notes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 10
+      }
+    }
+  },
+  "$defs": {
+    "classification": {
+      "type": "string",
+      "enum": [
+        "core",
+        "gated",
+        "deployment_specific",
+        "reference",
+        "blocked_with_exact_dependency"
+      ]
+    },
+    "surfaceType": {
+      "type": "string",
+      "enum": [
+        "communication_plane",
+        "distribution_plane",
+        "policy_plane",
+        "observability_plane",
+        "arbitration_lane",
+        "sandbox_execution",
+        "browser_validation",
+        "device_sidecar",
+        "parallel_branching_reference",
+        "loop_pattern_reference"
+      ]
+    },
+    "capabilityRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "upstream_repo",
+        "upstream_feature_name",
+        "parent_surface_type",
+        "target_contract_surface",
+        "runtime_trigger",
+        "runtime_actor",
+        "validation_method",
+        "evidence_artifact",
+        "blocker_or_dependency",
+        "source_refs",
+        "parent_lane_classification"
+      ],
+      "properties": {
+        "capability_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "upstream_repo": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github.com/disler/"
+        },
+        "upstream_feature_name": {
+          "type": "string",
+          "minLength": 3
+        },
+        "parent_surface_type": {
+          "$ref": "#/$defs/surfaceType"
+        },
+        "target_contract_surface": {
+          "type": "string",
+          "minLength": 3
+        },
+        "runtime_trigger": {
+          "type": "string",
+          "minLength": 3
+        },
+        "runtime_actor": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "validation_method": {
+          "type": "string",
+          "minLength": 20
+        },
+        "evidence_artifact": {
+          "type": "string",
+          "minLength": 3
+        },
+        "blocker_or_dependency": {
+          "type": "string",
+          "minLength": 20
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "parent_lane_classification": {
+          "$ref": "#/$defs/classification"
+        }
+      }
+    }
+  }
+}

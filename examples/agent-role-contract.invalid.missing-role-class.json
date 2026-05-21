@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-agent-role-contract",
+  "scope": "portable_parent_wrapper",
+  "governing_contracts": [
+    "contracts/peer-mesh.yaml",
+    "contracts/peer-message.yaml",
+    "contracts/policy-decision.yaml",
+    "contracts/hook-manifest.yaml"
+  ],
+  "roles": [
+    {
+      "role_id": "peer_mesh_host",
+      "purpose": "Bootstrap the same-host or network mesh and publish membership without reverting to hierarchical orchestration.",
+      "owned_lane": "mesh_bootstrap",
+      "inputs": [
+        "mesh topology choice",
+        "runtime transport settings",
+        "distributed role catalog"
+      ],
+      "outputs": [
+        "reachable peer registry",
+        "synchronized role payloads"
+      ],
+      "permissions": {
+        "can_send_prompt": false,
+        "can_send_command": false,
+        "can_access_prod": false,
+        "requires_pii_redaction": false
+      },
+      "tool_refs": [
+        "pi-vs-claude-code",
+        "the-library"
+      ],
+      "skill_refs": [
+        "the-library"
+      ],
+      "hook_refs": [
+        "peer-session-start",
+        "peer-membership-refresh"
+      ],
+      "runtime_modes": [
+        "same_host",
+        "cross_device"
+      ],
+      "message_operations": [
+        "list_agents"
+      ],
+      "handoff_targets": [
+        "prod_gatekeeper",
+        "dev_driver",
+        "mesh_verifier"
+      ],
+      "escalation": {
+        "on_loop_budget_exceeded": "mesh_verifier",
+        "on_completion_ambiguity": "mesh_verifier"
+      },
+      "verification_boundary": {
+        "completion_token_required": true,
+        "failure_mode": "fail_loud",
+        "policy_decision_required": true,
+        "observability_event_required": true
+      }
+    },
+    {
+      "role_id": "prod_gatekeeper",
+      "role_class": "prod_boundary",
+      "purpose": "Own production-facing data exchange, enforce PII stripping, and answer peer requests with bounded evidence only.",
+      "owned_lane": "production_boundary",
+      "inputs": [
+        "prod incident prompt",
+        "peer message id",
+        "redaction policy"
+      ],
+      "outputs": [
+        "pii-safe production slice",
+        "boundary audit note"
+      ],
+      "permissions": {
+        "can_send_prompt": true,
+        "can_send_command": false,
+        "can_access_prod": true,
+        "requires_pii_redaction": true
+      },
+      "tool_refs": [
+        "pi-vs-claude-code",
+        "claude-code-hooks-mastery"
+      ],
+      "skill_refs": [
+        "the-library"
+      ],
+      "hook_refs": [
+        "peer-prompt-guard",
+        "completion-verification"
+      ],
+      "runtime_modes": [
+        "same_host",
+        "cross_device"
+      ],
+      "message_operations": [
+        "send_prompt",
+        "await_response"
+      ],
+      "handoff_targets": [
+        "dev_driver",
+        "mesh_verifier"
+      ],
+      "escalation": {
+        "on_loop_budget_exceeded": "mesh_verifier",
+        "on_completion_ambiguity": "mesh_verifier"
+      },
+      "verification_boundary": {
+        "completion_token_required": true,
+        "failure_mode": "fail_loud",
+        "policy_decision_required": true,
+        "observability_event_required": true
+      }
+    },
+    {
+      "role_id": "dev_driver",
+      "role_class": "execution_driver",
+      "purpose": "Drive reproduction or build work, initiate peer prompts, and consume sandboxed execution surfaces without bypassing governed hooks.",
+      "owned_lane": "reproduction_driver",
+      "inputs": [
+        "pii-safe production slice",
+        "task objective",
+        "sandbox target"
+      ],
+      "outputs": [
+        "reproduced issue or built artifact",
+        "explicit completion token"
+      ],
+      "permissions": {
+        "can_send_prompt": true,
+        "can_send_command": true,
+        "can_access_prod": false,
+        "requires_pii_redaction": false
+      },
+      "tool_refs": [
+        "pi-vs-claude-code",
+        "agent-sandbox-skill"
+      ],
+      "skill_refs": [
+        "the-library"
+      ],
+      "hook_refs": [
+        "peer-prompt-guard",
+        "peer-command-guard",
+        "completion-verification"
+      ],
+      "runtime_modes": [
+        "same_host",
+        "cross_device"
+      ],
+      "message_operations": [
+        "send_command",
+        "send_prompt",
+        "await_response"
+      ],
+      "handoff_targets": [
+        "prod_gatekeeper",
+        "mesh_verifier"
+      ],
+      "escalation": {
+        "on_loop_budget_exceeded": "mesh_verifier",
+        "on_completion_ambiguity": "mesh_verifier"
+      },
+      "verification_boundary": {
+        "completion_token_required": true,
+        "failure_mode": "fail_loud",
+        "policy_decision_required": true,
+        "observability_event_required": true
+      }
+    },
+    {
+      "role_id": "mesh_verifier",
+      "role_class": "verification_guard",
+      "purpose": "Detect ambiguous completion, enforce fail-loud stop conditions, and emit observability evidence for every governed peer exchange.",
+      "owned_lane": "verification_boundary",
+      "inputs": [
+        "peer transcript summary",
+        "completion token",
+        "hook telemetry"
+      ],
+      "outputs": [
+        "verified status",
+        "blocker or retry directive"
+      ],
+      "permissions": {
+        "can_send_prompt": true,
+        "can_send_command": false,
+        "can_access_prod": false,
+        "requires_pii_redaction": false
+      },
+      "tool_refs": [
+        "claude-code-hooks-mastery",
+        "claude-code-hooks-multi-agent-observability"
+      ],
+      "skill_refs": [
+        "the-library"
+      ],
+      "hook_refs": [
+        "peer-prompt-guard",
+        "completion-verification"
+      ],
+      "runtime_modes": [
+        "same_host",
+        "cross_device"
+      ],
+      "message_operations": [
+        "send_prompt",
+        "await_response"
+      ],
+      "handoff_targets": [
+        "peer_mesh_host",
+        "prod_gatekeeper",
+        "dev_driver"
+      ],
+      "escalation": {
+        "on_loop_budget_exceeded": "mesh_verifier",
+        "on_completion_ambiguity": "mesh_verifier"
+      },
+      "verification_boundary": {
+        "completion_token_required": true,
+        "failure_mode": "fail_loud",
+        "policy_decision_required": true,
+        "observability_event_required": true
+      }
+    }
+  ]
+}

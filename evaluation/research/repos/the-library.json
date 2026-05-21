@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "the-library",
+  "upstream_repo": "https://github.com/disler/the-library",
+  "lane_classification": "core",
+  "status": "completed",
+  "repository_purpose": "A pure agent meta-skill that distributes skills, agents, and prompts by typed reference instead of copying assets into every repo or device.",
+  "upstream_architecture": {
+    "runtime": [
+      "agent-readable markdown skill runtime",
+      "private Git or local path access"
+    ],
+    "layout": [
+      "SKILL.md",
+      "library.yaml",
+      "cookbook/"
+    ],
+    "notable_files": [
+      "README.md",
+      "SKILL.md",
+      "library.yaml",
+      "justfile"
+    ]
+  },
+  "findings": [
+    "The-library is explicitly a catalog of references, not a copy-first registry, which matches the parent requirement to preserve packet boundaries until compile time.",
+    "The upstream skill is agent-agnostic and names Pi as a supported harness, which makes it a better parent-native distribution authority than any single-vendor plugin system.",
+    "The shipped `library.yaml` is intentionally empty, so the parent wrapper must provide its own governed entries and validation instead of assuming upstream defaults."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "the-library",
+      "upstream_repo": "https://github.com/disler/the-library",
+      "upstream_feature_name": "typed reference catalog for skills, agents, and prompts",
+      "parent_surface_type": "distribution_plane",
+      "target_contract_surface": "contracts/library-distribution.yaml",
+      "runtime_trigger": "peer_join",
+      "runtime_actor": "peer_mesh_host",
+      "validation_method": "Validate that parent library entries resolve to typed references, preserve source-of-truth locations, and distribute on demand without repo-tree mirroring.",
+      "evidence_artifact": "examples/library-distribution.valid.json",
+      "blocker_or_dependency": "Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
+        "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
+      ],
+      "parent_lane_classification": "core"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/library-distribution.yaml",
+      "contracts/capability-matrix.yaml",
+      "library.yaml",
+      "agentics-library.md"
+    ],
+    "trigger_logic": [
+      "Resolve library entries when a peer joins or when the parent registry is refreshed.",
+      "Keep packet and capability sources addressable by reference so compile time can merge them without losing provenance."
+    ],
+    "actor_logic": [
+      "The peer mesh host admits governed assets after reference validation, not by blind sync.",
+      "Library distribution stays catalog-driven and private-first across devices and teams."
+    ],
+    "validation_summary": [
+      "Require every distributed unit to name its type and source path/URL.",
+      "Reject copy-first workflows as the default parent behavior."
+    ],
+    "evidence_artifacts": [
+      "examples/library-distribution.valid.json"
+    ]
+  },
+  "overlaps": [
+    "Capability-distribution topic packet synthesizes how library entries feed the compiled harvest.",
+    "Peer mesh packet uses the-library as the admission and synchronization plane for peers."
+  ],
+  "blockers": [
+    "No exact blocker for the parent contract layer; the only gating boundary is source accessibility for private references."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "evidence_type": "local_authority",
+      "note": "States that capability harvest must normalize tools, skills, agents, hooks, and manifests instead of leaving them as prose."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Explains private-first typed-reference distribution, agent-agnostic runtime, and why copying is the wrong default."
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
+      "evidence_type": "skill_runtime",
+      "note": "Confirms the upstream system is a pure agent skill rather than a compiled service."
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
+      "evidence_type": "repo_manifest",
+      "note": "Shows the catalog structure and empty default matrix the parent must populate."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "47f455cd139b0e8498e13ce0d91de9741ebddf99",
+    "verified_paths": [
+      "/",
+      "README.md",
+      "SKILL.md",
+      "library.yaml"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

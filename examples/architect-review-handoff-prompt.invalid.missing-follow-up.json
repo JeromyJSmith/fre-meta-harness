@@ -1,0 +1,79 @@
+{
+  "prompt_schema_version": "1.0.0",
+  "handoff_id": "HANDOFF-20260521-BADF",
+  "artifact_type": "architect_review_handoff_prompt",
+  "producer_run": {
+    "source_prompt_id": "PROMPT-20260521-RUNTIME-ACTIVATION",
+    "source_report_path": "evaluation/copilot-ratchet-report.json",
+    "source_commit_hash": "823009c41b98b6706d32e2cf4ab9530fc13eee47",
+    "kept_or_blocked": "kept",
+    "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+  },
+  "consumer_agent": {
+    "name": "copilot",
+    "surface": "gh_copilot_p",
+    "invocation": "gh copilot -p"
+  },
+  "handoff_goal": {
+    "objective": "Review the previous run.",
+    "why_now": "The next agent needs a handoff.",
+    "best_next_slice": "Generate another prompt."
+  },
+  "review_scope": {
+    "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
+    "allowed_paths": [
+      "evaluation/**"
+    ],
+    "disallowed_paths": [
+      "external/**"
+    ],
+    "primary_focus": [
+      "runtime truth"
+    ],
+    "anti_goals": [
+      "broadening scope"
+    ]
+  },
+  "required_inputs": {
+    "report_artifacts": [
+      "evaluation/copilot-ratchet-report.json"
+    ],
+    "runtime_proof_artifacts": [
+      "evaluation/tool-health/peer-mesh-local.json"
+    ],
+    "contract_artifacts": [
+      "schemas/copilot-ratchet-report.schema.json"
+    ],
+    "research_artifacts": [
+      "evaluation/research/compiled/source-index.json"
+    ]
+  },
+  "review_protocol": {
+    "ordered_steps": [
+      "Read the prior report."
+    ],
+    "runtime_truth_expectations": [
+      "Check runtime truth."
+    ],
+    "blocker_expectations": [
+      "Check blockers."
+    ],
+    "freshness_expectations": [
+      "Check freshness."
+    ],
+    "command_evidence_expectations": [
+      "Check commands."
+    ]
+  },
+  "validation_loop": {
+    "checks": [
+      "Validate the report."
+    ],
+    "rerun_policy": "Repeat until done."
+  },
+  "expected_outputs": {
+    "review_report_fields": [
+      "status"
+    ]
+  }
+}

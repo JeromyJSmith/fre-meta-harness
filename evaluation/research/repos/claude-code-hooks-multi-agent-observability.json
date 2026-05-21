@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "repo_research",
+  "repo_id": "claude-code-hooks-multi-agent-observability",
+  "upstream_repo": "https://github.com/disler/claude-code-hooks-multi-agent-observability",
+  "lane_classification": "core",
+  "status": "completed",
+  "repository_purpose": "Real-time multi-agent observability stack that captures hook events, stores them durably, and streams them to a live dashboard.",
+  "upstream_architecture": {
+    "runtime": [
+      "Bun server",
+      "SQLite",
+      "WebSocket client",
+      "Python hook scripts via uv"
+    ],
+    "layout": [
+      "apps/server/",
+      "apps/client/",
+      ".claude/hooks/",
+      ".claude/agents/",
+      "scripts/",
+      "specs/"
+    ],
+    "notable_files": [
+      "README.md",
+      ".env.sample",
+      ".mcp.json.firecrawl_7k.sample",
+      "justfile"
+    ]
+  },
+  "findings": [
+    "The key reusable primitive is the event pipeline (`hook script -> HTTP POST -> SQLite -> WebSocket`), not the Vue dashboard itself.",
+    "Session boundaries, event-type filtering, and top-level forwarding of fields like `tool_name`, `tool_use_id`, and `agent_id` give the parent enough structure to define a durable ingest contract.",
+    "The upstream repo already includes stop-hook guards against self-referential observability loops, which is relevant to the parent no-fake-green doctrine."
+  ],
+  "capability_rows": [
+    {
+      "capability_id": "claude-code-hooks-multi-agent-observability",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-multi-agent-observability",
+      "upstream_feature_name": "hook event ingest with session-correlated telemetry",
+      "parent_surface_type": "observability_plane",
+      "target_contract_surface": "contracts/observability-ingest.yaml",
+      "runtime_trigger": "peer_event_emit",
+      "runtime_actor": "mesh_verifier",
+      "validation_method": "Validate event emission, session start/end markers, correlation fields, durable ingest, and queryable swimlane views before observability claims are promoted.",
+      "evidence_artifact": "examples/observability-ingest.valid.json",
+      "blocker_or_dependency": "Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.",
+      "source_refs": [
+        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
+      ],
+      "parent_lane_classification": "core"
+    }
+  ],
+  "parent_placement": {
+    "surfaces": [
+      "contracts/observability-event.yaml",
+      "contracts/observability-ingest.yaml",
+      "evaluation/tool-health/status.json",
+      "evaluation/research/compiled/"
+    ],
+    "trigger_logic": [
+      "Emit events on prompt, tool, session, and subagent lifecycle boundaries.",
+      "Require ingest availability or an exact blocked state before claiming multi-agent observability."
+    ],
+    "actor_logic": [
+      "Mesh verifier owns correlated ingest and promotion-time trace review.",
+      "Emitters stay decoupled from storage so the parent can swap local sinks without changing event semantics."
+    ],
+    "validation_summary": [
+      "Require durable storage plus queryable session and event filters.",
+      "Require explicit stop/session-end evidence so runs do not look green only because traces ended silently."
+    ],
+    "evidence_artifacts": [
+      "examples/observability-ingest.valid.json",
+      "evaluation/tool-health/status.json"
+    ]
+  },
+  "overlaps": [
+    "Hook-policy packet supplies the event taxonomy and fail-loud validators.",
+    "Reports and artifact-registry Notion docs explain how telemetry should feed run reports and scorecards."
+  ],
+  "blockers": [
+    "Live ingest depends on a local or remote sink actually being configured; without that, only fixture or schema evidence is truthful."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+      "evidence_type": "local_authority",
+      "note": "Explains how reports, scorecards, and summaries should align."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "evidence_type": "local_authority",
+      "note": "Defines report and evaluation artifacts as governed outputs."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents event pipeline architecture, SQLite/WebSocket stack, hook scripts, and session/query behavior."
+    }
+  ],
+  "github_verification": {
+    "verified_at": "2026-05-21",
+    "verified_commit": "8a6e5cf795df50767cea7123703751282a819697",
+    "verified_paths": [
+      "/",
+      "README.md"
+    ],
+    "note": "GitHub due diligence pinned the cited upstream files to the verified commit snapshot used for this packet."
+  }
+}

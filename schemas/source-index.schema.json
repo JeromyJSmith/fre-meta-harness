@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/source-index.schema.json",
+  "title": "Compiled Source Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_type",
+    "status",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "packet_type": {
+      "type": "string",
+      "const": "compiled_source_index"
+    },
+    "status": {
+      "type": "string",
+      "const": "refreshed"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "ref",
+        "evidence_type",
+        "used_by_packets",
+        "notes"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "local_notion_doc",
+            "github_readme",
+            "github_file",
+            "parent_contract"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 3
+        },
+        "evidence_type": {
+          "type": "string",
+          "enum": [
+            "local_authority",
+            "transcript_context_summary",
+            "repo_doc",
+            "repo_runtime_entrypoint",
+            "repo_manifest",
+            "skill_runtime",
+            "local_gap_placeholder",
+            "task_capture",
+            "local_registry",
+            "task_stub",
+            "parent_contract"
+          ]
+        },
+        "video_evidence_strength": {
+          "type": "string",
+          "enum": [
+            "transcript_only",
+            "transcript_plus_context_summary",
+            "task_capture_without_terminal_frames",
+            "task_stub_without_terminal_frames",
+            "terminal_or_frame_verified"
+          ]
+        },
+        "used_by_packets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 5
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "github_readme"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^https://github.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/.+$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "github_file"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^https://github.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/.+$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "evidence_type": {
+                "const": "transcript_context_summary"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "video_evidence_strength"
+            ],
+            "properties": {
+              "video_evidence_strength": {
+                "const": "transcript_plus_context_summary"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "evidence_type": {
+                "const": "task_capture"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "video_evidence_strength"
+            ],
+            "properties": {
+              "video_evidence_strength": {
+                "const": "task_capture_without_terminal_frames"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "evidence_type": {
+                "const": "task_stub"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "video_evidence_strength"
+            ],
+            "properties": {
+              "video_evidence_strength": {
+                "const": "task_stub_without_terminal_frames"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

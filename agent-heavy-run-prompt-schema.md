@@ -17,3 +17,16 @@ Required blocks:
 10. `report_contract`
 
 Every heavy or bounded parent-wrapper prompt must map back to this same schema.
+
+When the run touches runtime activation or runtime-proof hardening, the
+`report_contract` block must also name:
+
+- runtime-truth fields
+- blocker fields
+- freshness fields
+- score-saturation fields
+- command-evidence fields
+
+When an architect or research run is expected to hand work to a follow-on
+agent, the report contract should also name follow-up prompt fields and emit a
+handoff artifact that conforms to `architect-review-handoff-prompt.schema.json`.

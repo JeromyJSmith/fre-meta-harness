@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "topic_research",
+  "topic_id": "execution-substrates",
+  "lane_classification": "gated",
+  "status": "completed",
+  "related_repo_ids": [
+    "agent-sandbox-skill",
+    "bowser",
+    "mac-mini-agent",
+    "just-prompt"
+  ],
+  "synthesized_findings": [
+    "The lane taxonomy that survives review is: core (peer mesh, distribution, hook policy, observability), gated (browser validation, model arbitration), deployment_specific (Mac device sidecar), blocked_with_exact_dependency (sandbox execution), and reference (fork skill, infinite loop).",
+    "The local Risks and Controls and Evaluation Boundary pages do not preserve detailed content beyond titles, so exact substrate boundaries had to be grounded in repo evidence and the parent capability matrix.",
+    "Useful infrastructure should be classified by exact dependency and blast radius, not by vague non-governed framing."
+  ],
+  "doctrine_implications": [
+    "Make blocked lanes name the exact missing dependency.",
+    "Keep deployment-specific lanes separate from the portable core so the parent wrapper stays transportable.",
+    "Record reference lanes when they are informative but non-core, rather than deleting them and losing provenance."
+  ],
+  "unresolved_ambiguities": [
+    "The local risk/evaluation docs are placeholders, so a future pass should replace them with detailed doctrine if this topic becomes implementation-facing."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
+      "evidence_type": "local_gap_placeholder",
+      "note": "Only a title is stored locally."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
+      "evidence_type": "local_gap_placeholder",
+      "note": "Only a title is stored locally."
+    },
+    {
+      "kind": "parent_contract",
+      "ref": "contracts/capability-matrix.yaml",
+      "evidence_type": "parent_contract",
+      "note": "Current parent placement contract for core and adjacent capability lanes."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Exact sandbox dependency source."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Browser-lane dependency source."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Deployment-specific device-sidecar source."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Gated model-arbitration source."
+    }
+  ]
+}

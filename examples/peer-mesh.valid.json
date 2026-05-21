@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-mesh",
+  "scope": "portable_parent_wrapper",
+  "doctrine": {
+    "peer_mesh_is_core": true,
+    "topology": "flat_peer_mesh",
+    "orchestration_style": "peer_to_peer",
+    "dynamic_membership": true,
+    "same_host_mode": "same_host",
+    "cross_device_mode": "cross_device"
+  },
+  "contract_surfaces": [
+    "contracts/peer-message.yaml",
+    "contracts/peer-lifecycle.yaml",
+    "contracts/observability-event.yaml",
+    "contracts/observability-ingest.yaml",
+    "contracts/policy-decision.yaml",
+    "contracts/library-distribution.yaml",
+    "contracts/benchmark-emission.yaml",
+    "contracts/peer-mesh-runtime.yaml",
+    "contracts/agent-role-contract.yaml",
+    "contracts/hook-manifest.yaml",
+    "contracts/capability-matrix.yaml"
+  ],
+  "protocol": {
+    "required_operations": [
+      "list_agents",
+      "send_command",
+      "send_prompt",
+      "await_response"
+    ],
+    "optional_operations": [],
+    "required_completion_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "message_contract": "contracts/peer-message.yaml",
+    "correlation_id_required": true,
+    "explicit_completion_required": true,
+    "operation_contracts": [
+      {
+        "operation": "list_agents",
+        "message_flow": "discovery",
+        "requires_response": true,
+        "runtime_modes": [
+          "same_host",
+          "cross_device"
+        ]
+      },
+      {
+        "operation": "send_command",
+        "message_flow": "delegated_execution",
+        "requires_response": true,
+        "runtime_modes": [
+          "same_host",
+          "cross_device"
+        ]
+      },
+      {
+        "operation": "send_prompt",
+        "message_flow": "delegated_reasoning",
+        "requires_response": true,
+        "runtime_modes": [
+          "same_host",
+          "cross_device"
+        ]
+      },
+      {
+        "operation": "await_response",
+        "message_flow": "completion_check",
+        "requires_response": false,
+        "runtime_modes": [
+          "same_host",
+          "cross_device"
+        ]
+      }
+    ]
+  },
+  "runtime_boundary": {
+    "auth_token_env": "PI_COMS_NET_AUTH_TOKEN",
+    "pii_redaction_required": true,
+    "loop_budget_per_scenario": 8,
+    "retry_budget_per_message": 2,
+    "mode_refs": [
+      "same_host",
+      "cross_device"
+    ],
+    "failure_mode": "fail_loud"
+  },
+  "verification": {
+    "verification_actor": "mesh_verifier",
+    "verification_hook": "completion-verification",
+    "lifecycle_contract": "contracts/peer-lifecycle.yaml",
+    "observability_contract": "contracts/observability-event.yaml",
+    "observability_ingest_contract": "contracts/observability-ingest.yaml",
+    "policy_contract": "contracts/policy-decision.yaml",
+    "library_distribution_contract": "contracts/library-distribution.yaml",
+    "benchmark_contract": "contracts/benchmark-emission.yaml",
+    "runtime_contract": "contracts/peer-mesh-runtime.yaml",
+    "actor_contract": "contracts/agent-role-contract.yaml",
+    "evidence_artifacts": [
+      "contracts/peer-mesh.yaml",
+      "contracts/peer-message.yaml",
+      "contracts/peer-lifecycle.yaml",
+      "contracts/observability-event.yaml",
+      "contracts/policy-decision.yaml",
+      "contracts/peer-mesh-runtime.yaml",
+      "examples/peer-mesh.valid.json",
+      "tests/validate_parent_wrapper_contract.py"
+    ]
+  }
+}

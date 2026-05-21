@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "topic_research",
+  "topic_id": "peer-mesh",
+  "lane_classification": "core",
+  "status": "completed",
+  "related_repo_ids": [
+    "pi-vs-claude-code",
+    "mac-mini-agent"
+  ],
+  "synthesized_findings": [
+    "Peer mesh is the center of the parent-native orchestration model: flat peers, dynamic membership, same-host plus cross-device runtime modes, and explicit completion exchange.",
+    "The durable parent operations are list, send, get/poll, and await; upstream naming differs slightly (`coms_*`), but the semantic surface is stable across the local research and GitHub README.",
+    "Cross-device mode is a runtime expansion of the same primitive, not a separate orchestration paradigm."
+  ],
+  "doctrine_implications": [
+    "Center `pi-vs-claude-code` as the first-class source for the communication plane in compiled outputs.",
+    "Keep peer membership and completion semantics in contracts, not in tutorial prose or ad hoc prompt habits.",
+    "Treat deployment substrates like Mac Mini Agent as deployment-specific realizations of the mesh rather than the mesh itself."
+  ],
+  "unresolved_ambiguities": [
+    "The local video-context docs cite transcript timestamps but do not store raw terminal frames, so the exact on-screen demo sequence remains transcript/context-summary evidence rather than frame-backed proof.",
+    "The parent normalization from `coms_send`/`coms_await` to `send_prompt`/`await_response` is doctrine-aligned but still an interpretation layer the implementation will need to preserve explicitly."
+  ],
+  "source_refs": [
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+      "evidence_type": "local_authority",
+      "note": "States that Pi-to-Pi should be the communication plane in the harness."
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "evidence_type": "task_capture",
+      "note": "Captures the earlier research task and install-guide framing, not raw durable transcript content."
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
+      "evidence_type": "repo_doc",
+      "note": "Documents four tools, same-host vs network mode, auth token, hop limit, and stale-peer cleanup."
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
+      "evidence_type": "repo_runtime_entrypoint",
+      "note": "Confirms the concrete bootstrap commands for local and networked mesh modes."
+    }
+  ]
+}

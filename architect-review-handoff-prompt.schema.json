@@ -1,0 +1,318 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/architect-review-handoff-prompt.schema.json",
+  "title": "Architect Review Handoff Prompt Schema",
+  "description": "Schema for architect/research agent handoff artifacts that instruct the next agent how to review prior work and emit the next prompt using the governed parent prompt schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt_schema_version",
+    "handoff_id",
+    "artifact_type",
+    "producer_run",
+    "consumer_agent",
+    "handoff_goal",
+    "review_scope",
+    "required_inputs",
+    "review_protocol",
+    "validation_loop",
+    "expected_outputs"
+  ],
+  "properties": {
+    "prompt_schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "handoff_id": {
+      "type": "string",
+      "pattern": "^HANDOFF-[0-9]{8}-[A-Z0-9]{4,}$"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "architect_review_handoff_prompt"
+    },
+    "producer_run": {
+      "$ref": "#/$defs/producer_run"
+    },
+    "consumer_agent": {
+      "$ref": "#/$defs/consumer_agent"
+    },
+    "handoff_goal": {
+      "$ref": "#/$defs/handoff_goal"
+    },
+    "review_scope": {
+      "$ref": "#/$defs/review_scope"
+    },
+    "required_inputs": {
+      "$ref": "#/$defs/required_inputs"
+    },
+    "review_protocol": {
+      "$ref": "#/$defs/review_protocol"
+    },
+    "validation_loop": {
+      "$ref": "#/$defs/validation_loop"
+    },
+    "expected_outputs": {
+      "$ref": "#/$defs/expected_outputs"
+    }
+  },
+  "$defs": {
+    "string_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "path_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "producer_run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_prompt_id",
+        "source_report_path",
+        "source_commit_hash",
+        "kept_or_blocked",
+        "repo_root"
+      ],
+      "properties": {
+        "source_prompt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_report_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_commit_hash": {
+          "type": "string",
+          "minLength": 7
+        },
+        "kept_or_blocked": {
+          "type": "string",
+          "enum": ["kept", "blocked"]
+        },
+        "repo_root": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "consumer_agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "surface",
+        "invocation"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surface": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invocation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "handoff_goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "objective",
+        "why_now",
+        "best_next_slice"
+      ],
+      "properties": {
+        "objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why_now": {
+          "type": "string",
+          "minLength": 1
+        },
+        "best_next_slice": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "review_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repo_root",
+        "allowed_paths",
+        "disallowed_paths",
+        "primary_focus",
+        "anti_goals"
+      ],
+      "properties": {
+        "repo_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowed_paths": {
+          "$ref": "#/$defs/path_list"
+        },
+        "disallowed_paths": {
+          "$ref": "#/$defs/path_list"
+        },
+        "primary_focus": {
+          "$ref": "#/$defs/string_list"
+        },
+        "anti_goals": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
+    "required_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "report_artifacts",
+        "runtime_proof_artifacts",
+        "contract_artifacts",
+        "research_artifacts"
+      ],
+      "properties": {
+        "report_artifacts": {
+          "$ref": "#/$defs/path_list"
+        },
+        "runtime_proof_artifacts": {
+          "$ref": "#/$defs/path_list"
+        },
+        "contract_artifacts": {
+          "$ref": "#/$defs/path_list"
+        },
+        "research_artifacts": {
+          "$ref": "#/$defs/path_list"
+        }
+      }
+    },
+    "review_protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ordered_steps",
+        "runtime_truth_expectations",
+        "blocker_expectations",
+        "freshness_expectations",
+        "command_evidence_expectations"
+      ],
+      "properties": {
+        "ordered_steps": {
+          "$ref": "#/$defs/string_list"
+        },
+        "runtime_truth_expectations": {
+          "$ref": "#/$defs/string_list"
+        },
+        "blocker_expectations": {
+          "$ref": "#/$defs/string_list"
+        },
+        "freshness_expectations": {
+          "$ref": "#/$defs/string_list"
+        },
+        "command_evidence_expectations": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
+    "validation_loop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checks",
+        "rerun_policy"
+      ],
+      "properties": {
+        "checks": {
+          "$ref": "#/$defs/string_list"
+        },
+        "rerun_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "follow_up_prompt_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_path",
+        "target_schema_ref",
+        "target_template_ref",
+        "must_be_inline_ready",
+        "must_preserve_runtime_truth_fields",
+        "must_preserve_blocker_fields",
+        "must_preserve_freshness_fields",
+        "must_preserve_command_evidence_fields"
+      ],
+      "properties": {
+        "artifact_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_schema_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.schema.json"
+        },
+        "target_template_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.template.yaml"
+        },
+        "must_be_inline_ready": {
+          "type": "boolean",
+          "const": true
+        },
+        "must_preserve_runtime_truth_fields": {
+          "type": "boolean",
+          "const": true
+        },
+        "must_preserve_blocker_fields": {
+          "type": "boolean",
+          "const": true
+        },
+        "must_preserve_freshness_fields": {
+          "type": "boolean",
+          "const": true
+        },
+        "must_preserve_command_evidence_fields": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "expected_outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_report_fields",
+        "follow_up_prompt_artifact"
+      ],
+      "properties": {
+        "review_report_fields": {
+          "$ref": "#/$defs/string_list"
+        },
+        "follow_up_prompt_artifact": {
+          "$ref": "#/$defs/follow_up_prompt_artifact"
+        }
+      }
+    }
+  }
+}

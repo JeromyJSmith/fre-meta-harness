@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/library-distribution.schema.json",
+  "title": "Parent Library Distribution Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "distribution_plane",
+    "typed_units",
+    "propagation",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-library-distribution"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "distribution_plane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "distribution_model",
+        "private_first",
+        "source_catalog",
+        "reference_contract"
+      ],
+      "properties": {
+        "distribution_model": {
+          "type": "string",
+          "minLength": 3
+        },
+        "private_first": {
+          "type": "boolean",
+          "const": true
+        },
+        "source_catalog": {
+          "type": "string",
+          "const": "library.yaml"
+        },
+        "reference_contract": {
+          "type": "string",
+          "const": "contracts/capability-matrix.yaml"
+        }
+      }
+    },
+    "typed_units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_unit_types",
+        "reference_prefixes",
+        "source_contracts"
+      ],
+      "properties": {
+        "required_unit_types": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "skill" } },
+            { "contains": { "const": "prompt" } },
+            { "contains": { "const": "agent" } },
+            { "contains": { "const": "policy" } },
+            { "contains": { "const": "validator" } },
+            { "contains": { "const": "benchmark_recipe" } }
+          ]
+        },
+        "reference_prefixes": {
+          "type": "array",
+          "minItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["unit_type", "reference_prefix"],
+            "properties": {
+              "unit_type": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_\\-]+$"
+              },
+              "reference_prefix": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_\\-]*:$"
+              }
+            }
+          }
+        },
+        "source_contracts": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "propagation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "propagation_triggers",
+        "runtime_modes",
+        "propagation_strategy",
+        "copy_free_distribution_required",
+        "benchmark_recipe_distribution_required"
+      ],
+      "properties": {
+        "propagation_triggers": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]+$"
+          },
+          "allOf": [
+            { "contains": { "const": "session_start" } },
+            { "contains": { "const": "peer_join" } }
+          ]
+        },
+        "runtime_modes": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["same_host", "cross_device"]
+          }
+        },
+        "propagation_strategy": {
+          "type": "string",
+          "minLength": 3
+        },
+        "copy_free_distribution_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "benchmark_recipe_distribution_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_contract_surfaces",
+        "missing_reference_mode",
+        "promotion_requires_versioned_refs"
+      ],
+      "properties": {
+        "required_contract_surfaces": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "missing_reference_mode": {
+          "type": "string",
+          "const": "fail_loud"
+        },
+        "promotion_requires_versioned_refs": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  }
+}

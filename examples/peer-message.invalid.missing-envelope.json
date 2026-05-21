@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-peer-message",
+  "scope": "portable_parent_wrapper",
+  "operations": {
+    "discovery_operations": [
+      "list_agents"
+    ],
+    "command_operations": [
+      "send_command"
+    ],
+    "prompt_operations": [
+      "send_prompt"
+    ],
+    "await_operations": [
+      "await_response"
+    ]
+  },
+  "completion": {
+    "required_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "explicit_token_required": true,
+    "terminal_tokens": [
+      "done",
+      "failed",
+      "needs-human"
+    ]
+  },
+  "retry_boundary": {
+    "max_retries_per_message": 2,
+    "escalation_role": "mesh_verifier",
+    "escalation_outcome": "ask"
+  },
+  "redaction_boundary": {
+    "prod_to_dev_requires_redaction": true,
+    "blocked_payload_classes": [
+      "pii",
+      "secrets"
+    ],
+    "uncertain_redaction_outcome": "ask"
+  }
+}

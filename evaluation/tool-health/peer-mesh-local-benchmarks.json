@@ -1,0 +1,50 @@
+{
+  "run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+  "generated_at": "2026-05-21T22:18:42Z",
+  "groups": [
+    "library_distribution",
+    "observability_ingest",
+    "peer_mesh_regression"
+  ],
+  "tuples": [
+    {
+      "benchmark_id": "bench-51412b87-0b32-4d82-a28a-9f2631ab9d48",
+      "benchmark_group": "peer_mesh_regression",
+      "contract_surface": "contracts/peer-mesh.yaml",
+      "scenario_id": "pi-vs-claude-code-same-host-local",
+      "run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+      "status": "pass",
+      "measurement_ref": "evaluation/tool-health/peer-mesh-local.json",
+      "baseline_run_ref": "peer-mesh-local/peer-mesh-local-20260521T214941Z",
+      "candidate_run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+      "delta_summary": "Bounded same-host bootstrap, discovery, prompt, command, and await-response completed.",
+      "regression_detected": false
+    },
+    {
+      "benchmark_id": "bench-12689534-e36e-4c1d-8d88-05a18966a43f",
+      "benchmark_group": "observability_ingest",
+      "contract_surface": "contracts/observability-ingest.yaml",
+      "scenario_id": "pi-vs-claude-code-same-host-local",
+      "run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+      "status": "pass",
+      "measurement_ref": "evaluation/tool-health/peer-mesh-local-events.jsonl",
+      "baseline_run_ref": "peer-mesh-local/peer-mesh-local-20260521T214941Z",
+      "candidate_run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+      "delta_summary": "Required same-host session, message, completion, and policy events were emitted into the bounded local sink.",
+      "regression_detected": false
+    },
+    {
+      "benchmark_id": "bench-e72e34e6-9321-47ea-b631-a8bbbd9efeda",
+      "benchmark_group": "library_distribution",
+      "contract_surface": "contracts/library-distribution.yaml",
+      "scenario_id": "pi-vs-claude-code-same-host-local",
+      "run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+      "status": "pass",
+      "measurement_ref": "library.yaml",
+      "baseline_run_ref": "peer-mesh-local/peer-mesh-local-20260521T214941Z",
+      "candidate_run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+      "delta_summary": "Same-host peers resolved typed prompt, skill, agent, policy, validator, and benchmark recipe refs from the governed library catalog.",
+      "regression_detected": false
+    }
+  ]
+}

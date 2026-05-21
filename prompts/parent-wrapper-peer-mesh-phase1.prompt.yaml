@@ -1,0 +1,102 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260520-PEERMESH1"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Implement the first real parent-native communication slice so the harness has governed peer messaging, lifecycle events, policy decisions, and observability event surfaces instead of prose only."
+  repo_scope: "/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+  task_scope: "Parent wrapper contracts, schemas, examples, validator/scorer wiring, minimal supporting docs, and refreshed proof artifacts for the Phase 1 peer-mesh communication slice only."
+current_verified_state:
+  facts:
+    - "Parent wrapper root is /Volumes/PixelTable/VW_iTwin_Bridge/meta and this is the standalone published fre-meta-harness repo."
+    - "The governed heavy-run prompt contract already exists and prompt artifacts belong under /Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts."
+    - "Parent-native contracts already exist for peer-mesh, agent-role-contract, hook-manifest, and capability-matrix."
+    - "The current validator and scorer pass, but the latest review found brittle closed-world checks that hardcode exact role IDs, hook IDs, capability IDs, and fixed temporary tool-health statuses."
+    - "The user wants agent communication implemented first and wants a real bounded infrastructure slice, not another broad theory pass."
+    - "The Notion packet under /Volumes/PixelTable/VW_iTwin_Bridge/meta/docs/NOTION-DOCS contains Pi-to-Pi, peer mesh, hook, observability, and capability-registry design guidance."
+    - "The parent worktree is already dirty from the previous bounded slice, so this run must stay surgical and avoid unrelated churn."
+hard_rules:
+  environment:
+    - "Use uv for all Python environment, dependency, script, and test execution."
+    - "Do not use pip or create ad hoc venv or virtualenv environments unless uv is first proven insufficient."
+  safety:
+    - "Do not broaden beyond /Volumes/PixelTable/VW_iTwin_Bridge/meta."
+    - "Do not edit imported authority clones under /Volumes/PixelTable/VW_iTwin_Bridge/meta/external."
+    - "Do not rewrite unrelated evaluation dashboards, historical InfraNodus artifacts, or child-repo code."
+    - "Do not create a second parallel prompt system; stay inside the governed parent prompt contract."
+    - "Do not duplicate existing parent-native surfaces when an extension or refactor of the current surfaces is the truthful move."
+  truthfulness:
+    - "No fake green path."
+    - "Do not hardcode exact closed-world ID sets or frozen temporary status values when extensible invariant checks can represent the contract honestly."
+    - "If the communication slice cannot be kept honestly, stop with an exact blocker and fresh evidence."
+allowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/README.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/GOAL.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/program.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/domain_spec.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/library.yaml"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agentics-library.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/AGENTS.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/CLAUDE.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agent-heavy-run-prompt-index.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agent-heavy-run-prompt-schema.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/agent-heavy-run-prompt.template.yaml"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/copilot-prompting-playbook.md"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/prompts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/contracts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/schemas/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/examples/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/expected-failures/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/evaluation/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/promotion/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/runs/**"
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/docs/NOTION-DOCS/**"
+disallowed_paths:
+  paths:
+    - "/Volumes/PixelTable/VW_iTwin_Bridge/meta/external/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/src/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/pixeltable/**"
+    - "/Volumes/PixelTable/VW_iTWIN_Bridge/VW_iTwin_Bridge/vw-plugin/**"
+tasks:
+  ordered_steps:
+    - "Read README.md, GOAL.md, program.md, domain_spec.md, library.yaml, agentics-library.md, agent-heavy-run-prompt-schema.md, copilot-prompting-playbook.md, tests/validate_parent_wrapper_contract.py, and scripts/score-parent-wrapper.py."
+    - "Read the parent-relevant Notion authorities for this slice only: Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md, Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md, Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md, Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md, Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md, agent-role-contract schema json dde77c3f44214c279f87a4215713c9bf.md, and Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md."
+    - "Capture the true baseline by running the parent validator and scorer before changes, and explicitly identify the current brittle exact-set and exact-status checks that must be relaxed."
+    - "Implement the first real communication contract family as parent-native governed surfaces. Add or update only the truthful minimum set needed for this slice: contracts/peer-message.yaml, schemas/peer-message.schema.json, contracts/peer-lifecycle.yaml, schemas/peer-lifecycle.schema.json, contracts/observability-event.yaml, schemas/observability-event.schema.json, contracts/policy-decision.yaml, schemas/policy-decision.schema.json, contracts/peer-mesh-runtime.yaml, and schemas/peer-mesh-runtime.schema.json."
+    - "Where the current peer-mesh, agent-role-contract, hook-manifest, and capability-matrix surfaces already overlap this slice, refactor or extend them instead of creating redundant parent surfaces."
+    - "Make the communication contracts explicit about the core runtime primitives: list_agents, send_command, send_prompt, await_response, message correlation IDs, explicit completion tokens, retry or escalation boundaries, same-host mode, cross-device mode, and runtime actor roles."
+    - "Make the observability and policy contracts explicit about event ingestion and safety boundaries: lifecycle event types, message send and receive events, policy decision outcomes allow or block or ask, prod-to-dev redaction boundary, and peer-swimlane observability expectations."
+    - "Update tests/validate_parent_wrapper_contract.py and scripts/score-parent-wrapper.py so they validate minimum required invariants and extensible contract truth, not closed-world exact sets. The validator may require specific required fields and required capabilities, but it must not fail simply because additional valid capabilities, roles, hooks, or improved tool-health states exist."
+    - "Add truthful valid and invalid examples for the new communication contract family and register any expected failures needed for the validator."
+    - "Refresh only the minimum supporting docs needed so the new communication surfaces are discoverable from the parent wrapper, and keep the explanation focused on this Phase 1 slice."
+    - "Run validation, scorer, and git diff hygiene. If the slice is kept, refresh evaluation and promotion artifacts and append exactly one compact iteration row describing this kept communication slice. If it is blocked, preserve the blocked state honestly with exact evidence."
+validation_loop:
+  checks:
+    - "Run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/validate_parent_wrapper_contract.py"
+    - "Run uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json"
+    - "Validate any new examples against their new schemas."
+    - "Run git --no-pager diff --check from /Volumes/PixelTable/VW_iTwin_Bridge/meta"
+    - "Treat evaluation/validation-report.json, evaluation/metrics-latest.json, promotion/readiness.json, and runs/iterations.jsonl as the primary durable proof surfaces if the slice is kept."
+  rerun_policy: "Repeat the bounded fix and validate loop until the communication slice passes honestly or the blocker is exact and proven. Do not broaden into the next absorption wave during this run."
+success_criteria:
+  best_case: "The parent wrapper gains explicit governed communication, lifecycle, observability-event, and policy-decision surfaces; the validator and scorer accept extensible invariant-based truth instead of brittle exact sets; examples and proof artifacts validate cleanly; and one kept iteration records the first real communication slice."
+  acceptable_fallback: "An exact blocker is proven with fresh validator, scorer, and diff evidence showing why truthful communication-slice adoption cannot proceed yet without violating the parent wrapper doctrine."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "baseline score and final score"
+    - "whether exact-set brittleness was removed or narrowed"
+    - "communication contract surfaces added or updated"
+    - "new schemas and example artifacts added"
+    - "validator and scorer changes"
+    - "proof artifact paths refreshed"
+    - "iteration ledger entry appended or exact blocker"

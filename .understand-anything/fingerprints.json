@@ -1,0 +1,483 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "823009c41b98b6706d32e2cf4ab9530fc13eee47",
+  "generatedAt": "2026-05-21T06:38:35.316Z",
+  "files": {
+    "agentics-library.md": {
+      "filePath": "agentics-library.md",
+      "contentHash": "53b3f57d91f4b2f8f7518563b58e7eeabe13d40b56d93363405887d1cd9f724d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md": {
+      "filePath": "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "contentHash": "6b92fd127d05f63843cf770b1121112532370d4227cf51f9f6cd6a179174c08e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md": {
+      "filePath": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "contentHash": "da06bab18c93e4ba2c5d0b0c1e916858aad9ca294c1051aa75b0481357cd2a01",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 390,
+      "hasStructuralAnalysis": true
+    },
+    "docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md": {
+      "filePath": "docs/NOTION-DOCS/Pi Agent workflow + Disler repo audit 3bc3f40b622a4488bf6124ef872d06b6.md",
+      "contentHash": "bc056599f9181653348adf02687c323cd00f8b6bfbe6f2f2aa425bc0048e1a8e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 766,
+      "hasStructuralAnalysis": true
+    },
+    "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md": {
+      "filePath": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "contentHash": "cc57e7e01ae209aec10e85c5d848fabd6d9ba04cb5dd38fb660f67cb0c67916d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 765,
+      "hasStructuralAnalysis": true
+    },
+    "GOAL.md": {
+      "filePath": "GOAL.md",
+      "contentHash": "850498c083d7c492f5eae7093de3cba2b23d5a6e7071520a5ec4b0835fdcd849",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 340,
+      "hasStructuralAnalysis": true
+    },
+    "library.yaml": {
+      "filePath": "library.yaml",
+      "contentHash": "7120fdd33605c1168afc85982e7c196c9504cfe4e174e3b1b6a6af0982b99081",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 152,
+      "hasStructuralAnalysis": true
+    },
+    "program.md": {
+      "filePath": "program.md",
+      "contentHash": "5baaf90daef5bd3fac3e7f037794d30971dc0454555a030806e48fabfff53d08",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 200,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "edbde38e50e44c5ee415fb61ab8c6ed389b11adc5ec54bb0569419d5b0412a24",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 191,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/score-parent-wrapper.py": {
+      "filePath": "scripts/score-parent-wrapper.py",
+      "contentHash": "298cf0f754bc756e350f130450097fe703b61b08fd6504e2f2b56396ff73107a",
+      "functions": [
+        {
+          "name": "require_subset_score",
+          "params": [
+            "required",
+            "actual"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "load_json",
+          "params": [
+            "path"
+          ],
+          "returnType": "dict | None",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "load_iterations",
+          "params": [],
+          "returnType": "tuple[list[dict], list[str]]",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "load_report_schema",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "load_iteration_schema",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "validate_report",
+          "params": [],
+          "returnType": "tuple[dict | None, list[str]]",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "is_mutable_path",
+          "params": [
+            "path"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "is_doc_only_path",
+          "params": [
+            "path"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "is_substantive_path",
+          "params": [
+            "path"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "row_has_substantive_change",
+          "params": [
+            "row"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "load_tool_health",
+          "params": [],
+          "returnType": "dict | None",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "parent_native_surface_refresh",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 74
+        },
+        {
+          "name": "real_iterations",
+          "params": [
+            "rows"
+          ],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "consecutive_non_improving_cycles",
+          "params": [
+            "score_history"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "artifact_span_seconds",
+          "params": [
+            "paths"
+          ],
+          "returnType": "float | None",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "validator_health",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "report_completeness",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "metric_decision_truth",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "ratchet_execution",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "non_dry_cycle_depth",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "plateau_or_blocker_truth",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "artifact_refresh",
+          "params": [],
+          "returnType": "tuple[float, dict]",
+          "exported": true,
+          "lineCount": 58
+        },
+        {
+          "name": "build_score",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "date"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "jsonschema",
+          "specifiers": [
+            "Draft202012Validator"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "yaml"
+          ]
+        }
+      ],
+      "exports": [
+        "require_subset_score",
+        "load_json",
+        "load_iterations",
+        "load_report_schema",
+        "load_iteration_schema",
+        "validate_report",
+        "is_mutable_path",
+        "is_doc_only_path",
+        "is_substantive_path",
+        "row_has_substantive_change",
+        "load_tool_health",
+        "parent_native_surface_refresh",
+        "real_iterations",
+        "consecutive_non_improving_cycles",
+        "artifact_span_seconds",
+        "validator_health",
+        "report_completeness",
+        "metric_decision_truth",
+        "ratchet_execution",
+        "non_dry_cycle_depth",
+        "plateau_or_blocker_truth",
+        "artifact_refresh",
+        "build_score",
+        "main"
+      ],
+      "totalLines": 608,
+      "hasStructuralAnalysis": true
+    },
+    "tests/validate_parent_wrapper_contract.py": {
+      "filePath": "tests/validate_parent_wrapper_contract.py",
+      "contentHash": "64b33140c88c517be4c0f0a68978381d43f5b4dada901f4483f91005eaa988cb",
+      "functions": [
+        {
+          "name": "parse_markdown_contract",
+          "params": [
+            "path"
+          ],
+          "returnType": "tuple[dict, dict]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "load_jsonl",
+          "params": [
+            "path"
+          ],
+          "returnType": "tuple[list[dict], list[str]]",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "require_subset",
+          "params": [
+            "label",
+            "required",
+            "actual"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "status_at_least",
+          "params": [
+            "status",
+            "minimum"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "validate_examples",
+          "params": [],
+          "returnType": "list[dict]",
+          "exported": true,
+          "lineCount": 58
+        },
+        {
+          "name": "validate_capability_metrics_contract",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "validate_tool_health_truth",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 82
+        },
+        {
+          "name": "validate_parent_native_contracts",
+          "params": [],
+          "returnType": "dict",
+          "exported": true,
+          "lineCount": 177
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 221
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "date"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "yaml"
+          ]
+        },
+        {
+          "source": "jsonschema",
+          "specifiers": [
+            "Draft202012Validator"
+          ]
+        }
+      ],
+      "exports": [
+        "parse_markdown_contract",
+        "load_jsonl",
+        "require_subset",
+        "status_at_least",
+        "validate_examples",
+        "validate_capability_metrics_contract",
+        "validate_tool_health_truth",
+        "validate_parent_native_contracts",
+        "main"
+      ],
+      "totalLines": 765,
+      "hasStructuralAnalysis": true
+    }
+  }
+}
