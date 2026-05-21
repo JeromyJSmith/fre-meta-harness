@@ -1,32 +1,32 @@
 {
   "status": "running",
   "metric_decision": "repaired",
-  "metric_reason": "This run activated the first truthful same-host pi-vs-claude-code runtime lane and repaired the scorer so runtime credit now depends on fresh same-host evidence instead of contract presence alone.",
+  "metric_reason": "This run formalized the parent-only triad governance core, kept runtime-mesh separation explicit, and added a governed extension-request plus Markdown companion handoff path without faking new runtime activation.",
   "metric_review": {
-    "baseline_total_score": 100.0,
-    "baseline_outcome_score": 100.0,
-    "baseline_instrument_score": 100.0,
-    "final_total_score": 100.0,
-    "final_outcome_score": 100.0,
-    "final_instrument_score": 100.0,
+    "baseline_total_score": 98.5,
+    "baseline_outcome_score": 98,
+    "baseline_instrument_score": 100,
+    "final_total_score": 98.5,
+    "final_outcome_score": 98,
+    "final_instrument_score": 100,
     "trustworthy": true,
     "trust_signals": [
-      "The governed report family now has an explicit runtime_truth block instead of leaving runtime activation proof implicit in prose.",
-      "Blocked lane structure, freshness evidence, command-evidence pairing, and score-saturation reporting are now first-class report surfaces.",
-      "The validator and scorer now require the live report to line up with the bounded same-host proof under evaluation/tool-health/peer-mesh-local.*."
+      "The parent now carries explicit orchestrator-validator, research, and architect governance roles instead of leaving them as prose-only workflow assumptions.",
+      "Triad handoffs now require both a structured follow-up artifact and a Markdown companion prompt artifact that points back to machine truth.",
+      "A governed extension-request contract now routes self-extension proposals through the same parent validation and promotion doctrine."
     ],
     "problems_found": [
-      "The report schema did not require a structured runtime-proof block even after the same-host lane became real.",
-      "Blocked-lane exactness, artifact freshness, command/evidence pairing, and score-saturation explanation were still report conventions rather than enforced contract fields."
+      "The parent had runtime proof, report hardening, and handoff surfaces, but it did not yet formalize the three governance roles that were actually driving the work.",
+      "Prompt and handoff surfaces still lacked a first-class governed extension-request path and a reusable governed agent profile reference."
     ],
     "repair_actions": [
-      "Extended the ratchet report and iteration schemas with runtime truth, blocker precision, freshness, and score-saturation structures.",
-      "Updated the validator and scorer so the live report must match same-host proof artifacts, blocked follow-on lanes, and refreshed evidence.",
-      "Appended a kept schema-hardening ledger row that records the bounded runtime-truth audit trail without pretending a new runtime lane was activated."
+      "Added contracts and schemas for the three-agent topology, governed agent profiles, and agent-extension requests.",
+      "Extended the heavy-run prompt and architect handoff family to require triad context, handoff consumption, decision-space routing, and a Markdown companion artifact.",
+      "Updated validator coverage, expected failures, library references, and parent docs so the triad slice is enforced rather than implied."
     ]
   },
-  "real_non_dry_cycles_executed": 18,
-  "stop_reason": "one kept schema-hardening slice was completed; the parent improvement program remains open for later governed slices",
+  "real_non_dry_cycles_executed": 19,
+  "stop_reason": "one kept triad-governance slice was completed; the parent improvement program remains open for later governed slices",
   "stop_evidence": {
     "kind": "continuing"
   },
@@ -577,11 +577,11 @@
     {
       "cycle": 17,
       "before_total_score": 98.5,
-      "after_total_score": 100.0,
-      "before_outcome_score": 98.0,
-      "after_outcome_score": 100.0,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "after_total_score": 100,
+      "before_outcome_score": 98,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "README.md",
         "agentics-library.md",
@@ -608,12 +608,12 @@
     },
     {
       "cycle": 18,
-      "before_total_score": 100.0,
-      "after_total_score": 100.0,
-      "before_outcome_score": 100.0,
-      "after_outcome_score": 100.0,
-      "before_instrument_score": 100.0,
-      "after_instrument_score": 100.0,
+      "before_total_score": 100,
+      "after_total_score": 100,
+      "before_outcome_score": 100,
+      "after_outcome_score": 100,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
       "changed_files": [
         "README.md",
         "evaluation/README.md",
@@ -637,6 +637,50 @@
       ],
       "kept": true,
       "summary": "Hardened the governed report and iteration contracts so runtime truth, blocker precision, freshness, and score-saturation explanation are required and auditable."
+    },
+    {
+      "cycle": 19,
+      "before_total_score": 98.5,
+      "after_total_score": 98.5,
+      "before_outcome_score": 98,
+      "after_outcome_score": 98,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "README.md",
+        "agentics-library.md",
+        "library.yaml",
+        "pixeltable-operational-substrate.md",
+        "agent-heavy-run-prompt-schema.md",
+        "agent-heavy-run-prompt.schema.json",
+        "agent-heavy-run-prompt.template.yaml",
+        "architect-review-handoff-prompt-schema.md",
+        "architect-review-handoff-prompt.schema.json",
+        "architect-review-handoff-prompt.template.yaml",
+        "contracts/three-agent-topology.yaml",
+        "contracts/agent-extension-request.yaml",
+        "schemas/governed-agent-profile.schema.json",
+        "schemas/three-agent-topology.schema.json",
+        "schemas/agent-extension-request.schema.json",
+        "examples/architect-review-handoff-prompt.valid.json",
+        "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
+        "examples/three-agent-topology.valid.json",
+        "examples/three-agent-topology.invalid.missing-orchestrator.json",
+        "examples/agent-extension-request.valid.json",
+        "examples/agent-extension-request.invalid.missing-validation-gate.json",
+        "expected-failures/registry.yaml",
+        "prompts/governed-triad-follow-up-prompt.template.md",
+        "tests/validate_parent_wrapper_contract.py",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json"
+      ],
+      "kept": true,
+      "summary": "Formalized the parent-only triad governance core, added governed extension-request routing, and made Markdown companion prompts part of the governed handoff system."
     }
   ],
   "runtime_truth": {
@@ -646,7 +690,7 @@
       {
         "mode_id": "cross_device",
         "status": "blocked",
-        "blocker_dependency": "Cross-device transport requires PI_COMS_NET_AUTH_TOKEN and a declared hub URL.",
+        "blocker_dependency": "Cross-device transport still requires PI_COMS_NET_AUTH_TOKEN and a declared hub URL.",
         "missing_prerequisites": [
           "PI_COMS_NET_AUTH_TOKEN",
           "hub URL"
@@ -655,7 +699,7 @@
           "evaluation/tool-health/status.json",
           "evaluation/tool-health/peer-mesh-local.json"
         ],
-        "exactness_reason": "The bounded same-host proof explicitly marks cross_device blocked rather than silently implying it."
+        "exactness_reason": "The triad slice is governance-only and does not change the authenticated transport boundary."
       }
     ],
     "activation_artifacts": [
@@ -667,8 +711,7 @@
       "evaluation/tool-health/peer-mesh-local-benchmarks.json"
     ],
     "tool_health_evidence": [
-      "evaluation/tool-health/status.json",
-      "evaluation/tool-health/peer-mesh-local.json"
+      "evaluation/tool-health/status.json"
     ],
     "completion_tokens_required": [
       "done",
@@ -686,63 +729,63 @@
     ],
     "mismatch_list": [
       {
-        "mismatch_id": "missing_runtime_proof_structure",
-        "classification": "report_gap",
-        "baseline_gap": "The report schema did not require a structured runtime-proof block even though same-host activation evidence already existed.",
-        "kept_resolution": "The report now carries a runtime_truth object with explicit mode, artifacts, completion tokens, blocked lanes, and command evidence.",
+        "mismatch_id": "missing_formal_orchestrator_validator_role",
+        "classification": "governance_gap",
+        "baseline_gap": "The parent lacked a first-class contract for the orchestrator-validator role.",
+        "kept_resolution": "The triad topology and governed profile schema now define the orchestrator-validator role explicitly.",
         "evidence_refs": [
-          "schemas/copilot-ratchet-report.schema.json",
-          "evaluation/tool-health/peer-mesh-local.json"
+          "contracts/three-agent-topology.yaml",
+          "schemas/governed-agent-profile.schema.json"
         ]
       },
       {
-        "mismatch_id": "missing_blocker_precision_structure",
-        "classification": "report_gap",
-        "baseline_gap": "Blocked runtime modes and follow-on lanes were described informally instead of through exact governed fields.",
-        "kept_resolution": "The report now carries exact blocker_dependency, missing_prerequisites, evidence_refs, and exactness_reason fields.",
+        "mismatch_id": "missing_formal_research_role",
+        "classification": "governance_gap",
+        "baseline_gap": "The research role existed in practice but not as a governed parent profile.",
+        "kept_resolution": "The triad topology now defines research as a bounded parent-governance role with evidence and handoff expectations.",
         "evidence_refs": [
-          "schemas/copilot-ratchet-report.schema.json",
-          "contracts/capability-matrix.yaml"
+          "contracts/three-agent-topology.yaml",
+          "AGENTS.md"
         ]
       },
       {
-        "mismatch_id": "missing_freshness_structure",
-        "classification": "report_gap",
-        "baseline_gap": "Freshness lived in scorer logic but was not represented explicitly inside the report contract.",
-        "kept_resolution": "The report now records artifact freshness evidence directly with artifact_records and max_artifact_span_seconds.",
+        "mismatch_id": "missing_formal_architect_role",
+        "classification": "governance_gap",
+        "baseline_gap": "The architect role had handoff surfaces but no explicit parent topology placement.",
+        "kept_resolution": "The triad topology now binds architect responsibilities to governed prompt and handoff outputs.",
         "evidence_refs": [
-          "schemas/copilot-ratchet-report.schema.json",
-          "evaluation/metrics-latest.json"
+          "contracts/three-agent-topology.yaml",
+          "CLAUDE.md"
         ]
       },
       {
-        "mismatch_id": "missing_runtime_truth_separation",
-        "classification": "report_gap",
-        "baseline_gap": "The report could blur contract presence, bounded runtime, and active runtime into one success-shaped statement.",
-        "kept_resolution": "The report now distinguishes contract_only, bounded_runtime, and active_runtime through runtime_truth.truth_level.",
+        "mismatch_id": "missing_cross_surface_triad_alignment",
+        "classification": "alignment_gap",
+        "baseline_gap": "Docs, schemas, contracts, and examples did not all name the same three governance roles.",
+        "kept_resolution": "Validator-backed triad surfaces now align AGENTS, CLAUDE, prompt schemas, contracts, and examples.",
         "evidence_refs": [
-          "schemas/copilot-ratchet-report.schema.json",
-          "evaluation/tool-health/status.json"
+          "tests/validate_parent_wrapper_contract.py",
+          "examples/three-agent-topology.valid.json"
         ]
       },
       {
-        "mismatch_id": "missing_score_saturation_structure",
-        "classification": "report_gap",
-        "baseline_gap": "A kept slice at a saturated score had no governed place to explain why flat scoring still counted as progress.",
-        "kept_resolution": "The report now records baseline and final scores plus a flat-score explanation in score_saturation.",
+        "mismatch_id": "missing_governed_agent_profile_reuse",
+        "classification": "schema_gap",
+        "baseline_gap": "Triad role shape reuse was not explicit in the topology surfaces.",
+        "kept_resolution": "The topology now points at a reusable governed-agent-profile schema and embeds the same field family per role.",
         "evidence_refs": [
-          "schemas/copilot-ratchet-report.schema.json",
-          "evaluation/metrics-latest.json"
+          "schemas/governed-agent-profile.schema.json",
+          "schemas/three-agent-topology.schema.json"
         ]
       },
       {
-        "mismatch_id": "missing_command_evidence_pairing",
-        "classification": "report_gap",
-        "baseline_gap": "Activation, validation, and tool-health commands were not paired with evidence paths inside the report contract.",
-        "kept_resolution": "The report now records command strings, exit codes, evidence_refs, and bounded scope notes for the kept slice.",
+        "mismatch_id": "missing_markdown_companion_handoff_pattern",
+        "classification": "handoff_gap",
+        "baseline_gap": "Governed handoffs did not yet require an operator-facing Markdown companion prompt artifact.",
+        "kept_resolution": "The prompt and handoff family now requires a Markdown companion artifact alongside the structured prompt artifact.",
         "evidence_refs": [
-          "schemas/copilot-ratchet-report.schema.json",
-          "evaluation/validation-report.json"
+          "architect-review-handoff-prompt.schema.json",
+          "prompts/governed-triad-follow-up-prompt.template.md"
         ]
       }
     ],
@@ -751,81 +794,91 @@
         "lane_id": "just-prompt",
         "classification": "gated",
         "status": "gated",
-        "blocker_dependency": "Requires a real just-prompt runtime plus provider-backed or local-model arbitration wiring.",
+        "blocker_dependency": "Provider-backed arbitration remains gated until a real just-prompt runtime and provider boundary are intentionally activated.",
         "missing_prerequisites": [
           "just-prompt runtime",
-          "provider or local arbitration configuration"
+          "provider credentials or local-model equivalent"
         ],
         "evidence_refs": [
           "contracts/capability-matrix.yaml",
-          "evaluation/tool-health/status.json"
+          "promotion/readiness.json"
         ],
-        "exactness_reason": "The kept schema slice did not change the arbitration dependency boundary."
+        "exactness_reason": "The triad slice does not widen into provider-backed arbitration."
       },
       {
         "lane_id": "agent-sandbox-skill",
         "classification": "blocked_with_exact_dependency",
         "status": "blocked_with_exact_dependency",
-        "blocker_dependency": "Blocked until a real sandbox provider is configured.",
+        "blocker_dependency": "Sandbox execution remains blocked until a real sandbox provider is configured.",
         "missing_prerequisites": [
-          "E2B account or equivalent sandbox provider",
-          "sandbox runtime wiring"
+          "sandbox provider account",
+          "sandbox API key or parity implementation"
         ],
         "evidence_refs": [
           "contracts/capability-matrix.yaml",
-          "evaluation/tool-health/status.json"
+          "examples/agent-role-contract.valid.json"
         ],
-        "exactness_reason": "The kept schema slice tightened blocker reporting and did not soften the sandbox dependency."
+        "exactness_reason": "The triad slice keeps sandbox execution fail-loud and exact."
       },
       {
         "lane_id": "bowser",
         "classification": "gated",
         "status": "gated",
-        "blocker_dependency": "Requires a real browser-validation requirement and a live browser-control surface.",
+        "blocker_dependency": "Browser validation remains gated until a real browser-validation requirement and execution surface are activated.",
         "missing_prerequisites": [
           "browser validation requirement",
-          "browser control runtime"
+          "Playwright CLI or equivalent control surface"
         ],
         "evidence_refs": [
-          "contracts/capability-matrix.yaml"
+          "contracts/capability-matrix.yaml",
+          "promotion/readiness.json"
         ],
-        "exactness_reason": "No browser activation was attempted in this schema-only slice."
+        "exactness_reason": "The triad slice does not claim browser-lane activation."
       },
       {
         "lane_id": "mac-mini-agent",
         "classification": "deployment_specific",
         "status": "deployment_specific",
-        "blocker_dependency": "Requires a deployment-specific macOS sidecar host with granted permissions.",
+        "blocker_dependency": "Device-sidecar execution depends on deployment-specific host and permission topology.",
         "missing_prerequisites": [
-          "paired macOS host",
-          "device permissions"
+          "macOS host",
+          "permission grants",
+          "paired host topology"
         ],
         "evidence_refs": [
-          "contracts/capability-matrix.yaml"
+          "contracts/capability-matrix.yaml",
+          "evaluation/tool-health/status.json"
         ],
-        "exactness_reason": "The sidecar lane remains deployment-specific and was not broadened here."
+        "exactness_reason": "The triad slice preserves the deployment-specific boundary."
       },
       {
         "lane_id": "fork-repository-skill",
         "classification": "reference",
         "status": "reference",
-        "blocker_dependency": "Reference-only overlap with existing delegation and peer-mesh patterns.",
-        "missing_prerequisites": [],
-        "evidence_refs": [
-          "contracts/capability-matrix.yaml"
+        "blocker_dependency": "This lane remains reference-only because it overlaps with existing delegation and peer-mesh surfaces.",
+        "missing_prerequisites": [
+          "evidence of unique capability beyond existing delegation"
         ],
-        "exactness_reason": "The schema-hardening slice preserves the reference-only classification."
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml",
+          "evaluation/research/compiled/gap-placement-map.json"
+        ],
+        "exactness_reason": "The triad slice does not promote reference-only branching patterns."
       },
       {
         "lane_id": "infinite-agentic-loop",
         "classification": "reference",
         "status": "reference",
-        "blocker_dependency": "Reference-only loop pattern kept outside bounded activation.",
-        "missing_prerequisites": [],
-        "evidence_refs": [
-          "contracts/capability-matrix.yaml"
+        "blocker_dependency": "Loop-pattern automation remains reference-only and explicitly bounded out of activation.",
+        "missing_prerequisites": [
+          "bounded loop governance proof",
+          "runtime activation boundary"
         ],
-        "exactness_reason": "The kept slice did not broaden into loop activation."
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml",
+          "evaluation/research/compiled/gap-placement-map.json"
+        ],
+        "exactness_reason": "The triad slice preserves bounded governance instead of implying autonomous loop activation."
       }
     ],
     "command_evidence": {
@@ -835,11 +888,9 @@
           "exit_code": 0,
           "evidence_refs": [
             "evaluation/tool-health/peer-mesh-local.json",
-            "evaluation/tool-health/peer-mesh-local.log",
-            "evaluation/tool-health/peer-mesh-local-events.jsonl",
-            "evaluation/tool-health/peer-mesh-local-benchmarks.json"
+            "evaluation/tool-health/peer-mesh-local-events.jsonl"
           ],
-          "bounded_scope_note": "Refreshes only the bounded same-host peer-mesh lane inside the parent wrapper."
+          "bounded_scope_note": "Revalidates the existing same-host lane while the triad slice lands at the governance layer."
         }
       ],
       "validation_commands": [
@@ -847,10 +898,9 @@
           "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
           "exit_code": 0,
           "evidence_refs": [
-            "evaluation/validation-report.json",
-            "promotion/readiness.json"
+            "evaluation/validation-report.json"
           ],
-          "bounded_scope_note": "Re-validates the governed parent wrapper after the schema/report hardening slice."
+          "bounded_scope_note": "Confirms the triad contracts, examples, docs, and prompt family validate together."
         },
         {
           "command": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
@@ -858,25 +908,17 @@
           "evidence_refs": [
             "evaluation/metrics-latest.json"
           ],
-          "bounded_scope_note": "Re-scores the parent wrapper with the stronger runtime-truth report requirements."
-        },
-        {
-          "command": "git --no-pager diff --check",
-          "exit_code": 0,
-          "evidence_refs": [
-            "evaluation/copilot-ratchet-report.json"
-          ],
-          "bounded_scope_note": "Confirms the kept slice does not leave whitespace or merge-marker damage."
+          "bounded_scope_note": "Refreshes the current parent score after the triad governance slice is recorded."
         }
       ],
       "tool_health_commands": [
         {
-          "command": "uv run python scripts/refresh-parent-tool-health.py",
+          "command": "bash scripts/run-parent-peer-mesh-local.sh",
           "exit_code": 0,
           "evidence_refs": [
             "evaluation/tool-health/status.json"
           ],
-          "bounded_scope_note": "Refreshes the parent tool-health summary without broadening beyond parent-owned surfaces."
+          "bounded_scope_note": "Keeps tool-health visibility aligned with the already-active same-host runtime lane."
         }
       ]
     },
@@ -884,81 +926,88 @@
       "artifact_records": [
         {
           "path": "evaluation/copilot-ratchet-report.json",
-          "observed_at": "2026-05-21T22:20:00Z",
-          "purpose": "structured ratchet report"
+          "observed_at": "2026-05-21T23:18:25Z",
+          "purpose": "triad-governance cycle report"
         },
         {
           "path": "evaluation/validation-report.json",
-          "observed_at": "2026-05-21T22:20:00Z",
-          "purpose": "validator output"
+          "observed_at": "2026-05-21T23:18:25Z",
+          "purpose": "parent validator output"
         },
         {
           "path": "evaluation/metrics-latest.json",
-          "observed_at": "2026-05-21T22:20:00Z",
-          "purpose": "latest score payload"
+          "observed_at": "2026-05-21T23:18:25Z",
+          "purpose": "latest score output"
         },
         {
           "path": "promotion/readiness.json",
-          "observed_at": "2026-05-21T22:20:00Z",
-          "purpose": "promotion gate result"
+          "observed_at": "2026-05-21T23:18:25Z",
+          "purpose": "promotion state after triad slice"
         },
         {
           "path": "runs/iterations.jsonl",
-          "observed_at": "2026-05-21T22:20:00Z",
-          "purpose": "iteration ledger"
+          "observed_at": "2026-05-21T23:18:25Z",
+          "purpose": "iteration ledger with triad slice entry"
         },
         {
           "path": "evaluation/tool-health/status.json",
-          "observed_at": "2026-05-21T22:20:00Z",
-          "purpose": "tool-health summary"
+          "observed_at": "2026-05-21T23:18:25Z",
+          "purpose": "tool-health truth boundary for the triad-governance slice"
         }
       ],
-      "max_artifact_span_seconds": 600.0
+      "max_artifact_span_seconds": 600
     }
   },
   "score_saturation": {
-    "baseline_total_score": 100.0,
-    "final_total_score": 100.0,
-    "baseline_outcome_score": 100.0,
-    "final_outcome_score": 100.0,
-    "baseline_instrument_score": 100.0,
-    "final_instrument_score": 100.0,
+    "baseline_total_score": 98.5,
+    "final_total_score": 98.5,
+    "baseline_outcome_score": 98,
+    "final_outcome_score": 98,
+    "baseline_instrument_score": 100,
+    "final_instrument_score": 100,
     "score_changed": false,
-    "new_truth_added": "The kept slice made runtime-proof structure, exact blocker reporting, freshness evidence, and score-saturation explanation explicit governed fields instead of conventions.",
-    "why_this_slice_counts": "The parent report family now exposes the same runtime truth that the validator and scorer were already deriving from artifacts, which makes future runtime claims harder to fake and easier to audit.",
-    "flat_score_explanation": "The score stayed flat because the parent was already numerically saturated; this slice added reporting truth and auditability rather than another point-bearing runtime lane."
+    "new_truth_added": "The parent now has an explicit triad governance topology, a governed self-extension request contract, and dual-artifact handoff requirements.",
+    "why_this_slice_counts": "It converts an informal workflow into validator-backed parent infrastructure without pretending a new runtime lane was activated.",
+    "flat_score_explanation": "The measured score stayed flat because the slice hardens governance and routing above the already-kept same-host runtime lane."
   },
   "files_changed": [
+    "AGENTS.md",
+    "CLAUDE.md",
     "README.md",
-    "evaluation/README.md",
-    "examples/README.md",
+    "agentics-library.md",
+    "library.yaml",
+    "pixeltable-operational-substrate.md",
     "agent-heavy-run-prompt-schema.md",
     "agent-heavy-run-prompt.schema.json",
     "agent-heavy-run-prompt.template.yaml",
-    "schemas/copilot-ratchet-report.schema.json",
-    "schemas/iteration-record.schema.json",
-    "examples/copilot-ratchet-report.valid.json",
-    "examples/iteration-record.valid.json",
-    "examples/copilot-ratchet-report.invalid.missing-runtime-truth.json",
+    "architect-review-handoff-prompt-schema.md",
+    "architect-review-handoff-prompt.schema.json",
+    "architect-review-handoff-prompt.template.yaml",
+    "contracts/three-agent-topology.yaml",
+    "contracts/agent-extension-request.yaml",
+    "schemas/governed-agent-profile.schema.json",
+    "schemas/three-agent-topology.schema.json",
+    "schemas/agent-extension-request.schema.json",
+    "examples/architect-review-handoff-prompt.valid.json",
+    "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
+    "examples/three-agent-topology.valid.json",
+    "examples/three-agent-topology.invalid.missing-orchestrator.json",
+    "examples/agent-extension-request.valid.json",
+    "examples/agent-extension-request.invalid.missing-validation-gate.json",
     "expected-failures/registry.yaml",
-    "scripts/score-parent-wrapper.py",
+    "prompts/governed-triad-follow-up-prompt.template.md",
     "tests/validate_parent_wrapper_contract.py",
+    "evaluation/copilot-ratchet-report.json",
+    "runs/iterations.jsonl",
     "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
-    "promotion/readiness.json",
-    "evaluation/copilot-ratchet-report.json",
-    "runs/iterations.jsonl"
+    "promotion/readiness.json"
   ],
   "artifacts": [
     "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
     "promotion/readiness.json",
-    "runs/iterations.jsonl",
-    "evaluation/tool-health/status.json",
-    "evaluation/tool-health/peer-mesh-local.json",
-    "evaluation/tool-health/peer-mesh-local.log",
-    "evaluation/tool-health/peer-mesh-local-events.jsonl",
-    "evaluation/tool-health/peer-mesh-local-benchmarks.json"
+    "runs/iterations.jsonl"
   ],
-  "iteration_ledger_entries_appended": 1
+  "iteration_ledger_entries_appended": 19
 }

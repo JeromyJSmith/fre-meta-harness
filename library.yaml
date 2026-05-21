@@ -26,6 +26,9 @@ library:
     - name: parent-copilot-prompting-playbook
       description: Copilot-facing operational playbook bound to the same prompt contract.
       source: copilot-prompting-playbook.md
+    - name: governed-triad-follow-up-markdown-template
+      description: Parent-only Markdown companion prompt template for triad handoffs that preserves operator-facing routing without replacing structured machine truth.
+      source: prompts/governed-triad-follow-up-prompt.template.md
     - name: parent-goal-contract
       description: Goal-md style ruler and ratchet for improving the parent wrapper itself.
       source: GOAL.md
@@ -51,6 +54,9 @@ library:
     - name: parent-meta-wrapper
       description: Portable parent wrapper scaffold with governed prompt, comparison, and proof-package surfaces.
       source: GOAL.md
+    - name: triad-governance-core
+      description: Parent governance core that formalizes orchestrator-validator, research, architect, and governed self-extension requests above the runtime mesh.
+      source: contracts/three-agent-topology.yaml
     - name: goal-md-local-authority
       description: Local imported goal-md authority that defines the ruler-and-ratchet pattern.
       source: external/goal-md/README.md
@@ -133,6 +139,22 @@ library:
       description: Governed parent capability matrix aligned to the compiled research feature matrix, source refs, lane classifications, and exact blocker language.
       kind: contract
       source: contracts/capability-matrix.yaml
+    - name: parent-three-agent-topology
+      description: Governed parent topology for orchestrator-validator, research, and architect, kept explicitly separate from runtime mesh roles.
+      kind: contract
+      source: contracts/three-agent-topology.yaml
+    - name: parent-agent-extension-request
+      description: Governed self-extension request contract for proposing new agents or prompt surfaces through the same parent validation and promotion pipeline.
+      kind: contract
+      source: contracts/agent-extension-request.yaml
+    - name: parent-governed-agent-profile-schema
+      description: Reusable schema for each governed triad role profile embedded in the parent topology.
+      kind: schema
+      source: schemas/governed-agent-profile.schema.json
+    - name: parent-governed-triad-follow-up-template
+      description: Markdown companion prompt template used by triad handoffs for operator-facing routing while machine truth stays in structured prompt artifacts.
+      kind: prompt
+      source: prompts/governed-triad-follow-up-prompt.template.md
     - name: parent-research-packet-manifest
       description: Parent contract that makes the packetized research harvest and compiled research outputs first-class governed surfaces.
       kind: contract

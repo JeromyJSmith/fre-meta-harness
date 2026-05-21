@@ -9,6 +9,7 @@
     "prompt_schema_version",
     "prompt_id",
     "target_agent",
+    "triad_context",
     "mode",
     "mission",
     "current_verified_state",
@@ -17,6 +18,7 @@
     "disallowed_paths",
     "tasks",
     "validation_loop",
+    "handoff_inputs",
     "success_criteria",
     "report_contract"
   ],
@@ -31,6 +33,9 @@
     },
     "target_agent": {
       "$ref": "#/$defs/target_agent"
+    },
+    "triad_context": {
+      "$ref": "#/$defs/triad_context"
     },
     "mode": {
       "$ref": "#/$defs/mode"
@@ -55,6 +60,9 @@
     },
     "validation_loop": {
       "$ref": "#/$defs/validation_loop"
+    },
+    "handoff_inputs": {
+      "$ref": "#/$defs/handoff_inputs"
     },
     "success_criteria": {
       "$ref": "#/$defs/success_criteria"
@@ -90,6 +98,48 @@
           "minLength": 1
         },
         "invocation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "governed_role_id": {
+      "type": "string",
+      "enum": [
+        "orchestrator-validator",
+        "research",
+        "architect"
+      ]
+    },
+    "triad_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "acting_role",
+        "upstream_handoff_ref",
+        "decision_space_required",
+        "runtime_truth_requirements",
+        "command_evidence_requirements"
+      ],
+      "properties": {
+        "acting_role": {
+          "$ref": "#/$defs/governed_role_id"
+        },
+        "upstream_handoff_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_space_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "runtime_truth_requirements": {
+          "$ref": "#/$defs/string_list"
+        },
+        "command_evidence_requirements": {
+          "$ref": "#/$defs/string_list"
+        },
+        "agent_extension_request_ref": {
           "type": "string",
           "minLength": 1
         }
@@ -226,6 +276,31 @@
         }
       }
     },
+    "handoff_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handoff_artifact_path",
+        "source_report_paths",
+        "required_follow_up_roles",
+        "consumption_requirements"
+      ],
+      "properties": {
+        "handoff_artifact_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_report_paths": {
+          "$ref": "#/$defs/string_list"
+        },
+        "required_follow_up_roles": {
+          "$ref": "#/$defs/string_list"
+        },
+        "consumption_requirements": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
     "success_criteria": {
       "type": "object",
       "additionalProperties": false,
@@ -253,7 +328,8 @@
         "blocker_fields",
         "freshness_fields",
         "score_saturation_fields",
-        "command_evidence_fields"
+        "command_evidence_fields",
+        "follow_up_prompt_fields"
       ],
       "properties": {
         "required_fields": {

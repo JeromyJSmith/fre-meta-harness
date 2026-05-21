@@ -157,6 +157,14 @@
           "status": "pass"
         },
         {
+          "file": "examples/three-agent-topology.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/agent-extension-request.valid.json",
+          "status": "pass"
+        },
+        {
           "file": "examples/front-matter.invalid.missing-id.json",
           "status": "pass",
           "reason": "'id' is a required property"
@@ -265,8 +273,77 @@
           "file": "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
           "status": "pass",
           "reason": "'follow_up_prompt_artifact' is a required property"
+        },
+        {
+          "file": "examples/three-agent-topology.invalid.missing-orchestrator.json",
+          "status": "pass",
+          "reason": "'orchestrator-validator' is a required property"
+        },
+        {
+          "file": "examples/agent-extension-request.invalid.missing-validation-gate.json",
+          "status": "pass",
+          "reason": "'validation_gate' is a required property"
         }
       ]
+    },
+    {
+      "name": "governance_triad_slice",
+      "status": "pass",
+      "details": {
+        "contracts": [
+          "contracts/agent-extension-request.yaml",
+          "contracts/three-agent-topology.yaml"
+        ],
+        "examples": [
+          "examples/three-agent-topology.valid.json",
+          "examples/agent-extension-request.valid.json"
+        ],
+        "schema_only": [
+          "schemas/governed-agent-profile.schema.json"
+        ],
+        "triad_roles": [
+          "architect",
+          "orchestrator_validator",
+          "research"
+        ],
+        "runtime_role_ids": [
+          "dev_driver",
+          "mesh_verifier",
+          "peer_mesh_host",
+          "prod_gatekeeper"
+        ],
+        "runtime_role_classes": [
+          "execution_driver",
+          "mesh_bootstrap",
+          "prod_boundary",
+          "verification_guard"
+        ],
+        "docs_checked": {
+          "AGENTS.md": [
+            "architect",
+            "orchestrator_validator",
+            "research"
+          ],
+          "CLAUDE.md": [
+            "architect",
+            "orchestrator_validator",
+            "research"
+          ]
+        },
+        "prompt_handoff_files": [
+          "agent-heavy-run-prompt-schema.md",
+          "agent-heavy-run-prompt.schema.json",
+          "agent-heavy-run-prompt.template.yaml",
+          "architect-review-handoff-prompt-schema.md",
+          "architect-review-handoff-prompt.schema.json",
+          "architect-review-handoff-prompt.template.yaml"
+        ],
+        "minimum_decision_options": 3,
+        "governed_agent_profile_refs": [
+          "schemas/three-agent-topology.schema.json"
+        ],
+        "handoff_markdown_artifact_path": "prompts/next-bounded-slice.prompt.md"
+      }
     },
     {
       "name": "capability_metrics_contract",
@@ -461,7 +538,7 @@
       "status": "pass",
       "details": {
         "path": "runs/iterations.jsonl",
-        "row_count": 18,
+        "row_count": 19,
         "parse_errors": [],
         "invalid_rows": []
       }
@@ -480,7 +557,7 @@
       "details": {
         "truth_level": "bounded_runtime",
         "runtime_mode_activated": "same_host",
-        "latest_iteration": 18,
+        "latest_iteration": 19,
         "errors": []
       }
     }

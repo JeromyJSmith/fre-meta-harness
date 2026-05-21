@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/three-agent-topology.schema.json",
+  "title": "Three Agent Topology Schema",
+  "description": "Schema for the governed fre-meta-harness triad topology that routes handoffs through orchestrator-validator, research, and architect roles.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "topology_schema_version",
+    "topology_id",
+    "artifact_type",
+    "governance_mode",
+    "repo_root",
+    "agent_profiles",
+    "handoff_policy",
+    "validation_gates",
+    "governed_artifacts",
+    "runtime_truth_contract",
+    "command_evidence_contract"
+  ],
+  "properties": {
+    "topology_schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "topology_id": {
+      "type": "string",
+      "pattern": "^TOPOLOGY-[0-9]{8}-[A-Z0-9-]{4,}$"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "three_agent_topology"
+    },
+    "governance_mode": {
+      "type": "string",
+      "const": "governed_triad"
+    },
+    "repo_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "orchestrator-validator",
+        "research",
+        "architect"
+      ],
+      "properties": {
+        "orchestrator-validator": {
+          "$ref": "#/$defs/orchestrator_validator_profile"
+        },
+        "research": {
+          "$ref": "#/$defs/research_profile"
+        },
+        "architect": {
+          "$ref": "#/$defs/architect_profile"
+        }
+      }
+    },
+    "handoff_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_only_handoffs",
+        "linked_consumer_roles",
+        "policy_modes"
+      ],
+      "properties": {
+        "parent_only_handoffs": {
+          "type": "boolean",
+          "const": true
+        },
+        "linked_consumer_roles": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "orchestrator-validator",
+              "research",
+              "architect",
+              "architect_or_research"
+            ]
+          }
+        },
+        "policy_modes": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "single_consumer",
+              "architect_or_research",
+              "governed_fanout"
+            ]
+          }
+        }
+      }
+    },
+    "validation_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_space_required",
+        "dispatch_message_required",
+        "markdown_companion_required",
+        "machine_truth_stays_structured"
+      ],
+      "properties": {
+        "decision_space_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "dispatch_message_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "markdown_companion_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "machine_truth_stays_structured": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "governed_artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heavy_run_prompt_schema_ref",
+        "heavy_run_prompt_template_ref",
+        "handoff_schema_ref",
+        "handoff_template_ref",
+        "governed_agent_profile_schema_ref",
+        "markdown_companion_template_ref",
+        "extension_request_schema_ref"
+      ],
+      "properties": {
+        "heavy_run_prompt_schema_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.schema.json"
+        },
+        "heavy_run_prompt_template_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.template.yaml"
+        },
+        "handoff_schema_ref": {
+          "type": "string",
+          "const": "architect-review-handoff-prompt.schema.json"
+        },
+        "handoff_template_ref": {
+          "type": "string",
+          "const": "architect-review-handoff-prompt.template.yaml"
+        },
+        "governed_agent_profile_schema_ref": {
+          "type": "string",
+          "const": "schemas/governed-agent-profile.schema.json"
+        },
+        "markdown_companion_template_ref": {
+          "type": "string",
+          "const": "prompts/governed-triad-follow-up-prompt.template.md"
+        },
+        "extension_request_schema_ref": {
+          "type": "string",
+          "const": "schemas/agent-extension-request.schema.json"
+        }
+      }
+    },
+    "runtime_truth_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_roles",
+        "requirements"
+      ],
+      "properties": {
+        "required_roles": {
+          "$ref": "#/$defs/triad_role_list"
+        },
+        "requirements": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
+    "command_evidence_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_roles",
+        "requirements"
+      ],
+      "properties": {
+        "required_roles": {
+          "$ref": "#/$defs/triad_role_list"
+        },
+        "requirements": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "triad_role_id": {
+      "type": "string",
+      "enum": [
+        "orchestrator-validator",
+        "research",
+        "architect"
+      ]
+    },
+    "string_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "triad_role_list": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/triad_role_id"
+      }
+    },
+    "triad_role_pair_list": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/triad_role_id"
+      }
+    },
+    "governed_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_schema_version",
+        "profile_id",
+        "artifact_type",
+        "role_id",
+        "display_name",
+        "primary_outcome",
+        "core_responsibilities",
+        "receives_handoffs_from",
+        "can_dispatch_to",
+        "runtime_truth_requirements",
+        "command_evidence_requirements",
+        "decision_space_expectation",
+        "extension_request_policy"
+      ],
+      "properties": {
+        "profile_schema_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "profile_id": {
+          "type": "string",
+          "pattern": "^PROFILE-[A-Z0-9_-]{4,}$"
+        },
+        "artifact_type": {
+          "type": "string",
+          "const": "governed_agent_profile"
+        },
+        "role_id": {
+          "$ref": "#/$defs/triad_role_id"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primary_outcome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "core_responsibilities": {
+          "$ref": "#/$defs/string_list"
+        },
+        "receives_handoffs_from": {
+          "$ref": "#/$defs/triad_role_pair_list"
+        },
+        "can_dispatch_to": {
+          "$ref": "#/$defs/triad_role_pair_list"
+        },
+        "runtime_truth_requirements": {
+          "$ref": "#/$defs/string_list"
+        },
+        "command_evidence_requirements": {
+          "$ref": "#/$defs/string_list"
+        },
+        "decision_space_expectation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "extension_request_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "orchestrator_validator_profile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/governed_profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role_id": {
+              "const": "orchestrator-validator"
+            }
+          }
+        }
+      ]
+    },
+    "research_profile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/governed_profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role_id": {
+              "const": "research"
+            }
+          }
+        }
+      ]
+    },
+    "architect_profile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/governed_profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role_id": {
+              "const": "architect"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

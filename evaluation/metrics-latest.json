@@ -3,30 +3,30 @@
   "created_at": "2026-05-21",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated-substantive",
-  "total_score": 98.5,
-  "outcome_score": 98.0,
+  "total_score": 100.0,
+  "outcome_score": 100.0,
   "instrument_score": 100.0,
-  "weakest_component": "artifact_refresh",
+  "weakest_component": "ratchet_execution",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
       "details": {
         "status": "running",
         "schema_errors": [],
-        "real_rows": 18,
-        "kept_rows": 13,
-        "substantive_kept_rows": 11,
+        "real_rows": 19,
+        "kept_rows": 14,
+        "substantive_kept_rows": 12,
         "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
       "score": 25.0,
       "details": {
-        "count": 18,
-        "substantive_kept_rows": 11,
+        "count": 19,
+        "substantive_kept_rows": 12,
         "rejected_or_reverted_rows": 5,
-        "history_rows": 18,
-        "real_rows": 18,
+        "history_rows": 19,
+        "real_rows": 19,
         "parse_errors": [],
         "schema_errors": []
       }
@@ -35,19 +35,19 @@
       "score": 25.0,
       "details": {
         "kind": "continuing",
-        "stop_reason": "one kept schema-hardening slice was completed; the parent improvement program remains open for later governed slices",
-        "cycles": 18,
+        "stop_reason": "one kept triad-governance slice was completed; the parent improvement program remains open for later governed slices",
+        "cycles": 19,
         "actual_consecutive_non_improving": 0,
         "schema_errors": []
       }
     },
     "artifact_refresh": {
-      "score": 23.0,
+      "score": 25.0,
       "details": {
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 1737.0327434539795,
+        "freshness_span_seconds": 92.03813028335571,
         "tool_statuses": [
           "bounded_pass",
           "bounded_pass",
@@ -170,9 +170,9 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 18,
-        "detailed_rows": 18,
-        "ledger_rows": 18,
+        "history_rows": 19,
+        "detailed_rows": 19,
+        "ledger_rows": 19,
         "ledger_aligned": true,
         "runtime_truth_score": 6.0,
         "score_saturation_score": 4.0,
@@ -189,6 +189,6 @@
       }
     }
   },
-  "iteration_count": 18,
+  "iteration_count": 19,
   "iteration_parse_errors": []
 }

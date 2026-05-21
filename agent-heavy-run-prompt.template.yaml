@@ -4,6 +4,17 @@ target_agent:
   name: "codex"
   surface: "codex_p"
   invocation: "codex -p"
+triad_context:
+  acting_role: "orchestrator-validator"
+  upstream_handoff_ref: "HANDOFF-YYYYMMDD-XXXX"
+  decision_space_required: true
+  runtime_truth_requirements:
+    - "Carry forward exact runtime-truth claims from the upstream governed handoff."
+    - "Keep blocked lanes explicit unless fresh evidence changes the dependency state."
+  command_evidence_requirements:
+    - "Name every activation and validation command that supports the conclusion."
+    - "Pair each command class with artifact evidence in the report."
+  agent_extension_request_ref: ""
 mode:
   execution_style: "heavy_bounded_run"
   autonomy: "high"
@@ -43,6 +54,19 @@ validation_loop:
     - "Refresh proof artifacts."
     - "Repeat until bounded pass or exact blocker."
   rerun_policy: "Repeat the fix and validate loop until the bounded task passes or the blocker is proven real."
+handoff_inputs:
+  handoff_artifact_path: ""
+  source_report_paths:
+    - ""
+  required_follow_up_roles:
+    - "orchestrator-validator"
+    - "research"
+    - "architect"
+  consumption_requirements:
+    - "Read the handoff artifact before planning."
+    - "Read the source reports named by the handoff artifact."
+    - "Preserve runtime-truth, blocker, freshness, and command-evidence structure."
+    - "Emit both the structured follow-up artifact and the governed markdown companion artifact."
 success_criteria:
   best_case: ""
   acceptable_fallback: ""
@@ -85,3 +109,7 @@ report_contract:
     - "target_schema_ref"
     - "target_template_ref"
     - "must_be_inline_ready"
+    - "markdown_companion_artifact_path"
+    - "markdown_template_ref"
+    - "must_use_front_matter"
+    - "must_use_bottom_matter_marker"

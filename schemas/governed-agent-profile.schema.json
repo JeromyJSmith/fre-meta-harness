@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/governed-agent-profile.schema.json",
+  "title": "Governed Agent Profile Schema",
+  "description": "Schema for a parent-only governed triad role profile used by the fre-meta-harness prompt and handoff surfaces.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_schema_version",
+    "profile_id",
+    "artifact_type",
+    "role_id",
+    "display_name",
+    "primary_outcome",
+    "core_responsibilities",
+    "receives_handoffs_from",
+    "can_dispatch_to",
+    "runtime_truth_requirements",
+    "command_evidence_requirements",
+    "decision_space_expectation",
+    "extension_request_policy"
+  ],
+  "properties": {
+    "profile_schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^PROFILE-[A-Z0-9_-]{4,}$"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "governed_agent_profile"
+    },
+    "role_id": {
+      "$ref": "#/$defs/governed_role_id"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_outcome": {
+      "type": "string",
+      "minLength": 1
+    },
+    "core_responsibilities": {
+      "$ref": "#/$defs/string_list"
+    },
+    "receives_handoffs_from": {
+      "$ref": "#/$defs/role_list"
+    },
+    "can_dispatch_to": {
+      "$ref": "#/$defs/role_list"
+    },
+    "runtime_truth_requirements": {
+      "$ref": "#/$defs/string_list"
+    },
+    "command_evidence_requirements": {
+      "$ref": "#/$defs/string_list"
+    },
+    "decision_space_expectation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "extension_request_policy": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "governed_role_id": {
+      "type": "string",
+      "enum": [
+        "orchestrator-validator",
+        "research",
+        "architect"
+      ]
+    },
+    "string_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "role_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/governed_role_id"
+      }
+    }
+  }
+}

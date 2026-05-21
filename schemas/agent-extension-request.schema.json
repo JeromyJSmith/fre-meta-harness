@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/agent-extension-request.schema.json",
+  "title": "Agent Extension Request Schema",
+  "description": "Schema for requesting a governed extension to the parent-only fre-meta-harness triad surfaces without bypassing validation gates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_schema_version",
+    "request_id",
+    "artifact_type",
+    "topology_ref",
+    "requester_role_id",
+    "upstream_handoff_ref",
+    "decision_space",
+    "requested_change",
+    "rationale",
+    "validation_gate",
+    "promotion_state",
+    "blocker_state",
+    "downstream_owner"
+  ],
+  "properties": {
+    "request_schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^EXTREQ-[0-9]{8}-[A-Z0-9-]{4,}$"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "agent_extension_request"
+    },
+    "topology_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requester_role_id": {
+      "$ref": "#/$defs/triad_role_id"
+    },
+    "upstream_handoff_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision_space": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "options",
+        "recommended_option_id",
+        "blocker_or_escalation_path"
+      ],
+      "properties": {
+        "options": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "$ref": "#/$defs/decision_space_option"
+          }
+        },
+        "recommended_option_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocker_or_escalation_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "requested_change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "change_class",
+        "change_summary",
+        "target_files",
+        "expected_new_artifacts"
+      ],
+      "properties": {
+        "change_class": {
+          "type": "string",
+          "enum": [
+            "schema_surface",
+            "prompt_surface",
+            "handoff_surface",
+            "example_surface"
+          ]
+        },
+        "change_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_files": {
+          "$ref": "#/$defs/path_list"
+        },
+        "expected_new_artifacts": {
+          "$ref": "#/$defs/path_list"
+        }
+      }
+    },
+    "rationale": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "problem_statement",
+        "expected_benefit",
+        "risk_if_rejected"
+      ],
+      "properties": {
+        "problem_statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_benefit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "risk_if_rejected": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "validation_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gate_type",
+        "decision_space_option_id",
+        "required_review_roles",
+        "required_artifacts",
+        "blocking_condition"
+      ],
+      "properties": {
+        "gate_type": {
+          "type": "string",
+          "const": "triad_review_required"
+        },
+        "decision_space_option_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_review_roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/triad_role_id"
+          }
+        },
+        "required_artifacts": {
+          "$ref": "#/$defs/path_list"
+        },
+        "blocking_condition": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "promotion_state": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "ready_for_review",
+        "approved",
+        "deferred"
+      ]
+    },
+    "blocker_state": {
+      "type": "string",
+      "enum": [
+        "none",
+        "exact_dependency_blocker",
+        "waiting_for_review"
+      ]
+    },
+    "downstream_owner": {
+      "$ref": "#/$defs/triad_role_id"
+    }
+  },
+  "$defs": {
+    "triad_role_id": {
+      "type": "string",
+      "enum": [
+        "orchestrator-validator",
+        "research",
+        "architect"
+      ]
+    },
+    "path_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "decision_space_option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "option_id",
+        "title",
+        "rationale",
+        "expected_artifacts"
+      ],
+      "properties": {
+        "option_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_artifacts": {
+          "$ref": "#/$defs/path_list"
+        }
+      }
+    }
+  }
+}

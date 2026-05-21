@@ -136,6 +136,17 @@ This wrapper:
     instead of a narrower hand-curated subset
   - compiled capability harvest, feature matrix, gap placement map, and source
     index are validator-backed authoritative views rather than loose artifacts
+- Triad governance slice truth:
+  - `contracts/three-agent-topology.yaml` formalizes
+    `orchestrator-validator`, `research`, and `architect` as parent-only
+    governance roles above the runtime mesh
+  - `schemas/governed-agent-profile.schema.json` provides the reusable governed
+    role profile shape shared by the triad
+  - `contracts/agent-extension-request.yaml` routes self-extension proposals
+    through the same parent validation and promotion pipeline instead of
+    implying auto-created agents
+  - governed handoffs now require both a structured follow-up artifact and a
+    parent-only Markdown companion prompt artifact
 - scorer: `scripts/score-parent-wrapper.py`
 - CLI-first local runner harvest: `scripts/harvest-local-runner-capabilities.py`
 - bounded ratchet runner: `scripts/run-parent-ratchet.sh`

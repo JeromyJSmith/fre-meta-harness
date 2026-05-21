@@ -9,29 +9,81 @@
     "kept_or_blocked": "kept",
     "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
   },
-  "consumer_agent": {
-    "name": "copilot",
-    "surface": "gh_copilot_p",
-    "invocation": "gh copilot -p"
+  "linked_consumers": [
+    {
+      "role": "orchestrator-validator",
+      "name": "copilot",
+      "surface": "gh_copilot_p",
+      "invocation": "gh copilot -p"
+    }
+  ],
+  "auto_consume_policy": {
+    "enabled": true,
+    "mode": "single_consumer",
+    "next_prompt_must_embed_handoff_context": true,
+    "next_prompt_must_read_source_report": true,
+    "next_prompt_must_read_required_inputs": true,
+    "next_prompt_must_preserve_runtime_truth_contract": true
   },
   "handoff_goal": {
-    "objective": "Review the previous run.",
-    "why_now": "The next agent needs a handoff.",
-    "best_next_slice": "Generate another prompt."
+    "objective": "Review the previous governed handoff surfaces.",
+    "why_now": "The next agent needs a bounded parent-only handoff.",
+    "best_next_slice": "Generate the next governed prompt outputs."
+  },
+  "decision_space": {
+    "options": [
+      {
+        "option_id": "option-a",
+        "title": "Tighten the structured prompt contracts.",
+        "rationale": "This stays inside the owned schema and template surfaces.",
+        "expected_artifacts": [
+          "agent-heavy-run-prompt.schema.json"
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Refresh the markdown companion template.",
+        "rationale": "This keeps the governed handoff readable without changing machine truth ownership.",
+        "expected_artifacts": [
+          "prompts/governed-triad-follow-up-prompt.template.md"
+        ]
+      },
+      {
+        "option_id": "option-c",
+        "title": "Capture an extension request for later review.",
+        "rationale": "This records extra work without widening the current slice.",
+        "expected_artifacts": [
+          "schemas/agent-extension-request.schema.json"
+        ]
+      }
+    ],
+    "recommended_option_id": "option-a",
+    "blocker_or_escalation_path": "Escalate if the slice would require validator, scorer, or contract yaml edits."
   },
   "review_scope": {
     "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
     "allowed_paths": [
-      "evaluation/**"
+      "schemas/**",
+      "examples/**",
+      "prompts/**",
+      "agent-heavy-run-prompt.schema.json",
+      "agent-heavy-run-prompt.template.yaml",
+      "architect-review-handoff-prompt.schema.json",
+      "architect-review-handoff-prompt.template.yaml",
+      "architect-review-handoff-prompt-schema.md"
     ],
     "disallowed_paths": [
-      "external/**"
+      "external/**",
+      "contracts/**",
+      "tests/**",
+      "scripts/**"
     ],
     "primary_focus": [
-      "runtime truth"
+      "governed triad routing"
     ],
     "anti_goals": [
-      "broadening scope"
+      "broadening scope",
+      "editing validators or scorers"
     ]
   },
   "required_inputs": {
@@ -42,15 +94,19 @@
       "evaluation/tool-health/peer-mesh-local.json"
     ],
     "contract_artifacts": [
-      "schemas/copilot-ratchet-report.schema.json"
+      "agent-heavy-run-prompt.schema.json",
+      "architect-review-handoff-prompt.schema.json",
+      "schemas/three-agent-topology.schema.json"
     ],
     "research_artifacts": [
-      "evaluation/research/compiled/source-index.json"
+      "evaluation/infranodus-live-summary.json"
     ]
   },
   "review_protocol": {
     "ordered_steps": [
-      "Read the prior report."
+      "Read the prior report.",
+      "Compare the linked consumers against the governed triad contract.",
+      "Select one decision-space option before drafting the next prompt outputs."
     ],
     "runtime_truth_expectations": [
       "Check runtime truth."
@@ -67,13 +123,39 @@
   },
   "validation_loop": {
     "checks": [
-      "Validate the report."
+      "Validate the report.",
+      "Confirm decision-space completeness.",
+      "Confirm the dispatch and markdown companion outputs are present."
     ],
     "rerun_policy": "Repeat until done."
   },
   "expected_outputs": {
     "review_report_fields": [
       "status"
-    ]
+    ],
+    "dispatch_message": {
+      "artifact_path": "prompts/governed-triad-follow-up-dispatch.md",
+      "target_roles": [
+        "orchestrator-validator"
+      ],
+      "message_requirements": [
+        "Reference the handoff id and the recommended decision option.",
+        "Point at both the structured prompt artifact and the markdown companion artifact."
+      ],
+      "must_reference_handoff_id": true,
+      "must_reference_recommended_option_id": true,
+      "must_reference_structured_prompt_artifact": true,
+      "must_reference_markdown_companion_artifact": true
+    },
+    "companion_markdown_prompt_artifact": {
+      "artifact_path": "prompts/next-bounded-slice.prompt.md",
+      "target_template_ref": "prompts/governed-triad-follow-up-prompt.template.md",
+      "machine_truth_source": "structured_contract_family",
+      "must_use_front_matter": true,
+      "must_use_bottom_matter_marker": true,
+      "must_be_parent_only": true,
+      "must_reference_structured_prompt_artifact": true,
+      "must_not_replace_structured_contract": true
+    }
   }
 }

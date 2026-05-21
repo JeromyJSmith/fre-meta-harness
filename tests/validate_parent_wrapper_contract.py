@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import date
 from pathlib import Path
 
@@ -81,6 +82,44 @@ PARENT_NATIVE_VALID_EXAMPLES = [
     ("examples/hook-manifest.valid.json", "schemas/hook-manifest.schema.json"),
     ("examples/capability-matrix.valid.json", "schemas/capability-matrix.schema.json"),
 ]
+TRIAD_GOVERNANCE_CONTRACTS = {
+    "contracts/three-agent-topology.yaml": "schemas/three-agent-topology.schema.json",
+    "contracts/agent-extension-request.yaml": "schemas/agent-extension-request.schema.json",
+}
+TRIAD_GOVERNANCE_VALID_EXAMPLES = [
+    ("examples/three-agent-topology.valid.json", "schemas/three-agent-topology.schema.json"),
+    ("examples/agent-extension-request.valid.json", "schemas/agent-extension-request.schema.json"),
+]
+TRIAD_GOVERNANCE_SCHEMA_ONLY = [
+    "schemas/governed-agent-profile.schema.json",
+]
+TRIAD_DOC_FILES = [
+    "AGENTS.md",
+    "CLAUDE.md",
+]
+PROMPT_HANDOFF_FAMILY = [
+    "agent-heavy-run-prompt-schema.md",
+    "agent-heavy-run-prompt.schema.json",
+    "agent-heavy-run-prompt.template.yaml",
+    "architect-review-handoff-prompt-schema.md",
+    "architect-review-handoff-prompt.schema.json",
+    "architect-review-handoff-prompt.template.yaml",
+]
+TRIAD_TEXT_MARKERS = {"triad", "three-agent", "three agent"}
+DECISION_SPACE_MINIMUM = 3
+DECISION_SPACE_HINTS = {
+    "3+",
+    "three or more",
+    "at least three",
+    '"minitems": 3',
+    "minimum_options",
+    "minimum_option_count",
+    "minimum_decision_options",
+    "three_option",
+}
+MARKDOWN_PROMPT_HINT = "markdown"
+PIXTABLE_EVIDENCE_MARKERS = {"pixeltable", "evidence", "validation_gate"}
+TRUTH_BOUNDARY_MARKERS = {"bounded", "truth"}
 REQUIRED_PEER_MESH_OPERATIONS = {"list_agents", "send_command", "send_prompt", "await_response"}
 REQUIRED_COMPLETION_TOKENS = {"done", "failed", "needs-human"}
 REQUIRED_ROLE_CLASSES = {
@@ -342,6 +381,100 @@ def normalize_status(status: str | None) -> str | None:
     return None
 
 
+def load_structured(path: Path) -> dict:
+    if path.suffix == ".json":
+        return json.loads(path.read_text())
+    return yaml.safe_load(path.read_text())
+
+
+def normalize_identifier(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+
+
+def text_mentions_role(text: str, role: str) -> bool:
+    normalized_role = normalize_identifier(role)
+    variants = {
+        normalized_role,
+        normalized_role.replace("_", "-"),
+        normalized_role.replace("_", " "),
+    }
+    lowered_text = text.lower()
+    return any(
+        re.search(rf"(?<![a-z0-9]){re.escape(variant)}(?![a-z0-9])", lowered_text)
+        for variant in variants
+        if variant
+    )
+
+
+def extract_governance_roles(node: object) -> set[str]:
+    roles: set[str] = set()
+
+    def visit(value: object, path: tuple[str, ...] = ()) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                key_norm = normalize_identifier(key)
+                if key_norm in {"roles", "triad_roles", "governance_roles"} and isinstance(child, list):
+                    for item in child:
+                        if isinstance(item, str):
+                            roles.add(normalize_identifier(item))
+                        elif isinstance(item, dict):
+                            for field in ("role_id", "role", "name", "id"):
+                                raw = item.get(field)
+                                if isinstance(raw, str):
+                                    roles.add(normalize_identifier(raw))
+                                    break
+                elif key_norm in {"agent_profiles", "profiles"} and isinstance(child, dict):
+                    for role_key, role_value in child.items():
+                        if isinstance(role_value, dict):
+                            roles.add(normalize_identifier(role_key))
+                elif key_norm in {"governance_triad", "triad", "three_agent_topology"} and isinstance(child, dict):
+                    for role_key, role_value in child.items():
+                        if isinstance(role_value, (dict, list, str)):
+                            roles.add(normalize_identifier(role_key))
+                visit(child, path + (key_norm,))
+        elif isinstance(value, list):
+            for item in value:
+                visit(item, path)
+
+    visit(node)
+    return {role for role in roles if role}
+
+
+def extract_option_space_minimum(node: object) -> int:
+    minimums: list[int] = []
+
+    def visit(value: object, path: tuple[str, ...] = ()) -> None:
+        if isinstance(value, dict):
+            context_tokens = [normalize_identifier(part) for part in path]
+            context_tokens.extend(normalize_identifier(key) for key in value)
+            context = " ".join(token for token in context_tokens if token)
+            if "option" in context or "decision" in context:
+                min_items = value.get("minItems")
+                if isinstance(min_items, int):
+                    minimums.append(min_items)
+                for key in (
+                    "minimum_options",
+                    "minimum_option_count",
+                    "minimum_decision_options",
+                    "min_options",
+                    "min_option_count",
+                ):
+                    raw = value.get(key)
+                    if isinstance(raw, int):
+                        minimums.append(raw)
+            for key, child in value.items():
+                key_norm = normalize_identifier(key)
+                if ("option" in key_norm or "decision" in key_norm) and isinstance(child, list):
+                    minimums.append(len(child))
+                visit(child, path + (key_norm,))
+        elif isinstance(value, list):
+            for item in value:
+                visit(item, path)
+
+    visit(node)
+    return max(minimums, default=0)
+
+
 def validate_examples() -> list[dict]:
     results = []
     schema_paths = {
@@ -364,6 +497,9 @@ def validate_examples() -> list[dict]:
         "agent_role": "schemas/agent-role-contract.schema.json",
         "hook_manifest": "schemas/hook-manifest.schema.json",
         "capability_matrix": "schemas/capability-matrix.schema.json",
+        "three_agent_topology": "schemas/three-agent-topology.schema.json",
+        "agent_extension_request": "schemas/agent-extension-request.schema.json",
+        "governed_agent_profile": "schemas/governed-agent-profile.schema.json",
     }
     schemas = {name: json.loads((ROOT / rel).read_text()) for name, rel in schema_paths.items()}
     for schema in schemas.values():
@@ -389,6 +525,8 @@ def validate_examples() -> list[dict]:
         ("examples/agent-role-contract.valid.json", schemas["agent_role"]),
         ("examples/hook-manifest.valid.json", schemas["hook_manifest"]),
         ("examples/capability-matrix.valid.json", schemas["capability_matrix"]),
+        ("examples/three-agent-topology.valid.json", schemas["three_agent_topology"]),
+        ("examples/agent-extension-request.valid.json", schemas["agent_extension_request"]),
     ]
     for rel, schema in valid_examples:
         instance = json.loads((ROOT / rel).read_text())
@@ -410,6 +548,137 @@ def validate_examples() -> list[dict]:
             )
         results.append({"file": item["file"], "status": "pass", "reason": message_blob})
     return results
+
+
+def validate_governance_triad_slice() -> dict:
+    loaded_contracts: dict[str, dict] = {}
+    loaded_schemas: dict[str, dict] = {}
+    loaded_examples: dict[str, dict] = {}
+
+    for contract_rel, schema_rel in TRIAD_GOVERNANCE_CONTRACTS.items():
+        contract_path = ROOT / contract_rel
+        schema_path = ROOT / schema_rel
+        schema = json.loads(schema_path.read_text())
+        contract = yaml.safe_load(contract_path.read_text())
+        Draft202012Validator.check_schema(schema)
+        Draft202012Validator(schema).validate(contract)
+        loaded_contracts[contract_rel] = contract
+        loaded_schemas[schema_rel] = schema
+
+    for schema_rel in TRIAD_GOVERNANCE_SCHEMA_ONLY:
+        schema = json.loads((ROOT / schema_rel).read_text())
+        Draft202012Validator.check_schema(schema)
+        loaded_schemas[schema_rel] = schema
+
+    for example_rel, schema_rel in TRIAD_GOVERNANCE_VALID_EXAMPLES:
+        schema = loaded_schemas.get(schema_rel) or json.loads((ROOT / schema_rel).read_text())
+        instance = json.loads((ROOT / example_rel).read_text())
+        Draft202012Validator(schema).validate(instance)
+        loaded_examples[example_rel] = instance
+
+    topology_contract = loaded_contracts["contracts/three-agent-topology.yaml"]
+    topology_example = loaded_examples["examples/three-agent-topology.valid.json"]
+    triad_roles = extract_governance_roles(topology_contract)
+    example_roles = extract_governance_roles(topology_example)
+    if len(triad_roles) < 3:
+        raise AssertionError("three-agent-topology must expose at least three explicit governance roles.")
+    if not any(role.startswith("orchestrator") for role in triad_roles):
+        raise AssertionError("three-agent-topology must keep an explicit orchestrator role.")
+    if triad_roles != example_roles:
+        raise AssertionError(
+            f"three-agent-topology valid example roles drift from the contract. Contract={sorted(triad_roles)} Example={sorted(example_roles)}"
+        )
+
+    role_contract = yaml.safe_load((ROOT / "contracts/agent-role-contract.yaml").read_text())
+    runtime_role_ids = {normalize_identifier(role["role_id"]) for role in role_contract["roles"]}
+    runtime_role_classes = {normalize_identifier(role["role_class"]) for role in role_contract["roles"]}
+    overlap = sorted((triad_roles & runtime_role_ids) | (triad_roles & runtime_role_classes))
+    if overlap:
+        raise AssertionError(
+            f"Governance triad roles must stay separate from runtime roles in contracts/agent-role-contract.yaml: {overlap}"
+        )
+
+    doc_mentions = {}
+    for rel in TRIAD_DOC_FILES:
+        text = (ROOT / rel).read_text().lower()
+        if not any(marker in text for marker in TRIAD_TEXT_MARKERS):
+            raise AssertionError(f"{rel} must explicitly expose the governance triad.")
+        missing_roles = sorted(role for role in triad_roles if not text_mentions_role(text, role))
+        if missing_roles:
+            raise AssertionError(f"{rel} is missing governance triad role coverage: {missing_roles}")
+        doc_mentions[rel] = sorted(triad_roles)
+
+    family_texts = {rel: (ROOT / rel).read_text().lower() for rel in PROMPT_HANDOFF_FAMILY}
+    family_text = "\n".join(family_texts.values())
+    if not any(marker in family_text for marker in TRIAD_TEXT_MARKERS):
+        raise AssertionError("Prompt/handoff family must explicitly recognize triad targeting.")
+    missing_family_roles = sorted(role for role in triad_roles if not text_mentions_role(family_text, role))
+    if missing_family_roles:
+        raise AssertionError(f"Prompt/handoff family is missing triad role targeting markers: {missing_family_roles}")
+
+    extension_schema = loaded_schemas["schemas/agent-extension-request.schema.json"]
+    extension_contract = loaded_contracts["contracts/agent-extension-request.yaml"]
+    extension_example = loaded_examples["examples/agent-extension-request.valid.json"]
+    decision_floor = max(
+        extract_option_space_minimum(extension_schema),
+        extract_option_space_minimum(extension_contract),
+        extract_option_space_minimum(extension_example),
+    )
+    if decision_floor < DECISION_SPACE_MINIMUM:
+        raise AssertionError("agent-extension-request must preserve 3+ option decision spaces.")
+    if "option" not in family_text or not any(hint in family_text for hint in DECISION_SPACE_HINTS):
+        raise AssertionError("Prompt/handoff family must explicitly recognize 3+ option decision spaces.")
+
+    governed_profile_refs = [
+        rel for rel, schema in loaded_schemas.items()
+        if rel != "schemas/governed-agent-profile.schema.json"
+        and "governed-agent-profile" in json.dumps(schema).lower()
+    ]
+    if not governed_profile_refs:
+        raise AssertionError("Triad schemas must wire through schemas/governed-agent-profile.schema.json.")
+
+    handoff_example = load_structured(ROOT / "examples/architect-review-handoff-prompt.valid.json")
+    artifact_path = (
+        handoff_example.get("expected_outputs", {})
+        .get("follow_up_prompt_artifact", {})
+        .get("artifact_path", "")
+    )
+    if not artifact_path.lower().endswith(".md"):
+        raise AssertionError("Handoff prompt artifacts must point to Markdown prompt artifacts.")
+    if MARKDOWN_PROMPT_HINT not in family_text:
+        raise AssertionError("Prompt/handoff family must explicitly require Markdown prompt artifacts.")
+
+    extension_text = "\n".join(
+        [
+            yaml.safe_dump(extension_contract, sort_keys=False),
+            json.dumps(extension_schema, sort_keys=True),
+            json.dumps(extension_example, sort_keys=True),
+        ]
+    ).lower()
+    missing_evidence_markers = sorted(marker for marker in PIXTABLE_EVIDENCE_MARKERS if marker not in extension_text)
+    if missing_evidence_markers:
+        raise AssertionError(
+            f"agent-extension-request must keep Pixeltable/evidence/validation-gate doctrine explicit: {missing_evidence_markers}"
+        )
+    missing_truth_markers = sorted(marker for marker in TRUTH_BOUNDARY_MARKERS if marker not in extension_text)
+    if missing_truth_markers:
+        raise AssertionError(
+            f"agent-extension-request must keep truthful bounded-output doctrine explicit: {missing_truth_markers}"
+        )
+
+    return {
+        "contracts": sorted(TRIAD_GOVERNANCE_CONTRACTS.keys()),
+        "examples": [item[0] for item in TRIAD_GOVERNANCE_VALID_EXAMPLES],
+        "schema_only": TRIAD_GOVERNANCE_SCHEMA_ONLY,
+        "triad_roles": sorted(triad_roles),
+        "runtime_role_ids": sorted(runtime_role_ids),
+        "runtime_role_classes": sorted(runtime_role_classes),
+        "docs_checked": doc_mentions,
+        "prompt_handoff_files": PROMPT_HANDOFF_FAMILY,
+        "minimum_decision_options": decision_floor,
+        "governed_agent_profile_refs": sorted(governed_profile_refs),
+        "handoff_markdown_artifact_path": artifact_path,
+    }
 
 
 def validate_report_runtime_truth(report_instance: dict, iteration_rows: list[dict]) -> dict:
@@ -1466,6 +1735,14 @@ def main() -> int:
 
     checks.append(
         {
+            "name": "governance_triad_slice",
+            "status": "pass",
+            "details": validate_governance_triad_slice(),
+        }
+    )
+
+    checks.append(
+        {
             "name": "capability_metrics_contract",
             "status": "pass",
             "details": validate_capability_metrics_contract(),
@@ -1623,6 +1900,11 @@ def main() -> int:
             "contracts/agent-role-contract.yaml",
             "contracts/hook-manifest.yaml",
             "contracts/capability-matrix.yaml",
+            "contracts/three-agent-topology.yaml",
+            "contracts/agent-extension-request.yaml",
+            "schemas/governed-agent-profile.schema.json",
+            "examples/three-agent-topology.valid.json",
+            "examples/agent-extension-request.valid.json",
             "evaluation/tool-health/peer-mesh-local.json",
             "evaluation/tool-health/peer-mesh-local.log",
             "evaluation/tool-health/peer-mesh-local-events.jsonl",

@@ -1,0 +1,74 @@
+{
+  "request_schema_version": "1.0.0",
+  "request_id": "EXTREQ-20260521-TRIAD",
+  "artifact_type": "agent_extension_request",
+  "topology_ref": "examples/three-agent-topology.valid.json",
+  "requester_role_id": "architect",
+  "upstream_handoff_ref": "HANDOFF-20260521-TRIAD1",
+  "decision_space": {
+    "options": [
+      {
+        "option_id": "option-a",
+        "title": "Extend the governed follow-up prompt surfaces now.",
+        "rationale": "This adds the missing parent-only companion prompt lane while keeping the slice bounded.",
+        "expected_artifacts": [
+          "prompts/governed-triad-follow-up-prompt.template.md",
+          "architect-review-handoff-prompt.schema.json"
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Defer the extension and tighten the structured schema only.",
+        "rationale": "This preserves machine-truth enforcement while delaying the operator-facing companion.",
+        "expected_artifacts": [
+          "agent-heavy-run-prompt.schema.json",
+          "agent-heavy-run-prompt.template.yaml"
+        ]
+      },
+      {
+        "option_id": "option-c",
+        "title": "Stop with an exact blocker and route back to orchestrator-validator.",
+        "rationale": "This preserves bounded truth if the extension would widen beyond owned handoff surfaces.",
+        "expected_artifacts": [
+          "evaluation/copilot-ratchet-report.json",
+          "runs/iterations.jsonl"
+        ]
+      }
+    ],
+    "recommended_option_id": "option-a",
+    "blocker_or_escalation_path": "Escalate to orchestrator-validator if the extension requires runtime activation, child-repo mutation, or ungoverned prompt drift."
+  },
+  "requested_change": {
+    "change_class": "prompt_surface",
+    "change_summary": "Add a bounded parent-only prompt companion surface for governed triad follow-ups.",
+    "target_files": [
+      "architect-review-handoff-prompt.schema.json",
+      "architect-review-handoff-prompt.template.yaml",
+      "prompts/governed-triad-follow-up-prompt.template.md"
+    ],
+    "expected_new_artifacts": [
+      "prompts/governed-triad-follow-up-prompt.template.md"
+    ]
+  },
+  "rationale": {
+    "problem_statement": "The structured handoff needs a companion operator-facing markdown prompt without moving machine truth out of the structured contract family.",
+    "expected_benefit": "The next worker gets a readable governed prompt companion while the structured schema and template stay authoritative.",
+    "risk_if_rejected": "Follow-up dispatches may stay underspecified for operator-facing use even when the structured contract is complete."
+  },
+  "validation_gate": {
+    "gate_type": "triad_review_required",
+    "decision_space_option_id": "option-a",
+    "required_review_roles": [
+      "orchestrator-validator",
+      "architect"
+    ],
+    "required_artifacts": [
+      "architect-review-handoff-prompt.schema.json",
+      "architect-review-handoff-prompt.template.yaml"
+    ],
+    "blocking_condition": "Do not ship the extension unless the decision-space option and parent-only markdown companion both stay governed."
+  },
+  "promotion_state": "ready_for_review",
+  "blocker_state": "waiting_for_review",
+  "downstream_owner": "orchestrator-validator"
+}

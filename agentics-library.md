@@ -38,6 +38,19 @@ the-library-style typed distribution contract, and benchmark-emission surfaces
 so peer-mesh regression evidence is governed and portable instead of implied by
 logs or prose.
 
+The next governance slice makes the three-agent control core explicit above the
+runtime mesh. `contracts/three-agent-topology.yaml` now defines the
+`orchestrator-validator`, `research`, and `architect` roles as parent-only
+governance profiles, while `contracts/agent-extension-request.yaml` gives that
+same triad a bounded way to propose new parent-native agent or prompt surfaces
+without claiming runtime auto-provisioning exists.
+
+This triad slice also adds a dual-artifact handoff rule. Structured YAML/JSON
+artifacts remain machine truth, while
+`prompts/governed-triad-follow-up-prompt.template.md` provides the companion
+Markdown surface for operator-facing routing, front matter, bottom matter, and
+dispatch clarity.
+
 The compiled research harvest under `evaluation/research/` is now governed as a
 first-class parent surface through `contracts/research-packet-manifest.yaml`,
 schema-backed compiled output validation, and a capability matrix that stays

@@ -1,0 +1,144 @@
+{
+  "topology_schema_version": "1.0.0",
+  "topology_id": "TOPOLOGY-20260521-TRIAD",
+  "artifact_type": "three_agent_topology",
+  "governance_mode": "governed_triad",
+  "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
+  "agent_profiles": {
+    "orchestrator-validator": {
+      "profile_schema_version": "1.0.0",
+      "profile_id": "PROFILE-ORCH-TRIAD",
+      "artifact_type": "governed_agent_profile",
+      "role_id": "orchestrator-validator",
+      "display_name": "Orchestrator Validator",
+      "primary_outcome": "Dispatch the next bounded slice while keeping validation and routing truthful.",
+      "core_responsibilities": [
+        "Select the governed next step from the declared decision space.",
+        "Keep dispatches aligned to the parent-only handoff contract."
+      ],
+      "runtime_truth_requirements": [
+        "Carry forward exact runtime-truth claims from the upstream handoff."
+      ],
+      "command_evidence_requirements": [
+        "Require activation and validation commands before dispatch."
+      ],
+      "receives_handoffs_from": [
+        "research",
+        "architect"
+      ],
+      "can_dispatch_to": [
+        "research",
+        "architect"
+      ],
+      "decision_space_expectation": "Require 3+ viable options with one recommended path.",
+      "extension_request_policy": "Emit a governed extension request instead of inventing a new agent or capability."
+    },
+    "research": {
+      "profile_schema_version": "1.0.0",
+      "profile_id": "PROFILE-RESEARCH-TRIAD",
+      "artifact_type": "governed_agent_profile",
+      "role_id": "research",
+      "display_name": "Research",
+      "primary_outcome": "Tighten bounded evidence or dependency understanding without widening the slice.",
+      "core_responsibilities": [
+        "Verify exact upstream claims before proposing new work.",
+        "Return only bounded evidence that supports the next governed step."
+      ],
+      "runtime_truth_requirements": [
+        "Do not upgrade blocked lanes without fresh proof artifacts."
+      ],
+      "command_evidence_requirements": [
+        "Pair every claim with the command or artifact that supports it."
+      ],
+      "receives_handoffs_from": [
+        "orchestrator-validator",
+        "architect"
+      ],
+      "can_dispatch_to": [
+        "orchestrator-validator",
+        "architect"
+      ],
+      "decision_space_expectation": "Return at least three options when routing the next research or architecture step.",
+      "extension_request_policy": "Use a governed extension request when the needed capability is outside the current harvested set."
+    },
+    "architect": {
+      "profile_schema_version": "1.0.0",
+      "profile_id": "PROFILE-ARCH-TRIAD",
+      "artifact_type": "governed_agent_profile",
+      "role_id": "architect",
+      "display_name": "Architect",
+      "primary_outcome": "Convert reviewed evidence into the next bounded contract update.",
+      "core_responsibilities": [
+        "Keep the next prompt bounded to the declared parent surfaces.",
+        "Preserve the structured contract family as machine truth."
+      ],
+      "runtime_truth_requirements": [
+        "Keep runtime-truth fields explicit in the next structured prompt."
+      ],
+      "command_evidence_requirements": [
+        "Name the exact command-evidence contract the next worker must preserve."
+      ],
+      "receives_handoffs_from": [
+        "orchestrator-validator",
+        "research"
+      ],
+      "can_dispatch_to": [
+        "orchestrator-validator",
+        "research"
+      ],
+      "decision_space_expectation": "Offer at least three viable implementation or escalation options.",
+      "extension_request_policy": "Request a governed extension instead of broadening beyond current parent-native surfaces."
+    }
+  },
+  "handoff_policy": {
+    "parent_only_handoffs": true,
+    "linked_consumer_roles": [
+      "orchestrator-validator",
+      "research",
+      "architect",
+      "architect_or_research"
+    ],
+    "policy_modes": [
+      "single_consumer",
+      "architect_or_research",
+      "governed_fanout"
+    ]
+  },
+  "validation_gates": {
+    "decision_space_required": true,
+    "dispatch_message_required": true,
+    "markdown_companion_required": true,
+    "machine_truth_stays_structured": true
+  },
+  "governed_artifacts": {
+    "heavy_run_prompt_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "heavy_run_prompt_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "handoff_schema_ref": "architect-review-handoff-prompt.schema.json",
+    "handoff_template_ref": "architect-review-handoff-prompt.template.yaml",
+    "governed_agent_profile_schema_ref": "schemas/governed-agent-profile.schema.json",
+    "markdown_companion_template_ref": "prompts/governed-triad-follow-up-prompt.template.md",
+    "extension_request_schema_ref": "schemas/agent-extension-request.schema.json"
+  },
+  "runtime_truth_contract": {
+    "required_roles": [
+      "orchestrator-validator",
+      "research",
+      "architect"
+    ],
+    "requirements": [
+      "Keep blocked lanes explicit when dependencies are unchanged.",
+      "Keep upstream runtime proof artifacts attached to the next governed slice."
+    ]
+  },
+  "command_evidence_contract": {
+    "required_roles": [
+      "orchestrator-validator",
+      "research",
+      "architect"
+    ],
+    "requirements": [
+      "Require activation and validation commands in every governed follow-up prompt.",
+      "Require dispatch output to point back to the structured prompt artifact."
+    ]
+  }
+}

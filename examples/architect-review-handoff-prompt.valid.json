@@ -9,105 +9,174 @@
     "kept_or_blocked": "kept",
     "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
   },
-  "consumer_agent": {
-    "name": "copilot",
-    "surface": "gh_copilot_p",
-    "invocation": "gh copilot -p"
+  "linked_consumers": [
+    {
+      "role": "orchestrator-validator",
+      "name": "copilot",
+      "surface": "gh_copilot_p",
+      "invocation": "gh copilot -p"
+    },
+    {
+      "role": "architect_or_research",
+      "name": "copilot",
+      "surface": "gh_copilot_p",
+      "invocation": "gh copilot -p"
+    }
+  ],
+  "auto_consume_policy": {
+    "enabled": true,
+    "mode": "governed_fanout",
+    "next_prompt_must_embed_handoff_context": true,
+    "next_prompt_must_read_source_report": true,
+    "next_prompt_must_read_required_inputs": true,
+    "next_prompt_must_preserve_runtime_truth_contract": true
   },
   "handoff_goal": {
     "objective": "Review the kept same-host peer-mesh runtime slice and generate the next bounded implementation prompt.",
     "why_now": "The prior run landed runtime proof and the next agent should consume exact evidence instead of reconstructing the slice from scratch.",
     "best_next_slice": "Schema-hardening or next-lane activation driven by exact runtime truth."
   },
+  "decision_space": {
+    "options": [
+      {
+        "option_id": "option-a",
+        "title": "Tighten the governed prompt contracts only.",
+        "rationale": "This keeps the next slice on schema and template surfaces without widening into runtime implementation.",
+        "expected_artifacts": [
+          "agent-heavy-run-prompt.schema.json",
+          "architect-review-handoff-prompt.schema.json"
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Refresh the parent-only prompt templates and examples.",
+        "rationale": "This keeps the contract readable for the next worker without claiming new runtime behavior.",
+        "expected_artifacts": [
+          "agent-heavy-run-prompt.template.yaml",
+          "prompts/governed-triad-follow-up-prompt.template.md",
+          "examples/architect-review-handoff-prompt.valid.json"
+        ]
+      },
+      {
+        "option_id": "option-c",
+        "title": "Prepare a governed extension request for later follow-up.",
+        "rationale": "This records any needed extension without mutating validator or scorer surfaces in the same slice.",
+        "expected_artifacts": [
+          "schemas/agent-extension-request.schema.json",
+          "examples/agent-extension-request.valid.json"
+        ]
+      }
+    ],
+    "recommended_option_id": "option-a",
+    "blocker_or_escalation_path": "Escalate to the orchestrator-validator if the next worker needs validator or scorer changes outside the owned prompt surfaces."
+  },
   "review_scope": {
     "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
     "allowed_paths": [
-      "contracts/**",
       "schemas/**",
       "examples/**",
-      "tests/**",
-      "scripts/**",
-      "evaluation/**",
-      "runs/**"
+      "prompts/**",
+      "agent-heavy-run-prompt.schema.json",
+      "agent-heavy-run-prompt.template.yaml",
+      "architect-review-handoff-prompt.schema.json",
+      "architect-review-handoff-prompt.template.yaml",
+      "architect-review-handoff-prompt-schema.md"
     ],
     "disallowed_paths": [
       "external/**",
-      "../VW_iTwin_Bridge/src/**",
-      "../VW_iTwin_Bridge/pixeltable/**"
+      "contracts/**",
+      "library.yaml",
+      "agentics-library.md",
+      "tests/**",
+      "scripts/**"
     ],
     "primary_focus": [
-      "runtime truth",
-      "blocker precision",
-      "freshness evidence",
-      "follow-up prompt generation"
+      "governed triad prompt routing",
+      "decision-space clarity",
+      "dispatch output requirements",
+      "markdown companion alignment"
     ],
     "anti_goals": [
-      "broad new research wave",
-      "editing child repo code",
-      "pretending blocked lanes are active"
+      "editing validator or scorer code",
+      "editing contract yaml files",
+      "inventing new runtime activation claims"
     ]
   },
   "required_inputs": {
     "report_artifacts": [
-      "evaluation/copilot-ratchet-report.json",
-      "runs/iterations.jsonl"
+      "evaluation/copilot-ratchet-report.json"
     ],
     "runtime_proof_artifacts": [
-      "evaluation/tool-health/peer-mesh-local.json",
-      "evaluation/tool-health/peer-mesh-local-events.jsonl"
+      "evaluation/tool-health/peer-mesh-local.json"
     ],
     "contract_artifacts": [
-      "contracts/capability-matrix.yaml",
-      "contracts/peer-mesh-runtime.yaml",
-      "schemas/copilot-ratchet-report.schema.json"
+      "agent-heavy-run-prompt.schema.json",
+      "architect-review-handoff-prompt.schema.json",
+      "schemas/three-agent-topology.schema.json"
     ],
     "research_artifacts": [
-      "evaluation/research/compiled/feature-matrix.json",
-      "evaluation/research/compiled/source-index.json"
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/infranodus-live-summary.json"
     ]
   },
   "review_protocol": {
     "ordered_steps": [
-      "Read the kept report and iteration row first.",
-      "Read the runtime proof artifacts next.",
-      "Compare runtime truth against governed contracts.",
-      "Generate the next prompt using the parent heavy-run prompt schema."
+      "Read the upstream report and owned prompt surfaces first.",
+      "Confirm the linked consumers and policy mode match the governed triad contract.",
+      "Choose one option from the declared decision space before drafting the next prompt.",
+      "Generate both the structured prompt artifact and the markdown companion artifact."
     ],
     "runtime_truth_expectations": [
-      "Distinguish bounded_runtime from contract_only claims.",
-      "Keep cross-device blocked unless exact dependencies changed."
+      "Carry forward exact upstream runtime-truth claims without upgrading blocked lanes.",
+      "Keep runtime-truth requirements visible in the next structured prompt."
     ],
     "blocker_expectations": [
-      "Use explicit blocker_dependency and evidence_refs.",
-      "Do not soften blocked lanes into optional prose."
+      "Escalate if the next slice would require unowned validator or scorer changes.",
+      "Do not soften blocked dependencies into optional prose."
     ],
     "freshness_expectations": [
-      "Require artifact timestamps or observed_at evidence.",
-      "Treat stale proof as non-authoritative."
+      "Use the current repo truth instead of replaying stale prompt assumptions.",
+      "Treat unrefreshed evidence as non-authoritative for new claims."
     ],
     "command_evidence_expectations": [
-      "Require activation and validation commands.",
-      "Require evidence path pairing for each command class."
+      "Require the next structured prompt to preserve command-evidence requirements.",
+      "Require dispatch output to point back to the structured prompt and companion markdown artifact."
     ]
   },
   "validation_loop": {
     "checks": [
-      "Validate the prior runtime evidence.",
-      "Confirm report schema compliance.",
-      "Confirm the follow-up prompt preserves runtime-truth fields."
+      "Validate the architect handoff schema shape.",
+      "Confirm the decision-space block stays complete.",
+      "Confirm the follow-up prompt preserves runtime-truth and command-evidence requirements."
     ],
-    "rerun_policy": "Repeat the bounded review until the next prompt is evidence-anchored or the exact blocker is proven."
+    "rerun_policy": "Repeat the bounded review until the governed outputs are complete or the exact blocker is proven."
   },
   "expected_outputs": {
     "review_report_fields": [
       "status",
-      "runtime_mismatch_list",
-      "validator_and_scorer_changes",
-      "proof_artifacts_refreshed",
+      "selected_decision_option_id",
+      "runtime_truth_carry_forward",
+      "dispatch_artifact_path",
+      "markdown_companion_artifact_path",
       "files_changed"
     ],
+    "dispatch_message": {
+      "artifact_path": "prompts/governed-triad-follow-up-dispatch.md",
+      "target_roles": [
+        "orchestrator-validator",
+        "architect_or_research"
+      ],
+      "message_requirements": [
+        "Reference the handoff id and the recommended decision option.",
+        "Point at both the structured prompt artifact and the markdown companion artifact."
+      ],
+      "must_reference_handoff_id": true,
+      "must_reference_recommended_option_id": true,
+      "must_reference_structured_prompt_artifact": true,
+      "must_reference_markdown_companion_artifact": true
+    },
     "follow_up_prompt_artifact": {
-      "artifact_path": "prompts/next-bounded-slice.prompt.yaml",
+      "artifact_path": "prompts/next-bounded-slice.prompt.md",
       "target_schema_ref": "agent-heavy-run-prompt.schema.json",
       "target_template_ref": "agent-heavy-run-prompt.template.yaml",
       "must_be_inline_ready": true,
@@ -115,6 +184,16 @@
       "must_preserve_blocker_fields": true,
       "must_preserve_freshness_fields": true,
       "must_preserve_command_evidence_fields": true
+    },
+    "companion_markdown_prompt_artifact": {
+      "artifact_path": "prompts/next-bounded-slice.prompt.md",
+      "target_template_ref": "prompts/governed-triad-follow-up-prompt.template.md",
+      "machine_truth_source": "structured_contract_family",
+      "must_use_front_matter": true,
+      "must_use_bottom_matter_marker": true,
+      "must_be_parent_only": true,
+      "must_reference_structured_prompt_artifact": true,
+      "must_not_replace_structured_contract": true
     }
   }
 }
