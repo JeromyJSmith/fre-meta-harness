@@ -3,7 +3,7 @@
     "group": "peer_mesh_regression",
     "probe_id": "semantic_cartography",
     "mode": "graph_boundary_reconciliation",
-    "duration_s": 0.0041,
+    "duration_s": 0.0048,
     "graph_artifacts_present": 4,
     "graph_artifacts_total": 4,
     "cluster_count": 6,

@@ -4,7 +4,7 @@
   "probe_mode": "inbox_fixture_reconciliation",
   "proof_state": "bounded_probe_pass",
   "runtime_lane": "inbox_protocol.same_host",
-  "executed_at": "2026-05-22T16:05:18.329301Z",
+  "executed_at": "2026-05-22T16:44:44.065635Z",
   "inbox_clean": true,
   "gate_ids_confirmed": [
     "schema_gate",
