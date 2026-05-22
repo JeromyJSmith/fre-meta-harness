@@ -34,7 +34,7 @@
     }
   ],
   "recommended_option_id": "option-a",
-  "iteration_count": 4,
+  "iteration_count": 5,
   "iteration_score_history": [
     {
       "iteration": 1,
@@ -63,6 +63,31 @@
       "before_total_score": 99.62,
       "after_total_score": 100,
       "score_changed": true
+    },
+    {
+      "iteration": 5,
+      "summary": "Executed bounded probes for intake_etl, research_harvest, and semantic_cartography. All three moved from designed_not_activated to bounded_probe_pass. Runner harnesses written for each. tool-health/status.json updated with subsystem_probes entry. wrapper_synthesizer remains gated.",
+      "before_total_score": 100,
+      "after_total_score": 100,
+      "score_changed": false,
+      "probe_states": {
+        "intake_etl": "bounded_probe_pass",
+        "research_harvest": "bounded_probe_pass",
+        "semantic_cartography": "bounded_probe_pass",
+        "wrapper_synthesizer": "designed_not_activated"
+      },
+      "probe_artifacts": [
+        "evaluation/subsystem-runner-probes/intake_etl/probe-status.json",
+        "evaluation/subsystem-runner-probes/intake_etl/events.jsonl",
+        "evaluation/subsystem-runner-probes/intake_etl/benchmarks.json",
+        "evaluation/subsystem-runner-probes/research_harvest/probe-status.json",
+        "evaluation/subsystem-runner-probes/research_harvest/events.jsonl",
+        "evaluation/subsystem-runner-probes/research_harvest/benchmarks.json",
+        "evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json",
+        "evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl",
+        "evaluation/subsystem-runner-probes/semantic_cartography/benchmarks.json"
+      ],
+      "observed_at": "2026-05-22T16:06:03.620464Z"
     }
   ],
   "infranodus_path_used": {
@@ -83,8 +108,9 @@
     "The slice now emits a structured report, markdown companion, and next-step prompt artifacts without implying subsystem activation, Pixeltable sync, DuckDB query proof, or child runtime adoption."
   ],
   "still_weak_content_summary": [
-    "live_infranodus_access remains blocked until an authenticated MCP probe is captured and reflected in tool-health artifacts.",
-    "consume_source_quality still needs narrower first-party packets and terminal or frame evidence for transcript-derived workflow claims.",
+    "wrapper_synthesizer remains designed_not_activated (gated) \u2014 requires intake_etl + research_harvest + semantic_cartography probe artifacts + triad delegation-bundle before handoff_bundle_reconciliation probe can run.",
+    "activation_proven_same_host is the next state for all three probes \u2014 requires runner execution (not reconciliation): intake_etl needs inbox_router \u2192 ETL normalize wiring, research_harvest needs consume_source_quality_lib orchestrated call, semantic_cartography needs colbymchenry/codegraph + oxc-project/oxc installed and invoked on source-index.",
+    "live_infranodus_access is now LIVE in this session (was blocked_pass in prior iterations); this report was written before the upgrade \u2014 tool-health/status.json reflects the current live state.",
     "pixeltable_duckdb_persistence still needs a parent-owned persistence family and bounded proof artifacts before any live sync or query claim can be made."
   ],
   "runnable_tool_shortlist_used": [

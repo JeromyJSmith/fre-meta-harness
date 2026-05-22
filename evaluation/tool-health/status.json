@@ -290,6 +290,59 @@
         "test:validator"
       ],
       "summary": "Launcher truth is carried by package scripts plus app/service/router entrypoints; no root .mcp.json is claimed when absent."
+    },
+    "subsystem_probes": {
+      "status": "bounded_pass",
+      "strongest_honest_scope": "bounded_probe_pass_same_host",
+      "truth_boundary": {
+        "strongest_honest_status": "bounded_probe_pass",
+        "active_subsystems": [
+          "intake_etl",
+          "research_harvest",
+          "semantic_cartography"
+        ],
+        "gated_subsystem": "wrapper_synthesizer",
+        "limitation": "All three probes confirm bounded_probe_pass at same-host scope only. activation_proven_same_host requires runner execution, not reconciliation."
+      },
+      "intake_etl": {
+        "proof_state": "bounded_probe_pass",
+        "mode": "inbox_fixture_reconciliation",
+        "gate_ids_confirmed": [
+          "schema_gate",
+          "scope_gate",
+          "consumer_gate",
+          "evidence_gate",
+          "freshness_gate",
+          "readiness_gate"
+        ],
+        "inbox_clean": true,
+        "evidence": "evaluation/subsystem-runner-probes/intake_etl/probe-status.json",
+        "observed_at": "2026-05-22T16:05:47.875974Z"
+      },
+      "research_harvest": {
+        "proof_state": "bounded_probe_pass",
+        "mode": "compiled_output_reconciliation",
+        "compiled_outputs_present": 5,
+        "lib_ready": true,
+        "evidence": "evaluation/subsystem-runner-probes/research_harvest/probe-status.json",
+        "observed_at": "2026-05-22T16:05:47.875974Z"
+      },
+      "semantic_cartography": {
+        "proof_state": "bounded_probe_pass",
+        "mode": "graph_boundary_reconciliation",
+        "cluster_count": 6,
+        "gap_count": 3,
+        "graph_artifacts_present": 4,
+        "evidence": "evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json",
+        "observed_at": "2026-05-22T16:05:47.875974Z"
+      },
+      "wrapper_synthesizer": {
+        "proof_state": "designed_not_activated",
+        "mode": "handoff_bundle_reconciliation",
+        "gate": "Gated \u2014 requires probes 1-3 artifacts + triad delegation-bundle",
+        "observed_at": "2026-05-22T16:05:47.875974Z"
+      }
     }
-  }
+  },
+  "updated_at": "2026-05-22T16:05:47.875974Z"
 }

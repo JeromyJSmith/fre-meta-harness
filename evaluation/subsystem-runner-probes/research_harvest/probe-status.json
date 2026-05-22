@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "probe_id": "research_harvest",
+  "probe_mode": "compiled_output_reconciliation",
+  "proof_state": "bounded_probe_pass",
+  "runtime_lane": "inbox_protocol.same_host",
+  "executed_at": "2026-05-22T16:04:50.148727Z",
+  "compiled_outputs_present": [
+    "evaluation/research/compiled/capability-harvest.json",
+    "evaluation/research/compiled/feature-matrix.json",
+    "evaluation/research/compiled/gap-placement-map.json",
+    "evaluation/research/compiled/source-index.json",
+    "evaluation/research/compiled/operational-feature-matrix.json"
+  ],
+  "compiled_outputs_missing": [],
+  "manifest_valid": true,
+  "lib_ready": true,
+  "blockers": [],
+  "do_not_overclaim": [
+    "Does not imply live research_harvest runner execution.",
+    "Does not imply cross-device activation.",
+    "Does not imply Pixeltable sync activation.",
+    "Does not imply child-runtime adoption.",
+    "Compiled artifacts are static snapshot evidence, not runner completion proof."
+  ]
+}

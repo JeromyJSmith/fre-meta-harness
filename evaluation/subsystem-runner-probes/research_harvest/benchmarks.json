@@ -1,0 +1,13 @@
+[
+  {
+    "group": "observability_ingest",
+    "probe_id": "research_harvest",
+    "mode": "compiled_output_reconciliation",
+    "duration_s": 0.0028,
+    "compiled_outputs_present": 5,
+    "compiled_outputs_total": 5,
+    "manifest_valid": true,
+    "lib_ready": true,
+    "lib_size_bytes": 26769
+  }
+]

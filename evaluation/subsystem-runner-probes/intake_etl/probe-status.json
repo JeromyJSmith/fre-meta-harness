@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "probe_id": "intake_etl",
+  "probe_mode": "inbox_fixture_reconciliation",
+  "proof_state": "bounded_probe_pass",
+  "runtime_lane": "inbox_protocol.same_host",
+  "executed_at": "2026-05-22T16:05:18.329301Z",
+  "inbox_clean": true,
+  "gate_ids_confirmed": [
+    "schema_gate",
+    "scope_gate",
+    "consumer_gate",
+    "evidence_gate",
+    "freshness_gate",
+    "readiness_gate"
+  ],
+  "blockers": [],
+  "do_not_overclaim": [
+    "Does not imply cross-device inbox activation.",
+    "Does not imply Pixeltable sync activation.",
+    "Does not imply child-runtime adoption.",
+    "Does not activate intake_etl runner; records contract boundary reconciliation only."
+  ]
+}
