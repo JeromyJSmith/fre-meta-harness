@@ -76,11 +76,63 @@ repository root.
 
 ## Clone And Bootstrap
 
-Clone with submodules so the imported upstream authorities are present locally:
+### Step 1 — Clone with submodules
 
 ```bash
 git clone --recurse-submodules git@github.com:JeromyJSmith/fre-meta-harness.git
+cd fre-meta-harness
 ```
+
+### Step 2 — Prerequisites
+
+| Tool | Version | Install |
+|------|---------|---------|
+| `bun` | ≥ 1.3.2 | `curl -fsSL https://bun.sh/install \| bash` |
+| `uv` | latest | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| `just` | any | `brew install just` |
+
+### Step 3 — Restore capability libraries
+
+`lib/` is gitignored (nested third-party git repos). Restore by invoking the lib-cloner agent in a Claude Code session inside this directory:
+
+```
+Invoke lib-cloner agent
+```
+
+Or manually clone each entry from `contracts/capability-matrix.yaml` under `upstream_repo` into `lib/`:
+
+```bash
+git clone https://github.com/disler/the-library lib/the-library
+git clone https://github.com/disler/claude-code-hooks-mastery lib/claude-code-hooks-mastery
+git clone https://github.com/disler/claude-code-hooks-multi-agent-observability lib/claude-code-hooks-multi-agent-observability
+git clone https://github.com/disler/just-prompt lib/just-prompt && cd lib/just-prompt && uv sync && cd ../..
+git clone https://github.com/disler/pi-vs-claude-code lib/pi-vs-claude-code && cd lib/pi-vs-claude-code && bun install && cd ../..
+git clone https://github.com/disler/agent-sandbox-skill lib/agent-sandbox-skill
+git clone https://github.com/disler/bowser lib/bowser
+git clone https://github.com/disler/mac-mini-agent lib/mac-mini-agent
+git clone https://github.com/disler/fork-repository-skill lib/fork-repository-skill
+git clone https://github.com/disler/infinite-agentic-loop lib/infinite-agentic-loop
+git clone https://github.com/RinDig/Interpreted-Context-Methdology lib/ICM
+git clone https://github.com/RinDig/Animation-Workflow lib/ICM-animation-example
+```
+
+### Step 4 — Verify
+
+```bash
+uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py
+uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json
+```
+
+Expected: `overall_status: pass`, `total_score ≥ 99`.
+
+### What is NOT in this repo (by design)
+
+| Path | Why excluded | How to restore |
+|------|-------------|----------------|
+| `lib/` | Third-party git repos | Step 3 above |
+| `stages/*/output/*.json` | Ephemeral stage outputs | Re-run the agent pipeline |
+| `logs/` | Hook event logs | Auto-created on first tool call |
+| `.env` | Secrets | Create from `.env.sample` pattern |
 
 ## Current Role
 
