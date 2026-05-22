@@ -1,0 +1,39 @@
+{
+  "artifact_id": "PACKET-20260521-FRONTDOOR",
+  "artifact_type": ".plan.md",
+  "producer_role": "architect",
+  "target_scope": "portable_parent_wrapper",
+  "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
+  "parent_only": true,
+  "structured_contract_ref": "contracts/inbox-packet.yaml",
+  "markdown_packet_ref": "inbox/FRE-META-HARNESS_PLAN.plan.md",
+  "required_consumers": [
+    "filesystem-router",
+    "architect",
+    "research"
+  ],
+  "routing_tags": [
+    "front-door",
+    "runtime-scaffold",
+    "recursive-documentation"
+  ],
+  "upstream_refs": [
+    "contracts/three-agent-topology.yaml"
+  ],
+  "evidence_refs": [
+    "library.yaml",
+    "agentics-library.md",
+    "README.md"
+  ],
+  "gate_expectations": {
+    "required_gate_state": "green_or_amber",
+    "required_gates": [
+      "schema_gate",
+      "scope_gate",
+      "consumer_gate",
+      "evidence_gate",
+      "freshness_gate",
+      "readiness_gate"
+    ]
+  }
+}

@@ -7,6 +7,14 @@ producer_run:
   source_commit_hash: ""
   kept_or_blocked: "kept"
   repo_root: ""
+inbox_context:
+  upstream_inbox_packet_ref: "inbox/packets/PACKET-YYYYMMDD-XXXX.plan.md"
+  packet_artifact_type: ".plan.md"
+  required_gate_state: "green"
+  required_consumers:
+    - "orchestrator-validator"
+  bottom_matter_ref: "inbox/packets/PACKET-YYYYMMDD-XXXX.plan.md#bottom-matter"
+  structured_contract_ref: "inbox/structured/PACKET-YYYYMMDD-XXXX.plan.json"
 linked_consumers:
   - role: "orchestrator-validator"
     name: "copilot"

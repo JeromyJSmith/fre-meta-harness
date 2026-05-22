@@ -1,0 +1,164 @@
+{
+  "status": "bounded_pass",
+  "packets": [
+    {
+      "packet_path": "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
+      "status": "blocked",
+      "gate_states": [],
+      "errors": [
+        "2026-05-21-operational-capability-matrix-and-schemas.handoff.md: missing front matter start"
+      ]
+    },
+    {
+      "packet_path": "inbox/2026-05-21-pipeline-ideas-and-implementation.handoff.md",
+      "status": "blocked",
+      "gate_states": [],
+      "errors": [
+        "2026-05-21-pipeline-ideas-and-implementation.handoff.md: missing front matter start"
+      ]
+    },
+    {
+      "packet_path": "inbox/FRE-META-HARNESS_PLAN.plan.md",
+      "status": "routed",
+      "gate_states": [
+        {
+          "gate_id": "schema_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "scope_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "consumer_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "evidence_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "freshness_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "readiness_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "promotion_gate",
+          "status": "amber"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "packet_path": "inbox/consuming-layer.plan.md",
+      "status": "blocked",
+      "gate_states": [
+        {
+          "gate_id": "harvest_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "registry_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "manifest_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "verification_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "state_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "health_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "promotion_gate",
+          "status": "red"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "packet_path": "inbox/consuming-layer.plan.review.checkpoint.md",
+      "status": "blocked",
+      "gate_states": [
+        {
+          "gate_id": "harvest_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "registry_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "manifest_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "verification_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "state_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "health_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "promotion_gate",
+          "status": "red"
+        }
+      ],
+      "errors": [
+        "missing front matter field: structured_artifact_ref",
+        "missing or unreadable structured_artifact_ref"
+      ]
+    },
+    {
+      "packet_path": "inbox/fre-meta-harness_plus_inbox.plan.md",
+      "status": "routed",
+      "gate_states": [
+        {
+          "gate_id": "schema_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "scope_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "consumer_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "evidence_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "freshness_gate",
+          "status": "green"
+        },
+        {
+          "gate_id": "readiness_gate",
+          "status": "amber"
+        },
+        {
+          "gate_id": "promotion_gate",
+          "status": "amber"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

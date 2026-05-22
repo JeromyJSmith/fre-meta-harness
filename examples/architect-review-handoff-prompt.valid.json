@@ -9,6 +9,17 @@
     "kept_or_blocked": "kept",
     "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
   },
+  "inbox_context": {
+    "upstream_inbox_packet_ref": "inbox/fre-meta-harness_plus_inbox.plan.md",
+    "packet_artifact_type": ".plan.md",
+    "required_gate_state": "green",
+    "required_consumers": [
+      "orchestrator-validator",
+      "architect"
+    ],
+    "bottom_matter_ref": "inbox/fre-meta-harness_plus_inbox.plan.md#bottom-matter",
+    "structured_contract_ref": "inbox/fre-meta-harness_plus_inbox.plan.json"
+  },
   "linked_consumers": [
     {
       "role": "orchestrator-validator",

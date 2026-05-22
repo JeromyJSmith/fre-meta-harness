@@ -18,20 +18,26 @@ The handoff prompt artifact does two jobs:
 ## Required Blocks
 
 1. `producer_run`
-2. `linked_consumers`
-3. `auto_consume_policy`
-4. `handoff_goal`
-5. `decision_space`
-6. `review_scope`
-7. `required_inputs`
-8. `review_protocol`
-9. `validation_loop`
-10. `expected_outputs`
+2. `inbox_context`
+3. `linked_consumers`
+4. `auto_consume_policy`
+5. `handoff_goal`
+6. `decision_space`
+7. `review_scope`
+8. `required_inputs`
+9. `review_protocol`
+10. `validation_loop`
+11. `expected_outputs`
 
 ## Core Rule
 
 Every architect/research handoff must preserve runtime-truth, blocker,
 freshness, and command-evidence expectations in the follow-up prompt artifact.
+
+It must also carry the upstream inbox packet reference, the packet artifact
+type, the required gate state, the required consumers, the bottom-matter
+reference, and the structured contract reference that made the handoff
+actionable.
 
 It must also be able to target:
 

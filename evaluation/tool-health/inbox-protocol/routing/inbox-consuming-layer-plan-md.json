@@ -1,0 +1,47 @@
+{
+  "decision_id": "ROUTE-20260521-CONSUMINGLAYER",
+  "artifact_type": "inbox_routing_decision",
+  "source_packet_ref": "inbox/consuming-layer.plan.md",
+  "source_artifact_id": "PACKET-20260521-CONSUMINGLAYER",
+  "status": "blocked",
+  "routing_mode": "triad_escalation",
+  "resolved_consumers": [
+    "filesystem-router",
+    "architect",
+    "orchestrator-validator",
+    "research"
+  ],
+  "routing_reason": "Packet requires clarification or was blocked by gatekeeping.",
+  "blocked_reason": "",
+  "gate_status_summary": [
+    {
+      "gate_id": "harvest_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "registry_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "manifest_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "verification_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "state_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "health_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "promotion_gate",
+      "status": "red"
+    }
+  ],
+  "delegation_bundle_ref": "evaluation/tool-health/inbox-protocol/delegations/all.json"
+}

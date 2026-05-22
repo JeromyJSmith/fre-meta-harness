@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/delegation-bundle.schema.json",
+  "title": "Delegation Bundle Contract",
+  "description": "Schema for the governed dispatch bundle that moves an inbox routing decision into a concrete front-door or governance consumer path.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "bundle_envelope",
+    "contract_dependencies",
+    "execution_boundary",
+    "delivery_payload"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-delegation-bundle"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "bundle_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "handoff_markdown_required",
+        "structured_artifact_refs_required"
+      ],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allOf": [
+            { "contains": { "const": "bundle_id" } },
+            { "contains": { "const": "packet_ref" } },
+            { "contains": { "const": "routing_decision_ref" } },
+            { "contains": { "const": "dispatching_role" } },
+            { "contains": { "const": "delegation_mode" } },
+            { "contains": { "const": "target_roles" } },
+            { "contains": { "const": "objective" } },
+            { "contains": { "const": "handoff_markdown_artifact_path" } },
+            { "contains": { "const": "dispatch_artifacts" } },
+            { "contains": { "const": "required_artifacts" } },
+            { "contains": { "const": "evidence_refs" } }
+          ]
+        },
+        "handoff_markdown_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "structured_artifact_refs_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "contract_dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inbox_packet_contract_ref",
+        "routing_decision_contract_ref",
+        "front_door_runtime_topology_contract_ref",
+        "prompt_contract_refs"
+      ],
+      "properties": {
+        "inbox_packet_contract_ref": {
+          "type": "string",
+          "const": "contracts/inbox-packet.yaml"
+        },
+        "routing_decision_contract_ref": {
+          "type": "string",
+          "const": "contracts/inbox-routing-decision.yaml"
+        },
+        "front_door_runtime_topology_contract_ref": {
+          "type": "string",
+          "const": "contracts/front-door-runtime-topology.yaml"
+        },
+        "prompt_contract_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "agent-heavy-run-prompt.schema.json",
+              "architect-review-handoff-prompt.schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "execution_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "triad_roles_allowed",
+        "runtime_roles_allowed",
+        "command_evidence_required",
+        "validation_gate_required",
+        "router_cannot_invent_missing_evidence",
+        "direct_agent_to_agent_without_inbox_forbidden"
+      ],
+      "properties": {
+        "triad_roles_allowed": {
+          "$ref": "#/$defs/triadRoles"
+        },
+        "runtime_roles_allowed": {
+          "$ref": "#/$defs/runtimeRoles"
+        },
+        "command_evidence_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "validation_gate_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "router_cannot_invent_missing_evidence": {
+          "type": "boolean",
+          "const": true
+        },
+        "direct_agent_to_agent_without_inbox_forbidden": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "delivery_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_sections",
+        "exact_blocker_path_required",
+        "markdown_companion_required"
+      ],
+      "properties": {
+        "required_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "items": {
+            "type": "string",
+            "enum": [
+              "objective",
+              "targets",
+              "required_artifacts",
+              "dispatch_message",
+              "blockers",
+              "evidence",
+              "completion_boundary"
+            ]
+          }
+        },
+        "exact_blocker_path_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "markdown_companion_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "triadRoles": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "enum": [
+          "orchestrator-validator",
+          "research",
+          "architect"
+        ]
+      }
+    },
+    "runtimeRoles": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 6,
+      "items": {
+        "type": "string",
+        "enum": [
+          "user-facing-agent",
+          "spec-interpreter",
+          "filesystem-router",
+          "intake-mapper",
+          "semantic-cartographer",
+          "wrapper-synthesizer"
+        ]
+      }
+    }
+  }
+}

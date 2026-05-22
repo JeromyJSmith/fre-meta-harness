@@ -1,0 +1,781 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/gap-map-strength-report.schema.json",
+  "title": "Gap Map Strength Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_id",
+    "status",
+    "scope",
+    "selected_slice",
+    "runtime_truth",
+    "infranodus_path",
+    "strong_content",
+    "weak_content",
+    "workflow_structure",
+    "runnable_tools",
+    "exact_blockers",
+    "freshness",
+    "score_saturation",
+    "command_evidence",
+    "follow_up_prompt",
+    "targeted_validation_results",
+    "files_changed"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "gap_map_strength_report"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^GAPMAP-[0-9]{8}-[A-Z0-9]{4,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "blocked"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "selected_slice": {
+      "type": "string",
+      "minLength": 10
+    },
+    "runtime_truth": {
+      "$ref": "#/$defs/runtimeTruth"
+    },
+    "infranodus_path": {
+      "$ref": "#/$defs/infranodusPath"
+    },
+    "strong_content": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/strongArea"
+      }
+    },
+    "weak_content": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/weakArea"
+      }
+    },
+    "workflow_structure": {
+      "$ref": "#/$defs/workflowStructure"
+    },
+    "runnable_tools": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "$ref": "#/$defs/toolItem"
+      }
+    },
+    "exact_blockers": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "freshness": {
+      "$ref": "#/$defs/freshness"
+    },
+    "score_saturation": {
+      "$ref": "#/$defs/scoreSaturation"
+    },
+    "command_evidence": {
+      "$ref": "#/$defs/commandEvidence"
+    },
+    "follow_up_prompt": {
+      "$ref": "#/$defs/followUpPrompt"
+    },
+    "targeted_validation_results": {
+      "$ref": "#/$defs/validationResults"
+    },
+    "files_changed": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    }
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidenceList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "blockedLane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lane_id",
+        "classification",
+        "blocker_dependency",
+        "evidence_refs"
+      ],
+      "properties": {
+        "lane_id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "classification": {
+          "type": "string",
+          "const": "blocked_with_exact_dependency"
+        },
+        "blocker_dependency": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "runtimeTruth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_truth_level",
+        "active_parent_runtime_lanes",
+        "blocked_parent_runtime_lanes",
+        "activation_commands",
+        "validation_commands",
+        "activation_artifacts_used",
+        "non_activated_subsystem_lanes",
+        "do_not_overclaim_notes"
+      ],
+      "properties": {
+        "runtime_truth_level": {
+          "type": "string",
+          "enum": [
+            "contract_only",
+            "bounded_runtime",
+            "active_runtime"
+          ]
+        },
+        "active_parent_runtime_lanes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "blocked_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/blockedLane"
+          }
+        },
+        "activation_commands": {
+          "$ref": "#/$defs/stringList"
+        },
+        "validation_commands": {
+          "$ref": "#/$defs/stringList"
+        },
+        "activation_artifacts_used": {
+          "$ref": "#/$defs/evidenceList"
+        },
+        "non_activated_subsystem_lanes": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "intake_etl",
+              "research_harvest",
+              "semantic_cartography",
+              "wrapper_synthesizer"
+            ]
+          }
+        },
+        "do_not_overclaim_notes": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "infranodusPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "command",
+        "live_status",
+        "limitation",
+        "evidence_refs"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "bounded_local_cli_substitute",
+            "live_mcp_runtime"
+          ]
+        },
+        "command": {
+          "type": "string",
+          "minLength": 3
+        },
+        "live_status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "blocked"
+          ]
+        },
+        "live_blocker": {
+          "type": "string",
+          "minLength": 10
+        },
+        "limitation": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "live_status": {
+                "const": "blocked"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "live_blocker"
+            ]
+          }
+        }
+      ]
+    },
+    "strongArea": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "area_id",
+        "summary",
+        "why_strong",
+        "evidence_refs"
+      ],
+      "properties": {
+        "area_id": {
+          "type": "string",
+          "enum": [
+            "governance_kernel",
+            "same_host_runtime_truth",
+            "compiled_research_baseline",
+            "subsystem_architecture_truth",
+            "tool_health_boundaries"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "why_strong": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "missingItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "detail"
+      ],
+      "properties": {
+        "class": {
+          "type": "string",
+          "enum": [
+            "better_source_material",
+            "better_transcript_capture",
+            "better_terminal_or_frame_evidence",
+            "better_schema",
+            "better_examples",
+            "better_observability",
+            "better_tool_probe",
+            "better_proof_boundary"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "weakArea": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "area_id",
+        "weakness",
+        "missing_items",
+        "strengthening_actions",
+        "evidence_refs"
+      ],
+      "properties": {
+        "area_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "weakness": {
+          "type": "string",
+          "minLength": 10
+        },
+        "missing_items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/missingItem"
+          }
+        },
+        "strengthening_actions": {
+          "$ref": "#/$defs/stringList"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "workflowEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edge_id",
+        "from",
+        "to",
+        "status",
+        "summary",
+        "evidence_refs"
+      ],
+      "properties": {
+        "edge_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "from": {
+          "type": "string",
+          "minLength": 3
+        },
+        "to": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "strong",
+            "weak"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "missingMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "map_type",
+        "why_missing",
+        "required_artifacts",
+        "evidence_refs"
+      ],
+      "properties": {
+        "map_type": {
+          "type": "string",
+          "enum": [
+            "workflow_edge_map",
+            "contract_to_runner_map",
+            "evidence_strength_map"
+          ]
+        },
+        "why_missing": {
+          "type": "string",
+          "minLength": 10
+        },
+        "required_artifacts": {
+          "$ref": "#/$defs/stringList"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "underspecifiedContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface_id",
+        "issue",
+        "needed_artifacts",
+        "evidence_refs"
+      ],
+      "properties": {
+        "surface_id": {
+          "type": "string",
+          "enum": [
+            "tool_packaging",
+            "pixeltable_duckdb_persistence",
+            "semantic_cartography_artifacts",
+            "subsystem_observability_handshake"
+          ]
+        },
+        "issue": {
+          "type": "string",
+          "minLength": 10
+        },
+        "needed_artifacts": {
+          "$ref": "#/$defs/stringList"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "workflowStructure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "strong_edges",
+        "weak_edges",
+        "missing_maps",
+        "underspecified_contracts"
+      ],
+      "properties": {
+        "strong_edges": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/workflowEdge"
+          }
+        },
+        "weak_edges": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/workflowEdge"
+          }
+        },
+        "missing_maps": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "$ref": "#/$defs/missingMap"
+          }
+        },
+        "underspecified_contracts": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/underspecifiedContract"
+          }
+        }
+      }
+    },
+    "toolItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tool_id",
+        "category",
+        "status",
+        "helping_areas",
+        "limitations",
+        "evidence_refs"
+      ],
+      "properties": {
+        "tool_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_\\-]+$"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "local_runner",
+            "bounded_probe",
+            "reusable_repo"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "available",
+            "bounded_pass",
+            "reusable_now",
+            "gated_dependency"
+          ]
+        },
+        "helping_areas": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "gap_mapping",
+              "graph_extraction",
+              "etl_structuring",
+              "semantic_cartography",
+              "observability",
+              "spec_compilation",
+              "durable_execution",
+              "weak_content_strengthening"
+            ]
+          }
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lane_id",
+        "classification",
+        "blocker_dependency",
+        "missing_prerequisites",
+        "evidence_refs"
+      ],
+      "properties": {
+        "lane_id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "classification": {
+          "type": "string",
+          "enum": [
+            "blocked_with_exact_dependency",
+            "gated",
+            "defined_not_activated",
+            "late_bound_not_activated"
+          ]
+        },
+        "blocker_dependency": {
+          "type": "string",
+          "minLength": 10
+        },
+        "missing_prerequisites": {
+          "$ref": "#/$defs/stringList"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_records",
+        "max_artifact_span_seconds",
+        "tool_health_artifacts",
+        "compiled_research_artifacts",
+        "infranodus_artifacts"
+      ],
+      "properties": {
+        "artifact_records": {
+          "$ref": "#/$defs/evidenceList"
+        },
+        "max_artifact_span_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tool_health_artifacts": {
+          "$ref": "#/$defs/evidenceList"
+        },
+        "compiled_research_artifacts": {
+          "$ref": "#/$defs/evidenceList"
+        },
+        "infranodus_artifacts": {
+          "$ref": "#/$defs/evidenceList"
+        }
+      }
+    },
+    "scoreSaturation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_total_score",
+        "final_total_score",
+        "score_changed",
+        "why_this_slice_counts"
+      ],
+      "properties": {
+        "baseline_total_score": {
+          "type": "number"
+        },
+        "final_total_score": {
+          "type": "number"
+        },
+        "score_changed": {
+          "type": "boolean"
+        },
+        "why_this_slice_counts": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "commandEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "activation_commands",
+        "validation_commands",
+        "tool_health_commands",
+        "infranodus_commands",
+        "research_commands_or_reads"
+      ],
+      "properties": {
+        "activation_commands": {
+          "$ref": "#/$defs/stringList"
+        },
+        "validation_commands": {
+          "$ref": "#/$defs/stringList"
+        },
+        "tool_health_commands": {
+          "$ref": "#/$defs/stringList"
+        },
+        "infranodus_commands": {
+          "$ref": "#/$defs/stringList"
+        },
+        "research_commands_or_reads": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "followUpPrompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_path",
+        "target_schema_ref",
+        "target_template_ref",
+        "must_be_inline_ready",
+        "next_decision_space",
+        "markdown_companion_artifact_path",
+        "must_use_front_matter",
+        "must_use_bottom_matter_marker"
+      ],
+      "properties": {
+        "artifact_path": {
+          "type": "string",
+          "minLength": 3
+        },
+        "target_schema_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.schema.json"
+        },
+        "target_template_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.template.yaml"
+        },
+        "must_be_inline_ready": {
+          "type": "boolean"
+        },
+        "next_decision_space": {
+          "type": "string",
+          "minLength": 10
+        },
+        "markdown_companion_artifact_path": {
+          "type": "string",
+          "minLength": 3
+        },
+        "must_use_front_matter": {
+          "type": "boolean"
+        },
+        "must_use_bottom_matter_marker": {
+          "type": "boolean"
+        }
+      }
+    },
+    "validationResults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "validator_command",
+        "validator_status",
+        "scorer_command",
+        "scorer_status"
+      ],
+      "properties": {
+        "validator_command": {
+          "type": "string",
+          "minLength": 3
+        },
+        "validator_status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "scorer_command": {
+          "type": "string",
+          "minLength": 3
+        },
+        "scorer_status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        }
+      }
+    }
+  }
+}

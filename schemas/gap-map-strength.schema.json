@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/gap-map-strength.schema.json",
+  "title": "Gap Map Strength Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "authority",
+    "required_runtime_truth_fields",
+    "required_analysis_sections",
+    "strong_content_rules",
+    "weak_content_rules",
+    "workflow_rules",
+    "tool_shortlist_rules",
+    "follow_up_prompt_requirements",
+    "truth_guardrails"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-gap-map-strength"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "structured_report_ref",
+        "structured_report_schema_ref",
+        "source_synthesis_ref",
+        "subsystem_topology_ref",
+        "subsystem_registry_ref",
+        "compiled_research_refs",
+        "bounded_infranodus_refs",
+        "tool_health_ref"
+      ],
+      "properties": {
+        "structured_report_ref": {
+          "type": "string",
+          "const": "evaluation/gap-map-strength-report.json"
+        },
+        "structured_report_schema_ref": {
+          "type": "string",
+          "const": "schemas/gap-map-strength-report.schema.json"
+        },
+        "source_synthesis_ref": {
+          "type": "string",
+          "const": "source/gap-map-strength.md"
+        },
+        "subsystem_topology_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-harness-topology.yaml"
+        },
+        "subsystem_registry_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-registry.yaml"
+        },
+        "compiled_research_refs": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^evaluation/research/compiled/.+\\.json$"
+          }
+        },
+        "bounded_infranodus_refs": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^evaluation/(tool-health/)?infranodus.+\\.json$"
+          }
+        },
+        "tool_health_ref": {
+          "type": "string",
+          "const": "evaluation/tool-health/status.json"
+        }
+      }
+    },
+    "required_runtime_truth_fields": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "runtime_truth_level",
+          "active_parent_runtime_lanes",
+          "blocked_parent_runtime_lanes",
+          "activation_commands",
+          "validation_commands",
+          "activation_artifacts_used",
+          "non_activated_subsystem_lanes",
+          "do_not_overclaim_notes"
+        ]
+      }
+    },
+    "required_analysis_sections": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "selected_slice",
+          "infranodus_path",
+          "strong_content",
+          "weak_content",
+          "workflow_structure",
+          "runnable_tools",
+          "exact_blockers",
+          "freshness",
+          "score_saturation",
+          "command_evidence",
+          "follow_up_prompt",
+          "targeted_validation_results"
+        ]
+      }
+    },
+    "strong_content_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_areas",
+        "required_areas"
+      ],
+      "properties": {
+        "minimum_areas": {
+          "type": "integer",
+          "minimum": 4
+        },
+        "required_areas": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "governance_kernel",
+              "same_host_runtime_truth",
+              "compiled_research_baseline",
+              "subsystem_architecture_truth"
+            ]
+          }
+        }
+      }
+    },
+    "weak_content_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_areas",
+        "required_missing_classes"
+      ],
+      "properties": {
+        "minimum_areas": {
+          "type": "integer",
+          "minimum": 4
+        },
+        "required_missing_classes": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "better_source_material",
+              "better_transcript_capture",
+              "better_terminal_or_frame_evidence",
+              "better_schema",
+              "better_examples",
+              "better_observability",
+              "better_tool_probe",
+              "better_proof_boundary"
+            ]
+          }
+        }
+      }
+    },
+    "workflow_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_missing_map_types",
+        "required_underspecified_contract_surfaces"
+      ],
+      "properties": {
+        "required_missing_map_types": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "workflow_edge_map",
+              "contract_to_runner_map",
+              "evidence_strength_map"
+            ]
+          }
+        },
+        "required_underspecified_contract_surfaces": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "tool_packaging",
+              "pixeltable_duckdb_persistence"
+            ]
+          }
+        }
+      }
+    },
+    "tool_shortlist_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_tools",
+        "required_focus_areas"
+      ],
+      "properties": {
+        "minimum_tools": {
+          "type": "integer",
+          "minimum": 6
+        },
+        "required_focus_areas": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "gap_mapping",
+              "graph_extraction",
+              "etl_structuring",
+              "semantic_cartography",
+              "observability",
+              "spec_compilation"
+            ]
+          }
+        }
+      }
+    },
+    "follow_up_prompt_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "structured_prompt_schema_ref",
+        "structured_prompt_template_ref",
+        "must_name_artifact_path",
+        "must_name_markdown_companion_path"
+      ],
+      "properties": {
+        "structured_prompt_schema_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.schema.json"
+        },
+        "structured_prompt_template_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.template.yaml"
+        },
+        "must_name_artifact_path": {
+          "type": "boolean",
+          "const": true
+        },
+        "must_name_markdown_companion_path": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "truth_guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "live_infranodus_optional_only_when_proven",
+        "blocked_cross_device_must_remain_explicit",
+        "non_activated_subsystem_lanes_must_remain_explicit",
+        "child_runtime_adoption_claims_forbidden"
+      ],
+      "properties": {
+        "live_infranodus_optional_only_when_proven": {
+          "type": "boolean",
+          "const": true
+        },
+        "blocked_cross_device_must_remain_explicit": {
+          "type": "boolean",
+          "const": true
+        },
+        "non_activated_subsystem_lanes_must_remain_explicit": {
+          "type": "boolean",
+          "const": true
+        },
+        "child_runtime_adoption_claims_forbidden": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  }
+}

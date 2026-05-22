@@ -1,0 +1,95 @@
+schema_version: "1.0.0"
+contract_id: parent-subsystem-harness-topology
+scope: portable_parent_wrapper
+parent_kernel:
+  owned_planes:
+    - governance_triad
+    - inbox_front_door
+    - routing_and_delegation
+    - recursive_documentation
+    - compiled_research
+    - substrate_sync_doctrine
+  active_parent_runtime_lanes:
+    - peer_mesh_local.same_host
+    - inbox_protocol.same_host
+  blocked_parent_runtime_lanes:
+    - lane_id: peer_mesh_local.cross_device
+      classification: blocked_with_exact_dependency
+      blocker_or_dependency: "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted."
+    - lane_id: inbox_protocol.cross_device
+      classification: blocked_with_exact_dependency
+      blocker_or_dependency: "Authenticated remote inbox routing and synchronization must exist before cross-device inbox protocol claims can be made."
+  non_activated_subsystem_lanes:
+    - intake_etl
+    - research_harvest
+    - semantic_cartography
+    - wrapper_synthesizer
+subsystem_harness_boundary:
+  wraps_between:
+    entry_plane: governed_inbox_and_delegation
+    exit_plane: compiled_research_and_wrapper_binding_candidates
+  governed_inputs:
+    - contracts/inbox-packet.yaml
+    - contracts/inbox-routing-decision.yaml
+    - contracts/delegation-bundle.yaml
+  derived_outputs:
+    - evaluation/research/compiled/source-index.json
+    - evaluation/research/compiled/capability-harvest.json
+    - evaluation/research/compiled/feature-matrix.json
+    - evaluation/research/compiled/gap-placement-map.json
+  parent_owned_surfaces:
+    - contracts/subsystem-harness-topology.yaml
+    - contracts/subsystem-registry.yaml
+    - source/subsystems/registry.json
+  subsystem_owned_surfaces:
+    - source/subsystems/intake-etl.md
+    - source/subsystems/research-harvest.md
+    - source/subsystems/semantic-cartography.md
+    - source/subsystems/wrapper-synthesizer.md
+  no_runtime_activation_claims: true
+first_subsystems:
+  - subsystem_id: intake_etl
+    lane_classification: core
+    activation_state: defined_not_activated
+    authoritative_scaffold_ref: source/subsystems/intake-etl.md
+    primary_objective: "Normalize inbox drops and consume-folder assets into packet, extract, and provenance records."
+  - subsystem_id: research_harvest
+    lane_classification: core
+    activation_state: defined_not_activated
+    authoritative_scaffold_ref: source/subsystems/research-harvest.md
+    primary_objective: "Compile normalized evidence into capability, feature, gap, and source-index artifacts without claiming live downstream adoption."
+  - subsystem_id: semantic_cartography
+    lane_classification: core
+    activation_state: defined_not_activated
+    authoritative_scaffold_ref: source/subsystems/semantic-cartography.md
+    primary_objective: "Turn normalized source and research material into semantic maps, graph-ready summaries, and subsystem candidates."
+  - subsystem_id: wrapper_synthesizer
+    lane_classification: gated
+    activation_state: late_bound_not_activated
+    authoritative_scaffold_ref: source/subsystems/wrapper-synthesizer.md
+    primary_objective: "Bind approved subsystem outputs into wrapper-facing contracts and handoffs only after explicit governance review."
+repo_catalog_lens:
+  fixed_repo_count: 20
+  allowed_classifications:
+    - core
+    - gated
+    - deployment_specific
+    - reference
+    - blocked_with_exact_dependency
+  focus_areas:
+    - intake_etl
+    - research_harvest
+    - semantic_cartography
+    - wrapper_synthesizer
+    - observability
+    - durable_execution
+    - spec_compiler
+    - substrate_sync
+  registry_artifact_ref: source/subsystems/registry.json
+  overlap_defaults_to_reference: true
+truth_guardrails:
+  same_host_peer_mesh_local_active: true
+  same_host_inbox_protocol_active: true
+  cross_device_requires_fresh_proof: true
+  do_not_imply_child_runtime_adoption: true
+  do_not_imply_subsystem_activation_from_scaffolding: true

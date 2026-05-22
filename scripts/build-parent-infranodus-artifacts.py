@@ -74,57 +74,70 @@ STOPWORDS = {
 }
 
 LAYER_SOURCES = {
-    "evaluation": {
-        "label": "evaluation",
+    "prompt_contracts": {
+        "label": "prompt_contracts",
         "sources": [
-            "evaluation/README.md",
-            "evaluation/metrics-latest.json",
-            "evaluation/copilot-ratchet-report.json",
+            "agent-heavy-run-prompt.schema.json",
+            "architect-review-handoff-prompt.schema.json",
+            "contracts/three-agent-topology.yaml",
         ],
     },
-    "meta_loop": {
-        "label": "meta_loop",
+    "inbox_doctrine": {
+        "label": "inbox_doctrine",
         "sources": [
-            "GOAL.md",
-            "program.md",
-            "runs/iterations.jsonl",
+            "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
+            "inbox/2026-05-21-pipeline-ideas-and-implementation.handoff.md",
+            "inbox/consuming-layer.plan.md",
         ],
     },
-    "autoresearch": {
-        "label": "autoresearch",
+    "subsystem_harness": {
+        "label": "subsystem_harness",
         "sources": [
-            "README.md",
-            "program.md",
-            "library.yaml",
+            "contracts/subsystem-harness-topology.yaml",
+            "contracts/subsystem-registry.yaml",
+            "source/subsystems/registry.json",
+            "source/subsystems/intake-etl.md",
+            "source/subsystems/research-harvest.md",
+            "source/subsystems/semantic-cartography.md",
+            "source/subsystems/wrapper-synthesizer.md",
         ],
     },
-    "meta_harness": {
-        "label": "meta_harness",
+    "compiled_research": {
+        "label": "compiled_research",
         "sources": [
-            "domain_spec.md",
-            "AGENTS.md",
-            "MEMORY.md",
+            "evaluation/research/compiled/capability-harvest.json",
+            "evaluation/research/compiled/feature-matrix.json",
+            "evaluation/research/compiled/gap-placement-map.json",
+            "evaluation/research/compiled/source-index.json",
         ],
     },
-    "agent_eval": {
-        "label": "agent_eval",
+    "tool_catalog_inputs": {
+        "label": "tool_catalog_inputs",
         "sources": [
-            "contracts/agent-eval-parent-lane.yaml",
-            "evaluation/agent-eval/README.md",
-            "scripts/run-parent-agent-eval.sh",
+            "inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md",
+            "inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
+            "inbox/prompting-tools.consume/Prompt Tools — Observability + Evaluation (Measure 43aec88ea68041cc8bfcf8e8b4b04fc8.md",
+            "inbox/transcribe.consume/file-system-consume.md",
+            "inbox/transcribe.consume/prompt-candidate-consumption.md",
         ],
     },
     "tool_health": {
         "label": "tool_health",
         "sources": [
-            "README.md",
             "evaluation/tool-health/status.json",
             "evaluation/tool-health/local-runners.json",
+            "evaluation/tool-health/peer-mesh-local.json",
         ],
     },
 }
 
-NAMED_IMPROVEMENT_LAYERS = ["evaluation", "meta_loop", "autoresearch", "meta_harness", "agent_eval"]
+NAMED_IMPROVEMENT_LAYERS = [
+    "prompt_contracts",
+    "inbox_doctrine",
+    "subsystem_harness",
+    "compiled_research",
+    "tool_catalog_inputs",
+]
 
 
 def read_text(path: Path) -> str:

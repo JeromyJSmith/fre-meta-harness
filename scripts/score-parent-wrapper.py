@@ -102,6 +102,74 @@ PARENT_NATIVE_VALID_EXAMPLES = {
     "examples/hook-manifest.valid.json": "schemas/hook-manifest.schema.json",
     "examples/capability-matrix.valid.json": "schemas/capability-matrix.schema.json",
 }
+INBOX_PROTOCOL_CONTRACTS = {
+    "contracts/inbox-packet.yaml": "schemas/inbox-packet.schema.json",
+    "contracts/inbox-routing-decision.yaml": "schemas/inbox-routing-decision.schema.json",
+    "contracts/delegation-bundle.yaml": "schemas/delegation-bundle.schema.json",
+}
+FRONT_DOOR_LIFECYCLE_CONTRACTS = {
+    "contracts/front-door-runtime-topology.yaml": "schemas/front-door-runtime-topology.schema.json",
+    "contracts/recursive-documentation-bundle.yaml": "schemas/recursive-documentation-bundle.schema.json",
+}
+INBOX_PACKET_ARTIFACT_TYPES = {
+    ".brainstorm.md",
+    ".plan.md",
+    ".analysis.md",
+    ".test.md",
+    ".review.md",
+    ".handoff.md",
+    ".spec.md",
+    ".checkpoint.md",
+}
+INBOX_PACKET_REQUIRED_FIELDS = {
+    "artifact_id",
+    "artifact_type",
+    "producer_role",
+    "required_consumers",
+    "routing_tags",
+    "evidence_refs",
+    "structured_contract_ref",
+}
+INBOX_PACKET_SCOPE_FIELDS = {
+    "target_scope",
+    "repo_root",
+}
+INBOX_PACKET_FRESHNESS_FIELDS = {"created_at", "updated_at"}
+INBOX_GATE_FIELDS = {
+    "gate_progress",
+    "validation_status",
+    "promotion_criteria",
+    "blocked_by",
+    "next_iteration",
+}
+FRONT_DOOR_RUNTIME_ROLES = {
+    "user-facing-agent",
+    "spec-interpreter",
+    "intake-mapper",
+    "semantic-cartographer",
+    "filesystem-router",
+    "wrapper-synthesizer",
+}
+RECURSIVE_DOCUMENTATION_FIELDS = {
+    "purpose",
+    "boundaries",
+    "inputs",
+    "outputs",
+    "dependencies",
+    "governing_artifacts",
+}
+GOVERNED_MARKDOWN_TEMPLATE_GATES = {
+    "triad_handoff_consumed",
+    "structured_prompt_emitted",
+    "markdown_companion_emitted",
+}
+INBOX_ACTIVATION_CHECK_TOKENS = {
+    "inbox",
+    "front_door",
+    "filesystem_router",
+    "routing",
+    "confirmed_spec",
+}
 REQUIRED_PARENT_CAPABILITIES = {
     "communication_plane",
     "distribution_plane",
@@ -207,6 +275,38 @@ def load_json(path: Path) -> dict | None:
     return json.loads(path.read_text())
 
 
+def parse_markdown_contract(path: Path) -> tuple[dict, dict]:
+    text = path.read_text()
+    if not text.startswith("---\n"):
+        raise ValueError(f"{path.name}: missing front matter start")
+    _, rest = text.split("---\n", 1)
+    front_raw, body = rest.split("\n---\n", 1)
+    if "\n---bottom-matter---\n" not in body:
+        raise ValueError(f"{path.name}: missing bottom matter marker")
+    _, bottom_raw = body.split("\n---bottom-matter---\n", 1)
+    return yaml.safe_load(front_raw) or {}, yaml.safe_load(bottom_raw) or {}
+
+
+def normalize_identifier(value: str) -> str:
+    return "".join(char if char.isalnum() else "_" for char in value.lower()).strip("_")
+
+
+def collect_normalized_keys(node: object) -> set[str]:
+    keys: set[str] = set()
+
+    def visit(value: object) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                keys.add(normalize_identifier(str(key)))
+                visit(child)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+
+    visit(node)
+    return {key for key in keys if key}
+
+
 def normalize_tool_status(status: str | None) -> str:
     if not status:
         return "missing"
@@ -307,6 +407,40 @@ def row_has_substantive_change(row: dict) -> bool:
 
 def load_tool_health() -> dict | None:
     return load_json(ROOT / TOOL_HEALTH_PATH)
+
+
+def validate_surface_triad(
+    contract_rel: str,
+    schema_rel: str,
+    example_rel: str,
+) -> tuple[dict | None, dict | None, dict | None, list[str]]:
+    contract_path = ROOT / contract_rel
+    schema_path = ROOT / schema_rel
+    example_path = ROOT / example_rel
+    errors: list[str] = []
+    contract = None
+    schema = None
+    example = None
+
+    if not contract_path.exists():
+        errors.append(f"missing:{contract_rel}")
+    if not schema_path.exists():
+        errors.append(f"missing:{schema_rel}")
+    if not example_path.exists():
+        errors.append(f"missing:{example_rel}")
+    if errors:
+        return contract, schema, example, errors
+
+    try:
+        schema = json.loads(schema_path.read_text())
+        Draft202012Validator.check_schema(schema)
+        contract = yaml.safe_load(contract_path.read_text())
+        Draft202012Validator(schema).validate(contract)
+        example = json.loads(example_path.read_text())
+        Draft202012Validator(schema).validate(example)
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"{contract_rel}:{exc}")
+    return contract, schema, example, errors
 
 
 def parent_native_surface_refresh() -> tuple[float, dict]:
@@ -614,6 +748,177 @@ def same_host_runtime_truth() -> tuple[float, dict]:
         "event_count": len(events),
         "benchmark_groups": sorted(benchmark_groups),
         "observed_completion_tokens": sorted(set(completion.get("observed", []))),
+    }
+
+
+def inbox_front_door_surface_refresh() -> tuple[float, dict]:
+    required_triads = {
+        **INBOX_PROTOCOL_CONTRACTS,
+        **FRONT_DOOR_LIFECYCLE_CONTRACTS,
+    }
+    total_triads = len(required_triads)
+    present_triads = 0
+    validated_triads = 0
+    errors: list[str] = []
+    inbox_key_unions: list[set[str]] = []
+    lifecycle_key_unions: list[set[str]] = []
+
+    for contract_rel, schema_rel in required_triads.items():
+        example_rel = {
+            "contracts/inbox-routing-decision.yaml": "examples/inbox-routing-decision-contract.valid.json",
+            "contracts/delegation-bundle.yaml": "examples/delegation-bundle-contract.valid.json",
+            "contracts/front-door-runtime-topology.yaml": "examples/front-door-runtime-topology-contract.valid.json",
+            "contracts/recursive-documentation-bundle.yaml": "examples/recursive-documentation-bundle.valid.json",
+        }.get(contract_rel, f"examples/{Path(contract_rel).stem}.valid.json")
+        if contract_rel == "contracts/inbox-packet.yaml":
+            triad_paths = [
+                ROOT / contract_rel,
+                ROOT / schema_rel,
+                ROOT / "examples/governed-inbox-packet.protocol.valid.md",
+            ]
+            if all(path.exists() for path in triad_paths):
+                present_triads += 1
+            try:
+                contract = yaml.safe_load((ROOT / contract_rel).read_text())
+                schema = json.loads((ROOT / schema_rel).read_text())
+                Draft202012Validator.check_schema(schema)
+                Draft202012Validator(schema).validate(contract)
+                front, bottom = parse_markdown_contract(ROOT / "examples/governed-inbox-packet.protocol.valid.md")
+                key_union = (
+                    collect_normalized_keys(contract)
+                    | collect_normalized_keys(schema)
+                    | collect_normalized_keys(front)
+                    | collect_normalized_keys(bottom)
+                )
+                validated_triads += 1
+                inbox_key_unions.append(key_union)
+                continue
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"{contract_rel}:{exc}")
+                continue
+        triad_paths = [ROOT / contract_rel, ROOT / schema_rel, ROOT / example_rel]
+        if all(path.exists() for path in triad_paths):
+            present_triads += 1
+        contract, schema, example, triad_errors = validate_surface_triad(contract_rel, schema_rel, example_rel)
+        if triad_errors:
+            errors.extend(triad_errors)
+            continue
+        validated_triads += 1
+        key_union = (
+            collect_normalized_keys(contract)
+            | collect_normalized_keys(schema)
+            | collect_normalized_keys(example)
+        )
+        if contract_rel in INBOX_PROTOCOL_CONTRACTS:
+            inbox_key_unions.append(key_union)
+        else:
+            lifecycle_key_unions.append(key_union)
+
+    score = 0.0
+    if total_triads:
+        score += round(0.5 * (present_triads / total_triads), 2)
+        score += round(0.5 * (validated_triads / total_triads), 2)
+
+    inbox_fields = set().union(*inbox_key_unions) if inbox_key_unions else set()
+    lifecycle_fields = set().union(*lifecycle_key_unions) if lifecycle_key_unions else set()
+    if inbox_fields:
+        missing_packet_fields = INBOX_PACKET_REQUIRED_FIELDS - inbox_fields
+        if not missing_packet_fields and INBOX_PACKET_SCOPE_FIELDS & inbox_fields:
+            score += 0.35
+        else:
+            errors.append("inbox_fields_incomplete")
+    if lifecycle_fields:
+        missing_recursive_fields = RECURSIVE_DOCUMENTATION_FIELDS - lifecycle_fields
+        if not missing_recursive_fields:
+            score += 0.35
+        else:
+            errors.append("recursive_documentation_incomplete")
+
+    try:
+        heavy_schema = json.loads((ROOT / "agent-heavy-run-prompt.schema.json").read_text())
+        heavy_template = yaml.safe_load((ROOT / "agent-heavy-run-prompt.template.yaml").read_text())
+        handoff_schema = json.loads((ROOT / "architect-review-handoff-prompt.schema.json").read_text())
+        handoff_template = yaml.safe_load((ROOT / "architect-review-handoff-prompt.template.yaml").read_text())
+        handoff_example = json.loads((ROOT / "examples/architect-review-handoff-prompt.valid.json").read_text())
+        prompt_front, prompt_bottom = parse_markdown_contract(
+            ROOT / "prompts/governed-triad-follow-up-prompt.template.md"
+        )
+
+        runtime_roles = set(heavy_schema["$defs"]["runtime_role_id"]["enum"])
+        packet_types = set(heavy_schema["$defs"]["packet_artifact_type"]["enum"])
+        handoff_packet_types = set(handoff_schema["$defs"]["packet_artifact_type"]["enum"])
+        existing_runtime_roles = {
+            role["role_id"]
+            for role in yaml.safe_load((ROOT / "contracts/agent-role-contract.yaml").read_text())["roles"]
+        }
+        gate_names = {
+            item.get("gate")
+            for item in prompt_bottom.get("gate_progress", [])
+            if isinstance(item, dict) and item.get("gate")
+        }
+        if (
+            runtime_roles == FRONT_DOOR_RUNTIME_ROLES
+            and packet_types == INBOX_PACKET_ARTIFACT_TYPES
+            and handoff_packet_types == INBOX_PACKET_ARTIFACT_TYPES
+            and not (runtime_roles & existing_runtime_roles)
+            and "triad_context" in heavy_template
+            and "inbox_context" in handoff_template
+            and "inbox_context" in handoff_example
+            and {
+                "upstream_inbox_packet_ref",
+                "packet_artifact_type",
+                "required_gate_state",
+                "required_consumers",
+                "bottom_matter_ref",
+                "structured_contract_ref",
+            }.issubset(collect_normalized_keys(handoff_example["inbox_context"]))
+            and handoff_example["inbox_context"].get("packet_artifact_type") in INBOX_PACKET_ARTIFACT_TYPES
+            and GOVERNED_MARKDOWN_TEMPLATE_GATES.issubset(gate_names)
+            and str(prompt_front.get("machine_truth_source")) == "structured_contract_family"
+        ):
+            score += 0.55
+        else:
+            errors.append("prompt_handoff_alignment_incomplete")
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"prompt_handoff_alignment:{exc}")
+
+    tool_health = load_tool_health() or {}
+    activation_candidates = []
+    for check_name, check_details in (tool_health.get("checks") or {}).items():
+        normalized = normalize_identifier(check_name)
+        if any(token in normalized for token in INBOX_ACTIVATION_CHECK_TOKENS):
+            activation_candidates.append((check_name, check_details))
+
+    activation_score = 0.0
+    activation_details = []
+    for check_name, check_details in activation_candidates:
+        status = normalize_tool_status(check_details.get("status"))
+        probe = check_details.get("activation_probe") or check_details.get("probe") or {}
+        evidence = probe.get("evidence", [])
+        command = probe.get("command", "")
+        evidence_paths_exist = bool(evidence) and all((ROOT / rel).exists() for rel in evidence)
+        if TOOL_STATUS_WEIGHTS.get(status, 0.0) >= TOOL_STATUS_WEIGHTS["bounded"] and evidence_paths_exist and command:
+            activation_score = max(activation_score, 0.75)
+        elif TOOL_STATUS_WEIGHTS.get(status, 0.0) >= TOOL_STATUS_WEIGHTS["warn"] and evidence_paths_exist:
+            activation_score = max(activation_score, 0.35)
+        activation_details.append(
+            {
+                "check": check_name,
+                "status": status,
+                "has_command": bool(command),
+                "evidence_count": len(evidence),
+                "evidence_paths_exist": evidence_paths_exist,
+            }
+        )
+    score += activation_score
+
+    return round(score, 2), {
+        "required_triads": total_triads,
+        "present_triads": present_triads,
+        "validated_triads": validated_triads,
+        "activation_score": activation_score,
+        "activation_candidates": activation_details,
+        "errors": errors,
     }
 
 
@@ -939,6 +1244,8 @@ def artifact_refresh() -> tuple[float, dict]:
         score += tool_health_score
     parent_native_score, parent_native_details = parent_native_surface_refresh()
     score += min(parent_native_score, 4.0)
+    inbox_front_door_score, inbox_front_door_details = inbox_front_door_surface_refresh()
+    score += min(inbox_front_door_score, 1.5)
     research_governance_score, research_governance_details = research_governance_refresh()
     score += min(research_governance_score, 2.0)
     same_host_runtime_score, same_host_runtime_details = same_host_runtime_truth()
@@ -952,6 +1259,8 @@ def artifact_refresh() -> tuple[float, dict]:
         "tool_health_score": tool_health_score,
         "parent_native_surface_score": min(parent_native_score, 4.0),
         "parent_native_surface_details": parent_native_details,
+        "inbox_front_door_score": min(inbox_front_door_score, 1.5),
+        "inbox_front_door_details": inbox_front_door_details,
         "research_governance_score": min(research_governance_score, 2.0),
         "research_governance_details": research_governance_details,
         "same_host_runtime_score": same_host_runtime_score,

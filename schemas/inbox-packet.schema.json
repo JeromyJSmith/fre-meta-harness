@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/inbox-packet.schema.json",
+  "title": "Inbox Packet Contract",
+  "description": "Schema for the governed parent inbox packet protocol built around Markdown packets with YAML front matter and bottom matter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "packet_format",
+    "front_matter_requirements",
+    "governance_boundary",
+    "artifact_requirements",
+    "completion_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-inbox-packet"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "packet_format": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transport_document",
+        "front_matter_schema_ref",
+        "bottom_matter_schema_ref",
+        "bottom_matter_marker",
+        "allowed_artifact_types",
+        "body_required_sections",
+        "body_must_reference_structured_artifacts"
+      ],
+      "properties": {
+        "transport_document": {
+          "type": "string",
+          "const": "markdown_with_yaml_front_matter_and_bottom_matter"
+        },
+        "front_matter_schema_ref": {
+          "type": "string",
+          "const": "schemas/front-matter.schema.json"
+        },
+        "bottom_matter_schema_ref": {
+          "type": "string",
+          "const": "schemas/bottom-matter.schema.json"
+        },
+        "bottom_matter_marker": {
+          "type": "string",
+          "const": "---bottom-matter---"
+        },
+        "allowed_artifact_types": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 8,
+          "items": {
+            "type": "string",
+            "enum": [
+              ".brainstorm.md",
+              ".plan.md",
+              ".analysis.md",
+              ".test.md",
+              ".review.md",
+              ".handoff.md",
+              ".spec.md",
+              ".checkpoint.md"
+            ]
+          }
+        },
+        "body_required_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 5,
+          "items": {
+            "type": "string",
+            "enum": [
+              "summary",
+              "implementation_changes",
+              "public_interfaces_and_contract_decisions",
+              "test_plan",
+              "assumptions_and_defaults"
+            ]
+          }
+        },
+        "body_must_reference_structured_artifacts": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "front_matter_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "doctype_value",
+        "parent_only_required"
+      ],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allOf": [
+            { "contains": { "const": "id" } },
+            { "contains": { "const": "slug" } },
+            { "contains": { "const": "doctype" } },
+            { "contains": { "const": "status" } },
+            { "contains": { "const": "version" } },
+            { "contains": { "const": "owner" } },
+            { "contains": { "const": "artifact_id" } },
+            { "contains": { "const": "artifact_type" } },
+            { "contains": { "const": "producer_role" } },
+            { "contains": { "const": "target_scope" } },
+            { "contains": { "const": "repo_root" } },
+            { "contains": { "const": "parent_only" } },
+            { "contains": { "const": "structured_contract_ref" } },
+            { "contains": { "const": "structured_artifact_ref" } },
+            { "contains": { "const": "routing_tags" } },
+            { "contains": { "const": "required_consumers" } },
+            { "contains": { "const": "upstream_refs" } },
+            { "contains": { "const": "evidence_refs" } },
+            { "contains": { "const": "created_at" } },
+            { "contains": { "const": "updated_at" } }
+          ]
+        },
+        "doctype_value": {
+          "type": "string",
+          "const": "inbox_packet"
+        },
+        "parent_only_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "governance_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "triad_topology_ref",
+        "triad_roles_are_governance_only",
+        "front_door_runtime_topology_ref",
+        "runtime_roles_require_explicit_routing",
+        "direct_chat_progress_disallowed",
+        "triad_bypass_forbidden"
+      ],
+      "properties": {
+        "triad_topology_ref": {
+          "type": "string",
+          "const": "contracts/three-agent-topology.yaml"
+        },
+        "triad_roles_are_governance_only": {
+          "type": "boolean",
+          "const": true
+        },
+        "front_door_runtime_topology_ref": {
+          "type": "string",
+          "const": "contracts/front-door-runtime-topology.yaml"
+        },
+        "runtime_roles_require_explicit_routing": {
+          "type": "boolean",
+          "const": true
+        },
+        "direct_chat_progress_disallowed": {
+          "type": "boolean",
+          "const": true
+        },
+        "triad_bypass_forbidden": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "artifact_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "structured_contract_ref_required",
+        "structured_artifact_ref_required",
+        "downstream_consumers_must_use_routed_artifact_chain",
+        "packet_body_is_non_authoritative_without_structured_pairing"
+      ],
+      "properties": {
+        "structured_contract_ref_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "structured_artifact_ref_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "downstream_consumers_must_use_routed_artifact_chain": {
+          "type": "boolean",
+          "const": true
+        },
+        "packet_body_is_non_authoritative_without_structured_pairing": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "completion_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bottom_matter_gate_progress_required",
+        "required_gate_ids",
+        "blocked_by_must_stay_explicit",
+        "next_iteration_required"
+      ],
+      "properties": {
+        "bottom_matter_gate_progress_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "required_gate_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "items": {
+            "type": "string",
+            "enum": [
+              "schema_gate",
+              "scope_gate",
+              "consumer_gate",
+              "evidence_gate",
+              "freshness_gate",
+              "readiness_gate"
+            ]
+          }
+        },
+        "blocked_by_must_stay_explicit": {
+          "type": "boolean",
+          "const": true
+        },
+        "next_iteration_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  }
+}

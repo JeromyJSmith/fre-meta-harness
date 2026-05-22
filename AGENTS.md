@@ -54,6 +54,8 @@ It is the governance layer above runtime execution, not the runtime mesh itself.
 - Keep governance triad decisions separate from runtime mesh execution roles.
 - Route any self-extension proposal through
   `contracts/agent-extension-request.yaml` as a request artifact only.
+- Treat inbox packets as front-door governance documents only until an explicit
+  routing decision and delegation bundle name the target runtime role and mode.
 - Do not claim live child-runtime integration from parent docs alone.
 
 ## Governance Triad
@@ -71,25 +73,47 @@ The governance core for this parent wrapper is defined in
 These role ids are governance and control roles only. They do not replace the
 runtime mesh roles defined in `contracts/agent-role-contract.yaml`.
 
-## Runtime Mesh Separation
+## Runtime Separation
 
-Runtime mesh roles remain the execution authority:
+The inbox-first front-door runtime roles for this slice are:
 
-- `peer_mesh_host`
-- `prod_gatekeeper`
-- `dev_driver`
-- `mesh_verifier`
+- `user-facing-agent`
+- `spec-interpreter`
+- `filesystem-router`
+- `intake-mapper`
+- `semantic-cartographer`
+- `wrapper-synthesizer`
 
-The triad governs the mesh from above. When execution is needed, triad roles
-map into runtime mesh roles through an explicit handoff instead of overwriting
-the runtime role contract.
+These roles remain separate from both the governance triad and the older
+peer-mesh runtime roles defined in `contracts/agent-role-contract.yaml`.
+The triad governs handoff readiness from above; the front-door runtime consumes
+only routed inbox artifacts.
+
+## Inbox Front Door
+
+The front door for runtime-facing work is the governed packet family:
+
+- `contracts/inbox-packet.yaml`
+- `contracts/inbox-routing-decision.yaml`
+- `contracts/delegation-bundle.yaml`
+- `contracts/front-door-runtime-topology.yaml`
+
+Rules:
+
+- Inbox packets use YAML front matter, a Markdown body, and
+  `---bottom-matter---`.
+- Packet prose is not machine truth by itself; routing and delegation authority
+  come from the linked structured packet, routing, and delegation artifacts.
+- The front-door runtime topology names the bridge between governance review,
+  runtime intake, and routed delegation, but it does not collapse the role
+  sets.
 
 ## Handoff Rules
 
-- Governance review must name the triggering triad role, the target runtime
-  role, the bounded execution objective, and the evidence expectations.
-- Runtime work starts only after an explicit handoff from the triad into the
-  runtime mesh.
+- Governance review must name the triggering triad role, the next consumers,
+  the bounded execution objective, and the evidence expectations.
+- Runtime work starts only after an explicit inbox packet, routing decision,
+  and delegation bundle exist as a routed chain.
 - A blocker must stay explicit when evidence, dependency, or policy conditions
   are not met.
 - Self-extension loops stay governed at the request-contract layer until a
@@ -114,6 +138,11 @@ the runtime role contract.
 - substrate doctrine: `pixeltable-operational-substrate.md`
 - governance topology: `contracts/three-agent-topology.yaml`
 - governed self-extension requests: `contracts/agent-extension-request.yaml`
+- inbox/front-door protocol:
+  - `contracts/inbox-packet.yaml`
+  - `contracts/inbox-routing-decision.yaml`
+  - `contracts/delegation-bundle.yaml`
+  - `contracts/front-door-runtime-topology.yaml`
 - imported local authorities: `external/goal-md/`, `external/meta-harness/`,
   `external/autoresearch-mlx/`
 - proof package: `source/`, `schemas/`, `examples/`, `expected-failures/`,
@@ -126,27 +155,24 @@ status_summary:
   doc_state: active_contract
 
 gate_progress:
-  - gate_id: harvest_gate
+  - gate_id: schema_gate
     status: green
-    notes: "Parent wrapper role, governance triad, and required authority surfaces are declared."
-  - gate_id: registry_gate
+    notes: "Parent wrapper role, governance triad, and inbox packet shape are declared."
+  - gate_id: scope_gate
     status: green
-    notes: "Canonical parent references and governance contract surfaces are explicitly listed."
-  - gate_id: manifest_gate
+    notes: "Canonical parent references and parent-only scope remain explicit."
+  - gate_id: consumer_gate
     status: green
-    notes: "Proof-package families, parent-only boundaries, and bridge surfaces are placed."
-  - gate_id: verification_gate
+    notes: "Front-door runtime consumers and triad boundaries are named."
+  - gate_id: evidence_gate
     status: green
-    notes: "Validator-backed contract checks exist in tests/, while governance claims stay bounded to parent-owned surfaces."
-  - gate_id: state_gate
+    notes: "Validator-backed packet, routing, and delegation surfaces exist in the parent repo."
+  - gate_id: freshness_gate
     status: green
-    notes: "State is derived from durable validation and readiness outputs, not from implied child-runtime adoption."
-  - gate_id: health_gate
+    notes: "State is tied to current parent artifacts and current run timestamps."
+  - gate_id: readiness_gate
     status: green
-    notes: "Parent scaffold now points at library, prompts, comparison, substrate, and governance topology."
-  - gate_id: promotion_gate
-    status: amber
-    notes: "Parent wrapper is published; promotion now depends on keeping triad governance, handoff rules, and evidence aligned."
+    notes: "Parent scaffold now points at packet, routing, delegation, and front-door topology surfaces."
 
 open_questions: []
 

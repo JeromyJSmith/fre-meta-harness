@@ -51,6 +51,14 @@ artifacts remain machine truth, while
 Markdown surface for operator-facing routing, front matter, bottom matter, and
 dispatch clarity.
 
+The next parent-native layer is the governed inbox front door. The packet
+itself is a Markdown transport document with YAML front matter and bottom
+matter, but routing truth stays in `contracts/inbox-routing-decision.yaml`,
+runtime handoff truth stays in `contracts/delegation-bundle.yaml`, and the
+bridge between governance review and runtime execution stays explicit in
+`contracts/front-door-runtime-topology.yaml`. That keeps the triad as a control
+plane instead of quietly turning it into the runtime mesh.
+
 The compiled research harvest under `evaluation/research/` is now governed as a
 first-class parent surface through `contracts/research-packet-manifest.yaml`,
 schema-backed compiled output validation, and a capability matrix that stays

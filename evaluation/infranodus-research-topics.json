@@ -1,25 +1,25 @@
 {
   "analysis_id": "PARENT-META-INFRANODUS-RESEARCH-0001",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "mode": "bounded_local_cli_substitute",
   "topics": [
     {
       "topic_id": "topic-1",
-      "title": "Bridge meta_harness and agent_eval through observable local evidence",
+      "title": "Bridge compiled_research and tool_catalog_inputs through observable local evidence",
       "priority": 1,
       "driven_by_gaps": [
-        "meta_harness -> agent_eval"
+        "compiled_research -> tool_catalog_inputs"
       ],
       "bridge_terms": [
-        "evaluation",
         "status",
-        "agent_eval",
-        "external"
+        "kind",
+        "blocked_by",
+        "you"
       ],
       "questions": [
-        "Which bounded commands connect meta_harness outputs to agent_eval decisions?",
-        "Which artifact should become the canonical bridge between meta_harness and agent_eval?"
+        "Which bounded commands connect compiled_research outputs to tool_catalog_inputs decisions?",
+        "Which artifact should become the canonical bridge between compiled_research and tool_catalog_inputs?"
       ],
       "recommended_artifacts": [
         "contracts/parent-capability-metrics.yaml",
@@ -29,17 +29,20 @@
     },
     {
       "topic_id": "topic-2",
-      "title": "Bridge evaluation and meta_harness through observable local evidence",
+      "title": "Bridge inbox_doctrine and tool_catalog_inputs through observable local evidence",
       "priority": 2,
       "driven_by_gaps": [
-        "evaluation -> meta_harness"
+        "inbox_doctrine -> tool_catalog_inputs"
       ],
       "bridge_terms": [
-        "status"
+        "status",
+        "kind",
+        "blocked_by",
+        "you"
       ],
       "questions": [
-        "Which bounded commands connect evaluation outputs to meta_harness decisions?",
-        "Which artifact should become the canonical bridge between evaluation and meta_harness?"
+        "Which bounded commands connect inbox_doctrine outputs to tool_catalog_inputs decisions?",
+        "Which artifact should become the canonical bridge between inbox_doctrine and tool_catalog_inputs?"
       ],
       "recommended_artifacts": [
         "contracts/parent-capability-metrics.yaml",
@@ -49,18 +52,20 @@
     },
     {
       "topic_id": "topic-3",
-      "title": "Bridge autoresearch and agent_eval through observable local evidence",
+      "title": "Bridge prompt_contracts and compiled_research through observable local evidence",
       "priority": 3,
       "driven_by_gaps": [
-        "autoresearch -> agent_eval"
+        "prompt_contracts -> compiled_research"
       ],
       "bridge_terms": [
-        "evaluation",
-        "tool_health"
+        "status",
+        "kind",
+        "blocked_by",
+        "you"
       ],
       "questions": [
-        "Which bounded commands connect autoresearch outputs to agent_eval decisions?",
-        "Which artifact should become the canonical bridge between autoresearch and agent_eval?"
+        "Which bounded commands connect prompt_contracts outputs to compiled_research decisions?",
+        "Which artifact should become the canonical bridge between prompt_contracts and compiled_research?"
       ],
       "recommended_artifacts": [
         "contracts/parent-capability-metrics.yaml",
@@ -70,18 +75,20 @@
     },
     {
       "topic_id": "topic-4",
-      "title": "Bridge meta_loop and meta_harness through observable local evidence",
+      "title": "Bridge prompt_contracts and inbox_doctrine through observable local evidence",
       "priority": 4,
       "driven_by_gaps": [
-        "meta_loop -> meta_harness"
+        "prompt_contracts -> inbox_doctrine"
       ],
       "bridge_terms": [
-        "external",
-        "status"
+        "status",
+        "kind",
+        "blocked_by",
+        "you"
       ],
       "questions": [
-        "Which bounded commands connect meta_loop outputs to meta_harness decisions?",
-        "Which artifact should become the canonical bridge between meta_loop and meta_harness?"
+        "Which bounded commands connect prompt_contracts outputs to inbox_doctrine decisions?",
+        "Which artifact should become the canonical bridge between prompt_contracts and inbox_doctrine?"
       ],
       "recommended_artifacts": [
         "contracts/parent-capability-metrics.yaml",

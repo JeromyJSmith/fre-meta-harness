@@ -1,0 +1,42 @@
+{
+  "artifact_id": "PACKET-20260521-INBOXPLAN",
+  "artifact_type": ".plan.md",
+  "producer_role": "orchestrator-validator",
+  "target_scope": "portable_parent_wrapper",
+  "repo_root": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
+  "parent_only": true,
+  "structured_contract_ref": "contracts/inbox-packet.yaml",
+  "markdown_packet_ref": "inbox/fre-meta-harness_plus_inbox.plan.md",
+  "required_consumers": [
+    "filesystem-router",
+    "architect",
+    "orchestrator-validator"
+  ],
+  "routing_tags": [
+    "inbox-first",
+    "front-door",
+    "delegation",
+    "gatekeeping"
+  ],
+  "upstream_refs": [
+    "inbox/FRE-META-HARNESS_PLAN.plan.md"
+  ],
+  "evidence_refs": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "prompts/governed-triad-follow-up-prompt.template.md",
+    "agent-heavy-run-prompt.schema.json",
+    "architect-review-handoff-prompt.schema.json"
+  ],
+  "gate_expectations": {
+    "required_gate_state": "green_or_amber",
+    "required_gates": [
+      "schema_gate",
+      "scope_gate",
+      "consumer_gate",
+      "evidence_gate",
+      "freshness_gate",
+      "readiness_gate"
+    ]
+  }
+}

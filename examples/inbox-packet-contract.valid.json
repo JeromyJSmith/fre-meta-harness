@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-inbox-packet",
+  "scope": "portable_parent_wrapper",
+  "packet_format": {
+    "transport_document": "markdown_with_yaml_front_matter_and_bottom_matter",
+    "front_matter_schema_ref": "schemas/front-matter.schema.json",
+    "bottom_matter_schema_ref": "schemas/bottom-matter.schema.json",
+    "bottom_matter_marker": "---bottom-matter---",
+    "allowed_artifact_types": [
+      ".brainstorm.md",
+      ".plan.md",
+      ".analysis.md",
+      ".test.md",
+      ".review.md",
+      ".handoff.md",
+      ".spec.md",
+      ".checkpoint.md"
+    ],
+    "body_required_sections": [
+      "summary",
+      "implementation_changes",
+      "public_interfaces_and_contract_decisions",
+      "test_plan",
+      "assumptions_and_defaults"
+    ],
+    "body_must_reference_structured_artifacts": true
+  },
+  "front_matter_requirements": {
+    "required_fields": [
+      "id",
+      "slug",
+      "doctype",
+      "status",
+      "version",
+      "owner",
+      "artifact_id",
+      "artifact_type",
+      "producer_role",
+      "target_scope",
+      "repo_root",
+      "parent_only",
+      "structured_contract_ref",
+      "structured_artifact_ref",
+      "routing_tags",
+      "required_consumers",
+      "upstream_refs",
+      "evidence_refs",
+      "created_at",
+      "updated_at"
+    ],
+    "doctype_value": "inbox_packet",
+    "parent_only_required": true
+  },
+  "governance_boundary": {
+    "triad_topology_ref": "contracts/three-agent-topology.yaml",
+    "triad_roles_are_governance_only": true,
+    "front_door_runtime_topology_ref": "contracts/front-door-runtime-topology.yaml",
+    "runtime_roles_require_explicit_routing": true,
+    "direct_chat_progress_disallowed": true,
+    "triad_bypass_forbidden": true
+  },
+  "artifact_requirements": {
+    "structured_contract_ref_required": true,
+    "structured_artifact_ref_required": true,
+    "downstream_consumers_must_use_routed_artifact_chain": true,
+    "packet_body_is_non_authoritative_without_structured_pairing": true
+  },
+  "completion_boundary": {
+    "bottom_matter_gate_progress_required": true,
+    "required_gate_ids": [
+      "schema_gate",
+      "scope_gate",
+      "consumer_gate",
+      "evidence_gate",
+      "freshness_gate",
+      "readiness_gate"
+    ],
+    "blocked_by_must_stay_explicit": true,
+    "next_iteration_required": true
+  }
+}

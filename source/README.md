@@ -10,13 +10,14 @@ owner: "fre-meta-harness"
 # Source
 
 This directory holds parent-wrapper source provenance, normalization, and
-prompt-trace artifacts.
+prompt-trace artifacts, plus the parent-owned subsystem harness scaffold.
 
 Files:
 
 - `provenance.json`
 - `prompt-contract-trace.json`
 - `normalization.md`
+- `subsystems/`
 
 ---bottom-matter---
 status_summary:

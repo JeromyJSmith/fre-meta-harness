@@ -1,0 +1,79 @@
+schema_version: "1.0.0"
+contract_id: parent-front-door-runtime-topology
+scope: portable_parent_wrapper
+governance_layer:
+  triad_topology_ref: contracts/three-agent-topology.yaml
+  triad_roles:
+    - orchestrator-validator
+    - research
+    - architect
+  governance_only: true
+runtime_layer:
+  runtime_role_contract_ref: agent-heavy-run-prompt.schema.json
+  inbox_packet_contract_ref: contracts/inbox-packet.yaml
+  runtime_roles:
+    - user-facing-agent
+    - spec-interpreter
+    - filesystem-router
+    - intake-mapper
+    - semantic-cartographer
+    - wrapper-synthesizer
+  role_aliasing_forbidden: true
+ingress_lanes:
+  - lane_id: conversation_capture
+    owned_by_plane: runtime
+    entry_artifact_contract: contracts/inbox-packet.yaml
+    downstream_contracts:
+      - contracts/inbox-routing-decision.yaml
+    target_roles:
+      - user-facing-agent
+      - spec-interpreter
+  - lane_id: governed_inbox
+    owned_by_plane: bridge
+    entry_artifact_contract: contracts/inbox-packet.yaml
+    downstream_contracts:
+      - contracts/inbox-routing-decision.yaml
+      - contracts/delegation-bundle.yaml
+    target_roles:
+      - filesystem-router
+  - lane_id: triad_review
+    owned_by_plane: governance
+    entry_artifact_contract: contracts/inbox-routing-decision.yaml
+    downstream_contracts:
+      - contracts/delegation-bundle.yaml
+    target_roles:
+      - orchestrator-validator
+      - research
+      - architect
+  - lane_id: routed_delegation
+    owned_by_plane: runtime
+    entry_artifact_contract: contracts/delegation-bundle.yaml
+    downstream_contracts:
+      - contracts/recursive-documentation-bundle.yaml
+    target_roles:
+      - user-facing-agent
+      - spec-interpreter
+      - filesystem-router
+      - intake-mapper
+      - semantic-cartographer
+      - wrapper-synthesizer
+mode_truth:
+  active_mode: same_host
+  same_host_bootstrap_ref: scripts/watchers/inbox_router.py
+  same_host_runtime_impl_ref: service/inbox_runtime.py
+  active_runtime_evidence_ref: evaluation/tool-health/inbox-protocol/latest-scan.json
+  blocked_modes:
+    - mode_id: cross_device
+      blocker_or_dependency: Remote inbox synchronization and authenticated multi-host routing must be real before the network lane is promoted beyond same-host doctrine.
+separation_rules:
+  governance_roles_cannot_originate_conversational_packets: true
+  runtime_roles_cannot_self_promote_governance: true
+  router_cannot_invent_missing_evidence: true
+  triad_bypass_forbidden: true
+  recursive_documentation_required: true
+  explicit_packet_pairing_required: true
+observability_and_policy:
+  routing_artifact_root: evaluation/tool-health/inbox-protocol
+  service_entrypoint_ref: service/main.py
+  app_entrypoint_ref: app/server.ts
+  recursive_documentation_contract_ref: contracts/recursive-documentation-bundle.yaml

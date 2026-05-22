@@ -93,6 +93,38 @@ TRIAD_GOVERNANCE_VALID_EXAMPLES = [
 TRIAD_GOVERNANCE_SCHEMA_ONLY = [
     "schemas/governed-agent-profile.schema.json",
 ]
+INBOX_PROTOCOL_CONTRACTS = {
+    "contracts/inbox-packet.yaml": "schemas/inbox-packet.schema.json",
+    "contracts/inbox-routing-decision.yaml": "schemas/inbox-routing-decision.schema.json",
+    "contracts/delegation-bundle.yaml": "schemas/delegation-bundle.schema.json",
+}
+INBOX_PROTOCOL_VALID_EXAMPLES = [
+    ("examples/inbox-routing-decision-contract.valid.json", "schemas/inbox-routing-decision.schema.json"),
+    ("examples/delegation-bundle-contract.valid.json", "schemas/delegation-bundle.schema.json"),
+]
+FRONT_DOOR_LIFECYCLE_CONTRACTS = {
+    "contracts/front-door-runtime-topology.yaml": "schemas/front-door-runtime-topology.schema.json",
+    "contracts/recursive-documentation-bundle.yaml": "schemas/recursive-documentation-bundle.schema.json",
+}
+FRONT_DOOR_LIFECYCLE_VALID_EXAMPLES = [
+    ("examples/front-door-runtime-topology-contract.valid.json", "schemas/front-door-runtime-topology.schema.json"),
+    ("examples/recursive-documentation-bundle.valid.json", "schemas/recursive-documentation-bundle.schema.json"),
+]
+SUBSYSTEM_ARCHITECTURE_CONTRACTS = {
+    "contracts/subsystem-harness-topology.yaml": "schemas/subsystem-harness-topology.schema.json",
+    "contracts/subsystem-registry.yaml": "schemas/subsystem-registry.schema.json",
+}
+SUBSYSTEM_ARCHITECTURE_VALID_EXAMPLES = [
+    ("examples/subsystem-harness-topology.valid.json", "schemas/subsystem-harness-topology.schema.json"),
+    ("examples/subsystem-registry.valid.json", "schemas/subsystem-registry.schema.json"),
+    ("examples/subsystem-registry-record.valid.json", "schemas/subsystem-registry-record.schema.json"),
+]
+GAP_MAP_STRENGTH_CONTRACTS = {
+    "contracts/gap-map-strength.yaml": "schemas/gap-map-strength.schema.json",
+}
+GAP_MAP_STRENGTH_VALID_EXAMPLES = [
+    ("examples/gap-map-strength-report.valid.json", "schemas/gap-map-strength-report.schema.json"),
+]
 TRIAD_DOC_FILES = [
     "AGENTS.md",
     "CLAUDE.md",
@@ -120,6 +152,69 @@ DECISION_SPACE_HINTS = {
 MARKDOWN_PROMPT_HINT = "markdown"
 PIXTABLE_EVIDENCE_MARKERS = {"pixeltable", "evidence", "validation_gate"}
 TRUTH_BOUNDARY_MARKERS = {"bounded", "truth"}
+INBOX_PACKET_ARTIFACT_TYPES = {
+    ".brainstorm.md",
+    ".plan.md",
+    ".analysis.md",
+    ".test.md",
+    ".review.md",
+    ".handoff.md",
+    ".spec.md",
+    ".checkpoint.md",
+}
+INBOX_PACKET_REQUIRED_FIELDS = {
+    "artifact_id",
+    "artifact_type",
+    "producer_role",
+    "required_consumers",
+    "routing_tags",
+    "evidence_refs",
+    "structured_contract_ref",
+}
+INBOX_PACKET_SCOPE_FIELDS = {
+    "target_scope",
+    "repo_root",
+}
+INBOX_PACKET_FRESHNESS_FIELDS = {"created_at", "updated_at"}
+INBOX_GATE_FIELDS = {
+    "gate_progress",
+    "validation_status",
+    "promotion_criteria",
+    "blocked_by",
+    "next_iteration",
+}
+FRONT_DOOR_RUNTIME_ROLES = {
+    "user-facing-agent",
+    "spec-interpreter",
+    "intake-mapper",
+    "semantic-cartographer",
+    "filesystem-router",
+    "wrapper-synthesizer",
+}
+RECURSIVE_DOCUMENTATION_FIELDS = {
+    "purpose",
+    "boundaries",
+    "inputs",
+    "outputs",
+    "dependencies",
+    "governing_artifacts",
+}
+GOVERNED_MARKDOWN_TEMPLATE_FIELDS = {
+    "artifact_type",
+    "prompt_id",
+    "handoff_id",
+    "structured_prompt_artifact",
+    "acting_role",
+    "recommended_option_id",
+    "repo_root",
+    "parent_only",
+    "machine_truth_source",
+}
+GOVERNED_MARKDOWN_TEMPLATE_GATES = {
+    "triad_handoff_consumed",
+    "structured_prompt_emitted",
+    "markdown_companion_emitted",
+}
 REQUIRED_PEER_MESH_OPERATIONS = {"list_agents", "send_command", "send_prompt", "await_response"}
 REQUIRED_COMPLETION_TOKENS = {"done", "failed", "needs-human"}
 REQUIRED_ROLE_CLASSES = {
@@ -152,6 +247,22 @@ ALLOWED_CAPABILITY_CLASSIFICATIONS = {
     "deployment_specific",
     "reference",
     "blocked_with_exact_dependency",
+}
+SUBSYSTEM_IDS = {
+    "intake_etl",
+    "research_harvest",
+    "semantic_cartography",
+    "wrapper_synthesizer",
+}
+SUBSYSTEM_FIT_AREAS = {
+    "intake_etl",
+    "research_harvest",
+    "semantic_cartography",
+    "wrapper_synthesizer",
+    "observability",
+    "durable_execution",
+    "spec_compiler",
+    "substrate_sync",
 }
 REQUIRED_RESEARCH_CORE_CAPABILITIES = {
     "pi-vs-claude-code",
@@ -387,6 +498,39 @@ def load_structured(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
 
 
+def collect_normalized_keys(node: object) -> set[str]:
+    keys: set[str] = set()
+
+    def visit(value: object) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                keys.add(normalize_identifier(str(key)))
+                visit(child)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+
+    visit(node)
+    return {key for key in keys if key}
+
+
+def collect_string_values(node: object) -> set[str]:
+    values: set[str] = set()
+
+    def visit(value: object) -> None:
+        if isinstance(value, str):
+            values.add(value.strip())
+        elif isinstance(value, dict):
+            for child in value.values():
+                visit(child)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+
+    visit(node)
+    return {value for value in values if value}
+
+
 def normalize_identifier(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
 
@@ -475,6 +619,50 @@ def extract_option_space_minimum(node: object) -> int:
     return max(minimums, default=0)
 
 
+def validate_required_surface_triad(
+    contract_rel: str,
+    schema_rel: str,
+    example_rel: str,
+) -> tuple[dict | None, dict | None, dict | None, list[str]]:
+    errors: list[str] = []
+    contract_path = ROOT / contract_rel
+    schema_path = ROOT / schema_rel
+    example_path = ROOT / example_rel
+    contract = None
+    schema = None
+    example = None
+
+    if not contract_path.exists():
+        errors.append(f"missing:{contract_rel}")
+    if not schema_path.exists():
+        errors.append(f"missing:{schema_rel}")
+    if not example_path.exists():
+        errors.append(f"missing:{example_rel}")
+    if errors:
+        return contract, schema, example, errors
+
+    try:
+        schema = json.loads(schema_path.read_text())
+        Draft202012Validator.check_schema(schema)
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"{schema_rel}:{exc}")
+        return contract, schema, example, errors
+
+    try:
+        contract = yaml.safe_load(contract_path.read_text())
+        Draft202012Validator(schema).validate(contract)
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"{contract_rel}:{exc}")
+
+    try:
+        example = json.loads(example_path.read_text())
+        Draft202012Validator(schema).validate(example)
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"{example_rel}:{exc}")
+
+    return contract, schema, example, errors
+
+
 def validate_examples() -> list[dict]:
     results = []
     schema_paths = {
@@ -500,6 +688,10 @@ def validate_examples() -> list[dict]:
         "three_agent_topology": "schemas/three-agent-topology.schema.json",
         "agent_extension_request": "schemas/agent-extension-request.schema.json",
         "governed_agent_profile": "schemas/governed-agent-profile.schema.json",
+        "inbox_routing_decision": "schemas/inbox-routing-decision.schema.json",
+        "delegation_bundle": "schemas/delegation-bundle.schema.json",
+        "front_door_runtime_topology": "schemas/front-door-runtime-topology.schema.json",
+        "recursive_documentation_bundle": "schemas/recursive-documentation-bundle.schema.json",
     }
     schemas = {name: json.loads((ROOT / rel).read_text()) for name, rel in schema_paths.items()}
     for schema in schemas.values():
@@ -527,6 +719,10 @@ def validate_examples() -> list[dict]:
         ("examples/capability-matrix.valid.json", schemas["capability_matrix"]),
         ("examples/three-agent-topology.valid.json", schemas["three_agent_topology"]),
         ("examples/agent-extension-request.valid.json", schemas["agent_extension_request"]),
+        ("examples/inbox-routing-decision-contract.valid.json", schemas["inbox_routing_decision"]),
+        ("examples/delegation-bundle-contract.valid.json", schemas["delegation_bundle"]),
+        ("examples/front-door-runtime-topology-contract.valid.json", schemas["front_door_runtime_topology"]),
+        ("examples/recursive-documentation-bundle.valid.json", schemas["recursive_documentation_bundle"]),
     ]
     for rel, schema in valid_examples:
         instance = json.loads((ROOT / rel).read_text())
@@ -681,6 +877,405 @@ def validate_governance_triad_slice() -> dict:
     }
 
 
+def validate_inbox_front_door_slice() -> dict:
+    details: dict[str, object] = {
+        "required_inbox_contracts": sorted(INBOX_PROTOCOL_CONTRACTS.keys()),
+        "required_front_door_contracts": sorted(FRONT_DOOR_LIFECYCLE_CONTRACTS.keys()),
+    }
+    missing_inventory: list[str] = []
+    validation_errors: list[str] = []
+    validated_contracts: list[str] = []
+    validated_examples: list[str] = []
+    inbox_key_unions: list[set[str]] = []
+    lifecycle_key_unions: list[set[str]] = []
+    front_validator = Draft202012Validator(json.loads((ROOT / "schemas/front-matter.schema.json").read_text()))
+    bottom_validator = Draft202012Validator(json.loads((ROOT / "schemas/bottom-matter.schema.json").read_text()))
+
+    for contract_rel, schema_rel in INBOX_PROTOCOL_CONTRACTS.items():
+        if contract_rel == "contracts/inbox-packet.yaml":
+            contract_path = ROOT / contract_rel
+            schema_path = ROOT / schema_rel
+            example_path = ROOT / "examples/governed-inbox-packet.protocol.valid.md"
+            missing = [
+                f"missing:{rel}"
+                for rel, path in (
+                    (contract_rel, contract_path),
+                    (schema_rel, schema_path),
+                    ("examples/governed-inbox-packet.protocol.valid.md", example_path),
+                )
+                if not path.exists()
+            ]
+            if missing:
+                missing_inventory.extend(missing)
+                continue
+            schema = json.loads(schema_path.read_text())
+            Draft202012Validator.check_schema(schema)
+            contract = yaml.safe_load(contract_path.read_text())
+            Draft202012Validator(schema).validate(contract)
+            front, bottom = parse_markdown_contract(example_path)
+            front_validator.validate(front)
+            bottom_validator.validate(bottom)
+            validated_contracts.append(contract_rel)
+            validated_examples.append("examples/governed-inbox-packet.protocol.valid.md")
+            inbox_key_unions.append(
+                collect_normalized_keys(contract)
+                | collect_normalized_keys(schema)
+                | collect_normalized_keys(front)
+                | collect_normalized_keys(bottom)
+            )
+            continue
+
+        example_rel = {
+            "contracts/inbox-routing-decision.yaml": "examples/inbox-routing-decision-contract.valid.json",
+            "contracts/delegation-bundle.yaml": "examples/delegation-bundle-contract.valid.json",
+        }.get(contract_rel, f"examples/{Path(contract_rel).stem}.valid.json")
+        contract, schema, example, errors = validate_required_surface_triad(contract_rel, schema_rel, example_rel)
+        if errors:
+            missing_inventory.extend(error for error in errors if error.startswith("missing:"))
+            validation_errors.extend(error for error in errors if not error.startswith("missing:"))
+            continue
+        validated_contracts.append(contract_rel)
+        validated_examples.append(example_rel)
+        inbox_key_unions.append(
+            collect_normalized_keys(contract)
+            | collect_normalized_keys(schema)
+            | collect_normalized_keys(example)
+        )
+
+    for contract_rel, schema_rel in FRONT_DOOR_LIFECYCLE_CONTRACTS.items():
+        example_rel = {
+            "contracts/front-door-runtime-topology.yaml": "examples/front-door-runtime-topology-contract.valid.json",
+        }.get(contract_rel, f"examples/{Path(contract_rel).stem}.valid.json")
+        contract, schema, example, errors = validate_required_surface_triad(contract_rel, schema_rel, example_rel)
+        if errors:
+            missing_inventory.extend(error for error in errors if error.startswith("missing:"))
+            validation_errors.extend(error for error in errors if not error.startswith("missing:"))
+            continue
+        validated_contracts.append(contract_rel)
+        validated_examples.append(example_rel)
+        lifecycle_key_unions.append(
+            collect_normalized_keys(contract)
+            | collect_normalized_keys(schema)
+            | collect_normalized_keys(example)
+        )
+
+    if validation_errors:
+        raise AssertionError(f"Inbox/front-door triad validation errors: {validation_errors}")
+
+    if missing_inventory:
+        raise AssertionError(f"Inbox/front-door surfaces are missing: {sorted(set(missing_inventory))}")
+
+    if not inbox_key_unions:
+        raise AssertionError("Inbox protocol surfaces must validate at least one governed packet contract triad.")
+
+    inbox_fields = set().union(*inbox_key_unions)
+    missing_packet_fields = sorted(
+        field for field in INBOX_PACKET_REQUIRED_FIELDS if field not in inbox_fields
+    )
+    if missing_packet_fields:
+        raise AssertionError(
+            f"Inbox protocol surfaces must keep required packet fields explicit: {missing_packet_fields}"
+        )
+    if not (INBOX_PACKET_SCOPE_FIELDS & inbox_fields):
+        raise AssertionError("Inbox protocol surfaces must carry project or target scope fields.")
+
+    lifecycle_fields = set().union(*lifecycle_key_unions) if lifecycle_key_unions else set()
+    missing_recursive_fields = sorted(
+        field for field in RECURSIVE_DOCUMENTATION_FIELDS if field not in lifecycle_fields
+    )
+    if missing_recursive_fields:
+        raise AssertionError(
+            f"Front-door lifecycle surfaces must preserve recursive documentation fields: {missing_recursive_fields}"
+        )
+
+    heavy_schema = json.loads((ROOT / "agent-heavy-run-prompt.schema.json").read_text())
+    heavy_template = yaml.safe_load((ROOT / "agent-heavy-run-prompt.template.yaml").read_text())
+    handoff_schema = json.loads((ROOT / "architect-review-handoff-prompt.schema.json").read_text())
+    handoff_template = yaml.safe_load((ROOT / "architect-review-handoff-prompt.template.yaml").read_text())
+    handoff_example = load_structured(ROOT / "examples/architect-review-handoff-prompt.valid.json")
+
+    heavy_runtime_roles = set(heavy_schema["$defs"]["runtime_role_id"]["enum"])
+    if heavy_runtime_roles != FRONT_DOOR_RUNTIME_ROLES:
+        raise AssertionError(
+            f"Heavy-run schema runtime roles drifted from the inbox/front-door role family. Expected={sorted(FRONT_DOOR_RUNTIME_ROLES)} Actual={sorted(heavy_runtime_roles)}"
+        )
+    governed_roles = set(heavy_schema["$defs"]["governed_role_id"]["enum"])
+    union_roles = set(heavy_schema["$defs"]["governed_or_runtime_role_id"]["enum"])
+    if governed_roles & heavy_runtime_roles:
+        raise AssertionError("Governance roles and front-door runtime roles must stay disjoint in prompt schemas.")
+    if union_roles != governed_roles | heavy_runtime_roles:
+        raise AssertionError("governed_or_runtime_role_id must be the exact union of governance and front-door runtime roles.")
+
+    role_contract = yaml.safe_load((ROOT / "contracts/agent-role-contract.yaml").read_text())
+    existing_runtime_roles = {role["role_id"] for role in role_contract["roles"]}
+    overlap = sorted(existing_runtime_roles & heavy_runtime_roles)
+    if overlap:
+        raise AssertionError(f"Front-door runtime roles must stay separate from peer-mesh runtime roles: {overlap}")
+
+    packet_types = set(heavy_schema["$defs"]["packet_artifact_type"]["enum"])
+    handoff_packet_types = set(handoff_schema["$defs"]["packet_artifact_type"]["enum"])
+    if packet_types != INBOX_PACKET_ARTIFACT_TYPES or handoff_packet_types != INBOX_PACKET_ARTIFACT_TYPES:
+        raise AssertionError("Prompt/handoff packet artifact types must cover the governed inbox packet protocol exactly.")
+
+    triad_context = heavy_template["triad_context"]
+    required_triad_fields = {
+        "acting_role",
+        "upstream_handoff_ref",
+        "upstream_inbox_packet_ref",
+        "packet_artifact_type",
+        "required_gate_state",
+        "required_consumers",
+        "bottom_matter_ref",
+        "structured_contract_ref",
+        "decision_space_required",
+        "runtime_truth_requirements",
+        "command_evidence_requirements",
+    }
+    missing_triad_fields = sorted(required_triad_fields - set(triad_context))
+    if missing_triad_fields:
+        raise AssertionError(f"Heavy-run prompt template is missing inbox-aware triad fields: {missing_triad_fields}")
+    if triad_context["packet_artifact_type"] not in INBOX_PACKET_ARTIFACT_TYPES:
+        raise AssertionError("Heavy-run prompt template must point at a governed inbox packet artifact type.")
+    if not str(triad_context["upstream_inbox_packet_ref"]).startswith("inbox/"):
+        raise AssertionError("Heavy-run prompt template must point at an inbox packet path.")
+    if not str(triad_context["bottom_matter_ref"]).startswith("inbox/"):
+        raise AssertionError("Heavy-run prompt template bottom_matter_ref must stay inbox-scoped.")
+    if not str(triad_context["structured_contract_ref"]).startswith("inbox/"):
+        raise AssertionError("Heavy-run prompt template structured_contract_ref must stay inbox-scoped.")
+
+    inbox_context = handoff_template["inbox_context"]
+    missing_handoff_fields = sorted(
+        {
+            "upstream_inbox_packet_ref",
+            "packet_artifact_type",
+            "required_gate_state",
+            "required_consumers",
+            "bottom_matter_ref",
+            "structured_contract_ref",
+        }
+        - set(inbox_context)
+    )
+    if missing_handoff_fields:
+        raise AssertionError(f"Architect handoff template is missing inbox context fields: {missing_handoff_fields}")
+    if handoff_example.get("inbox_context") is None:
+        raise AssertionError("Architect handoff valid example must now include inbox_context.")
+
+    packet_ref = handoff_example["inbox_context"].get("upstream_inbox_packet_ref", "")
+    if not packet_ref.startswith("inbox/"):
+        raise AssertionError("Architect handoff valid example must reference an inbox packet artifact.")
+    if handoff_example["inbox_context"].get("packet_artifact_type") not in INBOX_PACKET_ARTIFACT_TYPES:
+        raise AssertionError("Architect handoff valid example must use a governed inbox packet artifact type.")
+
+    prompt_front, prompt_bottom = parse_markdown_contract(
+        ROOT / "prompts/governed-triad-follow-up-prompt.template.md"
+    )
+    missing_front_fields = sorted(GOVERNED_MARKDOWN_TEMPLATE_FIELDS - set(prompt_front))
+    if missing_front_fields:
+        raise AssertionError(
+            f"Governed markdown companion template is missing front-matter fields: {missing_front_fields}"
+        )
+    gate_names = {
+        item.get("gate")
+        for item in prompt_bottom.get("gate_progress", [])
+        if isinstance(item, dict) and item.get("gate")
+    }
+    missing_markdown_gates = sorted(GOVERNED_MARKDOWN_TEMPLATE_GATES - gate_names)
+    if missing_markdown_gates:
+        raise AssertionError(
+            f"Governed markdown companion template is missing gate_progress entries: {missing_markdown_gates}"
+        )
+    prompt_text = (ROOT / "prompts/governed-triad-follow-up-prompt.template.md").read_text().lower()
+    required_markdown_markers = {
+        "upstream inbox packet",
+        "upstream inbox packet bottom matter",
+        "structured handoff artifact",
+        "structured heavy-run prompt artifact",
+    }
+    missing_markers = sorted(marker for marker in required_markdown_markers if marker not in prompt_text)
+    if missing_markers:
+        raise AssertionError(
+            f"Governed markdown companion template is missing inbox packet parsing markers: {missing_markers}"
+        )
+
+    governed_packets = []
+    inbox_root = ROOT / "inbox"
+    if inbox_root.exists():
+        for path in sorted(inbox_root.rglob("*.md")):
+            text = path.read_text()
+            if text.startswith("---\n") and "\n---bottom-matter---\n" in text:
+                front, bottom = parse_markdown_contract(path)
+                key_union = collect_normalized_keys(front) | collect_normalized_keys(bottom)
+                governed_packets.append(
+                    {
+                        "path": str(path.relative_to(ROOT)),
+                        "artifact_type": front.get("artifact_type"),
+                        "keys": sorted(key_union),
+                    }
+                )
+                is_governed_packet = (
+                    front.get("doctype") == "inbox_packet"
+                    or front.get("structured_contract_ref") == "contracts/inbox-packet.yaml"
+                )
+                if is_governed_packet and "artifact_type" in front and front["artifact_type"] not in INBOX_PACKET_ARTIFACT_TYPES:
+                    raise AssertionError(f"{path.relative_to(ROOT)} declares an unknown inbox packet artifact type.")
+                if is_governed_packet and front.get("artifact_type") in INBOX_PACKET_ARTIFACT_TYPES:
+                    missing_keys = sorted(
+                        field
+                        for field in INBOX_PACKET_REQUIRED_FIELDS
+                        if field not in key_union
+                    )
+                    if missing_keys:
+                        raise AssertionError(
+                            f"{path.relative_to(ROOT)} is missing governed inbox packet keys: {missing_keys}"
+                        )
+                    if not (INBOX_PACKET_SCOPE_FIELDS & key_union):
+                        raise AssertionError(f"{path.relative_to(ROOT)} must carry project or target scope keys.")
+                    if not (INBOX_PACKET_FRESHNESS_FIELDS & key_union):
+                        raise AssertionError(f"{path.relative_to(ROOT)} must carry freshness metadata keys.")
+                    missing_packet_gates = sorted(
+                        field for field in INBOX_GATE_FIELDS if field not in key_union
+                    )
+                    if missing_packet_gates:
+                        raise AssertionError(
+                            f"{path.relative_to(ROOT)} is missing governed inbox gate keys: {missing_packet_gates}"
+                        )
+
+    details.update(
+        {
+            "validated_contracts": validated_contracts,
+            "validated_examples": validated_examples,
+            "front_door_runtime_roles": sorted(heavy_runtime_roles),
+            "governance_roles": sorted(governed_roles),
+            "packet_artifact_types": sorted(packet_types),
+            "governed_markdown_packets_found": governed_packets,
+            "markdown_template_path": "prompts/governed-triad-follow-up-prompt.template.md",
+        }
+    )
+    return details
+
+def validate_subsystem_architecture_slice() -> dict:
+    validated_contracts = 0
+    validated_examples = 0
+    errors: list[str] = []
+    topology_first_subsystems: set[str] = set()
+    topology_focus_areas: set[str] = set()
+
+    for contract_rel, schema_rel in SUBSYSTEM_ARCHITECTURE_CONTRACTS.items():
+        contract_path = ROOT / contract_rel
+        schema_path = ROOT / schema_rel
+        if not contract_path.exists() or not schema_path.exists():
+            errors.append(f"missing:{contract_rel}")
+            continue
+        schema = json.loads(schema_path.read_text())
+        contract = yaml.safe_load(contract_path.read_text())
+        try:
+            Draft202012Validator(schema).validate(contract)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{contract_rel}:{exc}")
+            continue
+        validated_contracts += 1
+        if contract_rel == "contracts/subsystem-harness-topology.yaml":
+            topology_first_subsystems = {item["subsystem_id"] for item in contract["first_subsystems"]}
+            topology_focus_areas = set(contract["repo_catalog_lens"]["focus_areas"])
+
+    if validated_contracts == len(SUBSYSTEM_ARCHITECTURE_CONTRACTS):
+        try:
+            require_subset("Subsystem topology first_subsystems", SUBSYSTEM_IDS, topology_first_subsystems)
+            require_subset("Subsystem topology focus areas", SUBSYSTEM_FIT_AREAS, topology_focus_areas)
+        except AssertionError as exc:
+            errors.append(str(exc))
+
+    for example_rel, schema_rel in SUBSYSTEM_ARCHITECTURE_VALID_EXAMPLES:
+        example_path = ROOT / example_rel
+        schema_path = ROOT / schema_rel
+        if not example_path.exists() or not schema_path.exists():
+            errors.append(f"missing:{example_rel}")
+            continue
+        schema = json.loads(schema_path.read_text())
+        instance = json.loads(example_path.read_text())
+        try:
+            Draft202012Validator(schema).validate(instance)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{example_rel}:{exc}")
+            continue
+        validated_examples += 1
+
+    record_path = ROOT / "source/subsystems/registry.json"
+    record_schema_path = ROOT / "schemas/subsystem-registry-record.schema.json"
+    scaffold_paths = [
+        "source/subsystems/README.md",
+        "source/subsystems/intake-etl.md",
+        "source/subsystems/research-harvest.md",
+        "source/subsystems/semantic-cartography.md",
+        "source/subsystems/wrapper-synthesizer.md",
+    ]
+    missing_scaffolds = [path for path in scaffold_paths if not (ROOT / path).exists()]
+    if missing_scaffolds:
+        errors.append(f"missing scaffold files: {missing_scaffolds}")
+
+    repo_count = 0
+    shortlist_count = 0
+    if not record_path.exists():
+        errors.append("missing:source/subsystems/registry.json")
+    elif not record_schema_path.exists():
+        errors.append("missing:schemas/subsystem-registry-record.schema.json")
+    else:
+        record_schema = json.loads(record_schema_path.read_text())
+        record = json.loads(record_path.read_text())
+        try:
+            Draft202012Validator(record_schema).validate(record)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"source/subsystems/registry.json:{exc}")
+        else:
+            repo_catalog = record["repo_catalog"]
+            repo_count = len(repo_catalog)
+            shortlist_count = len(record["reusable_infrastructure_shortlist"])
+            repo_ids = {item["repo_id"] for item in repo_catalog}
+            repo_classifications = {item["classification"] for item in repo_catalog}
+            fit_areas = {
+                fit_area
+                for item in repo_catalog
+                for fit_area in item["best_fit_subsystems"]
+            }
+            active_lanes = set(record["runtime_truth"]["active_parent_runtime_lanes"])
+            blocked_lanes = {item["lane_id"] for item in record["runtime_truth"]["blocked_parent_runtime_lanes"]}
+            non_activated_lanes = set(record["runtime_truth"]["non_activated_subsystem_lanes"])
+            subsystem_ids = {item["subsystem_id"] for item in record["subsystems"]}
+            try:
+                require_subset("Subsystem registry subsystem ids", SUBSYSTEM_IDS, subsystem_ids)
+                require_subset("Subsystem registry fit areas", SUBSYSTEM_FIT_AREAS, fit_areas)
+                require_subset(
+                    "Subsystem registry active parent runtime lanes",
+                    {"peer_mesh_local.same_host", "inbox_protocol.same_host"},
+                    active_lanes,
+                )
+                require_subset(
+                    "Subsystem registry blocked runtime lanes",
+                    {"peer_mesh_local.cross_device", "inbox_protocol.cross_device"},
+                    blocked_lanes,
+                )
+                require_subset("Subsystem registry non-activated subsystem lanes", SUBSYSTEM_IDS, non_activated_lanes)
+                require_subset("Subsystem registry classifications", ALLOWED_CAPABILITY_CLASSIFICATIONS, repo_classifications)
+            except AssertionError as exc:
+                errors.append(str(exc))
+            if len(repo_ids) != 20:
+                errors.append("Subsystem registry must classify exactly 20 unique repos.")
+            if shortlist_count < 5:
+                errors.append("Subsystem registry must keep at least 5 reusable-now shortlist entries.")
+
+    if errors:
+        raise AssertionError(" | ".join(errors))
+
+    return {
+        "validated_contracts": validated_contracts,
+        "validated_examples": validated_examples,
+        "registry_record": "source/subsystems/registry.json",
+        "repo_count": repo_count,
+        "shortlist_count": shortlist_count,
+        "scaffold_paths": scaffold_paths,
+    }
+
+
 def validate_report_runtime_truth(report_instance: dict, iteration_rows: list[dict]) -> dict:
     errors: list[str] = []
     runtime_truth = report_instance.get("runtime_truth", {})
@@ -803,6 +1398,164 @@ def validate_report_runtime_truth(report_instance: dict, iteration_rows: list[di
         "truth_level": truth_level,
         "runtime_mode_activated": runtime_mode,
         "latest_iteration": latest_row.get("iteration"),
+        "errors": errors,
+    }
+
+
+def validate_gap_map_strength_slice() -> dict:
+    errors: list[str] = []
+    validated_contracts = 0
+    validated_examples = 0
+
+    for contract_rel, schema_rel in GAP_MAP_STRENGTH_CONTRACTS.items():
+        contract_path = ROOT / contract_rel
+        schema_path = ROOT / schema_rel
+        if not contract_path.exists() or not schema_path.exists():
+            errors.append(f"missing:{contract_rel}")
+            continue
+        schema = json.loads(schema_path.read_text())
+        contract = yaml.safe_load(contract_path.read_text())
+        try:
+            Draft202012Validator.check_schema(schema)
+            Draft202012Validator(schema).validate(contract)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{contract_rel}:{exc}")
+            continue
+        validated_contracts += 1
+
+    report_path = ROOT / "evaluation/gap-map-strength-report.json"
+    report_schema_path = ROOT / "schemas/gap-map-strength-report.schema.json"
+    source_synthesis_path = ROOT / "source/gap-map-strength.md"
+    if not report_path.exists():
+        errors.append("missing:evaluation/gap-map-strength-report.json")
+    if not source_synthesis_path.exists():
+        errors.append("missing:source/gap-map-strength.md")
+
+    report = {}
+    contract = {}
+    if validated_contracts == len(GAP_MAP_STRENGTH_CONTRACTS):
+        contract = yaml.safe_load((ROOT / "contracts/gap-map-strength.yaml").read_text())
+    if report_path.exists() and report_schema_path.exists():
+        report_schema = json.loads(report_schema_path.read_text())
+        report = json.loads(report_path.read_text())
+        try:
+            Draft202012Validator.check_schema(report_schema)
+            Draft202012Validator(report_schema).validate(report)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"evaluation/gap-map-strength-report.json:{exc}")
+
+    for example_rel, schema_rel in GAP_MAP_STRENGTH_VALID_EXAMPLES:
+        example_path = ROOT / example_rel
+        schema_path = ROOT / schema_rel
+        if not example_path.exists() or not schema_path.exists():
+            errors.append(f"missing:{example_rel}")
+            continue
+        schema = json.loads(schema_path.read_text())
+        instance = json.loads(example_path.read_text())
+        try:
+            Draft202012Validator(schema).validate(instance)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{example_rel}:{exc}")
+            continue
+        validated_examples += 1
+
+    strong_area_ids: set[str] = set()
+    missing_classes: set[str] = set()
+    map_types: set[str] = set()
+    underspecified_surfaces: set[str] = set()
+    tool_focuses: set[str] = set()
+    tool_ids: set[str] = set()
+    blocker_lane_ids: set[str] = set()
+
+    if report and contract:
+        try:
+            strong_area_ids = {item["area_id"] for item in report["strong_content"]}
+            require_subset(
+                "Gap map strong content areas",
+                set(contract["strong_content_rules"]["required_areas"]),
+                strong_area_ids,
+            )
+            for area in report["weak_content"]:
+                for item in area["missing_items"]:
+                    missing_classes.add(item["class"])
+            require_subset(
+                "Gap map missing-item classes",
+                set(contract["weak_content_rules"]["required_missing_classes"]),
+                missing_classes,
+            )
+            map_types = {item["map_type"] for item in report["workflow_structure"]["missing_maps"]}
+            require_subset(
+                "Gap map missing-map types",
+                set(contract["workflow_rules"]["required_missing_map_types"]),
+                map_types,
+            )
+            underspecified_surfaces = {
+                item["surface_id"] for item in report["workflow_structure"]["underspecified_contracts"]
+            }
+            require_subset(
+                "Gap map underspecified surfaces",
+                set(contract["workflow_rules"]["required_underspecified_contract_surfaces"]),
+                underspecified_surfaces,
+            )
+            for item in report["runnable_tools"]:
+                tool_ids.add(item["tool_id"])
+                tool_focuses.update(item["helping_areas"])
+            if len(report["runnable_tools"]) < int(contract["tool_shortlist_rules"]["minimum_tools"]):
+                raise AssertionError("Gap map runnable tool shortlist is shorter than the contract minimum.")
+            require_subset(
+                "Gap map runnable tool focus areas",
+                set(contract["tool_shortlist_rules"]["required_focus_areas"]),
+                tool_focuses,
+            )
+
+            topology = yaml.safe_load((ROOT / "contracts/subsystem-harness-topology.yaml").read_text())
+            runtime_truth = report["runtime_truth"]
+            if runtime_truth["runtime_truth_level"] != "bounded_runtime":
+                raise AssertionError("Gap map runtime_truth_level must stay bounded_runtime.")
+            if set(runtime_truth["active_parent_runtime_lanes"]) != set(
+                topology["parent_kernel"]["active_parent_runtime_lanes"]
+            ):
+                raise AssertionError("Gap map active_parent_runtime_lanes must match subsystem topology truth.")
+            blocker_lane_ids = {
+                item["lane_id"] for item in runtime_truth["blocked_parent_runtime_lanes"]
+            }
+            expected_blocked_lane_ids = {
+                item["lane_id"] for item in topology["parent_kernel"]["blocked_parent_runtime_lanes"]
+            }
+            if blocker_lane_ids != expected_blocked_lane_ids:
+                raise AssertionError("Gap map blocked_parent_runtime_lanes must match subsystem topology truth.")
+            if set(runtime_truth["non_activated_subsystem_lanes"]) != set(
+                topology["parent_kernel"]["non_activated_subsystem_lanes"]
+            ):
+                raise AssertionError("Gap map non_activated_subsystem_lanes must match subsystem topology truth.")
+
+            tool_health = json.loads((ROOT / "evaluation/tool-health/status.json").read_text())
+            infranodus_live_status = (
+                tool_health.get("checks", {})
+                .get("infranodus", {})
+                .get("truth_boundary", {})
+                .get("live_status")
+            )
+            if infranodus_live_status != report["infranodus_path"]["live_status"]:
+                raise AssertionError("Gap map InfraNodus live_status must match tool-health status.")
+            if infranodus_live_status != "pass" and report["infranodus_path"]["mode"] != "bounded_local_cli_substitute":
+                raise AssertionError("Gap map must stay on the bounded InfraNodus path while live remains blocked.")
+            if report["follow_up_prompt"]["target_schema_ref"] != contract["follow_up_prompt_requirements"]["structured_prompt_schema_ref"]:
+                raise AssertionError("Gap map follow-up prompt must point at the governed heavy-run prompt schema.")
+        except AssertionError as exc:
+            errors.append(str(exc))
+
+    return {
+        "validated_contracts": validated_contracts,
+        "validated_examples": validated_examples,
+        "strong_content_area_ids": sorted(strong_area_ids),
+        "missing_item_classes": sorted(missing_classes),
+        "missing_map_types": sorted(map_types),
+        "underspecified_surfaces": sorted(underspecified_surfaces),
+        "tool_ids": sorted(tool_ids),
+        "tool_focus_areas": sorted(tool_focuses),
+        "blocker_lane_ids": sorted(blocker_lane_ids),
+        "source_synthesis_ref": "source/gap-map-strength.md",
         "errors": errors,
     }
 
@@ -1743,6 +2496,14 @@ def main() -> int:
 
     checks.append(
         {
+            "name": "inbox_front_door_protocol_slice",
+            "status": "pass",
+            "details": validate_inbox_front_door_slice(),
+        }
+    )
+
+    checks.append(
+        {
             "name": "capability_metrics_contract",
             "status": "pass",
             "details": validate_capability_metrics_contract(),
@@ -1754,6 +2515,23 @@ def main() -> int:
             "name": "research_governance_alignment",
             "status": "pass",
             "details": validate_research_governance(),
+        }
+    )
+
+    checks.append(
+        {
+            "name": "subsystem_harness_architecture_slice",
+            "status": "pass",
+            "details": validate_subsystem_architecture_slice(),
+        }
+    )
+
+    gap_map_strength_details = validate_gap_map_strength_slice()
+    checks.append(
+        {
+            "name": "gap_map_strength_slice",
+            "status": "pass" if not gap_map_strength_details["errors"] else "fail",
+            "details": gap_map_strength_details,
         }
     )
 
@@ -1902,9 +2680,23 @@ def main() -> int:
             "contracts/capability-matrix.yaml",
             "contracts/three-agent-topology.yaml",
             "contracts/agent-extension-request.yaml",
+            "contracts/subsystem-harness-topology.yaml",
+            "contracts/subsystem-registry.yaml",
+            "prompts/governed-triad-follow-up-prompt.template.md",
             "schemas/governed-agent-profile.schema.json",
+            "schemas/subsystem-harness-topology.schema.json",
+            "schemas/subsystem-registry.schema.json",
+            "schemas/subsystem-registry-record.schema.json",
             "examples/three-agent-topology.valid.json",
             "examples/agent-extension-request.valid.json",
+            "examples/subsystem-harness-topology.valid.json",
+            "examples/subsystem-registry.valid.json",
+            "examples/subsystem-registry-record.valid.json",
+            "source/subsystems/registry.json",
+            "source/subsystems/intake-etl.md",
+            "source/subsystems/research-harvest.md",
+            "source/subsystems/semantic-cartography.md",
+            "source/subsystems/wrapper-synthesizer.md",
             "evaluation/tool-health/peer-mesh-local.json",
             "evaluation/tool-health/peer-mesh-local.log",
             "evaluation/tool-health/peer-mesh-local-events.jsonl",
@@ -1913,7 +2705,13 @@ def main() -> int:
             "evaluation/research/compiled/feature-matrix.json",
             "evaluation/research/compiled/gap-placement-map.json",
             "evaluation/research/compiled/source-index.json",
-        ],
+        ]
+        + sorted(INBOX_PROTOCOL_CONTRACTS.keys())
+        + [schema for schema in INBOX_PROTOCOL_CONTRACTS.values()]
+        + [item[0] for item in INBOX_PROTOCOL_VALID_EXAMPLES]
+        + sorted(FRONT_DOOR_LIFECYCLE_CONTRACTS.keys())
+        + [schema for schema in FRONT_DOOR_LIFECYCLE_CONTRACTS.values()]
+        + [item[0] for item in FRONT_DOOR_LIFECYCLE_VALID_EXAMPLES],
     }
     (ROOT / "promotion/readiness.json").write_text(json.dumps(readiness, indent=2) + "\n")
     print(json.dumps(report, indent=2))

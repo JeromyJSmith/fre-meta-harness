@@ -111,21 +111,87 @@
         "architect"
       ]
     },
+    "runtime_role_id": {
+      "type": "string",
+      "enum": [
+        "user-facing-agent",
+        "spec-interpreter",
+        "filesystem-router",
+        "intake-mapper",
+        "semantic-cartographer",
+        "wrapper-synthesizer"
+      ]
+    },
+    "governed_or_runtime_role_id": {
+      "type": "string",
+      "enum": [
+        "orchestrator-validator",
+        "research",
+        "architect",
+        "user-facing-agent",
+        "spec-interpreter",
+        "filesystem-router",
+        "intake-mapper",
+        "semantic-cartographer",
+        "wrapper-synthesizer"
+      ]
+    },
+    "packet_artifact_type": {
+      "type": "string",
+      "enum": [
+        ".brainstorm.md",
+        ".plan.md",
+        ".analysis.md",
+        ".test.md",
+        ".review.md",
+        ".handoff.md",
+        ".spec.md",
+        ".checkpoint.md"
+      ]
+    },
     "triad_context": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "acting_role",
         "upstream_handoff_ref",
+        "upstream_inbox_packet_ref",
+        "packet_artifact_type",
+        "required_gate_state",
+        "required_consumers",
+        "bottom_matter_ref",
+        "structured_contract_ref",
         "decision_space_required",
         "runtime_truth_requirements",
         "command_evidence_requirements"
       ],
       "properties": {
         "acting_role": {
-          "$ref": "#/$defs/governed_role_id"
+          "$ref": "#/$defs/governed_or_runtime_role_id"
         },
         "upstream_handoff_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "upstream_inbox_packet_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packet_artifact_type": {
+          "$ref": "#/$defs/packet_artifact_type"
+        },
+        "required_gate_state": {
+          "type": "string",
+          "enum": ["green", "amber"]
+        },
+        "required_consumers": {
+          "$ref": "#/$defs/string_list"
+        },
+        "bottom_matter_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structured_contract_ref": {
           "type": "string",
           "minLength": 1
         },

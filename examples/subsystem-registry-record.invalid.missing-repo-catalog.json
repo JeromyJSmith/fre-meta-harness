@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "subsystem_registry_record",
+  "registry_id": "SUBSYSREG-20260522-BOOT",
+  "scope": "portable_parent_wrapper",
+  "topology_ref": "contracts/subsystem-harness-topology.yaml",
+  "registry_contract_ref": "contracts/subsystem-registry.yaml",
+  "authoritative_root": "source/subsystems",
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host",
+      "inbox_protocol.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      },
+      {
+        "lane_id": "inbox_protocol.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "Authenticated remote inbox routing and synchronization must exist before cross-device inbox claims can be made.",
+        "evidence_refs": [
+          "evaluation/tool-health/inbox-protocol/latest-scan.json"
+        ]
+      }
+    ],
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh",
+      "uv run python scripts/watchers/inbox_router.py"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "The registry defines subsystem boundaries and scaffold ownership only; it does not claim live subsystem runners.",
+      "Wrapper synthesis, semantic cartography, and research harvest remain scaffolded parent surfaces until a routed runtime owner and proof artifacts exist."
+    ]
+  },
+  "subsystems": [
+    {
+      "subsystem_id": "intake_etl",
+      "lane_classification": "core",
+      "activation_state": "defined_not_activated",
+      "wrap_boundary": "Wraps governed inbox drops and consume-folder assets into normalized packet, extract, and provenance records before compiled research outputs are refreshed.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/intake-etl.md"
+      ],
+      "consumes": [
+        "contracts/inbox-packet.yaml",
+        "contracts/inbox-routing-decision.yaml",
+        "contracts/delegation-bundle.yaml"
+      ],
+      "emits": [
+        "evaluation/research/harvest-manifest.json",
+        "evaluation/research/compiled/source-index.json"
+      ],
+      "reusable_infrastructure_refs": [
+        "oven-sh/bun"
+      ],
+      "blocked_by": [
+        "No parent-owned intake_etl activation runner exists in this slice."
+      ],
+      "notes": "This scaffold reserves the boundary and contract surfaces only."
+    },
+    {
+      "subsystem_id": "research_harvest",
+      "lane_classification": "core",
+      "activation_state": "defined_not_activated",
+      "wrap_boundary": "Wraps normalized evidence into capability, feature, gap, and source-index outputs while preserving packet provenance and evidence strength.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/research-harvest.md"
+      ],
+      "consumes": [
+        "evaluation/research/harvest-manifest.json"
+      ],
+      "emits": [
+        "evaluation/research/compiled/capability-harvest.json"
+      ],
+      "reusable_infrastructure_refs": [
+        "VectifyAI/OpenKB"
+      ],
+      "blocked_by": [
+        "The current parent slice does not activate an LLM-backed harvest runner."
+      ],
+      "notes": "This scaffold preserves the harvest boundary without implying live cartography or synthesis."
+    },
+    {
+      "subsystem_id": "semantic_cartography",
+      "lane_classification": "core",
+      "activation_state": "defined_not_activated",
+      "wrap_boundary": "Wraps normalized code, docs, and compiled research into semantic graphs, entity maps, and subsystem candidate placements.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/semantic-cartography.md"
+      ],
+      "consumes": [
+        "evaluation/research/compiled/source-index.json"
+      ],
+      "emits": [
+        "semantic graph-ready summaries"
+      ],
+      "reusable_infrastructure_refs": [
+        "colbymchenry/codegraph"
+      ],
+      "blocked_by": [
+        "No parent-owned semantic cartography runner is activated in this slice."
+      ],
+      "notes": "The scaffold establishes semantic ownership and handoff shape only."
+    },
+    {
+      "subsystem_id": "wrapper_synthesizer",
+      "lane_classification": "gated",
+      "activation_state": "late_bound_not_activated",
+      "wrap_boundary": "Wraps approved subsystem outputs into wrapper-facing contracts, prompts, and handoff bundles only after explicit triad review.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/wrapper-synthesizer.md"
+      ],
+      "consumes": [
+        "source/subsystems/registry.json"
+      ],
+      "emits": [
+        "wrapper binding candidates"
+      ],
+      "reusable_infrastructure_refs": [
+        "sandeco/reversa"
+      ],
+      "blocked_by": [
+        "Wrapper synthesis remains late-bound until subsystem outputs are routed through an explicit runtime owner."
+      ],
+      "notes": "The scaffold preserves gating and non-activation truth."
+    }
+  ],
+  "reusable_infrastructure_shortlist": [
+    {
+      "repo_id": "colbymchenry/codegraph",
+      "fit_areas": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler"
+      ],
+      "why_now": "Best direct fit for semantic cartography and intake ETL.",
+      "reusable_surfaces": [
+        "code knowledge graph"
+      ],
+      "source_refs": [
+        "colbymchenry/codegraph:README.md:27-45"
+      ]
+    },
+    {
+      "repo_id": "open-bias/open-bias",
+      "fit_areas": [
+        "observability",
+        "wrapper_synthesizer"
+      ],
+      "why_now": "Strong fit for policy enforcement around wrapper boundaries.",
+      "reusable_surfaces": [
+        "policy proxy"
+      ],
+      "source_refs": [
+        "open-bias/open-bias:README.md:40-110"
+      ]
+    },
+    {
+      "repo_id": "regent-vcs/re_gent",
+      "fit_areas": [
+        "observability",
+        "durable_execution",
+        "substrate_sync"
+      ],
+      "why_now": "Strong fit for provenance and durable step tracking.",
+      "reusable_surfaces": [
+        "session audit trail"
+      ],
+      "source_refs": [
+        "regent-vcs/re_gent:README.md:100-170"
+      ]
+    },
+    {
+      "repo_id": "oven-sh/bun",
+      "fit_areas": [
+        "substrate_sync"
+      ],
+      "why_now": "Strong local execution substrate.",
+      "reusable_surfaces": [
+        "runtime"
+      ],
+      "source_refs": [
+        "oven-sh/bun:README.md:25-35"
+      ]
+    },
+    {
+      "repo_id": "oxc-project/oxc",
+      "fit_areas": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler"
+      ],
+      "why_now": "Strong source-analysis substrate.",
+      "reusable_surfaces": [
+        "parser"
+      ],
+      "source_refs": [
+        "oxc-project/oxc:README.md:14-36"
+      ]
+    }
+  ]
+}

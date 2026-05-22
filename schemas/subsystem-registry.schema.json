@@ -1,0 +1,352 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/subsystem-registry.schema.json",
+  "title": "Subsystem Registry Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "authority",
+    "registry_requirements",
+    "repo_catalog_requirements",
+    "shortlist_requirements",
+    "truth_guardrails"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-subsystem-registry"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "topology_contract_ref",
+        "authoritative_root",
+        "registry_artifact_ref",
+        "first_scaffold_refs"
+      ],
+      "properties": {
+        "topology_contract_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-harness-topology.yaml"
+        },
+        "authoritative_root": {
+          "type": "string",
+          "const": "source/subsystems"
+        },
+        "registry_artifact_ref": {
+          "type": "string",
+          "const": "source/subsystems/registry.json"
+        },
+        "first_scaffold_refs": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "source/subsystems/intake-etl.md"
+              }
+            },
+            {
+              "contains": {
+                "const": "source/subsystems/research-harvest.md"
+              }
+            },
+            {
+              "contains": {
+                "const": "source/subsystems/semantic-cartography.md"
+              }
+            },
+            {
+              "contains": {
+                "const": "source/subsystems/wrapper-synthesizer.md"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "registry_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_runtime_truth_fields",
+        "required_subsystem_ids",
+        "allowed_activation_states",
+        "allowed_lane_classifications"
+      ],
+      "properties": {
+        "required_runtime_truth_fields": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "runtime_truth_level"
+              }
+            },
+            {
+              "contains": {
+                "const": "active_parent_runtime_lanes"
+              }
+            },
+            {
+              "contains": {
+                "const": "blocked_parent_runtime_lanes"
+              }
+            },
+            {
+              "contains": {
+                "const": "activation_commands"
+              }
+            },
+            {
+              "contains": {
+                "const": "validation_commands"
+              }
+            },
+            {
+              "contains": {
+                "const": "activation_artifacts_used"
+              }
+            },
+            {
+              "contains": {
+                "const": "non_activated_subsystem_lanes"
+              }
+            },
+            {
+              "contains": {
+                "const": "do_not_overclaim_notes"
+              }
+            }
+          ]
+        },
+        "required_subsystem_ids": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/subsystemId"
+          }
+        },
+        "allowed_activation_states": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/activationState"
+          }
+        },
+        "allowed_lane_classifications": {
+          "$ref": "#/$defs/classificationList"
+        }
+      }
+    },
+    "repo_catalog_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixed_repo_count",
+        "required_repo_fields",
+        "focus_areas",
+        "reference_only_when_overlap_or_inspiration"
+      ],
+      "properties": {
+        "fixed_repo_count": {
+          "type": "integer",
+          "const": 20
+        },
+        "required_repo_fields": {
+          "type": "array",
+          "minItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "repo_id"
+              }
+            },
+            {
+              "contains": {
+                "const": "classification"
+              }
+            },
+            {
+              "contains": {
+                "const": "best_fit_subsystems"
+              }
+            },
+            {
+              "contains": {
+                "const": "reusable_now"
+              }
+            },
+            {
+              "contains": {
+                "const": "exact_dependency_or_limit"
+              }
+            },
+            {
+              "contains": {
+                "const": "why"
+              }
+            },
+            {
+              "contains": {
+                "const": "source_refs"
+              }
+            }
+          ]
+        },
+        "focus_areas": {
+          "$ref": "#/$defs/fitAreaList"
+        },
+        "reference_only_when_overlap_or_inspiration": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "shortlist_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_reusable_now_repos",
+        "required_focus_areas"
+      ],
+      "properties": {
+        "minimum_reusable_now_repos": {
+          "type": "integer",
+          "const": 5
+        },
+        "required_focus_areas": {
+          "$ref": "#/$defs/fitAreaList"
+        }
+      }
+    },
+    "truth_guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_runtime_evidence_refs",
+        "blocked_runtime_modes_must_remain_explicit",
+        "non_activated_subsystems_must_remain_explicit",
+        "no_child_runtime_adoption_claims"
+      ],
+      "properties": {
+        "active_runtime_evidence_refs": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "evaluation/tool-health/peer-mesh-local.json"
+              }
+            },
+            {
+              "contains": {
+                "const": "evaluation/tool-health/inbox-protocol/latest-scan.json"
+              }
+            }
+          ]
+        },
+        "blocked_runtime_modes_must_remain_explicit": {
+          "type": "boolean",
+          "const": true
+        },
+        "non_activated_subsystems_must_remain_explicit": {
+          "type": "boolean",
+          "const": true
+        },
+        "no_child_runtime_adoption_claims": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "subsystemId": {
+      "type": "string",
+      "enum": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer"
+      ]
+    },
+    "fitArea": {
+      "type": "string",
+      "enum": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer",
+        "observability",
+        "durable_execution",
+        "spec_compiler",
+        "substrate_sync"
+      ]
+    },
+    "fitAreaList": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/fitArea"
+      }
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "core",
+        "gated",
+        "deployment_specific",
+        "reference",
+        "blocked_with_exact_dependency"
+      ]
+    },
+    "classificationList": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/classification"
+      }
+    },
+    "activationState": {
+      "type": "string",
+      "enum": [
+        "defined_not_activated",
+        "late_bound_not_activated"
+      ]
+    }
+  }
+}

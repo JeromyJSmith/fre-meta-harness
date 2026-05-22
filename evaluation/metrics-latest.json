@@ -1,32 +1,32 @@
 {
   "score_id": "PARENT-META-SCORE-0003",
-  "created_at": "2026-05-21",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated-substantive",
-  "total_score": 100.0,
-  "outcome_score": 100.0,
+  "total_score": 99.62,
+  "outcome_score": 99.5,
   "instrument_score": 100.0,
-  "weakest_component": "ratchet_execution",
+  "weakest_component": "artifact_refresh",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
       "details": {
         "status": "running",
         "schema_errors": [],
-        "real_rows": 19,
-        "kept_rows": 14,
-        "substantive_kept_rows": 12,
+        "real_rows": 20,
+        "kept_rows": 15,
+        "substantive_kept_rows": 13,
         "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
       "score": 25.0,
       "details": {
-        "count": 19,
-        "substantive_kept_rows": 12,
+        "count": 20,
+        "substantive_kept_rows": 13,
         "rejected_or_reverted_rows": 5,
-        "history_rows": 19,
-        "real_rows": 19,
+        "history_rows": 20,
+        "real_rows": 20,
         "parse_errors": [],
         "schema_errors": []
       }
@@ -35,19 +35,19 @@
       "score": 25.0,
       "details": {
         "kind": "continuing",
-        "stop_reason": "one kept triad-governance slice was completed; the parent improvement program remains open for later governed slices",
-        "cycles": 19,
+        "stop_reason": "one kept inbox-first front-door slice was completed; the parent improvement program remains open for later governed slices",
+        "cycles": 20,
         "actual_consecutive_non_improving": 0,
         "schema_errors": []
       }
     },
     "artifact_refresh": {
-      "score": 25.0,
+      "score": 24.5,
       "details": {
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 92.03813028335571,
+        "freshness_span_seconds": 22533.526408433914,
         "tool_statuses": [
           "bounded_pass",
           "bounded_pass",
@@ -127,6 +127,23 @@
           ],
           "errors": []
         },
+        "inbox_front_door_score": 1.5,
+        "inbox_front_door_details": {
+          "required_triads": 5,
+          "present_triads": 5,
+          "validated_triads": 5,
+          "activation_score": 0.75,
+          "activation_candidates": [
+            {
+              "check": "inbox_protocol",
+              "status": "pass",
+              "has_command": true,
+              "evidence_count": 4,
+              "evidence_paths_exist": true
+            }
+          ],
+          "errors": []
+        },
         "research_governance_score": 2.0,
         "research_governance_details": {
           "errors": [],
@@ -170,9 +187,9 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 19,
-        "detailed_rows": 19,
-        "ledger_rows": 19,
+        "history_rows": 20,
+        "detailed_rows": 20,
+        "ledger_rows": 20,
         "ledger_aligned": true,
         "runtime_truth_score": 6.0,
         "score_saturation_score": 4.0,
@@ -189,6 +206,6 @@
       }
     }
   },
-  "iteration_count": 19,
+  "iteration_count": 20,
   "iteration_parse_errors": []
 }

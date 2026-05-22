@@ -40,6 +40,8 @@ handoff artifacts remain authoritative.
 
 ## Required Reads
 
+- Upstream inbox packet:
+- Upstream inbox packet bottom matter:
 - Structured handoff artifact:
 - Structured heavy-run prompt artifact:
 - Runtime-truth evidence artifacts:
@@ -49,6 +51,8 @@ handoff artifacts remain authoritative.
 
 - Acting role:
 - Upstream handoff:
+- Packet artifact type:
+- Required gate state:
 - Dispatch target:
 - Known blockers or escalation path:
 

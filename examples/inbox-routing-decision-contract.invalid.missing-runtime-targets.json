@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-inbox-routing-decision",
+  "scope": "portable_parent_wrapper",
+  "decision_envelope": {
+    "required_fields": [
+      "routing_decision_id",
+      "packet_ref",
+      "decision_made_by_role",
+      "decision_outcome",
+      "recommended_option_id",
+      "rationale",
+      "delegation_bundle_ref",
+      "required_gate_state",
+      "target_consumers",
+      "routing_mode"
+    ],
+    "routing_id_format": "route_id"
+  },
+  "governance_inputs": {
+    "packet_contract_ref": "contracts/inbox-packet.yaml",
+    "triad_topology_ref": "contracts/three-agent-topology.yaml",
+    "triad_roles_allowed": [
+      "orchestrator-validator",
+      "research",
+      "architect"
+    ],
+    "front_door_runtime_topology_ref": "contracts/front-door-runtime-topology.yaml"
+  },
+  "decision_space": {
+    "minimum_options": 3,
+    "required_option_fields": [
+      "option_id",
+      "target_role",
+      "target_plane",
+      "dispatch_summary",
+      "expected_artifacts",
+      "blocker_or_dependency"
+    ],
+    "recommended_option_required": true,
+    "allowed_outcomes": [
+      "route",
+      "return_for_clarification",
+      "escalate"
+    ]
+  },
+  "evidence_requirements": {
+    "delegation_bundle_required": true,
+    "front_door_runtime_topology_ref": "contracts/front-door-runtime-topology.yaml",
+    "structured_contract_validity_required": true,
+    "bottom_matter_gate_evaluation_required": true
+  }
+}

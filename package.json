@@ -1,0 +1,13 @@
+{
+  "name": "fre-meta-harness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:app": "bun app/server.ts",
+    "dev:service": "uv run python -m uvicorn service.main:app --reload --host 127.0.0.1 --port 8787",
+    "scan:inbox": "uv run python scripts/watchers/inbox_router.py",
+    "dev": "printf 'Run bun run dev:app and bun run dev:service in separate terminals.\\n'",
+    "check:inbox": "uv run python scripts/watchers/inbox_router.py"
+  }
+}

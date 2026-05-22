@@ -1,18 +1,18 @@
 {
   "analysis_id": "PARENT-META-INFRANODUS-BRIDGES-0001",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "mode": "bounded_local_cli_substitute",
   "bridges": [
     {
-      "bridge_id": "meta_harness-to-agent_eval",
-      "from_layer": "meta_harness",
-      "to_layer": "agent_eval",
+      "bridge_id": "compiled_research-to-tool_catalog_inputs",
+      "from_layer": "compiled_research",
+      "to_layer": "tool_catalog_inputs",
       "through_layer": "tool_health",
       "bridge_terms": [
-        "evaluation",
         "status",
-        "agent_eval"
+        "kind",
+        "blocked_by"
       ],
       "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
       "evidence": [
@@ -22,12 +22,14 @@
       ]
     },
     {
-      "bridge_id": "evaluation-to-meta_harness",
-      "from_layer": "evaluation",
-      "to_layer": "meta_harness",
+      "bridge_id": "inbox_doctrine-to-tool_catalog_inputs",
+      "from_layer": "inbox_doctrine",
+      "to_layer": "tool_catalog_inputs",
       "through_layer": "tool_health",
       "bridge_terms": [
-        "status"
+        "status",
+        "kind",
+        "blocked_by"
       ],
       "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
       "evidence": [
@@ -37,13 +39,14 @@
       ]
     },
     {
-      "bridge_id": "autoresearch-to-agent_eval",
-      "from_layer": "autoresearch",
-      "to_layer": "agent_eval",
+      "bridge_id": "prompt_contracts-to-compiled_research",
+      "from_layer": "prompt_contracts",
+      "to_layer": "compiled_research",
       "through_layer": "tool_health",
       "bridge_terms": [
-        "evaluation",
-        "tool_health"
+        "status",
+        "kind",
+        "blocked_by"
       ],
       "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
       "evidence": [

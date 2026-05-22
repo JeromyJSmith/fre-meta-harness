@@ -5,13 +5,12 @@
     "doc_state": "active"
   },
   "gate_progress": [
-    { "gate_id": "harvest_gate", "status": "green", "notes": "ok" },
-    { "gate_id": "registry_gate", "status": "green", "notes": "ok" },
-    { "gate_id": "manifest_gate", "status": "green", "notes": "ok" },
-    { "gate_id": "verification_gate", "status": "green", "notes": "ok" },
-    { "gate_id": "state_gate", "status": "green", "notes": "ok" },
-    { "gate_id": "health_gate", "status": "green", "notes": "ok" },
-    { "gate_id": "promotion_gate", "status": "amber", "notes": "pending repo" }
+    { "gate_id": "schema_gate", "status": "green", "notes": "ok" },
+    { "gate_id": "scope_gate", "status": "green", "notes": "ok" },
+    { "gate_id": "consumer_gate", "status": "green", "notes": "ok" },
+    { "gate_id": "evidence_gate", "status": "green", "notes": "ok" },
+    { "gate_id": "freshness_gate", "status": "green", "notes": "ok" },
+    { "gate_id": "readiness_gate", "status": "amber", "notes": "pending repo" }
   ],
   "promotion_criteria": [
     "validator passes"

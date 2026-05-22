@@ -1,0 +1,459 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/subsystem-harness-topology.schema.json",
+  "title": "Subsystem Harness Topology Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "parent_kernel",
+    "subsystem_harness_boundary",
+    "first_subsystems",
+    "repo_catalog_lens",
+    "truth_guardrails"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-subsystem-harness-topology"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "parent_kernel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owned_planes",
+        "active_parent_runtime_lanes",
+        "blocked_parent_runtime_lanes",
+        "non_activated_subsystem_lanes"
+      ],
+      "properties": {
+        "owned_planes": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "governance_triad",
+              "inbox_front_door",
+              "routing_and_delegation",
+              "recursive_documentation",
+              "compiled_research",
+              "substrate_sync_doctrine"
+            ]
+          }
+        },
+        "active_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "peer_mesh_local.same_host",
+              "inbox_protocol.same_host"
+            ]
+          }
+        },
+        "blocked_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/blockedLane"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "lane_id": {
+                    "const": "peer_mesh_local.cross_device"
+                  }
+                },
+                "required": [
+                  "lane_id"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "lane_id": {
+                    "const": "inbox_protocol.cross_device"
+                  }
+                },
+                "required": [
+                  "lane_id"
+                ]
+              }
+            }
+          ]
+        },
+        "non_activated_subsystem_lanes": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/subsystemId"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "intake_etl"
+              }
+            },
+            {
+              "contains": {
+                "const": "research_harvest"
+              }
+            },
+            {
+              "contains": {
+                "const": "semantic_cartography"
+              }
+            },
+            {
+              "contains": {
+                "const": "wrapper_synthesizer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "subsystem_harness_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wraps_between",
+        "governed_inputs",
+        "derived_outputs",
+        "parent_owned_surfaces",
+        "subsystem_owned_surfaces",
+        "no_runtime_activation_claims"
+      ],
+      "properties": {
+        "wraps_between": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "entry_plane",
+            "exit_plane"
+          ],
+          "properties": {
+            "entry_plane": {
+              "type": "string",
+              "const": "governed_inbox_and_delegation"
+            },
+            "exit_plane": {
+              "type": "string",
+              "const": "compiled_research_and_wrapper_binding_candidates"
+            }
+          }
+        },
+        "governed_inputs": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "contracts/inbox-packet.yaml"
+              }
+            },
+            {
+              "contains": {
+                "const": "contracts/inbox-routing-decision.yaml"
+              }
+            },
+            {
+              "contains": {
+                "const": "contracts/delegation-bundle.yaml"
+              }
+            }
+          ]
+        },
+        "derived_outputs": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "parent_owned_surfaces": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "subsystem_owned_surfaces": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "no_runtime_activation_claims": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "first_subsystems": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/firstSubsystem"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "intake_etl"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "research_harvest"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "semantic_cartography"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "wrapper_synthesizer"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        }
+      ]
+    },
+    "repo_catalog_lens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixed_repo_count",
+        "allowed_classifications",
+        "focus_areas",
+        "registry_artifact_ref",
+        "overlap_defaults_to_reference"
+      ],
+      "properties": {
+        "fixed_repo_count": {
+          "type": "integer",
+          "const": 20
+        },
+        "allowed_classifications": {
+          "$ref": "#/$defs/classificationList"
+        },
+        "focus_areas": {
+          "$ref": "#/$defs/fitAreaList"
+        },
+        "registry_artifact_ref": {
+          "type": "string",
+          "const": "source/subsystems/registry.json"
+        },
+        "overlap_defaults_to_reference": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "truth_guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "same_host_peer_mesh_local_active",
+        "same_host_inbox_protocol_active",
+        "cross_device_requires_fresh_proof",
+        "do_not_imply_child_runtime_adoption",
+        "do_not_imply_subsystem_activation_from_scaffolding"
+      ],
+      "properties": {
+        "same_host_peer_mesh_local_active": {
+          "type": "boolean",
+          "const": true
+        },
+        "same_host_inbox_protocol_active": {
+          "type": "boolean",
+          "const": true
+        },
+        "cross_device_requires_fresh_proof": {
+          "type": "boolean",
+          "const": true
+        },
+        "do_not_imply_child_runtime_adoption": {
+          "type": "boolean",
+          "const": true
+        },
+        "do_not_imply_subsystem_activation_from_scaffolding": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "subsystemId": {
+      "type": "string",
+      "enum": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer"
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "core",
+        "gated",
+        "deployment_specific",
+        "reference",
+        "blocked_with_exact_dependency"
+      ]
+    },
+    "activationState": {
+      "type": "string",
+      "enum": [
+        "defined_not_activated",
+        "late_bound_not_activated"
+      ]
+    },
+    "blockedLane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lane_id",
+        "classification",
+        "blocker_or_dependency"
+      ],
+      "properties": {
+        "lane_id": {
+          "type": "string",
+          "enum": [
+            "peer_mesh_local.cross_device",
+            "inbox_protocol.cross_device"
+          ]
+        },
+        "classification": {
+          "type": "string",
+          "const": "blocked_with_exact_dependency"
+        },
+        "blocker_or_dependency": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "fitArea": {
+      "type": "string",
+      "enum": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer",
+        "observability",
+        "durable_execution",
+        "spec_compiler",
+        "substrate_sync"
+      ]
+    },
+    "fitAreaList": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/fitArea"
+      }
+    },
+    "classificationList": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/classification"
+      }
+    },
+    "firstSubsystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subsystem_id",
+        "lane_classification",
+        "activation_state",
+        "authoritative_scaffold_ref",
+        "primary_objective"
+      ],
+      "properties": {
+        "subsystem_id": {
+          "$ref": "#/$defs/subsystemId"
+        },
+        "lane_classification": {
+          "$ref": "#/$defs/classification"
+        },
+        "activation_state": {
+          "$ref": "#/$defs/activationState"
+        },
+        "authoritative_scaffold_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primary_objective": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

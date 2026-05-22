@@ -1,0 +1,29 @@
+{
+  "bundle_id": "DOCBUNDLE-20260521-INBOX",
+  "artifact_type": "recursive_documentation_bundle",
+  "scope_level": "subsystem",
+  "documentation_map": {
+    "purpose": "Explain the subsystem to humans and future agents.",
+    "boundaries": [
+      "Same subsystem"
+    ],
+    "inputs": [
+      "working-map outputs"
+    ],
+    "outputs": [
+      "reviewable documentation packet"
+    ],
+    "dependencies": [
+      "AGENTS.md"
+    ],
+    "governing_artifacts": [
+      "contracts/recursive-documentation-bundle.yaml"
+    ]
+  },
+  "open_questions": [
+    "Which subsystem registry contract should consume this bundle next?"
+  ],
+  "improvement_opportunities": [
+    "Attach semantic map artifacts once the next slice lands."
+  ]
+}

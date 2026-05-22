@@ -147,10 +147,42 @@ library:
       description: Governed self-extension request contract for proposing new agents or prompt surfaces through the same parent validation and promotion pipeline.
       kind: contract
       source: contracts/agent-extension-request.yaml
+    - name: parent-inbox-packet-contract
+      description: Governed front-door packet protocol that requires YAML front matter, Markdown body, bottom matter, and structured artifact refs.
+      kind: contract
+      source: contracts/inbox-packet.yaml
+    - name: parent-inbox-routing-decision-contract
+      description: Structured routing decision surface that maps inbox packets into explicit runtime role and runtime mode targets.
+      kind: contract
+      source: contracts/inbox-routing-decision.yaml
+    - name: parent-delegation-bundle-contract
+      description: Governed runtime handoff bundle that packages commands, validation refs, evidence refs, and the Markdown packet path.
+      kind: contract
+      source: contracts/delegation-bundle.yaml
+    - name: parent-front-door-runtime-topology-contract
+      description: Parent front-door topology that defines inbox review, delegation dispatch, and runtime feedback lanes while keeping triad and runtime roles separate.
+      kind: contract
+      source: contracts/front-door-runtime-topology.yaml
+    - name: parent-subsystem-harness-topology-contract
+      description: Parent-owned topology that fixes where subsystem harnesses wrap relative to inbox, delegation, compiled research, and wrapper binding candidates.
+      kind: contract
+      source: contracts/subsystem-harness-topology.yaml
+    - name: parent-subsystem-registry-contract
+      description: Governed contract for the first subsystem tranche, runtime-truth fields, and fixed repo-catalog classification requirements.
+      kind: contract
+      source: contracts/subsystem-registry.yaml
+    - name: parent-subsystem-registry-record
+      description: Authoritative parent-owned subsystem registry record covering the first four scaffold candidates and the fixed 20-repo lens.
+      kind: source
+      source: source/subsystems/registry.json
     - name: parent-governed-agent-profile-schema
       description: Reusable schema for each governed triad role profile embedded in the parent topology.
       kind: schema
       source: schemas/governed-agent-profile.schema.json
+    - name: parent-inbox-packet-example
+      description: Human-facing example of the governed inbox packet transport document with front matter, Markdown body, and bottom matter.
+      kind: example
+      source: examples/governed-inbox-packet.protocol.valid.md
     - name: parent-governed-triad-follow-up-template
       description: Markdown companion prompt template used by triad handoffs for operator-facing routing while machine truth stays in structured prompt artifacts.
       kind: prompt
@@ -220,41 +252,50 @@ distribution_units:
     name: parent-meta-program
     source: program.md
     used_by_roles:
-      - peer_mesh_host
-      - mesh_verifier
+      - orchestrator-validator
+      - filesystem-router
   - ref: skill:the-library
     unit_type: skill
     name: the-library
     source: agentics-library.md
     used_by_roles:
-      - peer_mesh_host
-      - prod_gatekeeper
-      - dev_driver
-      - mesh_verifier
-  - ref: agent:peer_mesh_host
+      - orchestrator-validator
+      - architect
+      - research
+      - filesystem-router
+  - ref: agent:filesystem-router
     unit_type: agent
-    name: peer_mesh_host
-    source: contracts/agent-role-contract.yaml
+    name: filesystem-router
+    source: contracts/front-door-runtime-topology.yaml
     used_by_roles:
-      - peer_mesh_host
-  - ref: policy:parent-same-host-message-guard
+      - filesystem-router
+  - ref: contract:governed-inbox-packet
+    unit_type: prompt
+    name: governed-inbox-packet
+    source: contracts/inbox-packet.yaml
+    used_by_roles:
+      - user-facing-agent
+      - spec-interpreter
+      - filesystem-router
+  - ref: policy:parent-inbox-routing-policy
     unit_type: policy
-    name: parent-same-host-message-guard
-    source: contracts/policy-decision.yaml
+    name: parent-inbox-routing-policy
+    source: contracts/inbox-routing-decision.yaml
     used_by_roles:
-      - prod_gatekeeper
-      - dev_driver
-      - mesh_verifier
+      - filesystem-router
+      - orchestrator-validator
+      - architect
   - ref: validator:parent-wrapper-contract
     unit_type: validator
     name: parent-wrapper-contract
     source: tests/validate_parent_wrapper_contract.py
     used_by_roles:
-      - mesh_verifier
-  - ref: benchmark_recipe:parent-peer-mesh-local-smoke
+      - orchestrator-validator
+      - filesystem-router
+  - ref: benchmark_recipe:parent-inbox-protocol-scan
     unit_type: benchmark_recipe
-    name: parent-peer-mesh-local-smoke
-    source: scripts/run-parent-peer-mesh-local.sh
+    name: parent-inbox-protocol-scan
+    source: scripts/watchers/inbox_router.py
     used_by_roles:
-      - peer_mesh_host
-      - mesh_verifier
+      - filesystem-router
+      - orchestrator-validator

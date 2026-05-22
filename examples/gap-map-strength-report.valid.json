@@ -1,0 +1,520 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "gap_map_strength_report",
+  "artifact_id": "GAPMAP-20260522-EXAMPLE",
+  "status": "pass",
+  "scope": "portable_parent_wrapper",
+  "selected_slice": "Gap mapping and content-strength artifact family for the parent wrapper.",
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host",
+      "inbox_protocol.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      },
+      {
+        "lane_id": "inbox_protocol.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "Authenticated remote inbox routing and synchronization must exist before cross-device inbox claims can be made.",
+        "evidence_refs": [
+          "evaluation/tool-health/inbox-protocol/latest-scan.json"
+        ]
+      }
+    ],
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh",
+      "uv run python scripts/watchers/inbox_router.py"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "Do not imply subsystem runners are active from scaffold files alone."
+    ]
+  },
+  "infranodus_path": {
+    "mode": "bounded_local_cli_substitute",
+    "command": "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "live_status": "blocked",
+    "live_blocker": "Live InfraNodus MCP analysis remains API/OAuth-bound until local credentials and a session exist.",
+    "limitation": "The bounded local substitute does not claim live MCP output.",
+    "evidence_refs": [
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/tool-health/infranodus-live-probe.json"
+    ]
+  },
+  "strong_content": [
+    {
+      "area_id": "governance_kernel",
+      "summary": "The governed inbox packet to routing decision to delegation bundle chain is explicit.",
+      "why_strong": "Contract surfaces and inbox packet artifacts exist on disk and validate cleanly.",
+      "evidence_refs": [
+        "contracts/inbox-packet.yaml",
+        "contracts/inbox-routing-decision.yaml",
+        "contracts/delegation-bundle.yaml"
+      ]
+    },
+    {
+      "area_id": "same_host_runtime_truth",
+      "summary": "Same-host peer mesh and inbox protocol lanes have explicit runtime proof.",
+      "why_strong": "Tool-health artifacts preserve activation commands, evidence, and blocked cross-device boundaries.",
+      "evidence_refs": [
+        "evaluation/tool-health/peer-mesh-local.json",
+        "evaluation/tool-health/status.json"
+      ]
+    },
+    {
+      "area_id": "compiled_research_baseline",
+      "summary": "Capability, feature, gap, and source-index packets align to the governed research manifest.",
+      "why_strong": "Compiled research outputs are present and validated against their schemas.",
+      "evidence_refs": [
+        "evaluation/research/compiled/capability-harvest.json",
+        "evaluation/research/compiled/feature-matrix.json",
+        "evaluation/research/compiled/gap-placement-map.json",
+        "evaluation/research/compiled/source-index.json"
+      ]
+    },
+    {
+      "area_id": "subsystem_architecture_truth",
+      "summary": "Subsystem topology and registry define the current non-activated parent architecture truth.",
+      "why_strong": "The subsystem tranche is present on disk and keeps runtime truth explicit.",
+      "evidence_refs": [
+        "contracts/subsystem-harness-topology.yaml",
+        "source/subsystems/registry.json"
+      ]
+    }
+  ],
+  "weak_content": [
+    {
+      "area_id": "live_infranodus_access",
+      "weakness": "Live InfraNodus remains blocked, so only the bounded local substitute is proven.",
+      "missing_items": [
+        {
+          "class": "better_tool_probe",
+          "detail": "Capture an authenticated live MCP probe instead of only a blocked probe record."
+        },
+        {
+          "class": "better_proof_boundary",
+          "detail": "Preserve the exact credential and session prerequisites required for live promotion."
+        }
+      ],
+      "strengthening_actions": [
+        "Capture a live authenticated InfraNodus session artifact when credentials are intentionally configured."
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/infranodus-live-probe.json"
+      ]
+    },
+    {
+      "area_id": "tool_packaging_contracts",
+      "weakness": "Prompt-to-tool packaging is documented in consume notes but lacks parent-owned contract and example surfaces.",
+      "missing_items": [
+        {
+          "class": "better_schema",
+          "detail": "Define ToolSpec, task, and artifact schemas inside the parent-owned contract family."
+        },
+        {
+          "class": "better_examples",
+          "detail": "Add valid and invalid tool-packaging examples tied to those schemas."
+        }
+      ],
+      "strengthening_actions": [
+        "Land the endpoint-first ToolSpec tranche with schemas, examples, and validator wiring."
+      ],
+      "evidence_refs": [
+        "inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md"
+      ]
+    },
+    {
+      "area_id": "subsystem_runner_proof",
+      "weakness": "Subsystem runners remain defined_not_activated or late_bound_not_activated with no activation probes.",
+      "missing_items": [
+        {
+          "class": "better_tool_probe",
+          "detail": "Add bounded activation probes for intake ETL, research harvest, and semantic cartography."
+        },
+        {
+          "class": "better_observability",
+          "detail": "Emit subsystem-level events and benchmark evidence when those probes run."
+        }
+      ],
+      "strengthening_actions": [
+        "Create a contract-to-runner map before promoting any subsystem activation claims."
+      ],
+      "evidence_refs": [
+        "contracts/subsystem-harness-topology.yaml",
+        "source/subsystems/registry.json"
+      ]
+    },
+    {
+      "area_id": "consume_source_quality",
+      "weakness": "Consume-folder source material mixes strong prompt docs with transcript-style evidence that is not frame-verified.",
+      "missing_items": [
+        {
+          "class": "better_source_material",
+          "detail": "Capture more direct source material for workflow and market claims instead of relying on a single transcript-heavy packet."
+        },
+        {
+          "class": "better_transcript_capture",
+          "detail": "Split long transcript captures into structured issue, capability, and requirement packets."
+        },
+        {
+          "class": "better_terminal_or_frame_evidence",
+          "detail": "Pair transcript-derived operational claims with terminal or frame artifacts before promoting them."
+        }
+      ],
+      "strengthening_actions": [
+        "Re-cut consume artifacts into narrower packets with explicit source-evidence strength labels."
+      ],
+      "evidence_refs": [
+        "inbox/transcribe.consume/file-system-consume.md",
+        "evaluation/research/compiled/source-index.json"
+      ]
+    }
+  ],
+  "workflow_structure": {
+    "strong_edges": [
+      {
+        "edge_id": "triad-to-routing",
+        "from": "governance_triad",
+        "to": "routing_and_delegation",
+        "status": "strong",
+        "summary": "Inbox packet, routing decision, and delegation bundle surfaces are explicit and governed.",
+        "evidence_refs": [
+          "contracts/inbox-packet.yaml",
+          "contracts/inbox-routing-decision.yaml",
+          "contracts/delegation-bundle.yaml"
+        ]
+      },
+      {
+        "edge_id": "compiled-research-alignment",
+        "from": "compiled_research",
+        "to": "capability_matrix",
+        "status": "strong",
+        "summary": "Compiled research outputs align to the governed capability matrix and gap map.",
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml",
+          "evaluation/research/compiled/feature-matrix.json"
+        ]
+      }
+    ],
+    "weak_edges": [
+      {
+        "edge_id": "consume-to-intake-etl",
+        "from": "consume_inputs",
+        "to": "intake_etl",
+        "status": "weak",
+        "summary": "Consume assets are present, but no bounded parent-owned intake ETL probe currently refreshes them.",
+        "evidence_refs": [
+          "source/subsystems/intake-etl.md",
+          "inbox/consuming-layer.plan.md"
+        ]
+      },
+      {
+        "edge_id": "tool-catalog-to-tool-packaging",
+        "from": "tool_catalog_inputs",
+        "to": "tool_packaging",
+        "status": "weak",
+        "summary": "The tool catalog notes define desired packaging outcomes, but no ToolSpec contract family exists yet.",
+        "evidence_refs": [
+          "inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md"
+        ]
+      }
+    ],
+    "missing_maps": [
+      {
+        "map_type": "workflow_edge_map",
+        "why_missing": "There is no single artifact that maps consume inputs through subsystem stages to compiled outputs.",
+        "required_artifacts": [
+          "source/workflow-edge-map.md",
+          "evaluation/workflow-edge-map.json"
+        ],
+        "evidence_refs": [
+          "inbox/consuming-layer.plan.md",
+          "contracts/subsystem-harness-topology.yaml"
+        ]
+      },
+      {
+        "map_type": "contract_to_runner_map",
+        "why_missing": "Non-activated subsystem lanes do not yet name the exact runner probes or proof boundaries needed for promotion.",
+        "required_artifacts": [
+          "contracts/contract-to-runner-map.yaml",
+          "examples/contract-to-runner-map.valid.json"
+        ],
+        "evidence_refs": [
+          "source/subsystems/registry.json"
+        ]
+      },
+      {
+        "map_type": "evidence_strength_map",
+        "why_missing": "Source-evidence strength is handled in the source index, but no cross-workflow matrix ties source class to promotion boundaries.",
+        "required_artifacts": [
+          "contracts/evidence-strength-map.yaml",
+          "evaluation/evidence-strength-map.json"
+        ],
+        "evidence_refs": [
+          "evaluation/research/compiled/source-index.json"
+        ]
+      }
+    ],
+    "underspecified_contracts": [
+      {
+        "surface_id": "tool_packaging",
+        "issue": "Tool packaging remains a document idea rather than a parent-owned contract family.",
+        "needed_artifacts": [
+          "schemas/tool-spec.schema.json",
+          "schemas/task-artifact.schema.json"
+        ],
+        "evidence_refs": [
+          "inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md"
+        ]
+      },
+      {
+        "surface_id": "pixeltable_duckdb_persistence",
+        "issue": "Pixeltable and DuckDB remain doctrine-first with no parent-owned proof bundle for this workflow slice.",
+        "needed_artifacts": [
+          "contracts/pixeltable-persistence-lane.yaml",
+          "evaluation/tool-health/pixeltable-persistence.json"
+        ],
+        "evidence_refs": [
+          "inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md"
+        ]
+      }
+    ]
+  },
+  "runnable_tools": [
+    {
+      "tool_id": "gitnexus",
+      "category": "bounded_probe",
+      "status": "bounded_pass",
+      "helping_areas": [
+        "gap_mapping",
+        "weak_content_strengthening"
+      ],
+      "commands": [
+        "HOME=$PWD/evaluation/tool-health/gitnexus-parent-fixture/home gitnexus analyze evaluation/tool-health/gitnexus-parent-fixture/workdir --skip-agents-md --skip-git --name fre-meta-harness-parent-fixture"
+      ],
+      "limitations": "The kept evidence is fixture-bounded rather than full-parent indexing.",
+      "evidence_refs": [
+        "evaluation/tool-health/status.json"
+      ]
+    },
+    {
+      "tool_id": "graphify",
+      "category": "bounded_probe",
+      "status": "bounded_pass",
+      "helping_areas": [
+        "graph_extraction",
+        "semantic_cartography"
+      ],
+      "commands": [
+        "graphify update evaluation/tool-health/graphify-parent-fixture --no-cluster"
+      ],
+      "limitations": "Current proof is bounded to the parent fixture rather than the full repo.",
+      "evidence_refs": [
+        "evaluation/tool-health/status.json"
+      ]
+    },
+    {
+      "tool_id": "bounded_infranodus_builder",
+      "category": "bounded_probe",
+      "status": "bounded_pass",
+      "helping_areas": [
+        "gap_mapping",
+        "graph_extraction",
+        "weak_content_strengthening"
+      ],
+      "commands": [
+        "uv run python scripts/build-parent-infranodus-artifacts.py"
+      ],
+      "limitations": "This is the strongest honest local substitute until live MCP access is configured.",
+      "evidence_refs": [
+        "evaluation/infranodus-gap-analysis.json",
+        "evaluation/tool-health/infranodus-live-probe.json"
+      ]
+    },
+    {
+      "tool_id": "gh_copilot_cli",
+      "category": "local_runner",
+      "status": "available",
+      "helping_areas": [
+        "gap_mapping",
+        "spec_compilation"
+      ],
+      "commands": [
+        "gh copilot --help"
+      ],
+      "limitations": "Runner availability is proven locally, but higher-order workflow fitness still depends on governed prompts and evidence capture.",
+      "evidence_refs": [
+        "evaluation/tool-health/local-runners.json"
+      ]
+    },
+    {
+      "tool_id": "codex_cli",
+      "category": "local_runner",
+      "status": "available",
+      "helping_areas": [
+        "gap_mapping",
+        "spec_compilation",
+        "weak_content_strengthening"
+      ],
+      "commands": [
+        "codex --version"
+      ],
+      "limitations": "Availability alone does not prove runtime-lane adoption.",
+      "evidence_refs": [
+        "evaluation/tool-health/local-runners.json"
+      ]
+    },
+    {
+      "tool_id": "pi_cli",
+      "category": "local_runner",
+      "status": "available",
+      "helping_areas": [
+        "observability",
+        "weak_content_strengthening"
+      ],
+      "commands": [
+        "pi --version"
+      ],
+      "limitations": "Cross-device transport remains blocked until an auth token and hub URL are configured.",
+      "evidence_refs": [
+        "evaluation/tool-health/local-runners.json",
+        "evaluation/tool-health/peer-mesh-local.json"
+      ]
+    }
+  ],
+  "exact_blockers": [
+    {
+      "lane_id": "peer_mesh_local.cross_device",
+      "classification": "blocked_with_exact_dependency",
+      "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+      "missing_prerequisites": [
+        "PI_COMS_NET_AUTH_TOKEN",
+        "declared hub URL"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/peer-mesh-local.json"
+      ]
+    },
+    {
+      "lane_id": "inbox_protocol.cross_device",
+      "classification": "blocked_with_exact_dependency",
+      "blocker_dependency": "Authenticated remote inbox routing and synchronization must exist before cross-device inbox claims can be made.",
+      "missing_prerequisites": [
+        "authenticated remote routing",
+        "cross-device synchronization proof"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/inbox-protocol/latest-scan.json"
+      ]
+    },
+    {
+      "lane_id": "live_infranodus",
+      "classification": "blocked_with_exact_dependency",
+      "blocker_dependency": "Live InfraNodus MCP analysis remains API/OAuth-bound until local credentials and a session exist.",
+      "missing_prerequisites": [
+        "authenticated InfraNodus session",
+        "runtime credential configuration"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/infranodus-live-probe.json"
+      ]
+    }
+  ],
+  "freshness": {
+    "artifact_records": [
+      "evaluation/gap-map-strength-report.json",
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/tool-health/status.json"
+    ],
+    "max_artifact_span_seconds": 0,
+    "tool_health_artifacts": [
+      "evaluation/tool-health/status.json",
+      "evaluation/tool-health/local-runners.json",
+      "evaluation/tool-health/peer-mesh-local.json"
+    ],
+    "compiled_research_artifacts": [
+      "evaluation/research/compiled/capability-harvest.json",
+      "evaluation/research/compiled/feature-matrix.json",
+      "evaluation/research/compiled/gap-placement-map.json",
+      "evaluation/research/compiled/source-index.json"
+    ],
+    "infranodus_artifacts": [
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/infranodus-conceptual-bridges.json",
+      "evaluation/infranodus-research-topics.json",
+      "evaluation/tool-health/infranodus-live-probe.json"
+    ]
+  },
+  "score_saturation": {
+    "baseline_total_score": 99.62,
+    "final_total_score": 99.62,
+    "score_changed": false,
+    "why_this_slice_counts": "It turns the current bounded analysis into a governed, validator-backed parent artifact family instead of leaving the diagnosis only in ad hoc reads."
+  },
+  "command_evidence": {
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh",
+      "uv run python scripts/watchers/inbox_router.py"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+    ],
+    "tool_health_commands": [
+      "uv run python scripts/harvest-local-runner-capabilities.py",
+      "graphify update evaluation/tool-health/graphify-parent-fixture --no-cluster"
+    ],
+    "infranodus_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "research_commands_or_reads": [
+      "Read GOAL.md, program.md, inbox handoff artifacts, subsystem topology, compiled research packets, tool-health status, and consume-folder notes."
+    ]
+  },
+  "follow_up_prompt": {
+    "artifact_path": "prompts/PROMPT-20260522-WORKFLOW-STRENGTHENING.yaml",
+    "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "must_be_inline_ready": true,
+    "next_decision_space": "Choose whether the next bounded slice should land tool-packaging contracts, a contract-to-runner map, or an evidence-strength map first.",
+    "markdown_companion_artifact_path": "prompts/PROMPT-20260522-WORKFLOW-STRENGTHENING.md",
+    "must_use_front_matter": true,
+    "must_use_bottom_matter_marker": true
+  },
+  "targeted_validation_results": {
+    "validator_command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+    "validator_status": "pass",
+    "scorer_command": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
+    "scorer_status": "pass"
+  },
+  "files_changed": [
+    "contracts/gap-map-strength.yaml",
+    "schemas/gap-map-strength.schema.json",
+    "schemas/gap-map-strength-report.schema.json",
+    "examples/gap-map-strength-report.valid.json",
+    "examples/gap-map-strength-report.invalid.missing-weak-content.json",
+    "source/gap-map-strength.md",
+    "evaluation/gap-map-strength-report.json"
+  ]
+}

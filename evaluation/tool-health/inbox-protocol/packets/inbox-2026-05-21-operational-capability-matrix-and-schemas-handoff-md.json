@@ -1,0 +1,12 @@
+{
+  "packet_path": "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
+  "artifact_id": "",
+  "artifact_type": "",
+  "producer_role": "",
+  "status": "blocked",
+  "resolved_consumers": [],
+  "gate_states": [],
+  "errors": [
+    "2026-05-21-operational-capability-matrix-and-schemas.handoff.md: missing front matter start"
+  ]
+}

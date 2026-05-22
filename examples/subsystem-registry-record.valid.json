@@ -1,0 +1,592 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "subsystem_registry_record",
+  "registry_id": "SUBSYSREG-20260522-BOOT",
+  "scope": "portable_parent_wrapper",
+  "topology_ref": "contracts/subsystem-harness-topology.yaml",
+  "registry_contract_ref": "contracts/subsystem-registry.yaml",
+  "authoritative_root": "source/subsystems",
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host",
+      "inbox_protocol.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      },
+      {
+        "lane_id": "inbox_protocol.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "Authenticated remote inbox routing and synchronization must exist before cross-device inbox claims can be made.",
+        "evidence_refs": [
+          "evaluation/tool-health/inbox-protocol/latest-scan.json"
+        ]
+      }
+    ],
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh",
+      "uv run python scripts/watchers/inbox_router.py"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "The registry defines subsystem boundaries and scaffold ownership only; it does not claim live subsystem runners.",
+      "Wrapper synthesis, semantic cartography, and research harvest remain scaffolded parent surfaces until a routed runtime owner and proof artifacts exist."
+    ]
+  },
+  "subsystems": [
+    {
+      "subsystem_id": "intake_etl",
+      "lane_classification": "core",
+      "activation_state": "defined_not_activated",
+      "wrap_boundary": "Wraps governed inbox drops and consume-folder assets into normalized packet, extract, and provenance records before compiled research outputs are refreshed.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/intake-etl.md"
+      ],
+      "consumes": [
+        "contracts/inbox-packet.yaml",
+        "contracts/inbox-routing-decision.yaml",
+        "contracts/delegation-bundle.yaml"
+      ],
+      "emits": [
+        "evaluation/research/harvest-manifest.json",
+        "evaluation/research/compiled/source-index.json"
+      ],
+      "reusable_infrastructure_refs": [
+        "oven-sh/bun",
+        "oxc-project/oxc",
+        "colbymchenry/codegraph"
+      ],
+      "blocked_by": [
+        "No parent-owned intake_etl activation runner exists in this slice.",
+        "Pixeltable persistence remains doctrine-only in this slice."
+      ],
+      "notes": "This scaffold reserves the boundary and contract surfaces only."
+    },
+    {
+      "subsystem_id": "research_harvest",
+      "lane_classification": "core",
+      "activation_state": "defined_not_activated",
+      "wrap_boundary": "Wraps normalized evidence into capability, feature, gap, and source-index outputs while preserving packet provenance and evidence strength.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/research-harvest.md"
+      ],
+      "consumes": [
+        "evaluation/research/harvest-manifest.json",
+        "contracts/research-packet-manifest.yaml",
+        "source/subsystems/registry.json"
+      ],
+      "emits": [
+        "evaluation/research/compiled/capability-harvest.json",
+        "evaluation/research/compiled/feature-matrix.json",
+        "evaluation/research/compiled/gap-placement-map.json"
+      ],
+      "reusable_infrastructure_refs": [
+        "VectifyAI/OpenKB",
+        "sandeco/reversa",
+        "Imbad0202/academic-research-skills"
+      ],
+      "blocked_by": [
+        "The current parent slice does not activate an LLM-backed harvest runner.",
+        "Compiled research remains truthful current-state evidence, not subsystem-owned runtime proof."
+      ],
+      "notes": "This scaffold preserves the harvest boundary without implying live cartography or synthesis."
+    },
+    {
+      "subsystem_id": "semantic_cartography",
+      "lane_classification": "core",
+      "activation_state": "defined_not_activated",
+      "wrap_boundary": "Wraps normalized code, docs, and compiled research into semantic graphs, entity maps, and subsystem candidate placements.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/semantic-cartography.md"
+      ],
+      "consumes": [
+        "evaluation/research/compiled/source-index.json",
+        "evaluation/research/compiled/feature-matrix.json",
+        "contracts/subsystem-harness-topology.yaml"
+      ],
+      "emits": [
+        "subsystem candidate placements",
+        "semantic graph-ready summaries",
+        "wrapper binding inputs"
+      ],
+      "reusable_infrastructure_refs": [
+        "colbymchenry/codegraph",
+        "facebook/pyrefly",
+        "oxc-project/oxc"
+      ],
+      "blocked_by": [
+        "No parent-owned semantic cartography runner is activated in this slice.",
+        "Semantic outputs remain design-time scaffolds until a delegated runtime owner exists."
+      ],
+      "notes": "The scaffold establishes semantic ownership and handoff shape only."
+    },
+    {
+      "subsystem_id": "wrapper_synthesizer",
+      "lane_classification": "gated",
+      "activation_state": "late_bound_not_activated",
+      "wrap_boundary": "Wraps approved subsystem outputs into wrapper-facing contracts, prompts, and handoff bundles only after explicit triad review.",
+      "authoritative_scaffold_refs": [
+        "source/subsystems/wrapper-synthesizer.md"
+      ],
+      "consumes": [
+        "source/subsystems/registry.json",
+        "evaluation/research/compiled/gap-placement-map.json",
+        "contracts/delegation-bundle.yaml"
+      ],
+      "emits": [
+        "wrapper binding candidates",
+        "governed handoff bundles",
+        "parent-owned prompt follow-up requests"
+      ],
+      "reusable_infrastructure_refs": [
+        "sandeco/reversa",
+        "chorus-codes/chorus",
+        "open-bias/open-bias"
+      ],
+      "blocked_by": [
+        "Wrapper synthesis remains late-bound until subsystem outputs are routed through an explicit runtime owner.",
+        "This slice does not activate child-runtime adoption or wrapper synthesis execution."
+      ],
+      "notes": "The scaffold preserves gating and non-activation truth."
+    }
+  ],
+  "repo_catalog": [
+    {
+      "repo_id": "oven-sh/bun",
+      "classification": "core",
+      "best_fit_subsystems": [
+        "substrate_sync"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "No exact blocker; local JS/TS runtime and package-manager substrate.",
+      "why": "All-in-one toolkit with a Bun runtime, test runner, script runner, and Node.js-compatible package manager; good local execution substrate, but not agent-specific.",
+      "source_refs": [
+        "oven-sh/bun:README.md:25-35"
+      ]
+    },
+    {
+      "repo_id": "oxc-project/oxc",
+      "classification": "core",
+      "best_fit_subsystems": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "No exact blocker; JS/TS Rust toolchain for parse, transform, lint, and resolve.",
+      "why": "High-performance JS/TS compiler and tooling stack; strongest fit for source ingestion, AST-based mapping, and spec-compiler-style transforms.",
+      "source_refs": [
+        "oxc-project/oxc:README.md:14-36"
+      ]
+    },
+    {
+      "repo_id": "ad-si/Coding-Flashcards",
+      "classification": "reference",
+      "best_fit_subsystems": [
+        "research_harvest"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Content corpus, not infrastructure; markdown-to-Anki and PDF deck material.",
+      "why": "Useful as curated learning content, but it is not reusable infrastructure for the parent harness.",
+      "source_refs": [
+        "ad-si/Coding-Flashcards:README.md:1-18"
+      ]
+    },
+    {
+      "repo_id": "VectifyAI/OpenKB",
+      "classification": "gated",
+      "best_fit_subsystems": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "spec_compiler",
+        "wrapper_synthesizer"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Needs an LLM stack such as LiteLLM plus PageIndex; strongest when those are already available.",
+      "why": "Compiles raw documents into a persistent wiki-style knowledge base, then exposes query, chat, and skill-generation surfaces; strong match for harvest and cartography, but gated by LLM and indexing dependencies.",
+      "source_refs": [
+        "VectifyAI/OpenKB:README.md:1-40",
+        "VectifyAI/OpenKB:README.md:70-120",
+        "VectifyAI/OpenKB:README.md:150-220"
+      ]
+    },
+    {
+      "repo_id": "regent-vcs/re_gent",
+      "classification": "core",
+      "best_fit_subsystems": [
+        "observability",
+        "durable_execution",
+        "substrate_sync"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Needs hookable agent CLIs and workspaces; supported integrations are Claude Code, Codex, and OpenCode.",
+      "why": "Agent version control and audit trail with step DAGs, blame, sessions, and hooks; directly relevant to provenance and execution tracing.",
+      "source_refs": [
+        "regent-vcs/re_gent:README.md:1-40",
+        "regent-vcs/re_gent:README.md:100-170"
+      ]
+    },
+    {
+      "repo_id": "dirac-run/dirac",
+      "classification": "reference",
+      "best_fit_subsystems": [
+        "semantic_cartography",
+        "wrapper_synthesizer"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Requires native tool-calling models and providers plus its own CLI; MCP is explicitly unsupported.",
+      "why": "A full coding agent with hash-anchored edits and AST-native precision; good pattern source, but not reusable infrastructure for the parent harness.",
+      "source_refs": [
+        "dirac-run/dirac:README.md:1-40",
+        "dirac-run/dirac:README.md:120-180"
+      ]
+    },
+    {
+      "repo_id": "bruin-data/dac",
+      "classification": "reference",
+      "best_fit_subsystems": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Dashboard-specific YAML and TSX stack that depends on Bruin connections and CLI.",
+      "why": "Dashboard-as-code with semantic layers and validation is relevant as a pattern, but the domain and Bruin dependency make it overlap more than it foundations the parent harness.",
+      "source_refs": [
+        "bruin-data/dac:README.md:1-40",
+        "bruin-data/dac:README.md:60-110"
+      ]
+    },
+    {
+      "repo_id": "temporalio/samples-java",
+      "classification": "gated",
+      "best_fit_subsystems": [
+        "durable_execution",
+        "observability",
+        "substrate_sync"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Requires Java 17 or newer plus a local Temporal Server and CLI.",
+      "why": "Samples show durable workflows, Spring Boot integration, metrics and tracing, and Spring AI agents on Temporal; strong for durable execution patterns.",
+      "source_refs": [
+        "temporalio/samples-java:README.md:1-20",
+        "temporalio/samples-java:README.md:260-340"
+      ]
+    },
+    {
+      "repo_id": "open-bias/open-bias",
+      "classification": "core",
+      "best_fit_subsystems": [
+        "observability",
+        "wrapper_synthesizer"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Needs an upstream LLM provider and API key; otherwise it remains a local proxy boundary.",
+      "why": "Runtime policy-enforcement proxy that sits between an app and an LLM provider, evaluating RULES.md and blocking, intervening on, or shadowing live traffic.",
+      "source_refs": [
+        "open-bias/open-bias:README.md:1-20",
+        "open-bias/open-bias:README.md:40-110",
+        "open-bias/open-bias:README.md:130-190"
+      ]
+    },
+    {
+      "repo_id": "Imbad0202/academic-research-skills",
+      "classification": "blocked_with_exact_dependency",
+      "best_fit_subsystems": [
+        "research_harvest",
+        "spec_compiler"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Exact dependency on Claude Code plugin packaging plus Anthropic API and key.",
+      "why": "A Claude Code skill suite for academic research; useful inspiration, but tightly bound to Claude Code's plugin ecosystem.",
+      "source_refs": [
+        "Imbad0202/academic-research-skills:README.md:9-18",
+        "Imbad0202/academic-research-skills:README.md:46-63"
+      ]
+    },
+    {
+      "repo_id": "anthropics/claude-plugins-official",
+      "classification": "blocked_with_exact_dependency",
+      "best_fit_subsystems": [
+        "wrapper_synthesizer",
+        "spec_compiler"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Exact dependency on the Claude Code plugin marketplace and system.",
+      "why": "Marketplace directory for Claude Code plugins; useful as ecosystem reference, but not reusable outside Claude Code.",
+      "source_refs": [
+        "anthropics/claude-plugins-official:README.md:1-18"
+      ]
+    },
+    {
+      "repo_id": "Nomadcxx/opencode-cursor",
+      "classification": "blocked_with_exact_dependency",
+      "best_fit_subsystems": [
+        "wrapper_synthesizer",
+        "substrate_sync"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Exact dependency on OpenCode plus Cursor ACP and cursor-agent integration.",
+      "why": "A bridge from OpenCode to Cursor models; strong adapter pattern, but tied to that exact toolchain.",
+      "source_refs": [
+        "Nomadcxx/opencode-cursor:README.md:1-40",
+        "Nomadcxx/opencode-cursor:README.md:80-170"
+      ]
+    },
+    {
+      "repo_id": "chorus-codes/chorus",
+      "classification": "gated",
+      "best_fit_subsystems": [
+        "observability",
+        "durable_execution",
+        "wrapper_synthesizer"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Needs Node 20 or newer and at least one of Claude Code, Codex, Gemini, OpenCode, or an OpenRouter key.",
+      "why": "Local multi-vendor review orchestrator with MCP server and quorum logic; strong pattern source for durable review flows and observability.",
+      "source_refs": [
+        "chorus-codes/chorus:README.md:1-20",
+        "chorus-codes/chorus:README.md:60-140",
+        "chorus-codes/chorus:README.md:220-320"
+      ]
+    },
+    {
+      "repo_id": "b-nnett/codex-plusplus",
+      "classification": "blocked_with_exact_dependency",
+      "best_fit_subsystems": [
+        "wrapper_synthesizer",
+        "substrate_sync"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Exact dependency on a local Codex.app installation.",
+      "why": "Patches and relaunches the Codex desktop app; useful for app-hook patterns, but locked to that app.",
+      "source_refs": [
+        "b-nnett/codex-plusplus:README.md:1-30",
+        "b-nnett/codex-plusplus:README.md:40-120",
+        "b-nnett/codex-plusplus:README.md:150-220"
+      ]
+    },
+    {
+      "repo_id": "colbymchenry/codegraph",
+      "classification": "core",
+      "best_fit_subsystems": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler",
+        "observability"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "No exact blocker; self-contained Node-bundled CLI with agent integrations.",
+      "why": "Pre-indexed knowledge graph for code structure and call graphs; one of the strongest fits for semantic cartography and source ingestion.",
+      "source_refs": [
+        "colbymchenry/codegraph:README.md:3-7",
+        "colbymchenry/codegraph:README.md:27-45",
+        "colbymchenry/codegraph:README.md:61-66",
+        "colbymchenry/codegraph:README.md:83-89",
+        "colbymchenry/codegraph:README.md:112-113"
+      ]
+    },
+    {
+      "repo_id": "facebook/pyrefly",
+      "classification": "core",
+      "best_fit_subsystems": [
+        "intake_etl",
+        "semantic_cartography"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Python-focused static-analysis stack; best when the tranche needs Python sources.",
+      "why": "Fast Python type checker and language server; useful for semantic extraction and validation on Python-heavy repositories.",
+      "source_refs": [
+        "facebook/pyrefly:README.md:1-20"
+      ]
+    },
+    {
+      "repo_id": "vercel-labs/zerolang",
+      "classification": "reference",
+      "best_fit_subsystems": [
+        "spec_compiler",
+        "wrapper_synthesizer"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Pre-1 experimental language; explicitly unstable and not production-safe.",
+      "why": "Interesting agent-first language experiment, but not a stable reusable substrate for this parent wrapper.",
+      "source_refs": [
+        "vercel-labs/zerolang:README.md:1-20",
+        "vercel-labs/zerolang:README.md:24-40"
+      ]
+    },
+    {
+      "repo_id": "bitsandbytes-foundation/bitsandbytes",
+      "classification": "deployment_specific",
+      "best_fit_subsystems": [
+        "substrate_sync"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Python 3.10+, PyTorch 2.4+, and supported accelerator and hardware combinations only.",
+      "why": "Quantization and runtime library for model memory reduction; useful only as a deployment-layer dependency, not as harness infrastructure.",
+      "source_refs": [
+        "bitsandbytes-foundation/bitsandbytes:README.md:1-20",
+        "bitsandbytes-foundation/bitsandbytes:README.md:21-70"
+      ]
+    },
+    {
+      "repo_id": "noonghunna/club-3090",
+      "classification": "deployment_specific",
+      "best_fit_subsystems": [
+        "substrate_sync"
+      ],
+      "reusable_now": false,
+      "exact_dependency_or_limit": "Locked to RTX 3090-class local-serving setups with Linux, Docker, and the NVIDIA toolkit.",
+      "why": "Excellent local-serving recipe set, but it is hardware-specific infrastructure rather than harness logic.",
+      "source_refs": [
+        "noonghunna/club-3090:README.md:1-20",
+        "noonghunna/club-3090:README.md:30-80"
+      ]
+    },
+    {
+      "repo_id": "sandeco/reversa",
+      "classification": "gated",
+      "best_fit_subsystems": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "spec_compiler",
+        "wrapper_synthesizer"
+      ],
+      "reusable_now": true,
+      "exact_dependency_or_limit": "Needs a supported engine and runtime such as Claude Code, Codex, or Cursor and writes project scaffolding.",
+      "why": "Legacy-to-spec framework with multi-agent discovery, planning, and documentation generation; very relevant to spec-compiler patterns, but engine-gated.",
+      "source_refs": [
+        "sandeco/reversa:README.md:1-20",
+        "sandeco/reversa:README.md:40-120",
+        "sandeco/reversa:README.md:180-260"
+      ]
+    }
+  ],
+  "reusable_infrastructure_shortlist": [
+    {
+      "repo_id": "colbymchenry/codegraph",
+      "fit_areas": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler"
+      ],
+      "why_now": "Best direct fit for semantic cartography and intake ETL because the pre-indexed knowledge graph reduces file-scanning cost and is already agent-facing.",
+      "reusable_surfaces": [
+        "code knowledge graph",
+        "call graph extraction",
+        "agent-facing indexing CLI"
+      ],
+      "source_refs": [
+        "colbymchenry/codegraph:README.md:27-45",
+        "colbymchenry/codegraph:README.md:83-89"
+      ]
+    },
+    {
+      "repo_id": "open-bias/open-bias",
+      "fit_areas": [
+        "observability",
+        "wrapper_synthesizer"
+      ],
+      "why_now": "Best direct fit for runtime observability and policy enforcement around the inbox protocol because the proxy boundary matches parent wrapper guardrails.",
+      "reusable_surfaces": [
+        "policy proxy",
+        "rule-evaluation boundary",
+        "runtime intervention model"
+      ],
+      "source_refs": [
+        "open-bias/open-bias:README.md:40-110",
+        "open-bias/open-bias:README.md:130-190"
+      ]
+    },
+    {
+      "repo_id": "regent-vcs/re_gent",
+      "fit_areas": [
+        "observability",
+        "durable_execution",
+        "substrate_sync"
+      ],
+      "why_now": "Best direct fit for provenance, session audit, and durable step tracking; it complements observability and substrate synchronization without broadening into child-runtime claims.",
+      "reusable_surfaces": [
+        "step DAGs",
+        "session audit trail",
+        "agent blame and provenance"
+      ],
+      "source_refs": [
+        "regent-vcs/re_gent:README.md:1-40",
+        "regent-vcs/re_gent:README.md:100-170"
+      ]
+    },
+    {
+      "repo_id": "oven-sh/bun",
+      "fit_areas": [
+        "substrate_sync"
+      ],
+      "why_now": "Strong local execution substrate for parent-wrapper automation and test/runtime orchestration, and it aligns with the existing TS-facing surfaces already present in the parent repo.",
+      "reusable_surfaces": [
+        "runtime",
+        "package manager",
+        "test runner"
+      ],
+      "source_refs": [
+        "oven-sh/bun:README.md:25-35"
+      ]
+    },
+    {
+      "repo_id": "oxc-project/oxc",
+      "fit_areas": [
+        "intake_etl",
+        "semantic_cartography",
+        "spec_compiler"
+      ],
+      "why_now": "Strong source-analysis substrate for intake ETL and spec-compiler-style AST work on JS and TS assets.",
+      "reusable_surfaces": [
+        "parser",
+        "resolver",
+        "transform pipeline"
+      ],
+      "source_refs": [
+        "oxc-project/oxc:README.md:14-36"
+      ]
+    },
+    {
+      "repo_id": "VectifyAI/OpenKB",
+      "fit_areas": [
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer"
+      ],
+      "why_now": "Strongest reusable pattern source for research harvest and semantic cartography; gated, but structurally aligned with the first subsystem tranche.",
+      "reusable_surfaces": [
+        "document compilation pipeline",
+        "persistent knowledge base",
+        "query and skill generation pattern"
+      ],
+      "source_refs": [
+        "VectifyAI/OpenKB:README.md:70-120",
+        "VectifyAI/OpenKB:README.md:150-220"
+      ]
+    }
+  ]
+}

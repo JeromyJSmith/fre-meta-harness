@@ -1,0 +1,43 @@
+{
+  "packet_path": "inbox/fre-meta-harness_plus_inbox.plan.md",
+  "artifact_id": "PACKET-20260521-INBOXPLAN",
+  "artifact_type": ".plan.md",
+  "producer_role": "orchestrator-validator",
+  "status": "routed",
+  "resolved_consumers": [
+    "filesystem-router",
+    "architect",
+    "orchestrator-validator"
+  ],
+  "gate_states": [
+    {
+      "gate_id": "schema_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "scope_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "consumer_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "evidence_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "freshness_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "readiness_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "promotion_gate",
+      "status": "amber"
+    }
+  ],
+  "errors": []
+}

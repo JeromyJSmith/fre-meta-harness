@@ -1,0 +1,34 @@
+bundle_id: "DOCBUNDLE-20260521-EXAMPLE"
+artifact_type: "recursive_documentation_bundle"
+scope_level: "subsystem"
+working_map:
+  purpose: "Describe how the subsystem operates and which inputs, outputs, and dependencies it uses."
+  boundaries:
+    - "Parent-only bounded subsystem"
+  inputs:
+    - "governed inbox packets"
+  outputs:
+    - "routing decisions"
+  dependencies:
+    - "filesystem-router"
+    - "inbox packet schema"
+  governing_artifacts:
+    - "contracts/inbox-packet.yaml"
+    - "contracts/inbox-routing-decision.yaml"
+documentation_map:
+  purpose: "Explain the subsystem to humans and future agents without losing the working semantics."
+  boundaries:
+    - "Same scope as the working map"
+  inputs:
+    - "working-map outputs"
+  outputs:
+    - "documentation packet"
+  dependencies:
+    - "AGENTS.md"
+    - "CLAUDE.md"
+  governing_artifacts:
+    - "contracts/recursive-documentation-bundle.yaml"
+open_questions:
+  - "Which subsystem registry contract should consume this bundle in the next slice?"
+improvement_opportunities:
+  - "Attach semantic map and wrapper-binding artifacts once those governed surfaces are active."

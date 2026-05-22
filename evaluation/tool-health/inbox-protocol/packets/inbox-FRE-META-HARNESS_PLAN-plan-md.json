@@ -1,0 +1,43 @@
+{
+  "packet_path": "inbox/FRE-META-HARNESS_PLAN.plan.md",
+  "artifact_id": "PACKET-20260521-FRONTDOOR",
+  "artifact_type": ".plan.md",
+  "producer_role": "architect",
+  "status": "routed",
+  "resolved_consumers": [
+    "filesystem-router",
+    "architect",
+    "research"
+  ],
+  "gate_states": [
+    {
+      "gate_id": "schema_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "scope_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "consumer_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "evidence_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "freshness_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "readiness_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "promotion_gate",
+      "status": "amber"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/inbox-routing-decision.schema.json",
+  "title": "Inbox Routing Decision Contract",
+  "description": "Schema for governed routing decisions that evaluate inbox packet gate state and determine the next consumers without collapsing governance and runtime planes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "decision_envelope",
+    "governance_inputs",
+    "decision_space",
+    "target_resolution",
+    "evidence_requirements"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-inbox-routing-decision"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "decision_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_fields",
+        "routing_id_format"
+      ],
+      "properties": {
+        "required_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allOf": [
+            { "contains": { "const": "routing_decision_id" } },
+            { "contains": { "const": "packet_ref" } },
+            { "contains": { "const": "decision_made_by_role" } },
+            { "contains": { "const": "decision_outcome" } },
+            { "contains": { "const": "recommended_option_id" } },
+            { "contains": { "const": "rationale" } },
+            { "contains": { "const": "delegation_bundle_ref" } },
+            { "contains": { "const": "required_gate_state" } },
+            { "contains": { "const": "target_consumers" } },
+            { "contains": { "const": "routing_mode" } }
+          ]
+        },
+        "routing_id_format": {
+          "type": "string",
+          "const": "route_id"
+        }
+      }
+    },
+    "governance_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packet_contract_ref",
+        "triad_topology_ref",
+        "triad_roles_allowed",
+        "front_door_runtime_topology_ref"
+      ],
+      "properties": {
+        "packet_contract_ref": {
+          "type": "string",
+          "const": "contracts/inbox-packet.yaml"
+        },
+        "triad_topology_ref": {
+          "type": "string",
+          "const": "contracts/three-agent-topology.yaml"
+        },
+        "triad_roles_allowed": {
+          "$ref": "#/$defs/triadRoles"
+        },
+        "front_door_runtime_topology_ref": {
+          "type": "string",
+          "const": "contracts/front-door-runtime-topology.yaml"
+        }
+      }
+    },
+    "decision_space": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_options",
+        "required_option_fields",
+        "recommended_option_required",
+        "allowed_outcomes"
+      ],
+      "properties": {
+        "minimum_options": {
+          "type": "integer",
+          "const": 3
+        },
+        "required_option_fields": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 6,
+          "items": {
+            "type": "string",
+            "enum": [
+              "option_id",
+              "target_role",
+              "target_plane",
+              "dispatch_summary",
+              "expected_artifacts",
+              "blocker_or_dependency"
+            ]
+          }
+        },
+        "recommended_option_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "allowed_outcomes": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 3,
+          "items": {
+            "type": "string",
+            "enum": [
+              "route",
+              "return_for_clarification",
+              "escalate"
+            ]
+          }
+        }
+      }
+    },
+    "target_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_target_roles",
+        "allowed_routing_modes",
+        "triad_escalation_supported"
+      ],
+      "properties": {
+        "allowed_target_roles": {
+          "$ref": "#/$defs/allowedTargetRoles"
+        },
+        "allowed_routing_modes": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 5,
+          "items": {
+            "type": "string",
+            "enum": [
+              "single_target",
+              "fanout",
+              "ordered_review_chain",
+              "triad_escalation",
+              "return_to_sender"
+            ]
+          }
+        },
+        "triad_escalation_supported": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "evidence_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "delegation_bundle_required",
+        "front_door_runtime_topology_ref",
+        "structured_contract_validity_required",
+        "bottom_matter_gate_evaluation_required"
+      ],
+      "properties": {
+        "delegation_bundle_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "front_door_runtime_topology_ref": {
+          "type": "string",
+          "const": "contracts/front-door-runtime-topology.yaml"
+        },
+        "structured_contract_validity_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "bottom_matter_gate_evaluation_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "triadRoles": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "enum": [
+          "orchestrator-validator",
+          "research",
+          "architect"
+        ]
+      }
+    },
+    "allowedTargetRoles": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 9,
+      "items": {
+        "type": "string",
+        "enum": [
+          "orchestrator-validator",
+          "research",
+          "architect",
+          "user-facing-agent",
+          "spec-interpreter",
+          "filesystem-router",
+          "intake-mapper",
+          "semantic-cartographer",
+          "wrapper-synthesizer"
+        ]
+      }
+    }
+  }
+}

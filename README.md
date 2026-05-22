@@ -116,6 +116,10 @@ This wrapper:
   - `contracts/agent-role-contract.yaml`
   - `contracts/hook-manifest.yaml`
   - `contracts/capability-matrix.yaml`
+  - `contracts/inbox-packet.yaml`
+  - `contracts/inbox-routing-decision.yaml`
+  - `contracts/delegation-bundle.yaml`
+  - `contracts/front-door-runtime-topology.yaml`
 - Phase 1 communication slice truth:
   - peer-mesh primitives are explicit at the contract layer (`list_agents`,
     `send_command`, `send_prompt`, `await_response`)
@@ -147,6 +151,32 @@ This wrapper:
     implying auto-created agents
   - governed handoffs now require both a structured follow-up artifact and a
     parent-only Markdown companion prompt artifact
+- Inbox/front-door slice truth:
+  - `contracts/inbox-packet.yaml` defines the parent front-door packet protocol
+    as YAML front matter plus Markdown body plus `---bottom-matter---`
+  - `contracts/inbox-routing-decision.yaml` keeps routing choices in a
+    structured decision artifact instead of burying runtime targets in prose
+  - `contracts/delegation-bundle.yaml` packages the runtime-facing handoff as a
+    governed structured bundle plus a Markdown packet path
+  - `contracts/front-door-runtime-topology.yaml` defines the inbox-review,
+    delegation-dispatch, and runtime-feedback lanes without turning triad roles
+    into runtime roles
+  - `examples/governed-inbox-packet.protocol.valid.md` shows the human-facing
+    packet shape, while the `*-contract.valid.json` examples remain
+    validator-friendly structured contract instances
+- Subsystem harness slice truth:
+  - `contracts/subsystem-harness-topology.yaml` fixes where subsystem harnesses
+    wrap: between governed inbox and delegation inputs and compiled research or
+    wrapper-binding outputs
+  - `contracts/subsystem-registry.yaml` makes the first subsystem tranche and
+    fixed 20-repo catalog classification machine-readable without claiming live
+    subsystem activation
+  - `source/subsystems/registry.json` records the first four scaffold candidates
+    (`intake_etl`, `research_harvest`, `semantic_cartography`,
+    `wrapper_synthesizer`) and classifies the fixed repo catalog as core,
+    gated, deployment-specific, reference, or blocked-with-exact-dependency
+  - `source/subsystems/*.md` keep the parent-owned wrap boundary explicit while
+    preserving the non-activated truth for every subsystem lane
 - scorer: `scripts/score-parent-wrapper.py`
 - CLI-first local runner harvest: `scripts/harvest-local-runner-capabilities.py`
 - bounded ratchet runner: `scripts/run-parent-ratchet.sh`
@@ -204,27 +234,24 @@ status_summary:
   doc_state: active_readme
 
 gate_progress:
-  - gate_id: harvest_gate
+  - gate_id: schema_gate
     status: green
-    notes: "Parent wrapper surfaces and imported upstream authorities are enumerated."
-  - gate_id: registry_gate
+    notes: "Parent wrapper surfaces and inbox packet shape are enumerated."
+  - gate_id: scope_gate
     status: green
-    notes: "Canonical parent authority files and local clones are named."
-  - gate_id: manifest_gate
+    notes: "Canonical parent authority files and parent-only scope are named."
+  - gate_id: consumer_gate
     status: green
-    notes: "Seven-part proof package is placed at the parent root."
-  - gate_id: verification_gate
+    notes: "Front-door runtime consumers and triad consumers are named."
+  - gate_id: evidence_gate
     status: green
-    notes: "Validator and readiness artifacts exist."
-  - gate_id: state_gate
+    notes: "Validator, watcher, and routing artifact surfaces exist."
+  - gate_id: freshness_gate
     status: green
-    notes: "Parent role is explicit and bounded."
-  - gate_id: health_gate
+    notes: "Parent role is explicit, bounded, and timestamped through governed packets."
+  - gate_id: readiness_gate
     status: green
-    notes: "README now points at missing formerly-unwired surfaces."
-  - gate_id: promotion_gate
-    status: green
-    notes: "Standalone fre-meta-harness repo is initialized and published."
+    notes: "README now points at the kept inbox, routing, and delegation surfaces."
 
 open_questions: []
 

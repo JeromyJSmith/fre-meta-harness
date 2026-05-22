@@ -1,103 +1,103 @@
 {
-  "generated_at": "2026-05-20",
+  "generated_at": "2026-05-22",
   "source": "bounded_local_cli_substitute",
   "scope": "portable_parent_wrapper",
   "statistics": {
     "clusterCount": 6,
-    "nodeCount": 502,
+    "nodeCount": 1294,
     "edgeCount": 15,
     "diversity_score": "bounded_local",
     "modularity_score": "approximate"
   },
   "contentGaps": [
-    "Gap 1: meta_harness -> agent_eval",
-    "Gap 2: evaluation -> meta_harness",
-    "Gap 3: autoresearch -> agent_eval"
+    "Gap 1: compiled_research -> tool_catalog_inputs",
+    "Gap 2: inbox_doctrine -> tool_catalog_inputs",
+    "Gap 3: prompt_contracts -> compiled_research"
   ],
   "mainTopicalClusters": [
-    "1. evaluation: evaluation agent_eval evals parent-wrapper-agent_eval-boundary tool_health readme (1 | 10% | 99%)",
-    "2. meta_loop: evaluation external iterations status evidence jsonl (2 | 33% | 99%)",
-    "3. autoresearch: source external name description status evaluation (3 | 22% | 99%)",
-    "4. meta_harness: status external gate_id notes doctrine green (4 | 13% | 99%)",
-    "5. agent_eval: smoke agent_eval evaluation dry docker tool_health (5 | 6% | 99%)",
-    "6. tool_health: status evaluation summary tool_health command_path duration_ms (6 | 17% | 99%)"
+    "1. prompt_contracts: type defs ref string minlength string_list (1 | 9% | 99%)",
+    "2. inbox_doctrine: blocked_by blocks status kind schema new (2 | 30% | 99%)",
+    "3. subsystem_harness: readme source research subsystems evaluation repo_id (3 | 12% | 99%)",
+    "4. compiled_research: github https com disler blob evaluation (4 | 20% | 99%)",
+    "5. tool_catalog_inputs: you know yeah fucking right then (5 | 20% | 99%)",
+    "6. tool_health: status evaluation tool_health summary command command_path (6 | 9% | 99%)"
   ],
   "mainConcepts": [
-    "evaluation",
     "status",
-    "agent_eval",
-    "external",
-    "tool_health",
-    "evidence",
-    "readme",
-    "bounded",
-    "gate_id",
-    "notes",
-    "smoke",
-    "program"
+    "kind",
+    "blocked_by",
+    "you",
+    "blocks",
+    "schema",
+    "contracts",
+    "evaluation",
+    "type",
+    "new",
+    "research",
+    "schemas"
   ],
   "conceptualGateways": [
-    "evaluation",
     "status",
-    "agent_eval",
-    "external",
-    "tool_health",
-    "evidence",
-    "readme",
-    "bounded"
+    "kind",
+    "blocked_by",
+    "you",
+    "blocks",
+    "schema",
+    "contracts",
+    "evaluation"
   ],
   "topRelations": [
-    "1) meta_loop <-> autoresearch",
-    "2) autoresearch <-> meta_harness",
-    "3) evaluation <-> agent_eval",
-    "4) evaluation <-> meta_loop",
-    "5) meta_loop <-> tool_health",
-    "6) evaluation <-> tool_health",
-    "7) agent_eval <-> tool_health",
-    "8) autoresearch <-> tool_health",
-    "9) evaluation <-> autoresearch",
-    "10) meta_loop <-> agent_eval"
+    "1) subsystem_harness <-> compiled_research",
+    "2) compiled_research <-> tool_health",
+    "3) inbox_doctrine <-> compiled_research",
+    "4) inbox_doctrine <-> subsystem_harness",
+    "5) inbox_doctrine <-> tool_health",
+    "6) subsystem_harness <-> tool_health",
+    "7) compiled_research <-> tool_catalog_inputs",
+    "8) inbox_doctrine <-> tool_catalog_inputs",
+    "9) prompt_contracts <-> compiled_research",
+    "10) prompt_contracts <-> inbox_doctrine"
   ],
   "topInfluentialNodes": [
     {
-      "node": "evaluation",
-      "bc": 0.833,
-      "degree": 5
-    },
-    {
       "node": "status",
-      "bc": 0.833,
-      "degree": 5
+      "bc": 0.333,
+      "degree": 2
     },
     {
-      "node": "agent_eval",
-      "bc": 0.667,
-      "degree": 4
+      "node": "kind",
+      "bc": 0.167,
+      "degree": 1
     },
     {
-      "node": "external",
+      "node": "blocked_by",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
+      "node": "you",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
+      "node": "blocks",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
+      "node": "schema",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
+      "node": "contracts",
       "bc": 0.5,
       "degree": 3
     },
     {
-      "node": "tool_health",
-      "bc": 0.833,
-      "degree": 5
-    },
-    {
-      "node": "evidence",
-      "bc": 0.333,
-      "degree": 2
-    },
-    {
-      "node": "readme",
-      "bc": 0.333,
-      "degree": 2
-    },
-    {
-      "node": "bounded",
-      "bc": 0.333,
-      "degree": 2
+      "node": "evaluation",
+      "bc": 0.5,
+      "degree": 3
     }
   ],
   "limitations": [

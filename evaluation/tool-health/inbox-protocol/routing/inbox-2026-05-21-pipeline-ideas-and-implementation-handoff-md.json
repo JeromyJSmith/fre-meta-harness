@@ -1,0 +1,15 @@
+{
+  "decision_id": "ROUTE-UNKNOWN",
+  "artifact_type": "inbox_routing_decision",
+  "source_packet_ref": "inbox/2026-05-21-pipeline-ideas-and-implementation.handoff.md",
+  "source_artifact_id": "PACKET-UNKNOWN",
+  "status": "blocked",
+  "routing_mode": "triad_escalation",
+  "resolved_consumers": [
+    "filesystem-router"
+  ],
+  "routing_reason": "Packet requires clarification or was blocked by gatekeeping.",
+  "blocked_reason": "2026-05-21-pipeline-ideas-and-implementation.handoff.md: missing front matter start",
+  "gate_status_summary": [],
+  "delegation_bundle_ref": "evaluation/tool-health/inbox-protocol/delegations/all.json"
+}

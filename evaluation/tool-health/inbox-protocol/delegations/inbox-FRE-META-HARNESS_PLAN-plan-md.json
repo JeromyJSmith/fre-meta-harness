@@ -1,0 +1,34 @@
+{
+  "bundle_id": "DELEGATE-20260521-FRONTDOOR",
+  "artifact_type": "delegation_bundle",
+  "source_packet_ref": "inbox/FRE-META-HARNESS_PLAN.plan.md",
+  "routing_decision_ref": "evaluation/tool-health/inbox-protocol/routing/all.json",
+  "delegation_mode": "fanout",
+  "targets": [
+    {
+      "role": "filesystem-router",
+      "why": "Declared required consumer for the inbox packet.",
+      "required_artifacts": [
+        "inbox/FRE-META-HARNESS_PLAN.plan.md"
+      ]
+    },
+    {
+      "role": "architect",
+      "why": "Declared required consumer for the inbox packet.",
+      "required_artifacts": [
+        "inbox/FRE-META-HARNESS_PLAN.plan.md"
+      ]
+    },
+    {
+      "role": "research",
+      "why": "Declared required consumer for the inbox packet.",
+      "required_artifacts": [
+        "inbox/FRE-META-HARNESS_PLAN.plan.md"
+      ]
+    }
+  ],
+  "dispatch_artifacts": [
+    "evaluation/tool-health/inbox-protocol/routing/all.json",
+    "evaluation/tool-health/inbox-protocol/delegations/all.json"
+  ]
+}

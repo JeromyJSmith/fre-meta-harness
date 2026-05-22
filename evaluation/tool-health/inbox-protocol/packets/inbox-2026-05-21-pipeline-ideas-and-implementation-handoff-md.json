@@ -1,0 +1,12 @@
+{
+  "packet_path": "inbox/2026-05-21-pipeline-ideas-and-implementation.handoff.md",
+  "artifact_id": "",
+  "artifact_type": "",
+  "producer_role": "",
+  "status": "blocked",
+  "resolved_consumers": [],
+  "gate_states": [],
+  "errors": [
+    "2026-05-21-pipeline-ideas-and-implementation.handoff.md: missing front matter start"
+  ]
+}

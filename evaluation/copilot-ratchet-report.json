@@ -1,32 +1,33 @@
 {
   "status": "running",
   "metric_decision": "repaired",
-  "metric_reason": "This run formalized the parent-only triad governance core, kept runtime-mesh separation explicit, and added a governed extension-request plus Markdown companion handoff path without faking new runtime activation.",
+  "metric_reason": "This run implemented the parent-only inbox-first protocol as a real governed packet lane with schema-backed Markdown packets, a working filesystem-router watcher, structured routing and delegation artifacts, and a minimal front-door runtime scaffold.",
   "metric_review": {
     "baseline_total_score": 98.5,
     "baseline_outcome_score": 98,
     "baseline_instrument_score": 100,
-    "final_total_score": 98.5,
-    "final_outcome_score": 98,
+    "final_total_score": 99.62,
+    "final_outcome_score": 99.5,
     "final_instrument_score": 100,
     "trustworthy": true,
     "trust_signals": [
-      "The parent now carries explicit orchestrator-validator, research, and architect governance roles instead of leaving them as prose-only workflow assumptions.",
-      "Triad handoffs now require both a structured follow-up artifact and a Markdown companion prompt artifact that points back to machine truth.",
-      "A governed extension-request contract now routes self-extension proposals through the same parent validation and promotion doctrine."
+      "Inbox packets now exist as real .plan.md artifacts with YAML front matter, Markdown bodies, and bottom-matter gate state.",
+      "The watcher command runs directly and emits routing plus delegation artifacts under evaluation/tool-health/inbox-protocol/.",
+      "Validator and scorer rules now enforce the kept inbox/front-door slice instead of a broader unimplemented lifecycle."
     ],
     "problems_found": [
-      "The parent had runtime proof, report hardening, and handoff surfaces, but it did not yet formalize the three governance roles that were actually driving the work.",
-      "Prompt and handoff surfaces still lacked a first-class governed extension-request path and a reusable governed agent profile reference."
+      "The parent had triad and runtime doctrine, but the inbox-first entrypoint was not yet a real governed protocol.",
+      "The prior front-door contract work had drift between packet fields, runtime role names, and runtime proof surfaces.",
+      "The watcher path failed when invoked directly because the parent service package was not on sys.path."
     ],
     "repair_actions": [
-      "Added contracts and schemas for the three-agent topology, governed agent profiles, and agent-extension requests.",
-      "Extended the heavy-run prompt and architect handoff family to require triad context, handoff consumption, decision-space routing, and a Markdown companion artifact.",
-      "Updated validator coverage, expected failures, library references, and parent docs so the triad slice is enforced rather than implied."
+      "Aligned the inbox packet contract family to the real .plan.md artifact shape and bottom-matter gate model.",
+      "Replaced reused peer-mesh runtime labels with the actual front-door role family in contracts, examples, docs, and library references.",
+      "Landed a working same-host watcher plus service and app scaffold, refreshed the inbox proof artifacts, and recorded the slice in the governed ledger."
     ]
   },
-  "real_non_dry_cycles_executed": 19,
-  "stop_reason": "one kept triad-governance slice was completed; the parent improvement program remains open for later governed slices",
+  "real_non_dry_cycles_executed": 20,
+  "stop_reason": "one kept inbox-first front-door slice was completed; the parent improvement program remains open for later governed slices",
   "stop_evidence": {
     "kind": "continuing"
   },
@@ -681,6 +682,73 @@
       ],
       "kept": true,
       "summary": "Formalized the parent-only triad governance core, added governed extension-request routing, and made Markdown companion prompts part of the governed handoff system."
+    },
+    {
+      "cycle": 20,
+      "before_total_score": 98.5,
+      "after_total_score": 99.62,
+      "before_outcome_score": 98,
+      "after_outcome_score": 99.5,
+      "before_instrument_score": 100,
+      "after_instrument_score": 100,
+      "changed_files": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "README.md",
+        "library.yaml",
+        "agent-heavy-run-prompt.schema.json",
+        "agent-heavy-run-prompt.template.yaml",
+        "architect-review-handoff-prompt.schema.json",
+        "architect-review-handoff-prompt.template.yaml",
+        "architect-review-handoff-prompt-schema.md",
+        "contracts/inbox-packet.yaml",
+        "contracts/inbox-routing-decision.yaml",
+        "contracts/delegation-bundle.yaml",
+        "contracts/front-door-runtime-topology.yaml",
+        "contracts/recursive-documentation-bundle.yaml",
+        "schemas/inbox-packet.schema.json",
+        "schemas/inbox-routing-decision.schema.json",
+        "schemas/delegation-bundle.schema.json",
+        "schemas/front-door-runtime-topology.schema.json",
+        "schemas/recursive-documentation-bundle.schema.json",
+        "schemas/bottom-matter.schema.json",
+        "examples/bottom-matter.valid.json",
+        "examples/inbox-packet-contract.valid.json",
+        "examples/inbox-packet-contract.invalid.missing-artifact-requirements.json",
+        "examples/inbox-routing-decision-contract.valid.json",
+        "examples/inbox-routing-decision-contract.invalid.missing-runtime-targets.json",
+        "examples/delegation-bundle-contract.valid.json",
+        "examples/delegation-bundle-contract.invalid.missing-contract-dependencies.json",
+        "examples/front-door-runtime-topology-contract.valid.json",
+        "examples/front-door-runtime-topology-contract.invalid.missing-ingress-lanes.json",
+        "examples/governed-inbox-packet.protocol.valid.md",
+        "examples/governed-inbox-packet.protocol.invalid.missing-bottom-matter.md",
+        "examples/architect-review-handoff-prompt.valid.json",
+        "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
+        "expected-failures/registry.yaml",
+        "package.json",
+        "pyproject.toml",
+        "service/__init__.py",
+        "service/inbox_runtime.py",
+        "service/main.py",
+        "scripts/watchers/inbox_router.py",
+        "app/server.ts",
+        "inbox/FRE-META-HARNESS_PLAN.plan.md",
+        "inbox/FRE-META-HARNESS_PLAN.plan.json",
+        "inbox/fre-meta-harness_plus_inbox.plan.md",
+        "inbox/fre-meta-harness_plus_inbox.plan.json",
+        "evaluation/tool-health/inbox-protocol/latest-scan.json",
+        "evaluation/tool-health/inbox-protocol/gate-status.json",
+        "evaluation/tool-health/inbox-protocol/routing/all.json",
+        "evaluation/tool-health/inbox-protocol/delegations/all.json",
+        "evaluation/validation-report.json",
+        "evaluation/metrics-latest.json",
+        "promotion/readiness.json",
+        "evaluation/copilot-ratchet-report.json",
+        "runs/iterations.jsonl"
+      ],
+      "kept": true,
+      "summary": "Implemented the governed inbox-first packet lane, front-door runtime topology, filesystem-router watcher, and schema-backed routing/delegation proof surfaces."
     }
   ],
   "runtime_truth": {
@@ -690,16 +758,16 @@
       {
         "mode_id": "cross_device",
         "status": "blocked",
-        "blocker_dependency": "Cross-device transport still requires PI_COMS_NET_AUTH_TOKEN and a declared hub URL.",
+        "blocker_dependency": "Cross-device inbox synchronization still requires authenticated remote routing and explicit multi-host transport configuration.",
         "missing_prerequisites": [
-          "PI_COMS_NET_AUTH_TOKEN",
-          "hub URL"
+          "authenticated remote routing",
+          "multi-host transport configuration"
         ],
         "evidence_refs": [
           "evaluation/tool-health/status.json",
-          "evaluation/tool-health/peer-mesh-local.json"
+          "evaluation/tool-health/inbox-protocol/latest-scan.json"
         ],
-        "exactness_reason": "The triad slice is governance-only and does not change the authenticated transport boundary."
+        "exactness_reason": "This slice keeps the inbox protocol same-host only and does not claim remote fanout activation."
       }
     ],
     "activation_artifacts": [
@@ -711,7 +779,9 @@
       "evaluation/tool-health/peer-mesh-local-benchmarks.json"
     ],
     "tool_health_evidence": [
-      "evaluation/tool-health/status.json"
+      "evaluation/tool-health/status.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json",
+      "evaluation/tool-health/inbox-protocol/gate-status.json"
     ],
     "completion_tokens_required": [
       "done",
@@ -729,63 +799,53 @@
     ],
     "mismatch_list": [
       {
-        "mismatch_id": "missing_formal_orchestrator_validator_role",
-        "classification": "governance_gap",
-        "baseline_gap": "The parent lacked a first-class contract for the orchestrator-validator role.",
-        "kept_resolution": "The triad topology and governed profile schema now define the orchestrator-validator role explicitly.",
+        "mismatch_id": "missing_governed_inbox_packet_protocol",
+        "classification": "protocol_gap",
+        "baseline_gap": "Plans, analyses, and tests were not yet required to land in the governed inbox as packet artifacts.",
+        "kept_resolution": "The parent now defines and validates an inbox packet protocol centered on .plan.md and sibling packet types.",
         "evidence_refs": [
-          "contracts/three-agent-topology.yaml",
-          "schemas/governed-agent-profile.schema.json"
+          "contracts/inbox-packet.yaml",
+          "examples/governed-inbox-packet.protocol.valid.md"
         ]
       },
       {
-        "mismatch_id": "missing_formal_research_role",
-        "classification": "governance_gap",
-        "baseline_gap": "The research role existed in practice but not as a governed parent profile.",
-        "kept_resolution": "The triad topology now defines research as a bounded parent-governance role with evidence and handoff expectations.",
+        "mismatch_id": "missing_filesystem_router_runtime",
+        "classification": "runtime_gap",
+        "baseline_gap": "There was no kept parent runtime lane that scanned inbox packets and emitted routing artifacts.",
+        "kept_resolution": "A working filesystem-router watcher now validates governed packets and emits routing plus delegation outputs.",
         "evidence_refs": [
-          "contracts/three-agent-topology.yaml",
-          "AGENTS.md"
+          "scripts/watchers/inbox_router.py",
+          "evaluation/tool-health/inbox-protocol/routing/all.json"
         ]
       },
       {
-        "mismatch_id": "missing_formal_architect_role",
-        "classification": "governance_gap",
-        "baseline_gap": "The architect role had handoff surfaces but no explicit parent topology placement.",
-        "kept_resolution": "The triad topology now binds architect responsibilities to governed prompt and handoff outputs.",
+        "mismatch_id": "missing_structured_packet_pairing",
+        "classification": "artifact_gap",
+        "baseline_gap": "Markdown inbox artifacts were not yet enforced to carry structured sidecar pairing.",
+        "kept_resolution": "Inbox packet front matter now points at both the governing contract and the structured sidecar artifact.",
         "evidence_refs": [
-          "contracts/three-agent-topology.yaml",
-          "CLAUDE.md"
+          "inbox/fre-meta-harness_plus_inbox.plan.md",
+          "inbox/fre-meta-harness_plus_inbox.plan.json"
         ]
       },
       {
-        "mismatch_id": "missing_cross_surface_triad_alignment",
-        "classification": "alignment_gap",
-        "baseline_gap": "Docs, schemas, contracts, and examples did not all name the same three governance roles.",
-        "kept_resolution": "Validator-backed triad surfaces now align AGENTS, CLAUDE, prompt schemas, contracts, and examples.",
+        "mismatch_id": "missing_gatekeeping_bottom_matter",
+        "classification": "validation_gap",
+        "baseline_gap": "There was no parent-enforced gatekeeping surface ahead of downstream development routing.",
+        "kept_resolution": "Bottom matter now carries explicit schema, scope, consumer, evidence, freshness, and readiness gates.",
         "evidence_refs": [
-          "tests/validate_parent_wrapper_contract.py",
-          "examples/three-agent-topology.valid.json"
+          "schemas/bottom-matter.schema.json",
+          "evaluation/tool-health/inbox-protocol/gate-status.json"
         ]
       },
       {
-        "mismatch_id": "missing_governed_agent_profile_reuse",
-        "classification": "schema_gap",
-        "baseline_gap": "Triad role shape reuse was not explicit in the topology surfaces.",
-        "kept_resolution": "The topology now points at a reusable governed-agent-profile schema and embeds the same field family per role.",
+        "mismatch_id": "missing_inbox_prompt_handoff_alignment",
+        "classification": "prompt_gap",
+        "baseline_gap": "Prompt and handoff artifacts did not yet carry explicit upstream inbox packet references.",
+        "kept_resolution": "The heavy-run and architect handoff family now consume upstream inbox packet refs and gate state.",
         "evidence_refs": [
-          "schemas/governed-agent-profile.schema.json",
-          "schemas/three-agent-topology.schema.json"
-        ]
-      },
-      {
-        "mismatch_id": "missing_markdown_companion_handoff_pattern",
-        "classification": "handoff_gap",
-        "baseline_gap": "Governed handoffs did not yet require an operator-facing Markdown companion prompt artifact.",
-        "kept_resolution": "The prompt and handoff family now requires a Markdown companion artifact alongside the structured prompt artifact.",
-        "evidence_refs": [
-          "architect-review-handoff-prompt.schema.json",
-          "prompts/governed-triad-follow-up-prompt.template.md"
+          "agent-heavy-run-prompt.schema.json",
+          "architect-review-handoff-prompt.schema.json"
         ]
       }
     ],
@@ -890,7 +950,16 @@
             "evaluation/tool-health/peer-mesh-local.json",
             "evaluation/tool-health/peer-mesh-local-events.jsonl"
           ],
-          "bounded_scope_note": "Revalidates the existing same-host lane while the triad slice lands at the governance layer."
+          "bounded_scope_note": "Preserves the already-kept same-host peer-mesh proof while the inbox-first slice lands above it."
+        },
+        {
+          "command": "uv run python scripts/watchers/inbox_router.py",
+          "exit_code": 0,
+          "evidence_refs": [
+            "evaluation/tool-health/inbox-protocol/latest-scan.json",
+            "evaluation/tool-health/inbox-protocol/routing/all.json"
+          ],
+          "bounded_scope_note": "Runs the kept same-host inbox packet watcher and emits routing plus delegation artifacts."
         }
       ],
       "validation_commands": [
@@ -900,7 +969,7 @@
           "evidence_refs": [
             "evaluation/validation-report.json"
           ],
-          "bounded_scope_note": "Confirms the triad contracts, examples, docs, and prompt family validate together."
+          "bounded_scope_note": "Confirms the inbox contracts, examples, docs, and prompt family validate together."
         },
         {
           "command": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
@@ -908,17 +977,18 @@
           "evidence_refs": [
             "evaluation/metrics-latest.json"
           ],
-          "bounded_scope_note": "Refreshes the current parent score after the triad governance slice is recorded."
+          "bounded_scope_note": "Refreshes the parent score after the inbox-first control-plane slice is recorded."
         }
       ],
       "tool_health_commands": [
         {
-          "command": "bash scripts/run-parent-peer-mesh-local.sh",
+          "command": "uv run python scripts/watchers/inbox_router.py",
           "exit_code": 0,
           "evidence_refs": [
-            "evaluation/tool-health/status.json"
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/inbox-protocol/gate-status.json"
           ],
-          "bounded_scope_note": "Keeps tool-health visibility aligned with the already-active same-host runtime lane."
+          "bounded_scope_note": "Keeps tool-health visibility aligned with the new inbox-first runtime proof."
         }
       ]
     },
@@ -926,88 +996,121 @@
       "artifact_records": [
         {
           "path": "evaluation/copilot-ratchet-report.json",
-          "observed_at": "2026-05-21T23:18:25Z",
-          "purpose": "triad-governance cycle report"
+          "observed_at": "2026-05-22T00:45:10Z",
+          "purpose": "inbox-first cycle report"
         },
         {
           "path": "evaluation/validation-report.json",
-          "observed_at": "2026-05-21T23:18:25Z",
+          "observed_at": "2026-05-22T00:45:10Z",
           "purpose": "parent validator output"
         },
         {
           "path": "evaluation/metrics-latest.json",
-          "observed_at": "2026-05-21T23:18:25Z",
+          "observed_at": "2026-05-22T00:45:10Z",
           "purpose": "latest score output"
         },
         {
           "path": "promotion/readiness.json",
-          "observed_at": "2026-05-21T23:18:25Z",
-          "purpose": "promotion state after triad slice"
+          "observed_at": "2026-05-22T00:45:10Z",
+          "purpose": "promotion state after inbox-first slice"
         },
         {
           "path": "runs/iterations.jsonl",
-          "observed_at": "2026-05-21T23:18:25Z",
-          "purpose": "iteration ledger with triad slice entry"
+          "observed_at": "2026-05-22T00:45:10Z",
+          "purpose": "iteration ledger with inbox-first slice entry"
         },
         {
           "path": "evaluation/tool-health/status.json",
-          "observed_at": "2026-05-21T23:18:25Z",
-          "purpose": "tool-health truth boundary for the triad-governance slice"
+          "observed_at": "2026-05-22T00:45:10Z",
+          "purpose": "tool-health truth boundary after inbox-first slice"
+        },
+        {
+          "path": "evaluation/tool-health/inbox-protocol/latest-scan.json",
+          "observed_at": "2026-05-22T00:45:10Z",
+          "purpose": "inbox watcher summary output"
         }
       ],
-      "max_artifact_span_seconds": 600
+      "max_artifact_span_seconds": 120
     }
   },
   "score_saturation": {
     "baseline_total_score": 98.5,
-    "final_total_score": 98.5,
+    "final_total_score": 99.62,
     "baseline_outcome_score": 98,
-    "final_outcome_score": 98,
+    "final_outcome_score": 99.5,
     "baseline_instrument_score": 100,
     "final_instrument_score": 100,
-    "score_changed": false,
-    "new_truth_added": "The parent now has an explicit triad governance topology, a governed self-extension request contract, and dual-artifact handoff requirements.",
-    "why_this_slice_counts": "It converts an informal workflow into validator-backed parent infrastructure without pretending a new runtime lane was activated.",
-    "flat_score_explanation": "The measured score stayed flat because the slice hardens governance and routing above the already-kept same-host runtime lane."
+    "score_changed": true,
+    "new_truth_added": "The parent now has a real inbox-first packet lane, gatekeeping bottom matter, a working filesystem-router watcher, and routing/delegation proof artifacts.",
+    "why_this_slice_counts": "It turns the inbox-first doctrine into executable parent infrastructure without pretending deep subsystem autonomy already exists.",
+    "flat_score_explanation": "The score rose because the proof package and artifact freshness now reflect a kept executable inbox-first lane."
   },
   "files_changed": [
     "AGENTS.md",
     "CLAUDE.md",
     "README.md",
-    "agentics-library.md",
     "library.yaml",
-    "pixeltable-operational-substrate.md",
-    "agent-heavy-run-prompt-schema.md",
     "agent-heavy-run-prompt.schema.json",
     "agent-heavy-run-prompt.template.yaml",
-    "architect-review-handoff-prompt-schema.md",
     "architect-review-handoff-prompt.schema.json",
     "architect-review-handoff-prompt.template.yaml",
-    "contracts/three-agent-topology.yaml",
-    "contracts/agent-extension-request.yaml",
-    "schemas/governed-agent-profile.schema.json",
-    "schemas/three-agent-topology.schema.json",
-    "schemas/agent-extension-request.schema.json",
+    "architect-review-handoff-prompt-schema.md",
+    "contracts/inbox-packet.yaml",
+    "contracts/inbox-routing-decision.yaml",
+    "contracts/delegation-bundle.yaml",
+    "contracts/front-door-runtime-topology.yaml",
+    "contracts/recursive-documentation-bundle.yaml",
+    "schemas/inbox-packet.schema.json",
+    "schemas/inbox-routing-decision.schema.json",
+    "schemas/delegation-bundle.schema.json",
+    "schemas/front-door-runtime-topology.schema.json",
+    "schemas/recursive-documentation-bundle.schema.json",
+    "schemas/bottom-matter.schema.json",
+    "examples/bottom-matter.valid.json",
+    "examples/inbox-packet-contract.valid.json",
+    "examples/inbox-packet-contract.invalid.missing-artifact-requirements.json",
+    "examples/inbox-routing-decision-contract.valid.json",
+    "examples/inbox-routing-decision-contract.invalid.missing-runtime-targets.json",
+    "examples/delegation-bundle-contract.valid.json",
+    "examples/delegation-bundle-contract.invalid.missing-contract-dependencies.json",
+    "examples/front-door-runtime-topology-contract.valid.json",
+    "examples/front-door-runtime-topology-contract.invalid.missing-ingress-lanes.json",
+    "examples/governed-inbox-packet.protocol.valid.md",
+    "examples/governed-inbox-packet.protocol.invalid.missing-bottom-matter.md",
     "examples/architect-review-handoff-prompt.valid.json",
     "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
-    "examples/three-agent-topology.valid.json",
-    "examples/three-agent-topology.invalid.missing-orchestrator.json",
-    "examples/agent-extension-request.valid.json",
-    "examples/agent-extension-request.invalid.missing-validation-gate.json",
     "expected-failures/registry.yaml",
-    "prompts/governed-triad-follow-up-prompt.template.md",
-    "tests/validate_parent_wrapper_contract.py",
-    "evaluation/copilot-ratchet-report.json",
-    "runs/iterations.jsonl",
+    "package.json",
+    "pyproject.toml",
+    "service/__init__.py",
+    "service/inbox_runtime.py",
+    "service/main.py",
+    "scripts/watchers/inbox_router.py",
+    "app/server.ts",
+    "inbox/FRE-META-HARNESS_PLAN.plan.md",
+    "inbox/FRE-META-HARNESS_PLAN.plan.json",
+    "inbox/fre-meta-harness_plus_inbox.plan.md",
+    "inbox/fre-meta-harness_plus_inbox.plan.json",
+    "evaluation/tool-health/inbox-protocol/latest-scan.json",
+    "evaluation/tool-health/inbox-protocol/gate-status.json",
+    "evaluation/tool-health/inbox-protocol/routing/all.json",
+    "evaluation/tool-health/inbox-protocol/delegations/all.json",
     "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
-    "promotion/readiness.json"
+    "promotion/readiness.json",
+    "evaluation/copilot-ratchet-report.json",
+    "runs/iterations.jsonl"
   ],
   "artifacts": [
     "evaluation/validation-report.json",
     "evaluation/metrics-latest.json",
     "promotion/readiness.json",
-    "runs/iterations.jsonl"
+    "runs/iterations.jsonl",
+    "evaluation/tool-health/status.json",
+    "evaluation/tool-health/inbox-protocol/latest-scan.json",
+    "evaluation/tool-health/inbox-protocol/gate-status.json",
+    "evaluation/tool-health/inbox-protocol/routing/all.json",
+    "evaluation/tool-health/inbox-protocol/delegations/all.json"
   ],
-  "iteration_ledger_entries_appended": 19
+  "iteration_ledger_entries_appended": 20
 }

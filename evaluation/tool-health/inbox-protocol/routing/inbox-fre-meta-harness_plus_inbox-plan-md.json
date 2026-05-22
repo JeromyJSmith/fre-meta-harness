@@ -1,0 +1,46 @@
+{
+  "decision_id": "ROUTE-20260521-INBOXPLAN",
+  "artifact_type": "inbox_routing_decision",
+  "source_packet_ref": "inbox/fre-meta-harness_plus_inbox.plan.md",
+  "source_artifact_id": "PACKET-20260521-INBOXPLAN",
+  "status": "routed",
+  "routing_mode": "fanout",
+  "resolved_consumers": [
+    "filesystem-router",
+    "architect",
+    "orchestrator-validator"
+  ],
+  "routing_reason": "Packet satisfied gatekeeping and can advance.",
+  "blocked_reason": "",
+  "gate_status_summary": [
+    {
+      "gate_id": "schema_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "scope_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "consumer_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "evidence_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "freshness_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "readiness_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "promotion_gate",
+      "status": "amber"
+    }
+  ],
+  "delegation_bundle_ref": "evaluation/tool-health/inbox-protocol/delegations/all.json"
+}

@@ -23,7 +23,7 @@
     },
     "gate_progress": {
       "type": "array",
-      "minItems": 7,
+      "minItems": 6,
       "items": {
         "type": "object",
         "required": ["gate_id", "status", "notes"],

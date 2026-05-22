@@ -1,0 +1,45 @@
+{
+  "packet_path": "inbox/consuming-layer.plan.review.checkpoint.md",
+  "artifact_id": "PACKET-20260521-PLANREVIEW",
+  "artifact_type": ".checkpoint.md",
+  "producer_role": "research",
+  "status": "blocked",
+  "resolved_consumers": [
+    "architect",
+    "orchestrator-validator"
+  ],
+  "gate_states": [
+    {
+      "gate_id": "harvest_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "registry_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "manifest_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "verification_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "state_gate",
+      "status": "amber"
+    },
+    {
+      "gate_id": "health_gate",
+      "status": "green"
+    },
+    {
+      "gate_id": "promotion_gate",
+      "status": "red"
+    }
+  ],
+  "errors": [
+    "missing front matter field: structured_artifact_ref",
+    "missing or unreadable structured_artifact_ref"
+  ]
+}

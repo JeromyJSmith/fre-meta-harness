@@ -10,6 +10,7 @@
     "handoff_id",
     "artifact_type",
     "producer_run",
+    "inbox_context",
     "linked_consumers",
     "auto_consume_policy",
     "handoff_goal",
@@ -35,6 +36,9 @@
     },
     "producer_run": {
       "$ref": "#/$defs/producer_run"
+    },
+    "inbox_context": {
+      "$ref": "#/$defs/inbox_context"
     },
     "linked_consumers": {
       "type": "array",
@@ -85,6 +89,19 @@
         "minLength": 1
       }
     },
+    "packet_artifact_type": {
+      "type": "string",
+      "enum": [
+        ".brainstorm.md",
+        ".plan.md",
+        ".analysis.md",
+        ".test.md",
+        ".review.md",
+        ".handoff.md",
+        ".spec.md",
+        ".checkpoint.md"
+      ]
+    },
     "producer_run": {
       "type": "object",
       "additionalProperties": false,
@@ -113,6 +130,42 @@
           "enum": ["kept", "blocked"]
         },
         "repo_root": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "inbox_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upstream_inbox_packet_ref",
+        "packet_artifact_type",
+        "required_gate_state",
+        "required_consumers",
+        "bottom_matter_ref",
+        "structured_contract_ref"
+      ],
+      "properties": {
+        "upstream_inbox_packet_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packet_artifact_type": {
+          "$ref": "#/$defs/packet_artifact_type"
+        },
+        "required_gate_state": {
+          "type": "string",
+          "enum": ["green", "amber"]
+        },
+        "required_consumers": {
+          "$ref": "#/$defs/path_list"
+        },
+        "bottom_matter_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structured_contract_ref": {
           "type": "string",
           "minLength": 1
         }

@@ -1,0 +1,83 @@
+{
+  "$schemaVersion": "1.0",
+  "promptSchemaVersion": "1.0",
+  "promptId": "PROMPT-20260521-PREFLIGHTSTEP0",
+  "artifactId": "PACKET-20260521-PREFLIGHTSTEP0PROMPT",
+  "artifactType": ".prompt.md",
+  "artifactClass": "prompt_candidate",
+  "candidateLabel": "Preflight-Step-0",
+  "targetAgent": "user-facing-agent",
+  "producerRole": "architect",
+  "targetScope": "portable_parent_wrapper",
+  "repoRoot": "/Volumes/PixelTable/VW_iTWIN_Bridge/meta",
+  "parentOnly": true,
+  "structuredContractRef": "agent-heavy-run-prompt.schema.json",
+  "companionMarkdownRef": "inbox/prompt-candidate-Preflight-Step-0.prompt.md",
+  "mode": {
+    "executionStyle": "heavy_bounded_run",
+    "autonomy": "medium",
+    "permissionModel": "ask_when_blocked"
+  },
+  "system": {
+    "name": "FRE Meta-Harness / Super Agentic Meta-Harness",
+    "substrateVocabulary": "ICM (Interpreted Context Methodology, Van Clief & McDermott, arxiv 2603.16021)",
+    "projectAgnostic": true,
+    "threeFramings": ["system", "subsystem", "wrapper"]
+  },
+  "downstreamPromotionPipeline": [
+    {"stage": "DOWNSTREAM", "purpose": "raw_consumption_via_inbox"},
+    {"stage": "RED", "purpose": "capabilities_tools_feature_worktrees_pre_green"},
+    {"stage": "DEVELOPMENT", "purpose": "green_capabilities_composed_into_workflows_and_ETL"},
+    {"stage": "PRODUCTION", "purpose": "loops_self_improvement_manifest_library_binding"},
+    {"stage": "main", "purpose": "promoted_and_pushed"}
+  ],
+  "prerequisitesBeforeRed": [
+    {"id": "PREREQ-001", "name": "pi_peer_mesh_communication_protocol"},
+    {"id": "PREREQ-002", "name": "single_file_agent_harness_IndieDevDan_pattern"},
+    {"id": "PREREQ-003", "name": "inbox_watcher_routing"},
+    {"id": "PREREQ-004", "name": "pixeltable_filesystem_mirror_adapter"},
+    {"id": "PREREQ-005", "name": "infranodus_phase_tool_map_refreshed"},
+    {"id": "PREREQ-006", "name": "governed_prompt_contract_bound"},
+    {"id": "PREREQ-007", "name": "iteration_ledger_initialized"},
+    {"id": "PREREQ-008", "name": "triad_role_contracts_complete"},
+    {"id": "PREREQ-009", "name": "front_door_role_contracts_complete"},
+    {"id": "PREREQ-010", "name": "sensitive_content_policy_gates_active"}
+  ],
+  "tasks": [
+    {"id": "T1", "name": "preflight_repo_state_audit", "blockedBy": []},
+    {"id": "T2", "name": "inbox_consumption_inventory", "blockedBy": ["T1"]},
+    {"id": "T3", "name": "council_candidate_review_status", "blockedBy": ["T2"]},
+    {"id": "T4", "name": "research_gaps_and_undefined_surfaces", "blockedBy": ["T2"]},
+    {"id": "T5", "name": "icm_filesystem_topology_proposal", "blockedBy": ["T1", "T4"]},
+    {"id": "T6", "name": "promotion_pipeline_RED_to_main_design", "blockedBy": ["T5"]},
+    {"id": "T7", "name": "prerequisites_before_RED", "blockedBy": ["T1", "T6"]},
+    {"id": "T8", "name": "capability_harvest_and_matrix_with_phase_priority", "blockedBy": ["T5", "T7"]},
+    {"id": "T9", "name": "feature_worktree_definitions", "blockedBy": ["T8"]},
+    {"id": "T10", "name": "step_0_artifact_bundle_emission", "blockedBy": ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9"]},
+    {"id": "T11", "name": "validator_loop_run", "blockedBy": ["T10"]},
+    {"id": "T12", "name": "final_report", "blockedBy": ["T11"]}
+  ],
+  "expectedStep0Bundle": [
+    "inbox/preflight-state-audit.analysis.md",
+    "inbox/inbox-consumption-inventory.analysis.md",
+    "inbox/council-candidate-status.checkpoint.md",
+    "inbox/research-gaps.spec.md",
+    "inbox/filesystem-topology-proposal.plan.md",
+    "inbox/promotion-pipeline-design.plan.md",
+    "inbox/prerequisites-before-red.spec.md",
+    "inbox/capability-harvest-matrix.analysis.md",
+    "inbox/feature-worktree-definitions.spec.md"
+  ],
+  "validatorCommands": [
+    "uv run python scripts/watchers/inbox_router.py",
+    "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+    "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
+    "git --no-pager diff --check"
+  ],
+  "requiredNonDryCycles": 2,
+  "councilStage": true,
+  "councilDecisionPending": true,
+  "validationStatus": "pending_council_routing",
+  "createdAt": "2026-05-21T00:00:00Z",
+  "updatedAt": "2026-05-21T00:00:00Z"
+}

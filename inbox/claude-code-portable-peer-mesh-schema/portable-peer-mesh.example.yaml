@@ -1,0 +1,202 @@
+schema_version: "1.0.0"
+schema_id: "claude-code-portable-peer-mesh"
+portability:
+  target_runtime: "claude_code"
+  fre_required: false
+  repo_specific_paths_required: false
+  notes:
+    - "Portable starter contract for Claude Code peer-mesh workflows."
+metadata:
+  name: "Portable Pi-to-Pi Style Mesh"
+  version: "0.1.0"
+  intent: "peer_mesh"
+  owners:
+    - "operator"
+  source_refs:
+    - "https://github.com/disler/pi-vs-claude-code"
+doctrine:
+  topology: "flat_peer_mesh"
+  orchestration_style: "peer_with_verifier"
+  dynamic_membership: true
+  explicit_completion_required: true
+  failure_mode: "fail_loud"
+  pii_redaction_required: true
+  terminal_context_required_for_video_guides: true
+runtime:
+  modes:
+    - "same_host"
+    - "cross_device"
+  auth:
+    token_envs:
+      - "PI_COMS_NET_AUTH_TOKEN"
+    optional_envs:
+      - "OPENAI_API_KEY"
+      - "ANTHROPIC_API_KEY"
+      - "OPENROUTER_API_KEY"
+  budgets:
+    loop_budget_per_scenario: 8
+    retry_budget_per_message: 2
+protocol:
+  required_operations:
+    - "list_agents"
+    - "send_command"
+    - "send_prompt"
+    - "await_response"
+  completion_tokens:
+    - "done"
+    - "failed"
+    - "needs-human"
+  correlation_id_required: true
+  operation_notes:
+    - "Every outbound peer exchange must carry a correlation id."
+roles:
+  - role_id: "peer_mesh_host"
+    role_class: "mesh_bootstrap"
+    purpose: "Bootstrap the mesh and publish membership without reverting to hierarchy."
+    runtime_modes:
+      - "same_host"
+      - "cross_device"
+    message_operations:
+      - "list_agents"
+    handoff_targets:
+      - "prod_gatekeeper"
+      - "dev_driver"
+      - "mesh_verifier"
+    verification_boundary:
+      completion_token_required: true
+      failure_mode: "fail_loud"
+      observability_event_required: true
+  - role_id: "prod_gatekeeper"
+    role_class: "prod_boundary"
+    purpose: "Own production-facing exchange and enforce PII stripping before peer handoff."
+    runtime_modes:
+      - "same_host"
+      - "cross_device"
+    message_operations:
+      - "send_prompt"
+      - "await_response"
+    handoff_targets:
+      - "dev_driver"
+      - "mesh_verifier"
+    verification_boundary:
+      completion_token_required: true
+      failure_mode: "fail_loud"
+      observability_event_required: true
+  - role_id: "dev_driver"
+    role_class: "execution_driver"
+    purpose: "Drive repro or build work, initiate peer prompts, and return explicit completion."
+    runtime_modes:
+      - "same_host"
+      - "cross_device"
+    message_operations:
+      - "send_command"
+      - "send_prompt"
+      - "await_response"
+    handoff_targets:
+      - "prod_gatekeeper"
+      - "mesh_verifier"
+    verification_boundary:
+      completion_token_required: true
+      failure_mode: "fail_loud"
+      observability_event_required: true
+  - role_id: "mesh_verifier"
+    role_class: "verification_guard"
+    purpose: "Validate completion, reject ambiguity, and fail closed when evidence is missing."
+    runtime_modes:
+      - "same_host"
+      - "cross_device"
+    message_operations:
+      - "send_prompt"
+      - "await_response"
+    handoff_targets:
+      - "peer_mesh_host"
+      - "prod_gatekeeper"
+      - "dev_driver"
+    verification_boundary:
+      completion_token_required: true
+      failure_mode: "fail_loud"
+      observability_event_required: true
+hooks:
+  - hook_id: "peer-session-start"
+    event: "session_start"
+    runtime_trigger: "mesh_bootstrap"
+    runtime_actor: "peer_mesh_host"
+    governed_operations:
+      - "list_agents"
+    policy_outcomes:
+      - "allow"
+      - "block"
+    evidence_artifact: "evaluation/observability/session-start.json"
+  - hook_id: "peer-prompt-guard"
+    event: "before_send_prompt"
+    runtime_trigger: "before_send_prompt"
+    runtime_actor: "prod_gatekeeper"
+    governed_operations:
+      - "send_prompt"
+    policy_outcomes:
+      - "allow"
+      - "block"
+      - "ask"
+    evidence_artifact: "evaluation/observability/prompt-guard.json"
+  - hook_id: "peer-command-guard"
+    event: "before_send_command"
+    runtime_trigger: "before_send_command"
+    runtime_actor: "dev_driver"
+    governed_operations:
+      - "send_command"
+    policy_outcomes:
+      - "allow"
+      - "block"
+      - "ask"
+    evidence_artifact: "evaluation/observability/command-guard.json"
+  - hook_id: "completion-verification"
+    event: "response_complete"
+    runtime_trigger: "response_complete"
+    runtime_actor: "mesh_verifier"
+    governed_operations:
+      - "await_response"
+    policy_outcomes:
+      - "allow"
+      - "block"
+      - "ask"
+    evidence_artifact: "evaluation/observability/completion-verification.json"
+capability_matrix:
+  - capability_id: "same-host-peer-messaging"
+    upstream_repo: "disler/pi-vs-claude-code"
+    feature_name: "same-host peer communication"
+    parent_layer: "peer_mesh"
+    parent_surface_type: "contract"
+    runtime_trigger: "two_local_agents_started"
+    runtime_actor: "peer_mesh_host"
+    target_surface: "contracts/peer-mesh.yaml"
+    validation_method: "Round-trip list_agents/send_prompt/await_response smoke test."
+    evidence_artifact: "evaluation/observability/same-host-smoke.json"
+    blocker_or_dependency: "Requires two active Claude Code peers."
+  - capability_id: "cross-device-peer-messaging"
+    upstream_repo: "disler/pi-vs-claude-code"
+    feature_name: "cross-device peer communication"
+    parent_layer: "peer_mesh"
+    parent_surface_type: "execution_lane"
+    runtime_trigger: "mesh_hub_started"
+    runtime_actor: "peer_mesh_host"
+    target_surface: "contracts/peer-mesh-runtime.yaml"
+    validation_method: "Cross-device send_prompt and verifier acknowledgement."
+    evidence_artifact: "evaluation/observability/cross-device-smoke.json"
+    blocker_or_dependency: "Requires PI_COMS_NET_AUTH_TOKEN and reachable hub."
+  - capability_id: "completion-verification"
+    upstream_repo: "disler/claude-code-hooks-mastery"
+    feature_name: "fail-loud completion verification"
+    parent_layer: "hook_policy"
+    parent_surface_type: "hook"
+    runtime_trigger: "response_complete"
+    runtime_actor: "mesh_verifier"
+    target_surface: "contracts/hook-manifest.yaml"
+    validation_method: "Reject missing done/failed/needs-human completion token."
+    evidence_artifact: "evaluation/observability/completion-policy.json"
+    blocker_or_dependency: "Requires verifier role."
+validation:
+  validator_entrypoint: "python validate_with_jsonschema.py portable-peer-mesh.example.yaml"
+  examples_required: true
+  invalid_examples_required: true
+  notes:
+    - "Use any Draft 2020-12 compatible validator that can load YAML."

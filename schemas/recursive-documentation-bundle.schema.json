@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meta-harness.local/schemas/recursive-documentation-bundle.schema.json",
+  "title": "Recursive Documentation Bundle Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bundle_id",
+    "artifact_type",
+    "scope_level",
+    "working_map",
+    "documentation_map",
+    "open_questions",
+    "improvement_opportunities"
+  ],
+  "properties": {
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^DOCBUNDLE-[0-9]{8}-[A-Z0-9]{4,}$"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "recursive_documentation_bundle"
+    },
+    "scope_level": {
+      "type": "string",
+      "enum": ["project", "domain_area", "subsystem", "component", "task_lane"]
+    },
+    "working_map": {
+      "$ref": "#/$defs/map_block"
+    },
+    "documentation_map": {
+      "$ref": "#/$defs/map_block"
+    },
+    "open_questions": {
+      "$ref": "#/$defs/string_list"
+    },
+    "improvement_opportunities": {
+      "$ref": "#/$defs/string_list"
+    }
+  },
+  "$defs": {
+    "string_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "map_block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "boundaries",
+        "inputs",
+        "outputs",
+        "dependencies",
+        "governing_artifacts"
+      ],
+      "properties": {
+        "purpose": { "type": "string", "minLength": 1 },
+        "boundaries": { "$ref": "#/$defs/string_list" },
+        "inputs": { "$ref": "#/$defs/string_list" },
+        "outputs": { "$ref": "#/$defs/string_list" },
+        "dependencies": { "$ref": "#/$defs/string_list" },
+        "governing_artifacts": { "$ref": "#/$defs/string_list" }
+      }
+    }
+  }
+}

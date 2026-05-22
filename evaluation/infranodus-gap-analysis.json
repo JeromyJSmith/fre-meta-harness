@@ -1,6 +1,6 @@
 {
   "analysis_id": "PARENT-META-INFRANODUS-GAP-0002",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "method": {
     "mode": "bounded_local_cli_substitute",
@@ -9,117 +9,124 @@
   },
   "analyzed_layers": [
     {
-      "id": "evaluation",
-      "label": "evaluation",
+      "id": "prompt_contracts",
+      "label": "prompt_contracts",
       "source_files": [
-        "evaluation/README.md",
-        "evaluation/metrics-latest.json",
-        "evaluation/copilot-ratchet-report.json"
+        "agent-heavy-run-prompt.schema.json",
+        "architect-review-handoff-prompt.schema.json",
+        "contracts/three-agent-topology.yaml"
       ],
       "top_terms": [
-        "evaluation",
-        "agent_eval",
-        "evals",
-        "parent-wrapper-agent_eval-boundary",
-        "tool_health",
+        "type",
+        "defs",
+        "ref",
+        "string",
+        "minlength",
+        "string_list",
+        "object",
+        "additionalproperties"
+      ]
+    },
+    {
+      "id": "inbox_doctrine",
+      "label": "inbox_doctrine",
+      "source_files": [
+        "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
+        "inbox/2026-05-21-pipeline-ideas-and-implementation.handoff.md",
+        "inbox/consuming-layer.plan.md"
+      ],
+      "top_terms": [
+        "blocked_by",
+        "blocks",
+        "status",
+        "kind",
+        "schema",
+        "new",
+        "contracts",
+        "schemas"
+      ]
+    },
+    {
+      "id": "subsystem_harness",
+      "label": "subsystem_harness",
+      "source_files": [
+        "contracts/subsystem-harness-topology.yaml",
+        "contracts/subsystem-registry.yaml",
+        "source/subsystems/registry.json",
+        "source/subsystems/intake-etl.md",
+        "source/subsystems/research-harvest.md",
+        "source/subsystems/semantic-cartography.md",
+        "source/subsystems/wrapper-synthesizer.md"
+      ],
+      "top_terms": [
         "readme",
-        "cycle",
-        "true"
-      ]
-    },
-    {
-      "id": "meta_loop",
-      "label": "meta_loop",
-      "source_files": [
-        "GOAL.md",
-        "program.md",
-        "runs/iterations.jsonl"
-      ],
-      "top_terms": [
-        "evaluation",
-        "external",
-        "iterations",
-        "status",
-        "evidence",
-        "jsonl",
-        "tool_health",
-        "agent_eval"
-      ]
-    },
-    {
-      "id": "autoresearch",
-      "label": "autoresearch",
-      "source_files": [
-        "README.md",
-        "program.md",
-        "library.yaml"
-      ],
-      "top_terms": [
         "source",
-        "external",
-        "name",
-        "description",
-        "status",
+        "research",
+        "subsystems",
         "evaluation",
-        "bounded",
-        "tool_health"
+        "repo_id",
+        "source_refs",
+        "contracts"
       ]
     },
     {
-      "id": "meta_harness",
-      "label": "meta_harness",
+      "id": "compiled_research",
+      "label": "compiled_research",
       "source_files": [
-        "domain_spec.md",
-        "AGENTS.md",
-        "MEMORY.md"
+        "evaluation/research/compiled/capability-harvest.json",
+        "evaluation/research/compiled/feature-matrix.json",
+        "evaluation/research/compiled/gap-placement-map.json",
+        "evaluation/research/compiled/source-index.json"
       ],
       "top_terms": [
-        "status",
-        "external",
-        "gate_id",
-        "notes",
-        "doctrine",
-        "green",
-        "memory",
-        "prompt"
+        "github",
+        "https",
+        "com",
+        "disler",
+        "blob",
+        "evaluation",
+        "research",
+        "docs"
       ]
     },
     {
-      "id": "agent_eval",
-      "label": "agent_eval",
+      "id": "tool_catalog_inputs",
+      "label": "tool_catalog_inputs",
       "source_files": [
-        "contracts/agent-eval-parent-lane.yaml",
-        "evaluation/agent-eval/README.md",
-        "scripts/run-parent-agent-eval.sh"
+        "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md",
+        "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
+        "inbox/prompting-tools.consume/Prompt Tools \u2014 Observability + Evaluation (Measure 43aec88ea68041cc8bfcf8e8b4b04fc8.md",
+        "inbox/transcribe.consume/file-system-consume.md",
+        "inbox/transcribe.consume/prompt-candidate-consumption.md"
       ],
       "top_terms": [
-        "smoke",
-        "agent_eval",
-        "evaluation",
-        "dry",
-        "docker",
-        "tool_health",
-        "scripts",
-        "run-parent-agent_eval"
+        "you",
+        "know",
+        "yeah",
+        "fucking",
+        "right",
+        "then",
+        "what",
+        "all"
       ]
     },
     {
       "id": "tool_health",
       "label": "tool_health",
       "source_files": [
-        "README.md",
         "evaluation/tool-health/status.json",
-        "evaluation/tool-health/local-runners.json"
+        "evaluation/tool-health/local-runners.json",
+        "evaluation/tool-health/peer-mesh-local.json"
       ],
       "top_terms": [
         "status",
         "evaluation",
-        "summary",
         "tool_health",
+        "summary",
+        "command",
         "command_path",
         "duration_ms",
-        "version",
-        "command"
+        "bin"
       ]
     }
   ],
@@ -128,23 +135,23 @@
     "label": "tool_health",
     "reason": "This layer is present in parent doctrine and evidence, overlaps multiple named layers, and should stay explicit in the improvement map.",
     "evidence": [
-      "README.md",
       "evaluation/tool-health/status.json",
-      "evaluation/tool-health/local-runners.json"
+      "evaluation/tool-health/local-runners.json",
+      "evaluation/tool-health/peer-mesh-local.json"
     ]
   },
   "topical_clusters": [
-    "evaluation",
-    "meta_loop",
-    "autoresearch",
-    "meta_harness",
-    "agent_eval",
+    "prompt_contracts",
+    "inbox_doctrine",
+    "subsystem_harness",
+    "compiled_research",
+    "tool_catalog_inputs",
     "tool_health"
   ],
   "content_gaps": [
-    "meta_harness -> agent_eval",
-    "evaluation -> meta_harness",
-    "autoresearch -> agent_eval"
+    "compiled_research -> tool_catalog_inputs",
+    "inbox_doctrine -> tool_catalog_inputs",
+    "prompt_contracts -> compiled_research"
   ],
   "resolved_by": [
     "contracts/parent-capability-metrics.yaml",

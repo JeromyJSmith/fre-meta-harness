@@ -161,7 +161,7 @@
       "color": "#f97316",
       "val": 32.75,
       "meta": {
-        "size_pct": 10,
+        "size_pct": 13,
         "influence_pct": 99
       }
     },
@@ -172,7 +172,7 @@
       "color": "#f97316",
       "val": 32.75,
       "meta": {
-        "size_pct": 33,
+        "size_pct": 34,
         "influence_pct": 99
       }
     },
@@ -183,7 +183,7 @@
       "color": "#f97316",
       "val": 32.75,
       "meta": {
-        "size_pct": 22,
+        "size_pct": 20,
         "influence_pct": 99
       }
     },
@@ -194,7 +194,7 @@
       "color": "#f97316",
       "val": 32.75,
       "meta": {
-        "size_pct": 13,
+        "size_pct": 12,
         "influence_pct": 99
       }
     },
@@ -205,7 +205,7 @@
       "color": "#f97316",
       "val": 32.75,
       "meta": {
-        "size_pct": 6,
+        "size_pct": 5,
         "influence_pct": 99
       }
     },
@@ -216,7 +216,7 @@
       "color": "#f97316",
       "val": 32.75,
       "meta": {
-        "size_pct": 17,
+        "size_pct": 16,
         "influence_pct": 99
       }
     },
@@ -237,8 +237,8 @@
       "meta": {}
     },
     {
-      "id": "live_concept_agent_eval",
-      "name": "agent_eval",
+      "id": "live_concept_tool_health",
+      "name": "tool_health",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
@@ -253,8 +253,8 @@
       "meta": {}
     },
     {
-      "id": "live_concept_tool_health",
-      "name": "tool_health",
+      "id": "live_concept_agent_eval",
+      "name": "agent_eval",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
@@ -271,6 +271,14 @@
     {
       "id": "live_concept_readme",
       "name": "readme",
+      "group": "live_concept",
+      "color": "#a855f7",
+      "val": 7,
+      "meta": {}
+    },
+    {
+      "id": "live_concept_scripts",
+      "name": "scripts",
       "group": "live_concept",
       "color": "#a855f7",
       "val": 7,
@@ -301,14 +309,6 @@
       "meta": {}
     },
     {
-      "id": "live_concept_smoke",
-      "name": "smoke",
-      "group": "live_concept",
-      "color": "#a855f7",
-      "val": 7,
-      "meta": {}
-    },
-    {
       "id": "live_concept_program",
       "name": "program",
       "group": "live_concept",
@@ -333,8 +333,8 @@
       "meta": {}
     },
     {
-      "id": "live_gateway_agent_eval",
-      "name": "agent_eval",
+      "id": "live_gateway_tool_health",
+      "name": "tool_health",
       "group": "gateway",
       "color": "#ec4899",
       "val": 8,
@@ -349,8 +349,8 @@
       "meta": {}
     },
     {
-      "id": "live_gateway_tool_health",
-      "name": "tool_health",
+      "id": "live_gateway_agent_eval",
+      "name": "agent_eval",
       "group": "gateway",
       "color": "#ec4899",
       "val": 8,
@@ -373,8 +373,8 @@
       "meta": {}
     },
     {
-      "id": "live_gateway_bounded",
-      "name": "bounded",
+      "id": "live_gateway_scripts",
+      "name": "scripts",
       "group": "gateway",
       "color": "#ec4899",
       "val": 8,
@@ -403,14 +403,14 @@
       }
     },
     {
-      "id": "influential_agent_eval",
-      "name": "agent_eval",
+      "id": "influential_tool_health",
+      "name": "tool_health",
       "group": "influential_node",
       "color": "#ef4444",
-      "val": 12.0,
+      "val": 12.5,
       "meta": {
-        "bc": 0.667,
-        "degree": 4
+        "bc": 0.833,
+        "degree": 5
       }
     },
     {
@@ -425,14 +425,14 @@
       }
     },
     {
-      "id": "influential_tool_health",
-      "name": "tool_health",
+      "id": "influential_agent_eval",
+      "name": "agent_eval",
       "group": "influential_node",
       "color": "#ef4444",
-      "val": 12.5,
+      "val": 12.0,
       "meta": {
-        "bc": 0.833,
-        "degree": 5
+        "bc": 0.667,
+        "degree": 4
       }
     },
     {
@@ -458,8 +458,8 @@
       }
     },
     {
-      "id": "influential_bounded",
-      "name": "bounded",
+      "id": "influential_scripts",
+      "name": "scripts",
       "group": "influential_node",
       "color": "#ef4444",
       "val": 11.0,
@@ -823,6 +823,14 @@
       "meta": {}
     },
     {
+      "id": "check_tool_health_truth_boundaries",
+      "name": "tool_health_truth_boundaries",
+      "group": "validation_check",
+      "color": "#16a34a",
+      "val": 6,
+      "meta": {}
+    },
+    {
       "id": "check_program_markdown_contract",
       "name": "program_markdown_contract",
       "group": "validation_check",
@@ -1053,7 +1061,7 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_agent_eval",
+      "target": "live_concept_tool_health",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
@@ -1067,7 +1075,7 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_tool_health",
+      "target": "live_concept_agent_eval",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
@@ -1082,6 +1090,13 @@
     {
       "source": "parent_meta_wrapper",
       "target": "live_concept_readme",
+      "relation": "main_concept",
+      "color": "#a855f7",
+      "width": 1
+    },
+    {
+      "source": "parent_meta_wrapper",
+      "target": "live_concept_scripts",
       "relation": "main_concept",
       "color": "#a855f7",
       "width": 1
@@ -1109,13 +1124,6 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_concept_smoke",
-      "relation": "main_concept",
-      "color": "#a855f7",
-      "width": 1
-    },
-    {
-      "source": "parent_meta_wrapper",
       "target": "live_concept_program",
       "relation": "main_concept",
       "color": "#a855f7",
@@ -1137,7 +1145,7 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_gateway_agent_eval",
+      "target": "live_gateway_tool_health",
       "relation": "gateway",
       "color": "#ec4899",
       "width": 1.2
@@ -1151,7 +1159,7 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_gateway_tool_health",
+      "target": "live_gateway_agent_eval",
       "relation": "gateway",
       "color": "#ec4899",
       "width": 1.2
@@ -1172,7 +1180,7 @@
     },
     {
       "source": "parent_meta_wrapper",
-      "target": "live_gateway_bounded",
+      "target": "live_gateway_scripts",
       "relation": "gateway",
       "color": "#ec4899",
       "width": 1.2
@@ -1193,7 +1201,7 @@
     },
     {
       "source": "metrics_latest",
-      "target": "influential_agent_eval",
+      "target": "influential_tool_health",
       "relation": "influential_node",
       "color": "#ef4444",
       "width": 2
@@ -1207,7 +1215,7 @@
     },
     {
       "source": "metrics_latest",
-      "target": "influential_tool_health",
+      "target": "influential_agent_eval",
       "relation": "influential_node",
       "color": "#ef4444",
       "width": 2
@@ -1228,7 +1236,7 @@
     },
     {
       "source": "metrics_latest",
-      "target": "influential_bounded",
+      "target": "influential_scripts",
       "relation": "influential_node",
       "color": "#ef4444",
       "width": 2
@@ -2104,6 +2112,13 @@
     {
       "source": "validation_report",
       "target": "check_capability_metrics_contract",
+      "relation": "pass",
+      "color": "#16a34a",
+      "width": 1
+    },
+    {
+      "source": "validation_report",
+      "target": "check_tool_health_truth_boundaries",
       "relation": "pass",
       "color": "#16a34a",
       "width": 1

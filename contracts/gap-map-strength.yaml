@@ -1,0 +1,83 @@
+schema_version: "1.0.0"
+contract_id: parent-gap-map-strength
+scope: portable_parent_wrapper
+authority:
+  structured_report_ref: evaluation/gap-map-strength-report.json
+  structured_report_schema_ref: schemas/gap-map-strength-report.schema.json
+  source_synthesis_ref: source/gap-map-strength.md
+  subsystem_topology_ref: contracts/subsystem-harness-topology.yaml
+  subsystem_registry_ref: contracts/subsystem-registry.yaml
+  compiled_research_refs:
+    - evaluation/research/compiled/capability-harvest.json
+    - evaluation/research/compiled/feature-matrix.json
+    - evaluation/research/compiled/gap-placement-map.json
+    - evaluation/research/compiled/source-index.json
+  bounded_infranodus_refs:
+    - evaluation/infranodus-gap-analysis.json
+    - evaluation/infranodus-conceptual-bridges.json
+    - evaluation/infranodus-research-topics.json
+    - evaluation/tool-health/infranodus-live-probe.json
+  tool_health_ref: evaluation/tool-health/status.json
+required_runtime_truth_fields:
+  - runtime_truth_level
+  - active_parent_runtime_lanes
+  - blocked_parent_runtime_lanes
+  - activation_commands
+  - validation_commands
+  - activation_artifacts_used
+  - non_activated_subsystem_lanes
+  - do_not_overclaim_notes
+required_analysis_sections:
+  - selected_slice
+  - infranodus_path
+  - strong_content
+  - weak_content
+  - workflow_structure
+  - runnable_tools
+  - exact_blockers
+  - freshness
+  - score_saturation
+  - command_evidence
+  - follow_up_prompt
+  - targeted_validation_results
+strong_content_rules:
+  minimum_areas: 4
+  required_areas:
+    - governance_kernel
+    - same_host_runtime_truth
+    - compiled_research_baseline
+    - subsystem_architecture_truth
+weak_content_rules:
+  minimum_areas: 4
+  required_missing_classes:
+    - better_source_material
+    - better_schema
+    - better_observability
+    - better_tool_probe
+workflow_rules:
+  required_missing_map_types:
+    - workflow_edge_map
+    - contract_to_runner_map
+    - evidence_strength_map
+  required_underspecified_contract_surfaces:
+    - tool_packaging
+    - pixeltable_duckdb_persistence
+tool_shortlist_rules:
+  minimum_tools: 6
+  required_focus_areas:
+    - gap_mapping
+    - graph_extraction
+    - etl_structuring
+    - semantic_cartography
+    - observability
+    - spec_compilation
+follow_up_prompt_requirements:
+  structured_prompt_schema_ref: agent-heavy-run-prompt.schema.json
+  structured_prompt_template_ref: agent-heavy-run-prompt.template.yaml
+  must_name_artifact_path: true
+  must_name_markdown_companion_path: true
+truth_guardrails:
+  live_infranodus_optional_only_when_proven: true
+  blocked_cross_device_must_remain_explicit: true
+  non_activated_subsystem_lanes_must_remain_explicit: true
+  child_runtime_adoption_claims_forbidden: true

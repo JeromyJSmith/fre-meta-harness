@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-subsystem-registry",
+  "scope": "portable_parent_wrapper",
+  "authority": {
+    "topology_contract_ref": "contracts/subsystem-harness-topology.yaml",
+    "authoritative_root": "source/subsystems",
+    "registry_artifact_ref": "source/subsystems/registry.json",
+    "first_scaffold_refs": [
+      "source/subsystems/intake-etl.md",
+      "source/subsystems/research-harvest.md",
+      "source/subsystems/semantic-cartography.md",
+      "source/subsystems/wrapper-synthesizer.md"
+    ]
+  },
+  "registry_requirements": {
+    "required_subsystem_ids": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "allowed_activation_states": [
+      "defined_not_activated",
+      "late_bound_not_activated"
+    ],
+    "allowed_lane_classifications": [
+      "core",
+      "gated",
+      "deployment_specific",
+      "reference",
+      "blocked_with_exact_dependency"
+    ]
+  },
+  "repo_catalog_requirements": {
+    "fixed_repo_count": 20,
+    "required_repo_fields": [
+      "repo_id",
+      "classification",
+      "best_fit_subsystems",
+      "reusable_now",
+      "exact_dependency_or_limit",
+      "why",
+      "source_refs"
+    ],
+    "focus_areas": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer",
+      "observability",
+      "durable_execution",
+      "spec_compiler",
+      "substrate_sync"
+    ],
+    "reference_only_when_overlap_or_inspiration": true
+  },
+  "shortlist_requirements": {
+    "minimum_reusable_now_repos": 5,
+    "required_focus_areas": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer",
+      "observability",
+      "durable_execution",
+      "spec_compiler",
+      "substrate_sync"
+    ]
+  },
+  "truth_guardrails": {
+    "active_runtime_evidence_refs": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json"
+    ],
+    "blocked_runtime_modes_must_remain_explicit": true,
+    "non_activated_subsystems_must_remain_explicit": true,
+    "no_child_runtime_adoption_claims": true
+  }
+}

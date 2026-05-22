@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-delegation-bundle",
+  "scope": "portable_parent_wrapper",
+  "bundle_envelope": {
+    "required_fields": [
+      "bundle_id",
+      "packet_ref",
+      "routing_decision_ref",
+      "dispatching_role",
+      "delegation_mode",
+      "target_roles",
+      "objective",
+      "handoff_markdown_artifact_path",
+      "dispatch_artifacts",
+      "required_artifacts",
+      "evidence_refs"
+    ],
+    "handoff_markdown_required": true,
+    "structured_artifact_refs_required": true
+  },
+  "contract_dependencies": {
+    "inbox_packet_contract_ref": "contracts/inbox-packet.yaml",
+    "routing_decision_contract_ref": "contracts/inbox-routing-decision.yaml",
+    "front_door_runtime_topology_contract_ref": "contracts/front-door-runtime-topology.yaml",
+    "prompt_contract_refs": [
+      "agent-heavy-run-prompt.schema.json",
+      "architect-review-handoff-prompt.schema.json"
+    ]
+  },
+  "execution_boundary": {
+    "triad_roles_allowed": [
+      "orchestrator-validator",
+      "research",
+      "architect"
+    ],
+    "runtime_roles_allowed": [
+      "user-facing-agent",
+      "spec-interpreter",
+      "filesystem-router",
+      "intake-mapper",
+      "semantic-cartographer",
+      "wrapper-synthesizer"
+    ],
+    "command_evidence_required": true,
+    "validation_gate_required": true,
+    "router_cannot_invent_missing_evidence": true,
+    "direct_agent_to_agent_without_inbox_forbidden": true
+  },
+  "delivery_payload": {
+    "required_sections": [
+      "objective",
+      "targets",
+      "required_artifacts",
+      "dispatch_message",
+      "blockers",
+      "evidence",
+      "completion_boundary"
+    ],
+    "exact_blocker_path_required": true,
+    "markdown_companion_required": true
+  }
+}

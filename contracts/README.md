@@ -20,6 +20,10 @@ Current contracts:
 - `hook-manifest.yaml`
 - `capability-matrix.yaml`
 - `research-packet-manifest.yaml`
+- `inbox-packet.yaml`
+- `inbox-routing-decision.yaml`
+- `delegation-bundle.yaml`
+- `front-door-runtime-topology.yaml`
 
 The communication slice is now explicit about peer primitives, role classes,
 prompt plus command guards, lifecycle completion, policy decisions, and
@@ -27,3 +31,6 @@ observability ingestion. The Phase 2 slice adds decoupled ingest, typed
 distribution, and benchmark-emission contracts on top of that communication
 plane. The research-governance slice makes the packetized harvest and compiled
 research views first-class governed surfaces instead of loose artifact files.
+The front-door slice adds the governed inbox packet protocol, routing decision,
+delegation bundle, and runtime topology surfaces that bridge governance review
+to runtime dispatch without merging the two role planes.

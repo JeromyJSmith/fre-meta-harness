@@ -152,6 +152,40 @@
         ],
         "stderr_tail": []
       }
+    },
+    "inbox_protocol": {
+      "status": "pass",
+      "strongest_honest_scope": "same_host_front_door_runtime",
+      "truth_boundary": {
+        "strongest_honest_status": "pass",
+        "active_runtime_modes": [
+          "same_host"
+        ],
+        "blocked_runtime_modes": [
+          {
+            "mode_id": "cross_device",
+            "status": "blocked",
+            "blocker": "Cross-device inbox synchronization remains blocked until authenticated remote routing exists."
+          }
+        ],
+        "bounded_evidence": "evaluation/tool-health/inbox-protocol/latest-scan.json",
+        "limitation": "This slice activates the inbox-first control plane only; deeper semantic mapping and wrapper synthesis remain future work."
+      },
+      "activation_probe": {
+        "command": "uv run python scripts/watchers/inbox_router.py",
+        "summary": "Validated governed inbox packets and emitted routing plus delegation artifacts for the same-host front-door lane.",
+        "exit_code": 0,
+        "evidence": [
+          "evaluation/tool-health/inbox-protocol/latest-scan.json",
+          "evaluation/tool-health/inbox-protocol/gate-status.json",
+          "evaluation/tool-health/inbox-protocol/routing/all.json",
+          "evaluation/tool-health/inbox-protocol/delegations/all.json"
+        ],
+        "stdout_tail": [
+          "{\"packet_count\":2,\"routed_count\":2,\"blocked_count\":0,\"clarification_count\":0}"
+        ],
+        "stderr_tail": []
+      }
     }
   }
 }

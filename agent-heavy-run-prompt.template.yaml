@@ -7,6 +7,13 @@ target_agent:
 triad_context:
   acting_role: "orchestrator-validator"
   upstream_handoff_ref: "HANDOFF-YYYYMMDD-XXXX"
+  upstream_inbox_packet_ref: "inbox/packets/PACKET-YYYYMMDD-XXXX.plan.md"
+  packet_artifact_type: ".plan.md"
+  required_gate_state: "green"
+  required_consumers:
+    - "orchestrator-validator"
+  bottom_matter_ref: "inbox/packets/PACKET-YYYYMMDD-XXXX.plan.md#bottom-matter"
+  structured_contract_ref: "inbox/structured/PACKET-YYYYMMDD-XXXX.plan.json"
   decision_space_required: true
   runtime_truth_requirements:
     - "Carry forward exact runtime-truth claims from the upstream governed handoff."

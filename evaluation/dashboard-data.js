@@ -3,8 +3,8 @@ window.__META_HARNESS_DASHBOARD__ = {
     "generated_at": "2026-05-18",
     "scope": "portable_parent_wrapper",
     "current_score": {
-      "total_score": 98.05,
-      "outcome_score": 97.4,
+      "total_score": 97.56,
+      "outcome_score": 96.75,
       "instrument_score": 100.0,
       "weakest_component": "artifact_refresh"
     },
@@ -152,6 +152,22 @@ window.__META_HARNESS_DASHBOARD__ = {
         "total_score": 91.3,
         "outcome_score": 88.4,
         "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-10-before",
+        "cycle": 10,
+        "phase": "before",
+        "total_score": 95.05,
+        "outcome_score": 93.4,
+        "instrument_score": 100.0
+      },
+      {
+        "label": "cycle-10-after",
+        "cycle": 10,
+        "phase": "after",
+        "total_score": 97.56,
+        "outcome_score": 96.75,
+        "instrument_score": 100.0
       }
     ],
     "component_rows": [
@@ -161,9 +177,9 @@ window.__META_HARNESS_DASHBOARD__ = {
         "score": 30.0,
         "details": {
           "schema_errors": [],
-          "history_rows": 9,
-          "detailed_rows": 9,
-          "ledger_rows": 9,
+          "history_rows": 10,
+          "detailed_rows": 10,
+          "ledger_rows": 10,
           "ledger_aligned": true,
           "parse_errors": []
         }
@@ -190,20 +206,20 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "name": "artifact_refresh",
         "family": "outcome",
-        "score": 22.4,
+        "score": 21.75,
         "details": {
           "report_artifacts_complete": true,
           "latest_cycle_artifacts_complete": true,
           "required": 4,
-          "freshness_span_seconds": 8.718257427215576,
+          "freshness_span_seconds": 11.505916118621826,
           "tool_statuses": [
             "bounded_pass",
-            "pass",
+            "bounded_pass",
             "bounded_pass",
             "dry_pass",
             "pass"
           ],
-          "tool_health_score": 10.4,
+          "tool_health_score": 9.75,
           "schema_errors": [],
           "parse_errors": []
         }
@@ -215,9 +231,9 @@ window.__META_HARNESS_DASHBOARD__ = {
         "details": {
           "status": "blocked",
           "schema_errors": [],
-          "real_rows": 9,
-          "kept_rows": 4,
-          "substantive_kept_rows": 3,
+          "real_rows": 10,
+          "kept_rows": 5,
+          "substantive_kept_rows": 4,
           "parse_errors": []
         }
       },
@@ -226,11 +242,11 @@ window.__META_HARNESS_DASHBOARD__ = {
         "family": "outcome",
         "score": 25.0,
         "details": {
-          "count": 9,
-          "substantive_kept_rows": 3,
+          "count": 10,
+          "substantive_kept_rows": 4,
           "rejected_or_reverted_rows": 5,
-          "history_rows": 9,
-          "real_rows": 9,
+          "history_rows": 10,
+          "real_rows": 10,
           "parse_errors": [],
           "schema_errors": []
         }
@@ -242,15 +258,15 @@ window.__META_HARNESS_DASHBOARD__ = {
         "details": {
           "kind": "blocker",
           "stop_reason": "exact blocker: live InfraNodus MCP escalation remains blocked because no local runtime credential or session configuration was present, so the bounded local substitute stayed as the strongest honest parent analysis path",
-          "cycles": 9,
-          "actual_consecutive_non_improving": 1,
+          "cycles": 10,
+          "actual_consecutive_non_improving": 0,
           "schema_errors": []
         }
       }
     ],
     "validation_summary": {
       "overall_status": "pass",
-      "pass_count": 12,
+      "pass_count": 13,
       "fail_count": 0,
       "checks": [
         {
@@ -398,6 +414,17 @@ window.__META_HARNESS_DASHBOARD__ = {
           }
         },
         {
+          "name": "tool_health_truth_boundaries",
+          "status": "pass",
+          "details": {
+            "path": "evaluation/tool-health/status.json",
+            "gitnexus_status": "bounded_pass",
+            "graphify_status": "bounded_pass",
+            "infranodus_status": "bounded_pass",
+            "live_infranodus_status": "blocked"
+          }
+        },
+        {
           "name": "program_markdown_contract",
           "status": "pass",
           "details": [
@@ -412,7 +439,7 @@ window.__META_HARNESS_DASHBOARD__ = {
           "status": "pass",
           "details": {
             "path": "runs/iterations.jsonl",
-            "row_count": 9,
+            "row_count": 10,
             "parse_errors": [],
             "invalid_rows": []
           }
@@ -468,37 +495,37 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "label": "evaluation",
         "cluster_id": 1,
-        "size_pct": 10,
+        "size_pct": 13,
         "influence_pct": 99
       },
       {
         "label": "meta_loop",
         "cluster_id": 2,
-        "size_pct": 33,
+        "size_pct": 34,
         "influence_pct": 99
       },
       {
         "label": "autoresearch",
         "cluster_id": 3,
-        "size_pct": 22,
+        "size_pct": 20,
         "influence_pct": 99
       },
       {
         "label": "meta_harness",
         "cluster_id": 4,
-        "size_pct": 13,
+        "size_pct": 12,
         "influence_pct": 99
       },
       {
         "label": "agent_eval",
         "cluster_id": 5,
-        "size_pct": 6,
+        "size_pct": 5,
         "influence_pct": 99
       },
       {
         "label": "tool_health",
         "cluster_id": 6,
-        "size_pct": 17,
+        "size_pct": 16,
         "influence_pct": 99
       }
     ],
@@ -508,7 +535,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       "scope": "portable_parent_wrapper",
       "statistics": {
         "clusterCount": 6,
-        "nodeCount": 502,
+        "nodeCount": 523,
         "edgeCount": 15,
         "diversity_score": "bounded_local",
         "modularity_score": "approximate"
@@ -519,47 +546,47 @@ window.__META_HARNESS_DASHBOARD__ = {
         "Gap 3: autoresearch -> agent_eval"
       ],
       "mainTopicalClusters": [
-        "1. evaluation: evaluation agent_eval evals parent-wrapper-agent_eval-boundary tool_health readme (1 | 10% | 99%)",
-        "2. meta_loop: evaluation external iterations status evidence jsonl (2 | 33% | 99%)",
-        "3. autoresearch: source external name description status evaluation (3 | 22% | 99%)",
-        "4. meta_harness: status external gate_id notes doctrine green (4 | 13% | 99%)",
-        "5. agent_eval: smoke agent_eval evaluation dry docker tool_health (5 | 6% | 99%)",
-        "6. tool_health: status evaluation summary tool_health command_path duration_ms (6 | 17% | 99%)"
+        "1. evaluation: evaluation tool_health agent_eval readme scripts cycle (1 | 13% | 99%)",
+        "2. meta_loop: evaluation tool_health status iterations external jsonl (2 | 34% | 99%)",
+        "3. autoresearch: source external name description status evaluation (3 | 20% | 99%)",
+        "4. meta_harness: status external gate_id notes doctrine green (4 | 12% | 99%)",
+        "5. agent_eval: smoke agent_eval evaluation dry docker tool_health (5 | 5% | 99%)",
+        "6. tool_health: status evaluation summary tool_health command_path duration_ms (6 | 16% | 99%)"
       ],
       "mainConcepts": [
         "evaluation",
         "status",
-        "agent_eval",
-        "external",
         "tool_health",
+        "external",
+        "agent_eval",
         "evidence",
         "readme",
+        "scripts",
         "bounded",
         "gate_id",
         "notes",
-        "smoke",
         "program"
       ],
       "conceptualGateways": [
         "evaluation",
         "status",
-        "agent_eval",
-        "external",
         "tool_health",
+        "external",
+        "agent_eval",
         "evidence",
         "readme",
-        "bounded"
+        "scripts"
       ],
       "topRelations": [
-        "1) meta_loop <-> autoresearch",
-        "2) autoresearch <-> meta_harness",
-        "3) evaluation <-> agent_eval",
-        "4) evaluation <-> meta_loop",
-        "5) meta_loop <-> tool_health",
-        "6) evaluation <-> tool_health",
-        "7) agent_eval <-> tool_health",
-        "8) autoresearch <-> tool_health",
-        "9) evaluation <-> autoresearch",
+        "1) evaluation <-> meta_loop",
+        "2) meta_loop <-> autoresearch",
+        "3) autoresearch <-> meta_harness",
+        "4) meta_loop <-> tool_health",
+        "5) evaluation <-> agent_eval",
+        "6) evaluation <-> autoresearch",
+        "7) evaluation <-> tool_health",
+        "8) agent_eval <-> tool_health",
+        "9) autoresearch <-> tool_health",
         "10) meta_loop <-> agent_eval"
       ],
       "topInfluentialNodes": [
@@ -574,9 +601,9 @@ window.__META_HARNESS_DASHBOARD__ = {
           "degree": 5
         },
         {
-          "node": "agent_eval",
-          "bc": 0.667,
-          "degree": 4
+          "node": "tool_health",
+          "bc": 0.833,
+          "degree": 5
         },
         {
           "node": "external",
@@ -584,9 +611,9 @@ window.__META_HARNESS_DASHBOARD__ = {
           "degree": 3
         },
         {
-          "node": "tool_health",
-          "bc": 0.833,
-          "degree": 5
+          "node": "agent_eval",
+          "bc": 0.667,
+          "degree": 4
         },
         {
           "node": "evidence",
@@ -599,7 +626,7 @@ window.__META_HARNESS_DASHBOARD__ = {
           "degree": 2
         },
         {
-          "node": "bounded",
+          "node": "scripts",
           "bc": 0.333,
           "degree": 2
         }
@@ -623,7 +650,7 @@ window.__META_HARNESS_DASHBOARD__ = {
           "bridge_terms": [
             "evaluation",
             "status",
-            "agent_eval"
+            "tool_health"
           ],
           "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
           "evidence": [
@@ -685,7 +712,7 @@ window.__META_HARNESS_DASHBOARD__ = {
           "bridge_terms": [
             "evaluation",
             "status",
-            "agent_eval",
+            "tool_health",
             "external"
           ],
           "questions": [
@@ -1011,12 +1038,12 @@ window.__META_HARNESS_DASHBOARD__ = {
           ],
           "top_terms": [
             "evaluation",
-            "agent_eval",
-            "evals",
-            "parent-wrapper-agent_eval-boundary",
             "tool_health",
+            "agent_eval",
             "readme",
+            "scripts",
             "cycle",
+            "status",
             "true"
           ]
         },
@@ -1030,12 +1057,12 @@ window.__META_HARNESS_DASHBOARD__ = {
           ],
           "top_terms": [
             "evaluation",
-            "external",
-            "iterations",
-            "status",
-            "evidence",
-            "jsonl",
             "tool_health",
+            "status",
+            "iterations",
+            "external",
+            "jsonl",
+            "evidence",
             "agent_eval"
           ]
         },
@@ -1111,8 +1138,8 @@ window.__META_HARNESS_DASHBOARD__ = {
             "tool_health",
             "command_path",
             "duration_ms",
-            "version",
-            "command"
+            "command",
+            "version"
           ]
         }
       ],
@@ -1459,10 +1486,60 @@ window.__META_HARNESS_DASHBOARD__ = {
             "evaluation/tool-health/infranodus-live-probe.json"
           ],
           "note": "The run kept the bounded local substitute and rejected a fake live claim because no InfraNodus MCP runtime credential or session configuration was present."
+        },
+        {
+          "iteration": 10,
+          "cycle_kind": "real_non_dry",
+          "before_total_score": 95.05,
+          "after_total_score": 97.56,
+          "before_outcome_score": 93.4,
+          "after_outcome_score": 96.75,
+          "before_instrument_score": 100.0,
+          "after_instrument_score": 100.0,
+          "action": "demote Graphify to bounded_pass, add validator-backed tool-health truth boundaries, and refresh bounded GitNexus, Graphify, and InfraNodus evidence",
+          "result": "kept",
+          "validator_status": "pass",
+          "changed_files": [
+            "scripts/refresh-parent-tool-health.py",
+            "tests/validate_parent_wrapper_contract.py",
+            "evaluation/tool-health/gitnexus-smoke.log",
+            "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log",
+            "evaluation/tool-health/graphify-smoke.log",
+            "evaluation/tool-health/infranodus-live-probe.json",
+            "evaluation/tool-health/status.json",
+            "evaluation/infranodus-gap-analysis.json",
+            "evaluation/infranodus-conceptual-bridges.json",
+            "evaluation/infranodus-research-topics.json",
+            "evaluation/infranodus-live-summary.json",
+            "evaluation/infranodus-parent-corpus.txt",
+            "evaluation/infranodus-entity-graph.json",
+            "evaluation/dashboard-data.json",
+            "evaluation/dashboard-data.js",
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "evaluation/copilot-ratchet-report.json",
+            "runs/iterations.jsonl"
+          ],
+          "artifacts": [
+            "evaluation/validation-report.json",
+            "evaluation/metrics-latest.json",
+            "promotion/readiness.json",
+            "runs/iterations.jsonl",
+            "evaluation/tool-health/status.json",
+            "evaluation/tool-health/infranodus-live-probe.json",
+            "evaluation/infranodus-gap-analysis.json",
+            "evaluation/infranodus-conceptual-bridges.json",
+            "evaluation/infranodus-research-topics.json",
+            "evaluation/dashboard-data.json",
+            "evaluation/dashboard-data.js",
+            "evaluation/infranodus-entity-graph.json"
+          ],
+          "note": "Graphify now reports only bounded fixture truth, GitNexus and InfraNodus expose explicit truth_boundary fields, and the live InfraNodus lane remains visibly blocked."
         }
       ],
       "legacy_rows": [],
-      "real_count": 9,
+      "real_count": 10,
       "legacy_count": 0
     },
     "ratchet_report_present": true,
@@ -1631,7 +1708,7 @@ window.__META_HARNESS_DASHBOARD__ = {
         "color": "#f97316",
         "val": 32.75,
         "meta": {
-          "size_pct": 10,
+          "size_pct": 13,
           "influence_pct": 99
         }
       },
@@ -1642,7 +1719,7 @@ window.__META_HARNESS_DASHBOARD__ = {
         "color": "#f97316",
         "val": 32.75,
         "meta": {
-          "size_pct": 33,
+          "size_pct": 34,
           "influence_pct": 99
         }
       },
@@ -1653,7 +1730,7 @@ window.__META_HARNESS_DASHBOARD__ = {
         "color": "#f97316",
         "val": 32.75,
         "meta": {
-          "size_pct": 22,
+          "size_pct": 20,
           "influence_pct": 99
         }
       },
@@ -1664,7 +1741,7 @@ window.__META_HARNESS_DASHBOARD__ = {
         "color": "#f97316",
         "val": 32.75,
         "meta": {
-          "size_pct": 13,
+          "size_pct": 12,
           "influence_pct": 99
         }
       },
@@ -1675,7 +1752,7 @@ window.__META_HARNESS_DASHBOARD__ = {
         "color": "#f97316",
         "val": 32.75,
         "meta": {
-          "size_pct": 6,
+          "size_pct": 5,
           "influence_pct": 99
         }
       },
@@ -1686,7 +1763,7 @@ window.__META_HARNESS_DASHBOARD__ = {
         "color": "#f97316",
         "val": 32.75,
         "meta": {
-          "size_pct": 17,
+          "size_pct": 16,
           "influence_pct": 99
         }
       },
@@ -1707,8 +1784,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_concept_agent_eval",
-        "name": "agent_eval",
+        "id": "live_concept_tool_health",
+        "name": "tool_health",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
@@ -1723,8 +1800,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_concept_tool_health",
-        "name": "tool_health",
+        "id": "live_concept_agent_eval",
+        "name": "agent_eval",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
@@ -1741,6 +1818,14 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "id": "live_concept_readme",
         "name": "readme",
+        "group": "live_concept",
+        "color": "#a855f7",
+        "val": 7,
+        "meta": {}
+      },
+      {
+        "id": "live_concept_scripts",
+        "name": "scripts",
         "group": "live_concept",
         "color": "#a855f7",
         "val": 7,
@@ -1771,14 +1856,6 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_concept_smoke",
-        "name": "smoke",
-        "group": "live_concept",
-        "color": "#a855f7",
-        "val": 7,
-        "meta": {}
-      },
-      {
         "id": "live_concept_program",
         "name": "program",
         "group": "live_concept",
@@ -1803,8 +1880,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_gateway_agent_eval",
-        "name": "agent_eval",
+        "id": "live_gateway_tool_health",
+        "name": "tool_health",
         "group": "gateway",
         "color": "#ec4899",
         "val": 8,
@@ -1819,8 +1896,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_gateway_tool_health",
-        "name": "tool_health",
+        "id": "live_gateway_agent_eval",
+        "name": "agent_eval",
         "group": "gateway",
         "color": "#ec4899",
         "val": 8,
@@ -1843,8 +1920,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
-        "id": "live_gateway_bounded",
-        "name": "bounded",
+        "id": "live_gateway_scripts",
+        "name": "scripts",
         "group": "gateway",
         "color": "#ec4899",
         "val": 8,
@@ -1873,14 +1950,14 @@ window.__META_HARNESS_DASHBOARD__ = {
         }
       },
       {
-        "id": "influential_agent_eval",
-        "name": "agent_eval",
+        "id": "influential_tool_health",
+        "name": "tool_health",
         "group": "influential_node",
         "color": "#ef4444",
-        "val": 12.0,
+        "val": 12.5,
         "meta": {
-          "bc": 0.667,
-          "degree": 4
+          "bc": 0.833,
+          "degree": 5
         }
       },
       {
@@ -1895,14 +1972,14 @@ window.__META_HARNESS_DASHBOARD__ = {
         }
       },
       {
-        "id": "influential_tool_health",
-        "name": "tool_health",
+        "id": "influential_agent_eval",
+        "name": "agent_eval",
         "group": "influential_node",
         "color": "#ef4444",
-        "val": 12.5,
+        "val": 12.0,
         "meta": {
-          "bc": 0.833,
-          "degree": 5
+          "bc": 0.667,
+          "degree": 4
         }
       },
       {
@@ -1928,8 +2005,8 @@ window.__META_HARNESS_DASHBOARD__ = {
         }
       },
       {
-        "id": "influential_bounded",
-        "name": "bounded",
+        "id": "influential_scripts",
+        "name": "scripts",
         "group": "influential_node",
         "color": "#ef4444",
         "val": 11.0,
@@ -2293,6 +2370,14 @@ window.__META_HARNESS_DASHBOARD__ = {
         "meta": {}
       },
       {
+        "id": "check_tool_health_truth_boundaries",
+        "name": "tool_health_truth_boundaries",
+        "group": "validation_check",
+        "color": "#16a34a",
+        "val": 6,
+        "meta": {}
+      },
+      {
         "id": "check_program_markdown_contract",
         "name": "program_markdown_contract",
         "group": "validation_check",
@@ -2523,7 +2608,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_agent_eval",
+        "target": "live_concept_tool_health",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
@@ -2537,7 +2622,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_tool_health",
+        "target": "live_concept_agent_eval",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
@@ -2552,6 +2637,13 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "source": "parent_meta_wrapper",
         "target": "live_concept_readme",
+        "relation": "main_concept",
+        "color": "#a855f7",
+        "width": 1
+      },
+      {
+        "source": "parent_meta_wrapper",
+        "target": "live_concept_scripts",
         "relation": "main_concept",
         "color": "#a855f7",
         "width": 1
@@ -2579,13 +2671,6 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_concept_smoke",
-        "relation": "main_concept",
-        "color": "#a855f7",
-        "width": 1
-      },
-      {
-        "source": "parent_meta_wrapper",
         "target": "live_concept_program",
         "relation": "main_concept",
         "color": "#a855f7",
@@ -2607,7 +2692,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_gateway_agent_eval",
+        "target": "live_gateway_tool_health",
         "relation": "gateway",
         "color": "#ec4899",
         "width": 1.2
@@ -2621,7 +2706,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_gateway_tool_health",
+        "target": "live_gateway_agent_eval",
         "relation": "gateway",
         "color": "#ec4899",
         "width": 1.2
@@ -2642,7 +2727,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "parent_meta_wrapper",
-        "target": "live_gateway_bounded",
+        "target": "live_gateway_scripts",
         "relation": "gateway",
         "color": "#ec4899",
         "width": 1.2
@@ -2663,7 +2748,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "metrics_latest",
-        "target": "influential_agent_eval",
+        "target": "influential_tool_health",
         "relation": "influential_node",
         "color": "#ef4444",
         "width": 2
@@ -2677,7 +2762,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "metrics_latest",
-        "target": "influential_tool_health",
+        "target": "influential_agent_eval",
         "relation": "influential_node",
         "color": "#ef4444",
         "width": 2
@@ -2698,7 +2783,7 @@ window.__META_HARNESS_DASHBOARD__ = {
       },
       {
         "source": "metrics_latest",
-        "target": "influential_bounded",
+        "target": "influential_scripts",
         "relation": "influential_node",
         "color": "#ef4444",
         "width": 2
@@ -3574,6 +3659,13 @@ window.__META_HARNESS_DASHBOARD__ = {
       {
         "source": "validation_report",
         "target": "check_capability_metrics_contract",
+        "relation": "pass",
+        "color": "#16a34a",
+        "width": 1
+      },
+      {
+        "source": "validation_report",
+        "target": "check_tool_health_truth_boundaries",
         "relation": "pass",
         "color": "#16a34a",
         "width": 1

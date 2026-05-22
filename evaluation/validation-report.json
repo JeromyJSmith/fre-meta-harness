@@ -1,6 +1,6 @@
 {
   "report_id": "PARENT-META-VALIDATION-0001",
-  "created_at": "2026-05-21",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "overall_status": "pass",
   "checks": [
@@ -165,6 +165,22 @@
           "status": "pass"
         },
         {
+          "file": "examples/inbox-routing-decision-contract.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/delegation-bundle-contract.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/front-door-runtime-topology-contract.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/recursive-documentation-bundle.valid.json",
+          "status": "pass"
+        },
+        {
           "file": "examples/front-matter.invalid.missing-id.json",
           "status": "pass",
           "reason": "'id' is a required property"
@@ -283,6 +299,46 @@
           "file": "examples/agent-extension-request.invalid.missing-validation-gate.json",
           "status": "pass",
           "reason": "'validation_gate' is a required property"
+        },
+        {
+          "file": "examples/inbox-packet-contract.invalid.missing-artifact-requirements.json",
+          "status": "pass",
+          "reason": "'artifact_requirements' is a required property"
+        },
+        {
+          "file": "examples/inbox-routing-decision-contract.invalid.missing-runtime-targets.json",
+          "status": "pass",
+          "reason": "'target_resolution' is a required property"
+        },
+        {
+          "file": "examples/delegation-bundle-contract.invalid.missing-contract-dependencies.json",
+          "status": "pass",
+          "reason": "'contract_dependencies' is a required property"
+        },
+        {
+          "file": "examples/front-door-runtime-topology-contract.invalid.missing-ingress-lanes.json",
+          "status": "pass",
+          "reason": "'ingress_lanes' is a required property"
+        },
+        {
+          "file": "examples/subsystem-harness-topology.invalid.missing-first-subsystem.json",
+          "status": "pass",
+          "reason": "['intake_etl', 'research_harvest', 'semantic_cartography'] is too short | ['intake_etl', 'research_harvest', 'semantic_cartography'] does not contain items matching the given schema | ['source/subsystems/intake-etl.md', 'source/subsystems/research-harvest.md', 'source/subsystems/semantic-cartography.md'] is too short | [{'subsystem_id': 'intake_etl', 'lane_classification': 'core', 'activation_state': 'defined_not_activated', 'authoritative_scaffold_ref': 'source/subsystems/intake-etl.md', 'primary_objective': 'Normalize inbox drops into packet, extract, and provenance records.'}, {'subsystem_id': 'research_harvest', 'lane_classification': 'core', 'activation_state': 'defined_not_activated', 'authoritative_scaffold_ref': 'source/subsystems/research-harvest.md', 'primary_objective': 'Compile normalized evidence into capability, feature, gap, and source-index artifacts.'}, {'subsystem_id': 'semantic_cartography', 'lane_classification': 'core', 'activation_state': 'defined_not_activated', 'authoritative_scaffold_ref': 'source/subsystems/semantic-cartography.md', 'primary_objective': 'Produce semantic maps, graph-ready summaries, and subsystem candidates.'}] is too short | [{'subsystem_id': 'intake_etl', 'lane_classification': 'core', 'activation_state': 'defined_not_activated', 'authoritative_scaffold_ref': 'source/subsystems/intake-etl.md', 'primary_objective': 'Normalize inbox drops into packet, extract, and provenance records.'}, {'subsystem_id': 'research_harvest', 'lane_classification': 'core', 'activation_state': 'defined_not_activated', 'authoritative_scaffold_ref': 'source/subsystems/research-harvest.md', 'primary_objective': 'Compile normalized evidence into capability, feature, gap, and source-index artifacts.'}, {'subsystem_id': 'semantic_cartography', 'lane_classification': 'core', 'activation_state': 'defined_not_activated', 'authoritative_scaffold_ref': 'source/subsystems/semantic-cartography.md', 'primary_objective': 'Produce semantic maps, graph-ready summaries, and subsystem candidates.'}] does not contain items matching the given schema"
+        },
+        {
+          "file": "examples/subsystem-registry.invalid.missing-runtime-truth.json",
+          "status": "pass",
+          "reason": "'required_runtime_truth_fields' is a required property"
+        },
+        {
+          "file": "examples/subsystem-registry-record.invalid.missing-repo-catalog.json",
+          "status": "pass",
+          "reason": "'repo_catalog' is a required property"
+        },
+        {
+          "file": "examples/gap-map-strength-report.invalid.missing-weak-content.json",
+          "status": "pass",
+          "reason": "'weak_content' is a required property | 'a' is too short | 'b' is too short | 'b' is too short | 'c' is too short | 'c' is too short | 'd' is too short | 'd' is too short | 'e' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Bounded.' is too short | 'Bounded.' is too short | 'Bounded.' is too short"
         }
       ]
     },
@@ -346,6 +402,302 @@
       }
     },
     {
+      "name": "inbox_front_door_protocol_slice",
+      "status": "pass",
+      "details": {
+        "required_inbox_contracts": [
+          "contracts/delegation-bundle.yaml",
+          "contracts/inbox-packet.yaml",
+          "contracts/inbox-routing-decision.yaml"
+        ],
+        "required_front_door_contracts": [
+          "contracts/front-door-runtime-topology.yaml",
+          "contracts/recursive-documentation-bundle.yaml"
+        ],
+        "validated_contracts": [
+          "contracts/inbox-packet.yaml",
+          "contracts/inbox-routing-decision.yaml",
+          "contracts/delegation-bundle.yaml",
+          "contracts/front-door-runtime-topology.yaml",
+          "contracts/recursive-documentation-bundle.yaml"
+        ],
+        "validated_examples": [
+          "examples/governed-inbox-packet.protocol.valid.md",
+          "examples/inbox-routing-decision-contract.valid.json",
+          "examples/delegation-bundle-contract.valid.json",
+          "examples/front-door-runtime-topology-contract.valid.json",
+          "examples/recursive-documentation-bundle.valid.json"
+        ],
+        "front_door_runtime_roles": [
+          "filesystem-router",
+          "intake-mapper",
+          "semantic-cartographer",
+          "spec-interpreter",
+          "user-facing-agent",
+          "wrapper-synthesizer"
+        ],
+        "governance_roles": [
+          "architect",
+          "orchestrator-validator",
+          "research"
+        ],
+        "packet_artifact_types": [
+          ".analysis.md",
+          ".brainstorm.md",
+          ".checkpoint.md",
+          ".handoff.md",
+          ".plan.md",
+          ".review.md",
+          ".spec.md",
+          ".test.md"
+        ],
+        "governed_markdown_packets_found": [
+          {
+            "path": "inbox/FRE-META-HARNESS_PLAN.plan.md",
+            "artifact_type": ".plan.md",
+            "keys": [
+              "artifact_id",
+              "artifact_type",
+              "blocked_by",
+              "completeness",
+              "confidence",
+              "created_at",
+              "doc_state",
+              "doctype",
+              "evidence_refs",
+              "gate_id",
+              "gate_progress",
+              "id",
+              "next_iteration",
+              "notes",
+              "objective",
+              "open_questions",
+              "owner",
+              "parent_only",
+              "pending_validations",
+              "producer_role",
+              "promotion_criteria",
+              "repo_root",
+              "required_consumers",
+              "routing_tags",
+              "slug",
+              "status",
+              "status_summary",
+              "structured_artifact_ref",
+              "structured_contract_ref",
+              "target_scope",
+              "updated_at",
+              "upstream_refs",
+              "validation_status",
+              "version"
+            ]
+          },
+          {
+            "path": "inbox/consuming-layer.plan.md",
+            "artifact_type": ".plan.md",
+            "keys": [
+              "artifact_id",
+              "artifact_type",
+              "blocked_by",
+              "completeness",
+              "confidence",
+              "created_at",
+              "doc_state",
+              "doctype",
+              "evidence_refs",
+              "external_authority_refs",
+              "gate_id",
+              "gate_progress",
+              "id",
+              "next_iteration",
+              "notes",
+              "objective",
+              "open_questions",
+              "owner",
+              "parent_only",
+              "pending_validations",
+              "producer_role",
+              "promotion_criteria",
+              "prompt_candidate_class",
+              "repo_root",
+              "required_consumers",
+              "routing_tags",
+              "slug",
+              "status",
+              "status_summary",
+              "structured_artifact_ref",
+              "structured_contract_ref",
+              "target_scope",
+              "updated_at",
+              "upstream_refs",
+              "validation_status",
+              "version"
+            ]
+          },
+          {
+            "path": "inbox/consuming-layer.plan.review.checkpoint.md",
+            "artifact_type": ".checkpoint.md",
+            "keys": [
+              "artifact_id",
+              "artifact_type",
+              "blocked_by",
+              "completeness",
+              "confidence",
+              "created_at",
+              "doc_state",
+              "doctype",
+              "evidence_refs",
+              "gate_id",
+              "gate_progress",
+              "id",
+              "next_iteration",
+              "notes",
+              "objective",
+              "open_questions",
+              "owner",
+              "parent_only",
+              "pending_validations",
+              "producer_role",
+              "promotion_criteria",
+              "prompt_candidate_class",
+              "repo_root",
+              "required_consumers",
+              "routing_tags",
+              "slug",
+              "status",
+              "status_summary",
+              "structured_contract_ref",
+              "target_scope",
+              "updated_at",
+              "upstream_refs",
+              "validation_status",
+              "version"
+            ]
+          },
+          {
+            "path": "inbox/fre-meta-harness_plus_inbox.plan.md",
+            "artifact_type": ".plan.md",
+            "keys": [
+              "artifact_id",
+              "artifact_type",
+              "blocked_by",
+              "completeness",
+              "confidence",
+              "created_at",
+              "doc_state",
+              "doctype",
+              "evidence_refs",
+              "gate_id",
+              "gate_progress",
+              "id",
+              "next_iteration",
+              "notes",
+              "objective",
+              "open_questions",
+              "owner",
+              "parent_only",
+              "pending_validations",
+              "producer_role",
+              "promotion_criteria",
+              "repo_root",
+              "required_consumers",
+              "routing_tags",
+              "slug",
+              "status",
+              "status_summary",
+              "structured_artifact_ref",
+              "structured_contract_ref",
+              "target_scope",
+              "updated_at",
+              "upstream_refs",
+              "validation_status",
+              "version"
+            ]
+          },
+          {
+            "path": "inbox/prompt-candidate-Preflight-Step-0.prompt.md",
+            "artifact_type": ".prompt.md",
+            "keys": [
+              "allowed_paths",
+              "artifact_class",
+              "artifact_id",
+              "artifact_type",
+              "autonomy",
+              "blocked_by",
+              "candidate_label",
+              "commands",
+              "companion_markdown_ref",
+              "completeness",
+              "confidence",
+              "council_candidate_a_present",
+              "council_candidate_review_present",
+              "council_decision_status",
+              "created_at",
+              "cross_device_peer_mesh_runtime",
+              "current_verified_state",
+              "description",
+              "development_folder",
+              "disallowed_paths",
+              "doc_state",
+              "duckdb_wasm_browser_surface",
+              "execution_style",
+              "external_authority_refs",
+              "fail_loud",
+              "fre_meta_harness_clone_present",
+              "front_door_runtime_topology_landed",
+              "gate_id",
+              "gate_progress",
+              "hard_rules",
+              "id",
+              "inbox_first_protocol_landed",
+              "instrument_repair_on_saturation",
+              "loop_id",
+              "mission",
+              "mode",
+              "name",
+              "next_iteration",
+              "notes",
+              "objective",
+              "open_questions",
+              "owner",
+              "parent_only",
+              "pending_validations",
+              "permission_model",
+              "pixeltable_substrate",
+              "producer_role",
+              "production_folder",
+              "promotion_criteria",
+              "prompt_id",
+              "prompt_schema_version",
+              "red_folder",
+              "repo_root",
+              "report_contract",
+              "required_consumers",
+              "required_fields",
+              "required_non_dry_cycles",
+              "required_reads",
+              "routing_tags",
+              "same_host_peer_mesh_runtime_active",
+              "six_file_scaffold_present",
+              "status",
+              "status_summary",
+              "structured_contract_ref",
+              "success_criteria",
+              "target_agent",
+              "target_scope",
+              "tasks",
+              "triad_governance_landed",
+              "updated_at",
+              "upstream_refs",
+              "validation_loop",
+              "validation_status"
+            ]
+          }
+        ],
+        "markdown_template_path": "prompts/governed-triad-follow-up-prompt.template.md"
+      }
+    },
+    {
       "name": "capability_metrics_contract",
       "status": "pass",
       "details": {
@@ -398,6 +750,85 @@
             "strength": "task_stub_without_terminal_frames"
           }
         ]
+      }
+    },
+    {
+      "name": "subsystem_harness_architecture_slice",
+      "status": "pass",
+      "details": {
+        "validated_contracts": 2,
+        "validated_examples": 3,
+        "registry_record": "source/subsystems/registry.json",
+        "repo_count": 20,
+        "shortlist_count": 6,
+        "scaffold_paths": [
+          "source/subsystems/README.md",
+          "source/subsystems/intake-etl.md",
+          "source/subsystems/research-harvest.md",
+          "source/subsystems/semantic-cartography.md",
+          "source/subsystems/wrapper-synthesizer.md"
+        ]
+      }
+    },
+    {
+      "name": "gap_map_strength_slice",
+      "status": "pass",
+      "details": {
+        "validated_contracts": 1,
+        "validated_examples": 1,
+        "strong_content_area_ids": [
+          "compiled_research_baseline",
+          "governance_kernel",
+          "same_host_runtime_truth",
+          "subsystem_architecture_truth",
+          "tool_health_boundaries"
+        ],
+        "missing_item_classes": [
+          "better_examples",
+          "better_observability",
+          "better_proof_boundary",
+          "better_schema",
+          "better_source_material",
+          "better_terminal_or_frame_evidence",
+          "better_tool_probe",
+          "better_transcript_capture"
+        ],
+        "missing_map_types": [
+          "contract_to_runner_map",
+          "evidence_strength_map",
+          "workflow_edge_map"
+        ],
+        "underspecified_surfaces": [
+          "pixeltable_duckdb_persistence",
+          "semantic_cartography_artifacts",
+          "subsystem_observability_handshake",
+          "tool_packaging"
+        ],
+        "tool_ids": [
+          "bounded_infranodus_builder",
+          "codex_cli",
+          "gh_copilot_cli",
+          "gitnexus",
+          "graphify",
+          "oxc_project_oxc",
+          "pi_cli",
+          "regent_vcs_re_gent"
+        ],
+        "tool_focus_areas": [
+          "etl_structuring",
+          "gap_mapping",
+          "graph_extraction",
+          "observability",
+          "semantic_cartography",
+          "spec_compilation",
+          "weak_content_strengthening"
+        ],
+        "blocker_lane_ids": [
+          "inbox_protocol.cross_device",
+          "peer_mesh_local.cross_device"
+        ],
+        "source_synthesis_ref": "source/gap-map-strength.md",
+        "errors": []
       }
     },
     {
@@ -538,7 +969,7 @@
       "status": "pass",
       "details": {
         "path": "runs/iterations.jsonl",
-        "row_count": 19,
+        "row_count": 20,
         "parse_errors": [],
         "invalid_rows": []
       }
@@ -557,7 +988,7 @@
       "details": {
         "truth_level": "bounded_runtime",
         "runtime_mode_activated": "same_host",
-        "latest_iteration": 19,
+        "latest_iteration": 20,
         "errors": []
       }
     }
