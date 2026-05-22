@@ -4,7 +4,7 @@
   "probe_mode": "graph_boundary_reconciliation",
   "proof_state": "bounded_probe_pass",
   "runtime_lane": "peer_mesh_local.same_host",
-  "executed_at": "2026-05-22T16:44:45.011001Z",
+  "executed_at": "2026-05-22T17:19:55.878991Z",
   "graph_artifacts_present": [
     "evaluation/infranodus-gap-analysis.json",
     "evaluation/infranodus-conceptual-bridges.json",

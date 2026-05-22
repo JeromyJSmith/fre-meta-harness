@@ -11,16 +11,16 @@
       "status": "available",
       "matched_probe": "claude --version",
       "command_path": "/Users/ojeromyo/.local/bin/claude",
-      "summary": "2.1.144 (Claude Code)",
-      "duration_ms": 525.47,
+      "summary": "2.1.148 (Claude Code)",
+      "duration_ms": 567.22,
       "probes": [
         {
           "command": "claude --version",
           "command_path": "/Users/ojeromyo/.local/bin/claude",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 525.47,
-          "summary": "2.1.144 (Claude Code)"
+          "duration_ms": 567.22,
+          "summary": "2.1.148 (Claude Code)"
         }
       ]
     },
@@ -31,14 +31,14 @@
       "matched_probe": "gh copilot --help",
       "command_path": "/opt/homebrew/bin/gh",
       "summary": "gh version 2.92.0 (2026-04-28)",
-      "duration_ms": 33.94,
+      "duration_ms": 25.61,
       "probes": [
         {
           "command": "gh copilot --help",
           "command_path": "/opt/homebrew/bin/gh",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 33.94,
+          "duration_ms": 25.61,
           "summary": "Runs the GitHub Copilot CLI."
         }
       ]
@@ -50,14 +50,14 @@
       "matched_probe": "codex --version",
       "command_path": "/opt/homebrew/bin/codex",
       "summary": "codex-cli 0.130.0",
-      "duration_ms": 47.97,
+      "duration_ms": 45.54,
       "probes": [
         {
           "command": "codex --version",
           "command_path": "/opt/homebrew/bin/codex",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 47.97,
+          "duration_ms": 45.54,
           "summary": "codex-cli 0.130.0"
         }
       ]
@@ -69,14 +69,14 @@
       "matched_probe": "pi --version",
       "command_path": "/Users/ojeromyo/.bun/bin/pi",
       "summary": "0.73.1",
-      "duration_ms": 826.09,
+      "duration_ms": 698.79,
       "probes": [
         {
           "command": "pi --version",
           "command_path": "/Users/ojeromyo/.bun/bin/pi",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 826.09,
+          "duration_ms": 698.79,
           "summary": "0.73.1"
         }
       ]
@@ -88,14 +88,14 @@
       "matched_probe": "hermes --version",
       "command_path": "/Users/ojeromyo/.local/bin/hermes",
       "summary": "Hermes Agent v0.14.0 (2026.5.16)",
-      "duration_ms": 610.18,
+      "duration_ms": 428.82,
       "probes": [
         {
           "command": "hermes --version",
           "command_path": "/Users/ojeromyo/.local/bin/hermes",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 610.18,
+          "duration_ms": 428.82,
           "summary": "Hermes Agent v0.14.0 (2026.5.16)"
         }
       ]
@@ -107,7 +107,7 @@
       "matched_probe": "ollama --version",
       "command_path": "/usr/local/bin/ollama",
       "summary": "ollama version is 0.24.0",
-      "duration_ms": 35.76,
+      "duration_ms": 31.01,
       "probes": [
         {
           "command": "llama --version",
@@ -122,7 +122,7 @@
           "command_path": "/usr/local/bin/ollama",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 35.76,
+          "duration_ms": 31.01,
           "summary": "ollama version is 0.24.0"
         },
         {
@@ -130,7 +130,7 @@
           "command_path": "/opt/homebrew/bin/llama-server",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 667.87,
+          "duration_ms": 674.44,
           "summary": "load_backend: loaded BLAS backend from /opt/homebrew/Cellar/ggml/0.12.0/libexec/libggml-blas.so"
         }
       ]
@@ -142,14 +142,14 @@
       "matched_probe": "mlx_lm --help",
       "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
       "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')",
-      "duration_ms": 1768.04,
+      "duration_ms": 1273.32,
       "probes": [
         {
           "command": "mlx_lm --help",
           "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 1768.04,
+          "duration_ms": 1273.32,
           "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')"
         },
         {

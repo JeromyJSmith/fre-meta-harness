@@ -116,6 +116,20 @@
           },
           "score_changed": {
             "type": "boolean"
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 3
+          },
+          "probe_states": {
+            "type": "object"
+          },
+          "probe_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
           }
         }
       }

@@ -2,7 +2,7 @@
   "report_id": "PARENT-META-VALIDATION-0001",
   "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
-  "overall_status": "fail",
+  "overall_status": "pass",
   "checks": [
     {
       "name": "required_scaffold_files",
@@ -459,7 +459,7 @@
         {
           "file": "examples/operational-feature-matrix.invalid.missing-do-not-promote.json",
           "status": "pass",
-          "reason": "'do_not_promote_notes' is a required property"
+          "reason": "'capability_id' is a required property"
         },
         {
           "file": "examples/consume-source-quality-strengthening-report.invalid.missing-decision-space.json",
@@ -632,15 +632,7 @@
         ],
         "video_sources": [
           {
-            "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
-            "strength": "task_capture_without_terminal_frames"
-          },
-          {
-            "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
-            "strength": "task_stub_without_terminal_frames"
-          },
-          {
-            "ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+            "ref": "evaluation/research/current-understanding.json",
             "strength": "transcript_plus_context_summary"
           }
         ]
@@ -659,9 +651,9 @@
           "outbox/2026-05-22-consume-folder-extraction-map.handoff.md",
           "outbox/2026-05-22-compiled-output-ingestion-map.handoff.md"
         ],
-        "consume_source_count": 7,
-        "transcript_blocked_count": 3,
-        "operational_row_count": 6,
+        "consume_source_count": 4,
+        "transcript_blocked_count": 1,
+        "operational_row_count": 10,
         "errors": []
       }
     },
@@ -812,7 +804,7 @@
     },
     {
       "name": "subsystem_runner_proof_family",
-      "status": "fail",
+      "status": "pass",
       "details": {
         "validated_contracts": 4,
         "validated_examples": 4,
@@ -833,9 +825,7 @@
           "wrapper_synthesizer"
         ],
         "handshake_failure_mode": "fail_loud",
-        "errors": [
-          "evaluation/subsystem-runner-proof-strengthening-report.json:Additional properties are not allowed ('observed_at', 'probe_artifacts', 'probe_states' were unexpected)\n\nFailed validating 'additionalProperties' in schema['properties']['iteration_score_history']['items']:\n    {'type': 'object',\n     'additionalProperties': False,\n     'required': ['iteration',\n                  'summary',\n                  'before_total_score',\n                  'after_total_score',\n                  'score_changed'],\n     'properties': {'iteration': {'type': 'integer', 'minimum': 1},\n                    'summary': {'type': 'string', 'minLength': 3},\n                    'before_total_score': {'type': 'number'},\n                    'after_total_score': {'type': 'number'},\n                    'score_changed': {'type': 'boolean'}}}\n\nOn instance['iteration_score_history'][4]:\n    {'iteration': 5,\n     'summary': 'Executed bounded probes for intake_etl, research_harvest, '\n                'and semantic_cartography. All three moved from '\n                'designed_not_activated to bounded_probe_pass. Runner '\n                'harnesses written for each. tool-health/status.json '\n                'updated with subsystem_probes entry. wrapper_synthesizer '\n                'remains gated.',\n     'before_total_score': 100,\n     'after_total_score': 100,\n     'score_changed': False,\n     'probe_states': {'intake_etl': 'bounded_probe_pass',\n                      'research_harvest': 'bounded_probe_pass',\n                      'semantic_cartography': 'bounded_probe_pass',\n                      'wrapper_synthesizer': 'designed_not_activated'},\n     'probe_artifacts': ['evaluation/subsystem-runner-probes/intake_etl/probe-status.json',\n                         'evaluation/subsystem-runner-probes/intake_etl/events.jsonl',\n                         'evaluation/subsystem-runner-probes/intake_etl/benchmarks.json',\n                         'evaluation/subsystem-runner-probes/research_harvest/probe-status.json',\n                         'evaluation/subsystem-runner-probes/research_harvest/events.jsonl',\n                         'evaluation/subsystem-runner-probes/research_harvest/benchmarks.json',\n                         'evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json',\n                         'evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl',\n                         'evaluation/subsystem-runner-probes/semantic_cartography/benchmarks.json'],\n     'observed_at': '2026-05-22T16:06:03.620464Z'}"
-        ]
+        "errors": []
       }
     },
     {

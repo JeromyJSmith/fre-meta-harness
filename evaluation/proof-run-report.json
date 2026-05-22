@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "executed_at": "2026-05-22T17:20:15Z",
+  "probes": {
+    "intake_etl": {
+      "proof_state": "bounded_probe_pass",
+      "exit_code": 0,
+      "stdout_summary": "probe_mode=inbox_fixture_reconciliation; inbox_clean=true; all 6 gate_ids confirmed (schema_gate, scope_gate, consumer_gate, evidence_gate, freshness_gate, readiness_gate)",
+      "blockers": []
+    },
+    "research_harvest": {
+      "proof_state": "bounded_probe_pass",
+      "exit_code": 0,
+      "stdout_summary": "probe_mode=compiled_output_reconciliation; all 5 compiled outputs present (capability-harvest.json, feature-matrix.json, gap-placement-map.json, source-index.json, operational-feature-matrix.json); manifest_valid=true; lib_ready=true",
+      "blockers": []
+    },
+    "semantic_cartography": {
+      "proof_state": "bounded_probe_pass",
+      "exit_code": 0,
+      "stdout_summary": "probe_mode=graph_boundary_reconciliation; all 4 graph artifacts present (infranodus-gap-analysis.json, infranodus-conceptual-bridges.json, infranodus-live-summary.json, infranodus-research-topics.json); cluster_count=6; gap_count=3",
+      "blockers": []
+    }
+  },
+  "validator_result": "pass",
+  "validator_exit_code": 0,
+  "score": 99.62,
+  "all_probes_pass": true,
+  "blockers": []
+}

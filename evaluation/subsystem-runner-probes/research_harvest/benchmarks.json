@@ -3,7 +3,7 @@
     "group": "observability_ingest",
     "probe_id": "research_harvest",
     "mode": "compiled_output_reconciliation",
-    "duration_s": 0.0029,
+    "duration_s": 0.0023,
     "compiled_outputs_present": 5,
     "compiled_outputs_total": 5,
     "manifest_valid": true,

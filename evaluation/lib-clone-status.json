@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "executed_at": "2026-05-22T10:58:00Z",
+  "capabilities": [
+    {
+      "capability_id": "pi-vs-claude-code",
+      "upstream_repo": "https://github.com/disler/pi-vs-claude-code",
+      "lib_path": "lib/pi-vs-claude-code",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "the-library",
+      "upstream_repo": "https://github.com/disler/the-library",
+      "lib_path": "lib/the-library",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "claude-code-hooks-mastery",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-mastery",
+      "lib_path": "lib/claude-code-hooks-mastery",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "claude-code-hooks-multi-agent-observability",
+      "upstream_repo": "https://github.com/disler/claude-code-hooks-multi-agent-observability",
+      "lib_path": "lib/claude-code-hooks-multi-agent-observability",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "just-prompt",
+      "upstream_repo": "https://github.com/disler/just-prompt",
+      "lib_path": "lib/just-prompt",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "ICM",
+      "upstream_repo": "https://github.com/disler/ICM",
+      "lib_path": "lib/ICM",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "ICM-animation-example",
+      "upstream_repo": "https://github.com/disler/ICM-animation-example",
+      "lib_path": "lib/ICM-animation-example",
+      "was_present": true,
+      "cloned": false,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "agent-sandbox-skill",
+      "upstream_repo": "https://github.com/disler/agent-sandbox-skill",
+      "lib_path": "lib/agent-sandbox-skill",
+      "was_present": false,
+      "cloned": true,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "bowser",
+      "upstream_repo": "https://github.com/disler/bowser",
+      "lib_path": "lib/bowser",
+      "was_present": false,
+      "cloned": true,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "mac-mini-agent",
+      "upstream_repo": "https://github.com/disler/mac-mini-agent",
+      "lib_path": "lib/mac-mini-agent",
+      "was_present": false,
+      "cloned": true,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "fork-repository-skill",
+      "upstream_repo": "https://github.com/disler/fork-repository-skill",
+      "lib_path": "lib/fork-repository-skill",
+      "was_present": false,
+      "cloned": true,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    },
+    {
+      "capability_id": "infinite-agentic-loop",
+      "upstream_repo": "https://github.com/disler/infinite-agentic-loop",
+      "lib_path": "lib/infinite-agentic-loop",
+      "was_present": false,
+      "cloned": true,
+      "installed": false,
+      "install_method": "none",
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "already_present": 7,
+    "cloned": 5,
+    "install_failures": 0
+  }
+}

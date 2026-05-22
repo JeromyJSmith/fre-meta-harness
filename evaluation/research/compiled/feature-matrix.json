@@ -1,10 +1,31 @@
 {
   "schema_version": "1.0.0",
-  "packet_type": "compiled_feature_matrix",
-  "status": "refreshed",
+  "packet_type": "feature_matrix",
+  "status": "fresh",
+  "generated_at": "2026-05-22T11:15:00Z",
+  "surface_type_columns": [
+    "communication_plane",
+    "distribution_plane",
+    "policy_plane",
+    "observability_plane",
+    "sandbox_execution",
+    "browser_validation",
+    "device_sidecar",
+    "loop_pattern_reference"
+  ],
   "rows": [
     {
       "capability_id": "pi-vs-claude-code",
+      "parent_lane_classification": "core",
+      "installation_state": "installed",
+      "communication_plane": "X",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/pi-vs-claude-code",
       "upstream_feature_name": "coms/coms-net peer mesh",
       "parent_surface_type": "communication_plane",
@@ -20,11 +41,20 @@
         "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
         "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
         "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json"
-      ],
-      "parent_lane_classification": "core"
+      ]
     },
     {
       "capability_id": "the-library",
+      "parent_lane_classification": "core",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "X",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/the-library",
       "upstream_feature_name": "typed reference catalog for skills, agents, and prompts",
       "parent_surface_type": "distribution_plane",
@@ -39,11 +69,20 @@
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
-      ],
-      "parent_lane_classification": "core"
+      ]
     },
     {
       "capability_id": "claude-code-hooks-mastery",
+      "parent_lane_classification": "core",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "X",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/claude-code-hooks-mastery",
       "upstream_feature_name": "deterministic hook lifecycle and validator control",
       "parent_surface_type": "policy_plane",
@@ -57,11 +96,20 @@
         "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
         "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
-      ],
-      "parent_lane_classification": "core"
+      ]
     },
     {
       "capability_id": "claude-code-hooks-multi-agent-observability",
+      "parent_lane_classification": "core",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "X",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/claude-code-hooks-multi-agent-observability",
       "upstream_feature_name": "hook event ingest with session-correlated telemetry",
       "parent_surface_type": "observability_plane",
@@ -75,11 +123,20 @@
         "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
         "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
         "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
-      ],
-      "parent_lane_classification": "core"
+      ]
     },
     {
       "capability_id": "just-prompt",
+      "parent_lane_classification": "gated",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/just-prompt",
       "upstream_feature_name": "multi-provider prompt arbitration via `ceo_and_board`",
       "parent_surface_type": "arbitration_lane",
@@ -92,11 +149,20 @@
       "source_refs": [
         "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
         "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml"
-      ],
-      "parent_lane_classification": "gated"
+      ]
     },
     {
       "capability_id": "agent-sandbox-skill",
+      "parent_lane_classification": "blocked_with_exact_dependency",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "X",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/agent-sandbox-skill",
       "upstream_feature_name": "isolated sandbox execution for delegated engineering work",
       "parent_surface_type": "sandbox_execution",
@@ -109,11 +175,20 @@
       "source_refs": [
         "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
         "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md"
-      ],
-      "parent_lane_classification": "blocked_with_exact_dependency"
+      ]
     },
     {
       "capability_id": "bowser",
+      "parent_lane_classification": "gated",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "X",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/bowser",
       "upstream_feature_name": "browser automation and UI validation lane",
       "parent_surface_type": "browser_validation",
@@ -125,11 +200,20 @@
       "blocker_or_dependency": "Gated on a real browser-validation requirement plus Playwright CLI or an equivalent browser control surface; otherwise the parent should not pretend this lane is active.",
       "source_refs": [
         "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md"
-      ],
-      "parent_lane_classification": "gated"
+      ]
     },
     {
       "capability_id": "mac-mini-agent",
+      "parent_lane_classification": "deployment_specific",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "X",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/mac-mini-agent",
       "upstream_feature_name": "Mac device sidecar for GUI, terminal, and remote job orchestration",
       "parent_surface_type": "device_sidecar",
@@ -141,11 +225,20 @@
       "blocker_or_dependency": "Deployment-specific: requires macOS, Accessibility + Screen Recording + Full Disk Access permissions, tmux, SSH/remote connectivity, and the paired host topology.",
       "source_refs": [
         "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md"
-      ],
-      "parent_lane_classification": "deployment_specific"
+      ]
     },
     {
       "capability_id": "fork-repository-skill",
+      "parent_lane_classification": "reference",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "",
       "upstream_repo": "https://github.com/disler/fork-repository-skill",
       "upstream_feature_name": "terminal branching and context handoff skill",
       "parent_surface_type": "parallel_branching_reference",
@@ -157,11 +250,20 @@
       "blocker_or_dependency": "Reference only because it overlaps with existing delegation and peer-mesh lanes and depends on a Claude-style skill runtime.",
       "source_refs": [
         "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md"
-      ],
-      "parent_lane_classification": "reference"
+      ]
     },
     {
       "capability_id": "infinite-agentic-loop",
+      "parent_lane_classification": "reference",
+      "installation_state": "installed",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "X",
       "upstream_repo": "https://github.com/disler/infinite-agentic-loop",
       "upstream_feature_name": "parallel wave generation command",
       "parent_surface_type": "loop_pattern_reference",
@@ -173,8 +275,12 @@
       "blocker_or_dependency": "Reference only because the upstream infinite mode conflicts with bounded stop, plateau, and exact-blocker doctrine.",
       "source_refs": [
         "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md"
-      ],
-      "parent_lane_classification": "reference"
+      ]
     }
+  ],
+  "compiler_notes": [
+    "just-prompt has parent_surface_type arbitration_lane, which is not one of the 8 declared surface_type_columns; no column is marked X for that capability.",
+    "fork-repository-skill has parent_surface_type parallel_branching_reference, which is not one of the 8 declared surface_type_columns; no column is marked X.",
+    "All 10 capabilities are present in this matrix regardless of installation state. See operational-feature-matrix.json for the installed-only filtered view."
   ]
 }

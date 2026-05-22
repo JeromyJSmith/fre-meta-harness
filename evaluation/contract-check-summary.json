@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0.0",
+  "executed_at": "2026-05-22T19:30:00Z",
+  "validator_result": "pass",
+  "validator_errors": [],
+  "score": 99.62,
+  "contract_count": 30,
+  "schema_count": 50,
+  "valid_example_count": 45,
+  "invalid_example_count": 0,
+  "gaps": [
+    {
+      "id": "parent-agent-eval-lane",
+      "file": "agent-eval-parent-lane.yaml",
+      "has_schema": false,
+      "has_valid_example": false,
+      "has_invalid_example": false
+    },
+    {
+      "id": "agent-extension-request",
+      "file": "agent-extension-request.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-agent-role-contract",
+      "file": "agent-role-contract.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-benchmark-emission",
+      "file": "benchmark-emission.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-capability-matrix",
+      "file": "capability-matrix.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "contract-to-runner-map",
+      "file": "contract-to-runner-map.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-delegation-bundle",
+      "file": "delegation-bundle.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-front-door-runtime-topology",
+      "file": "front-door-runtime-topology.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-gap-map-strength",
+      "file": "gap-map-strength.yaml",
+      "has_schema": true,
+      "has_valid_example": false,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-hook-manifest",
+      "file": "hook-manifest.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-inbox-packet",
+      "file": "inbox-packet.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-inbox-routing-decision",
+      "file": "inbox-routing-decision.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-library-distribution",
+      "file": "library-distribution.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-observability-event",
+      "file": "observability-event.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-observability-ingest",
+      "file": "observability-ingest.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-capability-metrics",
+      "file": "parent-capability-metrics.yaml",
+      "has_schema": false,
+      "has_valid_example": false,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-peer-lifecycle",
+      "file": "peer-lifecycle.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-peer-mesh-runtime",
+      "file": "peer-mesh-runtime.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-peer-mesh",
+      "file": "peer-mesh.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-peer-message",
+      "file": "peer-message.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-policy-decision",
+      "file": "policy-decision.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "recursive-documentation-bundle",
+      "file": "recursive-documentation-bundle.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-research-packet-manifest",
+      "file": "research-packet-manifest.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-subsystem-bounded-probe",
+      "file": "subsystem-bounded-probe.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-subsystem-harness-topology",
+      "file": "subsystem-harness-topology.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-subsystem-observability-handshake",
+      "file": "subsystem-observability-handshake.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-subsystem-registry",
+      "file": "subsystem-registry.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-subsystem-runner-proof-family",
+      "file": "subsystem-runner-proof-family.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "three-agent-topology",
+      "file": "three-agent-topology.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    },
+    {
+      "id": "parent-tool-packaging-family",
+      "file": "tool-packaging-family.yaml",
+      "has_schema": true,
+      "has_valid_example": true,
+      "has_invalid_example": false
+    }
+  ]
+}

@@ -45,7 +45,11 @@ def run_probe(output_dir: Path) -> int:
 
     # --- reconcile inbox clean state ---
     inbox = ROOT / "inbox"
-    inbox_files = [f for f in inbox.iterdir() if not f.name.startswith(".")]
+    # Only count actual files (not structural subdirs like packets/ and structured/)
+    inbox_files = [
+        f for f in inbox.rglob("*")
+        if f.is_file() and not f.name.startswith(".")
+    ]
     inbox_clean = len(inbox_files) == 0
     events.append(_event("evidence_recorded", {
         "artifact": "inbox_state",

@@ -1,7 +1,7 @@
 {
   "status": "bounded_pass",
-  "packet_count": 6,
-  "routed_count": 2,
-  "blocked_count": 4,
+  "packet_count": 0,
+  "routed_count": 0,
+  "blocked_count": 0,
   "clarification_count": 0
 }

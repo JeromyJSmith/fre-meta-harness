@@ -1,0 +1,123 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260522-ENVSCAN"
+target_agent:
+  name: "env-scanner"
+  surface: "claude_code_subagent"
+  invocation: "Agent tool, subagent_type=env-scanner"
+triad_context:
+  acting_role: "research"
+  upstream_handoff_ref: "CONTEXT.md#task-routing"
+  upstream_inbox_packet_ref: "inbox/structured/PROMPT-20260522-ENVSCAN.yaml"
+  packet_artifact_type: ".analysis.md"
+  required_gate_state: "green"
+  required_consumers:
+    - "capability-harvester"
+  bottom_matter_ref: "AGENTS.md#bottom-matter"
+  structured_contract_ref: "contracts/capability-matrix.yaml"
+  decision_space_required: true
+  runtime_truth_requirements:
+    - "Record actual tool versions from shell — never assume."
+    - "Record env var presence as present/absent only — never print values."
+  command_evidence_requirements:
+    - "Record exact command used and exact output for each tool check."
+    - "Record lib repo install status by checking for lockfiles and node_modules."
+mode:
+  execution_style: "bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Scan the current environment and produce evaluation/env-audit.json."
+  repo_scope: "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+  task_scope: "Shell environment checks + lib/ directory inspection only"
+current_verified_state:
+  facts:
+    - "bun is installed (used for pi-vs-claude-code bun install)"
+    - "uv is installed (used for probe scripts)"
+    - "codegraph was installed via bun add -g"
+    - "PI_COMS_NET_AUTH_TOKEN is present in .env (auto-generated)"
+    - "lib/ has 7 repos: ICM, ICM-animation-example, the-library, claude-code-hooks-mastery, claude-code-hooks-multi-agent-observability, just-prompt, pi-vs-claude-code"
+hard_rules:
+  environment:
+    - "Use uv for all Python execution."
+    - "Never print env var values — only present or absent."
+  safety:
+    - "Do not install anything."
+    - "Do not modify any file except evaluation/env-audit.json."
+  truthfulness:
+    - "If a tool is not found, record found=false — do not skip the entry."
+    - "Check lib repos by looking for lockfiles, not by running install."
+allowed_paths:
+  paths:
+    - "lib/"
+    - "evaluation/env-audit.json"
+disallowed_paths:
+  paths:
+    - "contracts/"
+    - "stages/"
+    - ".claude/"
+    - ".env"
+tasks:
+  ordered_steps:
+    - "Check each CLI tool with --version and record found/version"
+    - "Check each env var for presence (not value)"
+    - "Walk lib/ and check install status per repo"
+    - "Write evaluation/env-audit.json"
+validation_loop:
+  checks:
+    - "evaluation/env-audit.json is valid JSON"
+    - "All 8 CLI tools have an entry (found: true/false)"
+    - "All 3 env vars have an entry (present/absent)"
+    - "Each lib repo dir has an entry"
+  rerun_policy: "If a command errors, record error=true and continue."
+handoff_inputs:
+  handoff_artifact_path: "evaluation/env-audit.json"
+  source_report_paths:
+    - "evaluation/env-audit.json"
+  required_follow_up_roles:
+    - "capability-harvester"
+  consumption_requirements:
+    - "Read evaluation/env-audit.json before computing installation_state."
+success_criteria:
+  best_case: "All tool checks complete, all lib repos inventoried, evaluation/env-audit.json written."
+  acceptable_fallback: "Some tools not found (expected). Artifact written with found=false entries."
+report_contract:
+  required_fields:
+    - "evaluation/env-audit.json written"
+    - "tool count checked"
+    - "lib repos inventoried"
+  runtime_truth_fields:
+    - "runtime_truth_level"
+    - "runtime_mode_activated"
+    - "runtime_modes_blocked"
+    - "activation_artifacts"
+    - "observability_artifacts"
+    - "completion_tokens_observed"
+    - "policy_outcomes_observed"
+  blocker_fields:
+    - "lane_id"
+    - "classification"
+    - "blocker_dependency"
+    - "missing_prerequisites"
+    - "evidence_refs"
+  freshness_fields:
+    - "artifact_records"
+    - "max_artifact_span_seconds"
+    - "tool_health_artifacts"
+  score_saturation_fields:
+    - "baseline_total_score"
+    - "final_total_score"
+    - "score_changed"
+    - "why_this_slice_counts"
+  command_evidence_fields:
+    - "activation_commands"
+    - "validation_commands"
+    - "tool_health_commands"
+  follow_up_prompt_fields:
+    - "artifact_path"
+    - "target_schema_ref"
+    - "target_template_ref"
+    - "must_be_inline_ready"
+    - "markdown_companion_artifact_path"
+    - "markdown_template_ref"
+    - "must_use_front_matter"
+    - "must_use_bottom_matter_marker"

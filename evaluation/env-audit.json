@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "executed_at": "2026-05-22T11:00:00Z",
+  "cli_tools": {
+    "bun": {"found": true, "version": "1.3.11"},
+    "uv": {"found": true, "version": "0.11.7"},
+    "pi": {"found": false, "version": null},
+    "just": {"found": true, "version": "1.51.0"},
+    "codegraph": {"found": false, "version": null},
+    "git": {"found": true, "version": "2.54.0"},
+    "node": {"found": true, "version": "26.0.0"},
+    "python3": {"found": true, "version": "3.14.5"}
+  },
+  "env_vars": {
+    "PI_COMS_NET_AUTH_TOKEN": "present",
+    "ANTHROPIC_API_KEY": "absent",
+    "OPENAI_API_KEY": "absent"
+  },
+  "lib_repos": [
+    {
+      "name": "agent-sandbox-skill",
+      "path": "lib/agent-sandbox-skill",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "bowser",
+      "path": "lib/bowser",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "claude-code-hooks-mastery",
+      "path": "lib/claude-code-hooks-mastery",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "claude-code-hooks-multi-agent-observability",
+      "path": "lib/claude-code-hooks-multi-agent-observability",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "fork-repository-skill",
+      "path": "lib/fork-repository-skill",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "ICM",
+      "path": "lib/ICM",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "ICM-animation-example",
+      "path": "lib/ICM-animation-example",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "infinite-agentic-loop",
+      "path": "lib/infinite-agentic-loop",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "just-prompt",
+      "path": "lib/just-prompt",
+      "install_status": "installed",
+      "has_package_json": false,
+      "has_pyproject": true
+    },
+    {
+      "name": "mac-mini-agent",
+      "path": "lib/mac-mini-agent",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    },
+    {
+      "name": "pi-vs-claude-code",
+      "path": "lib/pi-vs-claude-code",
+      "install_status": "installed",
+      "has_package_json": true,
+      "has_pyproject": false
+    },
+    {
+      "name": "the-library",
+      "path": "lib/the-library",
+      "install_status": "uninstalled",
+      "has_package_json": false,
+      "has_pyproject": false
+    }
+  ]
+}

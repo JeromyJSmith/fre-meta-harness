@@ -1,788 +1,463 @@
 {
   "schema_version": "1.0.0",
-  "packet_type": "compiled_source_index",
-  "status": "refreshed",
+  "packet_type": "source_index",
+  "status": "fresh",
+  "generated_at": "2026-05-22T17:02:03Z",
+  "lib_repos": [
+    {
+      "name": "agent-sandbox-skill",
+      "path": "lib/agent-sandbox-skill",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "agent-sandbox-skill"
+    },
+    {
+      "name": "bowser",
+      "path": "lib/bowser",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "bowser"
+    },
+    {
+      "name": "claude-code-hooks-mastery",
+      "path": "lib/claude-code-hooks-mastery",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "claude-code-hooks-mastery"
+    },
+    {
+      "name": "claude-code-hooks-multi-agent-observability",
+      "path": "lib/claude-code-hooks-multi-agent-observability",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "claude-code-hooks-multi-agent-observability"
+    },
+    {
+      "name": "fork-repository-skill",
+      "path": "lib/fork-repository-skill",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "fork-repository-skill"
+    },
+    {
+      "name": "ICM",
+      "path": "lib/ICM",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": null
+    },
+    {
+      "name": "ICM-animation-example",
+      "path": "lib/ICM-animation-example",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": null
+    },
+    {
+      "name": "infinite-agentic-loop",
+      "path": "lib/infinite-agentic-loop",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "infinite-agentic-loop"
+    },
+    {
+      "name": "just-prompt",
+      "path": "lib/just-prompt",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": true,
+      "installed": true,
+      "install_method": "uv",
+      "capability_id": "just-prompt"
+    },
+    {
+      "name": "mac-mini-agent",
+      "path": "lib/mac-mini-agent",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "mac-mini-agent"
+    },
+    {
+      "name": "pi-vs-claude-code",
+      "path": "lib/pi-vs-claude-code",
+      "has_readme": true,
+      "has_package_json": true,
+      "has_pyproject": false,
+      "installed": true,
+      "install_method": "bun",
+      "capability_id": "pi-vs-claude-code"
+    },
+    {
+      "name": "the-library",
+      "path": "lib/the-library",
+      "has_readme": true,
+      "has_package_json": false,
+      "has_pyproject": false,
+      "installed": false,
+      "install_method": null,
+      "capability_id": "the-library"
+    }
+  ],
+  "totals": {
+    "contracts": 30,
+    "schemas": 50,
+    "examples": 91,
+    "scripts": 23,
+    "lib_repos": 12,
+    "stage_contexts": 5
+  },
+  "source_catalog": {
+    "contracts": [
+      "contracts/agent-eval-parent-lane.yaml",
+      "contracts/agent-extension-request.yaml",
+      "contracts/agent-role-contract.yaml",
+      "contracts/benchmark-emission.yaml",
+      "contracts/capability-matrix.yaml",
+      "contracts/contract-to-runner-map.yaml",
+      "contracts/delegation-bundle.yaml",
+      "contracts/front-door-runtime-topology.yaml",
+      "contracts/gap-map-strength.yaml",
+      "contracts/hook-manifest.yaml",
+      "contracts/inbox-packet.yaml",
+      "contracts/inbox-routing-decision.yaml",
+      "contracts/library-distribution.yaml",
+      "contracts/observability-event.yaml",
+      "contracts/observability-ingest.yaml",
+      "contracts/parent-capability-metrics.yaml",
+      "contracts/peer-lifecycle.yaml",
+      "contracts/peer-mesh-runtime.yaml",
+      "contracts/peer-mesh.yaml",
+      "contracts/peer-message.yaml",
+      "contracts/policy-decision.yaml",
+      "contracts/recursive-documentation-bundle.yaml",
+      "contracts/research-packet-manifest.yaml",
+      "contracts/subsystem-bounded-probe.yaml",
+      "contracts/subsystem-harness-topology.yaml",
+      "contracts/subsystem-observability-handshake.yaml",
+      "contracts/subsystem-registry.yaml",
+      "contracts/subsystem-runner-proof-family.yaml",
+      "contracts/three-agent-topology.yaml",
+      "contracts/tool-packaging-family.yaml"
+    ],
+    "schemas": [
+      "schemas/agent-card.schema.json",
+      "schemas/agent-extension-request.schema.json",
+      "schemas/agent-role-contract.schema.json",
+      "schemas/benchmark-emission.schema.json",
+      "schemas/bottom-matter.schema.json",
+      "schemas/capability-harvest-metrics.schema.json",
+      "schemas/capability-matrix.schema.json",
+      "schemas/claude-code-portable-peer-mesh.schema.yaml",
+      "schemas/compiled-capability-harvest.schema.json",
+      "schemas/compiled-feature-matrix.schema.json",
+      "schemas/consume-source-quality-strengthening-report.schema.json",
+      "schemas/contract-to-runner-map.schema.json",
+      "schemas/copilot-ratchet-report.schema.json",
+      "schemas/delegation-bundle.schema.json",
+      "schemas/evidence-strength.schema.json",
+      "schemas/front-door-runtime-topology.schema.json",
+      "schemas/front-matter.schema.json",
+      "schemas/gap-map-strength-report.schema.json",
+      "schemas/gap-map-strength.schema.json",
+      "schemas/gap-placement-map.schema.json",
+      "schemas/governed-agent-profile.schema.json",
+      "schemas/hook-manifest.schema.json",
+      "schemas/inbox-packet.schema.json",
+      "schemas/inbox-routing-decision.schema.json",
+      "schemas/iteration-record.schema.json",
+      "schemas/library-distribution.schema.json",
+      "schemas/observability-event.schema.json",
+      "schemas/observability-ingest.schema.json",
+      "schemas/operational-feature-matrix.schema.json",
+      "schemas/peer-lifecycle.schema.json",
+      "schemas/peer-mesh-runtime.schema.json",
+      "schemas/peer-mesh.schema.json",
+      "schemas/peer-message.schema.json",
+      "schemas/policy-decision.schema.json",
+      "schemas/recursive-documentation-bundle.schema.json",
+      "schemas/research-packet-manifest.schema.json",
+      "schemas/source-index.schema.json",
+      "schemas/subsystem-bounded-probe.schema.json",
+      "schemas/subsystem-harness-topology.schema.json",
+      "schemas/subsystem-observability-handshake.schema.json",
+      "schemas/subsystem-registry-record.schema.json",
+      "schemas/subsystem-registry.schema.json",
+      "schemas/subsystem-runner-proof-family.schema.json",
+      "schemas/subsystem-runner-proof-strengthening-report.schema.json",
+      "schemas/three-agent-topology.schema.json",
+      "schemas/tool-artifact.schema.json",
+      "schemas/tool-packaging-family.schema.json",
+      "schemas/tool-packaging-strengthening-report.schema.json",
+      "schemas/tool-spec.schema.json",
+      "schemas/tool-task.schema.json"
+    ],
+    "examples": [
+      "examples/agent-card.invalid.missing-task-endpoints.json",
+      "examples/agent-card.valid.json",
+      "examples/agent-extension-request.invalid.missing-validation-gate.json",
+      "examples/agent-extension-request.valid.json",
+      "examples/agent-role-contract.invalid.missing-hook-refs.json",
+      "examples/agent-role-contract.invalid.missing-role-class.json",
+      "examples/agent-role-contract.valid.json",
+      "examples/architect-review-handoff-prompt.invalid.missing-follow-up.json",
+      "examples/architect-review-handoff-prompt.valid.json",
+      "examples/benchmark-emission.invalid.missing-group.json",
+      "examples/benchmark-emission.valid.json",
+      "examples/bottom-matter.invalid.missing-gate-progress.json",
+      "examples/bottom-matter.valid.json",
+      "examples/capability-harvest-metrics.invalid.docs-only.json",
+      "examples/capability-harvest-metrics.valid.json",
+      "examples/capability-matrix.invalid.missing-capability-row.json",
+      "examples/capability-matrix.valid.json",
+      "examples/consume-source-quality-strengthening-report.invalid.missing-decision-space.json",
+      "examples/consume-source-quality-strengthening-report.valid.json",
+      "examples/contract-to-runner-map.invalid.missing-wrapper-synthesizer.json",
+      "examples/contract-to-runner-map.valid.json",
+      "examples/copilot-ratchet-report.invalid.missing-cycles.json",
+      "examples/copilot-ratchet-report.invalid.missing-runtime-truth.json",
+      "examples/copilot-ratchet-report.valid.json",
+      "examples/delegation-bundle-contract.invalid.missing-contract-dependencies.json",
+      "examples/delegation-bundle-contract.valid.json",
+      "examples/evidence-strength.invalid.transcript-promotion.json",
+      "examples/evidence-strength.valid.json",
+      "examples/front-door-runtime-topology-contract.invalid.missing-ingress-lanes.json",
+      "examples/front-door-runtime-topology-contract.valid.json",
+      "examples/front-matter.invalid.missing-id.json",
+      "examples/front-matter.valid.json",
+      "examples/gap-map-strength-report.invalid.missing-weak-content.json",
+      "examples/gap-map-strength-report.valid.json",
+      "examples/hook-manifest.invalid.missing-governed-operations.json",
+      "examples/hook-manifest.invalid.non-fail-loud.json",
+      "examples/hook-manifest.valid.json",
+      "examples/inbox-packet-contract.invalid.missing-artifact-requirements.json",
+      "examples/inbox-packet-contract.valid.json",
+      "examples/inbox-routing-decision-contract.invalid.missing-runtime-targets.json",
+      "examples/inbox-routing-decision-contract.valid.json",
+      "examples/iteration-record.invalid.dry-run.json",
+      "examples/iteration-record.valid.json",
+      "examples/library-distribution.invalid.missing-benchmark-recipe.json",
+      "examples/library-distribution.valid.json",
+      "examples/observability-event.invalid.missing-ingestion.json",
+      "examples/observability-event.valid.json",
+      "examples/observability-ingest.invalid.missing-session-end.json",
+      "examples/observability-ingest.valid.json",
+      "examples/operational-feature-matrix.invalid.missing-do-not-promote.json",
+      "examples/operational-feature-matrix.valid.json",
+      "examples/peer-lifecycle.invalid.missing-completion-boundary.json",
+      "examples/peer-lifecycle.valid.json",
+      "examples/peer-mesh-runtime.invalid.missing-runtime-modes.json",
+      "examples/peer-mesh-runtime.valid.json",
+      "examples/peer-mesh.invalid.missing-await-response.json",
+      "examples/peer-mesh.valid.json",
+      "examples/peer-message.invalid.missing-envelope.json",
+      "examples/peer-message.valid.json",
+      "examples/policy-decision.invalid.missing-application-points.json",
+      "examples/policy-decision.valid.json",
+      "examples/recursive-documentation-bundle.invalid.missing-working-map.json",
+      "examples/recursive-documentation-bundle.valid.json",
+      "examples/research-packet-manifest.invalid.missing-source-index.json",
+      "examples/research-packet-manifest.valid.json",
+      "examples/subsystem-bounded-probe.invalid.missing-proof-state.json",
+      "examples/subsystem-bounded-probe.valid.json",
+      "examples/subsystem-harness-topology.invalid.missing-first-subsystem.json",
+      "examples/subsystem-harness-topology.valid.json",
+      "examples/subsystem-observability-handshake.invalid.missing-sync-targets.json",
+      "examples/subsystem-observability-handshake.valid.json",
+      "examples/subsystem-registry-record.invalid.missing-repo-catalog.json",
+      "examples/subsystem-registry-record.valid.json",
+      "examples/subsystem-registry.invalid.missing-runtime-truth.json",
+      "examples/subsystem-registry.valid.json",
+      "examples/subsystem-runner-proof-family.invalid.missing-handshake-schema.json",
+      "examples/subsystem-runner-proof-family.valid.json",
+      "examples/subsystem-runner-proof-strengthening-report.invalid.missing-decision-space.json",
+      "examples/subsystem-runner-proof-strengthening-report.valid.json",
+      "examples/three-agent-topology.invalid.missing-orchestrator.json",
+      "examples/three-agent-topology.valid.json",
+      "examples/tool-artifact.invalid.missing-registry-entry.json",
+      "examples/tool-artifact.valid.json",
+      "examples/tool-packaging-family.invalid.missing-endpoint.json",
+      "examples/tool-packaging-family.valid.json",
+      "examples/tool-packaging-strengthening-report.invalid.missing-decision-space.json",
+      "examples/tool-packaging-strengthening-report.valid.json",
+      "examples/tool-spec.invalid.missing-artifact-output.json",
+      "examples/tool-spec.valid.json",
+      "examples/tool-task.invalid.missing-completion-signal.json",
+      "examples/tool-task.valid.json"
+    ],
+    "scripts": [
+      "scripts/build-parent-infranodus-artifacts.py",
+      "scripts/build-visualization-artifacts.py",
+      "scripts/check-consume-source-quality-policy.py",
+      "scripts/compile-operational-feature-matrix.py",
+      "scripts/consume_source_quality_lib.py",
+      "scripts/extract-consume-source-quality.py",
+      "scripts/harvest-local-runner-capabilities.py",
+      "scripts/ingest-consume-sources.py",
+      "scripts/parent_peer_mesh_runtime.py",
+      "scripts/refresh-consume-source-quality.py",
+      "scripts/refresh-parent-tool-health.py",
+      "scripts/run-copilot-parent-ratchet.sh",
+      "scripts/run-intake-etl-probe.sh",
+      "scripts/run-parent-agent-eval.sh",
+      "scripts/run-parent-peer-mesh-local.sh",
+      "scripts/run-parent-ratchet.sh",
+      "scripts/run-research-harvest-probe.sh",
+      "scripts/run-semantic-cartography-probe.sh",
+      "scripts/run_intake_etl_probe.py",
+      "scripts/run_research_harvest_probe.py",
+      "scripts/run_semantic_cartography_probe.py",
+      "scripts/score-parent-wrapper.py",
+      "scripts/tool_health_probe_lib.py"
+    ],
+    "stage_contexts": [
+      "stages/01_inbox_intake/CONTEXT.md",
+      "stages/02_research_harvest/CONTEXT.md",
+      "stages/03_semantic_cartography/CONTEXT.md",
+      "stages/04_triad_review/CONTEXT.md",
+      "stages/05_wrapper_synthesis/CONTEXT.md"
+    ]
+  },
   "sources": [
     {
       "kind": "parent_contract",
-      "ref": "contracts/capability-matrix.yaml",
-      "evidence_type": "parent_contract",
-      "used_by_packets": [
-        "execution-substrates"
-      ],
-      "notes": [
-        "Current parent placement contract for core and adjacent capability lanes."
-      ],
-      "evidence_strength": {
-        "source_ref": "contracts/capability-matrix.yaml",
-        "evidence_type": "parent_contract",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Current parent placement contract for core and adjacent capability lanes."
-        ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "ref": "evaluation/research/compiled/capability-harvest.json",
       "evidence_type": "local_authority",
-      "used_by_packets": [
-        "claude-code-hooks-multi-agent-observability",
-        "multi-agent-observability"
-      ],
-      "notes": [
-        "Defines report and evaluation artifacts as governed outputs.",
-        "Anchors observability outputs inside the artifact registry model."
-      ],
       "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "source_ref": "evaluation/research/compiled/capability-harvest.json",
         "evidence_type": "local_authority",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Defines report and evaluation artifacts as governed outputs.",
-          "Anchors observability outputs inside the artifact registry model."
-        ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
-      "evidence_type": "local_authority",
-      "used_by_packets": [
-        "the-library",
-        "claude-code-hooks-mastery",
-        "capability-distribution",
-        "hook-policy"
-      ],
-      "notes": [
-        "States that capability harvest must normalize tools, skills, agents, hooks, and manifests instead of leaving them as prose.",
-        "Requires hooks to be explicit governed artifacts rather than attached prose.",
-        "Defines capability harvest as intake, parse, classify, normalize, validate, and promote.",
-        "States that hooks must become explicit governed artifacts."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
-        "evidence_type": "local_authority",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "States that capability harvest must normalize tools, skills, agents, hooks, and manifests instead of leaving them as prose.",
-          "Requires hooks to be explicit governed artifacts rather than attached prose.",
-          "Defines capability harvest as intake, parse, classify, normalize, validate, and promote.",
-          "States that hooks must become explicit governed artifacts."
-        ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
-      "evidence_type": "local_gap_placeholder",
-      "used_by_packets": [
-        "execution-substrates"
-      ],
-      "notes": [
-        "Only a title is stored locally."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
-        "evidence_type": "local_gap_placeholder",
         "strength_class": "structural_placeholder",
         "transcript_derived": false,
-        "workflow_claim_promotion": "blocked",
-        "do_not_promote_reason": "Placeholder sources preserve topic awareness only and must not drive workflow promotion.",
-        "notes": [
-          "Only a title is stored locally."
-        ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
-      "evidence_type": "local_registry",
-      "used_by_packets": [
-        "capability-distribution"
-      ],
-      "notes": [
-        "Shows the artifact-governance emphasis behind typed outputs."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
-        "evidence_type": "local_registry",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
         "workflow_claim_promotion": "allowed",
         "notes": [
-          "Shows the artifact-governance emphasis behind typed outputs."
+          "Local file \u2014 machine-readable contract or compiled artifact."
         ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
-      "evidence_type": "task_capture",
-      "video_evidence_strength": "task_capture_without_terminal_frames",
+      },
       "used_by_packets": [
-        "peer-mesh",
-        "tutorial-video-context"
+        "capability_harvester"
       ],
       "notes": [
-        "Captures the earlier research task and install-guide framing, not raw durable transcript content.",
-        "High-level task capture that embeds prior generated output rather than raw transcript storage."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
-        "evidence_type": "task_capture",
-        "strength_class": "task_capture_limited",
-        "transcript_derived": true,
-        "workflow_claim_promotion": "blocked",
-        "required_artifacts": [
-          "terminal capture",
-          "frame capture"
-        ],
-        "do_not_promote_reason": "Task captures without terminal or frame evidence stay below promotion strength.",
-        "notes": [
-          "Captures the earlier research task and install-guide framing, not raw durable transcript content.",
-          "High-level task capture that embeds prior generated output rather than raw transcript storage."
-        ]
-      }
+        "Local path: evaluation/research/compiled/capability-harvest.json"
+      ]
     },
     {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+      "kind": "parent_contract",
+      "ref": "evaluation/research/compiled/feature-matrix.json",
       "evidence_type": "local_authority",
-      "used_by_packets": [
-        "pi-vs-claude-code",
-        "peer-mesh"
-      ],
-      "notes": [
-        "Parent-native hypothesis that centers Pi-to-Pi as the communication plane.",
-        "States that Pi-to-Pi should be the communication plane in the harness."
-      ],
       "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+        "source_ref": "evaluation/research/compiled/feature-matrix.json",
         "evidence_type": "local_authority",
-        "strength_class": "documentary_support",
+        "strength_class": "structural_placeholder",
         "transcript_derived": false,
         "workflow_claim_promotion": "allowed",
         "notes": [
-          "Parent-native hypothesis that centers Pi-to-Pi as the communication plane.",
-          "States that Pi-to-Pi should be the communication plane in the harness."
+          "Local file \u2014 machine-readable contract or compiled artifact."
         ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
-      "evidence_type": "task_stub",
-      "video_evidence_strength": "task_stub_without_terminal_frames",
+      },
       "used_by_packets": [
-        "tutorial-video-context"
+        "capability_harvester"
       ],
       "notes": [
-        "Runbook task record only; it does not preserve the actual terminal/video frames."
-      ],
+        "Local path: evaluation/research/compiled/feature-matrix.json"
+      ]
+    },
+    {
+      "kind": "parent_contract",
+      "ref": "evaluation/research/compiled/gap-placement-map.json",
+      "evidence_type": "local_authority",
       "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
-        "evidence_type": "task_stub",
-        "strength_class": "task_stub_limited",
-        "transcript_derived": true,
-        "workflow_claim_promotion": "blocked",
-        "required_artifacts": [
-          "terminal capture",
-          "frame capture"
-        ],
-        "do_not_promote_reason": "Task stubs do not preserve the proof needed for workflow promotion.",
+        "source_ref": "evaluation/research/compiled/gap-placement-map.json",
+        "evidence_type": "local_authority",
+        "strength_class": "structural_placeholder",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
         "notes": [
-          "Runbook task record only; it does not preserve the actual terminal/video frames."
+          "Local file \u2014 machine-readable contract or compiled artifact."
         ]
-      }
+      },
+      "used_by_packets": [
+        "capability_harvester"
+      ],
+      "notes": [
+        "Local path: evaluation/research/compiled/gap-placement-map.json"
+      ]
+    },
+    {
+      "kind": "parent_contract",
+      "ref": "evaluation/research/compiled/source-index.json",
+      "evidence_type": "local_authority",
+      "evidence_strength": {
+        "source_ref": "evaluation/research/compiled/source-index.json",
+        "evidence_type": "local_authority",
+        "strength_class": "structural_placeholder",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Local file \u2014 machine-readable contract or compiled artifact."
+        ]
+      },
+      "used_by_packets": [
+        "capability_harvester"
+      ],
+      "notes": [
+        "Local path: evaluation/research/compiled/source-index.json"
+      ]
     },
     {
       "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+      "ref": "evaluation/research/current-understanding.json",
       "evidence_type": "transcript_context_summary",
       "video_evidence_strength": "transcript_plus_context_summary",
-      "used_by_packets": [
-        "pi-vs-claude-code",
-        "agent-sandbox-skill",
-        "tutorial-video-context"
-      ],
-      "notes": [
-        "Transcript-anchored local summary with architect-facing guardrail ideas; no raw frame captures are stored in this repo.",
-        "Mentions E2B -> exe.dev parity work as part of the Pi-to-Pi demo narrative; no raw terminal frames are stored locally.",
-        "Summary document with timestamped claims and architect recommendations; no frame captures stored locally."
-      ],
       "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "source_ref": "evaluation/research/current-understanding.json",
         "evidence_type": "transcript_context_summary",
         "strength_class": "transcript_context_limited",
         "transcript_derived": true,
         "workflow_claim_promotion": "blocked",
-        "required_artifacts": [
-          "terminal capture",
-          "frame capture"
-        ],
-        "do_not_promote_reason": "Transcript-derived workflow claims need frame or terminal proof before promotion.",
+        "do_not_promote_reason": "Derived from session transcript context summary \u2014 not verified by terminal output or frame capture.",
         "notes": [
-          "Transcript-anchored local summary with architect-facing guardrail ideas; no raw frame captures are stored in this repo.",
-          "Mentions E2B -> exe.dev parity work as part of the Pi-to-Pi demo narrative; no raw terminal frames are stored locally.",
-          "Summary document with timestamped claims and architect recommendations; no frame captures stored locally."
+          "Capability harvest understanding is derived from governed session context.",
+          "Do not promote to activation_proven until probe scripts confirm runtime behavior."
         ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
-      "evidence_type": "local_gap_placeholder",
+      },
       "used_by_packets": [
-        "claude-code-hooks-mastery",
-        "hook-policy"
+        "capability_harvester"
       ],
       "notes": [
-        "Only a title is stored locally, so it signals intent but not detailed runtime doctrine.",
-        "Signals the policy topic but does not preserve detailed guidance locally."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
-        "evidence_type": "local_gap_placeholder",
-        "strength_class": "structural_placeholder",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "blocked",
-        "do_not_promote_reason": "Placeholder sources preserve topic awareness only and must not drive workflow promotion.",
-        "notes": [
-          "Only a title is stored locally, so it signals intent but not detailed runtime doctrine.",
-          "Signals the policy topic but does not preserve detailed guidance locally."
-        ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-      "evidence_type": "local_authority",
-      "used_by_packets": [
-        "claude-code-hooks-multi-agent-observability",
-        "multi-agent-observability"
-      ],
-      "notes": [
-        "Explains how reports, scorecards, and summaries should align.",
-        "Describes run report, scorecard, and summary artifact families."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-        "evidence_type": "local_authority",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Explains how reports, scorecards, and summaries should align.",
-          "Describes run report, scorecard, and summary artifact families."
-        ]
-      }
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
-      "evidence_type": "local_gap_placeholder",
-      "used_by_packets": [
-        "execution-substrates"
-      ],
-      "notes": [
-        "Only a title is stored locally."
-      ],
-      "evidence_strength": {
-        "source_ref": "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
-        "evidence_type": "local_gap_placeholder",
-        "strength_class": "structural_placeholder",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "blocked",
-        "do_not_promote_reason": "Placeholder sources preserve topic awareness only and must not drive workflow promotion.",
-        "notes": [
-          "Only a title is stored locally."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "agent-sandbox-skill",
-        "execution-substrates"
-      ],
-      "notes": [
-        "Documents E2B dependency, prompts, and sandbox-oriented workflows.",
-        "Exact sandbox dependency source."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents E2B dependency, prompts, and sandbox-oriented workflows.",
-          "Exact sandbox dependency source."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "bowser",
-        "execution-substrates"
-      ],
-      "notes": [
-        "Documents the four-layer architecture, Claude/Playwright dependencies, and browser-test workflows.",
-        "Browser-lane dependency source."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents the four-layer architecture, Claude/Playwright dependencies, and browser-test workflows.",
-          "Browser-lane dependency source."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "claude-code-hooks-mastery",
-        "hook-policy"
-      ],
-      "notes": [
-        "Documents 13 hook lifecycle events, hook semantics, validator scripts, and stop-hook continuation patterns.",
-        "Documents lifecycle hooks, decision control, and validation behavior."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents 13 hook lifecycle events, hook semantics, validator scripts, and stop-hook continuation patterns.",
-          "Documents lifecycle hooks, decision control, and validation behavior."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "claude-code-hooks-multi-agent-observability",
-        "multi-agent-observability"
-      ],
-      "notes": [
-        "Documents event pipeline architecture, SQLite/WebSocket stack, hook scripts, and session/query behavior.",
-        "Provides the event pipeline architecture, field forwarding, and sink behavior."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents event pipeline architecture, SQLite/WebSocket stack, hook scripts, and session/query behavior.",
-          "Provides the event pipeline architecture, field forwarding, and sink behavior."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "fork-repository-skill"
-      ],
-      "notes": [
-        "Documents the skill runtime, supported tools, and context-summary branch behavior."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents the skill runtime, supported tools, and context-summary branch behavior."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "infinite-agentic-loop"
-      ],
-      "notes": [
-        "Documents single, batch, large-batch, and infinite command variants that the parent must classify carefully."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents single, batch, large-batch, and infinite command variants that the parent must classify carefully."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "just-prompt",
-        "execution-substrates"
-      ],
-      "notes": [
-        "Documents the MCP tools, provider prefixes, parallel prompting, and CEO-and-board workflow.",
-        "Gated model-arbitration source."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents the MCP tools, provider prefixes, parallel prompting, and CEO-and-board workflow.",
-          "Gated model-arbitration source."
-        ]
-      }
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml",
-      "evidence_type": "repo_manifest",
-      "used_by_packets": [
-        "just-prompt"
-      ],
-      "notes": [
-        "Pins the Python MCP server runtime for later implementation work."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml",
-        "evidence_type": "repo_manifest",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Pins the Python MCP server runtime for later implementation work."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "mac-mini-agent",
-        "execution-substrates"
-      ],
-      "notes": [
-        "Documents Steer/Drive/Listen/Direct, sentinel markers, Mac permissions, and two-machine setup.",
-        "Deployment-specific device-sidecar source."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents Steer/Drive/Listen/Direct, sentinel markers, Mac permissions, and two-machine setup.",
-          "Deployment-specific device-sidecar source."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "pi-vs-claude-code",
-        "peer-mesh"
-      ],
-      "notes": [
-        "Documents prerequisites, coms/coms-net, four peer tools, hop limits, and localhost-vs-LAN boundaries.",
-        "Documents four tools, same-host vs network mode, auth token, hop limit, and stale-peer cleanup."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Documents prerequisites, coms/coms-net, four peer tools, hop limits, and localhost-vs-LAN boundaries.",
-          "Documents four tools, same-host vs network mode, auth token, hop limit, and stale-peer cleanup."
-        ]
-      }
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
-      "evidence_type": "repo_runtime_entrypoint",
-      "used_by_packets": [
-        "pi-vs-claude-code",
-        "peer-mesh"
-      ],
-      "notes": [
-        "Shows the actual `local-coms`, `coms`, `coms-net-server`, and `coms-net-server-lan` entrypoints.",
-        "Confirms the concrete bootstrap commands for local and networked mesh modes."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
-        "evidence_type": "repo_runtime_entrypoint",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Shows the actual `local-coms`, `coms`, `coms-net-server`, and `coms-net-server-lan` entrypoints.",
-          "Confirms the concrete bootstrap commands for local and networked mesh modes."
-        ]
-      }
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json",
-      "evidence_type": "repo_manifest",
-      "used_by_packets": [
-        "pi-vs-claude-code"
-      ],
-      "notes": [
-        "Confirms Bun/TypeScript runtime shape and minimal dependency footprint."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json",
-        "evidence_type": "repo_manifest",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Confirms Bun/TypeScript runtime shape and minimal dependency footprint."
-        ]
-      }
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "the-library",
-        "capability-distribution"
-      ],
-      "notes": [
-        "Explains private-first typed-reference distribution, agent-agnostic runtime, and why copying is the wrong default.",
-        "Documents the private-first typed-reference catalog model."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
-        "evidence_type": "repo_doc",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Explains private-first typed-reference distribution, agent-agnostic runtime, and why copying is the wrong default.",
-          "Documents the private-first typed-reference catalog model."
-        ]
-      }
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
-      "evidence_type": "skill_runtime",
-      "used_by_packets": [
-        "the-library"
-      ],
-      "notes": [
-        "Confirms the upstream system is a pure agent skill rather than a compiled service."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
-        "evidence_type": "skill_runtime",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Confirms the upstream system is a pure agent skill rather than a compiled service."
-        ]
-      }
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
-      "evidence_type": "repo_manifest",
-      "used_by_packets": [
-        "the-library",
-        "capability-distribution"
-      ],
-      "notes": [
-        "Shows the catalog structure and empty default matrix the parent must populate.",
-        "Shows the source-of-truth catalog format that later implementation can populate."
-      ],
-      "evidence_strength": {
-        "source_ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
-        "evidence_type": "repo_manifest",
-        "strength_class": "documentary_support",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Shows the catalog structure and empty default matrix the parent must populate.",
-          "Shows the source-of-truth catalog format that later implementation can populate."
-        ]
-      }
-    },
-    {
-      "kind": "consume_packet",
-      "ref": "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
-      "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "operational_feature_matrix",
-        "capability_matrix_extension"
-      ],
-      "notes": [
-        "Prior governed handoff used as bounded design input for the operational matrix.",
-        "Remains advisory and does not mutate canonical compiled research truth by itself."
-      ],
-      "evidence_strength": {
-        "source_ref": "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
-        "evidence_type": "first_party_consume_packet",
-        "strength_class": "first_party_packet",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Prior governed handoff used as bounded design input for the operational matrix.",
-          "Remains advisory and does not mutate canonical compiled research truth by itself."
-        ]
-      }
-    },
-    {
-      "kind": "consume_packet",
-      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
-      "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "operational_feature_matrix",
-        "capability_matrix_extension"
-      ],
-      "notes": [
-        "First-party consume packet that anchors capability harvesting doctrine.",
-        "Used for bounded extension guidance without mutating canonical runtime truth."
-      ],
-      "evidence_strength": {
-        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
-        "evidence_type": "first_party_consume_packet",
-        "strength_class": "first_party_packet",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "First-party consume packet that anchors capability harvesting doctrine.",
-          "Used for bounded extension guidance without mutating canonical runtime truth."
-        ]
-      }
-    },
-    {
-      "kind": "consume_packet",
-      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md",
-      "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "compiled_output_ingestion",
-        "follow_up_decision_space"
-      ],
-      "notes": [
-        "Used only to preserve the exact blocked persistence dependencies.",
-        "Does not activate Pixeltable or DuckDB in this slice."
-      ],
-      "evidence_strength": {
-        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md",
-        "evidence_type": "first_party_consume_packet",
-        "strength_class": "first_party_packet",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Used only to preserve the exact blocked persistence dependencies.",
-          "Does not activate Pixeltable or DuckDB in this slice."
-        ]
-      }
-    },
-    {
-      "kind": "consume_packet",
-      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md",
-      "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "consume_source_quality",
-        "compiled_output_ingestion"
-      ],
-      "notes": [
-        "Maps prompt-to-tool packaging requirements into bounded compiled outputs.",
-        "Supports the ingestion map and operational compile behavior."
-      ],
-      "evidence_strength": {
-        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md",
-        "evidence_type": "first_party_consume_packet",
-        "strength_class": "first_party_packet",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Maps prompt-to-tool packaging requirements into bounded compiled outputs.",
-          "Supports the ingestion map and operational compile behavior."
-        ]
-      }
-    },
-    {
-      "kind": "consume_packet",
-      "ref": "inbox/prompting-tools.consume/Schema Set \u2014 Contracts for every artifact 49cc487604f482c7972b819cfcb5317b.md",
-      "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "consume_source_quality",
-        "operational_feature_matrix"
-      ],
-      "notes": [
-        "Schema guidance packet used to keep the new source-quality outputs machine-validated.",
-        "Supports the operational matrix schema and report schema."
-      ],
-      "evidence_strength": {
-        "source_ref": "inbox/prompting-tools.consume/Schema Set \u2014 Contracts for every artifact 49cc487604f482c7972b819cfcb5317b.md",
-        "evidence_type": "first_party_consume_packet",
-        "strength_class": "first_party_packet",
-        "transcript_derived": false,
-        "workflow_claim_promotion": "allowed",
-        "notes": [
-          "Schema guidance packet used to keep the new source-quality outputs machine-validated.",
-          "Supports the operational matrix schema and report schema."
-        ]
-      }
+        "Current-understanding represents the bounded transcript context behind the capability harvest.",
+        "All capability rows in the feature matrix inherit transcript-derived status until probe promotion."
+      ]
     },
     {
       "kind": "consume_packet",
       "ref": "inbox/transcribe.consume/file-system-consume.md",
       "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "consume_source_quality",
-        "consume_extraction_map"
-      ],
-      "notes": [
-        "First-party consume packet for filesystem-oriented transcript intake.",
-        "Useful for extraction posture and bounded source-quality guidance."
-      ],
       "evidence_strength": {
         "source_ref": "inbox/transcribe.consume/file-system-consume.md",
         "evidence_type": "first_party_consume_packet",
@@ -790,23 +465,20 @@
         "transcript_derived": false,
         "workflow_claim_promotion": "allowed",
         "notes": [
-          "First-party consume packet for filesystem-oriented transcript intake.",
-          "Useful for extraction posture and bounded source-quality guidance."
+          "First-party consume packet \u2014 file-system consume channel."
         ]
-      }
+      },
+      "used_by_packets": [
+        "capability_harvester"
+      ],
+      "notes": [
+        "Consume folder source: transcribe.consume family."
+      ]
     },
     {
       "kind": "consume_packet",
       "ref": "inbox/transcribe.consume/prompt-candidate-consumption.md",
       "evidence_type": "first_party_consume_packet",
-      "used_by_packets": [
-        "consume_source_quality",
-        "evidence_strength"
-      ],
-      "notes": [
-        "Prompt candidate for transcript normalization and feature extraction.",
-        "Transcript-derived workflow claims must stay blocked until stronger proof exists."
-      ],
       "evidence_strength": {
         "source_ref": "inbox/transcribe.consume/prompt-candidate-consumption.md",
         "evidence_type": "first_party_consume_packet",
@@ -814,10 +486,57 @@
         "transcript_derived": false,
         "workflow_claim_promotion": "allowed",
         "notes": [
-          "Prompt candidate for transcript normalization and feature extraction.",
-          "Transcript-derived workflow claims must stay blocked until stronger proof exists."
+          "First-party consume packet \u2014 prompt candidate consumption."
         ]
-      }
+      },
+      "used_by_packets": [
+        "capability_harvester"
+      ],
+      "notes": [
+        "Consume folder source: transcribe.consume family."
+      ]
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
+      "evidence_type": "first_party_consume_packet",
+      "evidence_strength": {
+        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "First-party consume packet \u2014 capability harvesting matrix."
+        ]
+      },
+      "used_by_packets": [
+        "capability_harvester"
+      ],
+      "notes": [
+        "Consume folder source: prompting-tools.consume family."
+      ]
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt to Tool) 93e64081b83745deb9793ba0266585f8.md",
+      "evidence_type": "first_party_consume_packet",
+      "evidence_strength": {
+        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt to Tool) 93e64081b83745deb9793ba0266585f8.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "First-party consume packet \u2014 tool catalog."
+        ]
+      },
+      "used_by_packets": [
+        "capability_harvester"
+      ],
+      "notes": [
+        "Consume folder source: prompting-tools.consume family."
+      ]
     }
   ]
 }

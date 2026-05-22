@@ -9,6 +9,7 @@ evaluation/tool-health/gitnexus-parent-fixture/workdir/
 evaluation/tool-health/graphify-parent-fixture/graphify-out/.rebuild.lock
 .env
 logs/
+lib/
 stages/*/output/*
 !stages/*/output/.gitkeep
 !stages/05_wrapper_synthesis/output/handoff-bundles/.gitkeep

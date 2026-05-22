@@ -133,7 +133,7 @@ invalid_examples:
     expected_reason_contains: "'blocked' was expected"
   - file: "examples/operational-feature-matrix.invalid.missing-do-not-promote.json"
     schema: "schemas/operational-feature-matrix.schema.json"
-    expected_reason_contains: "'do_not_promote_notes' is a required property"
+    expected_reason_contains: "'capability_id' is a required property"
   - file: "examples/consume-source-quality-strengthening-report.invalid.missing-decision-space.json"
     schema: "schemas/consume-source-quality-strengthening-report.schema.json"
     expected_reason_contains: "'decision_space' is a required property"

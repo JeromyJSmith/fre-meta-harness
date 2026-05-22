@@ -1,177 +1,142 @@
 {
   "schema_version": "1.0.0",
-  "packet_type": "compiled_gap_placement_map",
-  "status": "refreshed",
+  "packet_type": "gap_placement_map",
+  "status": "fresh",
+  "generated_at": "2026-05-22T11:15:00Z",
+  "summary": {
+    "total_capabilities": 10,
+    "required_for_harvest": 4,
+    "contract_surface_covered_not_activated": 4,
+    "gated": 2,
+    "blocked_exact_dependency": 1,
+    "deployment_specific": 1,
+    "reference": 2
+  },
+  "compiler_notes": [
+    "required_for_harvest is true for all capabilities with parent_lane_classification: core, per task specification.",
+    "All four core capabilities map to distinct contract surfaces; none share a contract surface with each other.",
+    "fork-repository-skill and infinite-agentic-loop both cite gap-placement-map.json as their evidence_artifact in capability-matrix.yaml, creating a self-referential dependency; this is noted but not an error."
+  ],
   "lanes": [
     {
-      "lane_id": "peer-mesh-core",
-      "classification": "core",
-      "driver_repos": [
-        "pi-vs-claude-code"
-      ],
-      "target_surfaces": [
-        "contracts/peer-mesh.yaml",
-        "contracts/peer-message.yaml",
-        "contracts/peer-lifecycle.yaml",
+      "capability_id": "pi-vs-claude-code",
+      "target_contract_surface": "contracts/peer-mesh-runtime.yaml",
+      "parent_lane_classification": "core",
+      "required_for_harvest": true,
+      "fulfills_contracts": [
         "contracts/peer-mesh-runtime.yaml"
       ],
-      "why": "Communication-plane primitive for flat same-host and cross-device peer orchestration.",
-      "blocker_or_dependency": "Requires Bun, Pi CLI, just, and auth token only for LAN/remote mode.",
-      "source_refs": [
-        "evaluation/research/repos/pi-vs-claude-code.json",
-        "evaluation/research/topics/peer-mesh.json"
-      ]
+      "gap_status": "contract_surface_covered_not_activated",
+      "notes": "Core capability. Peer mesh bootstrap and message dispatch contracts are defined. pi CLI absent from env is the current activation gap.",
+      "classification": "core"
     },
     {
-      "lane_id": "distribution-core",
-      "classification": "core",
-      "driver_repos": [
-        "the-library"
+      "capability_id": "the-library",
+      "target_contract_surface": "contracts/library-distribution.yaml",
+      "parent_lane_classification": "core",
+      "required_for_harvest": true,
+      "fulfills_contracts": [
+        "contracts/library-distribution.yaml"
       ],
-      "target_surfaces": [
-        "contracts/library-distribution.yaml",
-        "library.yaml",
-        "agentics-library.md"
-      ],
-      "why": "Private-first typed-reference distribution is required to keep packets and capabilities governed across peers.",
-      "blocker_or_dependency": "Requires accessible local/private source paths for distributed entries.",
-      "source_refs": [
-        "evaluation/research/repos/the-library.json",
-        "evaluation/research/topics/capability-distribution.json"
-      ]
+      "gap_status": "contract_surface_covered_not_activated",
+      "notes": "Core capability. Typed reference catalog and distribution contract surface are defined. No package manifest; docs-only at present.",
+      "classification": "core"
     },
     {
-      "lane_id": "hook-policy-core",
-      "classification": "core",
-      "driver_repos": [
-        "claude-code-hooks-mastery"
-      ],
-      "target_surfaces": [
-        "contracts/hook-manifest.yaml",
+      "capability_id": "claude-code-hooks-mastery",
+      "target_contract_surface": "contracts/policy-decision.yaml",
+      "parent_lane_classification": "core",
+      "required_for_harvest": true,
+      "fulfills_contracts": [
         "contracts/policy-decision.yaml"
       ],
-      "why": "Prompt, tool, and stop boundaries need fail-loud policy decisions before promotion claims are trustworthy.",
-      "blocker_or_dependency": "Concrete adapters vary by runtime, but the doctrine itself is core.",
-      "source_refs": [
-        "evaluation/research/repos/claude-code-hooks-mastery.json",
-        "evaluation/research/topics/hook-policy.json"
-      ]
+      "gap_status": "contract_surface_covered_not_activated",
+      "notes": "Core capability. Hook lifecycle and validator control contract is defined. Python scripts present; runtime adapter not yet wired.",
+      "classification": "core"
     },
     {
-      "lane_id": "observability-core",
-      "classification": "core",
-      "driver_repos": [
-        "claude-code-hooks-multi-agent-observability"
-      ],
-      "target_surfaces": [
-        "contracts/observability-event.yaml",
+      "capability_id": "claude-code-hooks-multi-agent-observability",
+      "target_contract_surface": "contracts/observability-ingest.yaml",
+      "parent_lane_classification": "core",
+      "required_for_harvest": true,
+      "fulfills_contracts": [
         "contracts/observability-ingest.yaml"
       ],
-      "why": "Durable, correlated event evidence is required for truthful multi-agent evaluation and promotion.",
-      "blocker_or_dependency": "Requires a running ingest sink or must stay fixture-only/blocked.",
-      "source_refs": [
-        "evaluation/research/repos/claude-code-hooks-multi-agent-observability.json",
-        "evaluation/research/topics/multi-agent-observability.json"
-      ]
+      "gap_status": "contract_surface_covered_not_activated",
+      "notes": "Core capability. Event ingest and session-correlated telemetry contract is defined. Requires a running ingest sink; none configured.",
+      "classification": "core"
     },
     {
-      "lane_id": "model-arbitration-gated",
-      "classification": "gated",
-      "driver_repos": [
-        "just-prompt"
+      "capability_id": "just-prompt",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "parent_lane_classification": "gated",
+      "required_for_harvest": false,
+      "fulfills_contracts": [
+        "contracts/agent-role-contract.yaml"
       ],
-      "target_surfaces": [
-        "contracts/agent-role-contract.yaml",
-        "promotion/readiness.json"
-      ],
-      "why": "Useful escalation lane for challenge review, but not part of the default parent path.",
-      "blocker_or_dependency": "Needs just-prompt server plus provider or local-model access.",
-      "source_refs": [
-        "evaluation/research/repos/just-prompt.json"
-      ]
+      "gap_status": "gated_pending_credentials",
+      "notes": "Gated. uv install present (uv.lock). Provider credentials absent; MCP server not started. Lane must not be promoted to active until credentials are confirmed.",
+      "classification": "gated"
     },
     {
-      "lane_id": "browser-validation-gated",
-      "classification": "gated",
-      "driver_repos": [
-        "bowser"
+      "capability_id": "agent-sandbox-skill",
+      "target_contract_surface": "contracts/agent-role-contract.yaml",
+      "parent_lane_classification": "blocked_with_exact_dependency",
+      "required_for_harvest": false,
+      "fulfills_contracts": [
+        "contracts/agent-role-contract.yaml"
       ],
-      "target_surfaces": [
-        "contracts/capability-matrix.yaml",
-        "promotion/readiness.json"
-      ],
-      "why": "Browser evidence is only needed for slices whose acceptance criteria depend on observed UI behavior.",
-      "blocker_or_dependency": "Requires a browser-control surface such as Playwright CLI and a declared browser-proof need.",
-      "source_refs": [
-        "evaluation/research/repos/bowser.json",
-        "evaluation/research/topics/execution-substrates.json"
-      ]
+      "gap_status": "blocked_exact_dependency_unsatisfied",
+      "notes": "Blocked. E2B account/API key or exe.dev parity not configured. Lane cannot be activated until the exact dependency is satisfied.",
+      "classification": "blocked_with_exact_dependency"
     },
     {
-      "lane_id": "mac-sidecar-deployment",
-      "classification": "deployment_specific",
-      "driver_repos": [
-        "mac-mini-agent"
+      "capability_id": "bowser",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "parent_lane_classification": "gated",
+      "required_for_harvest": false,
+      "fulfills_contracts": [
+        "contracts/capability-matrix.yaml"
       ],
-      "target_surfaces": [
-        "contracts/capability-matrix.yaml",
-        "evaluation/tool-health/status.json"
-      ],
-      "why": "Strong substrate for Mac Mini + devbox topologies, but not portable parent core.",
-      "blocker_or_dependency": "Requires macOS, permissions, tmux, and remote host topology.",
-      "source_refs": [
-        "evaluation/research/repos/mac-mini-agent.json",
-        "evaluation/research/topics/execution-substrates.json"
-      ]
+      "gap_status": "gated_pending_promotion_requirement",
+      "notes": "Gated. No active promotion browser-check requirement identified. Playwright CLI not confirmed on PATH. Lane inactive until a named promotion check requires browser evidence.",
+      "classification": "gated"
     },
     {
-      "lane_id": "sandbox-execution-blocked",
-      "classification": "blocked_with_exact_dependency",
-      "driver_repos": [
-        "agent-sandbox-skill"
+      "capability_id": "mac-mini-agent",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "parent_lane_classification": "deployment_specific",
+      "required_for_harvest": false,
+      "fulfills_contracts": [
+        "contracts/capability-matrix.yaml"
       ],
-      "target_surfaces": [
-        "contracts/agent-role-contract.yaml",
-        "evaluation/tool-health/status.json"
-      ],
-      "why": "Useful delegated-isolation lane, but only when a real sandbox provider is configured.",
-      "blocker_or_dependency": "Exact blocker: E2B account/API key today or a parity sandbox substrate such as exe.dev.",
-      "source_refs": [
-        "evaluation/research/repos/agent-sandbox-skill.json",
-        "evaluation/research/topics/execution-substrates.json"
-      ]
+      "gap_status": "deployment_prerequisites_unverified",
+      "notes": "Deployment-specific. macOS permission grants (Accessibility, Screen Recording, Full Disk Access), tmux, and paired host topology have not been verified in this session.",
+      "classification": "deployment_specific"
     },
     {
-      "lane_id": "terminal-fork-reference",
-      "classification": "reference",
-      "driver_repos": [
-        "fork-repository-skill"
+      "capability_id": "fork-repository-skill",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "parent_lane_classification": "reference",
+      "required_for_harvest": false,
+      "fulfills_contracts": [
+        "contracts/capability-matrix.yaml"
       ],
-      "target_surfaces": [
-        "contracts/capability-matrix.yaml",
-        "evaluation/research/compiled/gap-placement-map.json"
-      ],
-      "why": "Informative local branching pattern, but overlaps with existing task delegation and peer mesh.",
-      "blocker_or_dependency": "Retained as reference because overlap is the exact reason it is non-core.",
-      "source_refs": [
-        "evaluation/research/repos/fork-repository-skill.json"
-      ]
+      "gap_status": "reference_overlap_with_existing_lanes",
+      "notes": "Reference only. Overlaps with peer-mesh and built-in task delegation. Gap analysis must confirm additive value before promotion. Depends on gap-placement-map.json per evidence_artifact in capability-matrix.yaml.",
+      "classification": "reference"
     },
     {
-      "lane_id": "infinite-loop-reference",
-      "classification": "reference",
-      "driver_repos": [
-        "infinite-agentic-loop"
+      "capability_id": "infinite-agentic-loop",
+      "target_contract_surface": "program.md",
+      "parent_lane_classification": "reference",
+      "required_for_harvest": false,
+      "fulfills_contracts": [
+        "program.md"
       ],
-      "target_surfaces": [
-        "program.md",
-        "evaluation/research/compiled/gap-placement-map.json"
-      ],
-      "why": "Useful foil for bounded-wave ideas, but the infinite mode conflicts with parent stop doctrine.",
-      "blocker_or_dependency": "Exact conflict: the parent cannot honestly adopt unbounded infinite mode.",
-      "source_refs": [
-        "evaluation/research/repos/infinite-agentic-loop.json"
-      ]
+      "gap_status": "reference_doctrine_conflict",
+      "notes": "Reference only. Upstream infinite mode conflicts with bounded stop, plateau, and exact-blocker doctrine. Any reuse must be explicitly finite. Depends on gap-placement-map.json per evidence_artifact in capability-matrix.yaml.",
+      "classification": "reference"
     }
   ]
 }

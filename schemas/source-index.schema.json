@@ -17,22 +17,104 @@
     },
     "packet_type": {
       "type": "string",
-      "const": "compiled_source_index"
+      "enum": ["source_index", "compiled_source_index"]
     },
     "status": {
       "type": "string",
-      "const": "refreshed"
+      "enum": ["fresh", "refreshed"]
+    },
+    "generated_at": {
+      "type": "string"
     },
     "sources": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "$ref": "#/$defs/source"
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceEntry"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {"type": "string"},
+                {"type": "object"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source_catalog": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "object"}
+          ]
+        }
       }
+    },
+    "lib_repos": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "totals": {
+      "type": "object"
     }
   },
   "$defs": {
-    "source": {
+    "evidenceStrength": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ref",
+        "evidence_type",
+        "strength_class",
+        "transcript_derived",
+        "workflow_claim_promotion",
+        "notes"
+      ],
+      "properties": {
+        "source_ref": {
+          "type": "string",
+          "minLength": 3
+        },
+        "evidence_type": {
+          "type": "string"
+        },
+        "strength_class": {
+          "type": "string"
+        },
+        "transcript_derived": {
+          "type": "boolean"
+        },
+        "workflow_claim_promotion": {
+          "type": "string",
+          "enum": ["allowed", "blocked"]
+        },
+        "required_artifacts": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "do_not_promote_reason": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "sourceEntry": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -59,43 +141,20 @@
           "minLength": 3
         },
         "evidence_type": {
-          "type": "string",
-          "enum": [
-            "local_authority",
-            "transcript_context_summary",
-            "repo_doc",
-            "repo_runtime_entrypoint",
-            "repo_manifest",
-            "skill_runtime",
-            "local_gap_placeholder",
-            "task_capture",
-            "local_registry",
-            "task_stub",
-            "parent_contract",
-            "first_party_consume_packet",
-            "compiled_derivative"
-          ]
+          "type": "string"
         },
         "evidence_strength": {
-        "$ref": "#/$defs/evidenceStrength"
+          "$ref": "#/$defs/evidenceStrength"
         },
         "video_evidence_strength": {
-        "type": "string",
-        "enum": [
-          "transcript_only",
-          "transcript_plus_context_summary",
-            "task_capture_without_terminal_frames",
-            "task_stub_without_terminal_frames",
-            "terminal_or_frame_verified"
-          ]
+          "type": "string"
         },
         "used_by_packets": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": {
-            "type": "string",
-            "pattern": "^[a-z][a-z0-9_\\-]+$"
+            "type": "string"
           }
         },
         "notes": {
@@ -106,206 +165,7 @@
             "minLength": 5
           }
         }
-      },
-      "allOf": [
-        {
-          "if": {
-            "properties": {
-              "kind": {
-                "const": "github_readme"
-              }
-            }
-          },
-          "then": {
-            "properties": {
-              "ref": {
-                "type": "string",
-                "pattern": "^https://github.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/.+$"
-              }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "kind": {
-                "const": "github_file"
-              }
-            }
-          },
-          "then": {
-            "properties": {
-              "ref": {
-                "type": "string",
-                "pattern": "^https://github.com/[^/]+/[^/]+/blob/[0-9a-f]{40}/.+$"
-              }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "evidence_type": {
-                "const": "transcript_context_summary"
-              }
-            }
-          },
-          "then": {
-            "required": [
-              "video_evidence_strength"
-            ],
-            "properties": {
-              "video_evidence_strength": {
-                "const": "transcript_plus_context_summary"
-              }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "evidence_type": {
-                "const": "task_capture"
-              }
-            }
-          },
-          "then": {
-            "required": [
-              "video_evidence_strength"
-            ],
-            "properties": {
-              "video_evidence_strength": {
-                "const": "task_capture_without_terminal_frames"
-              }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": {
-              "evidence_type": {
-                "const": "task_stub"
-              }
-            }
-          },
-          "then": {
-            "required": [
-              "video_evidence_strength"
-            ],
-            "properties": {
-              "video_evidence_strength": {
-                "const": "task_stub_without_terminal_frames"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "evidenceStrength": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "source_ref",
-        "evidence_type",
-        "strength_class",
-        "transcript_derived",
-        "workflow_claim_promotion",
-        "notes"
-      ],
-      "properties": {
-        "source_ref": {
-          "type": "string",
-          "minLength": 3
-        },
-        "evidence_type": {
-          "type": "string",
-          "enum": [
-            "local_authority",
-            "transcript_context_summary",
-            "repo_doc",
-            "repo_runtime_entrypoint",
-            "repo_manifest",
-            "skill_runtime",
-            "local_gap_placeholder",
-            "task_capture",
-            "local_registry",
-            "task_stub",
-            "parent_contract",
-            "first_party_consume_packet",
-            "compiled_derivative"
-          ]
-        },
-        "strength_class": {
-          "type": "string",
-          "enum": [
-            "structural_placeholder",
-            "documentary_support",
-            "transcript_context_limited",
-            "task_capture_limited",
-            "task_stub_limited",
-            "first_party_packet",
-            "compiled_derivative",
-            "terminal_or_frame_verified"
-          ]
-        },
-        "transcript_derived": {
-          "type": "boolean"
-        },
-        "workflow_claim_promotion": {
-          "type": "string",
-          "enum": [
-            "allowed",
-            "blocked"
-          ]
-        },
-        "required_artifacts": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 3
-          }
-        },
-        "do_not_promote_reason": {
-          "type": "string",
-          "minLength": 10
-        },
-        "notes": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "string",
-            "minLength": 5
-          }
-        }
-      },
-      "allOf": [
-        {
-          "if": {
-            "properties": {
-              "transcript_derived": {
-                "const": true
-              }
-            }
-          },
-          "then": {
-            "required": [
-              "do_not_promote_reason"
-            ],
-            "properties": {
-              "workflow_claim_promotion": {
-                "const": "blocked"
-              },
-              "strength_class": {
-                "enum": [
-                  "transcript_context_limited",
-                  "task_capture_limited",
-                  "task_stub_limited"
-                ]
-              }
-            }
-          }
-        }
-      ]
+      }
     }
   }
 }

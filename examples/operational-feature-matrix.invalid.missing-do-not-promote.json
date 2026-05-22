@@ -1,10 +1,9 @@
 {
   "schema_version": "1.0.0",
   "packet_type": "operational_feature_matrix",
-  "status": "refreshed",
+  "status": "fresh",
   "rows": [
     {
-      "capability_id": "consume_packet_inventory",
       "feature_area": "source_intake",
       "parent_surface_type": "distribution_plane",
       "target_contract_surface": "contracts/research-packet-manifest.yaml",
@@ -75,7 +74,7 @@
       "blocker_or_dependency": "Requires stable compiled output paths and idempotent refresh scripts.",
       "parent_lane_classification": "core",
       "consume_inputs": [
-        "inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
+        "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
       ],
       "compiled_outputs": [
         "evaluation/research/compiled/capability-harvest.json"
@@ -117,7 +116,7 @@
       "blocker_or_dependency": "Requires the canonical capability matrix to remain the source of truth while guidance stays advisory.",
       "parent_lane_classification": "gated",
       "consume_inputs": [
-        "inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
+        "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
       ],
       "compiled_outputs": [
         "outbox/2026-05-22-capability-matrix-extension.handoff.md"

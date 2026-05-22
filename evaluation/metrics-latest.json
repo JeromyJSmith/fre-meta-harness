@@ -3,10 +3,10 @@
   "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "metric_mode": "split-ledger-validated-substantive",
-  "total_score": 89.06,
-  "outcome_score": 98.75,
-  "instrument_score": 60.0,
-  "weakest_component": "validator_health",
+  "total_score": 99.62,
+  "outcome_score": 99.5,
+  "instrument_score": 100.0,
+  "weakest_component": "artifact_refresh",
   "outcome_components": {
     "ratchet_execution": {
       "score": 25.0,
@@ -42,12 +42,12 @@
       }
     },
     "artifact_refresh": {
-      "score": 23.75,
+      "score": 24.5,
       "details": {
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 14955.254896402359,
+        "freshness_span_seconds": 18850.853576421738,
         "tool_statuses": [
           "bounded_pass",
           "bounded_pass",
@@ -155,12 +155,10 @@
             "evaluation/research/compiled/source-index.json"
           ]
         },
-        "same_host_runtime_score": 4.25,
+        "same_host_runtime_score": 5.0,
         "same_host_runtime_details": {
           "status": "bounded_pass",
-          "errors": [
-            "truth_boundary"
-          ],
+          "errors": [],
           "event_count": 24,
           "benchmark_groups": [
             "library_distribution",
@@ -180,9 +178,9 @@
   },
   "instrument_components": {
     "validator_health": {
-      "score": 0.0,
+      "score": 40.0,
       "details": {
-        "status": "fail"
+        "status": "pass"
       }
     },
     "report_completeness": {

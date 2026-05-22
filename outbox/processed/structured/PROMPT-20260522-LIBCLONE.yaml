@@ -1,0 +1,129 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260522-LIBCLONE"
+target_agent:
+  name: "lib-cloner"
+  surface: "claude_code_subagent"
+  invocation: "Agent tool, subagent_type=lib-cloner"
+triad_context:
+  acting_role: "intake-mapper"
+  upstream_handoff_ref: "CONTEXT.md#task-routing"
+  upstream_inbox_packet_ref: "inbox/structured/PROMPT-20260522-LIBCLONE.yaml"
+  packet_artifact_type: ".plan.md"
+  required_gate_state: "green"
+  required_consumers:
+    - "capability-harvester"
+    - "source-indexer"
+  bottom_matter_ref: "AGENTS.md#bottom-matter"
+  structured_contract_ref: "contracts/capability-matrix.yaml"
+  decision_space_required: true
+  runtime_truth_requirements:
+    - "Record exact clone status per capability — cloned or error, not implied."
+    - "Record install status separately — bun install or uv sync result."
+  command_evidence_requirements:
+    - "Record git clone exit code and any error message per repo."
+    - "Record install command exit code per repo."
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: "Clone the 5 missing disler capability repos into lib/ and install them."
+  repo_scope: "/Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+  task_scope: "lib/ directory + evaluation/lib-clone-status.json only"
+current_verified_state:
+  facts:
+    - "5 capabilities already installed: pi-vs-claude-code, the-library, claude-code-hooks-mastery, claude-code-hooks-multi-agent-observability, just-prompt"
+    - "5 capabilities missing from lib/: agent-sandbox-skill, bowser, mac-mini-agent, fork-repository-skill, infinite-agentic-loop"
+    - "lib/ directory exists at /Volumes/PixelTable/VW_iTWIN_Bridge/meta/lib/"
+    - "bun install works (verified on pi-vs-claude-code)"
+    - "uv sync works (verified on just-prompt)"
+hard_rules:
+  environment:
+    - "Use bun install for JS/TS repos (package.json present) — never npm or pnpm."
+    - "Use uv sync for Python repos (pyproject.toml present) — never pip."
+    - "Clone into lib/<repo-name> only."
+  safety:
+    - "Do not modify any file outside lib/ and evaluation/."
+    - "If a clone fails, record the error and continue — do not abort."
+  truthfulness:
+    - "Record exact clone and install status — no implied success."
+    - "If install produces warnings, record them. If it fails, record the failure."
+allowed_paths:
+  paths:
+    - "lib/"
+    - "evaluation/lib-clone-status.json"
+disallowed_paths:
+  paths:
+    - "contracts/"
+    - "stages/"
+    - ".claude/"
+    - "scripts/"
+    - "tests/"
+tasks:
+  ordered_steps:
+    - "Read contracts/capability-matrix.yaml — extract all capability_id and upstream_repo fields"
+    - "For each of the 5 missing repos: git clone <upstream_repo> lib/<name>"
+    - "For each cloned repo: check package.json → bun install; check pyproject.toml → uv sync; neither → skip"
+    - "Write evaluation/lib-clone-status.json with exact status per capability"
+validation_loop:
+  checks:
+    - "lib/<name>/ directory exists for each cloned repo"
+    - "bun.lockb or node_modules/ exists for JS repos after bun install"
+    - "uv.lock or .venv/ exists for Python repos after uv sync"
+    - "evaluation/lib-clone-status.json is valid JSON"
+  rerun_policy: "If a clone fails due to network error, retry once. Record final status regardless."
+handoff_inputs:
+  handoff_artifact_path: "evaluation/lib-clone-status.json"
+  source_report_paths:
+    - "evaluation/lib-clone-status.json"
+  required_follow_up_roles:
+    - "capability-harvester"
+    - "source-indexer"
+  consumption_requirements:
+    - "Read evaluation/lib-clone-status.json before computing capability installation_state."
+    - "Use lib_path from each entry to verify the repo directory exists."
+success_criteria:
+  best_case: "All 5 missing repos cloned and installed. evaluation/lib-clone-status.json written with all 10 capabilities accounted for."
+  acceptable_fallback: "Some repos fail to clone (network error). Blocked repos recorded with exact error. At least the artifact is written."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "count of repos cloned successfully"
+    - "count of installs completed"
+    - "evaluation/lib-clone-status.json path confirmed"
+  runtime_truth_fields:
+    - "runtime_truth_level"
+    - "runtime_mode_activated"
+    - "runtime_modes_blocked"
+    - "activation_artifacts"
+    - "observability_artifacts"
+    - "completion_tokens_observed"
+    - "policy_outcomes_observed"
+  blocker_fields:
+    - "lane_id"
+    - "classification"
+    - "blocker_dependency"
+    - "missing_prerequisites"
+    - "evidence_refs"
+  freshness_fields:
+    - "artifact_records"
+    - "max_artifact_span_seconds"
+    - "tool_health_artifacts"
+  score_saturation_fields:
+    - "baseline_total_score"
+    - "final_total_score"
+    - "score_changed"
+    - "why_this_slice_counts"
+  command_evidence_fields:
+    - "activation_commands"
+    - "validation_commands"
+    - "tool_health_commands"
+  follow_up_prompt_fields:
+    - "artifact_path"
+    - "target_schema_ref"
+    - "target_template_ref"
+    - "must_be_inline_ready"
+    - "markdown_companion_artifact_path"
+    - "markdown_template_ref"
+    - "must_use_front_matter"
+    - "must_use_bottom_matter_marker"

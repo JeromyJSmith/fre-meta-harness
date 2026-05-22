@@ -3,7 +3,7 @@
     "group": "peer_mesh_regression",
     "probe_id": "intake_etl",
     "mode": "inbox_fixture_reconciliation",
-    "duration_s": 0.0031,
+    "duration_s": 0.0012,
     "inbox_clean": true,
     "packet_contract_valid": true,
     "bundle_contract_valid": true,

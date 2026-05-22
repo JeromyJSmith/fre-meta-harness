@@ -1,150 +1,184 @@
 {
   "schema_version": "1.0.0",
   "packet_type": "operational_feature_matrix",
-  "status": "refreshed",
+  "status": "fresh",
+  "generated_at": "2026-05-22T11:15:00Z",
+  "filter": "installation_state == installed",
+  "surface_type_columns": [
+    "communication_plane",
+    "distribution_plane",
+    "policy_plane",
+    "observability_plane",
+    "sandbox_execution",
+    "browser_validation",
+    "device_sidecar",
+    "loop_pattern_reference"
+  ],
   "rows": [
     {
-      "capability_id": "consume_packet_inventory",
-      "feature_area": "source_intake",
-      "parent_surface_type": "distribution_plane",
-      "target_contract_surface": "contracts/research-packet-manifest.yaml",
-      "runtime_trigger": "consume_refresh",
-      "runtime_actor": "research",
-      "validation_method": "Validate that every consume folder is mapped to extraction posture, evidence limits, and compiled destinations.",
-      "evidence_artifact": "evaluation/research/compiled/source-index.json",
-      "blocker_or_dependency": "Requires inbox consume packets to remain inside the parent repo and machine-readable enough for bounded mapping.",
+      "capability_id": "pi-vs-claude-code",
       "parent_lane_classification": "core",
-      "consume_inputs": [
-        "inbox/transcribe.consume/file-system-consume.md",
-        "inbox/transcribe.consume/prompt-candidate-consumption.md"
-      ],
-      "compiled_outputs": [
-        "evaluation/research/compiled/operational-feature-matrix.json",
-        "outbox/2026-05-22-consume-folder-extraction-map.handoff.md"
-      ],
-      "do_not_promote_notes": [
-        "Inventory rows describe packet handling only and do not imply runtime activation."
-      ]
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "X",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
     },
     {
-      "capability_id": "consume_packet_extraction_mapping",
-      "feature_area": "source_intake",
-      "parent_surface_type": "distribution_plane",
-      "target_contract_surface": "contracts/research-packet-manifest.yaml",
-      "runtime_trigger": "consume_refresh",
-      "runtime_actor": "research",
-      "validation_method": "Validate that extract vs enrich posture is explicit for every consume family and that transcript-heavy inputs stay bounded.",
-      "evidence_artifact": "outbox/2026-05-22-consume-folder-extraction-map.handoff.md",
-      "blocker_or_dependency": "Requires stable first-party consume packets and durable handoff artifacts.",
+      "capability_id": "the-library",
       "parent_lane_classification": "core",
-      "consume_inputs": [
-        "inbox/transcribe.consume/file-system-consume.md",
-        "inbox/transcribe.consume/prompt-candidate-consumption.md",
-        "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
-        "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md",
-        "inbox/prompting-tools.consume/Schema Set \u2014 Contracts for every artifact 49cc487604f482c7972b819cfcb5317b.md",
-        "inbox/prompting-tools.consume/Prompt Tools \u2014 Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md",
-        "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md"
-      ],
-      "compiled_outputs": [
-        "outbox/2026-05-22-consume-folder-extraction-map.handoff.md"
-      ],
-      "do_not_promote_notes": [
-        "Extraction mapping alone must not promote transcript-derived workflow claims."
-      ]
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "X",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
     },
     {
-      "capability_id": "evidence_strength_normalization",
-      "feature_area": "source_quality",
-      "parent_surface_type": "policy_plane",
-      "target_contract_surface": "schemas/evidence-strength.schema.json",
-      "runtime_trigger": "source_index_refresh",
-      "runtime_actor": "orchestrator-validator",
-      "validation_method": "Validate that every source carries an explicit evidence-strength record and transcript-derived workflow claims stay blocked.",
-      "evidence_artifact": "evaluation/research/compiled/source-index.json",
-      "blocker_or_dependency": "Requires explicit evidence-strength vocabulary and schema validation before compiled outputs refresh.",
+      "capability_id": "claude-code-hooks-mastery",
       "parent_lane_classification": "core",
-      "consume_inputs": [
-        "inbox/transcribe.consume/prompt-candidate-consumption.md",
-        "inbox/transcribe.consume/file-system-consume.md"
-      ],
-      "compiled_outputs": [
-        "evaluation/research/compiled/source-index.json"
-      ],
-      "do_not_promote_notes": [
-        "Transcript-derived workflow claims stay blocked until frame or terminal proof exists."
-      ]
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "X",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
     },
     {
-      "capability_id": "compiled_output_ingestion_mapping",
-      "feature_area": "compiled_outputs",
-      "parent_surface_type": "distribution_plane",
-      "target_contract_surface": "contracts/research-packet-manifest.yaml",
-      "runtime_trigger": "compiled_output_refresh",
-      "runtime_actor": "research",
-      "validation_method": "Validate that every compiled output names its consume inputs, merge rule, and policy gate before refresh.",
-      "evidence_artifact": "evaluation/research/harvest-manifest.json",
-      "blocker_or_dependency": "Requires stable compiled output paths and idempotent refresh scripts.",
+      "capability_id": "claude-code-hooks-multi-agent-observability",
       "parent_lane_classification": "core",
-      "consume_inputs": [
-        "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
-        "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md"
-      ],
-      "compiled_outputs": [
-        "evaluation/research/compiled/capability-harvest.json",
-        "evaluation/research/compiled/feature-matrix.json",
-        "evaluation/research/compiled/gap-placement-map.json",
-        "evaluation/research/compiled/source-index.json",
-        "outbox/2026-05-22-compiled-output-ingestion-map.handoff.md"
-      ],
-      "do_not_promote_notes": [
-        "Compiled derivatives inherit the strongest truthful limit from their sources."
-      ]
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "X",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
     },
     {
-      "capability_id": "operational_feature_matrix_compile",
-      "feature_area": "compiled_outputs",
-      "parent_surface_type": "observability_plane",
-      "target_contract_surface": "schemas/operational-feature-matrix.schema.json",
-      "runtime_trigger": "source_quality_compile",
-      "runtime_actor": "architect",
-      "validation_method": "Validate the operational matrix against its schema and ensure each row names consume inputs, outputs, and non-promotion notes.",
-      "evidence_artifact": "evaluation/research/compiled/operational-feature-matrix.json",
-      "blocker_or_dependency": "Requires matrix rows to stay parent-owned and bounded to the consume-source-quality slice.",
-      "parent_lane_classification": "core",
-      "consume_inputs": [
-        "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
-        "inbox/prompting-tools.consume/Schema Set \u2014 Contracts for every artifact 49cc487604f482c7972b819cfcb5317b.md"
-      ],
-      "compiled_outputs": [
-        "evaluation/research/compiled/operational-feature-matrix.json",
-        "outbox/2026-05-22-operational-feature-matrix.handoff.md"
-      ],
-      "do_not_promote_notes": [
-        "Operational rows describe compile behavior only, not active runtime lanes."
-      ]
-    },
-    {
-      "capability_id": "capability_matrix_extension_guidance",
-      "feature_area": "handoff_guidance",
-      "parent_surface_type": "arbitration_lane",
-      "target_contract_surface": "contracts/capability-matrix.yaml",
-      "runtime_trigger": "governed_handoff_emit",
-      "runtime_actor": "architect",
-      "validation_method": "Validate that extension guidance references the canonical matrix rows and does not mutate bounded runtime truth.",
-      "evidence_artifact": "outbox/2026-05-22-capability-matrix-extension.handoff.md",
-      "blocker_or_dependency": "Requires the canonical capability matrix to remain the source of truth while the handoff stays advisory.",
+      "capability_id": "just-prompt",
       "parent_lane_classification": "gated",
-      "consume_inputs": [
-        "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
-        "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md"
-      ],
-      "compiled_outputs": [
-        "outbox/2026-05-22-capability-matrix-extension.handoff.md"
-      ],
-      "do_not_promote_notes": [
-        "Guidance does not rewrite the canonical capability matrix by itself."
-      ]
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
+    },
+    {
+      "capability_id": "agent-sandbox-skill",
+      "parent_lane_classification": "blocked_with_exact_dependency",
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "X",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
+    },
+    {
+      "capability_id": "bowser",
+      "parent_lane_classification": "gated",
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "X",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
+    },
+    {
+      "capability_id": "mac-mini-agent",
+      "parent_lane_classification": "deployment_specific",
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "X",
+      "loop_pattern_reference": ""
+    },
+    {
+      "capability_id": "fork-repository-skill",
+      "parent_lane_classification": "reference",
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": ""
+    },
+    {
+      "capability_id": "infinite-agentic-loop",
+      "parent_lane_classification": "reference",
+      "installation_state": "installed",
+      "proof_state": "designed_not_activated",
+      "communication_plane": "",
+      "distribution_plane": "",
+      "policy_plane": "",
+      "observability_plane": "",
+      "sandbox_execution": "",
+      "browser_validation": "",
+      "device_sidecar": "",
+      "loop_pattern_reference": "X"
     }
+  ],
+  "summary": {
+    "total_installed": 10,
+    "surface_coverage": {
+      "communication_plane": 1,
+      "distribution_plane": 1,
+      "policy_plane": 1,
+      "observability_plane": 1,
+      "sandbox_execution": 1,
+      "browser_validation": 1,
+      "device_sidecar": 1,
+      "loop_pattern_reference": 1
+    },
+    "uncovered_declared_surfaces": [],
+    "capabilities_with_no_column_coverage": [
+      "just-prompt",
+      "fork-repository-skill"
+    ]
+  },
+  "compiler_notes": [
+    "All 10 capabilities have installation_state: installed per the verified Phase 1 table; the filter passes all 10.",
+    "just-prompt surface type is arbitration_lane, not in the 8 declared columns; no column is marked X for that row.",
+    "fork-repository-skill surface type is parallel_branching_reference, not in the 8 declared columns; no column is marked X for that row.",
+    "proof_state is designed_not_activated for every row; no activation has been probe-verified in this session.",
+    "All 8 declared surface columns have exactly 1 capability covering them."
   ]
 }

@@ -4,7 +4,7 @@
   "scope": "portable_parent_wrapper",
   "statistics": {
     "clusterCount": 6,
-    "nodeCount": 1365,
+    "nodeCount": 777,
     "edgeCount": 15,
     "diversity_score": "bounded_local",
     "modularity_score": "approximate"
@@ -12,80 +12,55 @@
   "contentGaps": [
     "Gap 1: compiled_research -> tool_catalog_inputs",
     "Gap 2: inbox_doctrine -> compiled_research",
-    "Gap 3: inbox_doctrine -> tool_catalog_inputs"
+    "Gap 3: inbox_doctrine -> subsystem_harness"
   ],
   "mainTopicalClusters": [
-    "1. prompt_contracts: type defs ref string minlength string_list (1 | 8% | 99%)",
-    "2. inbox_doctrine: blocked_by blocks status kind schema new (2 | 27% | 99%)",
-    "3. subsystem_harness: readme source research subsystems evaluation repo_id (3 | 11% | 99%)",
-    "4. compiled_research: github https com disler blob evidence_type (4 | 26% | 99%)",
-    "5. tool_catalog_inputs: you know yeah fucking right then (5 | 18% | 99%)",
-    "6. tool_health: status evaluation tool_health summary command exit_code (6 | 10% | 99%)"
+    "1. prompt_contracts: type defs ref string minlength string_list (1 | 17% | 99%)",
+    "2. inbox_doctrine: inbox handoff operational-capability-matrix-and-schemas pipeline-ideas-and-implementation consuming-layer plan (2 | 0% | 50%)",
+    "3. subsystem_harness: readme source research subsystems evaluation repo_id (3 | 23% | 99%)",
+    "4. compiled_research: examples contracts valid schemas https github (4 | 40% | 99%)",
+    "5. tool_catalog_inputs: inbox consume prompt prompting-tools tools tool (5 | 0% | 99%)",
+    "6. tool_health: status evaluation tool_health summary command exit_code (6 | 20% | 99%)"
   ],
   "mainConcepts": [
-    "status",
-    "kind",
-    "schema",
-    "blocked_by",
-    "you",
-    "blocks",
-    "contracts",
-    "evaluation",
     "type",
-    "new",
+    "contracts",
+    "examples",
+    "evaluation",
+    "false",
+    "ref",
+    "readme",
+    "true",
+    "defs",
     "research",
-    "schemas"
+    "schema",
+    "string"
   ],
   "conceptualGateways": [
-    "status",
-    "kind",
-    "schema",
-    "blocked_by",
-    "you",
-    "blocks",
+    "type",
     "contracts",
-    "evaluation"
+    "examples",
+    "evaluation",
+    "false",
+    "ref",
+    "readme",
+    "true"
   ],
   "topRelations": [
-    "1) subsystem_harness <-> compiled_research",
-    "2) compiled_research <-> tool_health",
-    "3) inbox_doctrine <-> subsystem_harness",
-    "4) inbox_doctrine <-> tool_health",
-    "5) subsystem_harness <-> tool_health",
-    "6) compiled_research <-> tool_catalog_inputs",
+    "1) inbox_doctrine <-> tool_catalog_inputs",
+    "2) prompt_contracts <-> compiled_research",
+    "3) subsystem_harness <-> compiled_research",
+    "4) subsystem_harness <-> tool_health",
+    "5) compiled_research <-> tool_catalog_inputs",
+    "6) compiled_research <-> tool_health",
     "7) inbox_doctrine <-> compiled_research",
-    "8) inbox_doctrine <-> tool_catalog_inputs",
-    "9) prompt_contracts <-> compiled_research",
+    "8) inbox_doctrine <-> subsystem_harness",
+    "9) inbox_doctrine <-> tool_health",
     "10) prompt_contracts <-> inbox_doctrine"
   ],
   "topInfluentialNodes": [
     {
-      "node": "status",
-      "bc": 0.333,
-      "degree": 2
-    },
-    {
-      "node": "kind",
-      "bc": 0.167,
-      "degree": 1
-    },
-    {
-      "node": "schema",
-      "bc": 0.167,
-      "degree": 1
-    },
-    {
-      "node": "blocked_by",
-      "bc": 0.167,
-      "degree": 1
-    },
-    {
-      "node": "you",
-      "bc": 0.167,
-      "degree": 1
-    },
-    {
-      "node": "blocks",
+      "node": "type",
       "bc": 0.167,
       "degree": 1
     },
@@ -95,9 +70,34 @@
       "degree": 2
     },
     {
+      "node": "examples",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
       "node": "evaluation",
-      "bc": 0.5,
-      "degree": 3
+      "bc": 0.333,
+      "degree": 2
+    },
+    {
+      "node": "false",
+      "bc": 0.333,
+      "degree": 2
+    },
+    {
+      "node": "ref",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
+      "node": "readme",
+      "bc": 0.167,
+      "degree": 1
+    },
+    {
+      "node": "true",
+      "bc": 0.167,
+      "degree": 1
     }
   ],
   "limitations": [

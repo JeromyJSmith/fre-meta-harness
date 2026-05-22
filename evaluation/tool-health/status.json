@@ -20,14 +20,12 @@
         "evidence": [
           "evaluation/tool-health/gitnexus-smoke.log"
         ],
-        "observed_at": "2026-05-22T16:45:11Z",
+        "observed_at": "2026-05-22T17:20:11Z",
         "exit_code": 0,
         "stdout_tail": [
+          "GitNexus Analyzer",
           "",
-          "  Repository indexed successfully (5.0s)",
-          "",
-          "  12,045 nodes | 15,083 edges | 208 clusters | 230 flows",
-          "  /Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+          "  Already up to date"
         ]
       },
       "fixture_probe": {
@@ -37,7 +35,7 @@
         "evidence": [
           "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log"
         ],
-        "observed_at": "2026-05-22T16:45:11Z",
+        "observed_at": "2026-05-22T17:20:11Z",
         "exit_code": 0,
         "stdout_tail": [
           "",
@@ -65,7 +63,7 @@
           "evaluation/tool-health/graphify-smoke.log",
           "evaluation/tool-health/graphify-parent-fixture/graphify-out/graph.json"
         ],
-        "observed_at": "2026-05-22T16:45:12Z",
+        "observed_at": "2026-05-22T17:20:11Z",
         "exit_code": 1,
         "stdout_tail": [
           "Re-extracting code files in evaluation/tool-health/graphify-parent-fixture (no LLM needed)...",
@@ -99,7 +97,7 @@
           "evaluation/infranodus-research-topics.json",
           "evaluation/tool-health/infranodus-live-probe.json"
         ],
-        "observed_at": "2026-05-22T16:45:12Z",
+        "observed_at": "2026-05-22T17:20:11Z",
         "exit_code": 0,
         "stdout_tail": [
           "    \"evaluation/infranodus-research-topics.json\",",
@@ -128,7 +126,7 @@
           "evaluation/agent-eval/experiments/parent-wrapper-codex-docker.ts",
           "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/PROMPT.md"
         ],
-        "observed_at": "2026-05-22T16:45:14Z",
+        "observed_at": "2026-05-22T17:20:13Z",
         "exit_code": 0,
         "stdout_tail": [
           "Running 1 eval(s) x 1 run(s) = 1 total runs",
@@ -146,7 +144,7 @@
           "evaluation/tool-health/agent-eval-smoke.log",
           "contracts/agent-eval-parent-lane.yaml"
         ],
-        "observed_at": "2026-05-22T16:45:14Z",
+        "observed_at": "2026-05-22T17:20:13Z",
         "exit_code": 2,
         "stderr_tail": [
           "blocked: OPENAI_API_KEY is required only for the optional remote-backed codex smoke experiment; the parent baseline remains CLI-first local runner harvest plus dry agent-eval."
@@ -169,7 +167,7 @@
         "evidence": [
           "evaluation/tool-health/local-runners.json"
         ],
-        "observed_at": "2026-05-22T16:45:05Z",
+        "observed_at": "2026-05-22T17:20:09Z",
         "exit_code": 0,
         "stdout_tail": [
           "      \"baseline_local_state\": \"dry plus local runner harvest\",",
@@ -208,7 +206,7 @@
           "evaluation/tool-health/peer-mesh-local-events.jsonl",
           "evaluation/tool-health/peer-mesh-local-benchmarks.json"
         ],
-        "observed_at": "2026-05-22T16:45:05Z",
+        "observed_at": "2026-05-22T17:20:10Z",
         "exit_code": 0,
         "stdout_tail": [
           "      \"expected_status\": \"reference\",",
@@ -218,7 +216,7 @@
           "}"
         ],
         "stderr_tail": [
-          "Installed 19 packages in 12ms"
+          "Installed 19 packages in 10ms"
         ]
       }
     },
@@ -250,7 +248,7 @@
           "evaluation/tool-health/inbox-protocol/routing/all.json",
           "evaluation/tool-health/inbox-protocol/delegations/all.json"
         ],
-        "observed_at": "2026-05-22T16:45:14Z",
+        "observed_at": "2026-05-22T17:20:13Z",
         "exit_code": 0,
         "stdout_tail": [
           "  \"packet_count\": 0,",

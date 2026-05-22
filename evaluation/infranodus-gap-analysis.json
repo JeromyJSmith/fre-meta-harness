@@ -36,14 +36,12 @@
         "inbox/consuming-layer.plan.md"
       ],
       "top_terms": [
-        "blocked_by",
-        "blocks",
-        "status",
-        "kind",
-        "schema",
-        "new",
-        "contracts",
-        "schemas"
+        "inbox",
+        "handoff",
+        "operational-capability-matrix-and-schemas",
+        "pipeline-ideas-and-implementation",
+        "consuming-layer",
+        "plan"
       ]
     },
     {
@@ -79,14 +77,14 @@
         "evaluation/research/compiled/source-index.json"
       ],
       "top_terms": [
-        "github",
+        "examples",
+        "contracts",
+        "valid",
+        "schemas",
         "https",
+        "github",
         "com",
-        "disler",
-        "blob",
-        "evidence_type",
-        "notes",
-        "docs"
+        "disler"
       ]
     },
     {
@@ -100,14 +98,14 @@
         "inbox/transcribe.consume/prompt-candidate-consumption.md"
       ],
       "top_terms": [
-        "you",
-        "know",
-        "yeah",
-        "fucking",
-        "right",
-        "then",
-        "what",
-        "all"
+        "inbox",
+        "consume",
+        "prompt",
+        "prompting-tools",
+        "tools",
+        "tool",
+        "transcribe",
+        "catalog"
       ]
     },
     {
@@ -151,7 +149,7 @@
   "content_gaps": [
     "compiled_research -> tool_catalog_inputs",
     "inbox_doctrine -> compiled_research",
-    "inbox_doctrine -> tool_catalog_inputs"
+    "inbox_doctrine -> subsystem_harness"
   ],
   "resolved_by": [
     "contracts/parent-capability-metrics.yaml",

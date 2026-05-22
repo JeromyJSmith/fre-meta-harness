@@ -1,13 +1,13 @@
 {
   "report_id": "PARENT-PEER-MESH-LOCAL-0001",
-  "created_at": "2026-05-22T13:59:21Z",
+  "created_at": "2026-05-22T17:20:10Z",
   "scope": "portable_parent_wrapper",
   "capability_id": "pi-vs-claude-code",
   "lane_id": "peer-mesh-same-host-local",
   "status": "bounded_pass",
   "activation_result": "active",
   "runtime_mode": "same_host",
-  "session_id": "peer-mesh-local-20260522T135921Z",
+  "session_id": "peer-mesh-local-20260522T172010Z",
   "scenario_id": "pi-vs-claude-code-same-host-local",
   "runtime_mismatch_list": [
     {
@@ -64,18 +64,18 @@
     },
     "list_agents": {
       "status": "done",
-      "correlation_id": "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
+      "correlation_id": "corr-b5433b81-0294-4fcd-8142-9b009d0dc005",
       "peer_count": 4
     },
     "send_prompt": {
       "status": "done",
-      "correlation_id": "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
+      "correlation_id": "corr-364c2f24-52f0-4bb4-bf81-88ade40b1921",
       "policy_outcome": "allow",
       "recipient_role": "prod_gatekeeper"
     },
     "send_command": {
       "status": "done",
-      "correlation_id": "corr-a928db36-f135-4f95-b549-6c3e83331956",
+      "correlation_id": "corr-8390e145-ca86-479f-81c6-d5198f228179",
       "policy_outcome": "allow",
       "recipient_role": "dev_driver",
       "command": "pwd",
@@ -84,11 +84,11 @@
     "await_response": {
       "status": "done",
       "verified_correlations": [
-        "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
-        "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
-        "corr-a928db36-f135-4f95-b549-6c3e83331956",
-        "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
-        "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5"
+        "corr-b5433b81-0294-4fcd-8142-9b009d0dc005",
+        "corr-364c2f24-52f0-4bb4-bf81-88ade40b1921",
+        "corr-8390e145-ca86-479f-81c6-d5198f228179",
+        "corr-bca3dbb6-3377-4a52-886e-c69ef6be4d49",
+        "corr-5d2ddf5a-c33c-4814-a020-e6689070fca3"
       ]
     }
   },
@@ -105,12 +105,12 @@
     ],
     "enforced": true,
     "failed_case": {
-      "correlation_id": "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
+      "correlation_id": "corr-bca3dbb6-3377-4a52-886e-c69ef6be4d49",
       "completion_token": "failed",
       "reason": "Command exited with 1"
     },
     "needs_human_case": {
-      "correlation_id": "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5",
+      "correlation_id": "corr-5d2ddf5a-c33c-4814-a020-e6689070fca3",
       "completion_token": "needs-human",
       "reason": "Prompt payload may contain PII or secrets and requires human review before release."
     }
@@ -122,59 +122,59 @@
     ],
     "decisions": [
       {
-        "decision_id": "policy-60e1c2ca-88c7-4b5c-ba87-029a5d0f6145",
-        "message_id": "msg-dddc6338-df0f-442d-b7b0-33a018a2a0a1",
-        "correlation_id": "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
+        "decision_id": "policy-6665eb76-161f-47c9-bbba-ecf2b8c59a5f",
+        "message_id": "msg-135b0b49-1994-4bf8-aeb3-97198ba74466",
+        "correlation_id": "corr-b5433b81-0294-4fcd-8142-9b009d0dc005",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Same-host peer discovery is allowed after governed bootstrap.",
         "actor_role": "peer_mesh_host",
         "operation": "list_agents",
-        "created_at": "2026-05-22T13:59:21Z"
+        "created_at": "2026-05-22T17:20:10Z"
       },
       {
-        "decision_id": "policy-a90e8740-80b3-43c4-b907-e0f8baf0f27d",
-        "message_id": "msg-404d5a6d-ca34-4625-bb7d-7578cde3542a",
-        "correlation_id": "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
+        "decision_id": "policy-d9948966-f532-448f-bd13-056ceecb2e2d",
+        "message_id": "msg-18cfc8fc-f34a-4f56-8849-d5139b7bbe42",
+        "correlation_id": "corr-364c2f24-52f0-4bb4-bf81-88ade40b1921",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Local same-host prompt is allowed by the bounded parent prompt guard.",
         "actor_role": "peer_mesh_host",
         "operation": "send_prompt",
-        "created_at": "2026-05-22T13:59:21Z"
+        "created_at": "2026-05-22T17:20:10Z"
       },
       {
-        "decision_id": "policy-e58ffcaf-5bb6-497d-8c39-d71ba771800e",
-        "message_id": "msg-228f962f-3852-4056-a766-b27de37fb7d7",
-        "correlation_id": "corr-a928db36-f135-4f95-b549-6c3e83331956",
+        "decision_id": "policy-08f61c65-0025-4a4e-bb09-e5a9cc513d83",
+        "message_id": "msg-711ffc15-8af2-4111-a85c-f238a35e5f5e",
+        "correlation_id": "corr-8390e145-ca86-479f-81c6-d5198f228179",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Local same-host command is allowed by the bounded parent command guard.",
         "actor_role": "peer_mesh_host",
         "operation": "send_command",
-        "created_at": "2026-05-22T13:59:21Z"
+        "created_at": "2026-05-22T17:20:10Z"
       },
       {
-        "decision_id": "policy-96fa804a-b6cf-4d19-a189-47e37a0a9fd9",
-        "message_id": "msg-702cbdd7-264a-4b02-98d5-a84dbbd7e5bf",
-        "correlation_id": "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
+        "decision_id": "policy-96895fac-e6b3-44ff-8cae-2e1d45ee9e7e",
+        "message_id": "msg-e6e33eda-e8e2-453b-a2b5-86f6e7742be0",
+        "correlation_id": "corr-bca3dbb6-3377-4a52-886e-c69ef6be4d49",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Local same-host command is allowed by the bounded parent command guard.",
         "actor_role": "peer_mesh_host",
         "operation": "send_command",
-        "created_at": "2026-05-22T13:59:21Z"
+        "created_at": "2026-05-22T17:20:10Z"
       },
       {
-        "decision_id": "policy-7318b6d2-b8d3-422e-ab40-13988e09dd27",
-        "message_id": "msg-f8640e81-735e-457e-ab8e-c0bbd2b3a252",
-        "correlation_id": "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5",
+        "decision_id": "policy-e6418669-62b5-41a3-8c80-a409125aceb0",
+        "message_id": "msg-1d0efc25-8a22-4a39-8e61-2f58f4a3d63f",
+        "correlation_id": "corr-5d2ddf5a-c33c-4814-a020-e6689070fca3",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "ask",
         "reason": "Prompt payload may contain PII or secrets and requires human review before release.",
         "actor_role": "peer_mesh_host",
         "operation": "send_prompt",
-        "created_at": "2026-05-22T13:59:21Z"
+        "created_at": "2026-05-22T17:20:10Z"
       }
     ],
     "hook_ids_triggered": [
@@ -291,7 +291,7 @@
   },
   "benchmarks": {
     "file": "evaluation/tool-health/peer-mesh-local-benchmarks.json",
-    "run_ref": "peer-mesh-local/peer-mesh-local-20260522T135921Z",
+    "run_ref": "peer-mesh-local/peer-mesh-local-20260522T172010Z",
     "groups": [
       "library_distribution",
       "observability_ingest",

@@ -10,9 +10,9 @@
       "to_layer": "tool_catalog_inputs",
       "through_layer": "tool_health",
       "bridge_terms": [
-        "status",
-        "kind",
-        "schema"
+        "type",
+        "contracts",
+        "examples"
       ],
       "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
       "evidence": [
@@ -27,9 +27,9 @@
       "to_layer": "compiled_research",
       "through_layer": "tool_health",
       "bridge_terms": [
-        "status",
-        "kind",
-        "schema"
+        "type",
+        "contracts",
+        "examples"
       ],
       "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
       "evidence": [
@@ -39,14 +39,14 @@
       ]
     },
     {
-      "bridge_id": "inbox_doctrine-to-tool_catalog_inputs",
+      "bridge_id": "inbox_doctrine-to-subsystem_harness",
       "from_layer": "inbox_doctrine",
-      "to_layer": "tool_catalog_inputs",
+      "to_layer": "subsystem_harness",
       "through_layer": "tool_health",
       "bridge_terms": [
-        "status",
-        "kind",
-        "schema"
+        "type",
+        "contracts",
+        "examples"
       ],
       "reason": "Low-overlap layers need a shared operational vocabulary to stay comparable.",
       "evidence": [
