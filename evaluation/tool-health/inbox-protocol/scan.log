@@ -1,0 +1,8 @@
+{
+  "packet_count": 6,
+  "routed_count": 2,
+  "blocked_count": 4,
+  "clarification_count": 0
+}
+
+warning: `VIRTUAL_ENV=/Users/ojeromyo/.cache/uv/builds-v0/.tmpXwlomm` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

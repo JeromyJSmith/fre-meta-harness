@@ -4124,7 +4124,7 @@ FILE: evaluation/research/compiled/capability-harvest.json
       "evidence_artifact": "examples/library-distribution.valid.json",
       "blocker_or_dependency": "Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.",
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
@@ -4143,7 +4143,7 @@ FILE: evaluation/research/compiled/capability-harvest.json
       "evidence_artifact": "examples/hook-manifest.valid.json",
       "blocker_or_dependency": "Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.",
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
         "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
       ],
@@ -4161,8 +4161,8 @@ FILE: evaluation/research/compiled/capability-harvest.json
       "evidence_artifact": "examples/observability-ingest.valid.json",
       "blocker_or_dependency": "Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.",
       "source_refs": [
-        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
         "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
       ],
       "parent_lane_classification": "core"
@@ -4298,7 +4298,7 @@ FILE: evaluation/research/compiled/capability-harvest.json
         "The upstream `library.yaml` is empty by default, so the exact parent admission and sync workflow still needs later implementation."
       ],
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
@@ -4317,7 +4317,7 @@ FILE: evaluation/research/compiled/capability-harvest.json
         "Concrete hook adapters still vary by host harness even when the doctrine is stable."
       ],
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
         "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
       ]
@@ -4334,8 +4334,8 @@ FILE: evaluation/research/compiled/capability-harvest.json
         "The local Notion docs define report classes but do not preserve detailed event schemas; those details currently come from the upstream repo."
       ],
       "source_refs": [
-        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
         "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
       ]
     },
@@ -4390,7 +4390,8 @@ FILE: evaluation/research/compiled/capability-harvest.json
     "pi-vs-claude-code remains the first-class core communication source in this compile.",
     "Packet boundaries are preserved in repo_packets and topic_packets; compiled rows are derivative views, not replacements.",
     "Video-derived claims preserve transcript/context uncertainty instead of claiming raw frame certainty.",
-    "GitHub source refs are pinned to the verified upstream commit snapshots used during this research pass."
+    "GitHub source refs are pinned to the verified upstream commit snapshots used during this research pass.",
+    "Consume-source-quality refresh added bounded evidence-strength normalization and an operational feature matrix without changing active runtime-lane truth."
   ]
 }
 
@@ -4435,7 +4436,7 @@ FILE: evaluation/research/compiled/feature-matrix.json
       "evidence_artifact": "examples/library-distribution.valid.json",
       "blocker_or_dependency": "Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.",
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
@@ -4454,7 +4455,7 @@ FILE: evaluation/research/compiled/feature-matrix.json
       "evidence_artifact": "examples/hook-manifest.valid.json",
       "blocker_or_dependency": "Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.",
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
         "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
       ],
@@ -4472,8 +4473,8 @@ FILE: evaluation/research/compiled/feature-matrix.json
       "evidence_artifact": "examples/observability-ingest.valid.json",
       "blocker_or_dependency": "Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.",
       "source_refs": [
-        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
         "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
       ],
       "parent_lane_classification": "core"
@@ -4771,6 +4772,154 @@ FILE: evaluation/research/compiled/source-index.json
   "status": "refreshed",
   "sources": [
     {
+      "kind": "parent_contract",
+      "ref": "contracts/capability-matrix.yaml",
+      "evidence_type": "parent_contract",
+      "used_by_packets": [
+        "execution-substrates"
+      ],
+      "notes": [
+        "Current parent placement contract for core and adjacent capability lanes."
+      ],
+      "evidence_strength": {
+        "source_ref": "contracts/capability-matrix.yaml",
+        "evidence_type": "parent_contract",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Current parent placement contract for core and adjacent capability lanes."
+        ]
+      }
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "evidence_type": "local_authority",
+      "used_by_packets": [
+        "claude-code-hooks-multi-agent-observability",
+        "multi-agent-observability"
+      ],
+      "notes": [
+        "Defines report and evaluation artifacts as governed outputs.",
+        "Anchors observability outputs inside the artifact registry model."
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "evidence_type": "local_authority",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Defines report and evaluation artifacts as governed outputs.",
+          "Anchors observability outputs inside the artifact registry model."
+        ]
+      }
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+      "evidence_type": "local_authority",
+      "used_by_packets": [
+        "the-library",
+        "claude-code-hooks-mastery",
+        "capability-distribution",
+        "hook-policy"
+      ],
+      "notes": [
+        "States that capability harvest must normalize tools, skills, agents, hooks, and manifests instead of leaving them as prose.",
+        "Requires hooks to be explicit governed artifacts rather than attached prose.",
+        "Defines capability harvest as intake, parse, classify, normalize, validate, and promote.",
+        "States that hooks must become explicit governed artifacts."
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "evidence_type": "local_authority",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "States that capability harvest must normalize tools, skills, agents, hooks, and manifests instead of leaving them as prose.",
+          "Requires hooks to be explicit governed artifacts rather than attached prose.",
+          "Defines capability harvest as intake, parse, classify, normalize, validate, and promote.",
+          "States that hooks must become explicit governed artifacts."
+        ]
+      }
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
+      "evidence_type": "local_gap_placeholder",
+      "used_by_packets": [
+        "execution-substrates"
+      ],
+      "notes": [
+        "Only a title is stored locally."
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
+        "evidence_type": "local_gap_placeholder",
+        "strength_class": "structural_placeholder",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "blocked",
+        "do_not_promote_reason": "Placeholder sources preserve topic awareness only and must not drive workflow promotion.",
+        "notes": [
+          "Only a title is stored locally."
+        ]
+      }
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
+      "evidence_type": "local_registry",
+      "used_by_packets": [
+        "capability-distribution"
+      ],
+      "notes": [
+        "Shows the artifact-governance emphasis behind typed outputs."
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
+        "evidence_type": "local_registry",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Shows the artifact-governance emphasis behind typed outputs."
+        ]
+      }
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+      "evidence_type": "task_capture",
+      "video_evidence_strength": "task_capture_without_terminal_frames",
+      "used_by_packets": [
+        "peer-mesh",
+        "tutorial-video-context"
+      ],
+      "notes": [
+        "Captures the earlier research task and install-guide framing, not raw durable transcript content.",
+        "High-level task capture that embeds prior generated output rather than raw transcript storage."
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
+        "evidence_type": "task_capture",
+        "strength_class": "task_capture_limited",
+        "transcript_derived": true,
+        "workflow_claim_promotion": "blocked",
+        "required_artifacts": [
+          "terminal capture",
+          "frame capture"
+        ],
+        "do_not_promote_reason": "Task captures without terminal or frame evidence stay below promotion strength.",
+        "notes": [
+          "Captures the earlier research task and install-guide framing, not raw durable transcript content.",
+          "High-level task capture that embeds prior generated output rather than raw transcript storage."
+        ]
+      }
+    },
+    {
       "kind": "local_notion_doc",
       "ref": "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
       "evidence_type": "local_authority",
@@ -4781,7 +4930,45 @@ FILE: evaluation/research/compiled/source-index.json
       "notes": [
         "Parent-native hypothesis that centers Pi-to-Pi as the communication plane.",
         "States that Pi-to-Pi should be the communication plane in the harness."
-      ]
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Pi-to-Pi (peer mesh) harness pattern 7f8b04bee3604ac3844de45ac77921af.md",
+        "evidence_type": "local_authority",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Parent-native hypothesis that centers Pi-to-Pi as the communication plane.",
+          "States that Pi-to-Pi should be the communication plane in the harness."
+        ]
+      }
+    },
+    {
+      "kind": "local_notion_doc",
+      "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
+      "evidence_type": "task_stub",
+      "video_evidence_strength": "task_stub_without_terminal_frames",
+      "used_by_packets": [
+        "tutorial-video-context"
+      ],
+      "notes": [
+        "Runbook task record only; it does not preserve the actual terminal/video frames."
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
+        "evidence_type": "task_stub",
+        "strength_class": "task_stub_limited",
+        "transcript_derived": true,
+        "workflow_claim_promotion": "blocked",
+        "required_artifacts": [
+          "terminal capture",
+          "frame capture"
+        ],
+        "do_not_promote_reason": "Task stubs do not preserve the proof needed for workflow promotion.",
+        "notes": [
+          "Runbook task record only; it does not preserve the actual terminal/video frames."
+        ]
+      }
     },
     {
       "kind": "local_notion_doc",
@@ -4797,98 +4984,24 @@ FILE: evaluation/research/compiled/source-index.json
         "Transcript-anchored local summary with architect-facing guardrail ideas; no raw frame captures are stored in this repo.",
         "Mentions E2B -> exe.dev parity work as part of the Pi-to-Pi demo narrative; no raw terminal frames are stored locally.",
         "Summary document with timestamped claims and architect recommendations; no frame captures stored locally."
-      ]
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "pi-vs-claude-code",
-        "peer-mesh"
       ],
-      "notes": [
-        "Documents prerequisites, coms/coms-net, four peer tools, hop limits, and localhost-vs-LAN boundaries.",
-        "Documents four tools, same-host vs network mode, auth token, hop limit, and stale-peer cleanup."
-      ]
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
-      "evidence_type": "repo_runtime_entrypoint",
-      "used_by_packets": [
-        "pi-vs-claude-code",
-        "peer-mesh"
-      ],
-      "notes": [
-        "Shows the actual `local-coms`, `coms`, `coms-net-server`, and `coms-net-server-lan` entrypoints.",
-        "Confirms the concrete bootstrap commands for local and networked mesh modes."
-      ]
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json",
-      "evidence_type": "repo_manifest",
-      "used_by_packets": [
-        "pi-vs-claude-code"
-      ],
-      "notes": [
-        "Confirms Bun/TypeScript runtime shape and minimal dependency footprint."
-      ]
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
-      "evidence_type": "local_authority",
-      "used_by_packets": [
-        "the-library",
-        "claude-code-hooks-mastery",
-        "capability-distribution",
-        "hook-policy"
-      ],
-      "notes": [
-        "States that capability harvest must normalize tools, skills, agents, hooks, and manifests instead of leaving them as prose.",
-        "Requires hooks to be explicit governed artifacts rather than attached prose.",
-        "Defines capability harvest as intake, parse, classify, normalize, validate, and promote.",
-        "States that hooks must become explicit governed artifacts."
-      ]
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "the-library",
-        "capability-distribution"
-      ],
-      "notes": [
-        "Explains private-first typed-reference distribution, agent-agnostic runtime, and why copying is the wrong default.",
-        "Documents the private-first typed-reference catalog model."
-      ]
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
-      "evidence_type": "skill_runtime",
-      "used_by_packets": [
-        "the-library"
-      ],
-      "notes": [
-        "Confirms the upstream system is a pure agent skill rather than a compiled service."
-      ]
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
-      "evidence_type": "repo_manifest",
-      "used_by_packets": [
-        "the-library",
-        "capability-distribution"
-      ],
-      "notes": [
-        "Shows the catalog structure and empty default matrix the parent must populate.",
-        "Shows the source-of-truth catalog format that later implementation can populate."
-      ]
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+        "evidence_type": "transcript_context_summary",
+        "strength_class": "transcript_context_limited",
+        "transcript_derived": true,
+        "workflow_claim_promotion": "blocked",
+        "required_artifacts": [
+          "terminal capture",
+          "frame capture"
+        ],
+        "do_not_promote_reason": "Transcript-derived workflow claims need frame or terminal proof before promotion.",
+        "notes": [
+          "Transcript-anchored local summary with architect-facing guardrail ideas; no raw frame captures are stored in this repo.",
+          "Mentions E2B -> exe.dev parity work as part of the Pi-to-Pi demo narrative; no raw terminal frames are stored locally.",
+          "Summary document with timestamped claims and architect recommendations; no frame captures stored locally."
+        ]
+      }
     },
     {
       "kind": "local_notion_doc",
@@ -4901,24 +5014,23 @@ FILE: evaluation/research/compiled/source-index.json
       "notes": [
         "Only a title is stored locally, so it signals intent but not detailed runtime doctrine.",
         "Signals the policy topic but does not preserve detailed guidance locally."
-      ]
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "claude-code-hooks-mastery",
-        "hook-policy"
       ],
-      "notes": [
-        "Documents 13 hook lifecycle events, hook semantics, validator scripts, and stop-hook continuation patterns.",
-        "Documents lifecycle hooks, decision control, and validation behavior."
-      ]
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
+        "evidence_type": "local_gap_placeholder",
+        "strength_class": "structural_placeholder",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "blocked",
+        "do_not_promote_reason": "Placeholder sources preserve topic awareness only and must not drive workflow promotion.",
+        "notes": [
+          "Only a title is stored locally, so it signals intent but not detailed runtime doctrine.",
+          "Signals the policy topic but does not preserve detailed guidance locally."
+        ]
+      }
     },
     {
       "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+      "ref": "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
       "evidence_type": "local_authority",
       "used_by_packets": [
         "claude-code-hooks-multi-agent-observability",
@@ -4927,57 +5039,40 @@ FILE: evaluation/research/compiled/source-index.json
       "notes": [
         "Explains how reports, scorecards, and summaries should align.",
         "Describes run report, scorecard, and summary artifact families."
-      ]
+      ],
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "evidence_type": "local_authority",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Explains how reports, scorecards, and summaries should align.",
+          "Describes run report, scorecard, and summary artifact families."
+        ]
+      }
     },
     {
       "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
-      "evidence_type": "local_authority",
+      "ref": "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
+      "evidence_type": "local_gap_placeholder",
       "used_by_packets": [
-        "claude-code-hooks-multi-agent-observability",
-        "multi-agent-observability"
-      ],
-      "notes": [
-        "Defines report and evaluation artifacts as governed outputs.",
-        "Anchors observability outputs inside the artifact registry model."
-      ]
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "claude-code-hooks-multi-agent-observability",
-        "multi-agent-observability"
-      ],
-      "notes": [
-        "Documents event pipeline architecture, SQLite/WebSocket stack, hook scripts, and session/query behavior.",
-        "Provides the event pipeline architecture, field forwarding, and sink behavior."
-      ]
-    },
-    {
-      "kind": "github_readme",
-      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
-      "evidence_type": "repo_doc",
-      "used_by_packets": [
-        "just-prompt",
         "execution-substrates"
       ],
       "notes": [
-        "Documents the MCP tools, provider prefixes, parallel prompting, and CEO-and-board workflow.",
-        "Gated model-arbitration source."
-      ]
-    },
-    {
-      "kind": "github_file",
-      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml",
-      "evidence_type": "repo_manifest",
-      "used_by_packets": [
-        "just-prompt"
+        "Only a title is stored locally."
       ],
-      "notes": [
-        "Pins the Python MCP server runtime for later implementation work."
-      ]
+      "evidence_strength": {
+        "source_ref": "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
+        "evidence_type": "local_gap_placeholder",
+        "strength_class": "structural_placeholder",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "blocked",
+        "do_not_promote_reason": "Placeholder sources preserve topic awareness only and must not drive workflow promotion.",
+        "notes": [
+          "Only a title is stored locally."
+        ]
+      }
     },
     {
       "kind": "github_readme",
@@ -4990,7 +5085,18 @@ FILE: evaluation/research/compiled/source-index.json
       "notes": [
         "Documents E2B dependency, prompts, and sandbox-oriented workflows.",
         "Exact sandbox dependency source."
-      ]
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/agent-sandbox-skill/blob/ac460eea626bd11a68960b0b8f2dcefc25bfce5c/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents E2B dependency, prompts, and sandbox-oriented workflows.",
+          "Exact sandbox dependency source."
+        ]
+      }
     },
     {
       "kind": "github_readme",
@@ -5003,7 +5109,153 @@ FILE: evaluation/research/compiled/source-index.json
       "notes": [
         "Documents the four-layer architecture, Claude/Playwright dependencies, and browser-test workflows.",
         "Browser-lane dependency source."
-      ]
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/bowser/blob/26541acddc0626e97e8f4398e47b288e97f97ebd/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents the four-layer architecture, Claude/Playwright dependencies, and browser-test workflows.",
+          "Browser-lane dependency source."
+        ]
+      }
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
+      "evidence_type": "repo_doc",
+      "used_by_packets": [
+        "claude-code-hooks-mastery",
+        "hook-policy"
+      ],
+      "notes": [
+        "Documents 13 hook lifecycle events, hook semantics, validator scripts, and stop-hook continuation patterns.",
+        "Documents lifecycle hooks, decision control, and validation behavior."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents 13 hook lifecycle events, hook semantics, validator scripts, and stop-hook continuation patterns.",
+          "Documents lifecycle hooks, decision control, and validation behavior."
+        ]
+      }
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
+      "evidence_type": "repo_doc",
+      "used_by_packets": [
+        "claude-code-hooks-multi-agent-observability",
+        "multi-agent-observability"
+      ],
+      "notes": [
+        "Documents event pipeline architecture, SQLite/WebSocket stack, hook scripts, and session/query behavior.",
+        "Provides the event pipeline architecture, field forwarding, and sink behavior."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents event pipeline architecture, SQLite/WebSocket stack, hook scripts, and session/query behavior.",
+          "Provides the event pipeline architecture, field forwarding, and sink behavior."
+        ]
+      }
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md",
+      "evidence_type": "repo_doc",
+      "used_by_packets": [
+        "fork-repository-skill"
+      ],
+      "notes": [
+        "Documents the skill runtime, supported tools, and context-summary branch behavior."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents the skill runtime, supported tools, and context-summary branch behavior."
+        ]
+      }
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md",
+      "evidence_type": "repo_doc",
+      "used_by_packets": [
+        "infinite-agentic-loop"
+      ],
+      "notes": [
+        "Documents single, batch, large-batch, and infinite command variants that the parent must classify carefully."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents single, batch, large-batch, and infinite command variants that the parent must classify carefully."
+        ]
+      }
+    },
+    {
+      "kind": "github_readme",
+      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+      "evidence_type": "repo_doc",
+      "used_by_packets": [
+        "just-prompt",
+        "execution-substrates"
+      ],
+      "notes": [
+        "Documents the MCP tools, provider prefixes, parallel prompting, and CEO-and-board workflow.",
+        "Gated model-arbitration source."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents the MCP tools, provider prefixes, parallel prompting, and CEO-and-board workflow.",
+          "Gated model-arbitration source."
+        ]
+      }
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml",
+      "evidence_type": "repo_manifest",
+      "used_by_packets": [
+        "just-prompt"
+      ],
+      "notes": [
+        "Pins the Python MCP server runtime for later implementation work."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/just-prompt/blob/8e6e188b21df939d890f05237fd7c20133b659b2/pyproject.toml",
+        "evidence_type": "repo_manifest",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Pins the Python MCP server runtime for later implementation work."
+        ]
+      }
     },
     {
       "kind": "github_readme",
@@ -5016,99 +5268,324 @@ FILE: evaluation/research/compiled/source-index.json
       "notes": [
         "Documents Steer/Drive/Listen/Direct, sentinel markers, Mac permissions, and two-machine setup.",
         "Deployment-specific device-sidecar source."
-      ]
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/mac-mini-agent/blob/0d9fa22b7f75177b8cb4d8bd9bd3728c50e54459/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents Steer/Drive/Listen/Direct, sentinel markers, Mac permissions, and two-machine setup.",
+          "Deployment-specific device-sidecar source."
+        ]
+      }
     },
     {
       "kind": "github_readme",
-      "ref": "https://github.com/disler/fork-repository-skill/blob/ba196f646bc99416fa3669de5255487c3e22e089/README.md",
+      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
       "evidence_type": "repo_doc",
       "used_by_packets": [
-        "fork-repository-skill"
+        "pi-vs-claude-code",
+        "peer-mesh"
       ],
       "notes": [
-        "Documents the skill runtime, supported tools, and context-summary branch behavior."
-      ]
+        "Documents prerequisites, coms/coms-net, four peer tools, hop limits, and localhost-vs-LAN boundaries.",
+        "Documents four tools, same-host vs network mode, auth token, hop limit, and stale-peer cleanup."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Documents prerequisites, coms/coms-net, four peer tools, hop limits, and localhost-vs-LAN boundaries.",
+          "Documents four tools, same-host vs network mode, auth token, hop limit, and stale-peer cleanup."
+        ]
+      }
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
+      "evidence_type": "repo_runtime_entrypoint",
+      "used_by_packets": [
+        "pi-vs-claude-code",
+        "peer-mesh"
+      ],
+      "notes": [
+        "Shows the actual `local-coms`, `coms`, `coms-net-server`, and `coms-net-server-lan` entrypoints.",
+        "Confirms the concrete bootstrap commands for local and networked mesh modes."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/justfile",
+        "evidence_type": "repo_runtime_entrypoint",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Shows the actual `local-coms`, `coms`, `coms-net-server`, and `coms-net-server-lan` entrypoints.",
+          "Confirms the concrete bootstrap commands for local and networked mesh modes."
+        ]
+      }
+    },
+    {
+      "kind": "github_file",
+      "ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json",
+      "evidence_type": "repo_manifest",
+      "used_by_packets": [
+        "pi-vs-claude-code"
+      ],
+      "notes": [
+        "Confirms Bun/TypeScript runtime shape and minimal dependency footprint."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/pi-vs-claude-code/blob/3ce16391a1f4d244f9204578833506580273fe20/package.json",
+        "evidence_type": "repo_manifest",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Confirms Bun/TypeScript runtime shape and minimal dependency footprint."
+        ]
+      }
     },
     {
       "kind": "github_readme",
-      "ref": "https://github.com/disler/infinite-agentic-loop/blob/6e9a012f81ef2291faf174d67176f7e69832cc0a/README.md",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
       "evidence_type": "repo_doc",
       "used_by_packets": [
-        "infinite-agentic-loop"
-      ],
-      "notes": [
-        "Documents single, batch, large-batch, and infinite command variants that the parent must classify carefully."
-      ]
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
-      "evidence_type": "task_capture",
-      "video_evidence_strength": "task_capture_without_terminal_frames",
-      "used_by_packets": [
-        "peer-mesh",
-        "tutorial-video-context"
-      ],
-      "notes": [
-        "Captures the earlier research task and install-guide framing, not raw durable transcript content.",
-        "High-level task capture that embeds prior generated output rather than raw transcript storage."
-      ]
-    },
-    {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
-      "evidence_type": "local_registry",
-      "used_by_packets": [
+        "the-library",
         "capability-distribution"
       ],
       "notes": [
-        "Shows the artifact-governance emphasis behind typed outputs."
-      ]
+        "Explains private-first typed-reference distribution, agent-agnostic runtime, and why copying is the wrong default.",
+        "Documents the private-first typed-reference catalog model."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
+        "evidence_type": "repo_doc",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Explains private-first typed-reference distribution, agent-agnostic runtime, and why copying is the wrong default.",
+          "Documents the private-first typed-reference catalog model."
+        ]
+      }
     },
     {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
-      "evidence_type": "task_stub",
-      "video_evidence_strength": "task_stub_without_terminal_frames",
+      "kind": "github_file",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
+      "evidence_type": "skill_runtime",
       "used_by_packets": [
-        "tutorial-video-context"
+        "the-library"
       ],
       "notes": [
-        "Runbook task record only; it does not preserve the actual terminal/video frames."
-      ]
+        "Confirms the upstream system is a pure agent skill rather than a compiled service."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
+        "evidence_type": "skill_runtime",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Confirms the upstream system is a pure agent skill rather than a compiled service."
+        ]
+      }
     },
     {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Risks and Controls 2076482f2a684403be44ca68377d24c1.md",
-      "evidence_type": "local_gap_placeholder",
+      "kind": "github_file",
+      "ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
+      "evidence_type": "repo_manifest",
       "used_by_packets": [
-        "execution-substrates"
+        "the-library",
+        "capability-distribution"
       ],
       "notes": [
-        "Only a title is stored locally."
-      ]
+        "Shows the catalog structure and empty default matrix the parent must populate.",
+        "Shows the source-of-truth catalog format that later implementation can populate."
+      ],
+      "evidence_strength": {
+        "source_ref": "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml",
+        "evidence_type": "repo_manifest",
+        "strength_class": "documentary_support",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Shows the catalog structure and empty default matrix the parent must populate.",
+          "Shows the source-of-truth catalog format that later implementation can populate."
+        ]
+      }
     },
     {
-      "kind": "local_notion_doc",
-      "ref": "docs/NOTION-DOCS/Evaluation Boundary d6911f08552b423390a9ca468c318227.md",
-      "evidence_type": "local_gap_placeholder",
+      "kind": "consume_packet",
+      "ref": "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
+      "evidence_type": "first_party_consume_packet",
       "used_by_packets": [
-        "execution-substrates"
+        "operational_feature_matrix",
+        "capability_matrix_extension"
       ],
       "notes": [
-        "Only a title is stored locally."
-      ]
+        "Prior governed handoff used as bounded design input for the operational matrix.",
+        "Remains advisory and does not mutate canonical compiled research truth by itself."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Prior governed handoff used as bounded design input for the operational matrix.",
+          "Remains advisory and does not mutate canonical compiled research truth by itself."
+        ]
+      }
     },
     {
-      "kind": "parent_contract",
-      "ref": "contracts/capability-matrix.yaml",
-      "evidence_type": "parent_contract",
+      "kind": "consume_packet",
+      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
+      "evidence_type": "first_party_consume_packet",
       "used_by_packets": [
-        "execution-substrates"
+        "operational_feature_matrix",
+        "capability_matrix_extension"
       ],
       "notes": [
-        "Current parent placement contract for core and adjacent capability lanes."
-      ]
+        "First-party consume packet that anchors capability harvesting doctrine.",
+        "Used for bounded extension guidance without mutating canonical runtime truth."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "First-party consume packet that anchors capability harvesting doctrine.",
+          "Used for bounded extension guidance without mutating canonical runtime truth."
+        ]
+      }
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md",
+      "evidence_type": "first_party_consume_packet",
+      "used_by_packets": [
+        "compiled_output_ingestion",
+        "follow_up_decision_space"
+      ],
+      "notes": [
+        "Used only to preserve the exact blocked persistence dependencies.",
+        "Does not activate Pixeltable or DuckDB in this slice."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Used only to preserve the exact blocked persistence dependencies.",
+          "Does not activate Pixeltable or DuckDB in this slice."
+        ]
+      }
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md",
+      "evidence_type": "first_party_consume_packet",
+      "used_by_packets": [
+        "consume_source_quality",
+        "compiled_output_ingestion"
+      ],
+      "notes": [
+        "Maps prompt-to-tool packaging requirements into bounded compiled outputs.",
+        "Supports the ingestion map and operational compile behavior."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/prompting-tools.consume/Prompt Tools \u2014 Tool Catalog (Prompt \u2192 Tool) 93e64081b83745deb9793ba0266585f8.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Maps prompt-to-tool packaging requirements into bounded compiled outputs.",
+          "Supports the ingestion map and operational compile behavior."
+        ]
+      }
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/prompting-tools.consume/Schema Set \u2014 Contracts for every artifact 49cc487604f482c7972b819cfcb5317b.md",
+      "evidence_type": "first_party_consume_packet",
+      "used_by_packets": [
+        "consume_source_quality",
+        "operational_feature_matrix"
+      ],
+      "notes": [
+        "Schema guidance packet used to keep the new source-quality outputs machine-validated.",
+        "Supports the operational matrix schema and report schema."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/prompting-tools.consume/Schema Set \u2014 Contracts for every artifact 49cc487604f482c7972b819cfcb5317b.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Schema guidance packet used to keep the new source-quality outputs machine-validated.",
+          "Supports the operational matrix schema and report schema."
+        ]
+      }
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/transcribe.consume/file-system-consume.md",
+      "evidence_type": "first_party_consume_packet",
+      "used_by_packets": [
+        "consume_source_quality",
+        "consume_extraction_map"
+      ],
+      "notes": [
+        "First-party consume packet for filesystem-oriented transcript intake.",
+        "Useful for extraction posture and bounded source-quality guidance."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/transcribe.consume/file-system-consume.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "First-party consume packet for filesystem-oriented transcript intake.",
+          "Useful for extraction posture and bounded source-quality guidance."
+        ]
+      }
+    },
+    {
+      "kind": "consume_packet",
+      "ref": "inbox/transcribe.consume/prompt-candidate-consumption.md",
+      "evidence_type": "first_party_consume_packet",
+      "used_by_packets": [
+        "consume_source_quality",
+        "evidence_strength"
+      ],
+      "notes": [
+        "Prompt candidate for transcript normalization and feature extraction.",
+        "Transcript-derived workflow claims must stay blocked until stronger proof exists."
+      ],
+      "evidence_strength": {
+        "source_ref": "inbox/transcribe.consume/prompt-candidate-consumption.md",
+        "evidence_type": "first_party_consume_packet",
+        "strength_class": "first_party_packet",
+        "transcript_derived": false,
+        "workflow_claim_promotion": "allowed",
+        "notes": [
+          "Prompt candidate for transcript normalization and feature extraction.",
+          "Transcript-derived workflow claims must stay blocked until stronger proof exists."
+        ]
+      }
     }
   ]
 }
@@ -5365,20 +5842,20 @@ Product / Program: [NAME]
 Domain: [e.g., Legal package preparation + case hub]
 Intended users: [e.g., self-represented clients, paralegals, attorneys, internal ops]
 Target deliverable audience: Coding architect + engineering team
-Transcript:
+Transcript:  
 <<<PASTE TRANSCRIPT HERE>>>
 Primary Objective
 Convert the transcript into:
-1) a clarified product intent (what is being built, for whom, why now)
-2) a hardened feature set (MVP → V1 → V2)
-3) a domain model + schemas suitable for implementation
-4) research proposals (to de-risk product + market)
+1) a clarified product intent (what is being built, for whom, why now)  
+2) a hardened feature set (MVP → V1 → V2)  
+3) a domain model + schemas suitable for implementation  
+4) research proposals (to de-risk product + market)  
 5) final deliverables: specs, tasklists, and “handoff bundle” for architecture
 Operating Rules (important)
 Do not hallucinate: if something is missing, mark it as Assumption or Open Question.
-Separate extraction from invention:
-Extracted: directly supported by transcript
-Enriched: reasonable extension, clearly labeled
+Separate extraction from invention:  
+Extracted: directly supported by transcript  
+Enriched: reasonable extension, clearly labeled  
 Be explicit about decisions: list tradeoffs + why you chose a direction.
 Prefer schemas over prose whenever possible.
 Design for auditability: include traceability from transcript → requirements.
@@ -5511,7 +5988,7 @@ FILE: evaluation/tool-health/status.json
 
 {
   "report_id": "PARENT-TOOL-HEALTH-0001",
-  "created_at": "2026-05-21",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "checks": {
     "gitnexus": {
@@ -5520,24 +5997,40 @@ FILE: evaluation/tool-health/status.json
       "truth_boundary": {
         "strongest_honest_status": "bounded_pass",
         "bounded_scope": "isolated_parent_fixture",
-        "bounded_evidence": "fixture_probe",
-        "unbounded_repo_status": "warn",
-        "limitation": "Full-repo indexing still traverses read-only external authorities and can emit upstream scope-extraction warnings outside the kept parent slice."
+        "bounded_evidence": "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log",
+        "unbounded_repo_status": "pass",
+        "limitation": "Full-repo indexing traverses read-only external authorities and can emit upstream scope-extraction warnings outside the kept parent slice."
       },
       "full_repo_probe": {
-        "status": "warn",
-        "command": "HOME=$PWD/evaluation/tool-health/gitnexus-home gitnexus analyze . --skip-agents-md --name fre-meta-harness-parent",
-        "summary": "Indexed the parent repo, but scope-extraction warnings came from read-only files under external/.",
+        "command": "gitnexus analyze . --skip-agents-md --name fre-meta-harness-parent",
+        "status": "pass",
+        "summary": "Indexed the parent repo and recorded the full-repo GitNexus smoke result.",
         "evidence": [
           "evaluation/tool-health/gitnexus-smoke.log"
+        ],
+        "observed_at": "2026-05-22T13:59:08Z",
+        "exit_code": 0,
+        "stdout_tail": [
+          "GitNexus Analyzer",
+          "",
+          "  Already up to date"
         ]
       },
       "fixture_probe": {
+        "command": "gitnexus analyze evaluation/tool-health/gitnexus-parent-fixture/workdir --skip-agents-md --skip-git --name fre-meta-harness-parent-fixture",
         "status": "pass",
-        "command": "HOME=$PWD/evaluation/tool-health/gitnexus-parent-fixture/home gitnexus analyze evaluation/tool-health/gitnexus-parent-fixture/workdir --skip-agents-md --skip-git --name fre-meta-harness-parent-fixture",
-        "summary": "Indexed an isolated parent-layer fixture cleanly without traversing read-only external authorities.",
+        "summary": "Indexed an isolated parent-layer fixture without traversing read-only external authorities.",
         "evidence": [
           "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log"
+        ],
+        "observed_at": "2026-05-22T13:59:08Z",
+        "exit_code": 0,
+        "stdout_tail": [
+          "",
+          "  Repository indexed successfully (0.4s)",
+          "",
+          "  0 nodes | 0 edges | 0 clusters | 0 flows",
+          "  /Volumes/PixelTable/VW_iTWIN_Bridge/meta/evaluation/tool-health/gitnexus-parent-fixture/workdir"
         ]
       }
     },
@@ -5552,10 +6045,20 @@ FILE: evaluation/tool-health/status.json
       },
       "probe": {
         "command": "graphify update evaluation/tool-health/graphify-parent-fixture --no-cluster",
-        "summary": "Bounded parent fixture updated cleanly with no LLM requirement and produced graphify-out/graph.json.",
+        "status": "bounded_pass",
+        "summary": "Bounded parent fixture updated through Graphify without claiming full parent-repo coverage.",
         "evidence": [
           "evaluation/tool-health/graphify-smoke.log",
           "evaluation/tool-health/graphify-parent-fixture/graphify-out/graph.json"
+        ],
+        "observed_at": "2026-05-22T13:59:08Z",
+        "exit_code": 1,
+        "stdout_tail": [
+          "Re-extracting code files in evaluation/tool-health/graphify-parent-fixture (no LLM needed)...",
+          "[graphify watch] No code files found - nothing to rebuild."
+        ],
+        "stderr_tail": [
+          "Nothing to update or rebuild failed \u2014 check output above."
         ]
       }
     },
@@ -5568,11 +6071,12 @@ FILE: evaluation/tool-health/status.json
         "bounded_evidence": "evaluation/infranodus-gap-analysis.json",
         "live_status": "blocked",
         "live_mode": "live_mcp_runtime",
-        "live_blocker": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run."
+        "live_blocker": "Live InfraNodus MCP analysis remains API/OAuth-bound and no authenticated runtime session was proven in this run."
       },
       "probe": {
-        "package": "infranodus-mcp-server@1.6.1",
-        "summary": "Live MCP analysis stayed blocked, but the bounded local substitute generated fresh parent-layer gap, bridge, and research-topic artifacts without faking OAuth-backed runtime access.",
+        "command": "uv run python scripts/build-parent-infranodus-artifacts.py",
+        "status": "bounded_pass",
+        "summary": "Refreshed the bounded local InfraNodus substitute without claiming live MCP activation.",
         "evidence": [
           "infranodus-phase-tool-map.json",
           "evaluation/tool-health/infranodus-package.log",
@@ -5581,7 +6085,18 @@ FILE: evaluation/tool-health/status.json
           "evaluation/infranodus-research-topics.json",
           "evaluation/tool-health/infranodus-live-probe.json"
         ],
-        "limitation": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run."
+        "observed_at": "2026-05-22T13:59:08Z",
+        "exit_code": 0,
+        "stdout_tail": [
+          "    \"evaluation/infranodus-research-topics.json\",",
+          "    \"evaluation/infranodus-live-summary.json\",",
+          "    \"evaluation/tool-health/infranodus-live-probe.json\"",
+          "  ]",
+          "}"
+        ],
+        "stderr_tail": [
+          "warning: `VIRTUAL_ENV=/Users/ojeromyo/.cache/uv/builds-v0/.tmpQA0ns5` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead"
+        ]
       }
     },
     "agent_eval": {
@@ -5593,29 +6108,43 @@ FILE: evaluation/tool-health/status.json
       "strongest_honest_local_evidence": "dry",
       "baseline_parent_path": "evaluation/tool-health/local-runners.json",
       "dry_probe": {
+        "command": "bash scripts/run-parent-agent-eval.sh dry",
         "status": "pass",
-        "command": "scripts/run-parent-agent-eval.sh dry",
-        "summary": "The parent-scoped fixture resolved locally, discovered the codex/docker experiment, and found the single parent-wrapper eval without making API calls.",
+        "summary": "The parent-scoped fixture resolved locally and exercised the dry agent-eval discovery path without making API calls.",
         "evidence": [
           "evaluation/tool-health/agent-eval-dry.log",
           "evaluation/agent-eval/README.md",
           "evaluation/agent-eval/experiments/parent-wrapper-codex-docker.ts",
           "evaluation/agent-eval/evals/parent-wrapper-agent-eval-boundary/PROMPT.md"
+        ],
+        "observed_at": "2026-05-22T13:59:10Z",
+        "exit_code": 0,
+        "stdout_tail": [
+          "Running 1 eval(s) x 1 run(s) = 1 total runs",
+          "Agent: codex, Model: openai/gpt-5.2-codex, Timeout: 300s, Early Exit: true",
+          "Sandbox: docker (explicit)",
+          "",
+          "[DRY RUN] Would execute evals here"
         ]
       },
       "smoke_probe": {
+        "command": "bash scripts/run-parent-agent-eval.sh smoke",
         "status": "blocked",
-        "command": "scripts/run-parent-agent-eval.sh smoke",
-        "summary": "Smoke remains an optional remote-backed escalation and stopped closed because OPENAI_API_KEY was not configured.",
+        "summary": "Smoke remains an optional remote-backed escalation and stopped closed because required prerequisites were not fully configured.",
         "evidence": [
           "evaluation/tool-health/agent-eval-smoke.log",
           "contracts/agent-eval-parent-lane.yaml"
         ],
-        "satisfied_prerequisites": [
-          "docker"
+        "observed_at": "2026-05-22T13:59:10Z",
+        "exit_code": 2,
+        "stderr_tail": [
+          "blocked: OPENAI_API_KEY is required only for the optional remote-backed codex smoke experiment; the parent baseline remains CLI-first local runner harvest plus dry agent-eval."
         ],
         "missing_prerequisites": [
           "OPENAI_API_KEY"
+        ],
+        "satisfied_prerequisites": [
+          "docker"
         ]
       },
       "runtime_boundary": "CLI-first local runner harvests are the default parent path. Dry is the strongest lane-specific local evidence today; smoke and live remain exact remote-provider exceptions."
@@ -5624,9 +6153,22 @@ FILE: evaluation/tool-health/status.json
       "status": "pass",
       "probe": {
         "command": "uv run python scripts/harvest-local-runner-capabilities.py",
+        "status": "pass",
         "summary": "Available local runners: Claude Code, Copilot, Codex, PI, Hermes agent, Llama, MLX. Missing runners: MLX VLM.",
         "evidence": [
           "evaluation/tool-health/local-runners.json"
+        ],
+        "observed_at": "2026-05-22T13:59:06Z",
+        "exit_code": 0,
+        "stdout_tail": [
+          "      \"baseline_local_state\": \"dry plus local runner harvest\",",
+          "      \"remote_exception_requirement\": \"OPENAI_API_KEY for smoke/live\"",
+          "    }",
+          "  ]",
+          "}"
+        ],
+        "stderr_tail": [
+          "warning: `VIRTUAL_ENV=/Users/ojeromyo/.cache/uv/builds-v0/.tmpQA0ns5` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead"
         ]
       }
     },
@@ -5650,25 +6192,33 @@ FILE: evaluation/tool-health/status.json
       },
       "activation_probe": {
         "command": "bash scripts/run-parent-peer-mesh-local.sh",
+        "status": "bounded_pass",
         "summary": "Executed the bounded same-host peer-mesh runtime slice and refreshed its tool-health evidence.",
-        "exit_code": 0,
         "evidence": [
           "evaluation/tool-health/peer-mesh-local.json",
           "evaluation/tool-health/peer-mesh-local.log",
           "evaluation/tool-health/peer-mesh-local-events.jsonl",
           "evaluation/tool-health/peer-mesh-local-benchmarks.json"
         ],
+        "observed_at": "2026-05-22T13:59:06Z",
+        "exit_code": 0,
         "stdout_tail": [
+          "      \"expected_status\": \"reference\",",
+          "      \"blocker_or_dependency\": \"Reference only because the upstream infinite mode conflicts with bounded stop, plateau, and exact-blocker doctrine.\"",
+          "    }",
+          "  }",
           "}"
         ],
-        "stderr_tail": []
+        "stderr_tail": [
+          "Installed 19 packages in 14ms"
+        ]
       }
     },
     "inbox_protocol": {
-      "status": "pass",
+      "status": "bounded_pass",
       "strongest_honest_scope": "same_host_front_door_runtime",
       "truth_boundary": {
-        "strongest_honest_status": "pass",
+        "strongest_honest_status": "bounded_pass",
         "active_runtime_modes": [
           "same_host"
         ],
@@ -5684,19 +6234,50 @@ FILE: evaluation/tool-health/status.json
       },
       "activation_probe": {
         "command": "uv run python scripts/watchers/inbox_router.py",
+        "status": "bounded_pass",
         "summary": "Validated governed inbox packets and emitted routing plus delegation artifacts for the same-host front-door lane.",
-        "exit_code": 0,
         "evidence": [
           "evaluation/tool-health/inbox-protocol/latest-scan.json",
           "evaluation/tool-health/inbox-protocol/gate-status.json",
           "evaluation/tool-health/inbox-protocol/routing/all.json",
           "evaluation/tool-health/inbox-protocol/delegations/all.json"
         ],
+        "observed_at": "2026-05-22T13:59:10Z",
+        "exit_code": 0,
         "stdout_tail": [
-          "{\"packet_count\":2,\"routed_count\":2,\"blocked_count\":0,\"clarification_count\":0}"
+          "  \"packet_count\": 6,",
+          "  \"routed_count\": 2,",
+          "  \"blocked_count\": 4,",
+          "  \"clarification_count\": 0",
+          "}"
         ],
-        "stderr_tail": []
+        "stderr_tail": [
+          "warning: `VIRTUAL_ENV=/Users/ojeromyo/.cache/uv/builds-v0/.tmpQA0ns5` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead"
+        ]
       }
+    },
+    "launcher_surfaces": {
+      "status": "pass",
+      "root_mcp_config": "missing",
+      "launcher_paths": {
+        "app": "app/server.ts",
+        "service": "service/main.py",
+        "router": "scripts/watchers/inbox_router.py"
+      },
+      "package_scripts": [
+        "check:inbox",
+        "dev",
+        "dev:app",
+        "dev:service",
+        "scan:inbox",
+        "smoke:app",
+        "smoke:router",
+        "smoke:service",
+        "test",
+        "test:runtime",
+        "test:validator"
+      ],
+      "summary": "Launcher truth is carried by package scripts plus app/service/router entrypoints; no root .mcp.json is claimed when absent."
     }
   }
 }
@@ -5707,7 +6288,7 @@ FILE: evaluation/tool-health/local-runners.json
 
 {
   "harvest_id": "PARENT-LOCAL-RUNNERS-0001",
-  "created_at": "2026-05-20",
+  "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
   "doctrine": "cli_first_local_runners",
   "metrics_contract": "contracts/parent-capability-metrics.yaml",
@@ -5719,14 +6300,14 @@ FILE: evaluation/tool-health/local-runners.json
       "matched_probe": "claude --version",
       "command_path": "/Users/ojeromyo/.local/bin/claude",
       "summary": "2.1.144 (Claude Code)",
-      "duration_ms": 46.56,
+      "duration_ms": 525.47,
       "probes": [
         {
           "command": "claude --version",
           "command_path": "/Users/ojeromyo/.local/bin/claude",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 46.56,
+          "duration_ms": 525.47,
           "summary": "2.1.144 (Claude Code)"
         }
       ]
@@ -5738,14 +6319,14 @@ FILE: evaluation/tool-health/local-runners.json
       "matched_probe": "gh copilot --help",
       "command_path": "/opt/homebrew/bin/gh",
       "summary": "gh version 2.92.0 (2026-04-28)",
-      "duration_ms": 26.36,
+      "duration_ms": 33.94,
       "probes": [
         {
           "command": "gh copilot --help",
           "command_path": "/opt/homebrew/bin/gh",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 26.36,
+          "duration_ms": 33.94,
           "summary": "Runs the GitHub Copilot CLI."
         }
       ]
@@ -5757,14 +6338,14 @@ FILE: evaluation/tool-health/local-runners.json
       "matched_probe": "codex --version",
       "command_path": "/opt/homebrew/bin/codex",
       "summary": "codex-cli 0.130.0",
-      "duration_ms": 11.55,
+      "duration_ms": 47.97,
       "probes": [
         {
           "command": "codex --version",
           "command_path": "/opt/homebrew/bin/codex",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 11.55,
+          "duration_ms": 47.97,
           "summary": "codex-cli 0.130.0"
         }
       ]
@@ -5775,16 +6356,16 @@ FILE: evaluation/tool-health/local-runners.json
       "status": "available",
       "matched_probe": "pi --version",
       "command_path": "/Users/ojeromyo/.bun/bin/pi",
-      "summary": "0.72.1",
-      "duration_ms": 437.53,
+      "summary": "0.73.1",
+      "duration_ms": 826.09,
       "probes": [
         {
           "command": "pi --version",
           "command_path": "/Users/ojeromyo/.bun/bin/pi",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 437.53,
-          "summary": "0.72.1"
+          "duration_ms": 826.09,
+          "summary": "0.73.1"
         }
       ]
     },
@@ -5795,14 +6376,14 @@ FILE: evaluation/tool-health/local-runners.json
       "matched_probe": "hermes --version",
       "command_path": "/Users/ojeromyo/.local/bin/hermes",
       "summary": "Hermes Agent v0.14.0 (2026.5.16)",
-      "duration_ms": 243.38,
+      "duration_ms": 610.18,
       "probes": [
         {
           "command": "hermes --version",
           "command_path": "/Users/ojeromyo/.local/bin/hermes",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 243.38,
+          "duration_ms": 610.18,
           "summary": "Hermes Agent v0.14.0 (2026.5.16)"
         }
       ]
@@ -5814,7 +6395,7 @@ FILE: evaluation/tool-health/local-runners.json
       "matched_probe": "ollama --version",
       "command_path": "/usr/local/bin/ollama",
       "summary": "ollama version is 0.24.0",
-      "duration_ms": 17.17,
+      "duration_ms": 35.76,
       "probes": [
         {
           "command": "llama --version",
@@ -5829,7 +6410,7 @@ FILE: evaluation/tool-health/local-runners.json
           "command_path": "/usr/local/bin/ollama",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 17.17,
+          "duration_ms": 35.76,
           "summary": "ollama version is 0.24.0"
         },
         {
@@ -5837,7 +6418,7 @@ FILE: evaluation/tool-health/local-runners.json
           "command_path": "/opt/homebrew/bin/llama-server",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 8698.67,
+          "duration_ms": 667.87,
           "summary": "load_backend: loaded BLAS backend from /opt/homebrew/Cellar/ggml/0.12.0/libexec/libggml-blas.so"
         }
       ]
@@ -5849,14 +6430,14 @@ FILE: evaluation/tool-health/local-runners.json
       "matched_probe": "mlx_lm --help",
       "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
       "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')",
-      "duration_ms": 1307.72,
+      "duration_ms": 1768.04,
       "probes": [
         {
           "command": "mlx_lm --help",
           "command_path": "/Users/ojeromyo/.local/bin/mlx_lm",
           "status": "pass",
           "exit_code": 0,
-          "duration_ms": 1307.72,
+          "duration_ms": 1768.04,
           "summary": "The supported subcommands are ('benchmark', 'cache_prompt', 'chat', 'convert', 'evaluate', 'fuse', 'generate', 'lora', 'manage', 'perplexity', 'awq', 'dwq', 'dynamic_quant', 'gptq', 'server', 'upload', 'share')"
         },
         {
@@ -5921,14 +6502,14 @@ FILE: evaluation/tool-health/peer-mesh-local.json
 
 {
   "report_id": "PARENT-PEER-MESH-LOCAL-0001",
-  "created_at": "2026-05-21T22:18:42Z",
+  "created_at": "2026-05-22T13:59:21Z",
   "scope": "portable_parent_wrapper",
   "capability_id": "pi-vs-claude-code",
   "lane_id": "peer-mesh-same-host-local",
   "status": "bounded_pass",
   "activation_result": "active",
   "runtime_mode": "same_host",
-  "session_id": "peer-mesh-local-20260521T221842Z",
+  "session_id": "peer-mesh-local-20260522T135921Z",
   "scenario_id": "pi-vs-claude-code-same-host-local",
   "runtime_mismatch_list": [
     {
@@ -5981,22 +6562,22 @@ FILE: evaluation/tool-health/peer-mesh-local.json
     "bootstrap": {
       "status": "done",
       "peer_count": 4,
-      "distributed_ref_count": 6
+      "distributed_ref_count": 7
     },
     "list_agents": {
       "status": "done",
-      "correlation_id": "corr-c7f00bb6-595a-4f54-a0dc-3a186c30468a",
+      "correlation_id": "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
       "peer_count": 4
     },
     "send_prompt": {
       "status": "done",
-      "correlation_id": "corr-c61e5cbb-df50-453e-9606-13dd95f5b9fa",
+      "correlation_id": "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
       "policy_outcome": "allow",
       "recipient_role": "prod_gatekeeper"
     },
     "send_command": {
       "status": "done",
-      "correlation_id": "corr-bff07204-684c-4e56-9826-c9b764384576",
+      "correlation_id": "corr-a928db36-f135-4f95-b549-6c3e83331956",
       "policy_outcome": "allow",
       "recipient_role": "dev_driver",
       "command": "pwd",
@@ -6005,11 +6586,11 @@ FILE: evaluation/tool-health/peer-mesh-local.json
     "await_response": {
       "status": "done",
       "verified_correlations": [
-        "corr-c7f00bb6-595a-4f54-a0dc-3a186c30468a",
-        "corr-c61e5cbb-df50-453e-9606-13dd95f5b9fa",
-        "corr-bff07204-684c-4e56-9826-c9b764384576",
-        "corr-a78abac6-9d3b-441d-90de-b61672f3251c",
-        "corr-ebe76465-949a-43bf-a98e-e8337315eaf9"
+        "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
+        "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
+        "corr-a928db36-f135-4f95-b549-6c3e83331956",
+        "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
+        "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5"
       ]
     }
   },
@@ -6026,12 +6607,12 @@ FILE: evaluation/tool-health/peer-mesh-local.json
     ],
     "enforced": true,
     "failed_case": {
-      "correlation_id": "corr-a78abac6-9d3b-441d-90de-b61672f3251c",
+      "correlation_id": "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
       "completion_token": "failed",
       "reason": "Command exited with 1"
     },
     "needs_human_case": {
-      "correlation_id": "corr-ebe76465-949a-43bf-a98e-e8337315eaf9",
+      "correlation_id": "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5",
       "completion_token": "needs-human",
       "reason": "Prompt payload may contain PII or secrets and requires human review before release."
     }
@@ -6043,59 +6624,59 @@ FILE: evaluation/tool-health/peer-mesh-local.json
     ],
     "decisions": [
       {
-        "decision_id": "policy-15ef952a-0cd2-400a-b231-e2b9ba612a7a",
-        "message_id": "msg-ef9c8961-a394-448b-b992-ba0f4101120a",
-        "correlation_id": "corr-c7f00bb6-595a-4f54-a0dc-3a186c30468a",
+        "decision_id": "policy-60e1c2ca-88c7-4b5c-ba87-029a5d0f6145",
+        "message_id": "msg-dddc6338-df0f-442d-b7b0-33a018a2a0a1",
+        "correlation_id": "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Same-host peer discovery is allowed after governed bootstrap.",
         "actor_role": "peer_mesh_host",
         "operation": "list_agents",
-        "created_at": "2026-05-21T22:18:42Z"
+        "created_at": "2026-05-22T13:59:21Z"
       },
       {
-        "decision_id": "policy-5b32995d-9686-4e57-abf9-4028451784a9",
-        "message_id": "msg-666159ed-7355-4a5d-94aa-266c4eafafb4",
-        "correlation_id": "corr-c61e5cbb-df50-453e-9606-13dd95f5b9fa",
+        "decision_id": "policy-a90e8740-80b3-43c4-b907-e0f8baf0f27d",
+        "message_id": "msg-404d5a6d-ca34-4625-bb7d-7578cde3542a",
+        "correlation_id": "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Local same-host prompt is allowed by the bounded parent prompt guard.",
         "actor_role": "peer_mesh_host",
         "operation": "send_prompt",
-        "created_at": "2026-05-21T22:18:42Z"
+        "created_at": "2026-05-22T13:59:21Z"
       },
       {
-        "decision_id": "policy-72ee7cdf-42c0-4841-9385-131c23976da7",
-        "message_id": "msg-4c4809a1-d4f8-41e5-89cb-43213890c39b",
-        "correlation_id": "corr-bff07204-684c-4e56-9826-c9b764384576",
+        "decision_id": "policy-e58ffcaf-5bb6-497d-8c39-d71ba771800e",
+        "message_id": "msg-228f962f-3852-4056-a766-b27de37fb7d7",
+        "correlation_id": "corr-a928db36-f135-4f95-b549-6c3e83331956",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Local same-host command is allowed by the bounded parent command guard.",
         "actor_role": "peer_mesh_host",
         "operation": "send_command",
-        "created_at": "2026-05-21T22:18:42Z"
+        "created_at": "2026-05-22T13:59:21Z"
       },
       {
-        "decision_id": "policy-719aa30d-d267-4662-aa94-1e7fdf8643d0",
-        "message_id": "msg-1aacce50-fc27-4370-be3c-76e8daf20301",
-        "correlation_id": "corr-a78abac6-9d3b-441d-90de-b61672f3251c",
+        "decision_id": "policy-96fa804a-b6cf-4d19-a189-47e37a0a9fd9",
+        "message_id": "msg-702cbdd7-264a-4b02-98d5-a84dbbd7e5bf",
+        "correlation_id": "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "allow",
         "reason": "Local same-host command is allowed by the bounded parent command guard.",
         "actor_role": "peer_mesh_host",
         "operation": "send_command",
-        "created_at": "2026-05-21T22:18:42Z"
+        "created_at": "2026-05-22T13:59:21Z"
       },
       {
-        "decision_id": "policy-4a6d02fd-b79f-4697-8140-0de052f79af2",
-        "message_id": "msg-05e35447-3130-4a04-9ef7-dfb57c4c73dc",
-        "correlation_id": "corr-ebe76465-949a-43bf-a98e-e8337315eaf9",
+        "decision_id": "policy-7318b6d2-b8d3-422e-ab40-13988e09dd27",
+        "message_id": "msg-f8640e81-735e-457e-ab8e-c0bbd2b3a252",
+        "correlation_id": "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5",
         "scenario_id": "pi-vs-claude-code-same-host-local",
         "outcome": "ask",
         "reason": "Prompt payload may contain PII or secrets and requires human review before release.",
         "actor_role": "peer_mesh_host",
         "operation": "send_prompt",
-        "created_at": "2026-05-21T22:18:42Z"
+        "created_at": "2026-05-22T13:59:21Z"
       }
     ],
     "hook_ids_triggered": [
@@ -6131,8 +6712,8 @@ FILE: evaluation/tool-health/peer-mesh-local.json
         "name": "parent-meta-program",
         "source": "program.md",
         "used_by_roles": [
-          "peer_mesh_host",
-          "mesh_verifier"
+          "orchestrator-validator",
+          "filesystem-router"
         ]
       },
       {
@@ -6141,30 +6722,41 @@ FILE: evaluation/tool-health/peer-mesh-local.json
         "name": "the-library",
         "source": "agentics-library.md",
         "used_by_roles": [
-          "peer_mesh_host",
-          "prod_gatekeeper",
-          "dev_driver",
-          "mesh_verifier"
+          "orchestrator-validator",
+          "architect",
+          "research",
+          "filesystem-router"
         ]
       },
       {
-        "ref": "agent:peer_mesh_host",
+        "ref": "agent:filesystem-router",
         "unit_type": "agent",
-        "name": "peer_mesh_host",
-        "source": "contracts/agent-role-contract.yaml",
+        "name": "filesystem-router",
+        "source": "contracts/front-door-runtime-topology.yaml",
         "used_by_roles": [
-          "peer_mesh_host"
+          "filesystem-router"
         ]
       },
       {
-        "ref": "policy:parent-same-host-message-guard",
-        "unit_type": "policy",
-        "name": "parent-same-host-message-guard",
-        "source": "contracts/policy-decision.yaml",
+        "ref": "contract:governed-inbox-packet",
+        "unit_type": "prompt",
+        "name": "governed-inbox-packet",
+        "source": "contracts/inbox-packet.yaml",
         "used_by_roles": [
-          "prod_gatekeeper",
-          "dev_driver",
-          "mesh_verifier"
+          "user-facing-agent",
+          "spec-interpreter",
+          "filesystem-router"
+        ]
+      },
+      {
+        "ref": "policy:parent-inbox-routing-policy",
+        "unit_type": "policy",
+        "name": "parent-inbox-routing-policy",
+        "source": "contracts/inbox-routing-decision.yaml",
+        "used_by_roles": [
+          "filesystem-router",
+          "orchestrator-validator",
+          "architect"
         ]
       },
       {
@@ -6173,33 +6765,35 @@ FILE: evaluation/tool-health/peer-mesh-local.json
         "name": "parent-wrapper-contract",
         "source": "tests/validate_parent_wrapper_contract.py",
         "used_by_roles": [
-          "mesh_verifier"
+          "orchestrator-validator",
+          "filesystem-router"
         ]
       },
       {
-        "ref": "benchmark_recipe:parent-peer-mesh-local-smoke",
+        "ref": "benchmark_recipe:parent-inbox-protocol-scan",
         "unit_type": "benchmark_recipe",
-        "name": "parent-peer-mesh-local-smoke",
-        "source": "scripts/run-parent-peer-mesh-local.sh",
+        "name": "parent-inbox-protocol-scan",
+        "source": "scripts/watchers/inbox_router.py",
         "used_by_roles": [
-          "peer_mesh_host",
-          "mesh_verifier"
+          "filesystem-router",
+          "orchestrator-validator"
         ]
       }
     ],
     "resolved_refs": [
       "prompt:parent-meta-program",
       "skill:the-library",
-      "agent:peer_mesh_host",
-      "policy:parent-same-host-message-guard",
+      "agent:filesystem-router",
+      "contract:governed-inbox-packet",
+      "policy:parent-inbox-routing-policy",
       "validator:parent-wrapper-contract",
-      "benchmark_recipe:parent-peer-mesh-local-smoke"
+      "benchmark_recipe:parent-inbox-protocol-scan"
     ],
     "source_catalog": "library.yaml"
   },
   "benchmarks": {
     "file": "evaluation/tool-health/peer-mesh-local-benchmarks.json",
-    "run_ref": "peer-mesh-local/peer-mesh-local-20260521T221842Z",
+    "run_ref": "peer-mesh-local/peer-mesh-local-20260522T135921Z",
     "groups": [
       "library_distribution",
       "observability_ingest",

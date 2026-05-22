@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "contract_to_runner_map",
+  "scope": "portable_parent_wrapper",
+  "family_contract_ref": "contracts/subsystem-runner-proof-family.yaml",
+  "topology_contract_ref": "contracts/subsystem-harness-topology.yaml",
+  "subsystem_registry_record_ref": "source/subsystems/registry.json",
+  "proof_state_contract_ref": "contracts/subsystem-bounded-probe.yaml",
+  "observability_handshake_contract_ref": "contracts/subsystem-observability-handshake.yaml",
+  "runtime_truth_level": "bounded_runtime",
+  "runner_boundaries": [
+    {
+      "subsystem_id": "intake_etl",
+      "activation_state": "defined_not_activated",
+      "current_proof_state": "designed_not_activated",
+      "allowed_runtime_lane": "same_host_only",
+      "contract_refs": [
+        "contracts/subsystem-harness-topology.yaml",
+        "contracts/subsystem-registry.yaml",
+        "source/subsystems/intake-etl.md"
+      ],
+      "current_evidence_refs": [
+        "source/subsystems/registry.json",
+        "contracts/subsystem-harness-topology.yaml"
+      ],
+      "required_evidence_refs": [
+        "evaluation/subsystem-runner-probes/intake_etl/probe-status.json",
+        "evaluation/subsystem-runner-probes/intake_etl/events.jsonl",
+        "evaluation/subsystem-runner-probes/intake_etl/benchmarks.json",
+        "evaluation/tool-health/status.json"
+      ],
+      "promotion_requirements": [
+        "A bounded same-host intake_etl probe must write a subsystem-specific proof artifact before the proof state can move beyond designed_not_activated.",
+        "The probe must reconcile governed inbox inputs without implying child runtime adoption."
+      ],
+      "blocked_by": [
+        "No parent-owned intake_etl runner command has been executed in this slice."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not claim normalized packet output refresh from scaffold references alone."
+      ]
+    },
+    {
+      "subsystem_id": "research_harvest",
+      "activation_state": "defined_not_activated",
+      "current_proof_state": "designed_not_activated",
+      "allowed_runtime_lane": "same_host_only",
+      "contract_refs": [
+        "contracts/subsystem-harness-topology.yaml",
+        "contracts/subsystem-registry.yaml",
+        "source/subsystems/research-harvest.md"
+      ],
+      "current_evidence_refs": [
+        "source/subsystems/registry.json",
+        "evaluation/research/compiled/capability-harvest.json"
+      ],
+      "required_evidence_refs": [
+        "evaluation/subsystem-runner-probes/research_harvest/probe-status.json",
+        "evaluation/subsystem-runner-probes/research_harvest/events.jsonl",
+        "evaluation/subsystem-runner-probes/research_harvest/benchmarks.json",
+        "evaluation/tool-health/status.json"
+      ],
+      "promotion_requirements": [
+        "A bounded probe must reconcile compiled research outputs against the governed manifest before the proof state can advance.",
+        "The probe must preserve source-strength truth and packet provenance."
+      ],
+      "blocked_by": [
+        "No parent-owned research_harvest runner command has been executed in this slice."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not describe the current compiled outputs as subsystem activation evidence."
+      ]
+    },
+    {
+      "subsystem_id": "semantic_cartography",
+      "activation_state": "defined_not_activated",
+      "current_proof_state": "designed_not_activated",
+      "allowed_runtime_lane": "same_host_only",
+      "contract_refs": [
+        "contracts/subsystem-harness-topology.yaml",
+        "contracts/subsystem-registry.yaml",
+        "source/subsystems/semantic-cartography.md"
+      ],
+      "current_evidence_refs": [
+        "source/subsystems/registry.json",
+        "evaluation/infranodus-gap-analysis.json"
+      ],
+      "required_evidence_refs": [
+        "evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json",
+        "evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl",
+        "evaluation/subsystem-runner-probes/semantic_cartography/benchmarks.json",
+        "evaluation/tool-health/status.json"
+      ],
+      "promotion_requirements": [
+        "A bounded probe must emit semantic-cartography artifacts that stay within the parent-owned local substitute boundary.",
+        "Live InfraNodus MCP claims must remain blocked unless authenticated proof exists separately."
+      ],
+      "blocked_by": [
+        "No parent-owned semantic_cartography runner command has been executed in this slice."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not promote graph-ready summaries into live semantic cartography activation claims."
+      ]
+    }
+  ]
+}

@@ -1,7 +1,14 @@
-const serviceOrigin = process.env.INBOX_SERVICE_URL ?? process.env.FRE_META_SERVICE_ORIGIN ?? "http://127.0.0.1:8787";
-const port = Number(process.env.PORT ?? "3000");
+const defaultServiceOrigin = "http://127.0.0.1:8787";
 
-const html = `<!doctype html>
+export function resolveServiceOrigin(env: Record<string, string | undefined> = process.env): string {
+  return env.INBOX_SERVICE_URL ?? env.FRE_META_SERVICE_ORIGIN ?? defaultServiceOrigin;
+}
+
+export function resolvePort(env: Record<string, string | undefined> = process.env): number {
+  return Number(env.PORT ?? "3000");
+}
+
+export const html = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -108,9 +115,8 @@ const html = `<!doctype html>
   </body>
 </html>`;
 
-Bun.serve({
-  port,
-  async fetch(request) {
+export function createFetchHandler(serviceOrigin: string): (request: Request) => Promise<Response> {
+  return async function fetchHandler(request: Request): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/health") {
       return Response.json({ status: "ok" });
@@ -129,7 +135,20 @@ Bun.serve({
     return new Response(html, {
       headers: { "content-type": "text/html; charset=utf-8" },
     });
-  },
-});
+  };
+}
 
-console.log(`fre-meta-harness inbox app listening on http://127.0.0.1:${port}`);
+export function createServer(env: Record<string, string | undefined> = process.env) {
+  const serviceOrigin = resolveServiceOrigin(env);
+  const port = resolvePort(env);
+  return Bun.serve({
+    port,
+    fetch: createFetchHandler(serviceOrigin),
+  });
+}
+
+if (import.meta.main) {
+  const port = resolvePort();
+  createServer();
+  console.log(`fre-meta-harness inbox app listening on http://127.0.0.1:${port}`);
+}

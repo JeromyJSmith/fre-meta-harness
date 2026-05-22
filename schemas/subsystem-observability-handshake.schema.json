@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/subsystem-observability-handshake.schema.json",
+  "title": "Subsystem Observability Handshake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "family_contract_ref",
+    "handshake_requirements",
+    "subsystem_handshakes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-subsystem-observability-handshake"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "family_contract_ref": {
+      "type": "string",
+      "const": "contracts/subsystem-runner-proof-family.yaml"
+    },
+    "handshake_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "failure_mode",
+        "designed_not_activated_fallback",
+        "required_event_types",
+        "required_artifacts",
+        "required_sync_targets"
+      ],
+      "properties": {
+        "failure_mode": {
+          "type": "string",
+          "const": "fail_loud"
+        },
+        "designed_not_activated_fallback": {
+          "type": "string",
+          "minLength": 20
+        },
+        "required_event_types": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "probe_started",
+              "probe_blocked",
+              "probe_completed",
+              "evidence_recorded",
+              "validation_refreshed"
+            ]
+          }
+        },
+        "required_artifacts": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "required_sync_targets": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "subsystem_handshakes": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/subsystemHandshake"
+      }
+    }
+  },
+  "$defs": {
+    "subsystemId": {
+      "type": "string",
+      "enum": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer"
+      ]
+    },
+    "subsystemHandshake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subsystem_id",
+        "required_event_sequence",
+        "required_artifacts",
+        "non_activation_fallback",
+        "do_not_overclaim_notes"
+      ],
+      "properties": {
+        "subsystem_id": {
+          "$ref": "#/$defs/subsystemId"
+        },
+        "required_event_sequence": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "string",
+            "enum": [
+              "probe_started",
+              "probe_blocked",
+              "probe_completed",
+              "evidence_recorded",
+              "validation_refreshed"
+            ]
+          }
+        },
+        "required_artifacts": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "non_activation_fallback": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 15
+          }
+        },
+        "do_not_overclaim_notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 15
+          }
+        }
+      }
+    }
+  }
+}

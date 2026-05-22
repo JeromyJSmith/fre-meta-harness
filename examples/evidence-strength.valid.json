@@ -1,0 +1,10 @@
+{
+  "source_ref": "inbox/transcribe.consume/file-system-consume.md",
+  "evidence_type": "first_party_consume_packet",
+  "strength_class": "first_party_packet",
+  "transcript_derived": false,
+  "workflow_claim_promotion": "allowed",
+  "notes": [
+    "First-party packet used for bounded extraction rules."
+  ]
+}

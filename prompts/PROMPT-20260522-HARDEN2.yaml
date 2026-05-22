@@ -1,0 +1,71 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260522-HARDEN2"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+triad_context:
+  acting_role: "orchestrator-validator"
+  upstream_handoff_ref: "evaluation/parent-hardening-run-report.json"
+  upstream_inbox_packet_ref: "inbox/consuming-layer.plan.md"
+  packet_artifact_type: ".plan.md"
+  required_gate_state: "amber"
+  required_consumers:
+    - "orchestrator-validator"
+    - "research"
+    - "architect"
+    - "filesystem-router"
+  bottom_matter_ref: "prompts/PROMPT-20260522-HARDEN2.md#bottom-matter"
+  structured_contract_ref: "inbox/consuming-layer.plan.json"
+  decision_space_required: true
+  runtime_truth_requirements:
+    - "Carry forward exact parent runtime truth only."
+    - "same_host peer_mesh_local and inbox_protocol remain the only active runtime lanes unless fresh proof changes that."
+    - "cross_device remains blocked unless authenticated transport is actually proven."
+    - "Do not imply that fixture-only checks, dry agent-eval, or file presence alone prove live runtime health."
+  command_evidence_requirements:
+    - "Name every probe, validation, smoke, route, startup, and scoring command used."
+    - "Pair every substantive claim with exact artifact evidence."
+    - "If a lane remains blocked or untested, say so explicitly instead of smoothing it over."
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "ask_when_blocked"
+mission:
+  objective: "Finish the remaining parent-only portability and operational-truth debt by hardening historical prompt and run artifacts, adding env-aware child-path discovery for registry surfaces without touching the child repo, and emitting durable runtime-test evidence artifacts."
+  repo_scope: "Standalone parent repo only at /Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+  task_scope: "Use the post-hardening report as the baseline, keep the same-host runtime truth unchanged unless new evidence exists, and close the remaining portability and runbook debt without inventing a root .mcp.json or overclaiming optional lanes."
+current_verified_state:
+  facts:
+    - "Live script surfaces now use repo-relative discovery and tool-health refresh is probe-derived."
+    - "Validator orchestration is split through tests/validator_slices plus validator_core."
+    - "Runtime smoke coverage exists for app/server.ts, service/main.py, service/inbox_runtime.py, scripts/watchers/inbox_router.py, and refresh-parent-tool-health.py."
+    - "source/parent-operational-doctrine.md is the canonical source for runtime-lane, launcher, and credential-gated truth."
+    - "Root .mcp.json is still absent and is recorded as missing rather than fabricated."
+    - "Historical prompt, run, and inbox artifacts still contain absolute path prose."
+    - "body-registry.yaml and config.yaml still point at the current child location and need a parent-only portability pattern."
+hard_rules:
+  environment:
+    - "Stay strictly inside /Volumes/PixelTable/VW_iTWIN_Bridge/meta."
+    - "Use uv for Python execution."
+    - "Use the existing validator, scorer, runtime smoke suite, and tool-health refresh surfaces before inventing new orchestration."
+    - "Prefer repo-relative path discovery and environment-variable resolution over absolute machine-specific paths."
+  safety:
+    - "Do not touch the child repo."
+    - "Do not edit imported upstream authorities under external/."
+    - "Do not claim live or same-host runtime health unless a fresh probe or explicit blocked declaration supports it."
+  truthfulness:
+    - "No fake green path."
+    - "Do not upgrade a lane from fixture-only, dry, or blocked to pass without exact new evidence."
+    - "If remaining debt cannot be closed in this slice, report the exact blocker and keep it explicit."
+tasks:
+  ordered_steps:
+    - "Refresh the phase-0 delta from evaluation/parent-hardening-run-report.json and classify the remaining debt that still matters."
+    - "Replace absolute path prose in live prompts and runbook surfaces that still drive current parent execution, while leaving historical evidence artifacts clearly historical."
+    - "Design and implement an env-aware parent-only discovery pattern for body-registry.yaml and config.yaml that does not touch the child repo and does not pretend the child path is portable when it is not."
+    - "Emit a durable runtime-test evidence artifact so app and service smoke results are recorded outside ephemeral command output."
+    - "Re-run tool-health refresh, validator, scorer, and runtime smoke tests after the bounded changes."
+    - "Emit a new structured report, markdown companion, and next follow-up prompt only if real remaining debt still exists."
+success_criteria:
+  best_case: "Current live parent surfaces no longer depend on absolute path prose, registry discovery is parent-only and env-aware, durable runtime smoke evidence exists, and blocked optional lanes remain explicit."
+  acceptable_fallback: "If the full portability cleanup is not possible without child-repo changes, keep the strongest parent-only improvements and document the exact remaining boundary."

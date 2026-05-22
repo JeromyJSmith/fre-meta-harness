@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/contract-to-runner-map.schema.json",
+  "title": "Contract To Runner Map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "scope",
+    "family_contract_ref",
+    "topology_contract_ref",
+    "subsystem_registry_record_ref",
+    "proof_state_contract_ref",
+    "observability_handshake_contract_ref",
+    "runtime_truth_level",
+    "runner_boundaries"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "contract_to_runner_map"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "family_contract_ref": {
+      "type": "string",
+      "const": "contracts/subsystem-runner-proof-family.yaml"
+    },
+    "topology_contract_ref": {
+      "type": "string",
+      "const": "contracts/subsystem-harness-topology.yaml"
+    },
+    "subsystem_registry_record_ref": {
+      "type": "string",
+      "const": "source/subsystems/registry.json"
+    },
+    "proof_state_contract_ref": {
+      "type": "string",
+      "const": "contracts/subsystem-bounded-probe.yaml"
+    },
+    "observability_handshake_contract_ref": {
+      "type": "string",
+      "const": "contracts/subsystem-observability-handshake.yaml"
+    },
+    "runtime_truth_level": {
+      "type": "string",
+      "const": "bounded_runtime"
+    },
+    "runner_boundaries": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/runnerBoundary"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "intake_etl"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "research_harvest"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "semantic_cartography"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "subsystem_id": {
+                "const": "wrapper_synthesizer"
+              }
+            },
+            "required": [
+              "subsystem_id"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "subsystemId": {
+      "type": "string",
+      "enum": [
+        "intake_etl",
+        "research_harvest",
+        "semantic_cartography",
+        "wrapper_synthesizer"
+      ]
+    },
+    "activationState": {
+      "type": "string",
+      "enum": [
+        "defined_not_activated",
+        "late_bound_not_activated"
+      ]
+    },
+    "proofState": {
+      "type": "string",
+      "enum": [
+        "designed_not_activated",
+        "bounded_probe_blocked",
+        "bounded_probe_pass",
+        "activation_proven_same_host"
+      ]
+    },
+    "runnerBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subsystem_id",
+        "activation_state",
+        "current_proof_state",
+        "allowed_runtime_lane",
+        "contract_refs",
+        "current_evidence_refs",
+        "required_evidence_refs",
+        "promotion_requirements",
+        "blocked_by",
+        "do_not_overclaim_notes"
+      ],
+      "properties": {
+        "subsystem_id": {
+          "$ref": "#/$defs/subsystemId"
+        },
+        "activation_state": {
+          "$ref": "#/$defs/activationState"
+        },
+        "current_proof_state": {
+          "$ref": "#/$defs/proofState"
+        },
+        "allowed_runtime_lane": {
+          "type": "string",
+          "const": "same_host_only"
+        },
+        "contract_refs": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "current_evidence_refs": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "required_evidence_refs": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "promotion_requirements": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 15
+          }
+        },
+        "blocked_by": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 10
+          }
+        },
+        "do_not_overclaim_notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 15
+          }
+        }
+      }
+    }
+  }
+}

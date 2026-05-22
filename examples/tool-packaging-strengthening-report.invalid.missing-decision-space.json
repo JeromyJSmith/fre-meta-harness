@@ -1,0 +1,118 @@
+{
+  "report_id": "TOOLPACK-20260522-EXAMPLE",
+  "status": "pass",
+  "selected_workflow_strengthening_slice": "tool_packaging_contracts",
+  "recommended_option_id": "option-a",
+  "iteration_count": 1,
+  "iteration_score_history": [
+    {
+      "iteration": 1,
+      "summary": "Land the contract family and validator coverage.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    }
+  ],
+  "infranodus_path_used": {
+    "mode": "bounded_local_cli_substitute",
+    "command": "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "evidence_refs": [
+      "evaluation/infranodus-gap-analysis.json"
+    ]
+  },
+  "stronger_content_summary": [
+    "Prompt-to-tool packaging now has parent-owned schemas and valid examples."
+  ],
+  "still_weak_content_summary": [
+    "Pixeltable and DuckDB remain blocked as live persistence lanes."
+  ],
+  "runnable_tool_shortlist_used": [
+    "gh copilot"
+  ],
+  "files_changed": [
+    "contracts/tool-packaging-family.yaml"
+  ],
+  "targeted_validation_results": [
+    {
+      "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "status": "pass",
+      "evidence_refs": [
+        "evaluation/validation-report.json"
+      ]
+    }
+  ],
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      }
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl"
+    ],
+    "do_not_overclaim_notes": [
+      "Do not imply live persistence or subsystem activation from packaging contracts alone."
+    ]
+  },
+  "freshness": {
+    "artifact_records": [
+      "evaluation/validation-report.json"
+    ],
+    "max_artifact_span_seconds": 600,
+    "tool_health_artifacts": [
+      "evaluation/tool-health/status.json"
+    ],
+    "compiled_research_artifacts": [
+      "evaluation/research/compiled/feature-matrix.json"
+    ],
+    "infranodus_artifacts": [
+      "evaluation/infranodus-gap-analysis.json"
+    ]
+  },
+  "score_saturation": {
+    "baseline_total_score": 99.62,
+    "final_total_score": 99.62,
+    "score_changed": false,
+    "why_this_slice_counts": "The machine-verifiable family closes a weak-content lane even before the broader program score moves.",
+    "flat_score_explanation": "The scorer remained flat because iteration freshness and ledger alignment had not yet been refreshed for this run."
+  },
+  "command_evidence": {
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py"
+    ],
+    "tool_health_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "infranodus_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "research_commands_or_reads": [
+      "Read evaluation/gap-map-strength-report.json"
+    ]
+  },
+  "follow_up_prompt": {
+    "artifact_path": "prompts/PROMPT-20260522-SUBSYSTEM-RUNNER-PROOF.yaml",
+    "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "must_be_inline_ready": true,
+    "next_decision_space": "Choose whether subsystem_runner_proof, pixeltable_duckdb_persistence, or consume_source_quality is the next bounded slice.",
+    "markdown_companion_artifact_path": "prompts/PROMPT-20260522-SUBSYSTEM-RUNNER-PROOF.md",
+    "must_use_front_matter": true,
+    "must_use_bottom_matter_marker": true
+  }
+}

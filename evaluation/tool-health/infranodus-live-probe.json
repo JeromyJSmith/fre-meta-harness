@@ -4,7 +4,7 @@
   "scope": "portable_parent_wrapper",
   "status": "blocked",
   "mode": "live_mcp_runtime",
-  "blocker": "Live InfraNodus MCP analysis remains API/OAuth-bound and no local runtime credential or session configuration was present in this run.",
+  "blocker": "Live InfraNodus MCP analysis remains API/OAuth-bound and no authenticated runtime session was proven in this run.",
   "bounded_fallback": "scripts/build-parent-infranodus-artifacts.py",
   "evidence": [
     "infranodus-phase-tool-map.json",

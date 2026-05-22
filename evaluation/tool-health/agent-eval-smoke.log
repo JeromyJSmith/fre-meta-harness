@@ -1,1 +1,2 @@
-blocked: OPENAI_API_KEY is required for the direct codex smoke experiment; docker is available so no VERCEL_TOKEN is needed.
+
+blocked: OPENAI_API_KEY is required only for the optional remote-backed codex smoke experiment; the parent baseline remains CLI-first local runner harvest plus dry agent-eval.

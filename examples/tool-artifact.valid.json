@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "tool_artifact",
+  "artifact_id": "compiled-feature-matrix-20260522",
+  "tool_id": "capability-harvester",
+  "task_id": "task-capability-harvester-20260522",
+  "output_type": "compiled_feature_matrix",
+  "schema_ref": "schemas/compiled-feature-matrix.schema.json",
+  "content_type": "application/json",
+  "canonical_path": "evaluation/research/compiled/feature-matrix.json",
+  "registry_entry": {
+    "artifact_id": "compiled-feature-matrix-20260522",
+    "registry_type": "tool_artifact",
+    "owner_agent": "research",
+    "canonical_paths": [
+      "evaluation/research/compiled/feature-matrix.json"
+    ],
+    "schema_ref": "schemas/compiled-feature-matrix.schema.json",
+    "example_ref": "examples/tool-artifact.valid.json",
+    "validator_command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+    "version": "1.0.0",
+    "provenance_refs": [
+      "evaluation/research/compiled/source-index.json",
+      "contracts/tool-packaging-family.yaml"
+    ]
+  },
+  "storage": {
+    "storage_mode": "filesystem_registry",
+    "registry_table": "artifacts",
+    "pixeltable_sync_status": "blocked_not_activated",
+    "duckdb_query_surface_status": "planned_not_activated"
+  },
+  "provenance": {
+    "produced_at": "2026-05-22T07:31:12Z",
+    "source_refs": [
+      "evaluation/research/compiled/source-index.json"
+    ],
+    "evidence_refs": [
+      "examples/tool-task.valid.json",
+      "contracts/tool-packaging-family.yaml"
+    ]
+  }
+}

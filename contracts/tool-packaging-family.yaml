@@ -1,0 +1,48 @@
+schema_version: "1.0.0"
+contract_id: parent-tool-packaging-family
+scope: portable_parent_wrapper
+authority:
+  source_guidance_ref: source/tool-packaging-contract-family.md
+  artifact_registry_note_ref: inbox/prompting-tools.consume/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md
+  consume_refs:
+    - inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md
+    - inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md
+    - inbox/prompting-tools.consume/Prompt Tools — Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md
+contract_surfaces:
+  family_schema_ref: schemas/tool-packaging-family.schema.json
+  tool_spec_schema_ref: schemas/tool-spec.schema.json
+  agent_card_schema_ref: schemas/agent-card.schema.json
+  tool_task_schema_ref: schemas/tool-task.schema.json
+  tool_artifact_schema_ref: schemas/tool-artifact.schema.json
+packaging_boundary:
+  endpoint_first: true
+  discovery_endpoint: /.well-known/agent.json
+  task_create_endpoint: /v1/tools/{toolId}/tasks
+  task_status_endpoint: /v1/tasks/{taskId}
+  task_artifacts_endpoint: /v1/tasks/{taskId}/artifacts
+  allowed_task_states:
+    - queued
+    - running
+    - succeeded
+    - failed
+    - blocked
+    - cancelled
+  artifact_registry_linkage_required: true
+storage_truth:
+  filesystem_registry_required: true
+  pixeltable_sync_status: blocked_not_activated
+  duckdb_query_surface_status: planned_not_activated
+  do_not_overclaim_notes:
+    - Keep prompt-to-tool packaging machine-readable without claiming live Pixeltable writes.
+    - Keep DuckDB query expectations explicit without implying an activated persistence lane.
+    - Treat parent-owned filesystem artifacts as the authoritative proof surface until the persistence slice is proven.
+validation:
+  validation_command: uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py
+  score_command: uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json
+  valid_examples:
+    - examples/tool-packaging-family.valid.json
+    - examples/tool-spec.valid.json
+    - examples/agent-card.valid.json
+    - examples/tool-task.valid.json
+    - examples/tool-artifact.valid.json
+  invalid_examples_registry_ref: expected-failures/registry.yaml

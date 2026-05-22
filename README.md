@@ -98,6 +98,7 @@ This wrapper:
 
 ## Improvement Layer
 
+- canonical doctrine and runbook source: `source/parent-operational-doctrine.md`
 - goal contract: `GOAL.md`
 - onboarding/domain boundary: `domain_spec.md`
 - execution protocol: `program.md`
@@ -198,27 +199,15 @@ This wrapper:
 
 ## Parent Tool-Health Doctrine
 
-- GitNexus: use an isolated fixture smoke when validating the mutable parent
-  surface; indexing the full repo currently reaches read-only `external/`
-  authorities and can surface upstream parse warnings that are outside the kept
-  parent slice.
-- Graphify: use a bounded parent fixture and `graphify update` for a local
-  no-LLM smoke before relying on Graphify output in parent claims.
-- Local runners: treat CLI-first local harvests as the baseline parent
-  evaluation path and report missing runners explicitly instead of assuming any
-  paid-provider fallback.
-- Peer mesh runtime: same-host is the first active runtime lane and must be
-  proven through the bounded local peer-mesh runner plus observability evidence;
-  cross-device remains blocked until authenticated transport is really present.
-- InfraNodus: keep the phase-tool doctrine local and prefer the bounded local
-  parent-layer substitute when live MCP graph analysis is not actually
-  configured.
-- Vercel agent-eval: use the parent-scoped fixture under `evaluation/agent-eval/`
-  and the contract in `contracts/agent-eval-parent-lane.yaml`. In this repo,
-  dry is the strongest honest lane-specific local evidence today. Smoke and
-  live remain exact remote-provider exceptions, so the default parent path is
-  the CLI-first local runner harvest plus dry agent-eval, not
-  `OPENAI_API_KEY`.
+Use `source/parent-operational-doctrine.md` as the canonical source for:
+
+- active versus blocked parent runtime lanes
+- launcher truth when `.mcp.json` is absent
+- local-first default commands
+- credential-required optional tool and eval lanes
+
+This README keeps the short summary, while the doctrine file owns the
+operational truth table and command paths.
 
 ## Acknowledgments
 

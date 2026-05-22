@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "tool_task",
+  "task_id": "task-capability-harvester-20260522",
+  "tool_id": "capability-harvester",
+  "agent_id": "capability-harvester-agent",
+  "status": "succeeded",
+  "created_at": "2026-05-22T07:30:00Z",
+  "updated_at": "2026-05-22T07:31:12Z",
+  "request": {
+    "input_artifact_refs": [
+      "evaluation/research/compiled/source-index.json"
+    ],
+    "requested_by": "orchestrator-validator",
+    "correlation_id": "CORR-20260522-TPKG1"
+  },
+  "execution": {
+    "create_endpoint": "/v1/tools/{toolId}/tasks",
+    "status_endpoint": "/v1/tasks/{taskId}",
+    "artifacts_endpoint": "/v1/tasks/{taskId}/artifacts",
+    "decision_mode": "allow",
+    "completion_signal": "artifact_emitted"
+  },
+  "artifacts": {
+    "output_artifact_refs": [
+      "examples/tool-artifact.valid.json"
+    ]
+  },
+  "storage": {
+    "registry_table": "tasks",
+    "pixeltable_sync_status": "blocked_not_activated"
+  }
+}

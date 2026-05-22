@@ -55,7 +55,7 @@
       "evidence_artifact": "examples/library-distribution.valid.json",
       "blocker_or_dependency": "Requires private Git or local-path access to the referenced artifacts and a governed catalog inside the parent wrapper.",
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/SKILL.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
@@ -74,7 +74,7 @@
       "evidence_artifact": "examples/hook-manifest.valid.json",
       "blocker_or_dependency": "Requires an adapter that exposes pre-prompt, pre-tool, post-tool, and stop lifecycle hooks; the parent contract is core even when a runtime adapter is still pending.",
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
         "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
       ],
@@ -92,8 +92,8 @@
       "evidence_artifact": "examples/observability-ingest.valid.json",
       "blocker_or_dependency": "Requires a running ingest sink (Bun/HTTP plus durable store) or an equivalent local sidecar; otherwise the lane must stay blocked or fixture-only.",
       "source_refs": [
-        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
         "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
       ],
       "parent_lane_classification": "core"
@@ -229,7 +229,7 @@
         "The upstream `library.yaml` is empty by default, so the exact parent admission and sync workflow still needs later implementation."
       ],
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Governed Artifacts Registry 1d5d61bd11cb46608ef72120e7c2f4e8.csv",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/README.md",
         "https://github.com/disler/the-library/blob/47f455cd139b0e8498e13ce0d91de9741ebddf99/library.yaml"
@@ -248,7 +248,7 @@
         "Concrete hook adapters still vary by host harness even when the doctrine is stable."
       ],
       "source_refs": [
-        "docs/NOTION-DOCS/Capability Registry Reboot — Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
+        "docs/NOTION-DOCS/Capability Registry Reboot \u2014 Tools, Skills, Hooks, b29ab5c1ac7a4534a94bbe0c288ff0b9.md",
         "docs/NOTION-DOCS/Production Safety Constraints 1840c76e8e1d45be81fc2a57338b3e1b.md",
         "https://github.com/disler/claude-code-hooks-mastery/blob/052ad1cbd5aeb1ec4a1def22012d1293c6225625/README.md"
       ]
@@ -265,8 +265,8 @@
         "The local Notion docs define report classes but do not preserve detailed event schemas; those details currently come from the upstream repo."
       ],
       "source_refs": [
-        "docs/NOTION-DOCS/Reports — Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
-        "docs/NOTION-DOCS/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+        "docs/NOTION-DOCS/Reports \u2014 Interactive HTML + summary artifacts 971c487604f483a3995981108a4283f1.md",
+        "docs/NOTION-DOCS/Artifact Registry \u2014 What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
         "https://github.com/disler/claude-code-hooks-multi-agent-observability/blob/8a6e5cf795df50767cea7123703751282a819697/README.md"
       ]
     },
@@ -321,6 +321,7 @@
     "pi-vs-claude-code remains the first-class core communication source in this compile.",
     "Packet boundaries are preserved in repo_packets and topic_packets; compiled rows are derivative views, not replacements.",
     "Video-derived claims preserve transcript/context uncertainty instead of claiming raw frame certainty.",
-    "GitHub source refs are pinned to the verified upstream commit snapshots used during this research pass."
+    "GitHub source refs are pinned to the verified upstream commit snapshots used during this research pass.",
+    "Consume-source-quality refresh added bounded evidence-strength normalization and an operational feature matrix without changing active runtime-lane truth."
   ]
 }

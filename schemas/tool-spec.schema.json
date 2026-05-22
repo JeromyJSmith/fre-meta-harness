@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/tool-spec.schema.json",
+  "title": "Tool Spec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "tool_id",
+    "name",
+    "owner",
+    "version",
+    "status",
+    "capabilities",
+    "input_contract",
+    "artifact_outputs",
+    "endpoint_contract",
+    "policy_boundary",
+    "observability",
+    "packaging_refs"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "tool_spec"
+    },
+    "tool_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 3
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "deprecated"
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_ids",
+        "constraints",
+        "evidence_refs"
+      ],
+      "properties": {
+        "capability_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^CAP-\\d{4}$"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "input_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_schema_ref",
+        "required_fields",
+        "validation_rules"
+      ],
+      "properties": {
+        "input_schema_ref": {
+          "type": "string",
+          "minLength": 3
+        },
+        "required_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]+$"
+          }
+        },
+        "validation_rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "artifact_outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_type",
+          "schema_ref",
+          "content_type",
+          "registry_table",
+          "artifact_example_ref"
+        ],
+        "properties": {
+          "artifact_type": {
+            "type": "string",
+            "minLength": 3
+          },
+          "schema_ref": {
+            "type": "string",
+            "minLength": 3
+          },
+          "content_type": {
+            "type": "string",
+            "pattern": "^[a-z]+/[a-z0-9.+-]+$"
+          },
+          "registry_table": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]+$"
+          },
+          "artifact_example_ref": {
+            "type": "string",
+            "pattern": "^examples/.+\\.valid\\.json$"
+          }
+        }
+      }
+    },
+    "endpoint_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "discovery_path",
+        "invoke_path",
+        "status_path",
+        "artifacts_path",
+        "async_task_required"
+      ],
+      "properties": {
+        "discovery_path": {
+          "type": "string",
+          "const": "/.well-known/agent.json"
+        },
+        "invoke_path": {
+          "type": "string",
+          "const": "/v1/tools/{toolId}/tasks"
+        },
+        "status_path": {
+          "type": "string",
+          "const": "/v1/tasks/{taskId}"
+        },
+        "artifacts_path": {
+          "type": "string",
+          "const": "/v1/tasks/{taskId}/artifacts"
+        },
+        "async_task_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "policy_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_modes",
+        "completion_criteria",
+        "loop_budget",
+        "failure_mode"
+      ],
+      "properties": {
+        "decision_modes": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "allow",
+              "block",
+              "ask"
+            ]
+          },
+          "allOf": [
+            { "contains": { "const": "allow" } },
+            { "contains": { "const": "block" } },
+            { "contains": { "const": "ask" } }
+          ]
+        },
+        "completion_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "loop_budget": {
+          "type": "string",
+          "minLength": 3
+        },
+        "failure_mode": {
+          "type": "string",
+          "const": "fail_loud"
+        }
+      }
+    },
+    "observability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_contract_ref",
+        "ingest_contract_ref",
+        "required_events",
+        "correlation_id_required"
+      ],
+      "properties": {
+        "event_contract_ref": {
+          "type": "string",
+          "const": "contracts/observability-event.yaml"
+        },
+        "ingest_contract_ref": {
+          "type": "string",
+          "const": "contracts/observability-ingest.yaml"
+        },
+        "required_events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]+$"
+          }
+        },
+        "correlation_id_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "packaging_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_contract_ref",
+        "agent_card_example_ref",
+        "task_example_ref",
+        "artifact_example_refs"
+      ],
+      "properties": {
+        "family_contract_ref": {
+          "type": "string",
+          "const": "contracts/tool-packaging-family.yaml"
+        },
+        "agent_card_example_ref": {
+          "type": "string",
+          "pattern": "^examples/agent-card\\.valid\\.json$"
+        },
+        "task_example_ref": {
+          "type": "string",
+          "pattern": "^examples/tool-task\\.valid\\.json$"
+        },
+        "artifact_example_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^examples/tool-artifact\\.valid\\.json$"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "report_id": "TOOLPACK-20260522-RUN1",
+  "status": "pass",
+  "selected_workflow_strengthening_slice": "tool_packaging_contracts",
+  "decision_space": [
+    {
+      "option_id": "option-a",
+      "title": "tool_packaging_contracts",
+      "why_now": "The gap-map report already marked prompt-to-tool packaging as the highest-leverage weak schema lane and named the exact missing family.",
+      "evidence_refs": [
+        "evaluation/gap-map-strength-report.json",
+        "source/gap-map-strength.md"
+      ]
+    },
+    {
+      "option_id": "option-b",
+      "title": "subsystem_runner_proof",
+      "why_now": "Subsystem runner proof remains important, but it depends on the parent first having stable packaged task and artifact contracts.",
+      "evidence_refs": [
+        "contracts/subsystem-harness-topology.yaml",
+        "source/subsystems/registry.json"
+      ]
+    },
+    {
+      "option_id": "option-c",
+      "title": "pixeltable_duckdb_persistence",
+      "why_now": "Persistence remains weak, but it should follow stable tool, task, and artifact row shapes instead of defining them implicitly.",
+      "evidence_refs": [
+        "inbox/prompting-tools.consume/Prompt Tools — Pixeltable DuckDB Artifact Store f1f2f37e23014613b0326f67c634f87f.md",
+        "evaluation/gap-map-strength-report.json"
+      ]
+    }
+  ],
+  "recommended_option_id": "option-a",
+  "iteration_count": 3,
+  "iteration_score_history": [
+    {
+      "iteration": 1,
+      "summary": "Landed the parent-owned tool-packaging family with ToolSpec, agent card, task, artifact, invalid-example, and source-guidance surfaces.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    },
+    {
+      "iteration": 2,
+      "summary": "Added a machine-verifiable report schema and invalid-example coverage so the slice outcome can be audited independently of prose.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    },
+    {
+      "iteration": 3,
+      "summary": "Emitted the final slice report and next triad prompt artifacts, then refreshed the governed ledger and ratchet report to match the current slice.",
+      "before_total_score": 99.62,
+      "after_total_score": 100.0,
+      "score_changed": true
+    }
+  ],
+  "infranodus_path_used": {
+    "mode": "bounded_local_cli_substitute",
+    "command": "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "evidence_refs": [
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/infranodus-conceptual-bridges.json",
+      "evaluation/infranodus-research-topics.json",
+      "evaluation/tool-health/infranodus-live-probe.json"
+    ]
+  },
+  "stronger_content_summary": [
+    "Prompt-to-tool packaging now has a parent-owned contract family instead of consume-note-only doctrine.",
+    "ToolSpec, agent card, task lifecycle, artifact registry linkage, and endpoint-first packaging boundaries are machine-verifiable.",
+    "The slice now has its own structured report contract and a concrete follow-up prompt artifact for the next triad step."
+  ],
+  "still_weak_content_summary": [
+    "live_infranodus_access remains blocked until an authenticated MCP probe is captured and reflected in tool-health.",
+    "subsystem_runner_proof still needs bounded activation probes, a contract-to-runner map, and subsystem observability handshakes.",
+    "consume_source_quality still needs narrower source packets and stronger terminal or frame evidence for transcript-derived claims.",
+    "pixeltable_duckdb_persistence still needs a parent-owned persistence contract family and bounded proof artifacts before any live sync claim."
+  ],
+  "runnable_tool_shortlist_used": [
+    "gitnexus",
+    "graphify",
+    "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "gh copilot",
+    "codex",
+    "pi"
+  ],
+  "files_changed": [
+    "contracts/tool-packaging-family.yaml",
+    "schemas/tool-packaging-family.schema.json",
+    "schemas/tool-spec.schema.json",
+    "schemas/agent-card.schema.json",
+    "schemas/tool-task.schema.json",
+    "schemas/tool-artifact.schema.json",
+    "schemas/tool-packaging-strengthening-report.schema.json",
+    "examples/tool-packaging-family.valid.json",
+    "examples/tool-spec.valid.json",
+    "examples/agent-card.valid.json",
+    "examples/tool-task.valid.json",
+    "examples/tool-artifact.valid.json",
+    "examples/tool-packaging-family.invalid.missing-endpoint.json",
+    "examples/tool-spec.invalid.missing-artifact-output.json",
+    "examples/agent-card.invalid.missing-task-endpoints.json",
+    "examples/tool-task.invalid.missing-completion-signal.json",
+    "examples/tool-artifact.invalid.missing-registry-entry.json",
+    "examples/tool-packaging-strengthening-report.valid.json",
+    "examples/tool-packaging-strengthening-report.invalid.missing-decision-space.json",
+    "expected-failures/registry.yaml",
+    "source/tool-packaging-contract-family.md",
+    "tests/validate_parent_wrapper_contract.py",
+    "evaluation/tool-packaging-strengthening-report.json",
+    "prompts/PROMPT-20260522-SUBSYSTEM-RUNNER-PROOF.yaml",
+    "prompts/PROMPT-20260522-SUBSYSTEM-RUNNER-PROOF.md",
+    "evaluation/copilot-ratchet-report.json",
+    "runs/iterations.jsonl"
+  ],
+  "targeted_validation_results": [
+    {
+      "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "status": "pass",
+      "evidence_refs": [
+        "evaluation/validation-report.json"
+      ]
+    },
+    {
+      "command": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json",
+      "status": "pass",
+      "evidence_refs": [
+        "evaluation/metrics-latest.json"
+      ]
+    }
+  ],
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host",
+      "inbox_protocol.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      },
+      {
+        "lane_id": "inbox_protocol.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "Authenticated remote inbox routing and synchronization must exist before cross-device inbox claims can be made.",
+        "evidence_refs": [
+          "evaluation/tool-health/inbox-protocol/latest-scan.json"
+        ]
+      }
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "The tool-packaging family defines workflow contracts only and does not activate subsystem runners.",
+      "The family keeps persistence truth at filesystem-backed artifacts and explicit non-activation markers for Pixeltable and DuckDB."
+    ]
+  },
+  "freshness": {
+    "artifact_records": [
+      "evaluation/copilot-ratchet-report.json",
+      "evaluation/validation-report.json",
+      "evaluation/metrics-latest.json",
+      "promotion/readiness.json",
+      "runs/iterations.jsonl",
+      "evaluation/infranodus-gap-analysis.json"
+    ],
+    "max_artifact_span_seconds": 14.063783884048462,
+    "tool_health_artifacts": [
+      "evaluation/tool-health/status.json",
+      "evaluation/tool-health/infranodus-live-probe.json"
+    ],
+    "compiled_research_artifacts": [
+      "evaluation/research/compiled/capability-harvest.json",
+      "evaluation/research/compiled/feature-matrix.json",
+      "evaluation/research/compiled/gap-placement-map.json",
+      "evaluation/research/compiled/source-index.json"
+    ],
+    "infranodus_artifacts": [
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/infranodus-conceptual-bridges.json",
+      "evaluation/infranodus-research-topics.json"
+    ]
+  },
+  "score_saturation": {
+    "baseline_total_score": 99.62,
+    "final_total_score": 100.0,
+    "score_changed": true,
+    "why_this_slice_counts": "The weak tool-packaging lane is now governed by explicit contracts, examples, report wiring, and current run evidence instead of consume-note intent alone."
+  },
+  "command_evidence": {
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh",
+      "uv run python scripts/watchers/inbox_router.py"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+    ],
+    "tool_health_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "infranodus_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "research_commands_or_reads": [
+      "Read evaluation/gap-map-strength-report.json",
+      "Read source/gap-map-strength.md",
+      "Read inbox/prompting-tools.consume/Prompt Tools — Tool Catalog (Prompt → Tool) 93e64081b83745deb9793ba0266585f8.md",
+      "Read inbox/prompting-tools.consume/Artifact Registry — What the harness can produce 306c487604f4834fb10b014bfccddfa8.md",
+      "Read evaluation/research/compiled/feature-matrix.json",
+      "Read evaluation/research/compiled/gap-placement-map.json"
+    ]
+  },
+  "follow_up_prompt": {
+    "artifact_path": "prompts/PROMPT-20260522-SUBSYSTEM-RUNNER-PROOF.yaml",
+    "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "must_be_inline_ready": true,
+    "next_decision_space": "Choose whether subsystem_runner_proof, pixeltable_duckdb_persistence, or consume_source_quality should be the next bounded strengthening slice.",
+    "markdown_companion_artifact_path": "prompts/PROMPT-20260522-SUBSYSTEM-RUNNER-PROOF.md",
+    "must_use_front_matter": true,
+    "must_use_bottom_matter_marker": true
+  }
+}

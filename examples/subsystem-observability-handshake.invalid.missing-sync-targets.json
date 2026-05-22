@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-subsystem-observability-handshake",
+  "scope": "portable_parent_wrapper",
+  "family_contract_ref": "contracts/subsystem-runner-proof-family.yaml",
+  "handshake_requirements": {
+    "failure_mode": "fail_loud",
+    "designed_not_activated_fallback": "If a probe remains designed_not_activated, only contract, report, and validator evidence may be emitted.",
+    "required_event_types": [
+      "probe_started",
+      "probe_blocked",
+      "probe_completed",
+      "evidence_recorded",
+      "validation_refreshed"
+    ],
+    "required_artifacts": [
+      "subsystem_probe_status",
+      "subsystem_probe_events",
+      "subsystem_probe_benchmarks",
+      "evaluation/validation-report.json",
+      "evaluation/metrics-latest.json"
+    ]
+  },
+  "subsystem_handshakes": [
+    {
+      "subsystem_id": "intake_etl",
+      "required_event_sequence": [
+        "probe_started",
+        "evidence_recorded",
+        "validation_refreshed"
+      ],
+      "required_artifacts": [
+        "evaluation/subsystem-runner-probes/intake_etl/probe-status.json",
+        "evaluation/subsystem-runner-probes/intake_etl/events.jsonl",
+        "evaluation/subsystem-runner-probes/intake_etl/benchmarks.json"
+      ],
+      "non_activation_fallback": [
+        "Keep intake_etl at designed_not_activated until the bounded probe emits all required artifacts."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not describe inbox packet normalization as live runner output without probe evidence."
+      ]
+    },
+    {
+      "subsystem_id": "research_harvest",
+      "required_event_sequence": [
+        "probe_started",
+        "evidence_recorded",
+        "validation_refreshed"
+      ],
+      "required_artifacts": [
+        "evaluation/subsystem-runner-probes/research_harvest/probe-status.json",
+        "evaluation/subsystem-runner-probes/research_harvest/events.jsonl",
+        "evaluation/subsystem-runner-probes/research_harvest/benchmarks.json"
+      ],
+      "non_activation_fallback": [
+        "Keep research_harvest at designed_not_activated until compiled output reconciliation artifacts exist."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not describe current compiled research artifacts as runner completion proof."
+      ]
+    },
+    {
+      "subsystem_id": "semantic_cartography",
+      "required_event_sequence": [
+        "probe_started",
+        "evidence_recorded",
+        "validation_refreshed"
+      ],
+      "required_artifacts": [
+        "evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json",
+        "evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl",
+        "evaluation/subsystem-runner-probes/semantic_cartography/benchmarks.json"
+      ],
+      "non_activation_fallback": [
+        "Keep semantic_cartography at designed_not_activated until bounded graph reconciliation artifacts exist."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not convert bounded local graph analysis into live semantic-cartography runner proof."
+      ]
+    },
+    {
+      "subsystem_id": "wrapper_synthesizer",
+      "required_event_sequence": [
+        "probe_started",
+        "evidence_recorded",
+        "validation_refreshed"
+      ],
+      "required_artifacts": [
+        "evaluation/subsystem-runner-probes/wrapper_synthesizer/probe-status.json",
+        "evaluation/subsystem-runner-probes/wrapper_synthesizer/events.jsonl",
+        "evaluation/subsystem-runner-probes/wrapper_synthesizer/benchmarks.json"
+      ],
+      "non_activation_fallback": [
+        "Keep wrapper_synthesizer at designed_not_activated until a downstream owner and bounded handoff probe both exist."
+      ],
+      "do_not_overclaim_notes": [
+        "Do not imply wrapper synthesis execution or child adoption from governed handoff bundles alone."
+      ]
+    }
+  ]
+}

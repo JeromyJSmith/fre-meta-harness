@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "agent_card",
+  "agent_id": "capability-harvester-agent",
+  "tool_id": "capability-harvester",
+  "name": "Capability Harvester Agent",
+  "description": "Discovers and emits schema-backed capability harvest artifacts.",
+  "owner": "research",
+  "discovery": {
+    "path": "/.well-known/agent.json",
+    "method": "GET",
+    "returned_artifact_type": "agent_card"
+  },
+  "capabilities": [
+    "CAP-0001"
+  ],
+  "input_modalities": [
+    "json"
+  ],
+  "output_artifact_types": [
+    "compiled_feature_matrix"
+  ],
+  "policy_modes": [
+    "allow",
+    "block",
+    "ask"
+  ],
+  "observability_contract_ref": "contracts/observability-ingest.yaml"
+}

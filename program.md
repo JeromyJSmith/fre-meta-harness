@@ -40,6 +40,7 @@ that combines:
    - `GOAL.md`
    - `domain_spec.md`
    - `library.yaml`
+   - `source/parent-operational-doctrine.md`
    - `infranodus-phase-tool-map.json`
    - `external/goal-md/README.md`
    - `external/goal-md/template/GOAL.md`
@@ -49,11 +50,11 @@ that combines:
    - `external/autoresearch-mlx/program.md`
 2. Verify the parent validator runs:
    ```bash
-   uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/validate_parent_wrapper_contract.py
+   uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py
    ```
 3. Record the baseline:
    ```bash
-   uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json
+   uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json
    ```
 4. Establish the parent tool-health baseline with the strongest honest bounded
    checks available for:
@@ -120,6 +121,8 @@ Every real run must write:
 - `evaluation/copilot-ratchet-report.json`
 - `evaluation/tool-health/status.json` when the kept slice changes parent tool
   invocation doctrine or improvement-evaluation guidance
+- refresh `source/parent-operational-doctrine.md` when runtime truth, launcher
+  truth, or credential-required boundaries change
 
 Required fields:
 

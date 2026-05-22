@@ -1,0 +1,386 @@
+{
+  "status": "pass",
+  "initial_repo_health_summary": "Phase-0 audit found strong parent-scope truth and validator coverage, but weak portability from absolute paths, a monolithic validator entrypoint, no dedicated runtime smoke suite, duplicated doctrine across root docs, and tool-health assembly that was only partly direct-probe-derived.",
+  "repo_health_findings": [
+    {
+      "finding_id": "portability-absolute-paths",
+      "classification": "weak",
+      "summary": "Executable docs and shell runners embedded absolute /Volumes paths.",
+      "evidence_refs": [
+        "GOAL.md",
+        "program.md",
+        "scripts/run-parent-ratchet.sh",
+        "scripts/run-copilot-parent-ratchet.sh",
+        "scripts/build-visualization-artifacts.py"
+      ]
+    },
+    {
+      "finding_id": "launcher-surface-honesty",
+      "classification": "missing",
+      "summary": "Root .mcp.json is absent; actual launcher truth lives in app, service, router, and package scripts.",
+      "evidence_refs": [
+        "app/server.ts",
+        "service/main.py",
+        "scripts/watchers/inbox_router.py",
+        "package.json"
+      ]
+    },
+    {
+      "finding_id": "tool-health-provenance",
+      "classification": "misleadingly_strong",
+      "summary": "Tool-health previously mixed loaded summaries and static framing instead of probe-derived results for each reported lane.",
+      "evidence_refs": [
+        "scripts/refresh-parent-tool-health.py",
+        "evaluation/tool-health/status.json"
+      ]
+    },
+    {
+      "finding_id": "runtime-coverage",
+      "classification": "missing",
+      "summary": "No dedicated runtime smoke suite covered the Bun front door, router script, or service surface.",
+      "evidence_refs": [
+        "app/server.ts",
+        "service/main.py",
+        "tests/"
+      ]
+    },
+    {
+      "finding_id": "validator-topology",
+      "classification": "weak",
+      "summary": "Validator logic lived in one oversized entrypoint.",
+      "evidence_refs": [
+        "tests/validate_parent_wrapper_contract.py"
+      ]
+    },
+    {
+      "finding_id": "doctrine-duplication",
+      "classification": "weak",
+      "summary": "Operational truth was repeated across README, GOAL, program, and library surfaces.",
+      "evidence_refs": [
+        "README.md",
+        "GOAL.md",
+        "program.md",
+        "library.yaml"
+      ]
+    },
+    {
+      "finding_id": "same-host-runtime-truth",
+      "classification": "pass",
+      "summary": "same_host peer-mesh and inbox protocol were already bounded and evidence-backed, with cross-device lanes explicitly blocked.",
+      "evidence_refs": [
+        "evaluation/tool-health/peer-mesh-local.json",
+        "evaluation/tool-health/status.json",
+        "promotion/readiness.json"
+      ]
+    }
+  ],
+  "recommended_work_order": [
+    "Phase 1: harden repo-relative and env-aware launcher and command paths, and refresh tool-health by direct probes.",
+    "Phase 2: split validator orchestration into contract-family modules and add runtime smoke coverage plus repo-level test entrypoints.",
+    "Phase 3: centralize doctrine, separate optional tool lanes from core runtime truth, and improve promotion and runbook honesty."
+  ],
+  "phase_1_result": {
+    "status": "pass",
+    "summary": "Absolute script paths were replaced in live runner surfaces, app startup was refactored into testable factories, and tool-health refresh now executes real probes for GitNexus, Graphify, InfraNodus substitute, local runners, agent-eval, peer mesh, inbox protocol, and launcher truth.",
+    "files": [
+      "app/server.ts",
+      "scripts/refresh-parent-tool-health.py",
+      "scripts/tool_health_probe_lib.py",
+      "scripts/run-parent-ratchet.sh",
+      "scripts/run-copilot-parent-ratchet.sh",
+      "scripts/build-visualization-artifacts.py",
+      "evaluation/tool-health/status.json"
+    ],
+    "residual_debt": [
+      "Historical prompt, run, and inbox artifacts still contain absolute path prose and were left as historical evidence rather than rewritten.",
+      "body-registry.yaml and config.yaml still reference the current child location and need a separate governed portability slice."
+    ]
+  },
+  "phase_2_result": {
+    "status": "pass",
+    "summary": "Validator orchestration was split into contract-family modules and a new runtime smoke suite now covers the service functions, inbox runtime helpers, router CLI, tool-health refresh, and Bun app routes.",
+    "files": [
+      "tests/validate_parent_wrapper_contract.py",
+      "tests/validator_core.py",
+      "tests/validator_slices/__init__.py",
+      "tests/validator_slices/scaffold_and_examples.py",
+      "tests/validator_slices/governance_and_runtime.py",
+      "tests/validator_slices/subsystems_and_tooling.py",
+      "tests/validator_slices/reporting_and_promotion.py",
+      "tests/test_runtime_surfaces.py",
+      "tests/__init__.py",
+      "package.json"
+    ],
+    "residual_debt": [
+      "The detailed slice logic still lives in validator_core.py and could be decomposed further if another bounded validator-maintainability slice is approved."
+    ]
+  },
+  "phase_3_result": {
+    "status": "pass",
+    "summary": "A canonical parent-operational-doctrine source now owns runtime-lane truth, launcher honesty, local-first commands, and credential-gated exceptions; promotion output now records active lanes, blocked lanes, and optional tool statuses without claiming unavailable runtime activation.",
+    "files": [
+      "README.md",
+      "GOAL.md",
+      "program.md",
+      "library.yaml",
+      "source/parent-operational-doctrine.md",
+      "promotion/readiness.json"
+    ],
+    "residual_debt": [
+      "Optional provider-backed lanes remain explicitly blocked where credentials are missing.",
+      "Promotion status is still pass because the bounded same-host parent runtime lanes are proven; the blocked optional lanes are recorded rather than upgraded."
+    ]
+  },
+  "delegated_workstreams_used": [
+    {
+      "lane_id": "lane-a",
+      "agent_id": "lane-a-truth-portability",
+      "focus": "runtime truth, portability, launcher surfaces",
+      "outcome": "identified absolute-path debt, missing .mcp truth, and probe-provenance gaps"
+    },
+    {
+      "lane_id": "lane-b",
+      "agent_id": "lane-b-tests-runtime",
+      "focus": "tests, runtime coverage, smoke gaps",
+      "outcome": "identified missing app/service/router smoke coverage and package test entrypoints"
+    },
+    {
+      "lane_id": "lane-c",
+      "agent_id": "lane-c-doctrine-runbooks",
+      "focus": "doctrine duplication, dependency boundaries, runbooks",
+      "outcome": "identified duplicate doctrine clusters and the need for a canonical operational source"
+    }
+  ],
+  "iteration_count": 3,
+  "iteration_score_history": [
+    {
+      "phase": "baseline",
+      "total_score": 99.62
+    },
+    {
+      "phase": "final",
+      "total_score": 99.62
+    }
+  ],
+  "files_changed": [
+    "README.md",
+    "GOAL.md",
+    "program.md",
+    "library.yaml",
+    "package.json",
+    "app/server.ts",
+    "scripts/refresh-parent-tool-health.py",
+    "scripts/tool_health_probe_lib.py",
+    "scripts/run-parent-ratchet.sh",
+    "scripts/run-copilot-parent-ratchet.sh",
+    "scripts/build-visualization-artifacts.py",
+    "tests/validate_parent_wrapper_contract.py",
+    "tests/validator_core.py",
+    "tests/__init__.py",
+    "tests/test_runtime_surfaces.py",
+    "tests/validator_slices/__init__.py",
+    "tests/validator_slices/scaffold_and_examples.py",
+    "tests/validator_slices/governance_and_runtime.py",
+    "tests/validator_slices/subsystems_and_tooling.py",
+    "tests/validator_slices/reporting_and_promotion.py",
+    "source/parent-operational-doctrine.md",
+    "evaluation/parent-hardening-run-report.json",
+    "evaluation/parent-hardening-run-report.md",
+    "prompts/PROMPT-20260522-HARDEN2.yaml",
+    "prompts/PROMPT-20260522-HARDEN2.md",
+    "evaluation/tool-health/status.json",
+    "evaluation/validation-report.json",
+    "evaluation/metrics-latest.json",
+    "promotion/readiness.json"
+  ],
+  "targeted_validation_results": {
+    "tool_health_refresh": {
+      "status": "pass",
+      "artifact": "evaluation/tool-health/status.json"
+    },
+    "parent_validator": {
+      "status": "pass",
+      "artifact": "evaluation/validation-report.json"
+    },
+    "parent_scorer": {
+      "status": "pass",
+      "artifact": "evaluation/metrics-latest.json",
+      "total_score": 99.62
+    },
+    "runtime_smoke_suite": {
+      "status": "pass",
+      "tests_run": 9,
+      "summary": "Ran 9 tests in 12.431s"
+    }
+  },
+  "runtime_truth_level": "bounded_runtime",
+  "active_parent_runtime_lanes": [
+    "peer_mesh_local.same_host",
+    "inbox_protocol.same_host"
+  ],
+  "blocked_parent_runtime_lanes": [
+    {
+      "lane_id": "peer_mesh_local.cross_device",
+      "classification": "blocked",
+      "blocker_dependency": "authenticated transport",
+      "missing_prerequisites": [
+        "PI_COMS_NET_AUTH_TOKEN",
+        "declared hub URL"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/status.json",
+        "evaluation/tool-health/peer-mesh-local.json"
+      ]
+    },
+    {
+      "lane_id": "inbox_protocol.cross_device",
+      "classification": "blocked",
+      "blocker_dependency": "authenticated remote routing",
+      "missing_prerequisites": [
+        "cross-device inbox synchronization transport"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/status.json"
+      ]
+    }
+  ],
+  "activation_artifacts_used": [
+    "evaluation/tool-health/peer-mesh-local.json",
+    "evaluation/tool-health/peer-mesh-local.log",
+    "evaluation/tool-health/peer-mesh-local-events.jsonl",
+    "evaluation/tool-health/peer-mesh-local-benchmarks.json",
+    "evaluation/tool-health/inbox-protocol/latest-scan.json",
+    "evaluation/tool-health/inbox-protocol/gate-status.json",
+    "evaluation/tool-health/inbox-protocol/routing/all.json",
+    "evaluation/tool-health/inbox-protocol/delegations/all.json"
+  ],
+  "tool_health_lane_changes": [
+    {
+      "lane_id": "gitnexus",
+      "before": "bounded_pass from mixed assembly",
+      "after": "bounded_pass from direct full-repo and fixture probes"
+    },
+    {
+      "lane_id": "graphify",
+      "before": "bounded_pass from prior artifact summary",
+      "after": "bounded_pass from direct probe with explicit non-rebuild exit detail"
+    },
+    {
+      "lane_id": "infranodus",
+      "before": "bounded substitute plus loaded live block summary",
+      "after": "bounded substitute refreshed directly and live MCP explicitly blocked in fresh probe output"
+    },
+    {
+      "lane_id": "agent_eval",
+      "before": "static dry/smoke framing",
+      "after": "fresh dry probe plus blocked smoke probe with prerequisite evidence"
+    },
+    {
+      "lane_id": "launcher_surfaces",
+      "before": "implicit",
+      "after": "explicit launcher surface report with missing root .mcp.json recorded"
+    }
+  ],
+  "do_not_overclaim_notes": [
+    "same_host peer_mesh_local and inbox_protocol remain the only active parent runtime lanes.",
+    "cross_device remains blocked; no child runtime adoption or live cross-device routing is claimed.",
+    "InfraNodus live MCP remains blocked without authenticated runtime proof.",
+    "agent-eval smoke remains blocked without OPENAI_API_KEY even though dry and docker prerequisites exist.",
+    "Historical prompt and run artifacts still contain absolute path prose and should not be read as current launcher truth."
+  ],
+  "artifact_records": [
+    {
+      "path": "evaluation/validation-report.json",
+      "epoch_seconds": 1779458351
+    },
+    {
+      "path": "evaluation/metrics-latest.json",
+      "epoch_seconds": 1779458352
+    },
+    {
+      "path": "promotion/readiness.json",
+      "epoch_seconds": 1779458351
+    },
+    {
+      "path": "evaluation/tool-health/status.json",
+      "epoch_seconds": 1779458365
+    }
+  ],
+  "max_artifact_span_seconds": 14,
+  "tool_health_artifacts": [
+    "evaluation/tool-health/status.json",
+    "evaluation/tool-health/gitnexus-smoke.log",
+    "evaluation/tool-health/gitnexus-parent-fixture/gitnexus-clean-smoke.log",
+    "evaluation/tool-health/graphify-smoke.log",
+    "evaluation/tool-health/infranodus-package.log",
+    "evaluation/tool-health/infranodus-live-probe.json",
+    "evaluation/tool-health/agent-eval-dry.log",
+    "evaluation/tool-health/agent-eval-smoke.log"
+  ],
+  "runtime_test_artifacts": [
+    "evaluation/tool-health/peer-mesh-local.json",
+    "evaluation/tool-health/inbox-protocol/latest-scan.json",
+    "evaluation/validation-report.json",
+    "evaluation/parent-hardening-run-report.json"
+  ],
+  "doc_sync_artifacts": [
+    "source/parent-operational-doctrine.md",
+    "README.md",
+    "GOAL.md",
+    "program.md",
+    "library.yaml"
+  ],
+  "baseline_total_score": 99.62,
+  "final_total_score": 99.62,
+  "score_changed": false,
+  "why_this_slice_counts": "The parent repo is materially safer and easier to operate even without a score increase because the run replaced path-specific launcher assumptions with repo-relative surfaces, converted tool-health to fresh probes, added runtime smoke coverage, split validator orchestration, and centralized truth doctrine without claiming new runtime activation.",
+  "health_audit_commands": [
+    "git --no-pager status --short",
+    "find . -maxdepth 2 \\( -path './.git' -o -path './external' \\) -prune -o -type f | sed 's#^./##' | sort | head -n 300",
+    "rg '/Volumes/PixelTable/VW_iTwin_Bridge/meta|/Volumes/PixelTable/VW_iTWIN_Bridge/meta' .",
+    "glob '.mcp.json'",
+    "glob 'tests/**/*.py'",
+    "glob 'scripts/**/*.py'",
+    "glob 'service/**/*.py'"
+  ],
+  "validation_commands": [
+    "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+    "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+  ],
+  "smoke_commands": [
+    "uv run python -m unittest discover -s tests -p 'test_*.py'",
+    "uv run python scripts/watchers/inbox_router.py"
+  ],
+  "runtime_test_commands": [
+    "bun app/server.ts",
+    "uv run python -m unittest tests.test_runtime_surfaces.AppServerSmokeTests",
+    "uv run python -m unittest tests.test_runtime_surfaces.ServiceRouteTests"
+  ],
+  "tool_health_commands": [
+    "uv run --isolated --with jsonschema --with pyyaml python scripts/refresh-parent-tool-health.py",
+    "uv run python scripts/harvest-local-runner-capabilities.py",
+    "gitnexus analyze . --skip-agents-md --name fre-meta-harness-parent",
+    "gitnexus analyze evaluation/tool-health/gitnexus-parent-fixture/workdir --skip-agents-md --skip-git --name fre-meta-harness-parent-fixture",
+    "graphify update evaluation/tool-health/graphify-parent-fixture --no-cluster",
+    "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "bash scripts/run-parent-agent-eval.sh dry",
+    "bash scripts/run-parent-agent-eval.sh smoke",
+    "bash scripts/run-parent-peer-mesh-local.sh"
+  ],
+  "research_commands_or_reads": [
+    "Delegated lane-a-truth-portability",
+    "Delegated lane-b-tests-runtime",
+    "Delegated lane-c-doctrine-runbooks",
+    "Read README.md, GOAL.md, program.md, library.yaml, app/server.ts, service/main.py, service/inbox_runtime.py, scripts/refresh-parent-tool-health.py, tests/validate_parent_wrapper_contract.py, package.json, pyproject.toml"
+  ],
+  "follow_up_prompt": {
+    "artifact_path": "prompts/PROMPT-20260522-HARDEN2.yaml",
+    "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "must_be_inline_ready": true,
+    "markdown_companion_artifact_path": "prompts/PROMPT-20260522-HARDEN2.md",
+    "markdown_template_ref": "prompts/governed-triad-follow-up-prompt.template.md",
+    "must_use_front_matter": true,
+    "must_use_bottom_matter_marker": true
+  }
+}

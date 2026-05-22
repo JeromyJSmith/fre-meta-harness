@@ -13,20 +13,20 @@
       "details": {
         "status": "running",
         "schema_errors": [],
-        "real_rows": 20,
-        "kept_rows": 15,
-        "substantive_kept_rows": 13,
+        "real_rows": 31,
+        "kept_rows": 26,
+        "substantive_kept_rows": 22,
         "parse_errors": []
       }
     },
     "non_dry_cycle_depth": {
       "score": 25.0,
       "details": {
-        "count": 20,
-        "substantive_kept_rows": 13,
+        "count": 31,
+        "substantive_kept_rows": 22,
         "rejected_or_reverted_rows": 5,
-        "history_rows": 20,
-        "real_rows": 20,
+        "history_rows": 31,
+        "real_rows": 31,
         "parse_errors": [],
         "schema_errors": []
       }
@@ -35,8 +35,8 @@
       "score": 25.0,
       "details": {
         "kind": "continuing",
-        "stop_reason": "one kept inbox-first front-door slice was completed; the parent improvement program remains open for later governed slices",
-        "cycles": 20,
+        "stop_reason": "one kept consume-source-quality slice was completed; the bounded parent improvement program remains open for later governed slices",
+        "cycles": 31,
         "actual_consecutive_non_improving": 0,
         "schema_errors": []
       }
@@ -47,7 +47,7 @@
         "report_artifacts_complete": true,
         "latest_cycle_artifacts_complete": true,
         "required": 4,
-        "freshness_span_seconds": 22533.526408433914,
+        "freshness_span_seconds": 5015.204624652863,
         "tool_statuses": [
           "bounded_pass",
           "bounded_pass",
@@ -136,7 +136,7 @@
           "activation_candidates": [
             {
               "check": "inbox_protocol",
-              "status": "pass",
+              "status": "bounded_pass",
               "has_command": true,
               "evidence_count": 4,
               "evidence_paths_exist": true
@@ -187,9 +187,9 @@
       "score": 30.0,
       "details": {
         "schema_errors": [],
-        "history_rows": 20,
-        "detailed_rows": 20,
-        "ledger_rows": 20,
+        "history_rows": 31,
+        "detailed_rows": 31,
+        "ledger_rows": 31,
         "ledger_aligned": true,
         "runtime_truth_score": 6.0,
         "score_saturation_score": 4.0,
@@ -206,6 +206,6 @@
       }
     }
   },
-  "iteration_count": 20,
+  "iteration_count": 31,
   "iteration_parse_errors": []
 }

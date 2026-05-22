@@ -122,7 +122,8 @@ Stop and report when ANY of:
 
 1. Confirm the active child body in `body-registry.yaml`.
 2. Read `domain_spec.md`.
-3. Read `library.yaml`, `agent-heavy-run-prompt-schema.md`, and
+3. Read `library.yaml`, `source/parent-operational-doctrine.md`,
+   `agent-heavy-run-prompt-schema.md`, and
    `infranodus-phase-tool-map.json`.
 4. Read imported upstream authorities:
    - `external/goal-md/README.md`
@@ -134,11 +135,11 @@ Stop and report when ANY of:
 5. Read `program.md`.
 6. Run the parent validator:
    ```bash
-   uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/tests/validate_parent_wrapper_contract.py
+   uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py
    ```
 7. Record the baseline:
    ```bash
-   uv run --isolated --with jsonschema --with pyyaml python /Volumes/PixelTable/VW_iTwin_Bridge/meta/scripts/score-parent-wrapper.py --json
+   uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json
    ```
 8. Run the strongest honest bounded parent-layer checks for GitNexus,
    Graphify, InfraNodus, and the CLI-first local runner harvest, and capture
@@ -163,15 +164,15 @@ The loop follows the imported local authorities directly:
 ```text
 repeat:
   0. Read runs/iterations.jsonl if it exists
-  1. Run score-parent-wrapper.py --json > /tmp/parent-before.json
-  2. Re-read program.md and the imported local upstream authorities
+  1. Run score-parent-wrapper.py --json > cache/parent-before.json
+  2. Re-read program.md, source/parent-operational-doctrine.md, and the imported local upstream authorities
   3. Read whether the last real Copilot run executed multiple non-dry cycles
   4. If the metric is saturated or untrusted, repair the instrument first
   5. Launch one bounded real Copilot ratchet cycle through program.md
   6. Score from ledger rows and refreshed artifacts, not from self-report alone
   7. Require a structured copilot-ratchet-report.json once the run stops
   7. Run validate_parent_wrapper_contract.py
-  8. Run score-parent-wrapper.py --json > /tmp/parent-after.json
+  8. Run score-parent-wrapper.py --json > cache/parent-after.json
   9. If process score improved without truth regressions, keep
   10. If regressed or the stop reason is dishonest, revert or reject
   11. Append iteration evidence to runs/iterations.jsonl

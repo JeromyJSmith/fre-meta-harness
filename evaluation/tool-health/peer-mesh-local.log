@@ -1,11 +1,353 @@
-session_id=peer-mesh-local-20260521T221842Z
-scenario_id=pi-vs-claude-code-same-host-local
-runtime_mode=same_host
-list_agents=corr-c7f00bb6-595a-4f54-a0dc-3a186c30468a
-send_prompt=corr-c61e5cbb-df50-453e-9606-13dd95f5b9fa
-send_command=corr-bff07204-684c-4e56-9826-c9b764384576
-failed_command=corr-a78abac6-9d3b-441d-90de-b61672f3251c
-needs_human=corr-ebe76465-949a-43bf-a98e-e8337315eaf9
-observed_completion_tokens=done,failed,needs-human
-observed_policy_outcomes=allow,ask
-required_event_types=peer_joined,peer_message_received,peer_message_sent,peer_response_completed,peer_session_ended,peer_session_started,policy_decision_emitted
+{
+  "report_id": "PARENT-PEER-MESH-LOCAL-0001",
+  "created_at": "2026-05-22T13:59:21Z",
+  "scope": "portable_parent_wrapper",
+  "capability_id": "pi-vs-claude-code",
+  "lane_id": "peer-mesh-same-host-local",
+  "status": "bounded_pass",
+  "activation_result": "active",
+  "runtime_mode": "same_host",
+  "session_id": "peer-mesh-local-20260522T135921Z",
+  "scenario_id": "pi-vs-claude-code-same-host-local",
+  "runtime_mismatch_list": [
+    {
+      "mismatch_id": "missing_same_host_bootstrap_entrypoint",
+      "baseline_gap": "No executable same-host bootstrap entrypoint existed for the parent peer mesh.",
+      "kept_resolution": "scripts/run-parent-peer-mesh-local.sh and scripts/parent_peer_mesh_runtime.py bootstrap now activate the bounded same-host lane."
+    },
+    {
+      "mismatch_id": "missing_local_peer_registration",
+      "baseline_gap": "No parent-native implementation registered governed peers into a live same-host registry.",
+      "kept_resolution": "Bootstrap now admits peer_mesh_host, prod_gatekeeper, dev_driver, and mesh_verifier from the governed role contract."
+    },
+    {
+      "mismatch_id": "missing_same_host_message_dispatch",
+      "baseline_gap": "No live list/send dispatch path existed behind the peer-message contract.",
+      "kept_resolution": "The runtime now dispatches list_agents, send_prompt, and send_command through governed request, policy, and response records."
+    },
+    {
+      "mismatch_id": "missing_await_response_implementation",
+      "baseline_gap": "No runtime await-response verifier enforced terminal responses.",
+      "kept_resolution": "await_response now verifies policy_decision_id, evidence_refs, and allowed completion tokens before closing a correlation."
+    },
+    {
+      "mismatch_id": "missing_completion_token_enforcement",
+      "baseline_gap": "Completion tokens were only contract doctrine.",
+      "kept_resolution": "The kept slice now observes and verifies done, failed, and needs-human tokens in live same-host exchanges."
+    },
+    {
+      "mismatch_id": "missing_fail_loud_blocker_reporting",
+      "baseline_gap": "Blocked or ask states were not emitted as runtime evidence.",
+      "kept_resolution": "Same-host policy decisions now return failed or needs-human terminal responses with explicit reasons."
+    },
+    {
+      "mismatch_id": "missing_same_host_observability_emission",
+      "baseline_gap": "No local observability stream proved session, join, message, policy, and completion events.",
+      "kept_resolution": "The kept slice now emits governed observability events into evaluation/tool-health/peer-mesh-local-events.jsonl."
+    },
+    {
+      "mismatch_id": "missing_tool_health_runtime_truth",
+      "baseline_gap": "Tool-health evidence did not distinguish an active same-host lane from blocked cross-device expansion.",
+      "kept_resolution": "peer-mesh-local.json and status.json now mark same_host active and cross_device blocked with explicit truth boundaries."
+    },
+    {
+      "mismatch_id": "missing_validator_scorer_runtime_credit",
+      "baseline_gap": "Validator and scorer rewarded contract presence without requiring live runtime proof.",
+      "kept_resolution": "Validation and scoring now require fresh same-host runtime evidence, observability output, and completion-token enforcement."
+    }
+  ],
+  "operations": {
+    "bootstrap": {
+      "status": "done",
+      "peer_count": 4,
+      "distributed_ref_count": 7
+    },
+    "list_agents": {
+      "status": "done",
+      "correlation_id": "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
+      "peer_count": 4
+    },
+    "send_prompt": {
+      "status": "done",
+      "correlation_id": "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
+      "policy_outcome": "allow",
+      "recipient_role": "prod_gatekeeper"
+    },
+    "send_command": {
+      "status": "done",
+      "correlation_id": "corr-a928db36-f135-4f95-b549-6c3e83331956",
+      "policy_outcome": "allow",
+      "recipient_role": "dev_driver",
+      "command": "pwd",
+      "exit_code": 0
+    },
+    "await_response": {
+      "status": "done",
+      "verified_correlations": [
+        "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
+        "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
+        "corr-a928db36-f135-4f95-b549-6c3e83331956",
+        "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
+        "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5"
+      ]
+    }
+  },
+  "completion_tokens": {
+    "required": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "observed": [
+      "done",
+      "failed",
+      "needs-human"
+    ],
+    "enforced": true,
+    "failed_case": {
+      "correlation_id": "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
+      "completion_token": "failed",
+      "reason": "Command exited with 1"
+    },
+    "needs_human_case": {
+      "correlation_id": "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5",
+      "completion_token": "needs-human",
+      "reason": "Prompt payload may contain PII or secrets and requires human review before release."
+    }
+  },
+  "policy": {
+    "outcomes_observed": [
+      "allow",
+      "ask"
+    ],
+    "decisions": [
+      {
+        "decision_id": "policy-60e1c2ca-88c7-4b5c-ba87-029a5d0f6145",
+        "message_id": "msg-dddc6338-df0f-442d-b7b0-33a018a2a0a1",
+        "correlation_id": "corr-fddf9548-7a23-4379-b09e-1d4bcb48547c",
+        "scenario_id": "pi-vs-claude-code-same-host-local",
+        "outcome": "allow",
+        "reason": "Same-host peer discovery is allowed after governed bootstrap.",
+        "actor_role": "peer_mesh_host",
+        "operation": "list_agents",
+        "created_at": "2026-05-22T13:59:21Z"
+      },
+      {
+        "decision_id": "policy-a90e8740-80b3-43c4-b907-e0f8baf0f27d",
+        "message_id": "msg-404d5a6d-ca34-4625-bb7d-7578cde3542a",
+        "correlation_id": "corr-38f95ed9-9247-4eb0-ac43-541f8b16f1bc",
+        "scenario_id": "pi-vs-claude-code-same-host-local",
+        "outcome": "allow",
+        "reason": "Local same-host prompt is allowed by the bounded parent prompt guard.",
+        "actor_role": "peer_mesh_host",
+        "operation": "send_prompt",
+        "created_at": "2026-05-22T13:59:21Z"
+      },
+      {
+        "decision_id": "policy-e58ffcaf-5bb6-497d-8c39-d71ba771800e",
+        "message_id": "msg-228f962f-3852-4056-a766-b27de37fb7d7",
+        "correlation_id": "corr-a928db36-f135-4f95-b549-6c3e83331956",
+        "scenario_id": "pi-vs-claude-code-same-host-local",
+        "outcome": "allow",
+        "reason": "Local same-host command is allowed by the bounded parent command guard.",
+        "actor_role": "peer_mesh_host",
+        "operation": "send_command",
+        "created_at": "2026-05-22T13:59:21Z"
+      },
+      {
+        "decision_id": "policy-96fa804a-b6cf-4d19-a189-47e37a0a9fd9",
+        "message_id": "msg-702cbdd7-264a-4b02-98d5-a84dbbd7e5bf",
+        "correlation_id": "corr-93b95e9e-9b43-4965-b983-518e8c9c7b43",
+        "scenario_id": "pi-vs-claude-code-same-host-local",
+        "outcome": "allow",
+        "reason": "Local same-host command is allowed by the bounded parent command guard.",
+        "actor_role": "peer_mesh_host",
+        "operation": "send_command",
+        "created_at": "2026-05-22T13:59:21Z"
+      },
+      {
+        "decision_id": "policy-7318b6d2-b8d3-422e-ab40-13988e09dd27",
+        "message_id": "msg-f8640e81-735e-457e-ab8e-c0bbd2b3a252",
+        "correlation_id": "corr-d1ae61f9-665a-49f2-8f93-b0475075dfe5",
+        "scenario_id": "pi-vs-claude-code-same-host-local",
+        "outcome": "ask",
+        "reason": "Prompt payload may contain PII or secrets and requires human review before release.",
+        "actor_role": "peer_mesh_host",
+        "operation": "send_prompt",
+        "created_at": "2026-05-22T13:59:21Z"
+      }
+    ],
+    "hook_ids_triggered": [
+      "completion-verification",
+      "peer-command-guard",
+      "peer-membership-refresh",
+      "peer-prompt-guard",
+      "peer-session-start"
+    ]
+  },
+  "observability": {
+    "events_file": "evaluation/tool-health/peer-mesh-local-events.jsonl",
+    "event_count": 24,
+    "required_event_types_observed": [
+      "peer_joined",
+      "peer_message_received",
+      "peer_message_sent",
+      "peer_response_completed",
+      "peer_session_ended",
+      "peer_session_started",
+      "policy_decision_emitted"
+    ],
+    "session_markers_observed": [
+      "session_end",
+      "session_start"
+    ]
+  },
+  "library_distribution": {
+    "distribution_units": [
+      {
+        "ref": "prompt:parent-meta-program",
+        "unit_type": "prompt",
+        "name": "parent-meta-program",
+        "source": "program.md",
+        "used_by_roles": [
+          "orchestrator-validator",
+          "filesystem-router"
+        ]
+      },
+      {
+        "ref": "skill:the-library",
+        "unit_type": "skill",
+        "name": "the-library",
+        "source": "agentics-library.md",
+        "used_by_roles": [
+          "orchestrator-validator",
+          "architect",
+          "research",
+          "filesystem-router"
+        ]
+      },
+      {
+        "ref": "agent:filesystem-router",
+        "unit_type": "agent",
+        "name": "filesystem-router",
+        "source": "contracts/front-door-runtime-topology.yaml",
+        "used_by_roles": [
+          "filesystem-router"
+        ]
+      },
+      {
+        "ref": "contract:governed-inbox-packet",
+        "unit_type": "prompt",
+        "name": "governed-inbox-packet",
+        "source": "contracts/inbox-packet.yaml",
+        "used_by_roles": [
+          "user-facing-agent",
+          "spec-interpreter",
+          "filesystem-router"
+        ]
+      },
+      {
+        "ref": "policy:parent-inbox-routing-policy",
+        "unit_type": "policy",
+        "name": "parent-inbox-routing-policy",
+        "source": "contracts/inbox-routing-decision.yaml",
+        "used_by_roles": [
+          "filesystem-router",
+          "orchestrator-validator",
+          "architect"
+        ]
+      },
+      {
+        "ref": "validator:parent-wrapper-contract",
+        "unit_type": "validator",
+        "name": "parent-wrapper-contract",
+        "source": "tests/validate_parent_wrapper_contract.py",
+        "used_by_roles": [
+          "orchestrator-validator",
+          "filesystem-router"
+        ]
+      },
+      {
+        "ref": "benchmark_recipe:parent-inbox-protocol-scan",
+        "unit_type": "benchmark_recipe",
+        "name": "parent-inbox-protocol-scan",
+        "source": "scripts/watchers/inbox_router.py",
+        "used_by_roles": [
+          "filesystem-router",
+          "orchestrator-validator"
+        ]
+      }
+    ],
+    "resolved_refs": [
+      "prompt:parent-meta-program",
+      "skill:the-library",
+      "agent:filesystem-router",
+      "contract:governed-inbox-packet",
+      "policy:parent-inbox-routing-policy",
+      "validator:parent-wrapper-contract",
+      "benchmark_recipe:parent-inbox-protocol-scan"
+    ],
+    "source_catalog": "library.yaml"
+  },
+  "benchmarks": {
+    "file": "evaluation/tool-health/peer-mesh-local-benchmarks.json",
+    "run_ref": "peer-mesh-local/peer-mesh-local-20260522T135921Z",
+    "groups": [
+      "library_distribution",
+      "observability_ingest",
+      "peer_mesh_regression"
+    ]
+  },
+  "tool_prerequisites": {
+    "bun": "/Users/ojeromyo/.bun/bin/bun",
+    "just": "/opt/homebrew/bin/just",
+    "pi": "/Users/ojeromyo/.bun/bin/pi"
+  },
+  "truth_boundary": {
+    "active_runtime_modes": [
+      "same_host"
+    ],
+    "blocked_runtime_modes": [
+      {
+        "mode_id": "cross_device",
+        "status": "blocked",
+        "blocker": "Cross-device transport remains blocked until PI_COMS_NET_AUTH_TOKEN and a declared hub URL are configured."
+      }
+    ],
+    "limitation": "Prompt handling is bounded to local role adapters and explicit policy decisions; no provider-backed arbitration or cross-device transport is claimed."
+  },
+  "blocked_follow_on_lanes": {
+    "just-prompt": {
+      "status": "gated",
+      "expected_status": "gated",
+      "blocker_or_dependency": "Requires a running just-prompt MCP server plus provider credentials or a local-model equivalent; without those, the lane remains gated and must not be treated as default."
+    },
+    "agent-sandbox-skill": {
+      "status": "blocked_with_exact_dependency",
+      "expected_status": "blocked_with_exact_dependency",
+      "blocker_or_dependency": "Blocked until a real sandbox provider is configured; exact dependencies are an E2B account/API key today or a parity implementation such as exe.dev."
+    },
+    "bowser": {
+      "status": "gated",
+      "expected_status": "gated",
+      "blocker_or_dependency": "Gated on a real browser-validation requirement plus Playwright CLI or an equivalent browser control surface; otherwise the parent should not pretend this lane is active."
+    },
+    "mac-mini-agent": {
+      "status": "deployment_specific",
+      "expected_status": "deployment_specific",
+      "blocker_or_dependency": "Deployment-specific: requires macOS, Accessibility + Screen Recording + Full Disk Access permissions, tmux, SSH/remote connectivity, and the paired host topology."
+    },
+    "fork-repository-skill": {
+      "status": "reference",
+      "expected_status": "reference",
+      "blocker_or_dependency": "Reference only because it overlaps with existing delegation and peer-mesh lanes and depends on a Claude-style skill runtime."
+    },
+    "infinite-agentic-loop": {
+      "status": "reference",
+      "expected_status": "reference",
+      "blocker_or_dependency": "Reference only because the upstream infinite mode conflicts with bounded stop, plateau, and exact-blocker doctrine."
+    }
+  }
+}
+
+Installed 19 packages in 12ms

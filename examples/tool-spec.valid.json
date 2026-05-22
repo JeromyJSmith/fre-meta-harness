@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "tool_spec",
+  "tool_id": "capability-harvester",
+  "name": "Capability Harvester",
+  "owner": "research",
+  "version": "1.0.0",
+  "status": "active",
+  "capabilities": {
+    "capability_ids": [
+      "CAP-0001",
+      "CAP-0006",
+      "CAP-0007"
+    ],
+    "constraints": [
+      "Bounded to parent-owned sources and compiled research packets.",
+      "Must fail loud on schema mismatches."
+    ],
+    "evidence_refs": [
+      "evaluation/research/compiled/capability-harvest.json",
+      "examples/tool-task.valid.json"
+    ]
+  },
+  "input_contract": {
+    "input_schema_ref": "schemas/research-packet-manifest.schema.json",
+    "required_fields": [
+      "source_packets",
+      "target_contracts"
+    ],
+    "validation_rules": [
+      "Require explicit source packet refs before execution.",
+      "Reject missing capability ids."
+    ]
+  },
+  "artifact_outputs": [
+    {
+      "artifact_type": "compiled_feature_matrix",
+      "schema_ref": "schemas/compiled-feature-matrix.schema.json",
+      "content_type": "application/json",
+      "registry_table": "artifacts",
+      "artifact_example_ref": "examples/tool-artifact.valid.json"
+    }
+  ],
+  "endpoint_contract": {
+    "discovery_path": "/.well-known/agent.json",
+    "invoke_path": "/v1/tools/{toolId}/tasks",
+    "status_path": "/v1/tasks/{taskId}",
+    "artifacts_path": "/v1/tasks/{taskId}/artifacts",
+    "async_task_required": true
+  },
+  "policy_boundary": {
+    "decision_modes": [
+      "allow",
+      "block",
+      "ask"
+    ],
+    "completion_criteria": [
+      "Emit at least one schema-backed artifact.",
+      "Record an exact blocker when compilation cannot proceed."
+    ],
+    "loop_budget": "bounded_single_slice",
+    "failure_mode": "fail_loud"
+  },
+  "observability": {
+    "event_contract_ref": "contracts/observability-event.yaml",
+    "ingest_contract_ref": "contracts/observability-ingest.yaml",
+    "required_events": [
+      "tool_task_created",
+      "tool_task_completed"
+    ],
+    "correlation_id_required": true
+  },
+  "packaging_refs": {
+    "family_contract_ref": "contracts/tool-packaging-family.yaml",
+    "agent_card_example_ref": "examples/agent-card.valid.json",
+    "task_example_ref": "examples/tool-task.valid.json",
+    "artifact_example_refs": [
+      "examples/tool-artifact.valid.json"
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/subsystem-runner-proof-family.schema.json",
+  "title": "Subsystem Runner Proof Family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "authority",
+    "contract_surfaces",
+    "proof_state_vocabulary",
+    "required_evidence_artifacts",
+    "activation_truth"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-subsystem-runner-proof-family"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "topology_contract_ref",
+        "subsystem_registry_contract_ref",
+        "subsystem_registry_record_ref",
+        "tool_health_ref",
+        "source_guidance_ref"
+      ],
+      "properties": {
+        "topology_contract_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-harness-topology.yaml"
+        },
+        "subsystem_registry_contract_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-registry.yaml"
+        },
+        "subsystem_registry_record_ref": {
+          "type": "string",
+          "const": "source/subsystems/registry.json"
+        },
+        "tool_health_ref": {
+          "type": "string",
+          "const": "evaluation/tool-health/status.json"
+        },
+        "source_guidance_ref": {
+          "type": "string",
+          "const": "source/subsystem-runner-proof-family.md"
+        }
+      }
+    },
+    "contract_surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_schema_ref",
+        "contract_to_runner_map_contract_ref",
+        "contract_to_runner_map_schema_ref",
+        "bounded_probe_contract_ref",
+        "bounded_probe_schema_ref",
+        "observability_handshake_contract_ref",
+        "observability_handshake_schema_ref",
+        "strengthening_report_schema_ref"
+      ],
+      "properties": {
+        "family_schema_ref": {
+          "type": "string",
+          "const": "schemas/subsystem-runner-proof-family.schema.json"
+        },
+        "contract_to_runner_map_contract_ref": {
+          "type": "string",
+          "const": "contracts/contract-to-runner-map.yaml"
+        },
+        "contract_to_runner_map_schema_ref": {
+          "type": "string",
+          "const": "schemas/contract-to-runner-map.schema.json"
+        },
+        "bounded_probe_contract_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-bounded-probe.yaml"
+        },
+        "bounded_probe_schema_ref": {
+          "type": "string",
+          "const": "schemas/subsystem-bounded-probe.schema.json"
+        },
+        "observability_handshake_contract_ref": {
+          "type": "string",
+          "const": "contracts/subsystem-observability-handshake.yaml"
+        },
+        "observability_handshake_schema_ref": {
+          "type": "string",
+          "const": "schemas/subsystem-observability-handshake.schema.json"
+        },
+        "strengthening_report_schema_ref": {
+          "type": "string",
+          "const": "schemas/subsystem-runner-proof-strengthening-report.schema.json"
+        }
+      }
+    },
+    "proof_state_vocabulary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_states",
+        "activation_state_passthrough",
+        "state_rules"
+      ],
+      "properties": {
+        "required_states": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "enum": [
+              "designed_not_activated",
+              "bounded_probe_blocked",
+              "bounded_probe_pass",
+              "activation_proven_same_host"
+            ]
+          }
+        },
+        "activation_state_passthrough": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "enum": [
+              "defined_not_activated",
+              "late_bound_not_activated"
+            ]
+          }
+        },
+        "state_rules": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 20
+          }
+        }
+      }
+    },
+    "required_evidence_artifacts": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "activation_truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_parent_runtime_lanes",
+        "blocked_parent_runtime_lanes",
+        "non_activated_subsystem_lanes",
+        "do_not_overclaim_notes"
+      ],
+      "properties": {
+        "active_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "peer_mesh_local.same_host",
+              "inbox_protocol.same_host"
+            ]
+          }
+        },
+        "blocked_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "peer_mesh_local.cross_device",
+              "inbox_protocol.cross_device"
+            ]
+          }
+        },
+        "non_activated_subsystem_lanes": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "intake_etl",
+              "research_harvest",
+              "semantic_cartography",
+              "wrapper_synthesizer"
+            ]
+          }
+        },
+        "do_not_overclaim_notes": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 20
+          }
+        }
+      }
+    }
+  }
+}

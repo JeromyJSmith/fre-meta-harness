@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/tool-packaging-family.schema.json",
+  "title": "Parent Tool Packaging Family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "scope",
+    "authority",
+    "contract_surfaces",
+    "packaging_boundary",
+    "storage_truth",
+    "validation"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "const": "parent-tool-packaging-family"
+    },
+    "scope": {
+      "type": "string",
+      "const": "portable_parent_wrapper"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_guidance_ref",
+        "artifact_registry_note_ref",
+        "consume_refs"
+      ],
+      "properties": {
+        "source_guidance_ref": {
+          "type": "string",
+          "const": "source/tool-packaging-contract-family.md"
+        },
+        "artifact_registry_note_ref": {
+          "type": "string",
+          "minLength": 3
+        },
+        "consume_refs": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "contract_surfaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_schema_ref",
+        "tool_spec_schema_ref",
+        "agent_card_schema_ref",
+        "tool_task_schema_ref",
+        "tool_artifact_schema_ref"
+      ],
+      "properties": {
+        "family_schema_ref": {
+          "type": "string",
+          "const": "schemas/tool-packaging-family.schema.json"
+        },
+        "tool_spec_schema_ref": {
+          "type": "string",
+          "const": "schemas/tool-spec.schema.json"
+        },
+        "agent_card_schema_ref": {
+          "type": "string",
+          "const": "schemas/agent-card.schema.json"
+        },
+        "tool_task_schema_ref": {
+          "type": "string",
+          "const": "schemas/tool-task.schema.json"
+        },
+        "tool_artifact_schema_ref": {
+          "type": "string",
+          "const": "schemas/tool-artifact.schema.json"
+        }
+      }
+    },
+    "packaging_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "endpoint_first",
+        "discovery_endpoint",
+        "task_create_endpoint",
+        "task_status_endpoint",
+        "task_artifacts_endpoint",
+        "allowed_task_states",
+        "artifact_registry_linkage_required"
+      ],
+      "properties": {
+        "endpoint_first": {
+          "type": "boolean",
+          "const": true
+        },
+        "discovery_endpoint": {
+          "type": "string",
+          "const": "/.well-known/agent.json"
+        },
+        "task_create_endpoint": {
+          "type": "string",
+          "const": "/v1/tools/{toolId}/tasks"
+        },
+        "task_status_endpoint": {
+          "type": "string",
+          "const": "/v1/tasks/{taskId}"
+        },
+        "task_artifacts_endpoint": {
+          "type": "string",
+          "const": "/v1/tasks/{taskId}/artifacts"
+        },
+        "allowed_task_states": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "failed",
+              "blocked",
+              "cancelled"
+            ]
+          },
+          "allOf": [
+            { "contains": { "const": "queued" } },
+            { "contains": { "const": "running" } },
+            { "contains": { "const": "succeeded" } },
+            { "contains": { "const": "failed" } },
+            { "contains": { "const": "blocked" } },
+            { "contains": { "const": "cancelled" } }
+          ]
+        },
+        "artifact_registry_linkage_required": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    },
+    "storage_truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filesystem_registry_required",
+        "pixeltable_sync_status",
+        "duckdb_query_surface_status",
+        "do_not_overclaim_notes"
+      ],
+      "properties": {
+        "filesystem_registry_required": {
+          "type": "boolean",
+          "const": true
+        },
+        "pixeltable_sync_status": {
+          "type": "string",
+          "const": "blocked_not_activated"
+        },
+        "duckdb_query_surface_status": {
+          "type": "string",
+          "const": "planned_not_activated"
+        },
+        "do_not_overclaim_notes": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "validation_command",
+        "score_command",
+        "valid_examples",
+        "invalid_examples_registry_ref"
+      ],
+      "properties": {
+        "validation_command": {
+          "type": "string",
+          "const": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py"
+        },
+        "score_command": {
+          "type": "string",
+          "const": "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+        },
+        "valid_examples": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^examples/.+\\.valid\\.json$"
+          }
+        },
+        "invalid_examples_registry_ref": {
+          "type": "string",
+          "const": "expected-failures/registry.yaml"
+        }
+      }
+    }
+  }
+}

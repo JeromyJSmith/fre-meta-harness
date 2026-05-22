@@ -1,0 +1,203 @@
+{
+  "report_id": "SUBRUNNER-20260522-EXAMPLE",
+  "status": "pass",
+  "selected_workflow_strengthening_slice": "subsystem_runner_proof",
+  "decision_space": [
+    {
+      "option_id": "option-a",
+      "title": "Land subsystem runner proof contracts first.",
+      "why_now": "The subsystem topology already exists, so a proof family can close the boundary between scaffolds and activation truth.",
+      "evidence_refs": [
+        "contracts/subsystem-harness-topology.yaml"
+      ]
+    },
+    {
+      "option_id": "option-b",
+      "title": "Re-cut consume source quality first.",
+      "why_now": "Source quality still matters, but it does not define runner activation boundaries by itself.",
+      "evidence_refs": [
+        "evaluation/gap-map-strength-report.json"
+      ]
+    },
+    {
+      "option_id": "option-c",
+      "title": "Land Pixeltable and DuckDB persistence first.",
+      "why_now": "Persistence remains important, but it should follow truthful runner and evidence boundaries rather than imply them.",
+      "evidence_refs": [
+        "evaluation/tool-packaging-strengthening-report.json"
+      ]
+    }
+  ],
+  "recommended_option_id": "option-a",
+  "iteration_count": 3,
+  "iteration_score_history": [
+    {
+      "iteration": 1,
+      "summary": "Land the first subsystem runner proof family draft.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    },
+    {
+      "iteration": 2,
+      "summary": "Tighten schemas, valid examples, and invalid-example coverage.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    },
+    {
+      "iteration": 3,
+      "summary": "Add the structured report schema and keep proof-state alignment explicit.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    }
+  ],
+  "infranodus_path_used": {
+    "mode": "bounded_local_cli_substitute",
+    "command": "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "live_status": "blocked",
+    "limitation": "Live InfraNodus MCP analysis remains blocked until authenticated runtime access is proven.",
+    "evidence_refs": [
+      "evaluation/infranodus-gap-analysis.json",
+      "evaluation/tool-health/infranodus-live-probe.json"
+    ]
+  },
+  "stronger_content_summary": [
+    "Subsystem runner proof now has parent-owned contract surfaces for contract-to-runner mapping, bounded probe design, and observability handshakes."
+  ],
+  "still_weak_content_summary": [
+    "All subsystem lanes remain designed_not_activated until subsystem-specific probe artifacts exist."
+  ],
+  "runnable_tool_shortlist_used": [
+    "gitnexus",
+    "graphify",
+    "uv run python scripts/build-parent-infranodus-artifacts.py",
+    "gh copilot"
+  ],
+  "files_changed": [
+    "contracts/subsystem-runner-proof-family.yaml",
+    "contracts/contract-to-runner-map.yaml",
+    "contracts/subsystem-bounded-probe.yaml",
+    "contracts/subsystem-observability-handshake.yaml"
+  ],
+  "targeted_validation_results": [
+    {
+      "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "status": "pass",
+      "evidence_refs": [
+        "evaluation/validation-report.json"
+      ]
+    }
+  ],
+  "diff_check_result": {
+    "command": "git --no-pager diff --check",
+    "status": "pass"
+  },
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host",
+      "inbox_protocol.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      },
+      {
+        "lane_id": "inbox_protocol.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "Authenticated remote inbox routing and synchronization must exist before cross-device inbox claims can be made.",
+        "evidence_refs": [
+          "evaluation/tool-health/inbox-protocol/latest-scan.json"
+        ]
+      }
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json",
+      "evaluation/tool-health/inbox-protocol/latest-scan.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "The subsystem runner proof family defines proof boundaries only and does not activate subsystem runners.",
+      "Pixeltable sync, DuckDB query proof, and child runtime adoption remain outside this slice."
+    ]
+  },
+  "blockers": [
+    {
+      "lane_id": "live_infranodus_access",
+      "classification": "blocked_with_exact_dependency",
+      "blocker_dependency": "Authenticated InfraNodus MCP runtime access is still missing.",
+      "missing_prerequisites": [
+        "Configured authenticated InfraNodus session"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/infranodus-live-probe.json"
+      ]
+    }
+  ],
+  "freshness": {
+    "artifact_records": [
+      "evaluation/validation-report.json",
+      "evaluation/metrics-latest.json"
+    ],
+    "max_artifact_span_seconds": 600,
+    "tool_health_artifacts": [
+      "evaluation/tool-health/status.json"
+    ],
+    "compiled_research_artifacts": [
+      "evaluation/research/compiled/feature-matrix.json"
+    ],
+    "infranodus_artifacts": [
+      "evaluation/infranodus-gap-analysis.json"
+    ]
+  },
+  "score_saturation": {
+    "baseline_total_score": 99.62,
+    "final_total_score": 99.62,
+    "score_changed": false,
+    "why_this_slice_counts": "The family closes a machine-verifiable boundary between subsystem contracts and any future runner claim.",
+    "flat_score_explanation": "The broader parent metric remains flat until the new family is fully aligned into the run ledger and current evidence set."
+  },
+  "command_evidence": {
+    "activation_commands": [
+      "bash scripts/run-parent-peer-mesh-local.sh",
+      "uv run python scripts/watchers/inbox_router.py"
+    ],
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json"
+    ],
+    "tool_health_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "infranodus_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "proof_commands": [],
+    "research_commands_or_reads": [
+      "Read evaluation/tool-packaging-strengthening-report.json",
+      "Read contracts/subsystem-harness-topology.yaml"
+    ]
+  },
+  "follow_up_prompt": {
+    "artifact_path": "prompts/PROMPT-20260522-CONSUME-SOURCE-QUALITY.yaml",
+    "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "must_be_inline_ready": true,
+    "next_decision_space": "Choose whether consume_source_quality, pixeltable_duckdb_persistence, or live_infranodus_access should be the next bounded slice.",
+    "markdown_companion_artifact_path": "prompts/PROMPT-20260522-CONSUME-SOURCE-QUALITY.md",
+    "must_use_front_matter": true,
+    "must_use_bottom_matter_marker": true
+  }
+}

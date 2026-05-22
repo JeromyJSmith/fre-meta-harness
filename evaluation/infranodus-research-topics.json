@@ -14,8 +14,8 @@
       "bridge_terms": [
         "status",
         "kind",
-        "blocked_by",
-        "you"
+        "schema",
+        "blocked_by"
       ],
       "questions": [
         "Which bounded commands connect compiled_research outputs to tool_catalog_inputs decisions?",
@@ -29,16 +29,39 @@
     },
     {
       "topic_id": "topic-2",
-      "title": "Bridge inbox_doctrine and tool_catalog_inputs through observable local evidence",
+      "title": "Bridge inbox_doctrine and compiled_research through observable local evidence",
       "priority": 2,
+      "driven_by_gaps": [
+        "inbox_doctrine -> compiled_research"
+      ],
+      "bridge_terms": [
+        "status",
+        "kind",
+        "schema",
+        "blocked_by"
+      ],
+      "questions": [
+        "Which bounded commands connect inbox_doctrine outputs to compiled_research decisions?",
+        "Which artifact should become the canonical bridge between inbox_doctrine and compiled_research?"
+      ],
+      "recommended_artifacts": [
+        "contracts/parent-capability-metrics.yaml",
+        "evaluation/tool-health/status.json",
+        "evaluation/infranodus-gap-analysis.json"
+      ]
+    },
+    {
+      "topic_id": "topic-3",
+      "title": "Bridge inbox_doctrine and tool_catalog_inputs through observable local evidence",
+      "priority": 3,
       "driven_by_gaps": [
         "inbox_doctrine -> tool_catalog_inputs"
       ],
       "bridge_terms": [
         "status",
         "kind",
-        "blocked_by",
-        "you"
+        "schema",
+        "blocked_by"
       ],
       "questions": [
         "Which bounded commands connect inbox_doctrine outputs to tool_catalog_inputs decisions?",
@@ -51,44 +74,21 @@
       ]
     },
     {
-      "topic_id": "topic-3",
+      "topic_id": "topic-4",
       "title": "Bridge prompt_contracts and compiled_research through observable local evidence",
-      "priority": 3,
+      "priority": 4,
       "driven_by_gaps": [
         "prompt_contracts -> compiled_research"
       ],
       "bridge_terms": [
         "status",
         "kind",
-        "blocked_by",
-        "you"
+        "schema",
+        "blocked_by"
       ],
       "questions": [
         "Which bounded commands connect prompt_contracts outputs to compiled_research decisions?",
         "Which artifact should become the canonical bridge between prompt_contracts and compiled_research?"
-      ],
-      "recommended_artifacts": [
-        "contracts/parent-capability-metrics.yaml",
-        "evaluation/tool-health/status.json",
-        "evaluation/infranodus-gap-analysis.json"
-      ]
-    },
-    {
-      "topic_id": "topic-4",
-      "title": "Bridge prompt_contracts and inbox_doctrine through observable local evidence",
-      "priority": 4,
-      "driven_by_gaps": [
-        "prompt_contracts -> inbox_doctrine"
-      ],
-      "bridge_terms": [
-        "status",
-        "kind",
-        "blocked_by",
-        "you"
-      ],
-      "questions": [
-        "Which bounded commands connect prompt_contracts outputs to inbox_doctrine decisions?",
-        "Which artifact should become the canonical bridge between prompt_contracts and inbox_doctrine?"
       ],
       "recommended_artifacts": [
         "contracts/parent-capability-metrics.yaml",

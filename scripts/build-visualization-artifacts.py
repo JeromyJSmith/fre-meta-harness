@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 
-ROOT = Path("/Volumes/PixelTable/VW_iTwin_Bridge/meta")
+ROOT = Path(__file__).resolve().parents[1]
 EVAL_DIR = ROOT / "evaluation"
 RUNS_DIR = ROOT / "runs"
 

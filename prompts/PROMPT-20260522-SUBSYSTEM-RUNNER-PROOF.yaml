@@ -1,0 +1,166 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260522-SUBSYSTEM1"
+target_agent:
+  name: "copilot"
+  surface: "gh_copilot_p"
+  invocation: "gh copilot -p"
+triad_context:
+  acting_role: "orchestrator-validator"
+  upstream_handoff_ref: "evaluation/tool-packaging-strengthening-report.json"
+  upstream_inbox_packet_ref: "inbox/consuming-layer.plan.md"
+  packet_artifact_type: ".plan.md"
+  required_gate_state: "amber"
+  required_consumers:
+    - "filesystem-router"
+    - "architect"
+    - "orchestrator-validator"
+    - "research"
+  bottom_matter_ref: "inbox/consuming-layer.plan.md#bottom-matter"
+  structured_contract_ref: "inbox/consuming-layer.plan.json"
+  decision_space_required: true
+  runtime_truth_requirements:
+    - "Carry forward exact parent runtime truth only."
+    - "same_host peer_mesh_local and inbox_protocol are the only active runtime lanes unless fresh proof changes that."
+    - "cross_device remains blocked unless authenticated transport is actually proven."
+    - "Do not imply that semantic cartography, wrapper synthesis, substrate sync, or child runtime adoption are already active."
+  command_evidence_requirements:
+    - "Name every activation, validation, and analysis command used."
+    - "Pair every important claim with exact artifact evidence."
+mode:
+  execution_style: "heavy_bounded_run"
+  autonomy: "high"
+  permission_model: "ask_when_blocked"
+mission:
+  objective: "Strengthen the parent-owned subsystem runner proof lane after tool-packaging contracts landed."
+  repo_scope: "Standalone parent repo only at /Volumes/PixelTable/VW_iTWIN_Bridge/meta"
+  task_scope: "Choose the strongest next proof boundary for subsystem activation without overclaiming runtime adoption."
+current_verified_state:
+  facts:
+    - "Tool packaging now has a parent-owned contract family with ToolSpec, agent card, task, artifact, and report schemas."
+    - "same_host peer mesh and same_host inbox protocol remain the only active parent runtime lanes."
+    - "cross_device peer mesh and inbox protocol remain blocked with exact dependencies."
+    - "Intake ETL, research harvest, semantic cartography, and wrapper synthesizer remain non-activated subsystem lanes."
+    - "Live InfraNodus remains blocked; the bounded local substitute is still the strongest honest graph path."
+hard_rules:
+  environment:
+    - "Stay inside /Volumes/PixelTable/VW_iTWIN_Bridge/meta only."
+    - "Use uv for Python execution."
+    - "Treat external/ as read only authority surfaces."
+  safety:
+    - "Do not touch the child repo."
+    - "Do not activate a new runtime lane unless exact proof is captured."
+    - "Do not collapse governance roles, front-door runtime roles, and peer mesh runtime roles."
+  truthfulness:
+    - "No fake green path."
+    - "Keep the slice bounded to subsystem runner proof only."
+    - "If content remains weak, name the exact missing probe, observability surface, or blocker."
+allowed_paths:
+  paths:
+    - "contracts/**"
+    - "schemas/**"
+    - "examples/**"
+    - "expected-failures/**"
+    - "tests/**"
+    - "evaluation/**"
+    - "promotion/**"
+    - "prompts/**"
+    - "runs/**"
+    - "source/**"
+    - "inbox/**"
+    - "program.md"
+    - "GOAL.md"
+    - "GOLDENPATH.md"
+    - "domain_spec.md"
+    - "agent-heavy-run-prompt.schema.json"
+    - "architect-review-handoff-prompt.schema.json"
+    - "scripts/build-parent-infranodus-artifacts.py"
+    - "scripts/score-parent-wrapper.py"
+disallowed_paths:
+  paths:
+    - "external/**"
+    - "app/**"
+    - "service/**"
+    - "scripts/watchers/**"
+    - "scripts/parent_peer_mesh_runtime.py"
+    - "../VW_iTwin_Bridge/**"
+tasks:
+  ordered_steps:
+    - "Read evaluation/tool-packaging-strengthening-report.json first and treat it as the current strengthening authority."
+    - "Re-read contracts/subsystem-harness-topology.yaml, contracts/subsystem-registry.yaml, source/subsystems/registry.json, evaluation/tool-health/status.json, and evaluation/gap-map-strength-report.json."
+    - "Refresh the bounded InfraNodus artifacts with uv run python scripts/build-parent-infranodus-artifacts.py and keep live MCP blocked unless exact proof exists."
+    - "Construct a decision space with option-a subsystem_runner_proof, option-b pixeltable_duckdb_persistence, and option-c consume_source_quality."
+    - "Recommend exactly one option and keep option-a as the default unless exact evidence strongly favors another lane."
+    - "If option-a remains best, land only the parent-owned contract-to-runner proof boundary, bounded probe expectations, observability handshake, and activation-state distinctions for intake_etl, research_harvest, semantic_cartography, and wrapper_synthesizer."
+    - "Run at least 3 real proposal and validation iterations unless an exact blocker is proven earlier."
+validation_loop:
+  checks:
+    - "Run uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py after each substantive iteration."
+    - "Run uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json after each substantive iteration."
+    - "Keep evaluation/tool-health/status.json and evaluation/infranodus-* mutually consistent when refreshed."
+  rerun_policy: "Perform at least 3 real non-dry bounded iterations unless an exact blocker is proven earlier."
+handoff_inputs:
+  handoff_artifact_path: "evaluation/tool-packaging-strengthening-report.json"
+  source_report_paths:
+    - "evaluation/gap-map-strength-report.json"
+    - "evaluation/tool-health/status.json"
+    - "source/subsystems/registry.json"
+  required_follow_up_roles:
+    - "orchestrator-validator"
+    - "research"
+    - "architect"
+  consumption_requirements:
+    - "Read the tool-packaging strengthening report before planning."
+    - "Preserve runtime truth, blocker truth, freshness, and command evidence structure."
+    - "Emit both a structured report and a governed markdown companion when the slice completes."
+success_criteria:
+  best_case: "A parent-owned subsystem runner proof family lands cleanly with bounded probes, explicit observability expectations, exact activation-state truth, and a truthful score comparison."
+  acceptable_fallback: "If the full slice cannot land, deliver the strongest partial runner-proof family, exact blocker, and a truthful report without overclaiming activation."
+report_contract:
+  required_fields:
+    - "pass or blocked status"
+    - "selected workflow-strengthening slice"
+    - "decision_space"
+    - "recommended_option_id"
+    - "iteration_count"
+    - "iteration_score_history"
+    - "stronger content summary"
+    - "still-weak content summary"
+    - "files changed"
+    - "targeted validation results"
+  runtime_truth_fields:
+    - "runtime_truth_level"
+    - "active_parent_runtime_lanes"
+    - "blocked_parent_runtime_lanes"
+    - "activation_artifacts_used"
+    - "non_activated_subsystem_lanes"
+    - "do_not_overclaim_notes"
+  blocker_fields:
+    - "lane_id"
+    - "classification"
+    - "blocker_dependency"
+    - "missing_prerequisites"
+    - "evidence_refs"
+  freshness_fields:
+    - "artifact_records"
+    - "max_artifact_span_seconds"
+    - "tool_health_artifacts"
+    - "infranodus_artifacts"
+  score_saturation_fields:
+    - "baseline_total_score"
+    - "final_total_score"
+    - "score_changed"
+    - "why_this_slice_counts"
+  command_evidence_fields:
+    - "activation_commands"
+    - "validation_commands"
+    - "tool_health_commands"
+    - "infranodus_commands"
+    - "research_commands_or_reads"
+  follow_up_prompt_fields:
+    - "artifact_path"
+    - "target_schema_ref"
+    - "target_template_ref"
+    - "must_be_inline_ready"
+    - "markdown_companion_artifact_path"
+    - "must_use_front_matter"
+    - "must_use_bottom_matter_marker"

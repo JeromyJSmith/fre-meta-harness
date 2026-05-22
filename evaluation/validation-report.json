@@ -181,6 +181,62 @@
           "status": "pass"
         },
         {
+          "file": "examples/tool-packaging-family.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/tool-spec.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/agent-card.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/tool-task.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/tool-artifact.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/tool-packaging-strengthening-report.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/subsystem-runner-proof-family.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/contract-to-runner-map.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/subsystem-bounded-probe.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/subsystem-observability-handshake.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/subsystem-runner-proof-strengthening-report.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/evidence-strength.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/operational-feature-matrix.valid.json",
+          "status": "pass"
+        },
+        {
+          "file": "examples/consume-source-quality-strengthening-report.valid.json",
+          "status": "pass"
+        },
+        {
           "file": "examples/front-matter.invalid.missing-id.json",
           "status": "pass",
           "reason": "'id' is a required property"
@@ -339,6 +395,86 @@
           "file": "examples/gap-map-strength-report.invalid.missing-weak-content.json",
           "status": "pass",
           "reason": "'weak_content' is a required property | 'a' is too short | 'b' is too short | 'b' is too short | 'c' is too short | 'c' is too short | 'd' is too short | 'd' is too short | 'e' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Missing.' is too short | 'Bounded.' is too short | 'Bounded.' is too short | 'Bounded.' is too short"
+        },
+        {
+          "file": "examples/tool-packaging-family.invalid.missing-endpoint.json",
+          "status": "pass",
+          "reason": "'task_status_endpoint' is a required property"
+        },
+        {
+          "file": "examples/tool-spec.invalid.missing-artifact-output.json",
+          "status": "pass",
+          "reason": "'artifact_outputs' is a required property"
+        },
+        {
+          "file": "examples/agent-card.invalid.missing-task-endpoints.json",
+          "status": "pass",
+          "reason": "'task_endpoints' is a required property"
+        },
+        {
+          "file": "examples/tool-task.invalid.missing-completion-signal.json",
+          "status": "pass",
+          "reason": "'completion_signal' is a required property"
+        },
+        {
+          "file": "examples/tool-artifact.invalid.missing-registry-entry.json",
+          "status": "pass",
+          "reason": "'registry_entry' is a required property"
+        },
+        {
+          "file": "examples/tool-packaging-strengthening-report.invalid.missing-decision-space.json",
+          "status": "pass",
+          "reason": "'decision_space' is a required property"
+        },
+        {
+          "file": "examples/subsystem-runner-proof-family.invalid.missing-handshake-schema.json",
+          "status": "pass",
+          "reason": "'observability_handshake_schema_ref' is a required property"
+        },
+        {
+          "file": "examples/contract-to-runner-map.invalid.missing-wrapper-synthesizer.json",
+          "status": "pass",
+          "reason": "[{'subsystem_id': 'intake_etl', 'activation_state': 'defined_not_activated', 'current_proof_state': 'designed_not_activated', 'allowed_runtime_lane': 'same_host_only', 'contract_refs': ['contracts/subsystem-harness-topology.yaml', 'contracts/subsystem-registry.yaml', 'source/subsystems/intake-etl.md'], 'current_evidence_refs': ['source/subsystems/registry.json', 'contracts/subsystem-harness-topology.yaml'], 'required_evidence_refs': ['evaluation/subsystem-runner-probes/intake_etl/probe-status.json', 'evaluation/subsystem-runner-probes/intake_etl/events.jsonl', 'evaluation/subsystem-runner-probes/intake_etl/benchmarks.json', 'evaluation/tool-health/status.json'], 'promotion_requirements': ['A bounded same-host intake_etl probe must write a subsystem-specific proof artifact before the proof state can move beyond designed_not_activated.', 'The probe must reconcile governed inbox inputs without implying child runtime adoption.'], 'blocked_by': ['No parent-owned intake_etl runner command has been executed in this slice.'], 'do_not_overclaim_notes': ['Do not claim normalized packet output refresh from scaffold references alone.']}, {'subsystem_id': 'research_harvest', 'activation_state': 'defined_not_activated', 'current_proof_state': 'designed_not_activated', 'allowed_runtime_lane': 'same_host_only', 'contract_refs': ['contracts/subsystem-harness-topology.yaml', 'contracts/subsystem-registry.yaml', 'source/subsystems/research-harvest.md'], 'current_evidence_refs': ['source/subsystems/registry.json', 'evaluation/research/compiled/capability-harvest.json'], 'required_evidence_refs': ['evaluation/subsystem-runner-probes/research_harvest/probe-status.json', 'evaluation/subsystem-runner-probes/research_harvest/events.jsonl', 'evaluation/subsystem-runner-probes/research_harvest/benchmarks.json', 'evaluation/tool-health/status.json'], 'promotion_requirements': ['A bounded probe must reconcile compiled research outputs against the governed manifest before the proof state can advance.', 'The probe must preserve source-strength truth and packet provenance.'], 'blocked_by': ['No parent-owned research_harvest runner command has been executed in this slice.'], 'do_not_overclaim_notes': ['Do not describe the current compiled outputs as subsystem activation evidence.']}, {'subsystem_id': 'semantic_cartography', 'activation_state': 'defined_not_activated', 'current_proof_state': 'designed_not_activated', 'allowed_runtime_lane': 'same_host_only', 'contract_refs': ['contracts/subsystem-harness-topology.yaml', 'contracts/subsystem-registry.yaml', 'source/subsystems/semantic-cartography.md'], 'current_evidence_refs': ['source/subsystems/registry.json', 'evaluation/infranodus-gap-analysis.json'], 'required_evidence_refs': ['evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json', 'evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl', 'evaluation/subsystem-runner-probes/semantic_cartography/benchmarks.json', 'evaluation/tool-health/status.json'], 'promotion_requirements': ['A bounded probe must emit semantic-cartography artifacts that stay within the parent-owned local substitute boundary.', 'Live InfraNodus MCP claims must remain blocked unless authenticated proof exists separately.'], 'blocked_by': ['No parent-owned semantic_cartography runner command has been executed in this slice.'], 'do_not_overclaim_notes': ['Do not promote graph-ready summaries into live semantic cartography activation claims.']}] is too short | [{'subsystem_id': 'intake_etl', 'activation_state': 'defined_not_activated', 'current_proof_state': 'designed_not_activated', 'allowed_runtime_lane': 'same_host_only', 'contract_refs': ['contracts/subsystem-harness-topology.yaml', 'contracts/subsystem-registry.yaml', 'source/subsystems/intake-etl.md'], 'current_evidence_refs': ['source/subsystems/registry.json', 'contracts/subsystem-harness-topology.yaml'], 'required_evidence_refs': ['evaluation/subsystem-runner-probes/intake_etl/probe-status.json', 'evaluation/subsystem-runner-probes/intake_etl/events.jsonl', 'evaluation/subsystem-runner-probes/intake_etl/benchmarks.json', 'evaluation/tool-health/status.json'], 'promotion_requirements': ['A bounded same-host intake_etl probe must write a subsystem-specific proof artifact before the proof state can move beyond designed_not_activated.', 'The probe must reconcile governed inbox inputs without implying child runtime adoption.'], 'blocked_by': ['No parent-owned intake_etl runner command has been executed in this slice.'], 'do_not_overclaim_notes': ['Do not claim normalized packet output refresh from scaffold references alone.']}, {'subsystem_id': 'research_harvest', 'activation_state': 'defined_not_activated', 'current_proof_state': 'designed_not_activated', 'allowed_runtime_lane': 'same_host_only', 'contract_refs': ['contracts/subsystem-harness-topology.yaml', 'contracts/subsystem-registry.yaml', 'source/subsystems/research-harvest.md'], 'current_evidence_refs': ['source/subsystems/registry.json', 'evaluation/research/compiled/capability-harvest.json'], 'required_evidence_refs': ['evaluation/subsystem-runner-probes/research_harvest/probe-status.json', 'evaluation/subsystem-runner-probes/research_harvest/events.jsonl', 'evaluation/subsystem-runner-probes/research_harvest/benchmarks.json', 'evaluation/tool-health/status.json'], 'promotion_requirements': ['A bounded probe must reconcile compiled research outputs against the governed manifest before the proof state can advance.', 'The probe must preserve source-strength truth and packet provenance.'], 'blocked_by': ['No parent-owned research_harvest runner command has been executed in this slice.'], 'do_not_overclaim_notes': ['Do not describe the current compiled outputs as subsystem activation evidence.']}, {'subsystem_id': 'semantic_cartography', 'activation_state': 'defined_not_activated', 'current_proof_state': 'designed_not_activated', 'allowed_runtime_lane': 'same_host_only', 'contract_refs': ['contracts/subsystem-harness-topology.yaml', 'contracts/subsystem-registry.yaml', 'source/subsystems/semantic-cartography.md'], 'current_evidence_refs': ['source/subsystems/registry.json', 'evaluation/infranodus-gap-analysis.json'], 'required_evidence_refs': ['evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json', 'evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl', 'evaluation/subsystem-runner-probes/semantic_cartography/benchmarks.json', 'evaluation/tool-health/status.json'], 'promotion_requirements': ['A bounded probe must emit semantic-cartography artifacts that stay within the parent-owned local substitute boundary.', 'Live InfraNodus MCP claims must remain blocked unless authenticated proof exists separately.'], 'blocked_by': ['No parent-owned semantic_cartography runner command has been executed in this slice.'], 'do_not_overclaim_notes': ['Do not promote graph-ready summaries into live semantic cartography activation claims.']}] does not contain items matching the given schema"
+        },
+        {
+          "file": "examples/subsystem-bounded-probe.invalid.missing-proof-state.json",
+          "status": "pass",
+          "reason": "'proof_state' is a required property"
+        },
+        {
+          "file": "examples/subsystem-observability-handshake.invalid.missing-sync-targets.json",
+          "status": "pass",
+          "reason": "'required_sync_targets' is a required property"
+        },
+        {
+          "file": "examples/subsystem-runner-proof-strengthening-report.invalid.missing-decision-space.json",
+          "status": "pass",
+          "reason": "'decision_space' is a required property"
+        },
+        {
+          "file": "examples/evidence-strength.invalid.transcript-promotion.json",
+          "status": "pass",
+          "reason": "'do_not_promote_reason' is a required property | 'blocked' was expected"
+        },
+        {
+          "file": "examples/operational-feature-matrix.invalid.missing-do-not-promote.json",
+          "status": "pass",
+          "reason": "'do_not_promote_notes' is a required property"
+        },
+        {
+          "file": "examples/consume-source-quality-strengthening-report.invalid.missing-decision-space.json",
+          "status": "pass",
+          "reason": "'decision_space' is a required property"
+        }
+      ]
+    },
+    {
+      "name": "program_markdown_contract",
+      "status": "pass",
+      "details": [
+        {
+          "file": "program.md",
+          "status": "pass"
         }
       ]
     },
@@ -738,36 +874,49 @@
         ],
         "video_sources": [
           {
-            "ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
-            "strength": "transcript_plus_context_summary"
-          },
-          {
             "ref": "docs/NOTION-DOCS/Pi to Pi Two-Way Agent Orchestration with the Pi C 64fe03c77410491787f2007caf708f1a.md",
             "strength": "task_capture_without_terminal_frames"
           },
           {
             "ref": "docs/NOTION-DOCS/Pi-to-Pi video architect-facing install runbook w  f7dec6b22b9542189ebec7501bb52941.md",
             "strength": "task_stub_without_terminal_frames"
+          },
+          {
+            "ref": "docs/NOTION-DOCS/Pi-to-Pi video extract transcript + context summar 309d9012ee3b451a84eaf8e9f0f9d1bb.md",
+            "strength": "transcript_plus_context_summary"
           }
         ]
       }
     },
     {
-      "name": "subsystem_harness_architecture_slice",
+      "name": "consume_source_quality_outputs",
       "status": "pass",
       "details": {
-        "validated_contracts": 2,
-        "validated_examples": 3,
-        "registry_record": "source/subsystems/registry.json",
-        "repo_count": 20,
-        "shortlist_count": 6,
-        "scaffold_paths": [
-          "source/subsystems/README.md",
-          "source/subsystems/intake-etl.md",
-          "source/subsystems/research-harvest.md",
-          "source/subsystems/semantic-cartography.md",
-          "source/subsystems/wrapper-synthesizer.md"
-        ]
+        "source_guidance_present": true,
+        "source_index_present": true,
+        "operational_matrix_present": true,
+        "handoff_paths": [
+          "outbox/2026-05-22-operational-feature-matrix.handoff.md",
+          "outbox/2026-05-22-capability-matrix-extension.handoff.md",
+          "outbox/2026-05-22-consume-folder-extraction-map.handoff.md",
+          "outbox/2026-05-22-compiled-output-ingestion-map.handoff.md"
+        ],
+        "consume_source_count": 7,
+        "transcript_blocked_count": 3,
+        "operational_row_count": 6,
+        "errors": []
+      }
+    },
+    {
+      "name": "consume_source_quality_report",
+      "status": "pass",
+      "details": {
+        "report_schema_present": true,
+        "report_present": true,
+        "report_markdown_present": true,
+        "follow_up_prompt_present": true,
+        "follow_up_prompt_markdown_present": true,
+        "errors": []
       }
     },
     {
@@ -865,6 +1014,71 @@
       }
     },
     {
+      "name": "subsystem_harness_architecture_slice",
+      "status": "pass",
+      "details": {
+        "validated_contracts": 2,
+        "validated_examples": 3,
+        "registry_record": "source/subsystems/registry.json",
+        "repo_count": 20,
+        "shortlist_count": 6,
+        "scaffold_paths": [
+          "source/subsystems/README.md",
+          "source/subsystems/intake-etl.md",
+          "source/subsystems/research-harvest.md",
+          "source/subsystems/semantic-cartography.md",
+          "source/subsystems/wrapper-synthesizer.md"
+        ]
+      }
+    },
+    {
+      "name": "tool_packaging_contract_family",
+      "status": "pass",
+      "details": {
+        "validated_contracts": 1,
+        "validated_examples": 5,
+        "source_guidance_present": true,
+        "endpoint_first": true,
+        "artifact_registry_linkage_required": true,
+        "pixeltable_sync_status": "blocked_not_activated",
+        "duckdb_query_surface_status": "planned_not_activated",
+        "schema_refs": [
+          "schemas/agent-card.schema.json",
+          "schemas/tool-artifact.schema.json",
+          "schemas/tool-packaging-family.schema.json",
+          "schemas/tool-spec.schema.json",
+          "schemas/tool-task.schema.json"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "subsystem_runner_proof_family",
+      "status": "pass",
+      "details": {
+        "validated_contracts": 4,
+        "validated_examples": 4,
+        "source_guidance_present": true,
+        "report_schema_present": true,
+        "report_present": true,
+        "report_markdown_present": true,
+        "proof_states": [
+          "activation_proven_same_host",
+          "bounded_probe_blocked",
+          "bounded_probe_pass",
+          "designed_not_activated"
+        ],
+        "runner_boundary_ids": [
+          "intake_etl",
+          "research_harvest",
+          "semantic_cartography",
+          "wrapper_synthesizer"
+        ],
+        "handshake_failure_mode": "fail_loud",
+        "errors": []
+      }
+    },
+    {
       "name": "parent_native_orchestration_contracts",
       "status": "pass",
       "details": {
@@ -955,21 +1169,11 @@
       }
     },
     {
-      "name": "program_markdown_contract",
-      "status": "pass",
-      "details": [
-        {
-          "file": "program.md",
-          "status": "pass"
-        }
-      ]
-    },
-    {
       "name": "iteration_ledger_contract",
       "status": "pass",
       "details": {
         "path": "runs/iterations.jsonl",
-        "row_count": 20,
+        "row_count": 31,
         "parse_errors": [],
         "invalid_rows": []
       }
@@ -988,7 +1192,7 @@
       "details": {
         "truth_level": "bounded_runtime",
         "runtime_mode_activated": "same_host",
-        "latest_iteration": 20,
+        "latest_iteration": 31,
         "errors": []
       }
     }

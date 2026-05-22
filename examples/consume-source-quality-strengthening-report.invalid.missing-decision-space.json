@@ -1,0 +1,176 @@
+{
+  "report_id": "CSQ-20260522-EXAMPLE",
+  "status": "pass",
+  "selected_workflow_strengthening_slice": "consume_source_quality",
+  "recommended_option_id": "option-a",
+  "iteration_count": 4,
+  "iteration_score_history": [
+    {
+      "iteration": 1,
+      "summary": "Add the new schema surfaces and validator coverage.",
+      "before_total_score": 99.62,
+      "after_total_score": 99.62,
+      "score_changed": false
+    }
+  ],
+  "operational_feature_matrix_artifact_path": "evaluation/research/compiled/operational-feature-matrix.json",
+  "capability_matrix_extension_artifact_path": "outbox/2026-05-22-capability-matrix-extension.handoff.md",
+  "consume_folder_extraction_map_artifact_path": "outbox/2026-05-22-consume-folder-extraction-map.handoff.md",
+  "compiled_output_ingestion_map": {
+    "entries": [
+      {
+        "compiled_output": "evaluation/research/compiled/source-index.json",
+        "source_inputs": [
+          "inbox/transcribe.consume/prompt-candidate-consumption.md"
+        ],
+        "ingestion_rule": "Attach explicit evidence-strength records to transcript-derived and first-party consume sources.",
+        "policy_gate": "Transcript-derived workflow claims stay blocked until frame or terminal proof exists.",
+        "evidence_refs": [
+          "schemas/evidence-strength.schema.json"
+        ]
+      },
+      {
+        "compiled_output": "evaluation/research/compiled/feature-matrix.json",
+        "source_inputs": [
+          "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md"
+        ],
+        "ingestion_rule": "Append advisory operational rows without mutating canonical runtime truth.",
+        "policy_gate": "Keep capability-matrix extension guidance advisory until a later bounded decision.",
+        "evidence_refs": [
+          "contracts/capability-matrix.yaml"
+        ]
+      },
+      {
+        "compiled_output": "evaluation/research/compiled/capability-harvest.json",
+        "source_inputs": [
+          "inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
+        ],
+        "ingestion_rule": "Compile only after consume mappings are normalized.",
+        "policy_gate": "Block transcript-derived workflow promotions during compile.",
+        "evidence_refs": [
+          "evaluation/research/harvest-manifest.json"
+        ]
+      },
+      {
+        "compiled_output": "evaluation/research/compiled/gap-placement-map.json",
+        "source_inputs": [
+          "evaluation/gap-map-strength-report.json"
+        ],
+        "ingestion_rule": "Retain consume_source_quality as a bounded slice until stronger proof exists.",
+        "policy_gate": "Do not mark the lane promoted from source-quality artifact improvements alone.",
+        "evidence_refs": [
+          "evaluation/subsystem-runner-proof-strengthening-report.json"
+        ]
+      }
+    ]
+  },
+  "schema_additions": [
+    "schemas/operational-feature-matrix.schema.json",
+    "schemas/evidence-strength.schema.json"
+  ],
+  "files_changed": [
+    "schemas/operational-feature-matrix.schema.json",
+    "schemas/evidence-strength.schema.json"
+  ],
+  "targeted_validation_results": [
+    {
+      "command": "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py",
+      "status": "pass",
+      "evidence_refs": [
+        "evaluation/validation-report.json"
+      ]
+    }
+  ],
+  "runtime_truth": {
+    "runtime_truth_level": "bounded_runtime",
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      {
+        "lane_id": "peer_mesh_local.cross_device",
+        "classification": "blocked_with_exact_dependency",
+        "blocker_dependency": "PI_COMS_NET_AUTH_TOKEN and a declared hub URL remain required before cross-device peer mesh can be promoted.",
+        "evidence_refs": [
+          "evaluation/tool-health/peer-mesh-local.json"
+        ]
+      }
+    ],
+    "activation_artifacts_used": [
+      "evaluation/tool-health/peer-mesh-local.json"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "Source-quality repair does not activate new runtime lanes."
+    ]
+  },
+  "blockers": [
+    {
+      "lane_id": "live_infranodus_access",
+      "classification": "blocked_with_exact_dependency",
+      "blocker_dependency": "Authenticated InfraNodus MCP runtime access is still missing.",
+      "missing_prerequisites": [
+        "Authenticated MCP session"
+      ],
+      "evidence_refs": [
+        "evaluation/tool-health/infranodus-live-probe.json"
+      ]
+    }
+  ],
+  "freshness": {
+    "artifact_records": [
+      "evaluation/validation-report.json"
+    ],
+    "max_artifact_span_seconds": 600,
+    "tool_health_artifacts": [
+      "evaluation/tool-health/status.json"
+    ],
+    "compiled_research_artifacts": [
+      "evaluation/research/compiled/source-index.json"
+    ],
+    "infranodus_artifacts": [
+      "evaluation/infranodus-gap-analysis.json"
+    ]
+  },
+  "score_saturation": {
+    "baseline_total_score": 99.62,
+    "final_total_score": 99.62,
+    "score_changed": false,
+    "why_this_slice_counts": "It turns source-quality doctrine into machine-validated bounded artifacts."
+  },
+  "command_evidence": {
+    "validation_commands": [
+      "uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py"
+    ],
+    "schema_validation_commands": [
+      "uv run --isolated --with jsonschema python -c \"print('schema check')\""
+    ],
+    "compile_commands": [
+      "uv run python scripts/refresh-consume-source-quality.py"
+    ],
+    "tool_health_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "infranodus_commands": [
+      "uv run python scripts/build-parent-infranodus-artifacts.py"
+    ],
+    "research_commands_or_reads": [
+      "Read evaluation/research/compiled/source-index.json"
+    ]
+  },
+  "follow_up_prompt": {
+    "artifact_path": "prompts/PROMPT-20260522-CSQ3.yaml",
+    "target_schema_ref": "agent-heavy-run-prompt.schema.json",
+    "target_template_ref": "agent-heavy-run-prompt.template.yaml",
+    "must_be_inline_ready": true,
+    "markdown_companion_artifact_path": "prompts/PROMPT-20260522-CSQ3.md",
+    "markdown_template_ref": "prompts/governed-triad-follow-up-prompt.template.md",
+    "must_use_front_matter": true,
+    "must_use_bottom_matter_marker": true
+  }
+}

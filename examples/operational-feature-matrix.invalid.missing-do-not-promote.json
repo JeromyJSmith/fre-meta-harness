@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "operational_feature_matrix",
+  "status": "refreshed",
+  "rows": [
+    {
+      "capability_id": "consume_packet_inventory",
+      "feature_area": "source_intake",
+      "parent_surface_type": "distribution_plane",
+      "target_contract_surface": "contracts/research-packet-manifest.yaml",
+      "runtime_trigger": "consume_refresh",
+      "runtime_actor": "research",
+      "validation_method": "Validate that every consume folder is mapped to extraction posture, evidence limits, and compiled destinations.",
+      "evidence_artifact": "evaluation/research/compiled/source-index.json",
+      "blocker_or_dependency": "Requires inbox consume packets to remain inside the parent repo and machine-readable enough for bounded mapping.",
+      "parent_lane_classification": "core",
+      "consume_inputs": [
+        "inbox/transcribe.consume/file-system-consume.md"
+      ],
+      "compiled_outputs": [
+        "evaluation/research/compiled/operational-feature-matrix.json"
+      ]
+    },
+    {
+      "capability_id": "consume_packet_extraction_mapping",
+      "feature_area": "source_intake",
+      "parent_surface_type": "distribution_plane",
+      "target_contract_surface": "contracts/research-packet-manifest.yaml",
+      "runtime_trigger": "consume_refresh",
+      "runtime_actor": "research",
+      "validation_method": "Validate that extract vs enrich posture is explicit for every consume family and that transcript-heavy inputs stay bounded.",
+      "evidence_artifact": "outbox/2026-05-22-consume-folder-extraction-map.handoff.md",
+      "blocker_or_dependency": "Requires first-party consume packets and stable folder naming.",
+      "parent_lane_classification": "core",
+      "consume_inputs": [
+        "inbox/transcribe.consume/file-system-consume.md"
+      ],
+      "compiled_outputs": [
+        "outbox/2026-05-22-consume-folder-extraction-map.handoff.md"
+      ],
+      "do_not_promote_notes": [
+        "Extraction mapping alone does not promote transcript-derived workflow claims."
+      ]
+    },
+    {
+      "capability_id": "evidence_strength_normalization",
+      "feature_area": "source_quality",
+      "parent_surface_type": "policy_plane",
+      "target_contract_surface": "schemas/evidence-strength.schema.json",
+      "runtime_trigger": "source_index_refresh",
+      "runtime_actor": "orchestrator-validator",
+      "validation_method": "Validate that every source carries an explicit evidence-strength record and transcript-derived workflow claims stay blocked.",
+      "evidence_artifact": "evaluation/research/compiled/source-index.json",
+      "blocker_or_dependency": "Requires explicit evidence-strength vocabulary and schema validation before compiled outputs refresh.",
+      "parent_lane_classification": "core",
+      "consume_inputs": [
+        "inbox/transcribe.consume/prompt-candidate-consumption.md"
+      ],
+      "compiled_outputs": [
+        "evaluation/research/compiled/source-index.json"
+      ],
+      "do_not_promote_notes": [
+        "Transcript-derived workflow claims must remain blocked."
+      ]
+    },
+    {
+      "capability_id": "compiled_output_ingestion_mapping",
+      "feature_area": "compiled_outputs",
+      "parent_surface_type": "distribution_plane",
+      "target_contract_surface": "contracts/research-packet-manifest.yaml",
+      "runtime_trigger": "compiled_output_refresh",
+      "runtime_actor": "research",
+      "validation_method": "Validate that every compiled output names its consume inputs, merge rule, and policy gate before refresh.",
+      "evidence_artifact": "evaluation/research/harvest-manifest.json",
+      "blocker_or_dependency": "Requires stable compiled output paths and idempotent refresh scripts.",
+      "parent_lane_classification": "core",
+      "consume_inputs": [
+        "inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
+      ],
+      "compiled_outputs": [
+        "evaluation/research/compiled/capability-harvest.json"
+      ],
+      "do_not_promote_notes": [
+        "Compiled derivatives inherit bounded source-quality limits."
+      ]
+    },
+    {
+      "capability_id": "operational_feature_matrix_compile",
+      "feature_area": "compiled_outputs",
+      "parent_surface_type": "observability_plane",
+      "target_contract_surface": "schemas/operational-feature-matrix.schema.json",
+      "runtime_trigger": "source_quality_compile",
+      "runtime_actor": "architect",
+      "validation_method": "Validate the operational matrix against its schema and ensure each row names consume inputs, outputs, and non-promotion notes.",
+      "evidence_artifact": "evaluation/research/compiled/operational-feature-matrix.json",
+      "blocker_or_dependency": "Requires matrix rows to stay parent-owned and bounded to the consume-source-quality slice.",
+      "parent_lane_classification": "core",
+      "consume_inputs": [
+        "inbox/2026-05-21-operational-capability-matrix-and-schemas.handoff.md"
+      ],
+      "compiled_outputs": [
+        "evaluation/research/compiled/operational-feature-matrix.json"
+      ],
+      "do_not_promote_notes": [
+        "Operational rows describe compile behavior, not active runtime lanes."
+      ]
+    },
+    {
+      "capability_id": "capability_matrix_extension_guidance",
+      "feature_area": "handoff_guidance",
+      "parent_surface_type": "arbitration_lane",
+      "target_contract_surface": "contracts/capability-matrix.yaml",
+      "runtime_trigger": "governed_handoff_emit",
+      "runtime_actor": "architect",
+      "validation_method": "Validate that extension guidance references current canonical matrix rows and does not mutate the bounded parent runtime truth.",
+      "evidence_artifact": "outbox/2026-05-22-capability-matrix-extension.handoff.md",
+      "blocker_or_dependency": "Requires the canonical capability matrix to remain the source of truth while guidance stays advisory.",
+      "parent_lane_classification": "gated",
+      "consume_inputs": [
+        "inbox/prompting-tools.consume/Prompt Tools — Capability Harvesting Matrix 05fd146506d6472da0bd527086d6573e.md"
+      ],
+      "compiled_outputs": [
+        "outbox/2026-05-22-capability-matrix-extension.handoff.md"
+      ],
+      "do_not_promote_notes": [
+        "Guidance does not rewrite the canonical capability matrix by itself."
+      ]
+    }
+  ]
+}

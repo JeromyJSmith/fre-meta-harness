@@ -1,0 +1,93 @@
+schema_version: "1.0.0"
+contract_id: parent-subsystem-bounded-probe
+scope: portable_parent_wrapper
+family_contract_ref: contracts/subsystem-runner-proof-family.yaml
+truth_boundary:
+  allowed_parent_runtime_lanes:
+    - peer_mesh_local.same_host
+    - inbox_protocol.same_host
+  blocked_parent_runtime_lanes:
+    - peer_mesh_local.cross_device
+    - inbox_protocol.cross_device
+  no_child_runtime_adoption_claims: true
+  no_pixeltable_or_duckdb_activation_claims: true
+proof_state_vocabulary:
+  - proof_state: designed_not_activated
+    meaning: The parent owns the probe design and contract boundary, but no subsystem-specific runner proof has been executed.
+    transition_rule: This is the default truthful state when the probe is designed only.
+  - proof_state: bounded_probe_blocked
+    meaning: The bounded probe cannot run because an exact prerequisite is missing and documented.
+    transition_rule: The blocker dependency and missing prerequisites must be attached to the report and tool-health evidence.
+  - proof_state: bounded_probe_pass
+    meaning: A bounded same-host probe completed and wrote the required observability and validation artifacts.
+    transition_rule: This state does not imply cross-device proof or child-runtime adoption.
+  - proof_state: activation_proven_same_host
+    meaning: The subsystem has exact same-host activation proof with command, observability, and validation evidence.
+    transition_rule: Promotion beyond bounded_probe_pass requires subsystem-specific tool-health evidence, not family-level doctrine alone.
+probe_requirements:
+  designed_not_activated_rule: If a probe is only designed and not executed, keep the proof state at designed_not_activated.
+  same_host_only_rule: Subsystem runner proof is limited to same-host parent runtime lanes unless a separate authenticated transport proof exists.
+  required_validation_commands:
+    - uv run --isolated --with jsonschema --with pyyaml python tests/validate_parent_wrapper_contract.py
+    - uv run --isolated --with jsonschema --with pyyaml python scripts/score-parent-wrapper.py --json
+  required_graph_analysis_commands:
+    - uv run python scripts/build-parent-infranodus-artifacts.py
+  required_artifact_classes:
+    - subsystem_probe_status
+    - subsystem_probe_events
+    - subsystem_probe_benchmarks
+    - refreshed_validation_report
+    - refreshed_metrics_report
+subsystem_probe_designs:
+  - subsystem_id: intake_etl
+    execution_status: designed_not_activated
+    designed_probe_mode: inbox_fixture_reconciliation
+    planned_inputs:
+      - inbox/consuming-layer.plan.md
+      - contracts/inbox-packet.yaml
+    planned_outputs:
+      - evaluation/subsystem-runner-probes/intake_etl/probe-status.json
+      - evaluation/subsystem-runner-probes/intake_etl/events.jsonl
+    missing_prerequisites:
+      - No parent-owned intake_etl runner harness exists yet.
+    proof_boundary_notes:
+      - The probe must stay inside the parent repo and treat inbox assets as governed inputs only.
+  - subsystem_id: research_harvest
+    execution_status: designed_not_activated
+    designed_probe_mode: compiled_output_reconciliation
+    planned_inputs:
+      - evaluation/research/compiled/capability-harvest.json
+      - contracts/research-packet-manifest.yaml
+    planned_outputs:
+      - evaluation/subsystem-runner-probes/research_harvest/probe-status.json
+      - evaluation/subsystem-runner-probes/research_harvest/events.jsonl
+    missing_prerequisites:
+      - No parent-owned research_harvest runner harness exists yet.
+    proof_boundary_notes:
+      - The probe must keep compiled research as evidence reconciliation, not downstream adoption proof.
+  - subsystem_id: semantic_cartography
+    execution_status: designed_not_activated
+    designed_probe_mode: graph_boundary_reconciliation
+    planned_inputs:
+      - evaluation/infranodus-gap-analysis.json
+      - evaluation/infranodus-conceptual-bridges.json
+    planned_outputs:
+      - evaluation/subsystem-runner-probes/semantic_cartography/probe-status.json
+      - evaluation/subsystem-runner-probes/semantic_cartography/events.jsonl
+    missing_prerequisites:
+      - No parent-owned semantic_cartography runner harness exists yet.
+    proof_boundary_notes:
+      - The probe must keep live InfraNodus blocked unless separate authenticated proof exists.
+  - subsystem_id: wrapper_synthesizer
+    execution_status: designed_not_activated
+    designed_probe_mode: handoff_bundle_reconciliation
+    planned_inputs:
+      - contracts/delegation-bundle.yaml
+      - source/subsystems/registry.json
+    planned_outputs:
+      - evaluation/subsystem-runner-probes/wrapper_synthesizer/probe-status.json
+      - evaluation/subsystem-runner-probes/wrapper_synthesizer/events.jsonl
+    missing_prerequisites:
+      - No downstream runtime owner has been named for wrapper_synthesizer execution.
+    proof_boundary_notes:
+      - The probe must stop at governed handoff evidence and must not imply child runtime activation.

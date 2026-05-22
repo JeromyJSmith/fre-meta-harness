@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "parent-subsystem-runner-proof-family",
+  "scope": "portable_parent_wrapper",
+  "authority": {
+    "topology_contract_ref": "contracts/subsystem-harness-topology.yaml",
+    "subsystem_registry_contract_ref": "contracts/subsystem-registry.yaml",
+    "subsystem_registry_record_ref": "source/subsystems/registry.json",
+    "tool_health_ref": "evaluation/tool-health/status.json",
+    "source_guidance_ref": "source/subsystem-runner-proof-family.md"
+  },
+  "contract_surfaces": {
+    "family_schema_ref": "schemas/subsystem-runner-proof-family.schema.json",
+    "contract_to_runner_map_contract_ref": "contracts/contract-to-runner-map.yaml",
+    "contract_to_runner_map_schema_ref": "schemas/contract-to-runner-map.schema.json",
+    "bounded_probe_contract_ref": "contracts/subsystem-bounded-probe.yaml",
+    "bounded_probe_schema_ref": "schemas/subsystem-bounded-probe.schema.json",
+    "observability_handshake_contract_ref": "contracts/subsystem-observability-handshake.yaml",
+    "strengthening_report_schema_ref": "schemas/subsystem-runner-proof-strengthening-report.schema.json"
+  },
+  "proof_state_vocabulary": {
+    "required_states": [
+      "designed_not_activated",
+      "bounded_probe_blocked",
+      "bounded_probe_pass",
+      "activation_proven_same_host"
+    ],
+    "activation_state_passthrough": [
+      "defined_not_activated",
+      "late_bound_not_activated"
+    ],
+    "state_rules": [
+      "Use designed_not_activated when the parent owns the contract boundary only.",
+      "Use bounded_probe_blocked only when an exact prerequisite is recorded in machine-readable artifacts.",
+      "Use bounded_probe_pass only for bounded same-host proof with observability artifacts.",
+      "Use activation_proven_same_host only when subsystem-specific command, observability, and validation evidence all exist."
+    ]
+  },
+  "required_evidence_artifacts": [
+    "evaluation/tool-health/peer-mesh-local.json",
+    "evaluation/tool-health/inbox-protocol/latest-scan.json",
+    "evaluation/tool-health/status.json",
+    "evaluation/infranodus-gap-analysis.json",
+    "evaluation/validation-report.json",
+    "evaluation/metrics-latest.json"
+  ],
+  "activation_truth": {
+    "active_parent_runtime_lanes": [
+      "peer_mesh_local.same_host",
+      "inbox_protocol.same_host"
+    ],
+    "blocked_parent_runtime_lanes": [
+      "peer_mesh_local.cross_device",
+      "inbox_protocol.cross_device"
+    ],
+    "non_activated_subsystem_lanes": [
+      "intake_etl",
+      "research_harvest",
+      "semantic_cartography",
+      "wrapper_synthesizer"
+    ],
+    "do_not_overclaim_notes": [
+      "Do not promote subsystem lanes beyond designed_not_activated without fresh subsystem-specific proof artifacts.",
+      "Do not convert same-host evidence into cross-device claims.",
+      "Do not imply Pixeltable sync, DuckDB query proof, or child runtime adoption from this family.",
+      "Do not collapse governance, front-door runtime, and peer mesh runtime roles while describing runner boundaries."
+    ]
+  }
+}

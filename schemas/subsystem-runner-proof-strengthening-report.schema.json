@@ -1,0 +1,585 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/subsystem-runner-proof-strengthening-report.schema.json",
+  "title": "Subsystem Runner Proof Strengthening Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_id",
+    "status",
+    "selected_workflow_strengthening_slice",
+    "decision_space",
+    "recommended_option_id",
+    "iteration_count",
+    "iteration_score_history",
+    "infranodus_path_used",
+    "stronger_content_summary",
+    "still_weak_content_summary",
+    "runnable_tool_shortlist_used",
+    "files_changed",
+    "targeted_validation_results",
+    "diff_check_result",
+    "runtime_truth",
+    "blockers",
+    "freshness",
+    "score_saturation",
+    "command_evidence",
+    "follow_up_prompt"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "pattern": "^SUBRUNNER-[0-9]{8}-[A-Z0-9]{4,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "blocked"
+      ]
+    },
+    "selected_workflow_strengthening_slice": {
+      "type": "string",
+      "const": "subsystem_runner_proof"
+    },
+    "decision_space": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "option_id",
+          "title",
+          "why_now",
+          "evidence_refs"
+        ],
+        "properties": {
+          "option_id": {
+            "type": "string",
+            "pattern": "^option-[a-z]$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3
+          },
+          "why_now": {
+            "type": "string",
+            "minLength": 10
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        }
+      }
+    },
+    "recommended_option_id": {
+      "type": "string",
+      "pattern": "^option-[a-z]$"
+    },
+    "iteration_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "iteration_score_history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "iteration",
+          "summary",
+          "before_total_score",
+          "after_total_score",
+          "score_changed"
+        ],
+        "properties": {
+          "iteration": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 3
+          },
+          "before_total_score": {
+            "type": "number"
+          },
+          "after_total_score": {
+            "type": "number"
+          },
+          "score_changed": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "infranodus_path_used": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "command",
+        "evidence_refs"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "bounded_local_cli_substitute",
+            "live_mcp_runtime"
+          ]
+        },
+        "command": {
+          "type": "string",
+          "minLength": 3
+        },
+        "live_status": {
+          "type": "string",
+          "minLength": 3
+        },
+        "limitation": {
+          "type": "string",
+          "minLength": 10
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "stronger_content_summary": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 10
+      }
+    },
+    "still_weak_content_summary": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 10
+      }
+    },
+    "runnable_tool_shortlist_used": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 2
+      }
+    },
+    "files_changed": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "targeted_validation_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "command",
+          "status",
+          "evidence_refs"
+        ],
+        "properties": {
+          "command": {
+            "type": "string",
+            "minLength": 3
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "blocked"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          }
+        }
+      }
+    },
+    "diff_check_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command",
+        "status"
+      ],
+      "properties": {
+        "command": {
+          "type": "string",
+          "const": "git --no-pager diff --check"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "blocked"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "runtime_truth": {
+      "$ref": "#/$defs/runtimeTruth"
+    },
+    "blockers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_records",
+        "max_artifact_span_seconds",
+        "tool_health_artifacts",
+        "compiled_research_artifacts",
+        "infranodus_artifacts"
+      ],
+      "properties": {
+        "artifact_records": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "max_artifact_span_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tool_health_artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "compiled_research_artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "infranodus_artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "score_saturation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_total_score",
+        "final_total_score",
+        "score_changed",
+        "why_this_slice_counts"
+      ],
+      "properties": {
+        "baseline_total_score": {
+          "type": "number"
+        },
+        "final_total_score": {
+          "type": "number"
+        },
+        "score_changed": {
+          "type": "boolean"
+        },
+        "why_this_slice_counts": {
+          "type": "string",
+          "minLength": 10
+        },
+        "flat_score_explanation": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "command_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "activation_commands",
+        "validation_commands",
+        "tool_health_commands",
+        "infranodus_commands",
+        "proof_commands",
+        "research_commands_or_reads"
+      ],
+      "properties": {
+        "activation_commands": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "validation_commands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "tool_health_commands": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "infranodus_commands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "proof_commands": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "research_commands_or_reads": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "follow_up_prompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_path",
+        "target_schema_ref",
+        "target_template_ref",
+        "must_be_inline_ready",
+        "next_decision_space",
+        "markdown_companion_artifact_path",
+        "must_use_front_matter",
+        "must_use_bottom_matter_marker"
+      ],
+      "properties": {
+        "artifact_path": {
+          "type": "string",
+          "minLength": 3
+        },
+        "target_schema_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.schema.json"
+        },
+        "target_template_ref": {
+          "type": "string",
+          "const": "agent-heavy-run-prompt.template.yaml"
+        },
+        "must_be_inline_ready": {
+          "type": "boolean",
+          "const": true
+        },
+        "next_decision_space": {
+          "type": "string",
+          "minLength": 10
+        },
+        "markdown_companion_artifact_path": {
+          "type": "string",
+          "minLength": 3
+        },
+        "must_use_front_matter": {
+          "type": "boolean",
+          "const": true
+        },
+        "must_use_bottom_matter_marker": {
+          "type": "boolean",
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lane_id",
+        "classification",
+        "blocker_dependency",
+        "missing_prerequisites",
+        "evidence_refs"
+      ],
+      "properties": {
+        "lane_id": {
+          "type": "string",
+          "minLength": 3
+        },
+        "classification": {
+          "type": "string",
+          "minLength": 3
+        },
+        "blocker_dependency": {
+          "type": "string",
+          "minLength": 10
+        },
+        "missing_prerequisites": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "runtimeTruth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_truth_level",
+        "active_parent_runtime_lanes",
+        "blocked_parent_runtime_lanes",
+        "activation_artifacts_used",
+        "non_activated_subsystem_lanes",
+        "do_not_overclaim_notes"
+      ],
+      "properties": {
+        "runtime_truth_level": {
+          "type": "string",
+          "enum": [
+            "contract_only",
+            "bounded_runtime",
+            "active_runtime"
+          ]
+        },
+        "active_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "blocked_parent_runtime_lanes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "lane_id",
+              "classification",
+              "blocker_dependency",
+              "evidence_refs"
+            ],
+            "properties": {
+              "lane_id": {
+                "type": "string",
+                "minLength": 3
+              },
+              "classification": {
+                "type": "string",
+                "minLength": 3
+              },
+              "blocker_dependency": {
+                "type": "string",
+                "minLength": 10
+              },
+              "evidence_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 3
+                }
+              }
+            }
+          }
+        },
+        "activation_artifacts_used": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "non_activated_subsystem_lanes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "do_not_overclaim_notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    }
+  }
+}

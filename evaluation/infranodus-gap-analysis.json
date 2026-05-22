@@ -84,8 +84,8 @@
         "com",
         "disler",
         "blob",
-        "evaluation",
-        "research",
+        "evidence_type",
+        "notes",
         "docs"
       ]
     },
@@ -124,9 +124,9 @@
         "tool_health",
         "summary",
         "command",
+        "exit_code",
         "command_path",
-        "duration_ms",
-        "bin"
+        "duration_ms"
       ]
     }
   ],
@@ -150,8 +150,8 @@
   ],
   "content_gaps": [
     "compiled_research -> tool_catalog_inputs",
-    "inbox_doctrine -> tool_catalog_inputs",
-    "prompt_contracts -> compiled_research"
+    "inbox_doctrine -> compiled_research",
+    "inbox_doctrine -> tool_catalog_inputs"
   ],
   "resolved_by": [
     "contracts/parent-capability-metrics.yaml",

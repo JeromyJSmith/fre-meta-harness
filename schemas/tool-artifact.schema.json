@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fre-meta-harness/schemas/tool-artifact.schema.json",
+  "title": "Tool Artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "artifact_id",
+    "tool_id",
+    "task_id",
+    "output_type",
+    "schema_ref",
+    "content_type",
+    "canonical_path",
+    "registry_entry",
+    "storage",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "artifact_type": {
+      "type": "string",
+      "const": "tool_artifact"
+    },
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]+$"
+    },
+    "tool_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]+$"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^task-[a-z0-9-]+$"
+    },
+    "output_type": {
+      "type": "string",
+      "minLength": 3
+    },
+    "schema_ref": {
+      "type": "string",
+      "minLength": 3
+    },
+    "content_type": {
+      "type": "string",
+      "pattern": "^[a-z]+/[a-z0-9.+-]+$"
+    },
+    "canonical_path": {
+      "type": "string",
+      "minLength": 3
+    },
+    "registry_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "registry_type",
+        "owner_agent",
+        "canonical_paths",
+        "schema_ref",
+        "example_ref",
+        "validator_command",
+        "version",
+        "provenance_refs"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]+$"
+        },
+        "registry_type": {
+          "type": "string",
+          "enum": [
+            "tool_artifact",
+            "report",
+            "schema"
+          ]
+        },
+        "owner_agent": {
+          "type": "string",
+          "minLength": 3
+        },
+        "canonical_paths": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "schema_ref": {
+          "type": "string",
+          "minLength": 3
+        },
+        "example_ref": {
+          "type": "string",
+          "pattern": "^examples/.+\\.valid\\.json$"
+        },
+        "validator_command": {
+          "type": "string",
+          "minLength": 3
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "provenance_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "storage_mode",
+        "registry_table",
+        "pixeltable_sync_status",
+        "duckdb_query_surface_status"
+      ],
+      "properties": {
+        "storage_mode": {
+          "type": "string",
+          "enum": [
+            "filesystem_registry",
+            "pixeltable_doctrine_only"
+          ]
+        },
+        "registry_table": {
+          "type": "string",
+          "const": "artifacts"
+        },
+        "pixeltable_sync_status": {
+          "type": "string",
+          "const": "blocked_not_activated"
+        },
+        "duckdb_query_surface_status": {
+          "type": "string",
+          "const": "planned_not_activated"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "produced_at",
+        "source_refs",
+        "evidence_refs"
+      ],
+      "properties": {
+        "produced_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="/Volumes/PixelTable/VW_iTwin_Bridge/meta"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOG="$ROOT/runs/iterations.jsonl"
 REPORT="$ROOT/evaluation/copilot-ratchet-report.json"
 

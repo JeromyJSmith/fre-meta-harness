@@ -1,0 +1,10 @@
+{
+  "source_ref": "inbox/transcribe.consume/prompt-candidate-consumption.md",
+  "evidence_type": "transcript_context_summary",
+  "strength_class": "transcript_context_limited",
+  "transcript_derived": true,
+  "workflow_claim_promotion": "allowed",
+  "notes": [
+    "This should fail because transcript-derived workflow claims must stay blocked."
+  ]
+}

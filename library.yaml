@@ -37,13 +37,13 @@ library:
       description: Graph comparison and gap-analysis engine used across every lifecycle gate.
       source: infranodus-phase-tool-map.json
     - name: gitnexus
-      description: Knowledge-graph indexer used for bounded parent architecture checks and repo-context verification.
+      description: Optional bounded fixture probe for parent architecture checks; full-repo warnings do not upgrade runtime truth.
       source: evaluation/tool-health/status.json
     - name: graphify
-      description: Architectural graph analysis lane used for bounded parent fixture checks and drift detection.
+      description: Optional bounded parent-fixture graph extraction lane, not a proxy for full runtime activation.
       source: evaluation/tool-health/status.json
     - name: vercel-agent-eval
-      description: Parent-scoped evaluator with a real dry fixture today; smoke and live are exact remote-provider exceptions after the CLI-first local runner baseline.
+      description: Parent-scoped evaluator with dry as the default local evidence; smoke and live remain exact credential-gated exceptions.
       source: evaluation/agent-eval/README.md
     - name: local-cli-runners
       description: CLI-first local runner harvest across Claude Code, Copilot, Codex, PI, Hermes agent, Llama, MLX, and MLX VLM with explicit missing-versus-available reporting.
@@ -67,6 +67,10 @@ library:
       description: Local imported MLX autoresearch authority that defines the fixed-budget keep-or-revert experiment loop.
       source: external/autoresearch-mlx/program.md
   references:
+    - name: parent-operational-doctrine
+      description: Canonical source of truth for runtime lanes, launcher surfaces, local-first commands, and credential-required optional paths.
+      kind: doc
+      source: source/parent-operational-doctrine.md
     - name: parent-agentics-library
       description: Parent wrapper explanation of the library catalog pattern.
       kind: doc
