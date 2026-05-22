@@ -2,7 +2,7 @@
   "report_id": "PARENT-META-VALIDATION-0001",
   "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
-  "overall_status": "fail",
+  "overall_status": "pass",
   "checks": [
     {
       "name": "required_scaffold_files",
@@ -41,16 +41,9 @@
     },
     {
       "name": "required_local_upstream_clones",
-      "status": "fail",
+      "status": "pass",
       "details": {
-        "missing": [
-          "external/goal-md/README.md",
-          "external/goal-md/template/GOAL.md",
-          "external/meta-harness/README.md",
-          "external/meta-harness/ONBOARDING.md",
-          "external/autoresearch-mlx/README.md",
-          "external/autoresearch-mlx/program.md"
-        ]
+        "missing": []
       }
     },
     {
@@ -200,7 +193,7 @@
         {
           "file": "examples/copilot-ratchet-report.invalid.missing-cycles.json",
           "status": "pass",
-          "reason": "'metric_review' is a required property | 'real_non_dry_cycles_executed' is a required property | 'stop_evidence' is a required property | 'runtime_truth' is a required property | 'score_saturation' is a required property | 'iteration_ledger_entries_appended' is a required property | [] is too short | [] is too short | [] is too short"
+          "reason": "'metric_review' is a required property | 'real_non_dry_cycles_executed' is a required property | 'stop_evidence' is a required property | 'runtime_truth' is a required property | 'score_saturation' is a required property | 'iteration_ledger_entries_appended' is a required property | [] should be non-empty | [] should be non-empty | [] is too short"
         },
         {
           "file": "examples/copilot-ratchet-report.invalid.missing-runtime-truth.json",

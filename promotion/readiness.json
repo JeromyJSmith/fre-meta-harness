@@ -2,10 +2,8 @@
   "readiness_id": "PARENT-META-PROMOTION-0001",
   "created_at": "2026-05-22",
   "scope": "portable_parent_wrapper",
-  "status": "blocked",
-  "blockers": [
-    "Parent wrapper contract validation failed."
-  ],
+  "status": "pass",
+  "blockers": [],
   "evidence": [
     "evaluation/validation-report.json",
     "evaluation/copilot-ratchet-report.json",
