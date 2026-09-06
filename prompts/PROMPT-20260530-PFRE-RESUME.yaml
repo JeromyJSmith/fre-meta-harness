@@ -1,0 +1,150 @@
+prompt_schema_version: "1.0.0"
+prompt_id: "PROMPT-20260530-PFRERESUME"
+target_agent:
+  name: "claude"
+  surface: "claude_code"
+  invocation: "claude"
+triad_context:
+  acting_role: "orchestrator-validator"
+  upstream_handoff_ref: "~/tools/fre-meta-harness/HANDOFF.md"
+  upstream_inbox_packet_ref: "none — originates from HANDOFF.md (cold-start; no inbox packet)"
+  packet_artifact_type: ".plan.md"
+  required_gate_state: "green"
+  required_consumers:
+    - "orchestrator-validator"
+    - "research"
+  bottom_matter_ref: "~/tools/fre-meta-harness/HANDOFF.md (sections 8a-8d)"
+  structured_contract_ref: "~/tools/fre-meta-harness/CAPABILITY-TOOL-MODEL.md"
+  decision_space_required: true
+  runtime_truth_requirements:
+    - "Carry forward the exact verified facts from HANDOFF.md; do not re-derive or contradict them."
+    - "Keep any blocked lane explicit (PixelTable volume unmounted, commits unpushed) until fresh evidence changes it."
+  command_evidence_requirements:
+    - "Name every command you run to read/verify; pair conclusions with the artifact you read."
+  agent_extension_request_ref: "none"
+mode:
+  execution_style: "diagnostic_run"
+  autonomy: "high"
+  permission_model: "no_intermediate_permission"
+mission:
+  objective: >
+    Resume the FRE (Fractal Research Engineering) / PFRE-TMAS-HEP project. ORIENT FIRST: read the
+    cold-start handoff, then read Oz's canonical Notion design in his mandatory read-order, then the
+    on-disk docs. Reconcile the Notion design (source of truth) with what is already built. Confirm
+    topology with Oz. Then begin PAIC module 01 and produce the FIRST governed spec/schema. BUILD
+    NOTHING beyond a schema-validated spec without an explicit green gate.
+  repo_scope: "~/dotfiles (the GLOBAL harness, canonical) + the Notion FRE hub (source of truth) + ~/tools/fre-meta-harness (scratch, migrate FROM)"
+  task_scope: "research, read, map, plan, write the first -spec.md + its schema. No implementation until the spec passes its validation gate."
+current_verified_state:
+  facts:
+    - "FRE = Fractal RESEARCH Engineering (not Recursive). Project/observability name = PFRE-TMAS-HEP (Logfire jero/pfre-tmas-hep)."
+    - "~/dotfiles IS the global/main harness (portable home + meta-layer). Build PFRE here; migrate proven pieces in. Do NOT move to the /Volumes/PixelTable volume."
+    - "Bodies are separate, referenced by body-registry: EviDex=legal (/Volumes/PixelTable/__FRE_EviDex__), landscape=MARPA, plus audio + private-investigator. First proving body = ~/dotfiles/harnesses/video-intel (the PAIC ingestion engine, runs on Pixeltable)."
+    - "Pixeltable (the SUBSTRATE) is central and PROVEN live (SFAs=UDFs on computed columns; pxt.tools/invoke_tools; multimodal). PixelTable (the VOLUME) is just a drive — not the substrate, not the code home."
+    - "Validated stack: Pydantic AI v2-beta (pinned) = typed-SFA layer; Logfire = observability; the-library = catalog; ICM = file-system-as-architecture; MCP/A2A/AG-UI = protocols (agent-card.schema is already A2A-shaped)."
+    - "This session re-derived much of Oz's design independently (capability gate, the-library catalog, verify-before-promote, staged validation) — the Notion is canonical and more complete."
+    - "Commits this session are LOCAL, not pushed. Notion connector may need re-authentication."
+hard_rules:
+  environment:
+    - "uv for all Python (never pip/poetry/ad-hoc venv)."
+    - "Mount the PixelTable volume if reading the EviDex body; if unmounted, say so and work from ~/dotfiles."
+  safety:
+    - "Read the DESIGN before building anything. Nothing is implemented unless it passes its schema/gate."
+    - "Do not read or expose the legal evidence / case data / voicemails — that is body data, not architecture."
+    - "Do not broaden scope; bring in Oz's existing design, do not reinvent it."
+  truthfulness:
+    - "No fake green. If a doc is unreadable or the volume is unmounted, report the exact blocker."
+    - "Research + proof, not validation — when a claim matters, prove it."
+allowed_paths:
+  paths:
+    - "~/dotfiles/"
+    - "~/tools/fre-meta-harness/"
+    - "~/tools/the-library/"
+    - "The Notion FRE hub (111c487604f48221a914015210b84501) and its read-order pages"
+    - "/Volumes/PixelTable/__FRE_EviDex__/ (architecture docs only: .claude_pixeltable_design.md, EVIDEX_ICM_Scaffold, governance report)"
+disallowed_paths:
+  paths:
+    - "Any legal evidence / case media under the body folders (audio, transcripts, exhibits, voicemails)"
+tasks:
+  ordered_steps:
+    - "Read ~/tools/fre-meta-harness/HANDOFF.md top to bottom (and the auto-loaded memory pointer)."
+    - "Connect/authenticate the Notion MCP. Read the hub's MANDATORY read-order IN ORDER: (1) onboarding+loop+gates 080928b13e4749c4b292ad74c57b2bdb; (2) FRE Method v0.1 301c487604f4820b83e601f9ddcf6771; (3) Portable Harness Package 477c487604f482fba63f818f28476dc5; (4) Meta-Harness Architecture Template 505c487604f483ef99f2814cdcf2545e; (5) Meta-Harness Metrics Registry DB."
+    - "Read the on-disk docs: ~/dotfiles/harnesses/video-intel/docs/yt_enrich/ (06-planning, 07-Review-to-Plan, 09-video-queue/principled-ai-coding) + ~/dotfiles/harnesses/src/spec_artifacts/ + the EviDex .claude_pixeltable_design.md."
+    - "Produce an ALIGNMENT MAP: Oz's Notion design vs what this session built (the gate, the-library, stage runners, capability-tool template). Mark match / gap / conflict."
+    - "Confirm topology + naming with Oz (dotfiles = global PFRE harness; the nucleus = CLAUDE.md + docs/harness/{memory,goal,golden-path,sources}.md)."
+    - "Begin PAIC module 01. Write the FIRST governed -spec.md + its JSON schema + a valid/invalid example pair. STOP at a schema-validated spec — do not implement further without a green gate and Oz's go."
+validation_loop:
+  checks:
+    - "Run the always-run FRE gate: Envelope -> Source -> Spec-authority -> Schema/Example -> Tests -> Doc-parity -> Promotion decision."
+    - "Validate any new schema against its examples (valid passes, invalid fails for the stated reason)."
+    - "Confirm envelope-compliance (front-matter + body + ---bottom-matter---) on every governed doc produced."
+  rerun_policy: "Repeat the fix-and-validate loop until the spec passes its gate or the blocker is proven real and reported."
+handoff_inputs:
+  handoff_artifact_path: "~/tools/fre-meta-harness/HANDOFF.md"
+  source_report_paths:
+    - "~/tools/fre-meta-harness/DISLER-ATLAS.md"
+    - "~/tools/fre-meta-harness/CAPABILITY-TOOL-MODEL.md"
+    - "~/tools/fre-meta-harness/tools/README.md"
+    - "~/dotfiles/harnesses/src/spec_artifacts/"
+  required_follow_up_roles:
+    - "orchestrator-validator"
+    - "research"
+    - "architect"
+  consumption_requirements:
+    - "Read HANDOFF.md + the Notion read-order BEFORE any build; treat the Notion as canonical and ~/tools/fre-meta-harness as scratch to migrate from."
+    - "Carry the verified facts forward verbatim; do not re-derive or contradict them."
+    - "Produce the alignment map and confirm topology with Oz before writing the first spec."
+success_criteria:
+  best_case: >
+    HANDOFF.md + all 5 Notion read-order pages + the on-disk docs are read in order; an alignment map
+    (Notion design vs this session's build: match/gap/conflict) is produced and shown to Oz; topology +
+    naming confirmed (dotfiles = global PFRE harness; no work moved onto the PixelTable volume); and the
+    FIRST governed -spec.md exists with a JSON schema + a valid/invalid example pair that PASSES its gate,
+    with zero implementation beyond that validated spec.
+  acceptable_fallback: >
+    HANDOFF + the read-order are read and an alignment map is produced, with the first spec drafted to
+    schema even if its gate is not yet green — and every blocker (unmounted PixelTable volume, Notion
+    re-auth, missing doc) is reported with exact evidence rather than worked around.
+report_contract:
+  required_fields:
+    - "pass or blocked status of the orientation + first-spec gate"
+    - "exact reads (handoff, the 5 Notion pages, on-disk docs) with paths/IDs"
+    - "alignment map: Notion design vs built artifacts (match / gap / conflict)"
+    - "proposed first spec + its schema + example pair, and the gate result"
+    - "open questions for Oz"
+  runtime_truth_fields:
+    - "runtime_truth_level"
+    - "runtime_mode_activated"
+    - "runtime_modes_blocked"
+    - "activation_artifacts"
+    - "observability_artifacts"
+    - "completion_tokens_observed"
+    - "policy_outcomes_observed"
+  blocker_fields:
+    - "lane_id"
+    - "classification"
+    - "blocker_dependency"
+    - "missing_prerequisites"
+    - "evidence_refs"
+  freshness_fields:
+    - "artifact_records"
+    - "max_artifact_span_seconds"
+    - "tool_health_artifacts"
+  score_saturation_fields:
+    - "baseline_total_score"
+    - "final_total_score"
+    - "score_changed"
+    - "why_this_slice_counts"
+  command_evidence_fields:
+    - "activation_commands"
+    - "validation_commands"
+    - "tool_health_commands"
+  follow_up_prompt_fields:
+    - "artifact_path"
+    - "target_schema_ref"
+    - "target_template_ref"
+    - "must_be_inline_ready"
+    - "markdown_companion_artifact_path"
+    - "markdown_template_ref"
+    - "must_use_front_matter"
+    - "must_use_bottom_matter_marker"
